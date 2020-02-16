@@ -1,0 +1,50 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\AccessPointContact[]|\Cake\Collection\CollectionInterface $accessPointContacts
+ */
+?>
+<div class="accessPointContacts index content">
+    <?= $this->Html->link(__('New Access Point Contact'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Access Point Contacts') ?></h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
+                    <th><?= $this->Paginator->sort('access_point_id') ?></th>
+                    <th><?= $this->Paginator->sort('contact_id') ?></th>
+                    <th class="actions"><?= __('Actions') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($accessPointContacts as $accessPointContact): ?>
+                <tr>
+                    <td><?= h($accessPointContact->id) ?></td>
+                    <td><?= h($accessPointContact->created) ?></td>
+                    <td><?= h($accessPointContact->modified) ?></td>
+                    <td><?= $accessPointContact->has('access_point') ? $this->Html->link($accessPointContact->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]) : '' ?></td>
+                    <td><?= h($accessPointContact->contact_id) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $accessPointContact->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accessPointContact->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $accessPointContact->id], ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointContact->id)]) ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    </div>
+</div>
