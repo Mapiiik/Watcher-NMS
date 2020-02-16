@@ -23,7 +23,9 @@ class ManufacturersControllerTest extends TestCase
      */
     protected $fixtures = [
         'app.Manufacturers',
+        'app.AntennaTypes',
         'app.PowerSupplyTypes',
+        'app.RadioUnitTypes',
     ];
 
     /**

@@ -27,8 +27,8 @@
                     <td><?= h($powerSupplyType->name) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Manufacturer Id') ?></th>
-                    <td><?= h($powerSupplyType->manufacturer_id) ?></td>
+                    <th><?= __('Manufacturer') ?></th>
+                    <td><?= $powerSupplyType->has('manufacturer') ? $this->Html->link($powerSupplyType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Part Number') ?></th>
@@ -69,6 +69,8 @@
                             <th><?= __('Access Point Id') ?></th>
                             <th><?= __('Power Supply Type Id') ?></th>
                             <th><?= __('Serial Number') ?></th>
+                            <th><?= __('Battery Count') ?></th>
+                            <th><?= __('Battery Voltage') ?></th>
                             <th><?= __('Battery Capacity') ?></th>
                             <th><?= __('Battery Replacement') ?></th>
                             <th><?= __('Battery Duration') ?></th>
@@ -83,6 +85,8 @@
                             <td><?= h($powerSupplies->access_point_id) ?></td>
                             <td><?= h($powerSupplies->power_supply_type_id) ?></td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
+                            <td><?= h($powerSupplies->battery_count) ?></td>
+                            <td><?= h($powerSupplies->battery_voltage) ?></td>
                             <td><?= h($powerSupplies->battery_capacity) ?></td>
                             <td><?= h($powerSupplies->battery_replacement) ?></td>
                             <td><?= h($powerSupplies->battery_duration) ?></td>

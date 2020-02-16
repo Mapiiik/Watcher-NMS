@@ -25,6 +25,8 @@
                     echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                     echo $this->Form->control('power_supply_type_id', ['options' => $powerSupplyTypes, 'empty' => true]);
                     echo $this->Form->control('serial_number');
+                    echo $this->Form->control('battery_count');
+                    echo $this->Form->control('battery_voltage');
                     echo $this->Form->control('battery_capacity');
                     echo $this->Form->control('battery_replacement', ['empty' => true]);
                     echo $this->Form->control('battery_duration');

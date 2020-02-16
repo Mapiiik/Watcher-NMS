@@ -29,7 +29,7 @@
                     <td><?= h($powerSupplyType->created) ?></td>
                     <td><?= h($powerSupplyType->modified) ?></td>
                     <td><?= h($powerSupplyType->name) ?></td>
-                    <td><?= h($powerSupplyType->manufacturer_id) ?></td>
+                    <td><?= $powerSupplyType->has('manufacturer') ? $this->Html->link($powerSupplyType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]) : '' ?></td>
                     <td><?= h($powerSupplyType->part_number) ?></td>
                     <td><?= $this->Number->format($powerSupplyType->voltage) ?></td>
                     <td><?= $this->Number->format($powerSupplyType->current) ?></td>

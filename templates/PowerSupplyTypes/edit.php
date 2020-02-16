@@ -23,7 +23,7 @@
                 <legend><?= __('Edit Power Supply Type') ?></legend>
                 <?php
                     echo $this->Form->control('name');
-                    echo $this->Form->control('manufacturer_id');
+                    echo $this->Form->control('manufacturer_id', ['options' => $manufacturers, 'empty' => true]);
                     echo $this->Form->control('part_number');
                     echo $this->Form->control('voltage');
                     echo $this->Form->control('current');

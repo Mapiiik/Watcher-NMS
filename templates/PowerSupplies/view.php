@@ -39,6 +39,14 @@
                     <td><?= h($powerSupply->battery_duration) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Battery Count') ?></th>
+                    <td><?= $this->Number->format($powerSupply->battery_count) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Battery Voltage') ?></th>
+                    <td><?= $this->Number->format($powerSupply->battery_voltage) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Battery Capacity') ?></th>
                     <td><?= $this->Number->format($powerSupply->battery_capacity) ?></td>
                 </tr>

@@ -18,6 +18,7 @@ use Cake\ORM\Entity;
  * @property float|null $current
  * @property string|null $note
  *
+ * @property \App\Model\Entity\Manufacturer $manufacturer
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
  */
 class PowerSupplyType extends Entity
@@ -40,6 +41,7 @@ class PowerSupplyType extends Entity
         'voltage' => true,
         'current' => true,
         'note' => true,
+        'manufacturer' => true,
         'power_supplies' => true,
     ];
 }

@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
 /**
  * PowerSupplyTypes Model
  *
+ * @property \App\Model\Table\ManufacturersTable&\Cake\ORM\Association\BelongsTo $Manufacturers
  * @property \App\Model\Table\PowerSuppliesTable&\Cake\ORM\Association\HasMany $PowerSupplies
  *
  * @method \App\Model\Entity\PowerSupplyType get($primaryKey, $options = [])

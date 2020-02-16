@@ -11,7 +11,9 @@ use Cake\Validation\Validator;
 /**
  * Manufacturers Model
  *
+ * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\HasMany $AntennaTypes
  * @property \App\Model\Table\PowerSupplyTypesTable&\Cake\ORM\Association\HasMany $PowerSupplyTypes
+ * @property \App\Model\Table\RadioUnitTypesTable&\Cake\ORM\Association\HasMany $RadioUnitTypes
  *
  * @method \App\Model\Entity\Manufacturer get($primaryKey, $options = [])
  * @method \App\Model\Entity\Manufacturer newEntity($data = null, array $options = [])
@@ -42,7 +44,13 @@ class ManufacturersTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->hasMany('AntennaTypes', [
+            'foreignKey' => 'manufacturer_id',
+        ]);
         $this->hasMany('PowerSupplyTypes', [
+            'foreignKey' => 'manufacturer_id',
+        ]);
+        $this->hasMany('RadioUnitTypes', [
             'foreignKey' => 'manufacturer_id',
         ]);
     }

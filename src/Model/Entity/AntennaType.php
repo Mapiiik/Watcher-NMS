@@ -1,0 +1,49 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Model\Entity;
+
+use Cake\ORM\Entity;
+
+/**
+ * AntennaType Entity
+ *
+ * @property string $id
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $name
+ * @property string|null $radio_unit_band_id
+ * @property string|null $manufacturer_id
+ * @property int|null $antenna_gain
+ * @property string|null $part_number
+ * @property string|null $note
+ *
+ * @property \App\Model\Entity\RadioUnitBand $radio_unit_band
+ * @property \App\Model\Entity\Manufacturer $manufacturer
+ * @property \App\Model\Entity\RadioUnit[] $radio_units
+ */
+class AntennaType extends Entity
+{
+    /**
+     * Fields that can be mass assigned using newEntity() or patchEntity().
+     *
+     * Note that when '*' is set to true, this allows all unspecified fields to
+     * be mass assigned. For security purposes, it is advised to set '*' to false
+     * (or remove it), and explicitly make individual fields accessible as needed.
+     *
+     * @var array
+     */
+    protected $_accessible = [
+        'created' => true,
+        'modified' => true,
+        'name' => true,
+        'radio_unit_band_id' => true,
+        'manufacturer_id' => true,
+        'antenna_gain' => true,
+        'part_number' => true,
+        'note' => true,
+        'radio_unit_band' => true,
+        'manufacturer' => true,
+        'radio_units' => true,
+    ];
+}

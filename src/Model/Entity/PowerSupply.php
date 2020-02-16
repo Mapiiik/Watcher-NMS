@@ -14,6 +14,8 @@ use Cake\ORM\Entity;
  * @property string|null $access_point_id
  * @property string|null $power_supply_type_id
  * @property string|null $serial_number
+ * @property float|null $battery_count
+ * @property float|null $battery_voltage
  * @property float|null $battery_capacity
  * @property \Cake\I18n\FrozenDate|null $battery_replacement
  * @property string|null $battery_duration
@@ -39,6 +41,8 @@ class PowerSupply extends Entity
         'access_point_id' => true,
         'power_supply_type_id' => true,
         'serial_number' => true,
+        'battery_count' => true,
+        'battery_voltage' => true,
         'battery_capacity' => true,
         'battery_replacement' => true,
         'battery_duration' => true,

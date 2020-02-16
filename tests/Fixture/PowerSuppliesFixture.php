@@ -23,6 +23,8 @@ class PowerSuppliesFixture extends TestFixture
         'access_point_id' => ['type' => 'uuid', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
         'power_supply_type_id' => ['type' => 'uuid', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
         'serial_number' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
+        'battery_count' => ['type' => 'float', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null],
+        'battery_voltage' => ['type' => 'float', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null],
         'battery_capacity' => ['type' => 'float', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null],
         'battery_replacement' => ['type' => 'date', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
         'battery_duration' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
@@ -41,12 +43,14 @@ class PowerSuppliesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '8230b9de-8f6c-497d-8338-cde9ad84210c',
+                'id' => '11d22d95-4811-4256-93b3-6ddaf10ddaa3',
                 'created' => '',
                 'modified' => '',
-                'access_point_id' => 'c219bab6-ef61-47ec-93ec-c4f5654a629f',
-                'power_supply_type_id' => 'd7ac4268-684c-463e-b016-69b4e9711279',
+                'access_point_id' => 'e58e7fba-a1a8-45f8-9a1c-5a177fd8dd08',
+                'power_supply_type_id' => '365f8ff1-c949-48f7-9368-1c4ef7a7a58a',
                 'serial_number' => 'Lorem ipsum dolor sit amet',
+                'battery_count' => 1,
+                'battery_voltage' => 1,
                 'battery_capacity' => 1,
                 'battery_replacement' => '2020-02-16',
                 'battery_duration' => 'Lorem ipsum dolor sit amet',

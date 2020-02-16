@@ -19,6 +19,9 @@ class PowerSupplyTypesController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Manufacturers'],
+        ];
         $powerSupplyTypes = $this->paginate($this->PowerSupplyTypes);
 
         $this->set(compact('powerSupplyTypes'));
@@ -34,7 +37,7 @@ class PowerSupplyTypesController extends AppController
     public function view($id = null)
     {
         $powerSupplyType = $this->PowerSupplyTypes->get($id, [
-            'contain' => ['PowerSupplies'],
+            'contain' => ['Manufacturers', 'PowerSupplies'],
         ]);
 
         $this->set('powerSupplyType', $powerSupplyType);
@@ -57,7 +60,8 @@ class PowerSupplyTypesController extends AppController
             }
             $this->Flash->error(__('The power supply type could not be saved. Please, try again.'));
         }
-        $this->set(compact('powerSupplyType'));
+        $manufacturers = $this->PowerSupplyTypes->Manufacturers->find('list', ['limit' => 200]);
+        $this->set(compact('powerSupplyType', 'manufacturers'));
     }
 
     /**
@@ -81,7 +85,8 @@ class PowerSupplyTypesController extends AppController
             }
             $this->Flash->error(__('The power supply type could not be saved. Please, try again.'));
         }
-        $this->set(compact('powerSupplyType'));
+        $manufacturers = $this->PowerSupplyTypes->Manufacturers->find('list', ['limit' => 200]);
+        $this->set(compact('powerSupplyType', 'manufacturers'));
     }
 
     /**

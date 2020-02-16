@@ -14,7 +14,9 @@ use Cake\ORM\Entity;
  * @property string|null $name
  * @property string|null $note
  *
+ * @property \App\Model\Entity\AntennaType[] $antenna_types
  * @property \App\Model\Entity\PowerSupplyType[] $power_supply_types
+ * @property \App\Model\Entity\RadioUnitType[] $radio_unit_types
  */
 class Manufacturer extends Entity
 {
@@ -32,6 +34,8 @@ class Manufacturer extends Entity
         'modified' => true,
         'name' => true,
         'note' => true,
+        'antenna_types' => true,
         'power_supply_types' => true,
+        'radio_unit_types' => true,
     ];
 }

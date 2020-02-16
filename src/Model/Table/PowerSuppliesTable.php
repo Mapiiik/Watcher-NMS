@@ -68,6 +68,14 @@ class PowerSuppliesTable extends Table
             ->allowEmptyString('serial_number');
 
         $validator
+            ->numeric('battery_count')
+            ->allowEmptyString('battery_count');
+
+        $validator
+            ->numeric('battery_voltage')
+            ->allowEmptyString('battery_voltage');
+
+        $validator
             ->numeric('battery_capacity')
             ->allowEmptyString('battery_capacity');
 

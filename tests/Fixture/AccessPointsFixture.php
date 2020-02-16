@@ -39,7 +39,7 @@ class AccessPointsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '46413767-c670-4140-af5b-08f262f3eb01',
+                'id' => '60b90ab1-d01a-417f-b005-fc61a7e7aac3',
                 'created' => '',
                 'modified' => '',
                 'name' => 'Lorem ipsum dolor sit amet',

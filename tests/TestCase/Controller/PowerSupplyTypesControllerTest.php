@@ -23,6 +23,7 @@ class PowerSupplyTypesControllerTest extends TestCase
      */
     protected $fixtures = [
         'app.PowerSupplyTypes',
+        'app.Manufacturers',
         'app.PowerSupplies',
     ];
 
