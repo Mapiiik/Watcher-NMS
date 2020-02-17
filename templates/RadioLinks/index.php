@@ -12,10 +12,10 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('distance') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -23,10 +23,10 @@
                 <?php foreach ($radioLinks as $radioLink): ?>
                 <tr>
                     <td><?= h($radioLink->id) ?></td>
-                    <td><?= h($radioLink->created) ?></td>
-                    <td><?= h($radioLink->modified) ?></td>
                     <td><?= h($radioLink->name) ?></td>
                     <td><?= $this->Number->format($radioLink->distance) ?></td>
+                    <td><?= h($radioLink->created) ?></td>
+                    <td><?= h($radioLink->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $radioLink->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioLink->id]) ?>

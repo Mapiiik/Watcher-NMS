@@ -9,13 +9,13 @@ use Cake\ORM\Entity;
  * AccessPoint Entity
  *
  * @property string $id
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $name
  * @property string|null $device_name
- * @property float|null $gpsx
- * @property float|null $gpsy
+ * @property float|null $gps_x
+ * @property float|null $gps_y
  * @property string|null $note
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
@@ -33,13 +33,13 @@ class AccessPoint extends Entity
      * @var array
      */
     protected $_accessible = [
-        'created' => true,
-        'modified' => true,
         'name' => true,
         'device_name' => true,
-        'gpsx' => true,
-        'gpsy' => true,
+        'gps_x' => true,
+        'gps_y' => true,
         'note' => true,
+        'created' => true,
+        'modified' => true,
         'access_point_contacts' => true,
         'power_supplies' => true,
         'radio_units' => true,

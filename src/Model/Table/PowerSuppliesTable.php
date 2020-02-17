@@ -11,8 +11,8 @@ use Cake\Validation\Validator;
 /**
  * PowerSupplies Model
  *
- * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\PowerSupplyTypesTable&\Cake\ORM\Association\BelongsTo $PowerSupplyTypes
+ * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  *
  * @method \App\Model\Entity\PowerSupply get($primaryKey, $options = [])
  * @method \App\Model\Entity\PowerSupply newEntity($data = null, array $options = [])
@@ -43,11 +43,11 @@ class PowerSuppliesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('AccessPoints', [
-            'foreignKey' => 'access_point_id',
-        ]);
         $this->belongsTo('PowerSupplyTypes', [
             'foreignKey' => 'power_supply_type_id',
+        ]);
+        $this->belongsTo('AccessPoints', [
+            'foreignKey' => 'access_point_id',
         ]);
     }
 
@@ -62,6 +62,10 @@ class PowerSuppliesTable extends Table
         $validator
             ->uuid('id')
             ->allowEmptyString('id', null, 'create');
+
+        $validator
+            ->scalar('name')
+            ->allowEmptyString('name');
 
         $validator
             ->scalar('serial_number')
@@ -103,8 +107,8 @@ class PowerSuppliesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
         $rules->add($rules->existsIn(['power_supply_type_id'], 'PowerSupplyTypes'));
+        $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
 
         return $rules;
     }

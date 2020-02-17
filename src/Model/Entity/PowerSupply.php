@@ -9,10 +9,9 @@ use Cake\ORM\Entity;
  * PowerSupply Entity
  *
  * @property string $id
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
- * @property string|null $access_point_id
+ * @property string|null $name
  * @property string|null $power_supply_type_id
+ * @property string|null $access_point_id
  * @property string|null $serial_number
  * @property float|null $battery_count
  * @property float|null $battery_voltage
@@ -20,9 +19,11 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenDate|null $battery_replacement
  * @property string|null $battery_duration
  * @property string|null $note
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  *
- * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\PowerSupplyType $power_supply_type
+ * @property \App\Model\Entity\AccessPoint $access_point
  */
 class PowerSupply extends Entity
 {
@@ -36,10 +37,9 @@ class PowerSupply extends Entity
      * @var array
      */
     protected $_accessible = [
-        'created' => true,
-        'modified' => true,
-        'access_point_id' => true,
+        'name' => true,
         'power_supply_type_id' => true,
+        'access_point_id' => true,
         'serial_number' => true,
         'battery_count' => true,
         'battery_voltage' => true,
@@ -47,7 +47,9 @@ class PowerSupply extends Entity
         'battery_replacement' => true,
         'battery_duration' => true,
         'note' => true,
-        'access_point' => true,
+        'created' => true,
+        'modified' => true,
         'power_supply_type' => true,
+        'access_point' => true,
     ];
 }

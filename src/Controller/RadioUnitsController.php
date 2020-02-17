@@ -20,7 +20,7 @@ class RadioUnitsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['AccessPoints', 'RadioLinks', 'RadioUnitTypes', 'AntennaTypes'],
+            'contain' => ['RadioUnitTypes', 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
         ];
         $radioUnits = $this->paginate($this->RadioUnits);
 
@@ -37,7 +37,7 @@ class RadioUnitsController extends AppController
     public function view($id = null)
     {
         $radioUnit = $this->RadioUnits->get($id, [
-            'contain' => ['AccessPoints', 'RadioLinks', 'RadioUnitTypes', 'AntennaTypes'],
+            'contain' => ['RadioUnitTypes', 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
         ]);
 
         $this->set('radioUnit', $radioUnit);
@@ -60,11 +60,11 @@ class RadioUnitsController extends AppController
             }
             $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
         }
+        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['limit' => 200]);
         $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['limit' => 200]);
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['limit' => 200]);
-        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['limit' => 200]);
         $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['limit' => 200]);
-        $this->set(compact('radioUnit', 'accessPoints', 'radioLinks', 'radioUnitTypes', 'antennaTypes'));
+        $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
     }
 
     /**
@@ -88,11 +88,11 @@ class RadioUnitsController extends AppController
             }
             $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
         }
+        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['limit' => 200]);
         $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['limit' => 200]);
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['limit' => 200]);
-        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['limit' => 200]);
         $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['limit' => 200]);
-        $this->set(compact('radioUnit', 'accessPoints', 'radioLinks', 'radioUnitTypes', 'antennaTypes'));
+        $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
     }
 
     /**

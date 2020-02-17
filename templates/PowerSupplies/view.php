@@ -23,12 +23,16 @@
                     <td><?= h($powerSupply->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Access Point') ?></th>
-                    <td><?= $powerSupply->has('access_point') ? $this->Html->link($powerSupply->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]) : '' ?></td>
+                    <th><?= __('Name') ?></th>
+                    <td><?= h($powerSupply->name) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Power Supply Type') ?></th>
                     <td><?= $powerSupply->has('power_supply_type') ? $this->Html->link($powerSupply->power_supply_type->name, ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupply->power_supply_type->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Access Point') ?></th>
+                    <td><?= $powerSupply->has('access_point') ? $this->Html->link($powerSupply->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Serial Number') ?></th>
@@ -51,16 +55,16 @@
                     <td><?= $this->Number->format($powerSupply->battery_capacity) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Battery Replacement') ?></th>
+                    <td><?= h($powerSupply->battery_replacement) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($powerSupply->created) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($powerSupply->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Battery Replacement') ?></th>
-                    <td><?= h($powerSupply->battery_replacement) ?></td>
                 </tr>
             </table>
             <div class="text">

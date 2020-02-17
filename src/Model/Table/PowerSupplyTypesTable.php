@@ -68,16 +68,16 @@ class PowerSupplyTypesTable extends Table
             ->allowEmptyString('name');
 
         $validator
-            ->scalar('part_number')
-            ->allowEmptyString('part_number');
-
-        $validator
             ->numeric('voltage')
             ->allowEmptyString('voltage');
 
         $validator
             ->numeric('current')
             ->allowEmptyString('current');
+
+        $validator
+            ->scalar('part_number')
+            ->allowEmptyString('part_number');
 
         $validator
             ->scalar('note')

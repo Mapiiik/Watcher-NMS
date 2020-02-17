@@ -12,10 +12,10 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('contact_id') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -23,10 +23,10 @@
                 <?php foreach ($accessPointContacts as $accessPointContact): ?>
                 <tr>
                     <td><?= h($accessPointContact->id) ?></td>
-                    <td><?= h($accessPointContact->created) ?></td>
-                    <td><?= h($accessPointContact->modified) ?></td>
                     <td><?= $accessPointContact->has('access_point') ? $this->Html->link($accessPointContact->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]) : '' ?></td>
                     <td><?= h($accessPointContact->contact_id) ?></td>
+                    <td><?= h($accessPointContact->created) ?></td>
+                    <td><?= h($accessPointContact->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $accessPointContact->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accessPointContact->id]) ?>

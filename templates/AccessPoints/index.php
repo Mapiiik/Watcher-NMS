@@ -12,12 +12,12 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('device_name') ?></th>
-                    <th><?= $this->Paginator->sort('gpsx') ?></th>
-                    <th><?= $this->Paginator->sort('gpsy') ?></th>
+                    <th><?= $this->Paginator->sort('gps_x') ?></th>
+                    <th><?= $this->Paginator->sort('gps_y') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -25,12 +25,12 @@
                 <?php foreach ($accessPoints as $accessPoint): ?>
                 <tr>
                     <td><?= h($accessPoint->id) ?></td>
-                    <td><?= h($accessPoint->created) ?></td>
-                    <td><?= h($accessPoint->modified) ?></td>
                     <td><?= h($accessPoint->name) ?></td>
                     <td><?= h($accessPoint->device_name) ?></td>
-                    <td><?= $this->Number->format($accessPoint->gpsx) ?></td>
-                    <td><?= $this->Number->format($accessPoint->gpsy) ?></td>
+                    <td><?= $this->Number->format($accessPoint->gps_x) ?></td>
+                    <td><?= $this->Number->format($accessPoint->gps_y) ?></td>
+                    <td><?= h($accessPoint->created) ?></td>
+                    <td><?= h($accessPoint->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $accessPoint->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accessPoint->id]) ?>

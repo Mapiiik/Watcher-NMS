@@ -12,12 +12,12 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('radio_unit_band_id') ?></th>
                     <th><?= $this->Paginator->sort('manufacturer_id') ?></th>
                     <th><?= $this->Paginator->sort('part_number') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -25,12 +25,12 @@
                 <?php foreach ($radioUnitTypes as $radioUnitType): ?>
                 <tr>
                     <td><?= h($radioUnitType->id) ?></td>
-                    <td><?= h($radioUnitType->created) ?></td>
-                    <td><?= h($radioUnitType->modified) ?></td>
                     <td><?= h($radioUnitType->name) ?></td>
                     <td><?= $radioUnitType->has('radio_unit_band') ? $this->Html->link($radioUnitType->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $radioUnitType->radio_unit_band->id]) : '' ?></td>
                     <td><?= $radioUnitType->has('manufacturer') ? $this->Html->link($radioUnitType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $radioUnitType->manufacturer->id]) : '' ?></td>
                     <td><?= h($radioUnitType->part_number) ?></td>
+                    <td><?= h($radioUnitType->created) ?></td>
+                    <td><?= h($radioUnitType->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $radioUnitType->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioUnitType->id]) ?>

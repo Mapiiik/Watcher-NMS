@@ -26,8 +26,8 @@ class PowerSuppliesTableTest extends TestCase
      */
     protected $fixtures = [
         'app.PowerSupplies',
-        'app.AccessPoints',
         'app.PowerSupplyTypes',
+        'app.AccessPoints',
     ];
 
     /**

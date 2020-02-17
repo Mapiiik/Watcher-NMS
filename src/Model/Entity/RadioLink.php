@@ -9,11 +9,11 @@ use Cake\ORM\Entity;
  * RadioLink Entity
  *
  * @property string $id
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $name
  * @property int|null $distance
  * @property string|null $note
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\RadioUnit[] $radio_units
  */
@@ -29,11 +29,11 @@ class RadioLink extends Entity
      * @var array
      */
     protected $_accessible = [
-        'created' => true,
-        'modified' => true,
         'name' => true,
         'distance' => true,
         'note' => true,
+        'created' => true,
+        'modified' => true,
         'radio_units' => true,
     ];
 }

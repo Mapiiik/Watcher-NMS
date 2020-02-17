@@ -76,12 +76,12 @@ class AccessPointsTable extends Table
             ->allowEmptyString('device_name');
 
         $validator
-            ->numeric('gpsx')
-            ->allowEmptyString('gpsx');
+            ->numeric('gps_x')
+            ->allowEmptyString('gps_x');
 
         $validator
-            ->numeric('gpsy')
-            ->allowEmptyString('gpsy');
+            ->numeric('gps_y')
+            ->allowEmptyString('gps_y');
 
         $validator
             ->scalar('note')

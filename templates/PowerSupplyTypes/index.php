@@ -12,13 +12,13 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('manufacturer_id') ?></th>
-                    <th><?= $this->Paginator->sort('part_number') ?></th>
                     <th><?= $this->Paginator->sort('voltage') ?></th>
                     <th><?= $this->Paginator->sort('current') ?></th>
+                    <th><?= $this->Paginator->sort('part_number') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -26,13 +26,13 @@
                 <?php foreach ($powerSupplyTypes as $powerSupplyType): ?>
                 <tr>
                     <td><?= h($powerSupplyType->id) ?></td>
-                    <td><?= h($powerSupplyType->created) ?></td>
-                    <td><?= h($powerSupplyType->modified) ?></td>
                     <td><?= h($powerSupplyType->name) ?></td>
                     <td><?= $powerSupplyType->has('manufacturer') ? $this->Html->link($powerSupplyType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]) : '' ?></td>
-                    <td><?= h($powerSupplyType->part_number) ?></td>
                     <td><?= $this->Number->format($powerSupplyType->voltage) ?></td>
                     <td><?= $this->Number->format($powerSupplyType->current) ?></td>
+                    <td><?= h($powerSupplyType->part_number) ?></td>
+                    <td><?= h($powerSupplyType->created) ?></td>
+                    <td><?= h($powerSupplyType->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $powerSupplyType->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $powerSupplyType->id]) ?>

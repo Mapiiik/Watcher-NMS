@@ -9,10 +9,10 @@ use Cake\ORM\Entity;
  * Manufacturer Entity
  *
  * @property string $id
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $name
  * @property string|null $note
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\AntennaType[] $antenna_types
  * @property \App\Model\Entity\PowerSupplyType[] $power_supply_types
@@ -30,10 +30,10 @@ class Manufacturer extends Entity
      * @var array
      */
     protected $_accessible = [
-        'created' => true,
-        'modified' => true,
         'name' => true,
         'note' => true,
+        'created' => true,
+        'modified' => true,
         'antenna_types' => true,
         'power_supply_types' => true,
         'radio_unit_types' => true,

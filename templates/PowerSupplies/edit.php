@@ -22,8 +22,9 @@
             <fieldset>
                 <legend><?= __('Edit Power Supply') ?></legend>
                 <?php
-                    echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
+                    echo $this->Form->control('name');
                     echo $this->Form->control('power_supply_type_id', ['options' => $powerSupplyTypes, 'empty' => true]);
+                    echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                     echo $this->Form->control('serial_number');
                     echo $this->Form->control('battery_count');
                     echo $this->Form->control('battery_voltage');

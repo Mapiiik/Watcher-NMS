@@ -23,6 +23,14 @@
                     <td><?= h($radioUnit->id) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Name') ?></th>
+                    <td><?= h($radioUnit->name) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Radio Unit Type') ?></th>
+                    <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Access Point') ?></th>
                     <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
                 </tr>
@@ -31,12 +39,24 @@
                     <td><?= $radioUnit->has('radio_link') ? $this->Html->link($radioUnit->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Radio Unit Type') ?></th>
-                    <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>
+                    <th><?= __('Antenna Type') ?></th>
+                    <td><?= $radioUnit->has('antenna_type') ? $this->Html->link($radioUnit->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($radioUnit->name) ?></td>
+                    <th><?= __('Polarization') ?></th>
+                    <td><?= h($radioUnit->polarization) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Firmware Version') ?></th>
+                    <td><?= h($radioUnit->firmware_version) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Serial Number') ?></th>
+                    <td><?= h($radioUnit->serial_number) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Station Address') ?></th>
+                    <td><?= h($radioUnit->station_address) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Ip Address') ?></th>
@@ -49,26 +69,6 @@
                 <tr>
                     <th><?= __('Device Password') ?></th>
                     <td><?= h($radioUnit->device_password) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Antenna Type') ?></th>
-                    <td><?= $radioUnit->has('antenna_type') ? $this->Html->link($radioUnit->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Polarization') ?></th>
-                    <td><?= h($radioUnit->polarization) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Serial Number') ?></th>
-                    <td><?= h($radioUnit->serial_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Firmware Version') ?></th>
-                    <td><?= h($radioUnit->firmware_version) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Station Address') ?></th>
-                    <td><?= h($radioUnit->station_address) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Channel Width') ?></th>
@@ -99,16 +99,16 @@
                     <td><?= $this->Number->format($radioUnit->maximal_speed) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Expiration Date') ?></th>
+                    <td><?= h($radioUnit->expiration_date) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($radioUnit->created) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($radioUnit->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Expiration Date') ?></th>
-                    <td><?= h($radioUnit->expiration_date) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Acm') ?></th>

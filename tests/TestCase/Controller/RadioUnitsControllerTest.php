@@ -23,9 +23,9 @@ class RadioUnitsControllerTest extends TestCase
      */
     protected $fixtures = [
         'app.RadioUnits',
+        'app.RadioUnitTypes',
         'app.AccessPoints',
         'app.RadioLinks',
-        'app.RadioUnitTypes',
         'app.AntennaTypes',
     ];
 

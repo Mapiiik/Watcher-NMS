@@ -19,8 +19,8 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('device_name');
-                    echo $this->Form->control('gpsx');
-                    echo $this->Form->control('gpsy');
+                    echo $this->Form->control('gps_x');
+                    echo $this->Form->control('gps_y');
                     echo $this->Form->control('note');
                 ?>
             </fieldset>

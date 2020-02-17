@@ -11,9 +11,9 @@ use Cake\Validation\Validator;
 /**
  * RadioUnits Model
  *
+ * @property \App\Model\Table\RadioUnitTypesTable&\Cake\ORM\Association\BelongsTo $RadioUnitTypes
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\RadioLinksTable&\Cake\ORM\Association\BelongsTo $RadioLinks
- * @property \App\Model\Table\RadioUnitTypesTable&\Cake\ORM\Association\BelongsTo $RadioUnitTypes
  * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\BelongsTo $AntennaTypes
  *
  * @method \App\Model\Entity\RadioUnit get($primaryKey, $options = [])
@@ -45,14 +45,14 @@ class RadioUnitsTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('RadioUnitTypes', [
+            'foreignKey' => 'radio_unit_type_id',
+        ]);
         $this->belongsTo('AccessPoints', [
             'foreignKey' => 'access_point_id',
         ]);
         $this->belongsTo('RadioLinks', [
             'foreignKey' => 'radio_link_id',
-        ]);
-        $this->belongsTo('RadioUnitTypes', [
-            'foreignKey' => 'radio_unit_type_id',
         ]);
         $this->belongsTo('AntennaTypes', [
             'foreignKey' => 'antenna_type_id',
@@ -76,17 +76,9 @@ class RadioUnitsTable extends Table
             ->allowEmptyString('name');
 
         $validator
-            ->scalar('ip_address')
-            ->maxLength('ip_address', 39)
-            ->allowEmptyString('ip_address');
-
-        $validator
-            ->scalar('device_login')
-            ->allowEmptyString('device_login');
-
-        $validator
-            ->scalar('device_password')
-            ->allowEmptyString('device_password');
+            ->scalar('polarization')
+            ->maxLength('polarization', 1)
+            ->allowEmptyString('polarization');
 
         $validator
             ->integer('channel_width')
@@ -99,11 +91,6 @@ class RadioUnitsTable extends Table
         $validator
             ->integer('rx_frequency')
             ->allowEmptyString('rx_frequency');
-
-        $validator
-            ->scalar('polarization')
-            ->maxLength('polarization', 1)
-            ->allowEmptyString('polarization');
 
         $validator
             ->integer('tx_power')
@@ -130,12 +117,12 @@ class RadioUnitsTable extends Table
             ->allowEmptyString('atpc');
 
         $validator
-            ->scalar('serial_number')
-            ->allowEmptyString('serial_number');
-
-        $validator
             ->scalar('firmware_version')
             ->allowEmptyString('firmware_version');
+
+        $validator
+            ->scalar('serial_number')
+            ->allowEmptyString('serial_number');
 
         $validator
             ->scalar('station_address')
@@ -144,6 +131,19 @@ class RadioUnitsTable extends Table
         $validator
             ->date('expiration_date')
             ->allowEmptyDate('expiration_date');
+
+        $validator
+            ->scalar('ip_address')
+            ->maxLength('ip_address', 39)
+            ->allowEmptyString('ip_address');
+
+        $validator
+            ->scalar('device_login')
+            ->allowEmptyString('device_login');
+
+        $validator
+            ->scalar('device_password')
+            ->allowEmptyString('device_password');
 
         $validator
             ->scalar('note')
@@ -161,9 +161,9 @@ class RadioUnitsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add($rules->existsIn(['radio_unit_type_id'], 'RadioUnitTypes'));
         $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
         $rules->add($rules->existsIn(['radio_link_id'], 'RadioLinks'));
-        $rules->add($rules->existsIn(['radio_unit_type_id'], 'RadioUnitTypes'));
         $rules->add($rules->existsIn(['antenna_type_id'], 'AntennaTypes'));
 
         return $rules;
