@@ -54,6 +54,7 @@
                 </blockquote>
             </div>
             <div class="related">
+                <?= $this->Html->link(__('New Access Point Contact'), ['controller' => 'AccessPointContacts', 'action' => 'add'], ['class' => 'button float-right']) ?>
                 <h4><?= __('Related Access Point Contacts') ?></h4>
                 <?php if (!empty($accessPoint->access_point_contacts)) : ?>
                 <div class="table-responsive">
@@ -87,6 +88,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
+                <?= $this->Html->link(__('New Power Supply'), ['controller' => 'PowerSupplies', 'action' => 'add'], ['class' => 'button float-right']) ?>
                 <h4><?= __('Related Power Supplies') ?></h4>
                 <?php if (!empty($accessPoint->power_supplies)) : ?>
                 <div class="table-responsive">
@@ -132,6 +134,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
+                <?= $this->Html->link(__('New Radio Unit'), ['controller' => 'RadioUnits', 'action' => 'add'], ['class' => 'button float-right']) ?>
                 <h4><?= __('Related Radio Units') ?></h4>
                 <?php if (!empty($accessPoint->radio_units)) : ?>
                 <div class="table-responsive">

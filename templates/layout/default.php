@@ -40,11 +40,23 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="/"><span>Cake</span>PHP</a>
+            <a href="/"><span>Watcher</span> NMS</a>
         </div>
         <div class="top-nav-links">
-            <a target="_blank" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" href="https://api.cakephp.org/4/">API</a>
+            <?= $this->AuthLink->link(__('Access Points'), ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button']) ?>
+            <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button']) ?>
+            <?= $this->AuthLink->link(__('Radio Units'), ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null], ['class' => 'button']) ?>
+            <?= $this->AuthLink->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => null], ['class' => 'button button-outline']) ?>
+            <br />
+            <?php if (in_array($this->name, ['PowerSupplies', 'PowerSupplyTypes'])): ?>
+            <?= $this->AuthLink->link(__('Power Supply Types'), ['controller' => 'PowerSupplyTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
+            <?= $this->AuthLink->link(__('Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
+            <?php endif; ?>
+            <?php if (in_array($this->name, ['RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])): ?>
+            <?= $this->AuthLink->link(__('Radio Unit Types'), ['controller' => 'RadioUnitTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
+            <?= $this->AuthLink->link(__('Radio Unit Bands'), ['controller' => 'RadioUnitBands', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
+            <?= $this->AuthLink->link(__('Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
+            <?php endif; ?>
         </div>
     </nav>
     <main class="main">
