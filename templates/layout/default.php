@@ -43,19 +43,30 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <a href="/"><span>Watcher</span> NMS</a>
         </div>
         <div class="top-nav-links">
-            <?= $this->AuthLink->link(__('Access Points'), ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button']) ?>
-            <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button']) ?>
-            <?= $this->AuthLink->link(__('Radio Units'), ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null], ['class' => 'button']) ?>
+            <?php
+            $controller = $this->name;
+            $buttonSelected = function ($haystack = []) use ($controller)
+            {
+                if (in_array($controller, $haystack))
+                    return ' button-selected';
+                else
+                    return '';
+            };
+            ?>
+            <?= $this->AuthLink->link(__('Access Points'), ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['AccessPoints'])]) ?>
+            <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]) ?>
+            <?= $this->AuthLink->link(__('Radio Units'), ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])]) ?>
             <?php if (!is_null($this->request->getSession()->read('Auth.id'))) echo $this->AuthLink->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => null], ['class' => 'button button-outline']) ?>
             <br />
             <?php if (in_array($this->name, ['PowerSupplies', 'PowerSupplyTypes'])): ?>
-            <?= $this->AuthLink->link(__('Power Supply Types'), ['controller' => 'PowerSupplyTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
-            <?= $this->AuthLink->link(__('Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
+            <?= $this->AuthLink->link(__('Power Supply Types'), ['controller' => 'PowerSupplyTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['PowerSupplyTypes'])]) ?>
+            <?= $this->AuthLink->link(__('Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['Manufacturers'])]) ?>
             <?php endif; ?>
-            <?php if (in_array($this->name, ['RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])): ?>
-            <?= $this->AuthLink->link(__('Radio Unit Types'), ['controller' => 'RadioUnitTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
-            <?= $this->AuthLink->link(__('Radio Unit Bands'), ['controller' => 'RadioUnitBands', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
-            <?= $this->AuthLink->link(__('Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small']) ?>
+            <?php if (in_array($this->name, ['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])): ?>
+            <?= $this->AuthLink->link(__('Radio Links'), ['controller' => 'RadioLinks', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['RadioLinks'])]) ?>
+            <?= $this->AuthLink->link(__('Radio Unit Types'), ['controller' => 'RadioUnitTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['RadioUnitTypes'])]) ?>
+            <?= $this->AuthLink->link(__('Radio Unit Bands'), ['controller' => 'RadioUnitBands', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['RadioUnitBands'])]) ?>
+            <?= $this->AuthLink->link(__('Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['Manufacturers'])]) ?>
             <?php endif; ?>
         </div>
     </nav>

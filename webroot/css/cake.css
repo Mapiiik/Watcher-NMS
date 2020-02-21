@@ -179,7 +179,11 @@ th {
 }
 
 .button-small {
-  height: 2.8rem;
-  line-height: 2.8rem;
-  padding: 0 1.5rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    padding: 0 1.5rem;
+}
+.button-selected {
+    background-color: #606c76;
+    border-color: #606c76;
 }
