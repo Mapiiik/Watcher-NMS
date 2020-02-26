@@ -133,148 +133,122 @@ class RouterosDevicesController extends AppController
         }
         return $string;
     }
+    private function nullIfEmptyString($value = null)
+    {
+        if ($value === '')
+            return null;
+        else
+            return $value;
+    }
     
     private function loadViaSNMP($host = null, $community = null, $deviceTypeId = null)
     {
-        // Return back the numeric OIDs, instead of text strings.
-        snmp_set_oid_numeric_print(1);
-
+        // numeric OIDs
+        snmp_set_oid_output_format(SNMP_OID_OUTPUT_NUMERIC);
+        
         // Get just the values.
-        snmp_set_quick_print(1);
-
+        //snmp_set_quick_print(1);
+            
         // For sequence types, return just the numbers, not the string and numbers.
-        snmp_set_enum_print(1); 
+        //snmp_set_enum_print(1); 
 
         // Don't let the SNMP library get cute with value interpretation.  This makes 
         // MAC addresses return the 6 binary bytes, timeticks to return just the integer
         // value, and some other things.
         snmp_set_valueretrieval(SNMP_VALUE_PLAIN);
 
-        if ($serialNumber = @snmpget($host, $community, '.1.3.6.1.4.1.14988.1.1.7.3.0'))
+        if ($serialNumber = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.3.0'))
         {
-            var_dump($serialNumber);
             $routerosDevice = $this->RouterosDevices->findOrCreate(['serial_number' => $serialNumber]);
 
             $routerosDevice->device_type_id = $deviceTypeId;
             $routerosDevice->ip_address = $host;
 
-            $routerosDevice->name = @snmpget($host, $community, '.1.3.6.1.2.1.1.5.0');
-            $routerosDevice->system_description = @snmpget($host, $community, '.1.3.6.1.2.1.1.1.0');
-            $routerosDevice->board_name = @snmpget($host, $community, '.1.3.6.1.4.1.14988.1.1.7.8.0');
-            $routerosDevice->software_version = @snmpget($host, $community, '.1.3.6.1.4.1.14988.1.1.4.4.0');
-            $routerosDevice->firmware_version = @snmpget($host, $community, '.1.3.6.1.4.1.14988.1.1.7.4.0');
+            $routerosDevice->name = @snmp2_get($host, $community, '.1.3.6.1.2.1.1.5.0');
+            $routerosDevice->system_description = @snmp2_get($host, $community, '.1.3.6.1.2.1.1.1.0');
+            $routerosDevice->board_name = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.8.0');
+            $routerosDevice->software_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.4.4.0');
+            $routerosDevice->firmware_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.4.0');
             
             $this->RouterosDevices->save($routerosDevice);
 
-            $ifIndex = @snmpwalk($host, $community, '.1.3.6.1.2.1.2.2.1.1');
-            $ifDescr = @snmpwalk($host, $community, '.1.3.6.1.2.1.2.2.1.2');
-            $ifType = @snmpwalk($host, $community, '.1.3.6.1.2.1.2.2.1.3');
-            $ifAlias = @snmpwalk($host, $community, '.1.3.6.1.2.1.31.1.1.1.18');
-            $ifMac = @snmpwalk($host, $community, '.1.3.6.1.2.1.2.2.1.6');
-
-            $ifAdminStatus = @snmpwalk($host, $community, '.1.3.6.1.2.1.2.2.1.7');
-            $ifOperStatus = @snmpwalk($host, $community, '.1.3.6.1.2.1.2.2.1.8');
-
-            $ipAddr = @snmpwalk($host, $community, '.1.3.6.1.2.1.4.20.1.1');
-            $ipNetMask = @snmpwalk($host, $community, '.1.3.6.1.2.1.4.20.1.3');
-            $ipIfIndex = @snmpwalk($host, $community, '.1.3.6.1.2.1.4.20.1.2');
-
-            for ($i = 0; $i < count($ifIndex); $i++) {
+            $ipAddr = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.1');
+            $ipNetMask = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.3');
+            $ipIfIndex = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.2');
+            
+            $ifTableIndexes = @snmp2_real_walk($host, $community, '.1.3.6.1.2.1.2.2.1.1');
+            $ifTable = @snmp2_real_walk($host, $community, '.1.3.6.1.2.1.2.2.1');
+            $mtxrWlApTable = @snmp2_real_walk($host, $community, '.1.3.6.1.4.1.14988.1.1.1.3.1');
+            $mtxrWlStatTable = @snmp2_real_walk($host, $community, '.1.3.6.1.4.1.14988.1.1.1.1.1');
+  
+            foreach ($ifTableIndexes as $ifIndex)
+            {
                     //if ($ifType[$i] == 71)
                     {
-                        $data['deviceId'] = $deviceId;
-                        $data['ifIndex'] = $ifIndex[$i];
-                        $data['name'] = $ifDescr[$i];
-                        $data['comment'] = $ifAlias[$i];
-                        $data['mac'] = $this->strToHex($ifMac[$i]);
-                        $data['adminStatus'] = $ifAdminStatus[$i];
-                        $data['operStatus'] = $ifOperStatus[$i];
-                        $data['type'] = $ifType[$i];
-
-                        $data['ssid'] = @snmpget("$host", "$community", "1.3.6.1.4.1.14988.1.1.1.3.1.4." . $ifIndex[$i]);
-                        $data['band'] = @snmpget("$host", "$community", "1.3.6.1.4.1.14988.1.1.1.3.1.8." . $ifIndex[$i]);
-                        $data['frequency'] = @snmpget("$host", "$community", "1.3.6.1.4.1.14988.1.1.1.3.1.7." . $ifIndex[$i]);
-                        $data['noiseFloor'] = @snmpget("$host", "$community", "1.3.6.1.4.1.14988.1.1.1.3.1.9." . $ifIndex[$i]);
-                        $data['clientCount'] = @snmpget("$host", "$community", "1.3.6.1.4.1.14988.1.1.1.3.1.6." . $ifIndex[$i]);
-                        $data['CCQ'] = @snmpget("$host", "$community", "1.3.6.1.4.1.14988.1.1.1.3.1.10." . $ifIndex[$i]);
-
-                        foreach ($data as $key => $value)
-                        {
-                            if (!$value) $data[$key] = null;
-                        }
-
-                        var_dump($data);
+                        $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ifIndex]);
                         
-                        if (count($sqlid) > 1)
+                                               
+                        $routerosDeviceInterface->name = $ifTable['.1.3.6.1.2.1.2.2.1.2.' . $ifIndex];
+                        $routerosDeviceInterface->comment = $ifTable['.1.3.6.1.2.1.2.2.1.18.' . $ifIndex];
+                        $routerosDeviceInterface->interface_admin_status = $ifTable['.1.3.6.1.2.1.2.2.1.7.' . $ifIndex];
+                        $routerosDeviceInterface->interface_oper_status = $ifTable['.1.3.6.1.2.1.2.2.1.8.' . $ifIndex];
+                        $routerosDeviceInterface->interface_type = $ifTable['.1.3.6.1.2.1.2.2.1.3.' . $ifIndex];
+
+                        if ($this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]) <> '')
                         {
-                            $delete['table'] = DB_TABLE_ROUTEROS_DEVICE_INTERFACES;
-                            $delete['where']['deviceId'] = $deviceId;
-                            $delete['where']['ifIndex'] = $data['ifIndex'];
-                            //$database->dbDelete($delete);
-                            unset($delete);
+                            $routerosDeviceInterface->mac_address = $this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]);
                         }
 
-                        if (count($sqlid) == 0 || count($sqlid) > 1)
+                        if (isset($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex]))
                         {
-                            $insert['insert'] = $data;
-                            $insert['table'] = DB_TABLE_ROUTEROS_DEVICE_INTERFACES;
-
-                            //$sqlid = $database->DBSelect($database->SQLInsert($insert) . " RETURNING id;");
-                            unset($insert);
+                            $routerosDeviceInterface->ssid = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex];
+                            $routerosDeviceInterface->band = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.8.' . $ifIndex];
+                            $routerosDeviceInterface->frequency = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.7.' . $ifIndex];
+                            $routerosDeviceInterface->noise_floor = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.9.' . $ifIndex];
+                            $routerosDeviceInterface->client_count = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.6.' . $ifIndex];
+                            $routerosDeviceInterface->overall_tx_ccq = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.10.' . $ifIndex];
                         }
-                        //$id = $sqlid[0]['id'];
-                        unset($data);
-                        unset($sqlid);
+                        else if (isset($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex]))
+                        {
+                            $routerosDeviceInterface->ssid = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex];
+                            $routerosDeviceInterface->band = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.8.' . $ifIndex];
+                            $routerosDeviceInterface->frequency = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.7.' . $ifIndex];
+                            $routerosDeviceInterface->noise_floor = null;
+                            $routerosDeviceInterface->client_count = null;
+                            $routerosDeviceInterface->overall_tx_ccq = null;
+                        }
+                        else
+                        {
+                            $routerosDeviceInterface->ssid = null;
+                            $routerosDeviceInterface->band = null;
+                            $routerosDeviceInterface->frequency = null;
+                            $routerosDeviceInterface->noise_floor = null;
+                            $routerosDeviceInterface->client_count = null;
+                            $routerosDeviceInterface->overall_tx_ccq = null;
+                        }
+
+                        $this->RouterosDevices->RouterosDeviceInterfaces->save($routerosDeviceInterface);
                     }
             }
+/*
             // DELETE removed interfaces
             $delete['table'] = DB_TABLE_ROUTEROS_DEVICE_INTERFACES;
             $delete['where']['deviceId'] = $deviceId;
             $delete['wherex'][] = "((changed < (now() - interval '120 seconds')) OR ((changed IS NULL) AND (inserted < (now() - interval '120 seconds'))))";
             //$database->dbDelete($delete);
             unset($delete);
-
+*/
             for ($i = 0; $i < count($ipAddr); $i++) {
                     // check if IP loaded OK, if not do not add
                     if (!ip2long($ipAddr[$i])) continue;
                     if (!ip2long($ipNetMask[$i])) continue;
 
-                    $data['deviceId'] = $deviceId;
-                    $data['ifIndex'] = $ipIfIndex[$i];
-                    $data['ip'] = $ipAddr[$i] . '/' . $this->mask2cidr($ipNetMask[$i]);
-
-                    $update['set'] = $data;
-                    $update['setx'][] = '"changed" = now()';
-                    $update['table'] = DB_TABLE_ROUTEROS_DEVICE_IPS;
-                    $update['where']['deviceId'] = $deviceId;
-                    $update['where']['ifIndex'] = $data['ifIndex'];
-                    $update['where']['ip'] = $data['ip'];
-
-                    //$sqlid = $database->DBSelect($database->SQLUpdate($update) . " RETURNING id;");
-                    unset($update);
-
-                    if (count($sqlid) > 1)
-                    {
-                        $delete['table'] = DB_TABLE_ROUTEROS_DEVICE_IPS;
-                        $delete['where']['deviceId'] = $deviceId;
-                        $delete['where']['ifIndex'] = $ifIndex[$i];
-                        $delete['where']['ip'] = $data['ip'];
-                        //$database->dbDelete($delete);
-                        unset($delete);
-                    }
-
-                    if (count($sqlid) == 0 || count($sqlid) > 1)
-                    {
-                        $insert['insert'] = $data;
-                        $insert['table'] = DB_TABLE_ROUTEROS_DEVICE_IPS;
-
-                        //$sqlid = $database->DBSelect($database->SQLInsert($insert) . " RETURNING id;");
-                        unset($insert);
-                    }
-                    //$id = $sqlid[0]['id'];
-                    unset($data);
-                    unset($sqlid);
+                    $routerosDeviceIps = $this->RouterosDevices->RouterosDeviceIps->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ipIfIndex[$i], 'ip_address' => $data['ip'] = $ipAddr[$i] . '/' . $this->mask2cidr($ipNetMask[$i])]);
+                    
+                    $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIps);
             }
+
+/*
             // DELETE removed IPs
             $delete['table'] = DB_TABLE_ROUTEROS_DEVICE_IPS;
             $delete['where']['deviceId'] = $deviceId;
@@ -298,7 +272,7 @@ class RouterosDevicesController extends AppController
             $delete['where'] = "inserted < current_date - 14 AND (changed < current_date - 7 OR changed IS NULL)";
             //$database->dbDelete($delete);
             unset($delete);
-
+*/
             return true;
         }
         else
