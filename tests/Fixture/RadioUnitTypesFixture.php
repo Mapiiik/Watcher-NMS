@@ -39,10 +39,10 @@ class RadioUnitTypesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 'ded34a65-0e88-48d9-a451-6da3740f7555',
+                'id' => '69d3b16c-c309-4a9e-9f33-b55af8322b51',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'radio_unit_band_id' => 'd0f4cb9f-4e1b-4936-9bc9-62f176779772',
-                'manufacturer_id' => '8db43153-96fb-4725-94da-9a7b95df2fe7',
+                'radio_unit_band_id' => '9c4e53b0-0b4d-4fb9-a39b-1768c6f86c93',
+                'manufacturer_id' => '5d57f0a7-3258-4583-bfdc-30359c5e7a2b',
                 'part_number' => 'Lorem ipsum dolor sit amet',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'created' => '',

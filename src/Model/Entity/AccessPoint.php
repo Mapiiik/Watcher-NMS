@@ -20,6 +20,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
  * @property \App\Model\Entity\RadioUnit[] $radio_units
+ * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  */
 class AccessPoint extends Entity
 {
@@ -43,5 +44,6 @@ class AccessPoint extends Entity
         'access_point_contacts' => true,
         'power_supplies' => true,
         'radio_units' => true,
+        'routeros_devices' => true,
     ];
 }

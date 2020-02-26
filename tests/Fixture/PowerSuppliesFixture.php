@@ -44,15 +44,15 @@ class PowerSuppliesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '715ffa3c-8bcd-47b1-91b8-b89ab43e0e5f',
+                'id' => '664f4896-89a8-4796-9c7a-88ea15890c8c',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'power_supply_type_id' => 'efd1ff1f-883d-4a6a-8086-fda3a9342b87',
-                'access_point_id' => '41feba8d-cc3a-4790-94ad-4655ab3e4406',
+                'power_supply_type_id' => 'cf397aa2-7085-4da1-9439-37a7da20861f',
+                'access_point_id' => 'bb36729a-be07-4fba-a44b-543b18267403',
                 'serial_number' => 'Lorem ipsum dolor sit amet',
                 'battery_count' => 1,
                 'battery_voltage' => 1,
                 'battery_capacity' => 1,
-                'battery_replacement' => '2020-02-17',
+                'battery_replacement' => '2020-02-26',
                 'battery_duration' => 'Lorem ipsum dolor sit amet',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'created' => '',

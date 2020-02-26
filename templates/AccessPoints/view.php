@@ -209,6 +209,47 @@
                 </div>
                 <?php endif; ?>
             </div>
+            <div class="related">
+                <h4><?= __('Related Routeros Devices') ?></h4>
+                <?php if (!empty($accessPoint->routeros_devices)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('Access Point Id') ?></th>
+                            <th><?= __('Device Type Id') ?></th>
+                            <th><?= __('Ip Address') ?></th>
+                            <th><?= __('Board Name') ?></th>
+                            <th><?= __('Serial Number') ?></th>
+                            <th><?= __('Firmware Version') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($accessPoint->routeros_devices as $routerosDevices) : ?>
+                        <tr>
+                            <td><?= h($routerosDevices->id) ?></td>
+                            <td><?= h($routerosDevices->name) ?></td>
+                            <td><?= h($routerosDevices->access_point_id) ?></td>
+                            <td><?= h($routerosDevices->device_type_id) ?></td>
+                            <td><?= h($routerosDevices->ip_address) ?></td>
+                            <td><?= h($routerosDevices->board_name) ?></td>
+                            <td><?= h($routerosDevices->serial_number) ?></td>
+                            <td><?= h($routerosDevices->firmware_version) ?></td>
+                            <td><?= h($routerosDevices->created) ?></td>
+                            <td><?= h($routerosDevices->modified) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

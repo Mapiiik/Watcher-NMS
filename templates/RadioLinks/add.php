@@ -19,6 +19,7 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('distance');
+                    echo $this->Form->control('authorization_number');
                     echo $this->Form->control('note');
                 ?>
             </fieldset>

@@ -40,9 +40,9 @@ class PowerSupplyTypesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '10fc7784-3c90-48cc-8728-8aec4ceddf54',
+                'id' => '39be45fd-22d6-42da-b7e2-e341e81cd5d9',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'manufacturer_id' => 'bd1b93d6-f3ab-4fec-9c00-66b36c8443e1',
+                'manufacturer_id' => 'd4095e0d-6064-4820-9548-b7cd65a71352',
                 'voltage' => 1,
                 'current' => 1,
                 'part_number' => 'Lorem ipsum dolor sit amet',

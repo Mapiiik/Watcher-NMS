@@ -26,6 +26,7 @@ class AccessPointsControllerTest extends TestCase
         'app.AccessPointContacts',
         'app.PowerSupplies',
         'app.RadioUnits',
+        'app.RouterosDevices',
     ];
 
     /**

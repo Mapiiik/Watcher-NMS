@@ -36,7 +36,7 @@ class RadioUnitBandsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 'a398308a-1a63-439f-bf79-b2b0816491c6',
+                'id' => 'd18dfb12-b40a-4084-bcdd-b545cc01d38f',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'created' => '',

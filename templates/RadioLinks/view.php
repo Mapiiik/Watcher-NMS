@@ -27,6 +27,10 @@
                     <td><?= h($radioLink->name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Authorization Number') ?></th>
+                    <td><?= h($radioLink->authorization_number) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Distance') ?></th>
                     <td><?= $this->Number->format($radioLink->distance) ?></td>
                 </tr>

@@ -68,6 +68,10 @@ class RadioLinksTable extends Table
             ->allowEmptyString('distance');
 
         $validator
+            ->scalar('authorization_number')
+            ->allowEmptyString('authorization_number');
+
+        $validator
             ->scalar('note')
             ->allowEmptyString('note');
 

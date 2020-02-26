@@ -51,6 +51,14 @@
 
 return [
     'CakeDC/Auth.permissions' => [
+        [
+            'prefix' => false,
+            'controller' => 'RouterosDevices',
+            'action' => [
+                'configurationScript',
+            ],
+            'bypassAuth' => true,
+        ],
         //all bypass
         [
             'prefix' => false,

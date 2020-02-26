@@ -37,9 +37,9 @@ class AccessPointContactsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 'c619cc52-3d0f-4d9d-85f9-b89d27c5dfcd',
-                'access_point_id' => '8dd7cff0-abfa-4c88-b76d-267286d23d43',
-                'contact_id' => '7e2ee645-9967-4ab7-b889-b9252aff415f',
+                'id' => 'ed207728-929e-4f57-ab8b-caa857148fea',
+                'access_point_id' => '74cbf016-0873-4824-b0bc-576dc4d085c4',
+                'contact_id' => '3df28300-e3ae-4a7b-9bea-43f939c1380c',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'created' => '',
                 'modified' => '',

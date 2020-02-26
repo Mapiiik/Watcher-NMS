@@ -57,12 +57,12 @@ class RadioUnitsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '6449f465-44eb-40bf-b493-8f35297f8778',
+                'id' => '4ada8bef-a2bf-4009-a2df-cd14ed597c1e',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'radio_unit_type_id' => '3a882fae-31a7-4de0-b185-50c7ee1506b3',
-                'access_point_id' => '6cec8119-de67-4e09-800d-8fcf3448136d',
-                'radio_link_id' => '21ae8b45-74f0-4b16-95d9-842be7011ece',
-                'antenna_type_id' => 'bcf2d809-90d2-4231-95b9-da3b8cf89427',
+                'radio_unit_type_id' => '83b50cbc-3809-4cb3-80df-dec12fc8454d',
+                'access_point_id' => '7b5cf018-07e1-4f8b-928a-0f895db20f3b',
+                'radio_link_id' => 'fa79ba37-632b-4cb5-833e-0080717e9a0d',
+                'antenna_type_id' => 'dbb38118-e208-4e39-8f53-5580720bfde2',
                 'polarization' => 'L',
                 'channel_width' => 1,
                 'tx_frequency' => 1,
@@ -76,7 +76,7 @@ class RadioUnitsFixture extends TestFixture
                 'firmware_version' => 'Lorem ipsum dolor sit amet',
                 'serial_number' => 'Lorem ipsum dolor sit amet',
                 'station_address' => 'Lorem ipsum dolor sit amet',
-                'expiration_date' => '2020-02-17',
+                'expiration_date' => '2020-02-26',
                 'ip_address' => 'Lorem ipsum dolor sit amet',
                 'device_login' => 'Lorem ipsum dolor sit amet',
                 'device_password' => 'Lorem ipsum dolor sit amet',

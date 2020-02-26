@@ -14,6 +14,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\AccessPointContactsTable&\Cake\ORM\Association\HasMany $AccessPointContacts
  * @property \App\Model\Table\PowerSuppliesTable&\Cake\ORM\Association\HasMany $PowerSupplies
  * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
+ * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\HasMany $RouterosDevices
  *
  * @method \App\Model\Entity\AccessPoint get($primaryKey, $options = [])
  * @method \App\Model\Entity\AccessPoint newEntity($data = null, array $options = [])
@@ -51,6 +52,9 @@ class AccessPointsTable extends Table
             'foreignKey' => 'access_point_id',
         ]);
         $this->hasMany('RadioUnits', [
+            'foreignKey' => 'access_point_id',
+        ]);
+        $this->hasMany('RouterosDevices', [
             'foreignKey' => 'access_point_id',
         ]);
     }

@@ -36,7 +36,7 @@ class ManufacturersFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '3fb8c148-0a7f-4854-9419-30e7891c2515',
+                'id' => '91a8108a-470c-4b92-ad52-09023f2dab08',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'created' => '',

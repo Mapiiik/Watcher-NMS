@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property string|null $name
  * @property int|null $distance
+ * @property string|null $authorization_number
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
@@ -31,6 +32,7 @@ class RadioLink extends Entity
     protected $_accessible = [
         'name' => true,
         'distance' => true,
+        'authorization_number' => true,
         'note' => true,
         'created' => true,
         'modified' => true,
