@@ -38,8 +38,8 @@ class RouterosDeviceIpsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '86367c72-9c5c-4b0e-b638-e9afa1f0492a',
-                'routeros_device_id' => '65d5a205-54c9-4e1f-a044-bd5c97509e8d',
+                'id' => '646bcda0-7368-4bdf-bbaf-2d467f536639',
+                'routeros_device_id' => '3e6223d4-2d51-4494-a16d-92d7ed6af4eb',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'ip_address' => 'Lorem ipsum dolor sit amet',
                 'interface_index' => 1,

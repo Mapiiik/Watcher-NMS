@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property string|null $access_point_id
  * @property string|null $device_type_id
  * @property string|null $ip_address
+ * @property string|null $system_description
  * @property string|null $board_name
  * @property string|null $serial_number
  * @property string|null $software_version
@@ -41,6 +42,7 @@ class RouterosDevice extends Entity
         'access_point_id' => true,
         'device_type_id' => true,
         'ip_address' => true,
+        'system_description' => true,
         'board_name' => true,
         'serial_number' => true,
         'software_version' => true,

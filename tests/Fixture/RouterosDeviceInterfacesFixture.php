@@ -48,8 +48,8 @@ class RouterosDeviceInterfacesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '84180e95-7f49-4b1a-a33e-d13d1b7f7d70',
-                'routeros_device_id' => '444eb56c-2aa1-46ed-b7da-3e0bd20c8e26',
+                'id' => '3f3715ab-ab4f-4756-a764-fd1acd4cc79b',
+                'routeros_device_id' => '7c539d33-0cab-4dbb-9dec-41dd2d5bcc77',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'comment' => 'Lorem ipsum dolor sit amet',
                 'mac_address' => 'Lorem ipsum dolor sit amet',

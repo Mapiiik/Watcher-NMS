@@ -16,6 +16,7 @@
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('device_type_id') ?></th>
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
+                    <th><?= $this->Paginator->sort('system_description') ?></th>
                     <th><?= $this->Paginator->sort('board_name') ?></th>
                     <th><?= $this->Paginator->sort('serial_number') ?></th>
                     <th><?= $this->Paginator->sort('software_version') ?></th>
@@ -33,6 +34,7 @@
                     <td><?= $routerosDevice->has('access_point') ? $this->Html->link($routerosDevice->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]) : '' ?></td>
                     <td><?= $routerosDevice->has('device_type') ? $this->Html->link($routerosDevice->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id]) : '' ?></td>
                     <td><?= h($routerosDevice->ip_address) ?></td>
+                    <td><?= h($routerosDevice->system_description) ?></td>
                     <td><?= h($routerosDevice->board_name) ?></td>
                     <td><?= h($routerosDevice->serial_number) ?></td>
                     <td><?= h($routerosDevice->software_version) ?></td>

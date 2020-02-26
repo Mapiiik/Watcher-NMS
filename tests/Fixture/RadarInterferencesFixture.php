@@ -39,7 +39,7 @@ class RadarInterferencesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '81940cdf-7027-4214-8dd7-e80f9b6704fd',
+                'id' => 'bfefdcbc-b716-4395-8a39-644b5c21eb14',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'mac_address' => 'Lorem ipsum dolor sit amet',
                 'ssid' => 'Lorem ipsum dolor sit amet',

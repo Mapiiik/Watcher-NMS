@@ -39,6 +39,10 @@
                     <td><?= h($routerosDevice->ip_address) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('System Description') ?></th>
+                    <td><?= h($routerosDevice->system_description) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Board Name') ?></th>
                     <td><?= h($routerosDevice->board_name) ?></td>
                 </tr>

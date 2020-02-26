@@ -38,7 +38,7 @@ class DeviceTypesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 'ef363b5a-ae67-4cb1-b82b-ef396ae0d540',
+                'id' => '32ccf8aa-d7f4-4acc-ab5a-a8981d389cc6',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'identifier' => 'Lorem ipsum dolor sit amet',
                 'snmp_community' => 'Lorem ipsum dolor sit amet',

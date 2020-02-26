@@ -81,6 +81,10 @@ class RouterosDevicesTable extends Table
             ->allowEmptyString('ip_address');
 
         $validator
+            ->scalar('system_description')
+            ->allowEmptyString('system_description');
+
+        $validator
             ->scalar('board_name')
             ->allowEmptyString('board_name');
 

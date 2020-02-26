@@ -111,19 +111,22 @@ class RouterosDevicesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    private function mask2cidr($mask = null){  
+    private function mask2cidr($mask = null)
+    {  
          $long = ip2long($mask);  
          $base = ip2long('255.255.255.255');  
          return 32-log(($long ^ $base)+1,2);       
     }
-    private function strToHex($string = null){
+    private function strToHex($string = null)
+    {
         $hex='';
         for ($i=0; $i < strlen($string); $i++){
             $hex .= sprintf('%02.x', ord($string[$i]));
         }
         return $hex;
     }
-    private function hexToStr($hex = null){
+    private function hexToStr($hex = null)
+    {
         $string='';
         for ($i=0; $i < strlen($hex)-1; $i+=2){
             $string .= chr(hexdec($hex[$i].$hex[$i+1]));
@@ -155,10 +158,11 @@ class RouterosDevicesController extends AppController
             $routerosDevice->device_type_id = $deviceTypeId;
             $routerosDevice->ip_address = $host;
 
-            $routerosDevice->name = snmpget($host, $community, '.1.3.6.1.2.1.1.5.0');
-            $routerosDevice->board_name = @snmpget($host, $community, '.1.3.6.1.2.1.1.1.0');
+            $routerosDevice->name = @snmpget($host, $community, '.1.3.6.1.2.1.1.5.0');
+            $routerosDevice->system_description = @snmpget($host, $community, '.1.3.6.1.2.1.1.1.0');
+            $routerosDevice->board_name = @snmpget($host, $community, '.1.3.6.1.4.1.14988.1.1.7.8.0');
             $routerosDevice->software_version = @snmpget($host, $community, '.1.3.6.1.4.1.14988.1.1.4.4.0');
-            $routerosDevice->firmware_version = @snmpget($host, $community, '.1.3.6.1.4.1.14988.1.1.4.4.0');
+            $routerosDevice->firmware_version = @snmpget($host, $community, '.1.3.6.1.4.1.14988.1.1.7.4.0');
             
             $this->RouterosDevices->save($routerosDevice);
 

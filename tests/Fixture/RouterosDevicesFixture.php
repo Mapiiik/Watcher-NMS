@@ -22,6 +22,7 @@ class RouterosDevicesFixture extends TestFixture
         'access_point_id' => ['type' => 'uuid', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
         'device_type_id' => ['type' => 'uuid', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
         'ip_address' => ['type' => 'string', 'length' => 39, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
+        'system_description' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         'board_name' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         'serial_number' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         'software_version' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
@@ -42,11 +43,12 @@ class RouterosDevicesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '6ee33e06-a02b-4bd0-95ea-edcc02ed5cd6',
+                'id' => 'e1b3027d-815c-4b8f-a516-4127e1ceaebb',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'access_point_id' => '0bff11ca-cc7a-4c18-9474-fcefcd759f3f',
-                'device_type_id' => 'de8403ad-c5ac-4749-b605-68c5076976fc',
+                'access_point_id' => 'fd819444-ff59-4160-ad9b-5d5658807979',
+                'device_type_id' => '04814676-9505-46e9-9359-5cfee2d10776',
                 'ip_address' => 'Lorem ipsum dolor sit amet',
+                'system_description' => 'Lorem ipsum dolor sit amet',
                 'board_name' => 'Lorem ipsum dolor sit amet',
                 'serial_number' => 'Lorem ipsum dolor sit amet',
                 'software_version' => 'Lorem ipsum dolor sit amet',

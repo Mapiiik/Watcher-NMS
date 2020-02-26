@@ -26,6 +26,7 @@
                     echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                     echo $this->Form->control('device_type_id', ['options' => $deviceTypes, 'empty' => true]);
                     echo $this->Form->control('ip_address');
+                    echo $this->Form->control('system_description');
                     echo $this->Form->control('board_name');
                     echo $this->Form->control('serial_number');
                     echo $this->Form->control('software_version');
