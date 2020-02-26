@@ -23,6 +23,7 @@
                     echo $this->Form->control('ip_address');
                     echo $this->Form->control('board_name');
                     echo $this->Form->control('serial_number');
+                    echo $this->Form->control('software_version');
                     echo $this->Form->control('firmware_version');
                 ?>
             </fieldset>

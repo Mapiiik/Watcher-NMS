@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property string|null $ip_address
  * @property string|null $board_name
  * @property string|null $serial_number
+ * @property string|null $software_version
  * @property string|null $firmware_version
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
@@ -42,6 +43,7 @@ class RouterosDevice extends Entity
         'ip_address' => true,
         'board_name' => true,
         'serial_number' => true,
+        'software_version' => true,
         'firmware_version' => true,
         'created' => true,
         'modified' => true,

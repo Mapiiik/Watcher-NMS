@@ -47,6 +47,10 @@
                     <td><?= h($routerosDevice->serial_number) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Software Version') ?></th>
+                    <td><?= h($routerosDevice->software_version) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Firmware Version') ?></th>
                     <td><?= h($routerosDevice->firmware_version) ?></td>
                 </tr>

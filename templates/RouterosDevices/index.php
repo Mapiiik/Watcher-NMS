@@ -18,6 +18,7 @@
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
                     <th><?= $this->Paginator->sort('board_name') ?></th>
                     <th><?= $this->Paginator->sort('serial_number') ?></th>
+                    <th><?= $this->Paginator->sort('software_version') ?></th>
                     <th><?= $this->Paginator->sort('firmware_version') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
@@ -34,6 +35,7 @@
                     <td><?= h($routerosDevice->ip_address) ?></td>
                     <td><?= h($routerosDevice->board_name) ?></td>
                     <td><?= h($routerosDevice->serial_number) ?></td>
+                    <td><?= h($routerosDevice->software_version) ?></td>
                     <td><?= h($routerosDevice->firmware_version) ?></td>
                     <td><?= h($routerosDevice->created) ?></td>
                     <td><?= h($routerosDevice->modified) ?></td>

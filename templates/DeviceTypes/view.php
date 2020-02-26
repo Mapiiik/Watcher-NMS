@@ -62,6 +62,7 @@
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('Board Name') ?></th>
                             <th><?= __('Serial Number') ?></th>
+                            <th><?= __('Software Version') ?></th>
                             <th><?= __('Firmware Version') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
@@ -76,6 +77,7 @@
                             <td><?= h($routerosDevices->ip_address) ?></td>
                             <td><?= h($routerosDevices->board_name) ?></td>
                             <td><?= h($routerosDevices->serial_number) ?></td>
+                            <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
                             <td><?= h($routerosDevices->created) ?></td>
                             <td><?= h($routerosDevices->modified) ?></td>

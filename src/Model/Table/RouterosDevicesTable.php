@@ -89,6 +89,10 @@ class RouterosDevicesTable extends Table
             ->allowEmptyString('serial_number');
 
         $validator
+            ->scalar('software_version')
+            ->allowEmptyString('software_version');
+
+        $validator
             ->scalar('firmware_version')
             ->allowEmptyString('firmware_version');
 
