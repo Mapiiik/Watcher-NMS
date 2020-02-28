@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Application;
+use Cake\Console\CommandRunner;
+
 /**
  * RadarInterferences Controller
  *
@@ -99,6 +102,18 @@ class RadarInterferencesController extends AppController
             $this->Flash->success(__('The radar interference has been deleted.'));
         } else {
             $this->Flash->error(__('The radar interference could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
+    
+    public function updateOnline()
+    {
+        $runner = new CommandRunner(new Application(dirname(__DIR__) . '/../config'), 'cake');
+        if ($runner->run(['cake', 'radar_interferences_update']) === 0) {
+            $this->Flash->success(__('The radar interferences table has been updated.'));
+        } else {
+            $this->Flash->error(__('The radar interferences table could not be updated. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -178,6 +178,10 @@ th {
     }
 }
 
+.button {
+    margin-left: 0.5rem;
+}
+
 .button-small {
     height: 2.8rem;
     line-height: 2.8rem;

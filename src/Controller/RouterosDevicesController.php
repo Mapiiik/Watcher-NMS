@@ -183,52 +183,49 @@ class RouterosDevicesController extends AppController
   
             foreach ($ifTableIndexes as $ifIndex)
             {
-                    //if ($ifType[$i] == 71)
-                    {
-                        $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ifIndex]);
-                        
-                                               
-                        $routerosDeviceInterface->name = $ifTable['.1.3.6.1.2.1.2.2.1.2.' . $ifIndex];
-                        $routerosDeviceInterface->comment = $ifTable['.1.3.6.1.2.1.2.2.1.18.' . $ifIndex];
-                        $routerosDeviceInterface->interface_admin_status = $ifTable['.1.3.6.1.2.1.2.2.1.7.' . $ifIndex];
-                        $routerosDeviceInterface->interface_oper_status = $ifTable['.1.3.6.1.2.1.2.2.1.8.' . $ifIndex];
-                        $routerosDeviceInterface->interface_type = $ifTable['.1.3.6.1.2.1.2.2.1.3.' . $ifIndex];
+                $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ifIndex]);
 
-                        if ($this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]) <> '')
-                        {
-                            $routerosDeviceInterface->mac_address = $this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]);
-                        }
 
-                        if (isset($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex]))
-                        {
-                            $routerosDeviceInterface->ssid = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex];
-                            $routerosDeviceInterface->band = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.8.' . $ifIndex];
-                            $routerosDeviceInterface->frequency = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.7.' . $ifIndex];
-                            $routerosDeviceInterface->noise_floor = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.9.' . $ifIndex];
-                            $routerosDeviceInterface->client_count = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.6.' . $ifIndex];
-                            $routerosDeviceInterface->overall_tx_ccq = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.10.' . $ifIndex];
-                        }
-                        else if (isset($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex]))
-                        {
-                            $routerosDeviceInterface->ssid = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex];
-                            $routerosDeviceInterface->band = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.8.' . $ifIndex];
-                            $routerosDeviceInterface->frequency = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.7.' . $ifIndex];
-                            $routerosDeviceInterface->noise_floor = null;
-                            $routerosDeviceInterface->client_count = null;
-                            $routerosDeviceInterface->overall_tx_ccq = null;
-                        }
-                        else
-                        {
-                            $routerosDeviceInterface->ssid = null;
-                            $routerosDeviceInterface->band = null;
-                            $routerosDeviceInterface->frequency = null;
-                            $routerosDeviceInterface->noise_floor = null;
-                            $routerosDeviceInterface->client_count = null;
-                            $routerosDeviceInterface->overall_tx_ccq = null;
-                        }
+                $routerosDeviceInterface->name = $ifTable['.1.3.6.1.2.1.2.2.1.2.' . $ifIndex];
+                $routerosDeviceInterface->comment = $ifTable['.1.3.6.1.2.1.2.2.1.18.' . $ifIndex];
+                $routerosDeviceInterface->interface_admin_status = $ifTable['.1.3.6.1.2.1.2.2.1.7.' . $ifIndex];
+                $routerosDeviceInterface->interface_oper_status = $ifTable['.1.3.6.1.2.1.2.2.1.8.' . $ifIndex];
+                $routerosDeviceInterface->interface_type = $ifTable['.1.3.6.1.2.1.2.2.1.3.' . $ifIndex];
 
-                        $this->RouterosDevices->RouterosDeviceInterfaces->save($routerosDeviceInterface);
-                    }
+                if ($this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]) <> '')
+                {
+                    $routerosDeviceInterface->mac_address = $this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]);
+                }
+
+                if (isset($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex]))
+                {
+                    $routerosDeviceInterface->ssid = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex];
+                    $routerosDeviceInterface->band = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.8.' . $ifIndex];
+                    $routerosDeviceInterface->frequency = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.7.' . $ifIndex];
+                    $routerosDeviceInterface->noise_floor = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.9.' . $ifIndex];
+                    $routerosDeviceInterface->client_count = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.6.' . $ifIndex];
+                    $routerosDeviceInterface->overall_tx_ccq = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.10.' . $ifIndex];
+                }
+                else if (isset($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex]))
+                {
+                    $routerosDeviceInterface->ssid = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex];
+                    $routerosDeviceInterface->band = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.8.' . $ifIndex];
+                    $routerosDeviceInterface->frequency = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.7.' . $ifIndex];
+                    $routerosDeviceInterface->noise_floor = null;
+                    $routerosDeviceInterface->client_count = null;
+                    $routerosDeviceInterface->overall_tx_ccq = null;
+                }
+                else
+                {
+                    $routerosDeviceInterface->ssid = null;
+                    $routerosDeviceInterface->band = null;
+                    $routerosDeviceInterface->frequency = null;
+                    $routerosDeviceInterface->noise_floor = null;
+                    $routerosDeviceInterface->client_count = null;
+                    $routerosDeviceInterface->overall_tx_ccq = null;
+                }
+
+                $this->RouterosDevices->RouterosDeviceInterfaces->save($routerosDeviceInterface);
             }
 /*
             // DELETE removed interfaces
