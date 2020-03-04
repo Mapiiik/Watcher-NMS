@@ -187,7 +187,7 @@ class RouterosDevicesController extends AppController
 
 
                 $routerosDeviceInterface->name = $ifTable['.1.3.6.1.2.1.2.2.1.2.' . $ifIndex];
-                $routerosDeviceInterface->comment = $ifTable['.1.3.6.1.2.1.2.2.1.18.' . $ifIndex];
+                $routerosDeviceInterface->comment = @snmp2_get($host, $community, '.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex);
                 $routerosDeviceInterface->interface_admin_status = $ifTable['.1.3.6.1.2.1.2.2.1.7.' . $ifIndex];
                 $routerosDeviceInterface->interface_oper_status = $ifTable['.1.3.6.1.2.1.2.2.1.8.' . $ifIndex];
                 $routerosDeviceInterface->interface_type = $ifTable['.1.3.6.1.2.1.2.2.1.3.' . $ifIndex];
