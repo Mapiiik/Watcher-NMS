@@ -47,7 +47,7 @@ class RadarInterferencesUpdateCommand extends Command
                 $this->RadarInterferences->save($radarInterference);
             }
             Log::write('debug', 'The radar interferences table has been updated.');
-            $io->out('The radar interferences table has been updated.');
+            $io->success('The radar interferences table has been updated.');
         }
         else
         {

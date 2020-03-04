@@ -51,6 +51,61 @@
                     <td><?= h($radarInterference->modified) ?></td>
                 </tr>
             </table>
+            <div class="related">
+                <h4><?= __('Related Routeros Device Interfaces') ?></h4>
+                <?php if (!empty($radarInterference->routeros_device_interfaces)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <th><?= __('Routeros Device Id') ?></th>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('Comment') ?></th>
+                            <th><?= __('Mac Address') ?></th>
+                            <th><?= __('Ssid') ?></th>
+                            <th><?= __('Band') ?></th>
+                            <th><?= __('Frequency') ?></th>
+                            <th><?= __('Noise Floor') ?></th>
+                            <th><?= __('Client Count') ?></th>
+                            <th><?= __('Overall Tx Ccq') ?></th>
+                            <th><?= __('Interface Index') ?></th>
+                            <th><?= __('Interface Type') ?></th>
+                            <th><?= __('Interface Admin Status') ?></th>
+                            <th><?= __('Interface Oper Status') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($radarInterference->routeros_device_interfaces as $routerosDeviceInterfaces) : ?>
+                        <tr>
+                            <td><?= h($routerosDeviceInterfaces->id) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->routeros_device_id) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->name) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->comment) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->mac_address) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->ssid) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->band) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->frequency) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->noise_floor) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->client_count) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->overall_tx_ccq) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->interface_index) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->interface_type) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->interface_admin_status) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->interface_oper_status) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->created) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->modified) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'view', $routerosDeviceInterfaces->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'edit', $routerosDeviceInterfaces->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'delete', $routerosDeviceInterfaces->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterfaces->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

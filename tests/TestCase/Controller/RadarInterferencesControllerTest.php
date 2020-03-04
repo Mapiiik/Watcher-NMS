@@ -23,6 +23,7 @@ class RadarInterferencesControllerTest extends TestCase
      */
     protected $fixtures = [
         'app.RadarInterferences',
+        'app.RouterosDeviceInterfaces',
     ];
 
     /**

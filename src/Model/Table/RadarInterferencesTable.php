@@ -39,6 +39,11 @@ class RadarInterferencesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        
+        $this->hasMany('RouterosDeviceInterfaces', [
+            'foreignKey' => 'mac_address',
+            'bindingKey' => 'mac_address',
+        ]);
     }
 
     /**
