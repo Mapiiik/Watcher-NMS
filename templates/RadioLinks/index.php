@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('distance') ?></th>
                     <th><?= $this->Paginator->sort('authorization_number') ?></th>
@@ -23,7 +22,6 @@
             <tbody>
                 <?php foreach ($radioLinks as $radioLink): ?>
                 <tr>
-                    <td><?= h($radioLink->id) ?></td>
                     <td><?= h($radioLink->name) ?></td>
                     <td><?= $this->Number->format($radioLink->distance) ?></td>
                     <td><?= h($radioLink->authorization_number) ?></td>

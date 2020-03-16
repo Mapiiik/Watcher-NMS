@@ -11,10 +11,9 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('radio_unit_type_id') ?></th>
-                    <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('radio_link_id') ?></th>
                     <th><?= $this->Paginator->sort('antenna_type_id') ?></th>
                     <th><?= $this->Paginator->sort('polarization') ?></th>
@@ -42,10 +41,9 @@
             <tbody>
                 <?php foreach ($radioUnits as $radioUnit): ?>
                 <tr>
-                    <td><?= h($radioUnit->id) ?></td>
+                    <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
                     <td><?= h($radioUnit->name) ?></td>
                     <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>
-                    <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
                     <td><?= $radioUnit->has('radio_link') ? $this->Html->link($radioUnit->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]) : '' ?></td>
                     <td><?= $radioUnit->has('antenna_type') ? $this->Html->link($radioUnit->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]) : '' ?></td>
                     <td><?= h($radioUnit->polarization) ?></td>

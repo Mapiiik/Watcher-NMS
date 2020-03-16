@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('routeros_device_id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
@@ -24,7 +23,6 @@
             <tbody>
                 <?php foreach ($routerosDeviceIps as $routerosDeviceIp): ?>
                 <tr>
-                    <td><?= h($routerosDeviceIp->id) ?></td>
                     <td><?= $routerosDeviceIp->has('routeros_device') ? $this->Html->link($routerosDeviceIp->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->routeros_device->id]) : '' ?></td>
                     <td><?= h($routerosDeviceIp->name) ?></td>
                     <td><?= h($routerosDeviceIp->ip_address) ?></td>

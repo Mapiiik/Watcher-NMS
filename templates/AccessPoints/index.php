@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('device_name') ?></th>
                     <th><?= $this->Paginator->sort('gps_x') ?></th>
@@ -24,7 +23,6 @@
             <tbody>
                 <?php foreach ($accessPoints as $accessPoint): ?>
                 <tr>
-                    <td><?= h($accessPoint->id) ?></td>
                     <td><?= h($accessPoint->name) ?></td>
                     <td><?= h($accessPoint->device_name) ?></td>
                     <td><?= $this->Number->format($accessPoint->gps_x) ?></td>

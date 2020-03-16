@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
@@ -21,7 +20,6 @@
             <tbody>
                 <?php foreach ($radioUnitBands as $radioUnitBand): ?>
                 <tr>
-                    <td><?= h($radioUnitBand->id) ?></td>
                     <td><?= h($radioUnitBand->name) ?></td>
                     <td><?= h($radioUnitBand->created) ?></td>
                     <td><?= h($radioUnitBand->modified) ?></td>

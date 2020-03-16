@@ -11,9 +11,8 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
+                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('device_type_id') ?></th>
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
                     <th><?= $this->Paginator->sort('system_description') ?></th>
@@ -29,9 +28,8 @@
             <tbody>
                 <?php foreach ($routerosDevices as $routerosDevice): ?>
                 <tr>
-                    <td><?= h($routerosDevice->id) ?></td>
-                    <td><?= h($routerosDevice->name) ?></td>
                     <td><?= $routerosDevice->has('access_point') ? $this->Html->link($routerosDevice->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]) : '' ?></td>
+                    <td><?= h($routerosDevice->name) ?></td>
                     <td><?= $routerosDevice->has('device_type') ? $this->Html->link($routerosDevice->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id]) : '' ?></td>
                     <td><?= h($routerosDevice->ip_address) ?></td>
                     <td><?= h($routerosDevice->system_description) ?></td>

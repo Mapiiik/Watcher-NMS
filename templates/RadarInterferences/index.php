@@ -13,7 +13,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('mac_address') ?></th>
                     <th><?= $this->Paginator->sort('ssid') ?></th>
@@ -27,7 +26,6 @@
             <tbody>
                 <?php foreach ($radarInterferences as $radarInterference): ?>
                 <tr>
-                    <td><?= h($radarInterference->id) ?></td>
                     <td><?= h($radarInterference->name) ?></td>
                     <td><?= h($radarInterference->mac_address) ?></td>
                     <td><?= h($radarInterference->ssid) ?></td>

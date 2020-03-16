@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('manufacturer_id') ?></th>
                     <th><?= $this->Paginator->sort('voltage') ?></th>
@@ -25,7 +24,6 @@
             <tbody>
                 <?php foreach ($powerSupplyTypes as $powerSupplyType): ?>
                 <tr>
-                    <td><?= h($powerSupplyType->id) ?></td>
                     <td><?= h($powerSupplyType->name) ?></td>
                     <td><?= $powerSupplyType->has('manufacturer') ? $this->Html->link($powerSupplyType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]) : '' ?></td>
                     <td><?= $this->Number->format($powerSupplyType->voltage) ?></td>

@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('radio_unit_band_id') ?></th>
                     <th><?= $this->Paginator->sort('manufacturer_id') ?></th>
@@ -24,7 +23,6 @@
             <tbody>
                 <?php foreach ($radioUnitTypes as $radioUnitType): ?>
                 <tr>
-                    <td><?= h($radioUnitType->id) ?></td>
                     <td><?= h($radioUnitType->name) ?></td>
                     <td><?= $radioUnitType->has('radio_unit_band') ? $this->Html->link($radioUnitType->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $radioUnitType->radio_unit_band->id]) : '' ?></td>
                     <td><?= $radioUnitType->has('manufacturer') ? $this->Html->link($radioUnitType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $radioUnitType->manufacturer->id]) : '' ?></td>
