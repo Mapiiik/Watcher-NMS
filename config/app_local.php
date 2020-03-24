@@ -25,7 +25,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '__SALT__'),
+        'salt' => env('SECURITY_SALT', 'e365be75e026c03ba39b9d1f3faf3277e653008d8478ff07dc8252d1d512a12a'),
     ],
 
     /*
@@ -58,18 +58,6 @@ return [
              * You can use a DSN string to set the entire configuration
              */
             'url' => env('DATABASE_URL', null),
-        ],
-
-        /*
-         * The test connection is used during the test suite.
-         */
-        'test' => [
-            'host' => 'localhost',
-            //'port' => 'non_standard_port_number',
-            'username' => 'my_app',
-            'password' => 'secret',
-            'database' => 'test_myapp',
-            //'schema' => 'myapp',
         ],
     ],
 
