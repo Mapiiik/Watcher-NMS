@@ -17,7 +17,7 @@ use Cake\ORM\Entity;
  * @property float|null $battery_voltage
  * @property float|null $battery_capacity
  * @property \Cake\I18n\FrozenDate|null $battery_replacement
- * @property string|null $battery_duration
+ * @property float|null $battery_duration
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified

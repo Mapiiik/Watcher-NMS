@@ -88,7 +88,7 @@ class PowerSuppliesTable extends Table
             ->allowEmptyDate('battery_replacement');
 
         $validator
-            ->scalar('battery_duration')
+            ->numeric('battery_duration')
             ->allowEmptyString('battery_duration');
 
         $validator
