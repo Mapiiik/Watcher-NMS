@@ -21,6 +21,7 @@
                     echo $this->Form->control('identifier');
                     echo $this->Form->control('snmp_community');
                     echo $this->Form->control('note');
+                    echo $this->Form->control('assign_access_point_by_device_name');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

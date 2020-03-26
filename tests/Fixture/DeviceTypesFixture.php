@@ -15,7 +15,7 @@ class DeviceTypesFixture extends TestFixture
      *
      * @var array
      */
-    // @codingStandardsIgnoreStart
+    // phpcs:disable
     public $fields = [
         'id' => ['type' => 'uuid', 'length' => null, 'default' => 'uuid_generate_v4()', 'null' => false, 'comment' => null, 'precision' => null],
         'name' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
@@ -24,11 +24,12 @@ class DeviceTypesFixture extends TestFixture
         'note' => ['type' => 'text', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         'created' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
         'modified' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
+        'assign_access_point_by_device_name' => ['type' => 'boolean', 'length' => null, 'default' => 0, 'null' => false, 'comment' => null, 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
     ];
-    // @codingStandardsIgnoreEnd
+    // phpcs:enable
     /**
      * Init method
      *
@@ -38,13 +39,14 @@ class DeviceTypesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '32ccf8aa-d7f4-4acc-ab5a-a8981d389cc6',
+                'id' => 'a1bf0c34-b5d1-49ef-b3b0-cacbcf597be7',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'identifier' => 'Lorem ipsum dolor sit amet',
                 'snmp_community' => 'Lorem ipsum dolor sit amet',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'created' => '',
                 'modified' => '',
+                'assign_access_point_by_device_name' => 1,
             ],
         ];
         parent::init();

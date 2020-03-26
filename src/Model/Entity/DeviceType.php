@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property bool $assign_access_point_by_device_name
  *
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  */
@@ -36,6 +37,7 @@ class DeviceType extends Entity
         'note' => true,
         'created' => true,
         'modified' => true,
+        'assign_access_point_by_device_name' => true,
         'routeros_devices' => true,
     ];
 }

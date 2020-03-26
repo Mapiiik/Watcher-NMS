@@ -141,7 +141,7 @@ class RouterosDevicesController extends AppController
             return $value;
     }
     
-    private function loadViaSNMP($host = null, $community = null, $deviceTypeId = null)
+    private function loadViaSNMP($host = null, $community = null, $deviceTypeId = null, $assignAccessPointByDeviceName = false)
     {
         // numeric OIDs
         snmp_set_oid_output_format(SNMP_OID_OUTPUT_NUMERIC);
@@ -169,9 +169,24 @@ class RouterosDevicesController extends AppController
             $routerosDevice->board_name = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.8.0');
             $routerosDevice->software_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.4.4.0');
             $routerosDevice->firmware_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.4.0');
+
+            // assign access point by device name
+            if ($assignAccessPointByDeviceName)
+            {
+                $accessPoints = $this->RouterosDevices->AccessPoints->find(
+                    'all',
+                    [
+                        'conditions' => ['\'' . $routerosDevice->name . '\' ILIKE AccessPoints.device_name || \'%\'']
+                    ]
+                );
+                if ($accessPoint = $accessPoints->first())
+                {
+                    $routerosDevice->access_point_id = $accessPoint->id;
+                }
+            }
             
             $this->RouterosDevices->save($routerosDevice);
-
+            
             $ipAddr = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.1');
             $ipNetMask = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.3');
             $ipIfIndex = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.2');
@@ -282,7 +297,7 @@ class RouterosDevicesController extends AppController
     {
         if ($deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first())
         {
-            if ($this->loadViaSNMP($_SERVER['REMOTE_ADDR'], $deviceType->snmp_community, $deviceType->id))
+            if ($this->loadViaSNMP($_SERVER['REMOTE_ADDR'], $deviceType->snmp_community, $deviceType->id, $deviceType->assign_access_point_by_device_name))
             {
                 echo __('The data was successfully retrieved using SNMP');
             }

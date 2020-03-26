@@ -35,6 +35,10 @@
                     <td><?= h($deviceType->snmp_community) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Assign Access Point By Device Name') ?></th>
+                    <td><?= $deviceType->assign_access_point_by_device_name ? __('Yes') : __('No'); ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($deviceType->created) ?></td>
                 </tr>
