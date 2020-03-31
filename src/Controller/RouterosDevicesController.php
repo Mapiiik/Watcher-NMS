@@ -60,8 +60,8 @@ class RouterosDevicesController extends AppController
             }
             $this->Flash->error(__('The routeros device could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['limit' => 200]);
-        $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['limit' => 200]);
+        $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['order' => 'name']);
+        $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['order' => 'name']);
         $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes'));
     }
 
@@ -86,8 +86,8 @@ class RouterosDevicesController extends AppController
             }
             $this->Flash->error(__('The routeros device could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['limit' => 200]);
-        $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['limit' => 200]);
+        $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['order' => 'name']);
+        $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['order' => 'name']);
         $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes'));
     }
 
@@ -215,6 +215,7 @@ class RouterosDevicesController extends AppController
                 if (isset($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex]))
                 {
                     $routerosDeviceInterface->ssid = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex];
+                    $routerosDeviceInterface->bssid = $this->strToHex($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.5.' . $ifIndex]);
                     $routerosDeviceInterface->band = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.8.' . $ifIndex];
                     $routerosDeviceInterface->frequency = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.7.' . $ifIndex];
                     $routerosDeviceInterface->noise_floor = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.9.' . $ifIndex];
@@ -224,6 +225,7 @@ class RouterosDevicesController extends AppController
                 else if (isset($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex]))
                 {
                     $routerosDeviceInterface->ssid = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex];
+                    $routerosDeviceInterface->bssid = $this->strToHex($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.6.' . $ifIndex]);
                     $routerosDeviceInterface->band = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.8.' . $ifIndex];
                     $routerosDeviceInterface->frequency = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.7.' . $ifIndex];
                     $routerosDeviceInterface->noise_floor = null;
@@ -233,6 +235,7 @@ class RouterosDevicesController extends AppController
                 else
                 {
                     $routerosDeviceInterface->ssid = null;
+                    $routerosDeviceInterface->bssid = null;
                     $routerosDeviceInterface->band = null;
                     $routerosDeviceInterface->frequency = null;
                     $routerosDeviceInterface->noise_floor = null;
@@ -242,14 +245,10 @@ class RouterosDevicesController extends AppController
 
                 $this->RouterosDevices->RouterosDeviceInterfaces->save($routerosDeviceInterface);
             }
-/*
+            
             // DELETE removed interfaces
-            $delete['table'] = DB_TABLE_ROUTEROS_DEVICE_INTERFACES;
-            $delete['where']['deviceId'] = $deviceId;
-            $delete['wherex'][] = "((changed < (now() - interval '120 seconds')) OR ((changed IS NULL) AND (inserted < (now() - interval '120 seconds'))))";
-            //$database->dbDelete($delete);
-            unset($delete);
-*/
+            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new DateTime('-120 seconds')]);
+
             for ($i = 0; $i < count($ipAddr); $i++) {
                     // check if IP loaded OK, if not do not add
                     if (!ip2long($ipAddr[$i])) continue;
@@ -260,31 +259,14 @@ class RouterosDevicesController extends AppController
                     $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIps);
             }
 
-/*
             // DELETE removed IPs
-            $delete['table'] = DB_TABLE_ROUTEROS_DEVICE_IPS;
-            $delete['where']['deviceId'] = $deviceId;
-            $delete['wherex'][] = "((changed < (now() - interval '120 seconds')) OR ((changed IS NULL) AND (inserted < (now() - interval '120 seconds'))))";
-            //$database->dbDelete($delete);
-            unset($delete);
-
+            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new DateTime('-120 seconds')]);
 
             // REMOVE OLD DATA FROM DATABASE
-            $delete['table'] = DB_TABLE_ROUTEROS_DEVICES;
-            $delete['where'] = "inserted < current_date - 14 AND (changed < current_date - 7 OR changed IS NULL)";
-            //$database->dbDelete($delete);
-            unset($delete);
+            $this->RouterosDevices->deleteAll(['modified <' => new DateTime('-14 days')]);
+            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new DateTime('-14 days')]);
+            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new DateTime('-14 days')]);
 
-            $delete['table'] = DB_TABLE_ROUTEROS_DEVICE_IPS;
-            $delete['where'] = "inserted < current_date - 14 AND (changed < current_date - 7 OR changed IS NULL)";
-            //$database->dbDelete($delete);
-            unset($delete);
-
-            $delete['table'] = DB_TABLE_ROUTEROS_DEVICE_INTERFACES;
-            $delete['where'] = "inserted < current_date - 14 AND (changed < current_date - 7 OR changed IS NULL)";
-            //$database->dbDelete($delete);
-            unset($delete);
-*/
             return true;
         }
         else
