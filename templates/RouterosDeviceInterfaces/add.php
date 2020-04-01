@@ -22,6 +22,7 @@
                     echo $this->Form->control('comment');
                     echo $this->Form->control('mac_address');
                     echo $this->Form->control('ssid');
+                    echo $this->Form->control('bssid');
                     echo $this->Form->control('band');
                     echo $this->Form->control('frequency');
                     echo $this->Form->control('noise_floor');

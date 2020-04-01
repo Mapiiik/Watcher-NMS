@@ -25,6 +25,7 @@ use Cake\ORM\Entity;
  * @property int|null $interface_oper_status
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $bssid
  *
  * @property \App\Model\Entity\RouterosDevice $routeros_device
  */
@@ -56,6 +57,7 @@ class RouterosDeviceInterface extends Entity
         'interface_oper_status' => true,
         'created' => true,
         'modified' => true,
+        'bssid' => true,
         'routeros_device' => true,
     ];
 }

@@ -32,6 +32,8 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
 
     <?= $this->Html->css('milligram.min.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    
+    <?= $this->Html->script('https://code.jquery.com/jquery.min.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

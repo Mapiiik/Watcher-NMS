@@ -60,7 +60,7 @@ class RouterosDeviceInterfacesController extends AppController
             }
             $this->Flash->error(__('The routeros device interface could not be saved. Please, try again.'));
         }
-        $routerosDevices = $this->RouterosDeviceInterfaces->RouterosDevices->find('list', ['limit' => 200]);
+        $routerosDevices = $this->RouterosDeviceInterfaces->RouterosDevices->find('list', ['order' => 'name']);
         $this->set(compact('routerosDeviceInterface', 'routerosDevices'));
     }
 
@@ -85,7 +85,7 @@ class RouterosDeviceInterfacesController extends AppController
             }
             $this->Flash->error(__('The routeros device interface could not be saved. Please, try again.'));
         }
-        $routerosDevices = $this->RouterosDeviceInterfaces->RouterosDevices->find('list', ['limit' => 200]);
+        $routerosDevices = $this->RouterosDeviceInterfaces->RouterosDevices->find('list', ['order' => 'name']);
         $this->set(compact('routerosDeviceInterface', 'routerosDevices'));
     }
 

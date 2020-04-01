@@ -15,7 +15,7 @@ class RouterosDeviceInterfacesFixture extends TestFixture
      *
      * @var array
      */
-    // @codingStandardsIgnoreStart
+    // phpcs:disable
     public $fields = [
         'id' => ['type' => 'uuid', 'length' => null, 'default' => 'uuid_generate_v4()', 'null' => false, 'comment' => null, 'precision' => null],
         'routeros_device_id' => ['type' => 'uuid', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
@@ -34,11 +34,12 @@ class RouterosDeviceInterfacesFixture extends TestFixture
         'interface_oper_status' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'created' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
         'modified' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
+        'bssid' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
     ];
-    // @codingStandardsIgnoreEnd
+    // phpcs:enable
     /**
      * Init method
      *
@@ -48,8 +49,8 @@ class RouterosDeviceInterfacesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '3f3715ab-ab4f-4756-a764-fd1acd4cc79b',
-                'routeros_device_id' => '7c539d33-0cab-4dbb-9dec-41dd2d5bcc77',
+                'id' => '1c729a5a-b2a7-4389-80d7-a97703864a70',
+                'routeros_device_id' => 'a548ff3a-dd0c-465f-a07c-9527b475d402',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'comment' => 'Lorem ipsum dolor sit amet',
                 'mac_address' => 'Lorem ipsum dolor sit amet',
@@ -65,6 +66,7 @@ class RouterosDeviceInterfacesFixture extends TestFixture
                 'interface_oper_status' => 1,
                 'created' => '',
                 'modified' => '',
+                'bssid' => 'Lorem ipsum dolor sit amet',
             ],
         ];
         parent::init();

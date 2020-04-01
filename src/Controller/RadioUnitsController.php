@@ -60,10 +60,10 @@ class RadioUnitsController extends AppController
             }
             $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
         }
-        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['limit' => 200]);
-        $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['limit' => 200]);
-        $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['limit' => 200]);
-        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['limit' => 200]);
+        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['order' => 'name']);
+        $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['order' => 'name']);
+        $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['order' => 'name']);
+        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['order' => 'name']);
         $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
     }
 
@@ -88,10 +88,10 @@ class RadioUnitsController extends AppController
             }
             $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
         }
-        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['limit' => 200]);
-        $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['limit' => 200]);
-        $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['limit' => 200]);
-        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['limit' => 200]);
+        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['order' => 'name']);
+        $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['order' => 'name']);
+        $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['order' => 'name']);
+        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['order' => 'name']);
         $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
     }
 

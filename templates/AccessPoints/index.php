@@ -6,6 +6,7 @@
 ?>
 <div class="accessPoints index content">
     <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
     <h3><?= __('Access Points') ?></h3>
     <div class="table-responsive">
         <table>

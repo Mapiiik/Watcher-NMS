@@ -210,6 +210,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
+                <?= $this->Html->link(__('New Routeros Device'), ['controller' => 'Routeros Devices', 'action' => 'add'], ['class' => 'button float-right']) ?>
                 <h4><?= __('Related Routeros Devices') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
                 <div class="table-responsive">

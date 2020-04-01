@@ -103,4 +103,46 @@ class AccessPointsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    
+    public function map()
+    {
+        $accessPoints = $this->AccessPoints->find()
+            ->contain([
+                'RouterosDevices' => [
+                    'sort' => ['RouterosDevices.name' => 'ASC'],
+                    'RouterosDeviceIps' => [
+                        'sort' => ['RouterosDeviceIps.ip_address' => 'ASC'],
+                        'strategy' => 'subquery',
+                        'queryBuilder' => function ($q) {
+                            return $q->join([
+                                'RemoteRouterosDeviceIps' => [
+                                    'table' => 'routeros_device_ips',
+                                    'type' => 'LEFT',
+                                    'conditions' => 'network(RouterosDeviceIps.ip_address) = network(RemoteRouterosDeviceIps.ip_address) AND RouterosDeviceIps.id <> RemoteRouterosDeviceIps.id'
+                                ],
+                                'RemoteRouterosDevices' => [
+                                    'table' => 'routeros_devices',
+                                    'type' => 'INNER',
+                                    'conditions' => 'RemoteRouterosDeviceIps.routeros_device_id = RemoteRouterosDevices.id AND RouterosDeviceIps.routeros_device_id <> RemoteRouterosDevices.id'
+                                ],
+                            ])
+
+                            ->select(['RouterosDeviceIps.routeros_device_id'])
+                            ->select(['RouterosDeviceIps.ip_address'])
+
+                            ->select(['RemoteRouterosDevices.id'])
+                            ->select(['RemoteRouterosDevices.name'])
+                            ->select(['RemoteRouterosDevices.access_point_id'])
+                            ->select(['RemoteRouterosDevices.device_type_id'])
+                            ->select(['RemoteRouterosDeviceIps.ip_address'])
+                            ;
+                        }
+                    ]
+                ]
+            ])
+            ->indexBy('id')
+            ->toArray();
+
+        $this->set(compact('accessPoints'));
+    }
 }

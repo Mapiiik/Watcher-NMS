@@ -16,6 +16,7 @@
                     <th><?= $this->Paginator->sort('comment') ?></th>
                     <th><?= $this->Paginator->sort('mac_address') ?></th>
                     <th><?= $this->Paginator->sort('ssid') ?></th>
+                    <th><?= $this->Paginator->sort('bssid') ?></th>
                     <th><?= $this->Paginator->sort('band') ?></th>
                     <th><?= $this->Paginator->sort('frequency') ?></th>
                     <th><?= $this->Paginator->sort('noise_floor') ?></th>
@@ -38,6 +39,7 @@
                     <td><?= h($routerosDeviceInterface->comment) ?></td>
                     <td><?= h($routerosDeviceInterface->mac_address) ?></td>
                     <td><?= h($routerosDeviceInterface->ssid) ?></td>
+                    <td><?= h($routerosDeviceInterface->bssid) ?></td>
                     <td><?= h($routerosDeviceInterface->band) ?></td>
                     <td><?= $this->Number->format($routerosDeviceInterface->frequency) ?></td>
                     <td><?= $this->Number->format($routerosDeviceInterface->noise_floor) ?></td>

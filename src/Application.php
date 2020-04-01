@@ -39,6 +39,9 @@ class Application extends BaseApplication
      */
     public function bootstrap(): void
     {
+        // dereuromark/cakephp-geo
+        $this->addPlugin('Geo');
+
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 

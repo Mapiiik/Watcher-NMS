@@ -206,16 +206,12 @@ class RouterosDevicesController extends AppController
                 $routerosDeviceInterface->interface_admin_status = $ifTable['.1.3.6.1.2.1.2.2.1.7.' . $ifIndex];
                 $routerosDeviceInterface->interface_oper_status = $ifTable['.1.3.6.1.2.1.2.2.1.8.' . $ifIndex];
                 $routerosDeviceInterface->interface_type = $ifTable['.1.3.6.1.2.1.2.2.1.3.' . $ifIndex];
-
-                if ($this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]) <> '')
-                {
-                    $routerosDeviceInterface->mac_address = $this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]);
-                }
+                $routerosDeviceInterface->mac_address = $this->nullIfEmptyString($this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex]));
 
                 if (isset($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex]))
                 {
                     $routerosDeviceInterface->ssid = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex];
-                    $routerosDeviceInterface->bssid = $this->strToHex($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.5.' . $ifIndex]);
+                    $routerosDeviceInterface->bssid = $this->nullIfEmptyString($this->strToHex($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.5.' . $ifIndex]));
                     $routerosDeviceInterface->band = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.8.' . $ifIndex];
                     $routerosDeviceInterface->frequency = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.7.' . $ifIndex];
                     $routerosDeviceInterface->noise_floor = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.9.' . $ifIndex];
@@ -225,7 +221,7 @@ class RouterosDevicesController extends AppController
                 else if (isset($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex]))
                 {
                     $routerosDeviceInterface->ssid = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex];
-                    $routerosDeviceInterface->bssid = $this->strToHex($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.6.' . $ifIndex]);
+                    $routerosDeviceInterface->bssid = $this->nullIfEmptyString($this->strToHex($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.6.' . $ifIndex]));
                     $routerosDeviceInterface->band = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.8.' . $ifIndex];
                     $routerosDeviceInterface->frequency = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.7.' . $ifIndex];
                     $routerosDeviceInterface->noise_floor = null;
@@ -247,7 +243,7 @@ class RouterosDevicesController extends AppController
             }
             
             // DELETE removed interfaces
-            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new DateTime('-120 seconds')]);
+            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new \DateTime('-120 seconds')]);
 
             for ($i = 0; $i < count($ipAddr); $i++) {
                     // check if IP loaded OK, if not do not add
@@ -256,16 +252,18 @@ class RouterosDevicesController extends AppController
 
                     $routerosDeviceIps = $this->RouterosDevices->RouterosDeviceIps->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ipIfIndex[$i], 'ip_address' => $data['ip'] = $ipAddr[$i] . '/' . $this->mask2cidr($ipNetMask[$i])]);
                     
+                    $routerosDeviceIps->name = null;
+                    
                     $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIps);
             }
 
             // DELETE removed IPs
-            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new DateTime('-120 seconds')]);
+            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new \DateTime('-120 seconds')]);
 
             // REMOVE OLD DATA FROM DATABASE
-            $this->RouterosDevices->deleteAll(['modified <' => new DateTime('-14 days')]);
-            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new DateTime('-14 days')]);
-            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new DateTime('-14 days')]);
+            $this->RouterosDevices->deleteAll(['modified <' => new \DateTime('-14 days')]);
+            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new \DateTime('-14 days')]);
+            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new \DateTime('-14 days')]);
 
             return true;
         }

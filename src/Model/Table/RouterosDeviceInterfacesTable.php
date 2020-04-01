@@ -13,14 +13,19 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\BelongsTo $RouterosDevices
  *
- * @method \App\Model\Entity\RouterosDeviceInterface get($primaryKey, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface newEmptyEntity()
+ * @method \App\Model\Entity\RouterosDeviceInterface newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
@@ -110,6 +115,10 @@ class RouterosDeviceInterfacesTable extends Table
         $validator
             ->integer('interface_oper_status')
             ->allowEmptyString('interface_oper_status');
+
+        $validator
+            ->scalar('bssid')
+            ->allowEmptyString('bssid');
 
         return $validator;
     }

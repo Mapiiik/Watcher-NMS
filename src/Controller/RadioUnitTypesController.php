@@ -60,8 +60,8 @@ class RadioUnitTypesController extends AppController
             }
             $this->Flash->error(__('The radio unit type could not be saved. Please, try again.'));
         }
-        $radioUnitBands = $this->RadioUnitTypes->RadioUnitBands->find('list', ['limit' => 200]);
-        $manufacturers = $this->RadioUnitTypes->Manufacturers->find('list', ['limit' => 200]);
+        $radioUnitBands = $this->RadioUnitTypes->RadioUnitBands->find('list', ['order' => 'name']);
+        $manufacturers = $this->RadioUnitTypes->Manufacturers->find('list', ['order' => 'name']);
         $this->set(compact('radioUnitType', 'radioUnitBands', 'manufacturers'));
     }
 
@@ -86,8 +86,8 @@ class RadioUnitTypesController extends AppController
             }
             $this->Flash->error(__('The radio unit type could not be saved. Please, try again.'));
         }
-        $radioUnitBands = $this->RadioUnitTypes->RadioUnitBands->find('list', ['limit' => 200]);
-        $manufacturers = $this->RadioUnitTypes->Manufacturers->find('list', ['limit' => 200]);
+        $radioUnitBands = $this->RadioUnitTypes->RadioUnitBands->find('list', ['order' => 'name']);
+        $manufacturers = $this->RadioUnitTypes->Manufacturers->find('list', ['order' => 'name']);
         $this->set(compact('radioUnitType', 'radioUnitBands', 'manufacturers'));
     }
 

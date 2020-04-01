@@ -63,6 +63,7 @@
                             <th><?= __('Comment') ?></th>
                             <th><?= __('Mac Address') ?></th>
                             <th><?= __('Ssid') ?></th>
+                            <th><?= __('Bssid') ?></th>
                             <th><?= __('Band') ?></th>
                             <th><?= __('Frequency') ?></th>
                             <th><?= __('Noise Floor') ?></th>
@@ -84,6 +85,7 @@
                             <td><?= h($routerosDeviceInterfaces->comment) ?></td>
                             <td><?= h($routerosDeviceInterfaces->mac_address) ?></td>
                             <td><?= h($routerosDeviceInterfaces->ssid) ?></td>
+                            <td><?= h($routerosDeviceInterfaces->bssid) ?></td>
                             <td><?= h($routerosDeviceInterfaces->band) ?></td>
                             <td><?= h($routerosDeviceInterfaces->frequency) ?></td>
                             <td><?= h($routerosDeviceInterfaces->noise_floor) ?></td>

@@ -43,6 +43,10 @@
                     <td><?= h($routerosDeviceInterface->ssid) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Bssid') ?></th>
+                    <td><?= h($routerosDeviceInterface->bssid) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Band') ?></th>
                     <td><?= h($routerosDeviceInterface->band) ?></td>
                 </tr>

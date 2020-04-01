@@ -60,8 +60,8 @@ class AccessPointContactsController extends AppController
             }
             $this->Flash->error(__('The access point contact could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->AccessPointContacts->AccessPoints->find('list', ['limit' => 200]);
-        $contacts = $this->AccessPointContacts->Contacts->find('list', ['limit' => 200]);
+        $accessPoints = $this->AccessPointContacts->AccessPoints->find('list', ['order' => 'name']);
+        $contacts = $this->AccessPointContacts->Contacts->find('list', ['order' => 'name']);
         $this->set(compact('accessPointContact', 'accessPoints', 'contacts'));
     }
 
@@ -86,8 +86,8 @@ class AccessPointContactsController extends AppController
             }
             $this->Flash->error(__('The access point contact could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->AccessPointContacts->AccessPoints->find('list', ['limit' => 200]);
-        $contacts = $this->AccessPointContacts->Contacts->find('list', ['limit' => 200]);
+        $accessPoints = $this->AccessPointContacts->AccessPoints->find('list', ['order' => 'name']);
+        $contacts = $this->AccessPointContacts->Contacts->find('list', ['order' => 'name']);
         $this->set(compact('accessPointContact', 'accessPoints', 'contacts'));
     }
 
