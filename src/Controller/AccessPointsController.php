@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\MapOptionsForm;
+
 /**
  * AccessPoints Controller
  *
@@ -106,10 +108,27 @@ class AccessPointsController extends AppController
     
     public function map()
     {
-        $accessPoints = $this->AccessPoints->find()
-            ->contain([
+        $mapOptions = new MapOptionsForm();
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            if ($mapOptions->execute($this->request->getData())) {
+                $this->Flash->success('Map Options Set.');
+            } else {
+                $this->Flash->error('There was a problem setting your map options.');
+            }
+        }
+        $this->set('mapOptions', $mapOptions);
+        
+        $accessPointsQuery = $this->AccessPoints->find();
+        
+        $accessPointsQuery->contain([
+            'RouterosDevices' => [
+                'sort' => ['RouterosDevices.name' => 'ASC'],
+            ]
+        ]);
+
+        if (isset($mapOptions->getData()['routeros_ip_links']) && $mapOptions->getData()['routeros_ip_links'] == 1) {
+            $accessPointsQuery->contain([
                 'RouterosDevices' => [
-                    'sort' => ['RouterosDevices.name' => 'ASC'],
                     'RouterosDeviceIps' => [
                         'sort' => ['RouterosDeviceIps.ip_address' => 'ASC'],
                         'strategy' => 'subquery',
@@ -126,10 +145,8 @@ class AccessPointsController extends AppController
                                     'conditions' => 'RemoteRouterosDeviceIps.routeros_device_id = RemoteRouterosDevices.id AND RouterosDeviceIps.routeros_device_id <> RemoteRouterosDevices.id'
                                 ],
                             ])
-
                             ->select(['RouterosDeviceIps.routeros_device_id'])
                             ->select(['RouterosDeviceIps.ip_address'])
-
                             ->select(['RemoteRouterosDevices.id'])
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
@@ -139,9 +156,10 @@ class AccessPointsController extends AppController
                         }
                     ]
                 ]
-            ])
-            ->indexBy('id')
-            ->toArray();
+            ]);
+        }
+
+        $accessPoints = $accessPointsQuery->indexBy('id')->toArray();
 
         $this->set(compact('accessPoints'));
     }

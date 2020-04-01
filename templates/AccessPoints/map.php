@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\AccessPoint[]|\Cake\Collection\CollectionInterface $accessPoints
  */
 ?>
-<div class="accessPoints index content">
+<div class="accessPoints map content">
     <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <?= $this->Html->link(__('List Access Points'), ['action' => 'index'], ['class' => 'button float-right']) ?>
     <h3><?= __('Access Points') ?></h3>
@@ -36,13 +36,13 @@ foreach ($accessPoints as $accessPoint)
             $content .= $this->Html->link(__($routerosDevice->name), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]) . '<br />';
             
             $content .= '<ul>';
-            foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp)
-            {
-                if (isset($routerosDeviceIp->RemoteRouterosDevices['access_point_id']) && ($routerosDeviceIp->RemoteRouterosDevices['access_point_id'] <> $accessPoint->id))
-                {
-                    $remotePolylines[$accessPoint->id][$routerosDeviceIp->RemoteRouterosDevices['access_point_id']]['type'] = 'ip';
-                    $content .= '<li>' . $this->Html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
-                }
+            if (is_array($routerosDevice->routeros_device_ips)) {
+                    foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp) {
+                        if (isset($routerosDeviceIp->RemoteRouterosDevices['access_point_id']) && ($routerosDeviceIp->RemoteRouterosDevices['access_point_id'] <> $accessPoint->id)) {
+                            $remotePolylines[$accessPoint->id][$routerosDeviceIp->RemoteRouterosDevices['access_point_id']]['type'] = 'ip';
+                            $content .= '<li>' . $this->Html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
+                        }
+                    }
             }
             $content .= '</ul>';
         }
@@ -53,11 +53,11 @@ foreach ($accessPoints as $accessPoint)
     }
 }
 
-foreach ($remotePolylines as $key1 => $value1) foreach ($value1 as $key2 => $value2)
-{
-    if (is_numeric($accessPoints[$key1]->gps_y) && is_numeric($accessPoints[$key1]->gps_x) && is_numeric($accessPoints[$key2]->gps_y) && is_numeric($accessPoints[$key2]->gps_x))
-    {
-        $this->GoogleMap->addPolyline(['lat' => $accessPoints[$key1]->gps_y, 'lng' => $accessPoints[$key1]->gps_x], ['lat' => $accessPoints[$key2]->gps_y, 'lng' => $accessPoints[$key2]->gps_x]);
+foreach ($remotePolylines as $key1 => $value1) {
+    foreach ($value1 as $key2 => $value2) {
+        if (is_numeric($accessPoints[$key1]->gps_y) && is_numeric($accessPoints[$key1]->gps_x) && is_numeric($accessPoints[$key2]->gps_y) && is_numeric($accessPoints[$key2]->gps_x)) {
+            $this->GoogleMap->addPolyline(['lat' => $accessPoints[$key1]->gps_y, 'lng' => $accessPoints[$key1]->gps_x], ['lat' => $accessPoints[$key2]->gps_y, 'lng' => $accessPoints[$key2]->gps_x]);
+        }
     }
 }
 unset($remotePolylines);
@@ -65,4 +65,18 @@ unset($remotePolylines);
 // Store the final JS in a HtmlHelper script block
 $this->GoogleMap->finalize();
 ?>
+    <div class="column-responsive column-80">
+        <div class="accessPoints form content">
+            <?= $this->Form->create($mapOptions) ?>
+            <fieldset>
+                <legend><?= __('Map Options') ?></legend>
+                <?php
+                    echo $this->Form->control('routeros_ip_links');
+                    echo $this->Form->control('routeros_wireless_links');
+                ?>
+            </fieldset>
+            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->end() ?>
+        </div>
+    </div>    
 </div>
