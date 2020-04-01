@@ -38,9 +38,17 @@ foreach ($accessPoints as $accessPoint)
             $content .= '<ul>';
             if (is_array($routerosDevice->routeros_device_ips)) {
                     foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp) {
+                        $content .= '<li>' . ' (' . $routerosDeviceIp->ip_address . ') - ' . $this->Html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
                         if (isset($routerosDeviceIp->RemoteRouterosDevices['access_point_id']) && ($routerosDeviceIp->RemoteRouterosDevices['access_point_id'] <> $accessPoint->id)) {
                             $remotePolylines[$accessPoint->id][$routerosDeviceIp->RemoteRouterosDevices['access_point_id']]['type'] = 'ip';
-                            $content .= '<li>' . $this->Html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
+                        }
+                    }
+            }
+            if (is_array($routerosDevice->routeros_device_interfaces)) {
+                    foreach ($routerosDevice->routeros_device_interfaces as $routerosDeviceInterface) {
+                        $content .= '<li>' . ' (' . $routerosDeviceInterface->name . ') - ' . $this->Html->link(__($routerosDeviceInterface->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceInterface->RemoteRouterosDeviceInterfaces['name'] . ')' . '</li>';
+                        if (isset($routerosDeviceInterface->RemoteRouterosDevices['access_point_id']) && ($routerosDeviceInterface->RemoteRouterosDevices['access_point_id'] <> $accessPoint->id)) {
+                            $remotePolylines[$accessPoint->id][$routerosDeviceInterface->RemoteRouterosDevices['access_point_id']]['type'] = 'wifi';
                         }
                     }
             }
@@ -56,7 +64,15 @@ foreach ($accessPoints as $accessPoint)
 foreach ($remotePolylines as $key1 => $value1) {
     foreach ($value1 as $key2 => $value2) {
         if (is_numeric($accessPoints[$key1]->gps_y) && is_numeric($accessPoints[$key1]->gps_x) && is_numeric($accessPoints[$key2]->gps_y) && is_numeric($accessPoints[$key2]->gps_x)) {
-            $this->GoogleMap->addPolyline(['lat' => $accessPoints[$key1]->gps_y, 'lng' => $accessPoints[$key1]->gps_x], ['lat' => $accessPoints[$key2]->gps_y, 'lng' => $accessPoints[$key2]->gps_x]);
+            switch ($value2['type']) {
+            case 'ip':
+                $options['color'] = '#00DD00';
+                break;
+            default:
+                $options['color'] = '#FF0000';
+            }
+            
+            $this->GoogleMap->addPolyline(['lat' => $accessPoints[$key1]->gps_y, 'lng' => $accessPoints[$key1]->gps_x], ['lat' => $accessPoints[$key2]->gps_y, 'lng' => $accessPoints[$key2]->gps_x], $options);
         }
     }
 }

@@ -6,21 +6,22 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * DeviceType Entity
+ * CustomerConnection Entity
  *
  * @property string $id
  * @property string|null $name
- * @property string|null $identifier
- * @property string|null $snmp_community
+ * @property string|null $customer_point_id
+ * @property string|null $customer_number
+ * @property string|null $contract_number
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
- * @property bool $assign_access_point_by_device_name
- * @property bool $assign_customer_connection_by_ip
  *
+ * @property \App\Model\Entity\CustomerPoint $customer_point
+ * @property \App\Model\Entity\CustomerConnectionIp[] $customer_connection_ips
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  */
-class DeviceType extends Entity
+class CustomerConnection extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -33,13 +34,14 @@ class DeviceType extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'identifier' => true,
-        'snmp_community' => true,
+        'customer_point_id' => true,
+        'customer_number' => true,
+        'contract_number' => true,
         'note' => true,
         'created' => true,
         'modified' => true,
-        'assign_access_point_by_device_name' => true,
-        'assign_customer_connection_by_ip' => true,
+        'customer_point' => true,
+        'customer_connection_ips' => true,
         'routeros_devices' => true,
     ];
 }

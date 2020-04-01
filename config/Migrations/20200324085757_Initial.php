@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Migrations\AbstractMigration;
+use Phinx\Util\Literal;
 
 class Initial extends AbstractMigration
 {
@@ -9,7 +10,7 @@ class Initial extends AbstractMigration
     {
         $this->table('access_point_contacts', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -46,7 +47,7 @@ class Initial extends AbstractMigration
 
         $this->table('access_points', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -93,7 +94,7 @@ class Initial extends AbstractMigration
 
         $this->table('antenna_types', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -145,7 +146,7 @@ class Initial extends AbstractMigration
 
         $this->table('device_types', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -187,7 +188,7 @@ class Initial extends AbstractMigration
 
         $this->table('manufacturers', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -219,7 +220,7 @@ class Initial extends AbstractMigration
 
         $this->table('power_supplies', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -291,7 +292,7 @@ class Initial extends AbstractMigration
 
         $this->table('power_supply_types', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -343,7 +344,7 @@ class Initial extends AbstractMigration
 
         $this->table('radar_interferences', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -390,7 +391,7 @@ class Initial extends AbstractMigration
 
         $this->table('radio_links', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -432,7 +433,7 @@ class Initial extends AbstractMigration
 
         $this->table('radio_unit_bands', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -464,7 +465,7 @@ class Initial extends AbstractMigration
 
         $this->table('radio_unit_types', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -511,7 +512,7 @@ class Initial extends AbstractMigration
 
         $this->table('radio_units', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -610,9 +611,9 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('ip_address', 'string', [
+            ->addColumn('ip_address', 'inet', [
                 'default' => null,
-                'limit' => 39,
+                'limit' => null,
                 'null' => true,
             ])
             ->addColumn('device_login', 'string', [
@@ -648,7 +649,7 @@ class Initial extends AbstractMigration
 
         $this->table('routeros_device_interfaces', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -740,7 +741,7 @@ class Initial extends AbstractMigration
 
         $this->table('routeros_device_ips', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -754,9 +755,9 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('ip_address', 'string', [
+            ->addColumn('ip_address', 'inet', [
                 'default' => null,
-                'limit' => 39,
+                'limit' => null,
                 'null' => true,
             ])
             ->addColumn('interface_index', 'integer', [
@@ -782,7 +783,7 @@ class Initial extends AbstractMigration
 
         $this->table('routeros_devices', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
-                'default' => 'uuid_generate_v4()',
+                'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
                 'null' => false,
             ])
@@ -801,9 +802,9 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('ip_address', 'string', [
+            ->addColumn('ip_address', 'inet', [
                 'default' => null,
-                'limit' => 39,
+                'limit' => null,
                 'null' => true,
             ])
             ->addColumn('system_description', 'string', [
@@ -882,11 +883,6 @@ class Initial extends AbstractMigration
 
     public function down()
     {
-        $this->table('social_accounts')
-            ->dropForeignKey(
-                'user_id'
-            )->save();
-
         $this->table('access_point_contacts')->drop()->save();
         $this->table('access_points')->drop()->save();
         $this->table('antenna_types')->drop()->save();
@@ -903,7 +899,5 @@ class Initial extends AbstractMigration
         $this->table('routeros_device_ips')->drop()->save();
         $this->table('routeros_devices')->drop()->save();
         $this->table('sessions')->drop()->save();
-        $this->table('social_accounts')->drop()->save();
-        $this->table('users')->drop()->save();
     }
 }

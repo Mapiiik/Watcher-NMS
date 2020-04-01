@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * DeviceTypesFixture
+ * CustomerPointsFixture
  */
-class DeviceTypesFixture extends TestFixture
+class CustomerPointsFixture extends TestFixture
 {
     /**
      * Fields
@@ -18,14 +18,12 @@ class DeviceTypesFixture extends TestFixture
     // phpcs:disable
     public $fields = [
         'id' => ['type' => 'uuid', 'length' => null, 'default' => 'uuid_generate_v4()', 'null' => false, 'comment' => null, 'precision' => null],
-        'name' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'identifier' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'snmp_community' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
+        'name' => ['type' => 'string', 'length' => 255, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
+        'gps_x' => ['type' => 'float', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null],
+        'gps_y' => ['type' => 'float', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null],
         'note' => ['type' => 'text', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         'created' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
         'modified' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
-        'assign_access_point_by_device_name' => ['type' => 'boolean', 'length' => null, 'default' => 0, 'null' => false, 'comment' => null, 'precision' => null],
-        'assign_customer_connection_by_ip' => ['type' => 'boolean', 'length' => null, 'default' => 0, 'null' => false, 'comment' => null, 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -40,15 +38,13 @@ class DeviceTypesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 'dbb96cb3-b3a6-4687-a096-cb396334068f',
+                'id' => 'de9d2ac6-0f8b-461c-a365-532cf7416d5d',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'identifier' => 'Lorem ipsum dolor sit amet',
-                'snmp_community' => 'Lorem ipsum dolor sit amet',
+                'gps_x' => 1,
+                'gps_y' => 1,
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'created' => '',
                 'modified' => '',
-                'assign_access_point_by_device_name' => 1,
-                'assign_customer_connection_by_ip' => 1,
             ],
         ];
         parent::init();

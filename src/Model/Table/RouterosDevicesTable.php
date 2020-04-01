@@ -13,17 +13,23 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\DeviceTypesTable&\Cake\ORM\Association\BelongsTo $DeviceTypes
+ * @property \App\Model\Table\CustomerConnectionsTable&\Cake\ORM\Association\BelongsTo $CustomerConnections
  * @property \App\Model\Table\RouterosDeviceInterfacesTable&\Cake\ORM\Association\HasMany $RouterosDeviceInterfaces
  * @property \App\Model\Table\RouterosDeviceIpsTable&\Cake\ORM\Association\HasMany $RouterosDeviceIps
  *
- * @method \App\Model\Entity\RouterosDevice get($primaryKey, $options = [])
- * @method \App\Model\Entity\RouterosDevice newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\RouterosDevice newEmptyEntity()
+ * @method \App\Model\Entity\RouterosDevice newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDevice[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\RouterosDevice get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RouterosDevice findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RouterosDevice patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\RouterosDevice[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDevice|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RouterosDevice saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RouterosDevice patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\RouterosDevice[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\RouterosDevice findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RouterosDevice[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDevice[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDevice[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDevice[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
@@ -50,6 +56,9 @@ class RouterosDevicesTable extends Table
         ]);
         $this->belongsTo('DeviceTypes', [
             'foreignKey' => 'device_type_id',
+        ]);
+        $this->belongsTo('CustomerConnections', [
+            'foreignKey' => 'customer_connection_id',
         ]);
         $this->hasMany('RouterosDeviceInterfaces', [
             'foreignKey' => 'routeros_device_id',
@@ -114,6 +123,7 @@ class RouterosDevicesTable extends Table
     {
         $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
         $rules->add($rules->existsIn(['device_type_id'], 'DeviceTypes'));
+        $rules->add($rules->existsIn(['customer_connection_id'], 'CustomerConnections'));
 
         return $rules;
     }

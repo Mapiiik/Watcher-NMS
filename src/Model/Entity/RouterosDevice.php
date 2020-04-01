@@ -20,9 +20,11 @@ use Cake\ORM\Entity;
  * @property string|null $firmware_version
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $customer_connection_id
  *
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\DeviceType $device_type
+ * @property \App\Model\Entity\CustomerConnection $customer_connection
  * @property \App\Model\Entity\RouterosDeviceInterface[] $routeros_device_interfaces
  * @property \App\Model\Entity\RouterosDeviceIp[] $routeros_device_ips
  */
@@ -49,8 +51,10 @@ class RouterosDevice extends Entity
         'firmware_version' => true,
         'created' => true,
         'modified' => true,
+        'customer_connection_id' => true,
         'access_point' => true,
         'device_type' => true,
+        'customer_connection' => true,
         'routeros_device_interfaces' => true,
         'routeros_device_ips' => true,
     ];

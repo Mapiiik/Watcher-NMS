@@ -3,21 +3,21 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\RouterosDevicesTable;
+use App\Model\Table\CustomerConnectionsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\RouterosDevicesTable Test Case
+ * App\Model\Table\CustomerConnectionsTable Test Case
  */
-class RouterosDevicesTableTest extends TestCase
+class CustomerConnectionsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\RouterosDevicesTable
+     * @var \App\Model\Table\CustomerConnectionsTable
      */
-    protected $RouterosDevices;
+    protected $CustomerConnections;
 
     /**
      * Fixtures
@@ -25,12 +25,10 @@ class RouterosDevicesTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.RouterosDevices',
-        'app.AccessPoints',
-        'app.DeviceTypes',
         'app.CustomerConnections',
-        'app.RouterosDeviceInterfaces',
-        'app.RouterosDeviceIps',
+        'app.CustomerPoints',
+        'app.CustomerConnectionIps',
+        'app.RouterosDevices',
     ];
 
     /**
@@ -41,8 +39,8 @@ class RouterosDevicesTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('RouterosDevices') ? [] : ['className' => RouterosDevicesTable::class];
-        $this->RouterosDevices = TableRegistry::getTableLocator()->get('RouterosDevices', $config);
+        $config = TableRegistry::getTableLocator()->exists('CustomerConnections') ? [] : ['className' => CustomerConnectionsTable::class];
+        $this->CustomerConnections = TableRegistry::getTableLocator()->get('CustomerConnections', $config);
     }
 
     /**
@@ -52,7 +50,7 @@ class RouterosDevicesTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->RouterosDevices);
+        unset($this->CustomerConnections);
 
         parent::tearDown();
     }

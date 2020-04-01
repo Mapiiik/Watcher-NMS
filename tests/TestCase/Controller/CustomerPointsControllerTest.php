@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\RouterosDevicesController;
+use App\Controller\CustomerPointsController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\RouterosDevicesController Test Case
+ * App\Controller\CustomerPointsController Test Case
  *
- * @uses \App\Controller\RouterosDevicesController
+ * @uses \App\Controller\CustomerPointsController
  */
-class RouterosDevicesControllerTest extends TestCase
+class CustomerPointsControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,12 +22,8 @@ class RouterosDevicesControllerTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.RouterosDevices',
-        'app.AccessPoints',
-        'app.DeviceTypes',
+        'app.CustomerPoints',
         'app.CustomerConnections',
-        'app.RouterosDeviceInterfaces',
-        'app.RouterosDeviceIps',
     ];
 
     /**

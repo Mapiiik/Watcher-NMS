@@ -39,6 +39,10 @@
                     <td><?= $deviceType->assign_access_point_by_device_name ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Assign Customer Connection By Ip') ?></th>
+                    <td><?= $deviceType->assign_customer_connection_by_ip ? __('Yes') : __('No'); ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($deviceType->created) ?></td>
                 </tr>
@@ -71,6 +75,7 @@
                             <th><?= __('Firmware Version') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
+                            <th><?= __('Customer Connection Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($deviceType->routeros_devices as $routerosDevices) : ?>
@@ -87,6 +92,7 @@
                             <td><?= h($routerosDevices->firmware_version) ?></td>
                             <td><?= h($routerosDevices->created) ?></td>
                             <td><?= h($routerosDevices->modified) ?></td>
+                            <td><?= h($routerosDevices->customer_connection_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>

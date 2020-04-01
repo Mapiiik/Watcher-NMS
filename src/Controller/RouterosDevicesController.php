@@ -15,12 +15,12 @@ class RouterosDevicesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
         $this->paginate = [
-            'contain' => ['AccessPoints', 'DeviceTypes'],
+            'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections'],
         ];
         $routerosDevices = $this->paginate($this->RouterosDevices);
 
@@ -31,13 +31,13 @@ class RouterosDevicesController extends AppController
      * View method
      *
      * @param string|null $id Routeros Device id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $routerosDevice = $this->RouterosDevices->get($id, [
-            'contain' => ['AccessPoints', 'DeviceTypes', 'RouterosDeviceInterfaces', 'RouterosDeviceIps'],
+            'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections', 'RouterosDeviceInterfaces', 'RouterosDeviceIps'],
         ]);
 
         $this->set('routerosDevice', $routerosDevice);
@@ -46,7 +46,7 @@ class RouterosDevicesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -62,14 +62,15 @@ class RouterosDevicesController extends AppController
         }
         $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['order' => 'name']);
         $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['order' => 'name']);
-        $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes'));
+        $customerConnections = $this->RouterosDevices->CustomerConnections->find('list', ['order' => 'name']);
+        $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes', 'customerConnections'));
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Routeros Device id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
@@ -88,14 +89,15 @@ class RouterosDevicesController extends AppController
         }
         $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['order' => 'name']);
         $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['order' => 'name']);
-        $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes'));
+        $customerConnections = $this->RouterosDevices->CustomerConnections->find('list', ['order' => 'name']);
+        $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes', 'customerConnections'));
     }
 
     /**
      * Delete method
      *
      * @param string|null $id Routeros Device id.
-     * @return \Cake\Http\Response|null Redirects to index.
+     * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
@@ -116,7 +118,7 @@ class RouterosDevicesController extends AppController
          $long = ip2long($mask);  
          $base = ip2long('255.255.255.255');  
          return 32-log(($long ^ $base)+1,2);       
-    }
+}
     private function strToHex($string = null)
     {
         $hex='';
@@ -141,7 +143,7 @@ class RouterosDevicesController extends AppController
             return $value;
     }
     
-    private function loadViaSNMP($host = null, $community = null, $deviceTypeId = null, $assignAccessPointByDeviceName = false)
+    private function loadViaSNMP($host = null, $community = null, $deviceTypeId = null, $assignAccessPointByDeviceName = false, $assignCustomerConnectionByIp = false)
     {
         // numeric OIDs
         snmp_set_oid_output_format(SNMP_OID_OUTPUT_NUMERIC);
@@ -176,12 +178,28 @@ class RouterosDevicesController extends AppController
                 $accessPoints = $this->RouterosDevices->AccessPoints->find(
                     'all',
                     [
-                        'conditions' => ['\'' . $routerosDevice->name . '\' ILIKE AccessPoints.device_name || \'%\'']
+                        'conditions' => ['\'' . $routerosDevice->name . '\' ILIKE AccessPoints.device_name || \'%\''],
                     ]
                 );
                 if ($accessPoint = $accessPoints->first())
                 {
                     $routerosDevice->access_point_id = $accessPoint->id;
+                }
+            }
+            
+            // assign customer connection by IP
+            if ($assignCustomerConnectionByIp)
+            {
+                $customerConnectionIps = $this->RouterosDevices->CustomerConnections->CustomerConnectionIps->find(
+                    'all',
+                    [
+                        'conditions' => ['ip_address' => $routerosDevice->ip_address],
+                        'order' => ['modified' => 'DESC']
+                    ]
+                );
+                if ($customerConnectionIp = $customerConnectionIps->first())
+                {
+                    $routerosDevice->customer_connection_id = $customerConnectionIp->customer_connection_id;
                 }
             }
             
@@ -277,7 +295,7 @@ class RouterosDevicesController extends AppController
     {
         if ($deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first())
         {
-            if ($this->loadViaSNMP($_SERVER['REMOTE_ADDR'], $deviceType->snmp_community, $deviceType->id, $deviceType->assign_access_point_by_device_name))
+            if ($this->loadViaSNMP($_SERVER['REMOTE_ADDR'], $deviceType->snmp_community, $deviceType->id, $deviceType->assign_access_point_by_device_name, $deviceType->assign_customer_connection_by_ip))
             {
                 echo __('The data was successfully retrieved using SNMP');
             }

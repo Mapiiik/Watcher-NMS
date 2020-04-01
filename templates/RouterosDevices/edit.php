@@ -24,6 +24,7 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
+                    echo $this->Form->control('customer_connection_id', ['options' => $customerConnections, 'empty' => true]);
                     echo $this->Form->control('device_type_id', ['options' => $deviceTypes, 'empty' => true]);
                     echo $this->Form->control('ip_address');
                     echo $this->Form->control('system_description');

@@ -84,6 +84,10 @@ class DeviceTypesTable extends Table
             ->boolean('assign_access_point_by_device_name')
             ->notEmptyString('assign_access_point_by_device_name');
 
+        $validator
+            ->boolean('assign_customer_connection_by_ip')
+            ->notEmptyString('assign_customer_connection_by_ip');
+
         return $validator;
     }
 }

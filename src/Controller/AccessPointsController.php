@@ -159,6 +159,39 @@ class AccessPointsController extends AppController
             ]);
         }
 
+        if (isset($mapOptions->getData()['routeros_wireless_links']) && $mapOptions->getData()['routeros_wireless_links'] == 1) {
+            $accessPointsQuery->contain([
+                'RouterosDevices' => [
+                    'RouterosDeviceInterfaces' => [
+                        'sort' => ['RouterosDeviceInterfaces.name' => 'ASC'],
+                        'strategy' => 'subquery',
+                        'queryBuilder' => function ($q) {
+                            return $q->join([
+                                'RemoteRouterosDeviceInterfaces' => [
+                                    'table' => 'routeros_device_interfaces',
+                                    'type' => 'LEFT',
+                                    'conditions' => '(RouterosDeviceInterfaces.mac_address = RemoteRouterosDeviceInterfaces.bssid OR RouterosDeviceInterfaces.bssid = RemoteRouterosDeviceInterfaces.mac_address) AND RouterosDeviceInterfaces.id <> RemoteRouterosDeviceInterfaces.id AND RouterosDeviceInterfaces.interface_type <> 209 AND RemoteRouterosDeviceInterfaces.interface_type <> 209'
+                                ],
+                                'RemoteRouterosDevices' => [
+                                    'table' => 'routeros_devices',
+                                    'type' => 'INNER',
+                                    'conditions' => 'RemoteRouterosDeviceInterfaces.routeros_device_id = RemoteRouterosDevices.id AND RouterosDeviceInterfaces.routeros_device_id <> RemoteRouterosDevices.id'
+                                ],
+                            ])
+                            ->select(['RouterosDeviceInterfaces.routeros_device_id'])
+                            ->select(['RouterosDeviceInterfaces.name'])
+                            ->select(['RemoteRouterosDevices.id'])
+                            ->select(['RemoteRouterosDevices.name'])
+                            ->select(['RemoteRouterosDevices.access_point_id'])
+                            ->select(['RemoteRouterosDevices.device_type_id'])
+                            ->select(['RemoteRouterosDeviceInterfaces.name'])
+                            ;
+                        }
+                    ]
+                ]
+            ]);
+        }
+        
         $accessPoints = $accessPointsQuery->indexBy('id')->toArray();
 
         $this->set(compact('accessPoints'));
