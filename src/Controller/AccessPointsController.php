@@ -150,7 +150,6 @@ class AccessPointsController extends AppController
                             ->select(['RemoteRouterosDevices.id'])
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
-                            ->select(['RemoteRouterosDevices.device_type_id'])
                             ->select(['RemoteRouterosDeviceIps.ip_address'])
                             ;
                         }
@@ -170,7 +169,7 @@ class AccessPointsController extends AppController
                                 'RemoteRouterosDeviceInterfaces' => [
                                     'table' => 'routeros_device_interfaces',
                                     'type' => 'LEFT',
-                                    'conditions' => '(RouterosDeviceInterfaces.mac_address = RemoteRouterosDeviceInterfaces.bssid OR RouterosDeviceInterfaces.bssid = RemoteRouterosDeviceInterfaces.mac_address) AND RouterosDeviceInterfaces.id <> RemoteRouterosDeviceInterfaces.id AND RouterosDeviceInterfaces.interface_type <> 209 AND RemoteRouterosDeviceInterfaces.interface_type <> 209'
+                                    'conditions' => 'RouterosDeviceInterfaces.interface_type = 71 AND RemoteRouterosDeviceInterfaces.interface_type = 71 AND (RouterosDeviceInterfaces.mac_address = RemoteRouterosDeviceInterfaces.bssid OR RouterosDeviceInterfaces.bssid = RemoteRouterosDeviceInterfaces.mac_address) AND RouterosDeviceInterfaces.id <> RemoteRouterosDeviceInterfaces.id'
                                 ],
                                 'RemoteRouterosDevices' => [
                                     'table' => 'routeros_devices',
@@ -183,7 +182,6 @@ class AccessPointsController extends AppController
                             ->select(['RemoteRouterosDevices.id'])
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
-                            ->select(['RemoteRouterosDevices.device_type_id'])
                             ->select(['RemoteRouterosDeviceInterfaces.name'])
                             ;
                         }
