@@ -23,8 +23,10 @@ class MapOptionsForm extends Form
         return $schema->addField('routeros_ip_links', 'boolean')
             ->addField('routeros_wireless_links', 'boolean')
             ->addField('radio_links', 'boolean')
-            ->addField('linked_customers', 'boolean');
-    }
+            ->addField('linked_customers', 'boolean')
+            ->addField('access_point_id', 'uuid')
+            ->addField('routeros_device_id', 'uuid');
+}
 
     /**
      * Form validation builder

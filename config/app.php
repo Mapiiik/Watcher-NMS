@@ -355,7 +355,7 @@ return [
         'map' => [
             'navOptions' => ['style' => 'SMALL'],
             'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'LEFT_TOP'],
-            'scrollwheel' => true,
+            'scrollwheel' => null,
             'streetViewControl' => true,
         ],
         'infoWindow' => [
