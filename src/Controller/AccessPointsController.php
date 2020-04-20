@@ -126,7 +126,7 @@ class AccessPointsController extends AppController
             ]
         ]);
 
-        if (isset($mapOptions->getData()['routeros_ip_links']) && $mapOptions->getData()['routeros_ip_links'] == 1) {
+        if ($mapOptions->getData('routeros_ip_links') == 1) {
             $accessPointsQuery->contain([
                 'RouterosDevices' => [
                     'RouterosDeviceIps' => [
@@ -150,6 +150,7 @@ class AccessPointsController extends AppController
                             ->select(['RemoteRouterosDevices.id'])
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
+                            ->select(['RemoteRouterosDevices.customer_connection_id'])
                             ->select(['RemoteRouterosDeviceIps.ip_address'])
                             ;
                         }
@@ -158,7 +159,7 @@ class AccessPointsController extends AppController
             ]);
         }
 
-        if (isset($mapOptions->getData()['routeros_wireless_links']) && $mapOptions->getData()['routeros_wireless_links'] == 1) {
+        if ($mapOptions->getData('routeros_wireless_links') == 1) {
             $accessPointsQuery->contain([
                 'RouterosDevices' => [
                     'RouterosDeviceInterfaces' => [
@@ -182,6 +183,7 @@ class AccessPointsController extends AppController
                             ->select(['RemoteRouterosDevices.id'])
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
+                            ->select(['RemoteRouterosDevices.customer_connection_id'])
                             ->select(['RemoteRouterosDeviceInterfaces.name'])
                             ;
                         }
@@ -191,7 +193,14 @@ class AccessPointsController extends AppController
         }
         
         $accessPoints = $accessPointsQuery->indexBy('id')->toArray();
-
-        $this->set(compact('accessPoints'));
+        
+        
+        if ($mapOptions->getData('linked_customers') == 1) {
+            $this->loadModel('CustomerPoints');
+            $customerPoints = $this->CustomerPoints->find()->indexBy('id')->toArray();
+            $customerConnections = $this->CustomerPoints->CustomerConnections->find()->indexBy('id')->toArray();
+        }
+        
+        $this->set(compact('accessPoints', 'customerPoints', 'customerConnections'));
     }
 }
