@@ -145,6 +145,8 @@ class RouterosDevicesController extends AppController
     
     private function loadViaSNMP($host = null, $community = null, $deviceTypeId = null, $assignAccessPointByDeviceName = false, $assignCustomerConnectionByIp = false)
     {
+        $sourceEncoding = 'CP1250';
+        
         // numeric OIDs
         snmp_set_oid_output_format(SNMP_OID_OUTPUT_NUMERIC);
         
@@ -166,8 +168,8 @@ class RouterosDevicesController extends AppController
             $routerosDevice->device_type_id = $deviceTypeId;
             $routerosDevice->ip_address = $host;
 
-            $routerosDevice->name = @snmp2_get($host, $community, '.1.3.6.1.2.1.1.5.0');
-            $routerosDevice->system_description = @snmp2_get($host, $community, '.1.3.6.1.2.1.1.1.0');
+            $routerosDevice->name = iconv($sourceEncoding, 'UTF-8//IGNORE', @snmp2_get($host, $community, '.1.3.6.1.2.1.1.5.0'));
+            $routerosDevice->system_description = iconv($sourceEncoding, 'UTF-8//IGNORE', @snmp2_get($host, $community, '.1.3.6.1.2.1.1.1.0'));
             $routerosDevice->board_name = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.8.0');
             $routerosDevice->software_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.4.4.0');
             $routerosDevice->firmware_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.4.0');
@@ -219,8 +221,8 @@ class RouterosDevicesController extends AppController
                 $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ifIndex]);
 
 
-                $routerosDeviceInterface->name = $ifTable['.1.3.6.1.2.1.2.2.1.2.' . $ifIndex];
-                $routerosDeviceInterface->comment = @snmp2_get($host, $community, '.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex);
+                $routerosDeviceInterface->name = iconv($sourceEncoding, 'UTF-8//IGNORE', $ifTable['.1.3.6.1.2.1.2.2.1.2.' . $ifIndex]);
+                $routerosDeviceInterface->comment = iconv($sourceEncoding, 'UTF-8//IGNORE', @snmp2_get($host, $community, '.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex));
                 $routerosDeviceInterface->interface_admin_status = $ifTable['.1.3.6.1.2.1.2.2.1.7.' . $ifIndex];
                 $routerosDeviceInterface->interface_oper_status = $ifTable['.1.3.6.1.2.1.2.2.1.8.' . $ifIndex];
                 $routerosDeviceInterface->interface_type = $ifTable['.1.3.6.1.2.1.2.2.1.3.' . $ifIndex];
@@ -228,7 +230,7 @@ class RouterosDevicesController extends AppController
 
                 if (isset($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex]))
                 {
-                    $routerosDeviceInterface->ssid = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex];
+                    $routerosDeviceInterface->ssid = iconv($sourceEncoding, 'UTF-8//IGNORE', $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex]);
                     $routerosDeviceInterface->bssid = $this->nullIfEmptyString($this->strToHex($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.5.' . $ifIndex]));
                     $routerosDeviceInterface->band = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.8.' . $ifIndex];
                     $routerosDeviceInterface->frequency = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.7.' . $ifIndex];
@@ -238,7 +240,7 @@ class RouterosDevicesController extends AppController
                 }
                 else if (isset($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex]))
                 {
-                    $routerosDeviceInterface->ssid = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex];
+                    $routerosDeviceInterface->ssid = iconv($sourceEncoding, 'UTF-8//IGNORE', $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex]);
                     $routerosDeviceInterface->bssid = $this->nullIfEmptyString($this->strToHex($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.6.' . $ifIndex]));
                     $routerosDeviceInterface->band = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.8.' . $ifIndex];
                     $routerosDeviceInterface->frequency = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.7.' . $ifIndex];
