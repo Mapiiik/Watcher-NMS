@@ -114,4 +114,15 @@ class RadioUnitsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    
+    public function export()
+    {
+        $radioUnits = $this->RadioUnits->find('all', [
+            'contain' => ['RadioUnitTypes' => ['RadioUnitBands', 'Manufacturers'], 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
+        ]);
+
+        $this->set(compact('radioUnits'));
+        
+        $this->layout = 'ajax';
+    }
 }

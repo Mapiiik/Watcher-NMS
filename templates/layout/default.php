@@ -66,10 +66,11 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <?= $this->AuthLink->link(__('Customer Connections'), ['controller' => 'CustomerConnections', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['CustomerConnections'])]) ?>
             <?= $this->AuthLink->link(__('Customer Connection Ips'), ['controller' => 'CustomerConnectionIps', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['CustomerConnectionIps'])]) ?>
             <?php endif; ?>
-            <?php if (in_array($this->name, ['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])): ?>
+            <?php if (in_array($this->name, ['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands', 'AntennaTypes'])): ?>
             <?= $this->AuthLink->link(__('Radio Links'), ['controller' => 'RadioLinks', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['RadioLinks'])]) ?>
             <?= $this->AuthLink->link(__('Radio Unit Types'), ['controller' => 'RadioUnitTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['RadioUnitTypes'])]) ?>
             <?= $this->AuthLink->link(__('Radio Unit Bands'), ['controller' => 'RadioUnitBands', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['RadioUnitBands'])]) ?>
+            <?= $this->AuthLink->link(__('Antenna Types'), ['controller' => 'AntennaTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['AntennaTypes'])]) ?>
             <?= $this->AuthLink->link(__('Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['Manufacturers'])]) ?>
             <?php endif; ?>
             <?php if (in_array($this->name, ['RouterosDevices', 'RouterosDeviceIps', 'RouterosDeviceInterfaces', 'DeviceTypes', 'RadarInterferences'])): ?>

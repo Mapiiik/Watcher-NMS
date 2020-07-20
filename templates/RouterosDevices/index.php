@@ -6,6 +6,7 @@
 ?>
 <div class="routerosDevices index content">
     <?= $this->Html->link(__('New Routeros Device'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
     <h3><?= __('Routeros Devices') ?></h3>
     <div class="table-responsive">
         <table>

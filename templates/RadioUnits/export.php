@@ -3,50 +3,55 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnit[]|\Cake\Collection\CollectionInterface $radioUnits
  */
+$this->layout = 'ajax';
 ?>
 <div class="radioUnits index content">
-    <?= $this->Html->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <?= $this->Html->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
     <h3><?= __('Radio Units') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('access_point_id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('radio_unit_type_id') ?></th>
-                    <th><?= $this->Paginator->sort('radio_link_id') ?></th>
-                    <th><?= $this->Paginator->sort('antenna_type_id') ?></th>
-                    <th><?= $this->Paginator->sort('polarization') ?></th>
-                    <th><?= $this->Paginator->sort('channel_width') ?></th>
-                    <th><?= $this->Paginator->sort('tx_frequency') ?></th>
-                    <th><?= $this->Paginator->sort('rx_frequency') ?></th>
-                    <th><?= $this->Paginator->sort('tx_power') ?></th>
-                    <th><?= $this->Paginator->sort('rx_signal') ?></th>
-                    <th><?= $this->Paginator->sort('operating_speed') ?></th>
-                    <th><?= $this->Paginator->sort('maximal_speed') ?></th>
-                    <th><?= $this->Paginator->sort('acm') ?></th>
-                    <th><?= $this->Paginator->sort('atpc') ?></th>
-                    <th><?= $this->Paginator->sort('firmware_version') ?></th>
-                    <th><?= $this->Paginator->sort('serial_number') ?></th>
-                    <th><?= $this->Paginator->sort('station_address') ?></th>
-                    <th><?= $this->Paginator->sort('expiration_date') ?></th>
-                    <th><?= $this->Paginator->sort('ip_address') ?></th>
-                    <th><?= $this->Paginator->sort('device_login') ?></th>
-                    <th><?= $this->Paginator->sort('device_password') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
+                    <th><?= __('Access Point') ?></th>
+                    <th><?= __('Name') ?></th>
+                    <th><?= __('Radio Unit Type') ?></th>
+                    <th><?= __('Radio Link') ?></th>
+                    <th><?= __('Antenna Type') ?></th>
+                    <th><?= __('Manufacturer') ?></th>
+                    <th><?= __('Band') ?></th>
+                    <th><?= __('Polarization') ?></th>
+                    <th><?= __('Channel Width') ?></th>
+                    <th><?= __('Tx Frequency') ?></th>
+                    <th><?= __('Rx Frequency') ?></th>
+                    <th><?= __('Tx Power') ?></th>
+                    <th><?= __('Rx Signal') ?></th>
+                    <th><?= __('Operating Speed') ?></th>
+                    <th><?= __('Maximal Speed') ?></th>
+                    <th><?= __('Acm') ?></th>
+                    <th><?= __('Atpc') ?></th>
+                    <th><?= __('Firmware Version') ?></th>
+                    <th><?= __('Serial Number') ?></th>
+                    <th><?= __('Station Address') ?></th>
+                    <th><?= __('Expiration Date') ?></th>
+                    <th><?= __('Ip Address') ?></th>
+                    <th><?= __('Device Login') ?></th>
+                    <th><?= __('Device Password') ?></th>
+                    <th><?= __('Gps Y') ?></th>
+                    <th><?= __('Gps X') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($radioUnits as $radioUnit): ?>
                 <tr>
+                    <?php //debug($radioUnit); ?>
                     <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
                     <td><?= h($radioUnit->name) ?></td>
                     <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>
                     <td><?= $radioUnit->has('radio_link') ? $this->Html->link($radioUnit->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]) : '' ?></td>
                     <td><?= $radioUnit->has('antenna_type') ? $this->Html->link($radioUnit->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]) : '' ?></td>
+                    <td><?= $radioUnit->radio_unit_type->has('manufacturer') ? $this->Html->link($radioUnit->radio_unit_type->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $radioUnit->radio_unit_type->manufacturer->id]) : '' ?></td>
+                    <td><?= $radioUnit->radio_unit_type->has('radio_unit_band') ? $this->Html->link($radioUnit->radio_unit_type->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $radioUnit->radio_unit_type->radio_unit_band->id]) : '' ?></td>
                     <td><?= h($radioUnit->polarization) ?></td>
                     <td><?= $this->Number->format($radioUnit->channel_width) ?></td>
                     <td><?= $this->Number->format($radioUnit->tx_frequency) ?></td>
@@ -64,9 +69,9 @@
                     <td><?= h($radioUnit->ip_address) ?></td>
                     <td><?= h($radioUnit->device_login) ?></td>
                     <td><?= h($radioUnit->device_password) ?></td>
-                    <td><?= h($radioUnit->created) ?></td>
-                    <td><?= h($radioUnit->modified) ?></td>
-                    <td class="actions">
+                    <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_y) : '' ?></td>
+                    <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_x) : '' ?></td>
+                    <td>
                         <?= $this->Html->link(__('View'), ['action' => 'view', $radioUnit->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioUnit->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $radioUnit->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)]) ?>
@@ -75,15 +80,5 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>

@@ -312,4 +312,13 @@ class RouterosDevicesController extends AppController
         }
         exit;
     }
+
+    public function export()
+    {
+        $routerosDevices = $this->RouterosDevices->find('all', [
+            'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections' => ['CustomerPoints'], 'RouterosDeviceInterfaces'],
+        ]);
+
+        $this->set(compact('routerosDevices'));
+    }    
 }
