@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RouterosDevice[]|\Cake\Collection\CollectionInterface $routerosDevices
  */
-$this->layout = 'ajax';
+$this->layout = 'clean';
 ?>
 <div class="routerosDevices index content">
     <?= $this->Html->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>

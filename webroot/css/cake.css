@@ -3,6 +3,9 @@ a {
     font-family: "Raleway", sans-serif;
     color: #404041;
 }
+.container {
+    max-width: none;
+}
 
 /* Utility */
 .table-responsive {
@@ -10,6 +13,11 @@ a {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+/* Flex */
+.flex {
+    display: flex;
 }
 
 /* Main */
@@ -39,7 +47,6 @@ th {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 112rem;
     padding: 2rem;
     margin: 0 auto 2rem;
 }

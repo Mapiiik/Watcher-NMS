@@ -21,7 +21,11 @@ class RouterosDevicesController extends AppController
     {
         $this->paginate = [
             'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections'],
+            'order' => ['AccessPoints.name' => 'ASC', 'RouterosDevices.name' => 'ASC'],
         ];
+        
+        $this->paginate['sortableFields'][] = 'AccessPoints.name';
+                
         $routerosDevices = $this->paginate($this->RouterosDevices);
 
         $this->set(compact('routerosDevices'));
@@ -385,6 +389,7 @@ class RouterosDevicesController extends AppController
     {
         $routerosDevices = $this->RouterosDevices->find('all', [
             'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections' => ['CustomerPoints'], 'RouterosDeviceInterfaces'],
+            'order' => ['AccessPoints.name' => 'ASC', 'RouterosDevices.name' => 'ASC'],
         ]);
 
         $this->set(compact('routerosDevices'));

@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnit[]|\Cake\Collection\CollectionInterface $radioUnits
  */
-$this->layout = 'ajax';
+$this->layout = 'clean';
 ?>
 <div class="radioUnits index content">
     <?= $this->Html->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
