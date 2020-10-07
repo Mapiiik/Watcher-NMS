@@ -39,6 +39,9 @@ class RouterosDevicesController extends AppController
         $routerosDevice = $this->RouterosDevices->get($id, [
             'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections', 'RouterosDeviceInterfaces', 'RouterosDeviceIps'],
         ]);
+        
+        $routerosDevice->username = $this->getUsername($routerosDevice);
+        $routerosDevice->password = $this->getPassword($routerosDevice);
 
         $this->set('routerosDevice', $routerosDevice);
     }
@@ -285,7 +288,7 @@ class RouterosDevicesController extends AppController
             $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new \DateTime('-14 days')]);
             $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new \DateTime('-14 days')]);
 
-            return true;
+            return $routerosDevice;
         }
         else
         {
@@ -293,22 +296,87 @@ class RouterosDevicesController extends AppController
         }
     }
     
-    public function configurationScript($deviceTypeIdentifier = null)
+    private function hexToSetString($hex)
+    {   
+        $chars = 'abcdefghijklmnopqrstuwvxyzABCDEFGHIJKLMNOPQRSTUWVXYZ0123456789';
+        $setbase=strlen($chars);    
+
+        $answer = '';   
+        while (!empty($hex) && ($hex !== 0) && ($hex !== dechex(0))) {  
+
+            $hex_result = '';
+            $hex_remain = '';       
+
+            // divide by base in hex:
+            for ($i=0;$i<strlen($hex);$i+=1){
+
+                $hex_remain = $hex_remain . $hex[$i];           
+                $dec_remain = hexdec($hex_remain);
+                // small partial divide in decimals:
+                $dec_result = (int)($dec_remain/$setbase);          
+
+                if (!empty($hex_result) || ($dec_result > 0))
+                    $hex_result = $hex_result . dechex($dec_result);
+
+                $dec_remain = $dec_remain - $setbase*$dec_result;
+                $hex_remain = dechex($dec_remain);
+            }
+
+            $answer = $chars[$dec_remain] . $answer;
+            $hex = $hex_result;
+        }
+
+        return $answer;
+    }
+    
+    private function getUsername($routerosDevice = null)
+    {
+        return 'admin';
+    }
+    
+    private function getPassword($routerosDevice = null)
+    {
+        $hash = \Cake\Utility\Security::hash($routerosDevice->serial_number, 'sha256', true);
+        return $this->hexToSetString(substr($hash, 0, 20));
+    }
+    
+    public function configurationScript($deviceTypeIdentifier = null, $serialNumber = null)
     {
         if ($deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first())
         {
-            if ($this->loadViaSNMP($_SERVER['REMOTE_ADDR'], $deviceType->snmp_community, $deviceType->id, $deviceType->assign_access_point_by_device_name, $deviceType->assign_customer_connection_by_ip))
+            if ($routerosDevice = $this->loadViaSNMP($_SERVER['REMOTE_ADDR'], $deviceType->snmp_community, $deviceType->id, $deviceType->assign_access_point_by_device_name, $deviceType->assign_customer_connection_by_ip))
             {
-                echo __('The data was successfully retrieved using SNMP');
+                echo ':log warning "Watcher NMS: The data was successfully retrieved using SNMP"' . "\n";
+                
+                if ($routerosDevice->serial_number == $serialNumber)
+                {
+                    echo ':log warning "Watcher NMS: Retrieved serial number matched request, sending individual config"' . "\n";
+                    
+                    echo "\n";
+
+                    echo '/user' . "\n";
+                    echo ':if ([:len [find name="' . $this->getUsername($routerosDevice) . '"]] = 0) do={' . "\n";
+                    echo '    :log warning "Watcher NMS: Adding ' . $this->getUsername($routerosDevice) . ' user"' . "\n";
+                    echo '    add group=full name="' . $this->getUsername($routerosDevice) . '" password="' . $this->getPassword($routerosDevice) . '"' . "\n";
+                    echo '} else={' . "\n";
+                    echo '    :log warning "Watcher NMS: Updating ' . $this->getUsername($routerosDevice) . ' user"' . "\n";
+                    echo '    set [find name="' . $this->getUsername($routerosDevice) . '"] group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";
+                    echo '}' . "\n";
+                    echo ':log warning "Watcher NMS: OK"' . "\n";
+                }
+                else
+                {
+                    echo ':log error "Watcher NMS: Retrieved serial number not matched request"' . "\n";
+                }
             }
             else
             {
-                echo __('Could not retrieve data using SNMP');
+                echo ':log error "Watcher NMS: Could not retrieve data using SNMP"' . "\n";
             }
         }
         else
         {
-            echo __('Unknown device type identifier');
+            echo ':log error "Watcher NMS: Unknown device type identifier"' . "\n";
         }
         exit;
     }

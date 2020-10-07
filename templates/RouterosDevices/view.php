@@ -43,6 +43,14 @@
                     <td><?= h($routerosDevice->ip_address) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Username') ?></th>
+                    <td><?= h($routerosDevice->username) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Password') ?></th>
+                    <td><?= h($routerosDevice->password) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('System Description') ?></th>
                     <td><?= h($routerosDevice->system_description) ?></td>
                 </tr>
