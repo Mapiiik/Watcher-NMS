@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Collection\CollectionInterface $routerosDeviceInterfaces
  */
 ?>
+<?php
+echo $this->Form->create($search, array('type' => 'get'));
+echo $this->Form->control('search', array('label' => __('Search')));
+echo $this->Form->end();
+?>
+
 <div class="routerosDeviceInterfaces index content">
     <?= $this->Html->link(__('New Routeros Device Interface'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Routeros Device Interfaces') ?></h3>

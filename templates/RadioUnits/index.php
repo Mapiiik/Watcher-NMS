@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\RadioUnit[]|\Cake\Collection\CollectionInterface $radioUnits
  */
 ?>
+<?php
+echo $this->Form->create($search, array('type' => 'get'));
+echo $this->Form->control('search', array('label' => __('Search')));
+echo $this->Form->end();
+?>
+
 <div class="radioUnits index content">
     <?= $this->Html->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <?= $this->Html->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>

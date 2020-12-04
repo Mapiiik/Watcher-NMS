@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\SearchForm;
+
 /**
  * PowerSupplies Controller
  *
@@ -21,7 +23,29 @@ class PowerSuppliesController extends AppController
     {
         $this->paginate = [
             'contain' => ['PowerSupplyTypes', 'AccessPoints'],
+            'order' => ['name' => 'ASC'],
         ];
+        
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '')
+        {
+            $this->paginate['conditions']['OR'] = [
+                'PowerSupplyTypes.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'PowerSupplies.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'PowerSupplies.serial_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+            ];
+        }
+        
         $powerSupplies = $this->paginate($this->PowerSupplies);
 
         $this->set(compact('powerSupplies'));

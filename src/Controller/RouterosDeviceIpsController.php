@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\SearchForm;
+
 /**
  * RouterosDeviceIps Controller
  *
@@ -22,6 +24,26 @@ class RouterosDeviceIpsController extends AppController
         $this->paginate = [
             'contain' => ['RouterosDevices'],
         ];
+
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '')
+        {
+            $this->paginate['conditions']['OR'] = [
+                'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceIps.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceIps.ip_address::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
+            ];
+        }
+        
         $routerosDeviceIps = $this->paginate($this->RouterosDeviceIps);
 
         $this->set(compact('routerosDeviceIps'));

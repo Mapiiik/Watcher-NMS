@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\RouterosDeviceIp[]|\Cake\Collection\CollectionInterface $routerosDeviceIps
  */
 ?>
+<?php
+echo $this->Form->create($search, array('type' => 'get'));
+echo $this->Form->control('search', array('label' => __('Search')));
+echo $this->Form->end();
+?>
+
 <div class="routerosDeviceIps index content">
     <?= $this->Html->link(__('New Routeros Device Ip'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Routeros Device Ips') ?></h3>

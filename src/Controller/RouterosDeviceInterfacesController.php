@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\SearchForm;
+
 /**
  * RouterosDeviceInterfaces Controller
  *
@@ -22,6 +24,31 @@ class RouterosDeviceInterfacesController extends AppController
         $this->paginate = [
             'contain' => ['RouterosDevices'],
         ];
+        
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '')
+        {
+            $this->paginate['conditions']['OR'] = [
+                'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.comment ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.mac_address::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.ssid ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.bssid::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.band ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.frequency::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',                
+            ];
+        }
+        
         $routerosDeviceInterfaces = $this->paginate($this->RouterosDeviceInterfaces);
 
         $this->set(compact('routerosDeviceInterfaces'));

@@ -56,14 +56,14 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             };
             ?>
             <?= $this->AuthLink->link(__('Access Points'), ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['AccessPoints'])]) ?>
-            <?= $this->AuthLink->link(__('Customer Points'), ['controller' => 'CustomerPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['CustomerPoints', 'CustomerConnections', 'CustomerConnectionIps'])]) ?>
+            <?= $this->AuthLink->link(__('Customer Connections'), ['controller' => 'CustomerConnections', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['CustomerConnections', 'CustomerPoints', 'CustomerConnectionIps'])]) ?>
             <?= $this->AuthLink->link(__('RouterOS Devices'), ['controller' => 'RouterosDevices', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['RouterosDevices', 'RouterosDeviceIps', 'RouterosDeviceInterfaces', 'DeviceTypes', 'RadarInterferences'])]) ?>
             <?= $this->AuthLink->link(__('Radio Units'), ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])]) ?>
             <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]) ?>
             <?php if (!is_null($this->request->getSession()->read('Auth.id'))) echo $this->AuthLink->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => null], ['class' => 'button button-outline']) ?>
             <br />
-            <?php if (in_array($this->name, ['CustomerPoints', 'CustomerConnections', 'CustomerConnectionIps'])): ?>
-            <?= $this->AuthLink->link(__('Customer Connections'), ['controller' => 'CustomerConnections', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['CustomerConnections'])]) ?>
+            <?php if (in_array($this->name, ['CustomerConnections', 'CustomerPoints', 'CustomerConnectionIps'])): ?>
+            <?= $this->AuthLink->link(__('Customer Points'), ['controller' => 'CustomerPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['CustomerPoints'])]) ?>
             <?= $this->AuthLink->link(__('Customer Connection Ips'), ['controller' => 'CustomerConnectionIps', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['CustomerConnectionIps'])]) ?>
             <?php endif; ?>
             <?php if (in_array($this->name, ['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands', 'AntennaTypes'])): ?>

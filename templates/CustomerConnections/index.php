@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\CustomerConnection[]|\Cake\Collection\CollectionInterface $customerConnections
  */
 ?>
+<?php
+echo $this->Form->create($search, array('type' => 'get'));
+echo $this->Form->control('search', array('label' => __('Search')));
+echo $this->Form->end();
+?>
+
 <div class="customerConnections index content">
     <?= $this->Html->link(__('New Customer Connection'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Customer Connections') ?></h3>

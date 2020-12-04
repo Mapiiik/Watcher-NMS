@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\SearchForm;
+
 /**
  * RadioUnits Controller
  *
@@ -21,8 +23,31 @@ class RadioUnitsController extends AppController
     {
         $this->paginate = [
             'contain' => ['RadioUnitTypes', 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
-            'order' => ['RadioLinks.name' => 'ASC', 'RadioUnits.name' => 'ASC'],
+            'order' => ['name' => 'ASC'],
         ];
+        
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '')
+        {
+            $this->paginate['conditions']['OR'] = [
+                'RadioUnitTypes.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RadioLinks.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RadioUnits.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RadioUnits.serial_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RadioUnits.station_address ILIKE' => '%' . \trim($search->getData('search')) . '%',
+            ];
+        }
+        
         $radioUnits = $this->paginate($this->RadioUnits);
 
         $this->set(compact('radioUnits'));

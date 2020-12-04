@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\SearchForm;
 use App\Form\MapOptionsForm;
 use Cake\View\Helper\HtmlHelper;
 
@@ -22,6 +23,28 @@ class AccessPointsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'order' => ['name' => 'ASC'],
+        ];
+
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '')
+        {
+            $this->paginate['conditions']['OR'] = [
+                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'AccessPoints.device_name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+            ];
+        }
+        
         $accessPoints = $this->paginate($this->AccessPoints);
 
         $this->set(compact('accessPoints'));

@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\PowerSupply[]|\Cake\Collection\CollectionInterface $powerSupplies
  */
 ?>
+<?php
+echo $this->Form->create($search, array('type' => 'get'));
+echo $this->Form->control('search', array('label' => __('Search')));
+echo $this->Form->end();
+?>
+
 <div class="powerSupplies index content">
     <?= $this->Html->link(__('New Power Supply'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Power Supplies') ?></h3>

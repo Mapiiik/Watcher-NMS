@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\SearchForm;
+
 /**
  * CustomerConnections Controller
  *
@@ -21,7 +23,29 @@ class CustomerConnectionsController extends AppController
     {
         $this->paginate = [
             'contain' => ['CustomerPoints'],
+            'order' => ['name' => 'ASC'],
         ];
+
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '')
+        {
+            $this->paginate['conditions']['OR'] = [
+                'CustomerPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'CustomerConnections.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'CustomerConnections.customer_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'CustomerConnections.contract_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+            ];
+        }
+        
         $customerConnections = $this->paginate($this->CustomerConnections);
 
         $this->set(compact('customerConnections'));
