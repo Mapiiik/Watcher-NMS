@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\AccessPointsController;
+use App\Controller\ElectricityMeterReadingsController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\AccessPointsController Test Case
+ * App\Controller\ElectricityMeterReadingsController Test Case
  *
- * @uses \App\Controller\AccessPointsController
+ * @uses \App\Controller\ElectricityMeterReadingsController
  */
-class AccessPointsControllerTest extends TestCase
+class ElectricityMeterReadingsControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,11 +22,8 @@ class AccessPointsControllerTest extends TestCase
      * @var array
      */
     protected $fixtures = [
+        'app.ElectricityMeterReadings',
         'app.AccessPoints',
-        'app.AccessPointContacts',
-        'app.PowerSupplies',
-        'app.RadioUnits',
-        'app.RouterosDevices',
     ];
 
     /**
@@ -75,16 +72,6 @@ class AccessPointsControllerTest extends TestCase
      * @return void
      */
     public function testDelete(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test map method
-     *
-     * @return void
-     */
-    public function testMap(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

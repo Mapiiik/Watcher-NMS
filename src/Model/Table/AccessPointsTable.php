@@ -16,14 +16,19 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\HasMany $RouterosDevices
  *
- * @method \App\Model\Entity\AccessPoint get($primaryKey, $options = [])
- * @method \App\Model\Entity\AccessPoint newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\AccessPoint newEmptyEntity()
+ * @method \App\Model\Entity\AccessPoint newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\AccessPoint[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\AccessPoint get($primaryKey, $options = [])
+ * @method \App\Model\Entity\AccessPoint findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\AccessPoint patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\AccessPoint[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\AccessPoint|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\AccessPoint saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\AccessPoint patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\AccessPoint[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\AccessPoint findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
@@ -46,6 +51,9 @@ class AccessPointsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->hasMany('AccessPointContacts', [
+            'foreignKey' => 'access_point_id',
+        ]);
+        $this->hasMany('ElectricityMeterReadings', [
             'foreignKey' => 'access_point_id',
         ]);
         $this->hasMany('PowerSupplies', [

@@ -94,6 +94,44 @@
                 <?php endif; ?>
             </div>
             <div class="related">
+                <?= $this->Html->link(__('New Electricity Meter Reading'), ['controller' => 'ElectricityMeterReadings', 'action' => 'add'], ['class' => 'button float-right']) ?>
+                <h4><?= __('Related Electricity Meter Readings') ?></h4>
+                <?php if (!empty($accessPoint->electricity_meter_readings)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('Phone') ?></th>
+                            <th><?= __('Email') ?></th>
+                            <th><?= __('Customer Number') ?></th>
+                            <th><?= __('Contract Number') ?></th>
+                            <th><?= __('Note') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($accessPoint->electricity_meter_readings as $electricityMeterReadings) : ?>
+                        <tr>
+                            <td><?= h($electricityMeterReadings->id) ?></td>
+                            <td><?= h($electricityMeterReadings->name) ?></td>
+                            <td><?= $electricityMeterReadings->has('access_point') ? $this->Html->link($electricityMeterReadings->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $electricityMeterReadings->access_point->id]) : '' ?></td>
+                            <td><?= h($electricityMeterReadings->reading_date) ?></td>
+                            <td><?= $this->Number->format($electricityMeterReadings->reading_value) ?></td>
+                            <td><?= h($electricityMeterReadings->created) ?></td>
+                            <td><?= h($electricityMeterReadings->modified) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'ElectricityMeterReadings', 'action' => 'view', $electricityMeterReadings->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'ElectricityMeterReadings', 'action' => 'edit', $electricityMeterReadings->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'ElectricityMeterReadings', 'action' => 'delete', $electricityMeterReadings->id], ['confirm' => __('Are you sure you want to delete # {0}?', $electricityMeterReadings->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="related">
                 <?= $this->Html->link(__('New Power Supply'), ['controller' => 'PowerSupplies', 'action' => 'add'], ['class' => 'button float-right']) ?>
                 <h4><?= __('Related Power Supplies') ?></h4>
                 <?php if (!empty($accessPoint->power_supplies)) : ?>
