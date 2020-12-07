@@ -9,14 +9,17 @@ use Cake\ORM\Entity;
  * AccessPointContact Entity
  *
  * @property string $id
+ * @property string|null $name
  * @property string|null $access_point_id
- * @property string|null $contact_id
+ * @property string|null $phone
+ * @property string|null $email
+ * @property string|null $customer_number
+ * @property string|null $contract_number
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\AccessPoint $access_point
- * @property \App\Model\Entity\Contact $contact
  */
 class AccessPointContact extends Entity
 {
@@ -30,12 +33,15 @@ class AccessPointContact extends Entity
      * @var array
      */
     protected $_accessible = [
+        'name' => true,
         'access_point_id' => true,
-        'contact_id' => true,
+        'phone' => true,
+        'email' => true,
+        'customer_number' => true,
+        'contract_number' => true,
         'note' => true,
         'created' => true,
         'modified' => true,
         'access_point' => true,
-        'contact' => true,
     ];
 }

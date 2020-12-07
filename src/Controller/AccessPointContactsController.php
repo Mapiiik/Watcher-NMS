@@ -7,7 +7,6 @@ namespace App\Controller;
  * AccessPointContacts Controller
  *
  * @property \App\Model\Table\AccessPointContactsTable $AccessPointContacts
- *
  * @method \App\Model\Entity\AccessPointContact[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class AccessPointContactsController extends AppController
@@ -15,12 +14,12 @@ class AccessPointContactsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
         $this->paginate = [
-            'contain' => ['AccessPoints', 'Contacts'],
+            'contain' => ['AccessPoints'],
         ];
         $accessPointContacts = $this->paginate($this->AccessPointContacts);
 
@@ -31,22 +30,22 @@ class AccessPointContactsController extends AppController
      * View method
      *
      * @param string|null $id Access Point Contact id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $accessPointContact = $this->AccessPointContacts->get($id, [
-            'contain' => ['AccessPoints', 'Contacts'],
+            'contain' => ['AccessPoints'],
         ]);
 
-        $this->set('accessPointContact', $accessPointContact);
+        $this->set(compact('accessPointContact'));
     }
 
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -60,16 +59,15 @@ class AccessPointContactsController extends AppController
             }
             $this->Flash->error(__('The access point contact could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->AccessPointContacts->AccessPoints->find('list', ['order' => 'name']);
-        $contacts = $this->AccessPointContacts->Contacts->find('list', ['order' => 'name']);
-        $this->set(compact('accessPointContact', 'accessPoints', 'contacts'));
+        $accessPoints = $this->AccessPointContacts->AccessPoints->find('list', ['limit' => 200]);
+        $this->set(compact('accessPointContact', 'accessPoints'));
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Access Point Contact id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
@@ -86,16 +84,15 @@ class AccessPointContactsController extends AppController
             }
             $this->Flash->error(__('The access point contact could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->AccessPointContacts->AccessPoints->find('list', ['order' => 'name']);
-        $contacts = $this->AccessPointContacts->Contacts->find('list', ['order' => 'name']);
-        $this->set(compact('accessPointContact', 'accessPoints', 'contacts'));
+        $accessPoints = $this->AccessPointContacts->AccessPoints->find('list', ['limit' => 200]);
+        $this->set(compact('accessPointContact', 'accessPoints'));
     }
 
     /**
      * Delete method
      *
      * @param string|null $id Access Point Contact id.
-     * @return \Cake\Http\Response|null Redirects to index.
+     * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)

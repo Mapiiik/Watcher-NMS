@@ -61,8 +61,11 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Access Point Id') ?></th>
-                            <th><?= __('Contact Id') ?></th>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('Phone') ?></th>
+                            <th><?= __('Email') ?></th>
+                            <th><?= __('Customer Number') ?></th>
+                            <th><?= __('Contract Number') ?></th>
                             <th><?= __('Note') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
@@ -71,8 +74,11 @@
                         <?php foreach ($accessPoint->access_point_contacts as $accessPointContacts) : ?>
                         <tr>
                             <td><?= h($accessPointContacts->id) ?></td>
-                            <td><?= h($accessPointContacts->access_point_id) ?></td>
-                            <td><?= h($accessPointContacts->contact_id) ?></td>
+                            <td><?= h($accessPointContacts->name) ?></td>
+                            <td><?= h($accessPointContacts->phone) ?></td>
+                            <td><?= h($accessPointContacts->email) ?></td>
+                            <td><?= $accessPointContacts->has('customer_number') ? $this->Html->link($accessPointContacts->customer_number, ['controller' => 'https:////nms.netair.cz/netair', 'action' => 'administration/users.php?edit=' . ($accessPointContacts->customer_number - 110000)], ['target' => '_blank']) : '' ?></td>
+                            <td><?= h($accessPointContacts->contract_number) ?></td>
                             <td><?= h($accessPointContacts->note) ?></td>
                             <td><?= h($accessPointContacts->created) ?></td>
                             <td><?= h($accessPointContacts->modified) ?></td>
@@ -97,7 +103,6 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Power Supply Type Id') ?></th>
-                            <th><?= __('Access Point Id') ?></th>
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Battery Count') ?></th>
                             <th><?= __('Battery Voltage') ?></th>
@@ -113,8 +118,7 @@
                         <tr>
                             <td><?= h($powerSupplies->id) ?></td>
                             <td><?= h($powerSupplies->name) ?></td>
-                            <td><?= h($powerSupplies->power_supply_type_id) ?></td>
-                            <td><?= h($powerSupplies->access_point_id) ?></td>
+                            <td><?= $powerSupplies->has('power_supply_type') ? $this->Html->link($powerSupplies->power_supply_type->name, ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupplies->power_supply_type->id]) : '' ?></td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
                             <td><?= h($powerSupplies->battery_count) ?></td>
                             <td><?= h($powerSupplies->battery_voltage) ?></td>
@@ -145,7 +149,6 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Radio Unit Type Id') ?></th>
-                            <th><?= __('Access Point Id') ?></th>
                             <th><?= __('Radio Link Id') ?></th>
                             <th><?= __('Antenna Type Id') ?></th>
                             <th><?= __('Polarization') ?></th>
@@ -174,10 +177,9 @@
                         <tr>
                             <td><?= h($radioUnits->id) ?></td>
                             <td><?= h($radioUnits->name) ?></td>
-                            <td><?= h($radioUnits->radio_unit_type_id) ?></td>
-                            <td><?= h($radioUnits->access_point_id) ?></td>
-                            <td><?= h($radioUnits->radio_link_id) ?></td>
-                            <td><?= h($radioUnits->antenna_type_id) ?></td>
+                            <td><?= $radioUnits->has('radio_unit_type') ? $this->Html->link($radioUnits->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnits->radio_unit_type->id]) : '' ?></td>
+                            <td><?= $radioUnits->has('radio_link') ? $this->Html->link($radioUnits->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id]) : '' ?></td>
+                            <td><?= $radioUnits->has('antenna_type') ? $this->Html->link($radioUnits->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id]) : '' ?></td>
                             <td><?= h($radioUnits->polarization) ?></td>
                             <td><?= h($radioUnits->channel_width) ?></td>
                             <td><?= h($radioUnits->tx_frequency) ?></td>
@@ -218,7 +220,6 @@
                         <tr>
                             <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Access Point Id') ?></th>
                             <th><?= __('Device Type Id') ?></th>
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('System Description') ?></th>
@@ -234,8 +235,7 @@
                         <tr>
                             <td><?= h($routerosDevices->id) ?></td>
                             <td><?= h($routerosDevices->name) ?></td>
-                            <td><?= h($routerosDevices->access_point_id) ?></td>
-                            <td><?= h($routerosDevices->device_type_id) ?></td>
+                            <td><?= $routerosDevices->has('device_type') ? $this->Html->link($routerosDevices->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevices->device_type->id]) : '' ?></td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
                             <td><?= h($routerosDevices->system_description) ?></td>
                             <td><?= h($routerosDevices->board_name) ?></td>

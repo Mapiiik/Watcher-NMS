@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\AccessPointContactsTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
@@ -27,7 +26,6 @@ class AccessPointContactsTableTest extends TestCase
     protected $fixtures = [
         'app.AccessPointContacts',
         'app.AccessPoints',
-        'app.Contacts',
     ];
 
     /**
@@ -38,8 +36,8 @@ class AccessPointContactsTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('AccessPointContacts') ? [] : ['className' => AccessPointContactsTable::class];
-        $this->AccessPointContacts = TableRegistry::getTableLocator()->get('AccessPointContacts', $config);
+        $config = $this->getTableLocator()->exists('AccessPointContacts') ? [] : ['className' => AccessPointContactsTable::class];
+        $this->AccessPointContacts = $this->getTableLocator()->get('AccessPointContacts', $config);
     }
 
     /**
@@ -52,16 +50,6 @@ class AccessPointContactsTableTest extends TestCase
         unset($this->AccessPointContacts);
 
         parent::tearDown();
-    }
-
-    /**
-     * Test initialize method
-     *
-     * @return void
-     */
-    public function testInitialize(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
     }
 
     /**

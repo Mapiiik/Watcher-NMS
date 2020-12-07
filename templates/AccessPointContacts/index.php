@@ -12,8 +12,12 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
-                    <th><?= $this->Paginator->sort('contact_id') ?></th>
+                    <th><?= $this->Paginator->sort('phone') ?></th>
+                    <th><?= $this->Paginator->sort('email') ?></th>
+                    <th><?= $this->Paginator->sort('customer_number') ?></th>
+                    <th><?= $this->Paginator->sort('contract_number') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -23,8 +27,12 @@
                 <?php foreach ($accessPointContacts as $accessPointContact): ?>
                 <tr>
                     <td><?= h($accessPointContact->id) ?></td>
+                    <td><?= h($accessPointContact->name) ?></td>
                     <td><?= $accessPointContact->has('access_point') ? $this->Html->link($accessPointContact->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]) : '' ?></td>
-                    <td><?= h($accessPointContact->contact_id) ?></td>
+                    <td><?= h($accessPointContact->phone) ?></td>
+                    <td><?= h($accessPointContact->email) ?></td>
+                    <td><?= h($accessPointContact->customer_number) ?></td>
+                    <td><?= h($accessPointContact->contract_number) ?></td>
                     <td><?= h($accessPointContact->created) ?></td>
                     <td><?= h($accessPointContact->modified) ?></td>
                     <td class="actions">

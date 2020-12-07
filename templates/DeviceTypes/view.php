@@ -66,7 +66,6 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Access Point Id') ?></th>
-                            <th><?= __('Device Type Id') ?></th>
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('System Description') ?></th>
                             <th><?= __('Board Name') ?></th>
@@ -83,7 +82,6 @@
                             <td><?= h($routerosDevices->id) ?></td>
                             <td><?= h($routerosDevices->name) ?></td>
                             <td><?= h($routerosDevices->access_point_id) ?></td>
-                            <td><?= h($routerosDevices->device_type_id) ?></td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
                             <td><?= h($routerosDevices->system_description) ?></td>
                             <td><?= h($routerosDevices->board_name) ?></td>

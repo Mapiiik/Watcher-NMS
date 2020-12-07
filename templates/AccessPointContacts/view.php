@@ -23,12 +23,28 @@
                     <td><?= h($accessPointContact->id) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Name') ?></th>
+                    <td><?= h($accessPointContact->name) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Access Point') ?></th>
                     <td><?= $accessPointContact->has('access_point') ? $this->Html->link($accessPointContact->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Contact Id') ?></th>
-                    <td><?= h($accessPointContact->contact_id) ?></td>
+                    <th><?= __('Phone') ?></th>
+                    <td><?= h($accessPointContact->phone) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Email') ?></th>
+                    <td><?= h($accessPointContact->email) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Customer Number') ?></th>
+                    <td><?= $accessPointContact->has('customer_number') ? $this->Html->link($accessPointContact->customer_number, ['controller' => 'https:////nms.netair.cz/netair', 'action' => 'administration/users.php?edit=' . ($accessPointContact->customer_number - 110000)], ['target' => '_blank']) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Contract Number') ?></th>
+                    <td><?= h($accessPointContact->contract_number) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

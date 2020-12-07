@@ -12,16 +12,20 @@ use Cake\Validation\Validator;
  * AccessPointContacts Model
  *
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
- * @property \App\Model\Table\ContactsTable&\Cake\ORM\Association\BelongsTo $Contacts
  *
- * @method \App\Model\Entity\AccessPointContact get($primaryKey, $options = [])
- * @method \App\Model\Entity\AccessPointContact newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\AccessPointContact newEmptyEntity()
+ * @method \App\Model\Entity\AccessPointContact newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\AccessPointContact[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\AccessPointContact get($primaryKey, $options = [])
+ * @method \App\Model\Entity\AccessPointContact findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\AccessPointContact patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\AccessPointContact[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\AccessPointContact|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\AccessPointContact saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\AccessPointContact patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\AccessPointContact[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\AccessPointContact findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\AccessPointContact[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\AccessPointContact[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\AccessPointContact[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\AccessPointContact[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
@@ -46,9 +50,6 @@ class AccessPointContactsTable extends Table
         $this->belongsTo('AccessPoints', [
             'foreignKey' => 'access_point_id',
         ]);
-        $this->belongsTo('Contacts', [
-            'foreignKey' => 'contact_id',
-        ]);
     }
 
     /**
@@ -62,6 +63,30 @@ class AccessPointContactsTable extends Table
         $validator
             ->uuid('id')
             ->allowEmptyString('id', null, 'create');
+
+        $validator
+            ->scalar('name')
+            ->maxLength('name', 255)
+            ->allowEmptyString('name');
+
+        $validator
+            ->scalar('phone')
+            ->maxLength('phone', 255)
+            ->allowEmptyString('phone');
+
+        $validator
+            ->email('email')
+            ->allowEmptyString('email');
+
+        $validator
+            ->scalar('customer_number')
+            ->maxLength('customer_number', 255)
+            ->allowEmptyString('customer_number');
+
+        $validator
+            ->scalar('contract_number')
+            ->maxLength('contract_number', 255)
+            ->allowEmptyString('contract_number');
 
         $validator
             ->scalar('note')
@@ -79,8 +104,7 @@ class AccessPointContactsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
-        $rules->add($rules->existsIn(['contact_id'], 'Contacts'));
+        $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'), ['errorField' => 'access_point_id']);
 
         return $rules;
     }

@@ -24,7 +24,6 @@ class AccessPointContactsControllerTest extends TestCase
     protected $fixtures = [
         'app.AccessPointContacts',
         'app.AccessPoints',
-        'app.Contacts',
     ];
 
     /**

@@ -22,8 +22,12 @@
             <fieldset>
                 <legend><?= __('Edit Access Point Contact') ?></legend>
                 <?php
+                    echo $this->Form->control('name');
                     echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
-                    echo $this->Form->control('contact_id');
+                    echo $this->Form->control('phone');
+                    echo $this->Form->control('email');
+                    echo $this->Form->control('customer_number');
+                    echo $this->Form->control('contract_number');
                     echo $this->Form->control('note');
                 ?>
             </fieldset>

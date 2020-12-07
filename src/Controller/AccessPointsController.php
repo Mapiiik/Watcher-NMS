@@ -60,7 +60,7 @@ class AccessPointsController extends AppController
     public function view($id = null)
     {
         $accessPoint = $this->AccessPoints->get($id, [
-            'contain' => ['AccessPointContacts', 'PowerSupplies', 'RadioUnits', 'RouterosDevices'],
+            'contain' => ['AccessPointContacts', 'PowerSupplies' => ['PowerSupplyTypes'], 'RadioUnits' => ['RadioUnitTypes', 'RadioLinks', 'AntennaTypes'], 'RouterosDevices' => ['DeviceTypes']],
         ]);
 
         $this->set('accessPoint', $accessPoint);

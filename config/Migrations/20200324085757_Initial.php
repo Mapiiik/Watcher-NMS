@@ -14,12 +14,32 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => false,
             ])
+            ->addColumn('name', 'string', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
             ->addColumn('access_point_id', 'uuid', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('contact_id', 'uuid', [
+            ->addColumn('phone', 'string', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('email', 'string', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('customer_number', 'string', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('contract_number', 'string', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
