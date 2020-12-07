@@ -25,8 +25,8 @@
                 <tr>
                     <td><?= h($customerPoint->id) ?></td>
                     <td><?= h($customerPoint->name) ?></td>
-                    <td><?= $this->Number->format($customerPoint->gps_x) ?></td>
-                    <td><?= $this->Number->format($customerPoint->gps_y) ?></td>
+                    <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
+                    <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
                     <td><?= h($customerPoint->created) ?></td>
                     <td><?= h($customerPoint->modified) ?></td>
                     <td class="actions">

@@ -31,12 +31,12 @@
                     <td><?= $electricityMeterReading->has('access_point') ? $this->Html->link($electricityMeterReading->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $electricityMeterReading->access_point->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Reading Value') ?></th>
-                    <td><?= $this->Number->format($electricityMeterReading->reading_value) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Reading Date') ?></th>
                     <td><?= h($electricityMeterReading->reading_date) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Reading Value') ?></th>
+                    <td><?= $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

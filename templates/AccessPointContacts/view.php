@@ -16,7 +16,7 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="accessPointContacts view content">
-            <h3><?= h($accessPointContact->id) ?></h3>
+            <h3><?= h($accessPointContact->name) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Id') ?></th>

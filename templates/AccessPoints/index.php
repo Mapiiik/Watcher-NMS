@@ -32,8 +32,8 @@ echo $this->Form->end();
                 <tr>
                     <td><?= h($accessPoint->name) ?></td>
                     <td><?= h($accessPoint->device_name) ?></td>
-                    <td><?= $this->Number->format($accessPoint->gps_x) ?></td>
-                    <td><?= $this->Number->format($accessPoint->gps_y) ?></td>
+                    <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
+                    <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
                     <td><?= h($accessPoint->created) ?></td>
                     <td><?= h($accessPoint->modified) ?></td>
                     <td class="actions">

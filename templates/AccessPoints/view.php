@@ -32,11 +32,11 @@
                 </tr>
                 <tr>
                     <th><?= __('Gps X') ?></th>
-                    <td><?= $this->Number->format($accessPoint->gps_x) ?></td>
+                    <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Gps Y') ?></th>
-                    <td><?= $this->Number->format($accessPoint->gps_y) ?></td>
+                    <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>
@@ -102,10 +102,8 @@
                         <tr>
                             <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Phone') ?></th>
-                            <th><?= __('Email') ?></th>
-                            <th><?= __('Customer Number') ?></th>
-                            <th><?= __('Contract Number') ?></th>
+                            <th><?= __('Reading Date') ?></th>
+                            <th><?= __('Reading Value') ?></th>
                             <th><?= __('Note') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
@@ -115,9 +113,9 @@
                         <tr>
                             <td><?= h($electricityMeterReadings->id) ?></td>
                             <td><?= h($electricityMeterReadings->name) ?></td>
-                            <td><?= $electricityMeterReadings->has('access_point') ? $this->Html->link($electricityMeterReadings->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $electricityMeterReadings->access_point->id]) : '' ?></td>
                             <td><?= h($electricityMeterReadings->reading_date) ?></td>
-                            <td><?= $this->Number->format($electricityMeterReadings->reading_value) ?></td>
+                            <td><?= $this->Number->format($electricityMeterReadings->reading_value, ['after' => ' kWh']) ?></td>
+                            <td><?= h($electricityMeterReadings->note) ?></td>
                             <td><?= h($electricityMeterReadings->created) ?></td>
                             <td><?= h($electricityMeterReadings->modified) ?></td>
                             <td class="actions">

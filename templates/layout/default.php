@@ -62,6 +62,10 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]) ?>
             <?php if (!is_null($this->request->getSession()->read('Auth.id'))) echo $this->AuthLink->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => null], ['class' => 'button button-outline']) ?>
             <br />
+            <?php if (in_array($this->name, ['AccessPoints', 'AccessPointContacts', 'ElectricityMeterReadings'])): ?>
+            <?= $this->AuthLink->link(__('Access Point Contacts'), ['controller' => 'AccessPointContacts', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['AccessPointContacts'])]) ?>
+            <?= $this->AuthLink->link(__('Electricity Meter Readings'), ['controller' => 'ElectricityMeterReadings', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['ElectricityMeterReadings'])]) ?>
+            <?php endif; ?>
             <?php if (in_array($this->name, ['CustomerConnections', 'CustomerPoints', 'CustomerConnectionIps'])): ?>
             <?= $this->AuthLink->link(__('Customer Points'), ['controller' => 'CustomerPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['CustomerPoints'])]) ?>
             <?= $this->AuthLink->link(__('Customer Connection Ips'), ['controller' => 'CustomerConnectionIps', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['CustomerConnectionIps'])]) ?>
