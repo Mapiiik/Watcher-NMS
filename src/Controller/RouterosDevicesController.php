@@ -358,13 +358,27 @@ class RouterosDevicesController extends AppController
     
     private function getUsername($routerosDevice = null)
     {
-        return 'admin';
+        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['superuser']))
+        {
+            return 'admin';
+        }
+        else
+        {
+            return null;
+        }
     }
     
     private function getPassword($routerosDevice = null)
     {
-        $hash = \Cake\Utility\Security::hash($routerosDevice->serial_number, 'sha256', true);
-        return $this->hexToSetString(substr($hash, 0, 20));
+        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['superuser']))
+        {
+            $hash = \Cake\Utility\Security::hash($routerosDevice->serial_number, 'sha256', true);
+            return $this->hexToSetString(substr($hash, 0, 20));
+        }
+        else
+        {
+            return null;
+        }
     }
     
     public function configurationScript($deviceTypeIdentifier = null, $serialNumber = null)
