@@ -55,7 +55,7 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
                     return '';
             };
             ?>
-            <?= $this->AuthLink->link(__('Access Points'), ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['AccessPoints'])]) ?>
+            <?= $this->AuthLink->link(__('Access Points'), ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['AccessPoints', 'AccessPointContacts', 'ElectricityMeterReadings'])]) ?>
             <?= $this->AuthLink->link(__('Customer Connections'), ['controller' => 'CustomerConnections', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['CustomerConnections', 'CustomerPoints', 'CustomerConnectionIps'])]) ?>
             <?= $this->AuthLink->link(__('RouterOS Devices'), ['controller' => 'RouterosDevices', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['RouterosDevices', 'RouterosDeviceIps', 'RouterosDeviceInterfaces', 'DeviceTypes', 'RadarInterferences'])]) ?>
             <?= $this->AuthLink->link(__('Radio Units'), ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])]) ?>
