@@ -42,6 +42,7 @@
                     <th><?= __('Ip Address') ?></th>
                     <td><?= h($routerosDevice->ip_address) ?></td>
                 </tr>
+                <?php if (isset($routerosDevice->username) && isset($routerosDevice->password)): ?>
                 <tr>
                     <th><?= __('Username') ?></th>
                     <td><?= h($routerosDevice->username) ?></td>
@@ -50,6 +51,7 @@
                     <th><?= __('Password') ?></th>
                     <td><?= h($routerosDevice->password) ?></td>
                 </tr>
+                <?php endif; ?>
                 <tr>
                     <th><?= __('System Description') ?></th>
                     <td><?= h($routerosDevice->system_description) ?></td>
