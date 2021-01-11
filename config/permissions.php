@@ -51,6 +51,7 @@
 
 return [
     'CakeDC/Auth.permissions' => [
+        //RouterOS devices access to configuration script
         [
             'prefix' => false,
             'controller' => 'RouterosDevices',
@@ -135,6 +136,24 @@ return [
             'role' => '*',
             'controller' => 'Pages',
             'action' => 'display',
+        ],
+        [
+            'role' => ['user'],
+            'plugin' => null,
+            'controller' => ['AccessPoints', 'AccessPointContacts', 'ElectricityMeterReadings'],
+            'action' => ['index', 'view', 'map'],
+        ],
+        [
+            'role' => ['user'],
+            'plugin' => null,
+            'controller' => ['RouterosDevices', 'RouterosDeviceIps', 'RouterosDeviceInterfaces', 'DeviceTypes'],
+            'action' => ['index', 'view'],
+        ],
+        [
+            'role' => ['user'],
+            'plugin' => null,
+            'controller' => ['CustomerConnections', 'CustomerPoints', 'CustomerConnectionIps'],
+            'action' => ['view'],
         ],
     ]
 ];
