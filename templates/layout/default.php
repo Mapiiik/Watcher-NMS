@@ -47,11 +47,14 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
         <div class="top-nav-links">
             <?php
             $controller = $this->name;
-            $buttonSelected = function ($haystack = []) use ($controller)
+            $action = $this->request->getParam('action');
+            $buttonSelected = function ($haystack = []) use ($controller, $action)
             {
                 if (in_array($controller, $haystack))
                     return ' button-selected';
-                else
+                else if (in_array($action, $haystack))
+                    return ' button-selected';
+                else                    
                     return '';
             };
             ?>
@@ -60,6 +63,7 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <?= $this->AuthLink->link(__('RouterOS Devices'), ['controller' => 'RouterosDevices', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['RouterosDevices', 'RouterosDeviceIps', 'RouterosDeviceInterfaces', 'DeviceTypes', 'RadarInterferences'])]) ?>
             <?= $this->AuthLink->link(__('Radio Units'), ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])]) ?>
             <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]) ?>
+            <?= $this->AuthLink->link(__('Users'), ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'CakeDC/Users'], ['class' => 'button' . $buttonSelected(['Users', 'Profile'])]) ?>
             <?php if (!is_null($this->request->getSession()->read('Auth.id'))) echo $this->AuthLink->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => null], ['class' => 'button button-outline']) ?>
             <br />
             <?php if (in_array($this->name, ['AccessPoints', 'AccessPointContacts', 'ElectricityMeterReadings'])): ?>
@@ -86,6 +90,10 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <?php if (in_array($this->name, ['PowerSupplies', 'PowerSupplyTypes'])): ?>
             <?= $this->AuthLink->link(__('Power Supply Types'), ['controller' => 'PowerSupplyTypes', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['PowerSupplyTypes'])]) ?>
             <?= $this->AuthLink->link(__('Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null], ['class' => 'button button-small' . $buttonSelected(['Manufacturers'])]) ?>
+            <?php endif; ?>
+            <?php if (in_array($this->name, ['Users'])): ?>
+            <?= $this->AuthLink->link(__('Profile'), ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'CakeDC/Users'], ['class' => 'button button-small' . $buttonSelected(['profile'])]) ?>
+            <?= $this->AuthLink->link(__('Index'), ['controller' => 'Users', 'action' => 'index', 'plugin' => 'CakeDC/Users'], ['class' => 'button button-small' . $buttonSelected(['index'])]) ?>
             <?php endif; ?>
         </div>
     </nav>
