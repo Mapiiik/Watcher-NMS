@@ -253,16 +253,16 @@ class AccessPointsController extends AppController
             // Let's add some markers
             if (is_numeric($accessPoint->gps_y) && is_numeric($accessPoint->gps_x))
             {
-                $content = '<b>' . $this->Html->link(__($accessPoint->name), ['action' => 'view', $accessPoint->id]) . '</b>' . '<br />' . '<br />';
+                $content = '<b>' . $this->Html->link($accessPoint->name, ['action' => 'view', $accessPoint->id]) . '</b>' . '<br />' . '<br />';
 
                 foreach ($accessPoint->routeros_devices as $routerosDevice)
                 {
-                    $content .= $this->Html->link(__($routerosDevice->name), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]) . '<br />';
+                    $content .= $this->Html->link($routerosDevice->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]) . '<br />';
 
                     $content .= '<ul>';
                     if (is_array($routerosDevice->routeros_device_ips)) {
                             foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp) {
-                                $content .= '<li>' . ' (' . $routerosDeviceIp->ip_address . ') - ' . $this->Html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
+                                $content .= '<li>' . ' (' . $routerosDeviceIp->ip_address . ') - ' . $this->Html->link($routerosDeviceIp->RemoteRouterosDevices['name'], ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
                                 if (isset($routerosDeviceIp->RemoteRouterosDevices['access_point_id']) && ($routerosDeviceIp->RemoteRouterosDevices['access_point_id'] <> $accessPoint->id)) {
                                     $remoteAccessPointPolylines[$accessPoint->id][$routerosDeviceIp->RemoteRouterosDevices['access_point_id']]['type'] = 'ip';
                                 }
@@ -278,7 +278,7 @@ class AccessPointsController extends AppController
                     }
                     if (is_array($routerosDevice->routeros_device_interfaces)) {
                             foreach ($routerosDevice->routeros_device_interfaces as $routerosDeviceInterface) {
-                                $content .= '<li>' . ' (' . $routerosDeviceInterface->name . ') - ' . $this->Html->link(__($routerosDeviceInterface->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceInterface->RemoteRouterosDeviceInterfaces['name'] . ')' . '</li>';
+                                $content .= '<li>' . ' (' . $routerosDeviceInterface->name . ') - ' . $this->Html->link($routerosDeviceInterface->RemoteRouterosDevices['name'], ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceInterface->RemoteRouterosDeviceInterfaces['name'] . ')' . '</li>';
                                 if (isset($routerosDeviceInterface->RemoteRouterosDevices['access_point_id']) && ($routerosDeviceInterface->RemoteRouterosDevices['access_point_id'] <> $accessPoint->id)) {
                                     $remoteAccessPointPolylines[$accessPoint->id][$routerosDeviceInterface->RemoteRouterosDevices['access_point_id']]['type'] = 'wifi';
                                 }
@@ -303,14 +303,14 @@ class AccessPointsController extends AppController
 
         foreach ($remoteCustomerPoints as $remoteCustomerPointId => $remoteCustomerPoint) {
             $customerPoint = $customerPoints[$remoteCustomerPointId];
-            $content = '<b>' . $this->Html->link(__($customerPoint->name), ['controller' => 'CustomerPoints', 'action' => 'view', $customerPoint->id]) . '</b>' . '<br />';
+            $content = '<b>' . $this->Html->link($customerPoint->name, ['controller' => 'CustomerPoints', 'action' => 'view', $customerPoint->id]) . '</b>' . '<br />';
 
             foreach ($remoteCustomerPoint as $remoteCustomerConnectionId => $remoteCustomerConnection) {
                 $customerConnection = $customerConnections[$remoteCustomerConnectionId];
-                $content .= '<br />' . '<b>' . $this->Html->link(__($customerConnection->name), ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnection->id]) . '</b>' . '<br />';    
+                $content .= '<br />' . '<b>' . $this->Html->link($customerConnection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnection->id]) . '</b>' . '<br />';    
 
                 foreach ($remoteCustomerConnection as $routerosDevice) {
-                    $content .= $this->Html->link(__($routerosDevice->name), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]) . '<br />';
+                    $content .= $this->Html->link($routerosDevice->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]) . '<br />';
 
                     $content .= '<ul>';
         /*            if (is_array($routerosDevice->routeros_device_ips)) {
