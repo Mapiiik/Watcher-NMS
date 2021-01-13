@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2021-01-11 08:49+0100\n"
-"PO-Revision-Date: 2021-01-11 12:08+0100\n"
+"PO-Revision-Date: 2021-01-13 08:39+0100\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -856,7 +856,7 @@ msgstr "Související kontakty přístupových bodů"
 #: AccessPoints/view.php:97 ElectricityMeterReadings/index.php:8
 #: ElectricityMeterReadings/view.php:14
 msgid "New Electricity Meter Reading"
-msgstr "Nové odečty elektroměrů"
+msgstr "Nový odečet elektroměru"
 
 #: AccessPoints/view.php:98
 msgid "Related Electricity Meter Readings"
@@ -1271,7 +1271,7 @@ msgstr "Seznam odečtů elektroměrů"
 
 #: ElectricityMeterReadings/add.php:18
 msgid "Add Electricity Meter Reading"
-msgstr "Přidejte odečet elektroměru"
+msgstr "Přidat odečet elektroměru"
 
 #: ElectricityMeterReadings/edit.php:23 ElectricityMeterReadings/view.php:11
 msgid "Edit Electricity Meter Reading"
