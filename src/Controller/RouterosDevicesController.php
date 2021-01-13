@@ -67,8 +67,11 @@ class RouterosDevicesController extends AppController
             'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections', 'RouterosDeviceInterfaces', 'RouterosDeviceIps'],
         ]);
         
-        $routerosDevice->username = $this->getUsername($routerosDevice);
-        $routerosDevice->password = $this->getPassword($routerosDevice);
+        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['superuser']))
+        {
+            $routerosDevice->username = $this->getUsername($routerosDevice);
+            $routerosDevice->password = $this->getPassword($routerosDevice);
+        }
 
         $this->set('routerosDevice', $routerosDevice);
     }
@@ -358,27 +361,13 @@ class RouterosDevicesController extends AppController
     
     private function getUsername($routerosDevice = null)
     {
-        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['superuser']))
-        {
-            return 'admin';
-        }
-        else
-        {
-            return null;
-        }
+        return 'admin';
     }
     
     private function getPassword($routerosDevice = null)
     {
-        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['superuser']))
-        {
-            $hash = \Cake\Utility\Security::hash($routerosDevice->serial_number, 'sha256', true);
-            return $this->hexToSetString(substr($hash, 0, 20));
-        }
-        else
-        {
-            return null;
-        }
+        $hash = \Cake\Utility\Security::hash($routerosDevice->serial_number, 'sha256', true);
+        return $this->hexToSetString(substr($hash, 0, 20));
     }
     
     public function configurationScript($deviceTypeIdentifier = null, $serialNumber = null)
