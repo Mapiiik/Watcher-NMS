@@ -59,7 +59,7 @@ class ElectricityMeterReadingsController extends AppController
             }
             $this->Flash->error(__('The electricity meter reading could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->ElectricityMeterReadings->AccessPoints->find('list', ['limit' => 200]);
+        $accessPoints = $this->ElectricityMeterReadings->AccessPoints->find('list', ['order' => 'name']);
         $this->set(compact('electricityMeterReading', 'accessPoints'));
     }
 
@@ -84,7 +84,7 @@ class ElectricityMeterReadingsController extends AppController
             }
             $this->Flash->error(__('The electricity meter reading could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->ElectricityMeterReadings->AccessPoints->find('list', ['limit' => 200]);
+        $accessPoints = $this->ElectricityMeterReadings->AccessPoints->find('list', ['order' => 'name']);
         $this->set(compact('electricityMeterReading', 'accessPoints'));
     }
 
