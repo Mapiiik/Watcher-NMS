@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('identifier') ?></th>
                     <th><?= $this->Paginator->sort('snmp_community') ?></th>
@@ -26,7 +25,6 @@
             <tbody>
                 <?php foreach ($deviceTypes as $deviceType): ?>
                 <tr>
-                    <td><?= h($deviceType->id) ?></td>
                     <td><?= h($deviceType->name) ?></td>
                     <td><?= h($deviceType->identifier) ?></td>
                     <td><?= h($deviceType->snmp_community) ?></td>

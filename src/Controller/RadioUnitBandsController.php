@@ -34,7 +34,7 @@ class RadioUnitBandsController extends AppController
     public function view($id = null)
     {
         $radioUnitBand = $this->RadioUnitBands->get($id, [
-            'contain' => ['AntennaTypes', 'RadioUnitTypes'],
+            'contain' => ['AntennaTypes' => ['Manufacturers'], 'RadioUnitTypes' => ['Manufacturers']],
         ]);
 
         $this->set('radioUnitBand', $radioUnitBand);

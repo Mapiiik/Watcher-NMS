@@ -57,8 +57,7 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Routeros Device Id') ?></th>
+                            <th><?= __('Routeros Device') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Comment') ?></th>
                             <th><?= __('Mac Address') ?></th>
@@ -79,8 +78,7 @@
                         </tr>
                         <?php foreach ($radarInterference->routeros_device_interfaces as $routerosDeviceInterfaces) : ?>
                         <tr>
-                            <td><?= h($routerosDeviceInterfaces->id) ?></td>
-                            <td><?= h($routerosDeviceInterfaces->routeros_device_id) ?></td>
+                            <td><?= $routerosDeviceInterfaces->has('routeros_device') ? $this->Html->link($routerosDeviceInterfaces->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterfaces->routeros_device->id]) : '' ?></td>
                             <td><?= h($routerosDeviceInterfaces->name) ?></td>
                             <td><?= h($routerosDeviceInterfaces->comment) ?></td>
                             <td><?= h($routerosDeviceInterfaces->mac_address) ?></td>

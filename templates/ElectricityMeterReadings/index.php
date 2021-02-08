@@ -11,9 +11,8 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
+                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('reading_date') ?></th>
                     <th><?= $this->Paginator->sort('reading_value') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
@@ -24,9 +23,8 @@
             <tbody>
                 <?php foreach ($electricityMeterReadings as $electricityMeterReading): ?>
                 <tr>
-                    <td><?= h($electricityMeterReading->id) ?></td>
-                    <td><?= h($electricityMeterReading->name) ?></td>
                     <td><?= $electricityMeterReading->has('access_point') ? $this->Html->link($electricityMeterReading->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $electricityMeterReading->access_point->id]) : '' ?></td>
+                    <td><?= h($electricityMeterReading->name) ?></td>
                     <td><?= h($electricityMeterReading->reading_date) ?></td>
                     <td><?= $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
                     <td><?= h($electricityMeterReading->created) ?></td>

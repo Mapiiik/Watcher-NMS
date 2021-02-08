@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('gps_x') ?></th>
                     <th><?= $this->Paginator->sort('gps_y') ?></th>
@@ -23,7 +22,6 @@
             <tbody>
                 <?php foreach ($customerPoints as $customerPoint): ?>
                 <tr>
-                    <td><?= h($customerPoint->id) ?></td>
                     <td><?= h($customerPoint->name) ?></td>
                     <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
                     <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>

@@ -33,7 +33,7 @@ class DeviceTypesController extends AppController
     public function view($id = null)
     {
         $deviceType = $this->DeviceTypes->get($id, [
-            'contain' => ['RouterosDevices'],
+            'contain' => ['RouterosDevices' => ['AccessPoints', 'CustomerConnections']],
         ]);
 
         $this->set(compact('deviceType'));

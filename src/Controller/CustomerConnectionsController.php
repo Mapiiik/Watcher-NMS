@@ -61,7 +61,7 @@ class CustomerConnectionsController extends AppController
     public function view($id = null)
     {
         $customerConnection = $this->CustomerConnections->get($id, [
-            'contain' => ['CustomerPoints', 'CustomerConnectionIps', 'RouterosDevices'],
+            'contain' => ['CustomerPoints', 'CustomerConnectionIps', 'RouterosDevices' => ['AccessPoints', 'DeviceTypes']],
         ]);
 
         $this->set('customerConnection', $customerConnection);

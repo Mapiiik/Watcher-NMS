@@ -37,7 +37,7 @@ class AntennaTypesController extends AppController
     public function view($id = null)
     {
         $antennaType = $this->AntennaTypes->get($id, [
-            'contain' => ['RadioUnitBands', 'Manufacturers', 'RadioUnits'],
+            'contain' => ['RadioUnitBands', 'Manufacturers', 'RadioUnits' => ['RadioUnitTypes', 'AccessPoints', 'RadioLinks']],
         ]);
 
         $this->set('antennaType', $antennaType);

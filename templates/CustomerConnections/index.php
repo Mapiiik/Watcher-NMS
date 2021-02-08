@@ -17,7 +17,6 @@ echo $this->Form->end();
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('customer_point_id') ?></th>
                     <th><?= $this->Paginator->sort('customer_number') ?></th>
@@ -30,7 +29,6 @@ echo $this->Form->end();
             <tbody>
                 <?php foreach ($customerConnections as $customerConnection): ?>
                 <tr>
-                    <td><?= h($customerConnection->id) ?></td>
                     <td><?= h($customerConnection->name) ?></td>
                     <td><?= $customerConnection->has('customer_point') ? $this->Html->link($customerConnection->customer_point->name, ['controller' => 'CustomerPoints', 'action' => 'view', $customerConnection->customer_point->id]) : '' ?></td>
                     <td><?= h($customerConnection->customer_number) ?></td>

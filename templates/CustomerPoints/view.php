@@ -55,9 +55,7 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Customer Point Id') ?></th>
                             <th><?= __('Customer Number') ?></th>
                             <th><?= __('Contract Number') ?></th>
                             <th><?= __('Note') ?></th>
@@ -67,9 +65,7 @@
                         </tr>
                         <?php foreach ($customerPoint->customer_connections as $customerConnections) : ?>
                         <tr>
-                            <td><?= h($customerConnections->id) ?></td>
                             <td><?= h($customerConnections->name) ?></td>
-                            <td><?= h($customerConnections->customer_point_id) ?></td>
                             <td><?= h($customerConnections->customer_number) ?></td>
                             <td><?= h($customerConnections->contract_number) ?></td>
                             <td><?= h($customerConnections->note) ?></td>

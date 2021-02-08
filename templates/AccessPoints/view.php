@@ -60,7 +60,6 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Phone') ?></th>
                             <th><?= __('Email') ?></th>
@@ -73,7 +72,6 @@
                         </tr>
                         <?php foreach ($accessPoint->access_point_contacts as $accessPointContacts) : ?>
                         <tr>
-                            <td><?= h($accessPointContacts->id) ?></td>
                             <td><?= h($accessPointContacts->name) ?></td>
                             <td><?= h($accessPointContacts->phone) ?></td>
                             <td><?= h($accessPointContacts->email) ?></td>
@@ -100,7 +98,6 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Reading Date') ?></th>
                             <th><?= __('Reading Value') ?></th>
@@ -111,7 +108,6 @@
                         </tr>
                         <?php foreach ($accessPoint->electricity_meter_readings as $electricityMeterReadings) : ?>
                         <tr>
-                            <td><?= h($electricityMeterReadings->id) ?></td>
                             <td><?= h($electricityMeterReadings->name) ?></td>
                             <td><?= h($electricityMeterReadings->reading_date) ?></td>
                             <td><?= $this->Number->format($electricityMeterReadings->reading_value, ['after' => ' kWh']) ?></td>
@@ -136,9 +132,8 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Power Supply Type Id') ?></th>
+                            <th><?= __('Power Supply Type') ?></th>
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Battery Count') ?></th>
                             <th><?= __('Battery Voltage') ?></th>
@@ -152,7 +147,6 @@
                         </tr>
                         <?php foreach ($accessPoint->power_supplies as $powerSupplies) : ?>
                         <tr>
-                            <td><?= h($powerSupplies->id) ?></td>
                             <td><?= h($powerSupplies->name) ?></td>
                             <td><?= $powerSupplies->has('power_supply_type') ? $this->Html->link($powerSupplies->power_supply_type->name, ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupplies->power_supply_type->id]) : '' ?></td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
@@ -182,11 +176,10 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Radio Unit Type Id') ?></th>
-                            <th><?= __('Radio Link Id') ?></th>
-                            <th><?= __('Antenna Type Id') ?></th>
+                            <th><?= __('Radio Unit Type') ?></th>
+                            <th><?= __('Radio Link') ?></th>
+                            <th><?= __('Antenna Type') ?></th>
                             <th><?= __('Polarization') ?></th>
                             <th><?= __('Channel Width') ?></th>
                             <th><?= __('Tx Frequency') ?></th>
@@ -211,7 +204,6 @@
                         </tr>
                         <?php foreach ($accessPoint->radio_units as $radioUnits) : ?>
                         <tr>
-                            <td><?= h($radioUnits->id) ?></td>
                             <td><?= h($radioUnits->name) ?></td>
                             <td><?= $radioUnits->has('radio_unit_type') ? $this->Html->link($radioUnits->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnits->radio_unit_type->id]) : '' ?></td>
                             <td><?= $radioUnits->has('radio_link') ? $this->Html->link($radioUnits->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id]) : '' ?></td>
@@ -254,9 +246,8 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Device Type Id') ?></th>
+                            <th><?= __('Device Type') ?></th>
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('System Description') ?></th>
                             <th><?= __('Board Name') ?></th>
@@ -269,7 +260,6 @@
                         </tr>
                         <?php foreach ($accessPoint->routeros_devices as $routerosDevices) : ?>
                         <tr>
-                            <td><?= h($routerosDevices->id) ?></td>
                             <td><?= h($routerosDevices->name) ?></td>
                             <td><?= $routerosDevices->has('device_type') ? $this->Html->link($routerosDevices->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevices->device_type->id]) : '' ?></td>
                             <td><?= h($routerosDevices->ip_address) ?></td>

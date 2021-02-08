@@ -59,9 +59,7 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Customer Connection Id') ?></th>
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('Note') ?></th>
                             <th><?= __('Created') ?></th>
@@ -70,9 +68,7 @@
                         </tr>
                         <?php foreach ($customerConnection->customer_connection_ips as $customerConnectionIps) : ?>
                         <tr>
-                            <td><?= h($customerConnectionIps->id) ?></td>
                             <td><?= h($customerConnectionIps->name) ?></td>
-                            <td><?= h($customerConnectionIps->customer_connection_id) ?></td>
                             <td><?= h($customerConnectionIps->ip_address) ?></td>
                             <td><?= h($customerConnectionIps->note) ?></td>
                             <td><?= h($customerConnectionIps->created) ?></td>
@@ -94,10 +90,9 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Access Point Id') ?></th>
-                            <th><?= __('Device Type Id') ?></th>
+                            <th><?= __('Access Point') ?></th>
+                            <th><?= __('Device Type') ?></th>
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('System Description') ?></th>
                             <th><?= __('Board Name') ?></th>
@@ -106,15 +101,13 @@
                             <th><?= __('Firmware Version') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
-                            <th><?= __('Customer Connection Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($customerConnection->routeros_devices as $routerosDevices) : ?>
                         <tr>
-                            <td><?= h($routerosDevices->id) ?></td>
                             <td><?= h($routerosDevices->name) ?></td>
-                            <td><?= h($routerosDevices->access_point_id) ?></td>
-                            <td><?= h($routerosDevices->device_type_id) ?></td>
+                            <td><?= $routerosDevices->has('access_point') ? $this->Html->link($routerosDevices->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevices->access_point->id]) : '' ?></td>
+                            <td><?= $routerosDevices->has('device_type') ? $this->Html->link($routerosDevices->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevices->device_type->id]) : '' ?></td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
                             <td><?= h($routerosDevices->system_description) ?></td>
                             <td><?= h($routerosDevices->board_name) ?></td>
@@ -123,7 +116,6 @@
                             <td><?= h($routerosDevices->firmware_version) ?></td>
                             <td><?= h($routerosDevices->created) ?></td>
                             <td><?= h($routerosDevices->modified) ?></td>
-                            <td><?= h($routerosDevices->customer_connection_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>

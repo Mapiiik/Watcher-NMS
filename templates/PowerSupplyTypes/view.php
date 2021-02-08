@@ -63,10 +63,8 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Power Supply Type Id') ?></th>
-                            <th><?= __('Access Point Id') ?></th>
+                            <th><?= __('Access Point') ?></th>
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Battery Count') ?></th>
                             <th><?= __('Battery Voltage') ?></th>
@@ -80,10 +78,8 @@
                         </tr>
                         <?php foreach ($powerSupplyType->power_supplies as $powerSupplies) : ?>
                         <tr>
-                            <td><?= h($powerSupplies->id) ?></td>
                             <td><?= h($powerSupplies->name) ?></td>
-                            <td><?= h($powerSupplies->power_supply_type_id) ?></td>
-                            <td><?= h($powerSupplies->access_point_id) ?></td>
+                            <td><?= $powerSupplies->has('access_point') ? $this->Html->link($powerSupplies->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $powerSupplies->access_point->id]) : '' ?></td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
                             <td><?= h($powerSupplies->battery_count) ?></td>
                             <td><?= h($powerSupplies->battery_voltage) ?></td>

@@ -47,10 +47,8 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Radio Unit Band Id') ?></th>
-                            <th><?= __('Manufacturer Id') ?></th>
+                            <th><?= __('Manufacturer') ?></th>
                             <th><?= __('Antenna Gain') ?></th>
                             <th><?= __('Part Number') ?></th>
                             <th><?= __('Note') ?></th>
@@ -60,10 +58,8 @@
                         </tr>
                         <?php foreach ($radioUnitBand->antenna_types as $antennaTypes) : ?>
                         <tr>
-                            <td><?= h($antennaTypes->id) ?></td>
                             <td><?= h($antennaTypes->name) ?></td>
-                            <td><?= h($antennaTypes->radio_unit_band_id) ?></td>
-                            <td><?= h($antennaTypes->manufacturer_id) ?></td>
+                            <td><?= $antennaTypes->has('manufacturer') ? $this->Html->link($antennaTypes->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $antennaTypes->manufacturer->id]) : '' ?></td>
                             <td><?= h($antennaTypes->antenna_gain) ?></td>
                             <td><?= h($antennaTypes->part_number) ?></td>
                             <td><?= h($antennaTypes->note) ?></td>
@@ -86,10 +82,8 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Radio Unit Band Id') ?></th>
-                            <th><?= __('Manufacturer Id') ?></th>
+                            <th><?= __('Manufacturer') ?></th>
                             <th><?= __('Part Number') ?></th>
                             <th><?= __('Note') ?></th>
                             <th><?= __('Created') ?></th>
@@ -98,10 +92,8 @@
                         </tr>
                         <?php foreach ($radioUnitBand->radio_unit_types as $radioUnitTypes) : ?>
                         <tr>
-                            <td><?= h($radioUnitTypes->id) ?></td>
                             <td><?= h($radioUnitTypes->name) ?></td>
-                            <td><?= h($radioUnitTypes->radio_unit_band_id) ?></td>
-                            <td><?= h($radioUnitTypes->manufacturer_id) ?></td>
+                            <td><?= $radioUnitTypes->has('manufacturer') ? $this->Html->link($radioUnitTypes->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $radioUnitTypes->manufacturer->id]) : '' ?></td>
                             <td><?= h($radioUnitTypes->part_number) ?></td>
                             <td><?= h($radioUnitTypes->note) ?></td>
                             <td><?= h($radioUnitTypes->created) ?></td>

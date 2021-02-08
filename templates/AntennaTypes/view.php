@@ -63,12 +63,10 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Radio Unit Type Id') ?></th>
-                            <th><?= __('Access Point Id') ?></th>
-                            <th><?= __('Radio Link Id') ?></th>
-                            <th><?= __('Antenna Type Id') ?></th>
+                            <th><?= __('Access Point') ?></th>
+                            <th><?= __('Radio Link') ?></th>
+                            <th><?= __('Radio Unit Type') ?></th>
                             <th><?= __('Polarization') ?></th>
                             <th><?= __('Channel Width') ?></th>
                             <th><?= __('Tx Frequency') ?></th>
@@ -93,12 +91,10 @@
                         </tr>
                         <?php foreach ($antennaType->radio_units as $radioUnits) : ?>
                         <tr>
-                            <td><?= h($radioUnits->id) ?></td>
                             <td><?= h($radioUnits->name) ?></td>
-                            <td><?= h($radioUnits->radio_unit_type_id) ?></td>
-                            <td><?= h($radioUnits->access_point_id) ?></td>
-                            <td><?= h($radioUnits->radio_link_id) ?></td>
-                            <td><?= h($radioUnits->antenna_type_id) ?></td>
+                            <td><?= $radioUnits->has('access_point') ? $this->Html->link($radioUnits->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnits->access_point->id]) : '' ?></td>
+                            <td><?= $radioUnits->has('radio_link') ? $this->Html->link($radioUnits->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id]) : '' ?></td>
+                            <td><?= $radioUnits->has('radio_unit_type') ? $this->Html->link($radioUnits->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnits->radio_unit_type->id]) : '' ?></td>
                             <td><?= h($radioUnits->polarization) ?></td>
                             <td><?= h($radioUnits->channel_width) ?></td>
                             <td><?= h($radioUnits->tx_frequency) ?></td>

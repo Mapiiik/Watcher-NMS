@@ -11,9 +11,8 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
+                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('phone') ?></th>
                     <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('customer_number') ?></th>
@@ -26,9 +25,8 @@
             <tbody>
                 <?php foreach ($accessPointContacts as $accessPointContact): ?>
                 <tr>
-                    <td><?= h($accessPointContact->id) ?></td>
-                    <td><?= h($accessPointContact->name) ?></td>
                     <td><?= $accessPointContact->has('access_point') ? $this->Html->link($accessPointContact->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]) : '' ?></td>
+                    <td><?= h($accessPointContact->name) ?></td>
                     <td><?= h($accessPointContact->phone) ?></td>
                     <td><?= h($accessPointContact->email) ?></td>
                     <td><?= h($accessPointContact->customer_number) ?></td>

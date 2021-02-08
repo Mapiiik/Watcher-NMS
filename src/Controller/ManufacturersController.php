@@ -34,7 +34,7 @@ class ManufacturersController extends AppController
     public function view($id = null)
     {
         $manufacturer = $this->Manufacturers->get($id, [
-            'contain' => ['AntennaTypes', 'PowerSupplyTypes', 'RadioUnitTypes'],
+            'contain' => ['AntennaTypes' => ['RadioUnitBands'], 'PowerSupplyTypes', 'RadioUnitTypes' => ['RadioUnitBands']],
         ]);
 
         $this->set('manufacturer', $manufacturer);

@@ -87,7 +87,6 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Comment') ?></th>
                             <th><?= __('Mac Address') ?></th>
@@ -108,7 +107,6 @@
                         </tr>
                         <?php foreach ($routerosDevice->routeros_device_interfaces as $routerosDeviceInterfaces) : ?>
                         <tr>
-                            <td><?= h($routerosDeviceInterfaces->id) ?></td>
                             <td><?= h($routerosDeviceInterfaces->name) ?></td>
                             <td><?= h($routerosDeviceInterfaces->comment) ?></td>
                             <td><?= h($routerosDeviceInterfaces->mac_address) ?></td>
@@ -142,7 +140,6 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('Interface Index') ?></th>
@@ -152,7 +149,6 @@
                         </tr>
                         <?php foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIps) : ?>
                         <tr>
-                            <td><?= h($routerosDeviceIps->id) ?></td>
                             <td><?= h($routerosDeviceIps->name) ?></td>
                             <td><?= h($routerosDeviceIps->ip_address) ?></td>
                             <td><?= h($routerosDeviceIps->interface_index) ?></td>

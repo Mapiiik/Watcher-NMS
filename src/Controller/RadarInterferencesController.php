@@ -37,7 +37,7 @@ class RadarInterferencesController extends AppController
     public function view($id = null)
     {
         $radarInterference = $this->RadarInterferences->get($id, [
-            'contain' => ['RouterosDeviceInterfaces'],
+            'contain' => ['RouterosDeviceInterfaces' => ['RouterosDevices']],
         ]);
 
         $this->set('radarInterference', $radarInterference);

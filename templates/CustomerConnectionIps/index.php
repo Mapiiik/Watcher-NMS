@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('customer_connection_id') ?></th>
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
@@ -23,7 +22,6 @@
             <tbody>
                 <?php foreach ($customerConnectionIps as $customerConnectionIp): ?>
                 <tr>
-                    <td><?= h($customerConnectionIp->id) ?></td>
                     <td><?= h($customerConnectionIp->name) ?></td>
                     <td><?= $customerConnectionIp->has('customer_connection') ? $this->Html->link($customerConnectionIp->customer_connection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnectionIp->customer_connection->id]) : '' ?></td>
                     <td><?= h($customerConnectionIp->ip_address) ?></td>
