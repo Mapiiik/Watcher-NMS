@@ -67,7 +67,12 @@ class RouterosDevicesController extends AppController
             'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections', 'RouterosDeviceInterfaces', 'RouterosDeviceIps'],
         ]);
         
-        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['superuser']))
+        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['superuser', 'admin']))
+        {
+            $routerosDevice->username = $this->getUsername($routerosDevice);
+            $routerosDevice->password = $this->getPassword($routerosDevice);
+        }
+        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['technician']) && $routerosDevice->device_type->allow_technicians_access)
         {
             $routerosDevice->username = $this->getUsername($routerosDevice);
             $routerosDevice->password = $this->getPassword($routerosDevice);
@@ -387,7 +392,7 @@ class RouterosDevicesController extends AppController
                     echo '/user' . "\n";
                     echo ':if ([:len [find name="' . $this->getUsername($routerosDevice) . '"]] = 0) do={' . "\n";
                     echo '    :log warning "Watcher NMS: Adding ' . $this->getUsername($routerosDevice) . ' user"' . "\n";
-                    echo '    add group=full name="' . $this->getUsername($routerosDevice) . '" password="' . $this->getPassword($routerosDevice) . '"' . "\n";
+                    echo '    add name="' . $this->getUsername($routerosDevice) . '" group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";
                     echo '} else={' . "\n";
                     echo '    :log warning "Watcher NMS: Updating ' . $this->getUsername($routerosDevice) . ' user"' . "\n";
                     echo '    set [find name="' . $this->getUsername($routerosDevice) . '"] group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";

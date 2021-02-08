@@ -17,6 +17,7 @@
                     <th><?= $this->Paginator->sort('snmp_community') ?></th>
                     <th><?= $this->Paginator->sort('assign_access_point_by_device_name') ?></th>
                     <th><?= $this->Paginator->sort('assign_customer_connection_by_ip') ?></th>
+                    <th><?= $this->Paginator->sort('allow_technicians_access') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -31,6 +32,7 @@
                     <td><?= h($deviceType->snmp_community) ?></td>
                     <td><?= h($deviceType->assign_access_point_by_device_name) ?></td>
                     <td><?= h($deviceType->assign_customer_connection_by_ip) ?></td>
+                    <td><?= h($deviceType->allow_technicians_access) ?></td>
                     <td><?= h($deviceType->created) ?></td>
                     <td><?= h($deviceType->modified) ?></td>
                     <td class="actions">

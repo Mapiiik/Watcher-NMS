@@ -7,7 +7,6 @@ namespace App\Controller;
  * DeviceTypes Controller
  *
  * @property \App\Model\Table\DeviceTypesTable $DeviceTypes
- *
  * @method \App\Model\Entity\DeviceType[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class DeviceTypesController extends AppController
@@ -37,7 +36,7 @@ class DeviceTypesController extends AppController
             'contain' => ['RouterosDevices'],
         ]);
 
-        $this->set('deviceType', $deviceType);
+        $this->set(compact('deviceType'));
     }
 
     /**

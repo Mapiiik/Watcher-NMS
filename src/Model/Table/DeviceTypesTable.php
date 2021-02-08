@@ -88,6 +88,10 @@ class DeviceTypesTable extends Table
             ->boolean('assign_customer_connection_by_ip')
             ->notEmptyString('assign_customer_connection_by_ip');
 
+        $validator
+            ->boolean('allow_technicians_access')
+            ->notEmptyString('allow_technicians_access');
+
         return $validator;
     }
 }

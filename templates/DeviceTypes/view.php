@@ -43,6 +43,10 @@
                     <td><?= $deviceType->assign_customer_connection_by_ip ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Allow Technicians Access') ?></th>
+                    <td><?= $deviceType->allow_technicians_access ? __('Yes') : __('No'); ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($deviceType->created) ?></td>
                 </tr>

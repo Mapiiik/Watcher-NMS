@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\DeviceTypesTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
@@ -37,8 +36,8 @@ class DeviceTypesTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('DeviceTypes') ? [] : ['className' => DeviceTypesTable::class];
-        $this->DeviceTypes = TableRegistry::getTableLocator()->get('DeviceTypes', $config);
+        $config = $this->getTableLocator()->exists('DeviceTypes') ? [] : ['className' => DeviceTypesTable::class];
+        $this->DeviceTypes = $this->getTableLocator()->get('DeviceTypes', $config);
     }
 
     /**

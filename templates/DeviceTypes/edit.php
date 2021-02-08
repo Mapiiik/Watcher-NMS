@@ -28,6 +28,7 @@
                     echo $this->Form->control('note');
                     echo $this->Form->control('assign_access_point_by_device_name');
                     echo $this->Form->control('assign_customer_connection_by_ip');
+                    echo $this->Form->control('allow_technicians_access');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

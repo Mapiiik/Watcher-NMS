@@ -17,6 +17,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property bool $assign_access_point_by_device_name
  * @property bool $assign_customer_connection_by_ip
+ * @property bool $allow_technicians_access
  *
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  */
@@ -40,6 +41,7 @@ class DeviceType extends Entity
         'modified' => true,
         'assign_access_point_by_device_name' => true,
         'assign_customer_connection_by_ip' => true,
+        'allow_technicians_access' => true,
         'routeros_devices' => true,
     ];
 }
