@@ -86,7 +86,7 @@
                             <td><?= h($powerSupplies->battery_capacity) ?></td>
                             <td><?= h($powerSupplies->battery_replacement) ?></td>
                             <td><?= h($powerSupplies->battery_duration) ?></td>
-                            <td><?= h($powerSupplies->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($powerSupplies->note)); ?></td>
                             <td><?= h($powerSupplies->created) ?></td>
                             <td><?= h($powerSupplies->modified) ?></td>
                             <td class="actions">

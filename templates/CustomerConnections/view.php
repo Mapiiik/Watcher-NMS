@@ -70,7 +70,7 @@
                         <tr>
                             <td><?= h($customerConnectionIps->name) ?></td>
                             <td><?= h($customerConnectionIps->ip_address) ?></td>
-                            <td><?= h($customerConnectionIps->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($customerConnectionIps->note)); ?></td>
                             <td><?= h($customerConnectionIps->created) ?></td>
                             <td><?= h($customerConnectionIps->modified) ?></td>
                             <td class="actions">

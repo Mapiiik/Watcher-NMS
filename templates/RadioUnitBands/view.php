@@ -62,7 +62,7 @@
                             <td><?= $antennaTypes->has('manufacturer') ? $this->Html->link($antennaTypes->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $antennaTypes->manufacturer->id]) : '' ?></td>
                             <td><?= h($antennaTypes->antenna_gain) ?></td>
                             <td><?= h($antennaTypes->part_number) ?></td>
-                            <td><?= h($antennaTypes->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($antennaTypes->note)); ?></td>
                             <td><?= h($antennaTypes->created) ?></td>
                             <td><?= h($antennaTypes->modified) ?></td>
                             <td class="actions">
@@ -95,7 +95,7 @@
                             <td><?= h($radioUnitTypes->name) ?></td>
                             <td><?= $radioUnitTypes->has('manufacturer') ? $this->Html->link($radioUnitTypes->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $radioUnitTypes->manufacturer->id]) : '' ?></td>
                             <td><?= h($radioUnitTypes->part_number) ?></td>
-                            <td><?= h($radioUnitTypes->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($radioUnitTypes->note)); ?></td>
                             <td><?= h($radioUnitTypes->created) ?></td>
                             <td><?= h($radioUnitTypes->modified) ?></td>
                             <td class="actions">

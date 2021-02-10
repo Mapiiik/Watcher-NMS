@@ -77,7 +77,7 @@
                             <td><?= h($accessPointContacts->email) ?></td>
                             <td><?= $accessPointContacts->has('customer_number') ? $this->Html->link($accessPointContacts->customer_number, ['controller' => 'https:////nms.netair.cz/netair', 'action' => 'administration/users.php?edit=' . ($accessPointContacts->customer_number - 110000)], ['target' => '_blank']) : '' ?></td>
                             <td><?= h($accessPointContacts->contract_number) ?></td>
-                            <td><?= h($accessPointContacts->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($accessPointContacts->note)); ?></td>
                             <td><?= h($accessPointContacts->created) ?></td>
                             <td><?= h($accessPointContacts->modified) ?></td>
                             <td class="actions">
@@ -111,7 +111,7 @@
                             <td><?= h($electricityMeterReadings->name) ?></td>
                             <td><?= h($electricityMeterReadings->reading_date) ?></td>
                             <td><?= $this->Number->format($electricityMeterReadings->reading_value, ['after' => ' kWh']) ?></td>
-                            <td><?= h($electricityMeterReadings->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($electricityMeterReadings->note)); ?></td>
                             <td><?= h($electricityMeterReadings->created) ?></td>
                             <td><?= h($electricityMeterReadings->modified) ?></td>
                             <td class="actions">
@@ -155,7 +155,7 @@
                             <td><?= h($powerSupplies->battery_capacity) ?></td>
                             <td><?= h($powerSupplies->battery_replacement) ?></td>
                             <td><?= h($powerSupplies->battery_duration) ?></td>
-                            <td><?= h($powerSupplies->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($powerSupplies->note)); ?></td>
                             <td><?= h($powerSupplies->created) ?></td>
                             <td><?= h($powerSupplies->modified) ?></td>
                             <td class="actions">
@@ -225,7 +225,7 @@
                             <td><?= h($radioUnits->ip_address) ?></td>
                             <td><?= h($radioUnits->device_login) ?></td>
                             <td><?= h($radioUnits->device_password) ?></td>
-                            <td><?= h($radioUnits->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
                             <td><?= h($radioUnits->created) ?></td>
                             <td><?= h($radioUnits->modified) ?></td>
                             <td class="actions">

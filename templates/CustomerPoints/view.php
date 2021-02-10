@@ -68,7 +68,7 @@
                             <td><?= h($customerConnections->name) ?></td>
                             <td><?= h($customerConnections->customer_number) ?></td>
                             <td><?= h($customerConnections->contract_number) ?></td>
-                            <td><?= h($customerConnections->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($customerConnections->note)); ?></td>
                             <td><?= h($customerConnections->created) ?></td>
                             <td><?= h($customerConnections->modified) ?></td>
                             <td class="actions">

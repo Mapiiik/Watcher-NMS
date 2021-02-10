@@ -62,7 +62,7 @@
                             <td><?= $antennaTypes->has('radio_unit_band') ? $this->Html->link($antennaTypes->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $antennaTypes->radio_unit_band->id]) : '' ?></td>
                             <td><?= h($antennaTypes->antenna_gain) ?></td>
                             <td><?= h($antennaTypes->part_number) ?></td>
-                            <td><?= h($antennaTypes->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($antennaTypes->note)); ?></td>
                             <td><?= h($antennaTypes->created) ?></td>
                             <td><?= h($antennaTypes->modified) ?></td>
                             <td class="actions">
@@ -97,7 +97,7 @@
                             <td><?= h($powerSupplyTypes->voltage) ?></td>
                             <td><?= h($powerSupplyTypes->current) ?></td>
                             <td><?= h($powerSupplyTypes->part_number) ?></td>
-                            <td><?= h($powerSupplyTypes->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($powerSupplyTypes->note)); ?></td>
                             <td><?= h($powerSupplyTypes->created) ?></td>
                             <td><?= h($powerSupplyTypes->modified) ?></td>
                             <td class="actions">
@@ -130,7 +130,7 @@
                             <td><?= h($radioUnitTypes->name) ?></td>
                             <td><?= $radioUnitTypes->has('radio_unit_band') ? $this->Html->link($radioUnitTypes->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $radioUnitTypes->radio_unit_band->id]) : '' ?></td>
                             <td><?= h($radioUnitTypes->part_number) ?></td>
-                            <td><?= h($radioUnitTypes->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($radioUnitTypes->note)); ?></td>
                             <td><?= h($radioUnitTypes->created) ?></td>
                             <td><?= h($radioUnitTypes->modified) ?></td>
                             <td class="actions">

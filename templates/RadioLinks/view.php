@@ -104,7 +104,7 @@
                             <td><?= h($radioUnits->ip_address) ?></td>
                             <td><?= h($radioUnits->device_login) ?></td>
                             <td><?= h($radioUnits->device_password) ?></td>
-                            <td><?= h($radioUnits->note) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
                             <td><?= h($radioUnits->created) ?></td>
                             <td><?= h($radioUnits->modified) ?></td>
                             <td class="actions">
