@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\CustomerPoint[]|\Cake\Collection\CollectionInterface $customerPoints
  */
 ?>
+<?php
+echo $this->Form->create($search, array('type' => 'get'));
+echo $this->Form->control('search', array('label' => __('Search')));
+echo $this->Form->end();
+?>
+
 <div class="customerPoints index content">
     <?= $this->Html->link(__('New Customer Point'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Customer Points') ?></h3>
