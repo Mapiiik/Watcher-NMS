@@ -51,7 +51,7 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
         </div>
     </nav>
     <main class="main">
-        <div class="container flex">
+        <div class="container">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>

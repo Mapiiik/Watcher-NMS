@@ -5,7 +5,13 @@
  */
 $this->layout = 'clean';
 ?>
-<div class="routerosDevices index content">
+<?php
+echo $this->Form->create($search, array('type' => 'get'));
+echo $this->Form->control('search', array('label' => __('Search')));
+echo $this->Form->end();
+?>
+
+<div class="routerosDevices index content" style="clear: both;">
     <?= $this->Html->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
     <h3><?= __('Routeros Devices') ?></h3>
     <div class="table-responsive">

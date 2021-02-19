@@ -418,8 +418,36 @@ class RouterosDevicesController extends AppController
 
     public function export()
     {
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '')
+        {
+            $conditions['OR'] = [
+                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'CustomerConnections.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDevices.ip_address::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDevices.system_description ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDevices.board_name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDevices.serial_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+            ];
+        }
+        else
+        {
+            $conditions = [];
+        }
+
         $routerosDevices = $this->RouterosDevices->find('all', [
             'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections' => ['CustomerPoints'], 'RouterosDeviceInterfaces'],
+            'conditions' => $conditions,
             'order' => ['AccessPoints.name' => 'ASC', 'RouterosDevices.name' => 'ASC'],
         ]);
 
