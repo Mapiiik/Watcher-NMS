@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Customer Number') ?></th>
-                    <td><?= h($customerConnection->customer_number) ?></td>
+                    <td><?= $customerConnection->has('customer_number') ? $this->Html->link($customerConnection->customer_number, ['controller' => 'https:////nms.netair.cz/netair', 'action' => 'administration/users.php?edit=' . ($customerConnection->customer_number - 110000)], ['target' => '_blank']) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Contract Number') ?></th>
