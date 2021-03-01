@@ -52,8 +52,32 @@ class RouterosDevicesController extends AppController
         $routerosDevices = $this->paginate($this->RouterosDevices);
 
         $this->set(compact('routerosDevices'));
+        $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
     }
 
+    /**
+     * Search method
+     *
+     * @param string|null $id Routeros Device id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function search()
+    {
+        $options = [
+            'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections'],
+            'order' => ['RouterosDevices.modified' => 'DESC'],
+        ];
+        
+        if ($this->request->is(['get']) && ($this->request->getQuery('ip')) !== null) {
+            $options['conditions']['ip_address'] = $this->request->getQuery('ip');
+        }
+        $routerosDevices = $this->RouterosDevices->find('all', $options);
+        
+        $this->set(compact('routerosDevices'));
+        $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
+    }
+    
     /**
      * View method
      *

@@ -96,3 +96,15 @@ $routes->scope('/', function (RouteBuilder $builder) {
  * });
  * ```
  */
+
+$routes->scope('/api', function (RouteBuilder $builder) {
+    $builder->setExtensions(['json']);
+    $builder->resources('RouterosDevices', [
+        'map' => [
+            'search' => [
+                'action' => 'search',
+                'method' => 'GET',
+           ],
+        ],
+    ]);
+});
