@@ -137,6 +137,13 @@ return [
             'controller' => 'Pages',
             'action' => 'display',
         ],
+        //api access
+        [
+            'role' => ['api'],
+            'plugin' => null,
+            'controller' => ['RouterosDevices'],
+            'action' => ['search'],
+        ],
         //user access
         [
             'role' => ['user', 'technician'],
