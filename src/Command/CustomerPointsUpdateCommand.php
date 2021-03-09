@@ -39,7 +39,7 @@ class CustomerPointsUpdateCommand extends Command
                 $this->CustomerPoints->save($customerPoint);
                 
                 foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
-                    $customerConnection = $this->CustomerPoints->CustomerConnections->findOrCreate(['customer_point_id' => $customerPoint->id, 'customer_number' => $importCustomerConnection->customer_number]);
+                    $customerConnection = $this->CustomerPoints->CustomerConnections->findOrCreate(['customer_point_id' => $customerPoint->id, 'customer_number' => $importCustomerConnection->customer_number, 'contract_number' => $importCustomerConnection->contract_number]);
                     $customerConnection->name = $importCustomerConnection->name;
                     $this->CustomerPoints->CustomerConnections->save($customerConnection);
                     
