@@ -63,7 +63,6 @@ class AppController extends Controller
         }
         catch (NotFoundException $e)
         {
-            var_dump($this->request->getQuery('page'));
             $this->Flash->error(__('Unable to find results on page {0}. Redirect to page 1.', $this->request->getQuery('page')));
             $this->redirect(['page' => 1]);
             return;
@@ -77,7 +76,9 @@ class AppController extends Controller
             $this->request->getSession()->write('Config.language', $this->request->getQuery('language'));
         }
         
-        I18n::setLocale($this->request->getSession()->read('Config.language', I18n::getDefaultLocale()));
+        if ($language = $this->request->getSession()->read('Config.language', I18n::getDefaultLocale())) {
+            I18n::setLocale($language);
+        }
         
         parent::beforeFilter($event);
   }    
