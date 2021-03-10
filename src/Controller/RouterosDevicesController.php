@@ -343,9 +343,9 @@ class RouterosDevicesController extends AppController
             $this->RouterosDevices->RouterosDeviceIps->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new \DateTime('-120 seconds')]);
 
             // REMOVE OLD DATA FROM DATABASE
-            $this->RouterosDevices->deleteAll(['modified <' => new \DateTime('-14 days')]);
-            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new \DateTime('-14 days')]);
-            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new \DateTime('-14 days')]);
+            $this->RouterosDevices->deleteAll(['modified <' => new \DateTime('-28 days')]);
+            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new \DateTime('-28 days')]);
+            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new \DateTime('-28 days')]);
 
             return $routerosDevice;
         }
