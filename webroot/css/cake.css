@@ -188,6 +188,7 @@ th {
 .button {
     margin-left: 0.5rem;
     padding:0 1.5rem;
+    width: auto;
 }
 
 .button-small {

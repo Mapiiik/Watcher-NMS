@@ -17,6 +17,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
+use Cake\I18n\I18n;
 
 /**
  * Application Controller
@@ -50,4 +52,16 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
+
+    # App > beforeFilter
+    public function beforeFilter(EventInterface $event) {
+        # We check if we have a language set
+        if ($this->request->getQuery('language')) {
+            $this->request->getSession()->write('Config.language', $this->request->getQuery('language'));
+        }
+        
+        I18n::setLocale($this->request->getSession()->read('Config.language', I18n::getDefaultLocale()));
+        
+        parent::beforeFilter($event);
+  }    
 }

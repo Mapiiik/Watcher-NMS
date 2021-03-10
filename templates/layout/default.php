@@ -64,6 +64,14 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <?= $this->AuthLink->link(__('Radio Units'), ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['RadioLinks', 'RadioUnits', 'RadioUnitTypes', 'RadioUnitBands'])]) ?>
             <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]) ?>
             <?= $this->AuthLink->link(__('Users'), ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'CakeDC/Users'], ['class' => 'button' . $buttonSelected(['Users', 'Profile'])]) ?>
+
+            <?php $language = $this->request->getSession()->read('Config.language', Cake\I18n\I18n::getDefaultLocale()); ?>
+            
+            <select name="language" class="button button-outline" onchange="location = this.value;">
+                <option <?php if ($language == 'cs_CZ') echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['language' => 'cs_CZ']]); ?>">Čeština</option>
+                <option <?php if ($language == 'en_US') echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['language' => 'en_US']]); ?>">English</option>
+            </select>
+
             <?php if (!is_null($this->request->getSession()->read('Auth.id'))) echo $this->AuthLink->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => null], ['class' => 'button button-outline']) ?>
             <br />
             <?php if (in_array($this->name, ['AccessPoints', 'AccessPointContacts', 'ElectricityMeterReadings'])): ?>
