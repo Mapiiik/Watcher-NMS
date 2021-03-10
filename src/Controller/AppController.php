@@ -19,6 +19,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\EventInterface;
 use Cake\I18n\I18n;
+use Cake\Http\Exception\NotFoundException;
 
 /**
  * Application Controller
@@ -50,9 +51,25 @@ class AppController extends Controller
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
-        //$this->loadComponent('FormProtection');
+        $this->loadComponent('FormProtection');
     }
 
+    # App > paginate
+    public function paginate($object = null, $settings = array()) {
+        try
+        {
+            $this->paginate['maxLimit'] = 1000;
+            return parent::paginate($object, $settings);
+        }
+        catch (NotFoundException $e)
+        {
+            var_dump($this->request->getQuery('page'));
+            $this->Flash->error(__('Unable to find results on page {0}. Redirect to page 1.', $this->request->getQuery('page')));
+            $this->redirect(['page' => 1]);
+            return;
+        }
+    }
+    
     # App > beforeFilter
     public function beforeFilter(EventInterface $event) {
         # We check if we have a language set
