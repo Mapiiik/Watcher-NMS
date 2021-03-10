@@ -20,8 +20,9 @@ echo $this->Form->end();
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('device_name') ?></th>
-                    <th><?= $this->Paginator->sort('gps_x') ?></th>
                     <th><?= $this->Paginator->sort('gps_y') ?></th>
+                    <th><?= $this->Paginator->sort('gps_x') ?></th>
+                    <th class="actions"><?= __('Maps') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -32,8 +33,12 @@ echo $this->Form->end();
                 <tr>
                     <td><?= h($accessPoint->name) ?></td>
                     <td><?= h($accessPoint->device_name) ?></td>
-                    <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
                     <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
+                    <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link(__('Google Maps'), ['controller' => 'https:////maps.google.com', 'action' => 'maps?q=' . htmlspecialchars("{$accessPoint->gps_y},{$accessPoint->gps_x}")], ['target' => '_blank']) ?>
+                        <?= $this->Html->link(__('Mapy.cz'), ['controller' => 'https:////mapy.cz', 'action' => 'zakladni?source=coor&id=' . htmlspecialchars("{$accessPoint->gps_x},{$accessPoint->gps_y}")], ['target' => '_blank']) ?>
+                    </td>
                     <td><?= h($accessPoint->created) ?></td>
                     <td><?= h($accessPoint->modified) ?></td>
                     <td class="actions">

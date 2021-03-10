@@ -27,12 +27,20 @@
                     <td><?= h($customerPoint->name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Gps Y') ?></th>
+                    <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Gps X') ?></th>
                     <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Gps Y') ?></th>
-                    <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
+                    <th><?= __('Maps') ?></th>
+                    <td>
+                        <?= $this->Html->link(__('Google Maps'), ['controller' => 'https:////maps.google.com', 'action' => 'maps?q=' . htmlspecialchars("{$customerPoint->gps_y},{$customerPoint->gps_x}")], ['target' => '_blank']) ?>
+                        ,
+                        <?= $this->Html->link(__('Mapy.cz'), ['controller' => 'https:////mapy.cz', 'action' => 'zakladni?source=coor&id=' . htmlspecialchars("{$customerPoint->gps_x},{$customerPoint->gps_y}")], ['target' => '_blank']) ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

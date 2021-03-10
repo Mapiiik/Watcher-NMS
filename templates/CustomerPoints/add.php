@@ -18,8 +18,8 @@
                 <legend><?= __('Add Customer Point') ?></legend>
                 <?php
                     echo $this->Form->control('name');
-                    echo $this->Form->control('gps_x');
                     echo $this->Form->control('gps_y');
+                    echo $this->Form->control('gps_x');
                     echo $this->Form->control('note');
                 ?>
             </fieldset>

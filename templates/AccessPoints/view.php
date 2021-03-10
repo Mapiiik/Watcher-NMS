@@ -31,12 +31,20 @@
                     <td><?= h($accessPoint->device_name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Gps Y') ?></th>
+                    <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Gps X') ?></th>
                     <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Gps Y') ?></th>
-                    <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
+                    <th><?= __('Maps') ?></th>
+                    <td>
+                        <?= $this->Html->link(__('Google Maps'), ['controller' => 'https:////maps.google.com', 'action' => 'maps?q=' . htmlspecialchars("{$accessPoint->gps_y},{$accessPoint->gps_x}")], ['target' => '_blank']) ?>
+                        ,
+                        <?= $this->Html->link(__('Mapy.cz'), ['controller' => 'https:////mapy.cz', 'action' => 'zakladni?source=coor&id=' . htmlspecialchars("{$accessPoint->gps_x},{$accessPoint->gps_y}")], ['target' => '_blank']) ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

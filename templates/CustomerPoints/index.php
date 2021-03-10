@@ -18,8 +18,9 @@ echo $this->Form->end();
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('gps_x') ?></th>
                     <th><?= $this->Paginator->sort('gps_y') ?></th>
+                    <th><?= $this->Paginator->sort('gps_x') ?></th>
+                    <th class="actions"><?= __('Maps') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -29,8 +30,12 @@ echo $this->Form->end();
                 <?php foreach ($customerPoints as $customerPoint): ?>
                 <tr>
                     <td><?= h($customerPoint->name) ?></td>
-                    <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
                     <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
+                    <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link(__('Google Maps'), ['controller' => 'https:////maps.google.com', 'action' => 'maps?q=' . htmlspecialchars("{$customerPoint->gps_y},{$customerPoint->gps_x}")], ['target' => '_blank']) ?>
+                        <?= $this->Html->link(__('Mapy.cz'), ['controller' => 'https:////mapy.cz', 'action' => 'zakladni?source=coor&id=' . htmlspecialchars("{$customerPoint->gps_x},{$customerPoint->gps_y}")], ['target' => '_blank']) ?>
+                    </td>
                     <td><?= h($customerPoint->created) ?></td>
                     <td><?= h($customerPoint->modified) ?></td>
                     <td class="actions">
