@@ -65,6 +65,16 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]) ?>
             <?= $this->AuthLink->link(__('Users'), ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'CakeDC/Users'], ['class' => 'button' . $buttonSelected(['Users', 'Profile'])]) ?>
 
+            <?php if ($action == 'index'): ?>
+            <select name="limit" class="button button-outline" onchange="location = this.value;">
+                <option <?php if ($this->request->getQuery('limit') == 20) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 20]]); ?>">20</option>
+                <option <?php if ($this->request->getQuery('limit') == 50) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 50]]); ?>">50</option>
+                <option <?php if ($this->request->getQuery('limit') == 100) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 100]]); ?>">100</option>
+                <option <?php if ($this->request->getQuery('limit') == 500) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 500]]); ?>">500</option>
+                <option <?php if ($this->request->getQuery('limit') == 1000) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 1000]]); ?>">1000</option>
+            </select>
+            <?php endif; ?>
+            
             <?php $language = $this->request->getSession()->read('Config.language', Cake\I18n\I18n::getDefaultLocale()); ?>
             
             <select name="language" class="button button-outline" onchange="location = this.value;">
