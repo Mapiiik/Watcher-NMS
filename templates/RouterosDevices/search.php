@@ -5,8 +5,9 @@
  */
 ?>
 <?php
-echo $this->Form->create($search, array('type' => 'get'));
-echo $this->Form->control('search', array('label' => __('Search')));
+echo $this->Form->create($search, ['type' => 'get']);
+if ($this->request->getQuery('limit')) echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
+echo $this->Form->control('search', ['label' => __('Search')]);
 echo $this->Form->end();
 ?>
 

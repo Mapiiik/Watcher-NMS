@@ -64,7 +64,7 @@ class AppController extends Controller
         catch (NotFoundException $e)
         {
             $this->Flash->error(__('Unable to find results on page {0}. Redirect to page 1.', $this->request->getQuery('page')));
-            $this->redirect(['page' => 1]);
+            $this->redirect(['page' => 1] + $this->request->getQueryParams());
             return;
         }
     }
