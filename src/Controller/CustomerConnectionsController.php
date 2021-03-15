@@ -77,6 +77,10 @@ class CustomerConnectionsController extends AppController
         $customerConnection = $this->CustomerConnections->newEmptyEntity();
         if ($this->request->is('post')) {
             $customerConnection = $this->CustomerConnections->patchEntity($customerConnection, $this->request->getData());
+
+            if ($customerConnection->customer_number === '') $accessPointContact->customer_number = null;
+            if ($customerConnection->contract_number === '') $accessPointContact->contract_number = null;
+            
             if ($this->CustomerConnections->save($customerConnection)) {
                 $this->Flash->success(__('The customer connection has been saved.'));
 
@@ -102,6 +106,10 @@ class CustomerConnectionsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $customerConnection = $this->CustomerConnections->patchEntity($customerConnection, $this->request->getData());
+
+            if ($customerConnection->customer_number === '') $accessPointContact->customer_number = null;
+            if ($customerConnection->contract_number === '') $accessPointContact->contract_number = null;
+            
             if ($this->CustomerConnections->save($customerConnection)) {
                 $this->Flash->success(__('The customer connection has been saved.'));
 
