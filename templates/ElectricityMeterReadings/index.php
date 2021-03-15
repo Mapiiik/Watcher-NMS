@@ -4,6 +4,13 @@
  * @var \App\Model\Entity\ElectricityMeterReading[]|\Cake\Collection\CollectionInterface $electricityMeterReadings
  */
 ?>
+<?php
+echo $this->Form->create($search, ['type' => 'get']);
+if ($this->request->getQuery('limit')) echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
+echo $this->Form->control('search', ['label' => __('Search')]);
+echo $this->Form->end();
+?>
+
 <div class="electricityMeterReadings index content">
     <?= $this->Html->link(__('New Electricity Meter Reading'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Electricity Meter Readings') ?></h3>
