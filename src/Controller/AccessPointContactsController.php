@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\SearchForm;
+
 /**
  * AccessPointContacts Controller
  *
@@ -20,7 +22,31 @@ class AccessPointContactsController extends AppController
     {
         $this->paginate = [
             'contain' => ['AccessPoints'],
+            'order' => ['name' => 'ASC'],
         ];
+
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '')
+        {
+            $this->paginate['conditions']['OR'] = [
+                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'accessPointContacts.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'accessPointContacts.phone ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'accessPointContacts.email ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'accessPointContacts.customer_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'accessPointContacts.contract_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+            ];
+        }
+        
         $accessPointContacts = $this->paginate($this->AccessPointContacts);
 
         $this->set(compact('accessPointContacts'));

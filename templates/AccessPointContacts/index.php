@@ -4,6 +4,13 @@
  * @var \App\Model\Entity\AccessPointContact[]|\Cake\Collection\CollectionInterface $accessPointContacts
  */
 ?>
+<?php
+echo $this->Form->create($search, ['type' => 'get']);
+if ($this->request->getQuery('limit')) echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
+echo $this->Form->control('search', ['label' => __('Search')]);
+echo $this->Form->end();
+?>
+
 <div class="accessPointContacts index content">
     <?= $this->Html->link(__('New Access Point Contact'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Access Point Contacts') ?></h3>
