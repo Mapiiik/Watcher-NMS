@@ -80,6 +80,11 @@ class AppController extends Controller
             I18n::setLocale($language);
         }
         
+        # Disable SecurityComponent POST validation for CakeDC/Users
+        if ($this->request->getParam('plugin') === 'CakeDC/Users') {
+            $this->Security->setConfig('validatePost', false);
+        }
+        
         parent::beforeFilter($event);
   }    
 }
