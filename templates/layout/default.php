@@ -28,10 +28,8 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
     <?= $this->Html->meta('icon') ?>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
 
-    <?= $this->Html->css('milligram.min.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
     
     <?= $this->Html->script('https://code.jquery.com/jquery.min.js') ?>
 
@@ -42,7 +40,7 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="/"><span>Watcher</span> NMS</a>
+            <a href="<?= $this->Url->build('/') ?>"><span>Watcher</span> NMS</a>
         </div>
         <div class="top-nav-links">
             <?php
