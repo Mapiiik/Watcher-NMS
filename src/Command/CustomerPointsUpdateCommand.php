@@ -36,16 +36,19 @@ class CustomerPointsUpdateCommand extends Command
             foreach ($importCustomerPoints as $importCustomerPoint) {
                 $customerPoint = $this->CustomerPoints->findOrCreate(['gps_x' => $importCustomerPoint->gps_x, 'gps_y' => $importCustomerPoint->gps_y]);
                 $customerPoint->name = $importCustomerPoint->name;
+                $customerPoint->note = $importCustomerPoint->note;
                 $this->CustomerPoints->save($customerPoint);
                 
                 foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
                     $customerConnection = $this->CustomerPoints->CustomerConnections->findOrCreate(['customer_point_id' => $customerPoint->id, 'customer_number' => $importCustomerConnection->customer_number, 'contract_number' => $importCustomerConnection->contract_number]);
                     $customerConnection->name = $importCustomerConnection->name;
+                    $customerConnection->note = $importCustomerConnection->note;
                     $this->CustomerPoints->CustomerConnections->save($customerConnection);
                     
                     foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
                         $customerConnectionIp = $this->CustomerPoints->CustomerConnections->CustomerConnectionIps->findOrCreate(['customer_connection_id' => $customerConnection->id, 'ip_address' => $importCustomerConnectionIp->ip_address]);
                         $customerConnectionIp->name = $importCustomerConnectionIp->name;
+                        $customerConnectionIp->note = $importCustomerConnectionIp->note;
                         $this->CustomerPoints->CustomerConnections->CustomerConnectionIps->save($customerConnectionIp);
                     }
                 }
