@@ -62,7 +62,7 @@
                 </blockquote>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Access Point Contact'), ['controller' => 'AccessPointContacts', 'action' => 'add'], ['class' => 'button float-right']) ?>
+                <?= $this->Html->link(__('New Access Point Contact'), ['controller' => 'AccessPointContacts', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
                 <h4><?= __('Related Access Point Contacts') ?></h4>
                 <?php if (!empty($accessPoint->access_point_contacts)) : ?>
                 <div class="table-responsive">
@@ -100,7 +100,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Electricity Meter Reading'), ['controller' => 'ElectricityMeterReadings', 'action' => 'add'], ['class' => 'button float-right']) ?>
+                <?= $this->Html->link(__('New Electricity Meter Reading'), ['controller' => 'ElectricityMeterReadings', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
                 <h4><?= __('Related Electricity Meter Readings') ?></h4>
                 <?php if (!empty($accessPoint->electricity_meter_readings)) : ?>
                 <div class="table-responsive">
@@ -134,7 +134,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Power Supply'), ['controller' => 'PowerSupplies', 'action' => 'add'], ['class' => 'button float-right']) ?>
+                <?= $this->Html->link(__('New Power Supply'), ['controller' => 'PowerSupplies', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
                 <h4><?= __('Related Power Supplies') ?></h4>
                 <?php if (!empty($accessPoint->power_supplies)) : ?>
                 <div class="table-responsive">
@@ -178,7 +178,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Radio Unit'), ['controller' => 'RadioUnits', 'action' => 'add'], ['class' => 'button float-right']) ?>
+                <?= $this->Html->link(__('New Radio Unit'), ['controller' => 'RadioUnits', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
                 <h4><?= __('Related Radio Units') ?></h4>
                 <?php if (!empty($accessPoint->radio_units)) : ?>
                 <div class="table-responsive">
@@ -248,7 +248,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Routeros Device'), ['controller' => 'Routeros Devices', 'action' => 'add'], ['class' => 'button float-right']) ?>
+                <?= $this->Html->link(__('New Routeros Device'), ['controller' => 'Routeros Devices', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
                 <h4><?= __('Related Routeros Devices') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
                 <div class="table-responsive">
