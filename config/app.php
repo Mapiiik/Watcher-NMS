@@ -417,6 +417,7 @@ return [
      */
     'Session' => [
         'defaults' => 'database',
+        'timeout' => 120,
     ],
     
     'GoogleMap' => [
