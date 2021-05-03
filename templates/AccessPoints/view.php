@@ -83,7 +83,7 @@
                             <td><?= h($accessPointContacts->name) ?></td>
                             <td><?= h($accessPointContacts->phone) ?></td>
                             <td><?= h($accessPointContacts->email) ?></td>
-                            <td><?= $accessPointContacts->has('customer_number') ? $this->Html->link($accessPointContacts->customer_number, ['controller' => 'https:////nms.netair.cz/netair', 'action' => 'administration/users.php?edit=' . ($accessPointContacts->customer_number - 110000)], ['target' => '_blank']) : '' ?></td>
+                            <td><?= $accessPointContacts->has('customer_number') ? $this->Html->link($accessPointContacts->customer_number, ['controller' => 'https:////crm.netair.net/legacy', 'action' => 'administration/customers.php?edit=' . ($accessPointContacts->customer_number - 110000)], ['target' => '_blank']) : '' ?></td>
                             <td><?= h($accessPointContacts->contract_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($accessPointContacts->note)); ?></td>
                             <td><?= h($accessPointContacts->created) ?></td>
