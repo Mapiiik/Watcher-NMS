@@ -63,21 +63,21 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <?= $this->AuthLink->link(__('Power Supplies'), ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null], ['class' => 'button' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]) ?>
             <?= $this->AuthLink->link(__('Users'), ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'CakeDC/Users'], ['class' => 'button' . $buttonSelected(['Users', 'Profile'])]) ?>
 
-            <?php if ($action == 'index'): ?>
+            <?php if ($this->request->getParam('action') == 'index'): ?>
             <select name="limit" class="button button-outline" onchange="location = this.value;">
-                <option <?php if ($this->request->getQuery('limit') == 20) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 20] + $this->request->getQueryParams()]); ?>">20</option>
-                <option <?php if ($this->request->getQuery('limit') == 50) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 50] + $this->request->getQueryParams()]); ?>">50</option>
-                <option <?php if ($this->request->getQuery('limit') == 100) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 100] + $this->request->getQueryParams()]); ?>">100</option>
-                <option <?php if ($this->request->getQuery('limit') == 500) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 500] + $this->request->getQueryParams()]); ?>">500</option>
-                <option <?php if ($this->request->getQuery('limit') == 1000) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 1000] + $this->request->getQueryParams()]); ?>">1000</option>
+                <option <?php if ($this->request->getQuery('limit') == 20) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 20] + $this->request->getQueryParams()] + $this->request->getParam('pass')); ?>">20</option>
+                <option <?php if ($this->request->getQuery('limit') == 50) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 50] + $this->request->getQueryParams()] + $this->request->getParam('pass')); ?>">50</option>
+                <option <?php if ($this->request->getQuery('limit') == 100) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 100] + $this->request->getQueryParams()] + $this->request->getParam('pass')); ?>">100</option>
+                <option <?php if ($this->request->getQuery('limit') == 500) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 500] + $this->request->getQueryParams()] + $this->request->getParam('pass')); ?>">500</option>
+                <option <?php if ($this->request->getQuery('limit') == 1000) echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['limit' => 1000] + $this->request->getQueryParams()] + $this->request->getParam('pass')); ?>">1000</option>
             </select>
             <?php endif; ?>
             
             <?php $language = $this->request->getSession()->read('Config.language', Cake\I18n\I18n::getDefaultLocale()); ?>
             
             <select name="language" class="button button-outline" onchange="location = this.value;">
-                <option <?php if ($language == 'cs_CZ') echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['language' => 'cs_CZ'] + $this->request->getQueryParams()]); ?>">Čeština</option>
-                <option <?php if ($language == 'en_US') echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['language' => 'en_US'] + $this->request->getQueryParams()]); ?>">English</option>
+                <option <?php if ($language == 'cs_CZ') echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['language' => 'cs_CZ'] + $this->request->getQueryParams()] + $this->request->getParam('pass')); ?>">Čeština</option>
+                <option <?php if ($language == 'en_US') echo 'selected="selected"'; ?> value="<?php echo $this->Url->build(['?' => ['language' => 'en_US'] + $this->request->getQueryParams()] + $this->request->getParam('pass')); ?>">English</option>
             </select>
 
             <?php if (!is_null($this->request->getSession()->read('Auth.id'))) echo $this->AuthLink->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => null], ['class' => 'button button-outline']) ?>
