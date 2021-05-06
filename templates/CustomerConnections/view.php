@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Customer Number') ?></th>
-                    <td><?= $customerConnection->has('customer_number') ? $this->Html->link($customerConnection->customer_number, ['controller' => 'https:////crm.netair.net/legacy', 'action' => 'administration/customers.php?edit=' . ($customerConnection->customer_number - 110000)], ['target' => '_blank']) : '' ?></td>
+                    <td><?= $customerConnection->has('customer_number') ? $this->Html->link($customerConnection->customer_number, env('CRM_ADMIN_URL') . '/customers/' . ($customerConnection->customer_number - 110000), ['target' => '_blank']) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Contract Number') ?></th>

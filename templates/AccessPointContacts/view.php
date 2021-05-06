@@ -40,7 +40,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Customer Number') ?></th>
-                    <td><?= $accessPointContact->has('customer_number') ? $this->Html->link($accessPointContact->customer_number, ['controller' => 'https:////crm.netair.net/legacy', 'action' => 'administration/customers.php?edit=' . ($accessPointContact->customer_number - 110000)], ['target' => '_blank']) : '' ?></td>
+                    <td><?= $accessPointContact->has('customer_number') ? $this->Html->link($accessPointContact->customer_number, env('CRM_ADMIN_URL') . '/customers/' . ($accessPointContact->customer_number - 110000), ['target' => '_blank']) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Contract Number') ?></th>
