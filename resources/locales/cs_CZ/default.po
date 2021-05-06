@@ -4,54 +4,62 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2021-01-11 08:49+0100\n"
-"PO-Revision-Date: 2021-01-13 08:39+0100\n"
+"POT-Creation-Date: 2021-05-06 10:14+0200\n"
+"PO-Revision-Date: 2021-05-06 10:20+0200\n"
+"Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
-"X-Generator: Poedit 2.4.2\n"
-"Last-Translator: \n"
-"Language: cs_CZ\n"
+"X-Generator: Poedit 2.4.3\n"
 
-#: Controller/AccessPointContactsController.php:56
-#: Controller/AccessPointContactsController.php:81
-msgid "The access point contact has been saved."
-msgstr "Kontakt přístupového bodu byl uložen."
-
-#: Controller/AccessPointContactsController.php:60
-#: Controller/AccessPointContactsController.php:85
-msgid "The access point contact could not be saved. Please, try again."
-msgstr "Kontakt přístupového bodu nelze uložit. Opakujte akci."
-
-#: Controller/AccessPointContactsController.php:103
-msgid "The access point contact has been deleted."
-msgstr "Kontakt přístupového bodu byl odstraněn."
-
-#: Controller/AccessPointContactsController.php:105
-msgid "The access point contact could not be deleted. Please, try again."
-msgstr "Kontakt přístupového bodu nelze odstranit. Opakujte akci."
-
+#: Controller/AccessPointContactsController.php:31
 #: Controller/AccessPointsController.php:33
 #: Controller/CustomerConnectionsController.php:32
+#: Controller/CustomerPointsController.php:31
+#: Controller/ElectricityMeterReadingsController.php:30
 #: Controller/PowerSuppliesController.php:32
 #: Controller/RadioUnitsController.php:32
 #: Controller/RouterosDeviceInterfacesController.php:31
 #: Controller/RouterosDeviceIpsController.php:31
 #: Controller/RouterosDevicesController.php:32
+#: Controller/RouterosDevicesController.php:448
 msgid "Search Set."
 msgstr "Hledání nastaveno."
 
+#: Controller/AccessPointContactsController.php:33
 #: Controller/AccessPointsController.php:35
 #: Controller/CustomerConnectionsController.php:34
+#: Controller/CustomerPointsController.php:33
+#: Controller/ElectricityMeterReadingsController.php:32
 #: Controller/PowerSuppliesController.php:34
 #: Controller/RadioUnitsController.php:34
 #: Controller/RouterosDeviceInterfacesController.php:33
 #: Controller/RouterosDeviceIpsController.php:33
 #: Controller/RouterosDevicesController.php:34
+#: Controller/RouterosDevicesController.php:450
 msgid "There was a problem setting search."
 msgstr "Při při nastavování hledání došlo k potížím."
+
+#: Controller/AccessPointContactsController.php:88
+#: Controller/AccessPointContactsController.php:119
+msgid "The access point contact has been saved."
+msgstr "Kontakt přístupového bodu byl uložen."
+
+#: Controller/AccessPointContactsController.php:92
+#: Controller/AccessPointContactsController.php:123
+msgid "The access point contact could not be saved. Please, try again."
+msgstr "Kontakt přístupového bodu nelze uložit. Opakujte akci."
+
+#: Controller/AccessPointContactsController.php:141
+msgid "The access point contact has been deleted."
+msgstr "Kontakt přístupového bodu byl odstraněn."
+
+#: Controller/AccessPointContactsController.php:143
+msgid "The access point contact could not be deleted. Please, try again."
+msgstr "Kontakt přístupového bodu nelze odstranit. Opakujte akci."
 
 #: Controller/AccessPointsController.php:80
 #: Controller/AccessPointsController.php:104
@@ -89,6 +97,10 @@ msgstr "Typ antény byl odstraněn."
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr "Typ antény nelze odstranit. Opakujte akci."
 
+#: Controller/AppController.php:66
+msgid "Unable to find results on page {0}. Redirect to page 1."
+msgstr "Nelze najít výsledky na stránce {0}. Přesměrování na stranu 1."
+
 #: Controller/CustomerConnectionIpsController.php:57
 #: Controller/CustomerConnectionIpsController.php:82
 msgid "The customer connection ip has been saved."
@@ -107,75 +119,75 @@ msgstr "IP adresa připojení zákazníka byla odstraněna."
 msgid "The customer connection ip could not be deleted. Please, try again."
 msgstr "IP adresu připojení zákazníka nelze odstranit. Opakujte akci."
 
-#: Controller/CustomerConnectionsController.php:81
-#: Controller/CustomerConnectionsController.php:106
+#: Controller/CustomerConnectionsController.php:85
+#: Controller/CustomerConnectionsController.php:114
 msgid "The customer connection has been saved."
 msgstr "Připojení zákazníka bylo uloženo."
 
-#: Controller/CustomerConnectionsController.php:85
-#: Controller/CustomerConnectionsController.php:110
+#: Controller/CustomerConnectionsController.php:89
+#: Controller/CustomerConnectionsController.php:118
 msgid "The customer connection could not be saved. Please, try again."
 msgstr "Připojení zákazníka nelze uložit. Opakujte akci."
 
-#: Controller/CustomerConnectionsController.php:128
+#: Controller/CustomerConnectionsController.php:136
 msgid "The customer connection has been deleted."
 msgstr "Připojení zákazníka bylo odstraněno."
 
-#: Controller/CustomerConnectionsController.php:130
+#: Controller/CustomerConnectionsController.php:138
 msgid "The customer connection could not be deleted. Please, try again."
 msgstr "Připojení zákazníka nelze odstranit. Opakujte akci."
 
-#: Controller/CustomerPointsController.php:54
-#: Controller/CustomerPointsController.php:78
+#: Controller/CustomerPointsController.php:77
+#: Controller/CustomerPointsController.php:101
 msgid "The customer point has been saved."
 msgstr "Bod zákazníka byl uložen."
 
-#: Controller/CustomerPointsController.php:58
-#: Controller/CustomerPointsController.php:82
+#: Controller/CustomerPointsController.php:81
+#: Controller/CustomerPointsController.php:105
 msgid "The customer point could not be saved. Please, try again."
 msgstr "Bod zákazníka nelze uložit. Opakujte akci."
 
-#: Controller/CustomerPointsController.php:99
+#: Controller/CustomerPointsController.php:122
 msgid "The customer point has been deleted."
 msgstr "Bod zákazníka byl odstraněn."
 
-#: Controller/CustomerPointsController.php:101
+#: Controller/CustomerPointsController.php:124
 msgid "The customer point could not be deleted. Please, try again."
 msgstr "Bod zákazníka nelze odstranit. Opakujte akci."
 
-#: Controller/DeviceTypesController.php:54
-#: Controller/DeviceTypesController.php:78
+#: Controller/DeviceTypesController.php:53
+#: Controller/DeviceTypesController.php:77
 msgid "The device type has been saved."
 msgstr "Typ zařízení byl uložen."
 
-#: Controller/DeviceTypesController.php:58
-#: Controller/DeviceTypesController.php:82
+#: Controller/DeviceTypesController.php:57
+#: Controller/DeviceTypesController.php:81
 msgid "The device type could not be saved. Please, try again."
 msgstr "Typ zařízení nelze uložit. Opakujte akci."
 
-#: Controller/DeviceTypesController.php:99
+#: Controller/DeviceTypesController.php:98
 msgid "The device type has been deleted."
 msgstr "Typ zařízení byl odstraněn."
 
-#: Controller/DeviceTypesController.php:101
+#: Controller/DeviceTypesController.php:100
 msgid "The device type could not be deleted. Please, try again."
 msgstr "Typ zařízení nelze odstranit. Opakujte akci."
 
-#: Controller/ElectricityMeterReadingsController.php:56
-#: Controller/ElectricityMeterReadingsController.php:81
+#: Controller/ElectricityMeterReadingsController.php:77
+#: Controller/ElectricityMeterReadingsController.php:102
 msgid "The electricity meter reading has been saved."
 msgstr "Odečet elektroměru byl uložen."
 
-#: Controller/ElectricityMeterReadingsController.php:60
-#: Controller/ElectricityMeterReadingsController.php:85
+#: Controller/ElectricityMeterReadingsController.php:81
+#: Controller/ElectricityMeterReadingsController.php:106
 msgid "The electricity meter reading could not be saved. Please, try again."
 msgstr "Odečet elektroměru nelze uložit. Opakujte akci."
 
-#: Controller/ElectricityMeterReadingsController.php:103
+#: Controller/ElectricityMeterReadingsController.php:124
 msgid "The electricity meter reading has been deleted."
 msgstr "Odečet elektroměru byl odstraněn."
 
-#: Controller/ElectricityMeterReadingsController.php:105
+#: Controller/ElectricityMeterReadingsController.php:126
 msgid "The electricity meter reading could not be deleted. Please, try again."
 msgstr "Odečet elektroměru nelze odstranit. Opakujte akci."
 
@@ -367,69 +379,70 @@ msgstr "IP routeros zařízení byla odstraněna."
 msgid "The routeros device ip could not be deleted. Please, try again."
 msgstr "IP adresu zařízení routeros nelze odstranit. Opakujte akci."
 
-#: Controller/RouterosDevicesController.php:87
-#: Controller/RouterosDevicesController.php:114
+#: Controller/RouterosDevicesController.php:119
+#: Controller/RouterosDevicesController.php:146
 msgid "The routeros device has been saved."
 msgstr "Zařízení routeros bylo uloženo."
 
-#: Controller/RouterosDevicesController.php:91
-#: Controller/RouterosDevicesController.php:118
+#: Controller/RouterosDevicesController.php:123
+#: Controller/RouterosDevicesController.php:150
 msgid "The routeros device could not be saved. Please, try again."
 msgstr "Zařízení routeros nelze uložit. Opakujte akci."
 
-#: Controller/RouterosDevicesController.php:138
+#: Controller/RouterosDevicesController.php:170
 msgid "The routeros device has been deleted."
 msgstr "Zařízení routeros bylo odstraněno."
 
-#: Controller/RouterosDevicesController.php:140
+#: Controller/RouterosDevicesController.php:172
 msgid "The routeros device could not be deleted. Please, try again."
 msgstr "Zařízení routeros nelze odstranit. Opakujte akci."
 
 #: AccessPointContacts/add.php:10 AccessPointContacts/edit.php:10
-#: AccessPointContacts/index.php:23 AccessPointContacts/view.php:10
-#: AccessPoints/add.php:10 AccessPoints/edit.php:10 AccessPoints/index.php:27
-#: AccessPoints/view.php:10 AccessPoints/view.php:72 AccessPoints/view.php:110
-#: AccessPoints/view.php:151 AccessPoints/view.php:210
-#: AccessPoints/view.php:268 AntennaTypes/add.php:10 AntennaTypes/edit.php:10
-#: AntennaTypes/index.php:21 AntennaTypes/view.php:10 AntennaTypes/view.php:92
+#: AccessPointContacts/index.php:29 AccessPointContacts/view.php:10
+#: AccessPoints/add.php:10 AccessPoints/edit.php:10 AccessPoints/index.php:29
+#: AccessPoints/view.php:10 AccessPoints/view.php:79 AccessPoints/view.php:115
+#: AccessPoints/view.php:154 AccessPoints/view.php:211
+#: AccessPoints/view.php:267 AntennaTypes/add.php:10 AntennaTypes/edit.php:10
+#: AntennaTypes/index.php:21 AntennaTypes/view.php:10 AntennaTypes/view.php:90
 #: CustomerConnectionIps/add.php:10 CustomerConnectionIps/edit.php:10
-#: CustomerConnectionIps/index.php:20 CustomerConnectionIps/view.php:10
+#: CustomerConnectionIps/index.php:19 CustomerConnectionIps/view.php:10
 #: CustomerConnections/add.php:10 CustomerConnections/edit.php:10
 #: CustomerConnections/index.php:27 CustomerConnections/view.php:10
-#: CustomerConnections/view.php:69 CustomerConnections/view.php:110
+#: CustomerConnections/view.php:67 CustomerConnections/view.php:104
 #: CustomerPoints/add.php:10 CustomerPoints/edit.php:10
-#: CustomerPoints/index.php:20 CustomerPoints/view.php:10
-#: CustomerPoints/view.php:66 DeviceTypes/add.php:10 DeviceTypes/edit.php:10
-#: DeviceTypes/index.php:22 DeviceTypes/view.php:10 DeviceTypes/view.php:78
+#: CustomerPoints/index.php:27 CustomerPoints/view.php:10
+#: CustomerPoints/view.php:72 DeviceTypes/add.php:10 DeviceTypes/edit.php:10
+#: DeviceTypes/index.php:22 DeviceTypes/view.php:10 DeviceTypes/view.php:81
 #: ElectricityMeterReadings/add.php:10 ElectricityMeterReadings/edit.php:10
-#: ElectricityMeterReadings/index.php:21 ElectricityMeterReadings/view.php:10
+#: ElectricityMeterReadings/index.php:27 ElectricityMeterReadings/view.php:10
 #: Manufacturers/add.php:10 Manufacturers/edit.php:10
 #: Manufacturers/index.php:17 Manufacturers/view.php:10
-#: Manufacturers/view.php:59 Manufacturers/view.php:98
-#: Manufacturers/view.php:136 PowerSupplies/add.php:10
-#: PowerSupplies/edit.php:10 PowerSupplies/index.php:31
+#: Manufacturers/view.php:57 Manufacturers/view.php:92
+#: Manufacturers/view.php:126 PowerSupplies/add.php:10
+#: PowerSupplies/edit.php:10 PowerSupplies/index.php:33
 #: PowerSupplies/view.php:10 PowerSupplyTypes/add.php:10
 #: PowerSupplyTypes/edit.php:10 PowerSupplyTypes/index.php:21
-#: PowerSupplyTypes/view.php:10 PowerSupplyTypes/view.php:79
+#: PowerSupplyTypes/view.php:10 PowerSupplyTypes/view.php:77
 #: RadarInterferences/add.php:10 RadarInterferences/devices.php:24
 #: RadarInterferences/edit.php:10 RadarInterferences/index.php:23
-#: RadarInterferences/view.php:10 RadarInterferences/view.php:78
+#: RadarInterferences/view.php:10 RadarInterferences/view.php:77
 #: RadioLinks/add.php:10 RadioLinks/edit.php:10 RadioLinks/index.php:19
-#: RadioLinks/view.php:10 RadioLinks/view.php:84 RadioUnitBands/add.php:10
+#: RadioLinks/view.php:10 RadioLinks/view.php:82 RadioUnitBands/add.php:10
 #: RadioUnitBands/edit.php:10 RadioUnitBands/index.php:17
-#: RadioUnitBands/view.php:10 RadioUnitBands/view.php:59
-#: RadioUnitBands/view.php:97 RadioUnitTypes/add.php:10
+#: RadioUnitBands/view.php:10 RadioUnitBands/view.php:57
+#: RadioUnitBands/view.php:91 RadioUnitTypes/add.php:10
 #: RadioUnitTypes/edit.php:10 RadioUnitTypes/index.php:20
-#: RadioUnitTypes/view.php:10 RadioUnitTypes/view.php:88 RadioUnits/add.php:10
-#: RadioUnits/edit.php:10 RadioUnits/export.php:41 RadioUnits/index.php:45
+#: RadioUnitTypes/view.php:10 RadioUnitTypes/view.php:86 RadioUnits/add.php:10
+#: RadioUnits/edit.php:10 RadioUnits/export.php:41 RadioUnits/index.php:46
 #: RadioUnits/view.php:10 RouterosDeviceInterfaces/add.php:10
-#: RouterosDeviceInterfaces/edit.php:10 RouterosDeviceInterfaces/index.php:37
+#: RouterosDeviceInterfaces/edit.php:10 RouterosDeviceInterfaces/index.php:38
 #: RouterosDeviceInterfaces/view.php:10 RouterosDeviceIps/add.php:10
-#: RouterosDeviceIps/edit.php:10 RouterosDeviceIps/index.php:26
+#: RouterosDeviceIps/edit.php:10 RouterosDeviceIps/index.php:27
 #: RouterosDeviceIps/view.php:10 RouterosDevices/add.php:10
-#: RouterosDevices/edit.php:10 RouterosDevices/export.php:30
-#: RouterosDevices/index.php:33 RouterosDevices/view.php:10
-#: RouterosDevices/view.php:105 RouterosDevices/view.php:149
+#: RouterosDevices/edit.php:10 RouterosDevices/export.php:37
+#: RouterosDevices/index.php:34 RouterosDevices/search.php:34
+#: RouterosDevices/view.php:10 RouterosDevices/view.php:106
+#: RouterosDevices/view.php:148
 msgid "Actions"
 msgstr "Akce"
 
@@ -447,8 +460,8 @@ msgstr "Přidat kontakt přístupového bodu"
 #: AntennaTypes/add.php:28 AntennaTypes/edit.php:33
 #: CustomerConnectionIps/add.php:26 CustomerConnectionIps/edit.php:31
 #: CustomerConnections/add.php:27 CustomerConnections/edit.php:32
-#: CustomerPoints/add.php:26 CustomerPoints/edit.php:31 DeviceTypes/add.php:28
-#: DeviceTypes/edit.php:33 ElectricityMeterReadings/add.php:27
+#: CustomerPoints/add.php:26 CustomerPoints/edit.php:31 DeviceTypes/add.php:29
+#: DeviceTypes/edit.php:34 ElectricityMeterReadings/add.php:27
 #: ElectricityMeterReadings/edit.php:32 Manufacturers/add.php:24
 #: Manufacturers/edit.php:29 PowerSupplies/add.php:32 PowerSupplies/edit.php:37
 #: PowerSupplyTypes/add.php:28 PowerSupplyTypes/edit.php:33
@@ -462,76 +475,76 @@ msgstr "Přidat kontakt přístupového bodu"
 msgid "Submit"
 msgstr "Potvrdit"
 
-#: AccessPointContacts/edit.php:12 AccessPointContacts/index.php:41
-#: AccessPoints/edit.php:12 AccessPoints/index.php:42 AccessPoints/view.php:88
-#: AccessPoints/view.php:124 AccessPoints/view.php:170
-#: AccessPoints/view.php:242 AccessPoints/view.php:286 AntennaTypes/edit.php:12
-#: AntennaTypes/index.php:37 AntennaTypes/view.php:125
-#: CustomerConnectionIps/edit.php:12 CustomerConnectionIps/index.php:35
-#: CustomerConnections/edit.php:12 CustomerConnections/index.php:43
-#: CustomerConnections/view.php:83 CustomerConnections/view.php:130
-#: CustomerPoints/edit.php:12 CustomerPoints/index.php:35
-#: CustomerPoints/view.php:81 DeviceTypes/edit.php:12 DeviceTypes/index.php:39
-#: DeviceTypes/view.php:97 ElectricityMeterReadings/edit.php:12
-#: ElectricityMeterReadings/index.php:37 Manufacturers/edit.php:12
-#: Manufacturers/index.php:29 Manufacturers/view.php:75
-#: Manufacturers/view.php:114 Manufacturers/view.php:151
-#: PowerSupplies/edit.php:12 PowerSupplies/index.php:51
+#: AccessPointContacts/edit.php:12 AccessPointContacts/index.php:46
+#: AccessPoints/edit.php:12 AccessPoints/index.php:48 AccessPoints/view.php:94
+#: AccessPoints/view.php:128 AccessPoints/view.php:172
+#: AccessPoints/view.php:242 AccessPoints/view.php:284 AntennaTypes/edit.php:12
+#: AntennaTypes/index.php:37 AntennaTypes/view.php:121
+#: CustomerConnectionIps/edit.php:12 CustomerConnectionIps/index.php:33
+#: CustomerConnections/edit.php:12 CustomerConnections/index.php:42
+#: CustomerConnections/view.php:79 CustomerConnections/view.php:122
+#: CustomerPoints/edit.php:12 CustomerPoints/index.php:45
+#: CustomerPoints/view.php:85 DeviceTypes/edit.php:12 DeviceTypes/index.php:39
+#: DeviceTypes/view.php:99 ElectricityMeterReadings/edit.php:12
+#: ElectricityMeterReadings/index.php:42 Manufacturers/edit.php:12
+#: Manufacturers/index.php:29 Manufacturers/view.php:71
+#: Manufacturers/view.php:106 Manufacturers/view.php:139
+#: PowerSupplies/edit.php:12 PowerSupplies/index.php:54
 #: PowerSupplyTypes/edit.php:12 PowerSupplyTypes/index.php:37
-#: PowerSupplyTypes/view.php:99 RadarInterferences/devices.php:43
+#: PowerSupplyTypes/view.php:95 RadarInterferences/devices.php:43
 #: RadarInterferences/edit.php:12 RadarInterferences/index.php:39
-#: RadarInterferences/view.php:103 RadioLinks/edit.php:12
-#: RadioLinks/index.php:33 RadioLinks/view.php:117 RadioUnitBands/edit.php:12
-#: RadioUnitBands/index.php:29 RadioUnitBands/view.php:75
-#: RadioUnitBands/view.php:112 RadioUnitTypes/edit.php:12
-#: RadioUnitTypes/index.php:35 RadioUnitTypes/view.php:121
-#: RadioUnits/edit.php:12 RadioUnits/export.php:77 RadioUnits/index.php:78
-#: RouterosDeviceInterfaces/edit.php:12 RouterosDeviceInterfaces/index.php:63
-#: RouterosDeviceIps/edit.php:12 RouterosDeviceIps/index.php:41
-#: RouterosDevices/edit.php:12 RouterosDevices/export.php:68
-#: RouterosDevices/index.php:54 RouterosDevices/view.php:129
-#: RouterosDevices/view.php:162
+#: RadarInterferences/view.php:101 RadioLinks/edit.php:12
+#: RadioLinks/index.php:33 RadioLinks/view.php:113 RadioUnitBands/edit.php:12
+#: RadioUnitBands/index.php:29 RadioUnitBands/view.php:71
+#: RadioUnitBands/view.php:104 RadioUnitTypes/edit.php:12
+#: RadioUnitTypes/index.php:35 RadioUnitTypes/view.php:117
+#: RadioUnits/edit.php:12 RadioUnits/export.php:77 RadioUnits/index.php:79
+#: RouterosDeviceInterfaces/edit.php:12 RouterosDeviceInterfaces/index.php:64
+#: RouterosDeviceIps/edit.php:12 RouterosDeviceIps/index.php:42
+#: RouterosDevices/edit.php:12 RouterosDevices/export.php:75
+#: RouterosDevices/index.php:55 RouterosDevices/search.php:55
+#: RouterosDevices/view.php:129 RouterosDevices/view.php:160
 msgid "Delete"
 msgstr "Odstranit"
 
-#: AccessPointContacts/edit.php:14 AccessPointContacts/index.php:41
+#: AccessPointContacts/edit.php:14 AccessPointContacts/index.php:46
 #: AccessPointContacts/view.php:12 AccessPoints/edit.php:14
-#: AccessPoints/index.php:42 AccessPoints/view.php:12 AccessPoints/view.php:88
-#: AccessPoints/view.php:124 AccessPoints/view.php:170
-#: AccessPoints/view.php:242 AccessPoints/view.php:286 AntennaTypes/edit.php:14
-#: AntennaTypes/index.php:37 AntennaTypes/view.php:12 AntennaTypes/view.php:125
-#: CustomerConnectionIps/edit.php:14 CustomerConnectionIps/index.php:35
+#: AccessPoints/index.php:48 AccessPoints/view.php:12 AccessPoints/view.php:94
+#: AccessPoints/view.php:128 AccessPoints/view.php:172
+#: AccessPoints/view.php:242 AccessPoints/view.php:284 AntennaTypes/edit.php:14
+#: AntennaTypes/index.php:37 AntennaTypes/view.php:12 AntennaTypes/view.php:121
+#: CustomerConnectionIps/edit.php:14 CustomerConnectionIps/index.php:33
 #: CustomerConnectionIps/view.php:12 CustomerConnections/edit.php:14
-#: CustomerConnections/index.php:43 CustomerConnections/view.php:12
-#: CustomerConnections/view.php:83 CustomerConnections/view.php:130
-#: CustomerPoints/edit.php:14 CustomerPoints/index.php:35
-#: CustomerPoints/view.php:12 CustomerPoints/view.php:81
+#: CustomerConnections/index.php:42 CustomerConnections/view.php:12
+#: CustomerConnections/view.php:79 CustomerConnections/view.php:122
+#: CustomerPoints/edit.php:14 CustomerPoints/index.php:45
+#: CustomerPoints/view.php:12 CustomerPoints/view.php:85
 #: DeviceTypes/edit.php:14 DeviceTypes/index.php:39 DeviceTypes/view.php:12
-#: DeviceTypes/view.php:97 ElectricityMeterReadings/edit.php:14
-#: ElectricityMeterReadings/index.php:37 ElectricityMeterReadings/view.php:12
+#: DeviceTypes/view.php:99 ElectricityMeterReadings/edit.php:14
+#: ElectricityMeterReadings/index.php:42 ElectricityMeterReadings/view.php:12
 #: Manufacturers/edit.php:14 Manufacturers/index.php:29
-#: Manufacturers/view.php:12 Manufacturers/view.php:75
-#: Manufacturers/view.php:114 Manufacturers/view.php:151
-#: PowerSupplies/edit.php:14 PowerSupplies/index.php:51
+#: Manufacturers/view.php:12 Manufacturers/view.php:71
+#: Manufacturers/view.php:106 Manufacturers/view.php:139
+#: PowerSupplies/edit.php:14 PowerSupplies/index.php:54
 #: PowerSupplies/view.php:12 PowerSupplyTypes/edit.php:14
 #: PowerSupplyTypes/index.php:37 PowerSupplyTypes/view.php:12
-#: PowerSupplyTypes/view.php:99 RadarInterferences/devices.php:43
+#: PowerSupplyTypes/view.php:95 RadarInterferences/devices.php:43
 #: RadarInterferences/edit.php:14 RadarInterferences/index.php:39
-#: RadarInterferences/view.php:12 RadarInterferences/view.php:103
+#: RadarInterferences/view.php:12 RadarInterferences/view.php:101
 #: RadioLinks/edit.php:14 RadioLinks/index.php:33 RadioLinks/view.php:12
-#: RadioLinks/view.php:117 RadioUnitBands/edit.php:14
+#: RadioLinks/view.php:113 RadioUnitBands/edit.php:14
 #: RadioUnitBands/index.php:29 RadioUnitBands/view.php:12
-#: RadioUnitBands/view.php:75 RadioUnitBands/view.php:112
+#: RadioUnitBands/view.php:71 RadioUnitBands/view.php:104
 #: RadioUnitTypes/edit.php:14 RadioUnitTypes/index.php:35
-#: RadioUnitTypes/view.php:12 RadioUnitTypes/view.php:121
-#: RadioUnits/edit.php:14 RadioUnits/export.php:77 RadioUnits/index.php:78
+#: RadioUnitTypes/view.php:12 RadioUnitTypes/view.php:117
+#: RadioUnits/edit.php:14 RadioUnits/export.php:77 RadioUnits/index.php:79
 #: RadioUnits/view.php:12 RouterosDeviceInterfaces/edit.php:14
-#: RouterosDeviceInterfaces/index.php:63 RouterosDeviceInterfaces/view.php:12
-#: RouterosDeviceIps/edit.php:14 RouterosDeviceIps/index.php:41
+#: RouterosDeviceInterfaces/index.php:64 RouterosDeviceInterfaces/view.php:12
+#: RouterosDeviceIps/edit.php:14 RouterosDeviceIps/index.php:42
 #: RouterosDeviceIps/view.php:12 RouterosDevices/edit.php:14
-#: RouterosDevices/export.php:68 RouterosDevices/index.php:54
-#: RouterosDevices/view.php:12 RouterosDevices/view.php:129
-#: RouterosDevices/view.php:162
+#: RouterosDevices/export.php:75 RouterosDevices/index.php:55
+#: RouterosDevices/search.php:55 RouterosDevices/view.php:12
+#: RouterosDevices/view.php:129 RouterosDevices/view.php:160
 msgid "Are you sure you want to delete # {0}?"
 msgstr "Opravdu chcete odstranit # {0}?"
 
@@ -539,125 +552,141 @@ msgstr "Opravdu chcete odstranit # {0}?"
 msgid "Edit Access Point Contact"
 msgstr "Upravit kontakt přístupového bodu"
 
-#: AccessPointContacts/index.php:8 AccessPointContacts/view.php:14
-#: AccessPoints/view.php:57
+#: AccessPointContacts/index.php:10 AccessPoints/index.php:10
+#: CustomerConnections/index.php:10 CustomerPoints/index.php:10
+#: ElectricityMeterReadings/index.php:10 PowerSupplies/index.php:10
+#: RadioUnits/index.php:10 RouterosDeviceInterfaces/index.php:10
+#: RouterosDeviceIps/index.php:10 RouterosDevices/export.php:11
+#: RouterosDevices/index.php:10 RouterosDevices/search.php:10
+msgid "Search"
+msgstr "Hledat"
+
+#: AccessPointContacts/index.php:15 AccessPointContacts/view.php:14
+#: AccessPoints/view.php:65
 msgid "New Access Point Contact"
 msgstr "Nový kontakt přístupového bodu"
 
-#: AccessPointContacts/index.php:9 layout/default.php:66
+#: AccessPointContacts/index.php:16 layout/default.php:86
 msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
-#: AccessPointContacts/index.php:39 AccessPoints/index.php:40
-#: AccessPoints/view.php:86 AccessPoints/view.php:122 AccessPoints/view.php:168
-#: AccessPoints/view.php:240 AccessPoints/view.php:284
-#: AntennaTypes/index.php:35 AntennaTypes/view.php:123
-#: CustomerConnectionIps/index.php:33 CustomerConnections/index.php:41
-#: CustomerConnections/view.php:81 CustomerConnections/view.php:128
-#: CustomerPoints/index.php:33 CustomerPoints/view.php:79
-#: DeviceTypes/index.php:37 DeviceTypes/view.php:95
-#: ElectricityMeterReadings/index.php:35 Manufacturers/index.php:27
-#: Manufacturers/view.php:73 Manufacturers/view.php:112
-#: Manufacturers/view.php:149 PowerSupplies/index.php:49
-#: PowerSupplyTypes/index.php:35 PowerSupplyTypes/view.php:97
+#: AccessPointContacts/index.php:44 AccessPoints/index.php:46
+#: AccessPoints/view.php:92 AccessPoints/view.php:126 AccessPoints/view.php:170
+#: AccessPoints/view.php:240 AccessPoints/view.php:282
+#: AntennaTypes/index.php:35 AntennaTypes/view.php:119
+#: CustomerConnectionIps/index.php:31 CustomerConnections/index.php:40
+#: CustomerConnections/view.php:77 CustomerConnections/view.php:120
+#: CustomerPoints/index.php:43 CustomerPoints/view.php:83
+#: DeviceTypes/index.php:37 DeviceTypes/view.php:97
+#: ElectricityMeterReadings/index.php:40 Manufacturers/index.php:27
+#: Manufacturers/view.php:69 Manufacturers/view.php:104
+#: Manufacturers/view.php:137 PowerSupplies/index.php:52
+#: PowerSupplyTypes/index.php:35 PowerSupplyTypes/view.php:93
 #: RadarInterferences/devices.php:41 RadarInterferences/index.php:37
-#: RadarInterferences/view.php:101 RadioLinks/index.php:31
-#: RadioLinks/view.php:115 RadioUnitBands/index.php:27
-#: RadioUnitBands/view.php:73 RadioUnitBands/view.php:110
-#: RadioUnitTypes/index.php:33 RadioUnitTypes/view.php:119
-#: RadioUnits/export.php:75 RadioUnits/index.php:76
-#: RouterosDeviceInterfaces/index.php:61 RouterosDeviceIps/index.php:39
-#: RouterosDevices/export.php:66 RouterosDevices/index.php:52
-#: RouterosDevices/view.php:127 RouterosDevices/view.php:160
+#: RadarInterferences/view.php:99 RadioLinks/index.php:31
+#: RadioLinks/view.php:111 RadioUnitBands/index.php:27
+#: RadioUnitBands/view.php:69 RadioUnitBands/view.php:102
+#: RadioUnitTypes/index.php:33 RadioUnitTypes/view.php:115
+#: RadioUnits/export.php:75 RadioUnits/index.php:77
+#: RouterosDeviceInterfaces/index.php:62 RouterosDeviceIps/index.php:40
+#: RouterosDevices/export.php:73 RouterosDevices/index.php:53
+#: RouterosDevices/search.php:53 RouterosDevices/view.php:127
+#: RouterosDevices/view.php:158 View/Helper/PaginatorHelper.php:1268
 msgid "View"
 msgstr "Zobrazit"
 
-#: AccessPointContacts/index.php:40 AccessPoints/index.php:41
-#: AccessPoints/view.php:87 AccessPoints/view.php:123 AccessPoints/view.php:169
-#: AccessPoints/view.php:241 AccessPoints/view.php:285
-#: AntennaTypes/index.php:36 AntennaTypes/view.php:124
-#: CustomerConnectionIps/index.php:34 CustomerConnections/index.php:42
-#: CustomerConnections/view.php:82 CustomerConnections/view.php:129
-#: CustomerPoints/index.php:34 CustomerPoints/view.php:80
-#: DeviceTypes/index.php:38 DeviceTypes/view.php:96
-#: ElectricityMeterReadings/index.php:36 Manufacturers/index.php:28
-#: Manufacturers/view.php:74 Manufacturers/view.php:113
-#: Manufacturers/view.php:150 PowerSupplies/index.php:50
-#: PowerSupplyTypes/index.php:36 PowerSupplyTypes/view.php:98
+#: AccessPointContacts/index.php:45 AccessPoints/index.php:47
+#: AccessPoints/view.php:93 AccessPoints/view.php:127 AccessPoints/view.php:171
+#: AccessPoints/view.php:241 AccessPoints/view.php:283
+#: AntennaTypes/index.php:36 AntennaTypes/view.php:120
+#: CustomerConnectionIps/index.php:32 CustomerConnections/index.php:41
+#: CustomerConnections/view.php:78 CustomerConnections/view.php:121
+#: CustomerPoints/index.php:44 CustomerPoints/view.php:84
+#: DeviceTypes/index.php:38 DeviceTypes/view.php:98
+#: ElectricityMeterReadings/index.php:41 Manufacturers/index.php:28
+#: Manufacturers/view.php:70 Manufacturers/view.php:105
+#: Manufacturers/view.php:138 PowerSupplies/index.php:53
+#: PowerSupplyTypes/index.php:36 PowerSupplyTypes/view.php:94
 #: RadarInterferences/devices.php:42 RadarInterferences/index.php:38
-#: RadarInterferences/view.php:102 RadioLinks/index.php:32
-#: RadioLinks/view.php:116 RadioUnitBands/index.php:28
-#: RadioUnitBands/view.php:74 RadioUnitBands/view.php:111
-#: RadioUnitTypes/index.php:34 RadioUnitTypes/view.php:120
-#: RadioUnits/export.php:76 RadioUnits/index.php:77
-#: RouterosDeviceInterfaces/index.php:62 RouterosDeviceIps/index.php:40
-#: RouterosDevices/export.php:67 RouterosDevices/index.php:53
-#: RouterosDevices/view.php:128 RouterosDevices/view.php:161
+#: RadarInterferences/view.php:100 RadioLinks/index.php:32
+#: RadioLinks/view.php:112 RadioUnitBands/index.php:28
+#: RadioUnitBands/view.php:70 RadioUnitBands/view.php:103
+#: RadioUnitTypes/index.php:34 RadioUnitTypes/view.php:116
+#: RadioUnits/export.php:76 RadioUnits/index.php:78
+#: RouterosDeviceInterfaces/index.php:63 RouterosDeviceIps/index.php:41
+#: RouterosDevices/export.php:74 RouterosDevices/index.php:54
+#: RouterosDevices/search.php:54 RouterosDevices/view.php:128
+#: RouterosDevices/view.php:159
 msgid "Edit"
 msgstr "Upravit"
 
-#: AccessPointContacts/index.php:50 AccessPoints/index.php:51
-#: AntennaTypes/index.php:46 CustomerConnectionIps/index.php:44
-#: CustomerConnections/index.php:52 CustomerPoints/index.php:44
-#: DeviceTypes/index.php:48 ElectricityMeterReadings/index.php:46
-#: Manufacturers/index.php:38 PowerSupplies/index.php:60
+#: AccessPointContacts/index.php:55 AccessPoints/index.php:57
+#: AntennaTypes/index.php:46 CustomerConnectionIps/index.php:42
+#: CustomerConnections/index.php:51 CustomerPoints/index.php:54
+#: DeviceTypes/index.php:48 ElectricityMeterReadings/index.php:51
+#: Manufacturers/index.php:38 PowerSupplies/index.php:63
 #: PowerSupplyTypes/index.php:46 RadarInterferences/devices.php:52
 #: RadarInterferences/index.php:48 RadioLinks/index.php:42
 #: RadioUnitBands/index.php:38 RadioUnitTypes/index.php:44
-#: RadioUnits/index.php:87 RouterosDeviceInterfaces/index.php:72
-#: RouterosDeviceIps/index.php:50 RouterosDevices/index.php:63
+#: RadioUnits/index.php:88 RouterosDeviceInterfaces/index.php:73
+#: RouterosDeviceIps/index.php:51 RouterosDevices/index.php:64
+#: RouterosDevices/search.php:64
 msgid "first"
 msgstr "první"
 
-#: AccessPointContacts/index.php:51 AccessPoints/index.php:52
-#: AntennaTypes/index.php:47 CustomerConnectionIps/index.php:45
-#: CustomerConnections/index.php:53 CustomerPoints/index.php:45
-#: DeviceTypes/index.php:49 ElectricityMeterReadings/index.php:47
-#: Manufacturers/index.php:39 PowerSupplies/index.php:61
+#: AccessPointContacts/index.php:56 AccessPoints/index.php:58
+#: AntennaTypes/index.php:47 CustomerConnectionIps/index.php:43
+#: CustomerConnections/index.php:52 CustomerPoints/index.php:55
+#: DeviceTypes/index.php:49 ElectricityMeterReadings/index.php:52
+#: Manufacturers/index.php:39 PowerSupplies/index.php:64
 #: PowerSupplyTypes/index.php:47 RadarInterferences/devices.php:53
 #: RadarInterferences/index.php:49 RadioLinks/index.php:43
 #: RadioUnitBands/index.php:39 RadioUnitTypes/index.php:45
-#: RadioUnits/index.php:88 RouterosDeviceInterfaces/index.php:73
-#: RouterosDeviceIps/index.php:51 RouterosDevices/index.php:64
+#: RadioUnits/index.php:89 RouterosDeviceInterfaces/index.php:74
+#: RouterosDeviceIps/index.php:52 RouterosDevices/index.php:65
+#: RouterosDevices/search.php:65
 msgid "previous"
 msgstr "předchozí"
 
-#: AccessPointContacts/index.php:53 AccessPoints/index.php:54
-#: AntennaTypes/index.php:49 CustomerConnectionIps/index.php:47
-#: CustomerConnections/index.php:55 CustomerPoints/index.php:47
-#: DeviceTypes/index.php:51 ElectricityMeterReadings/index.php:49
-#: Manufacturers/index.php:41 PowerSupplies/index.php:63
+#: AccessPointContacts/index.php:58 AccessPoints/index.php:60
+#: AntennaTypes/index.php:49 CustomerConnectionIps/index.php:45
+#: CustomerConnections/index.php:54 CustomerPoints/index.php:57
+#: DeviceTypes/index.php:51 ElectricityMeterReadings/index.php:54
+#: Manufacturers/index.php:41 PowerSupplies/index.php:66
 #: PowerSupplyTypes/index.php:49 RadarInterferences/devices.php:55
 #: RadarInterferences/index.php:51 RadioLinks/index.php:45
 #: RadioUnitBands/index.php:41 RadioUnitTypes/index.php:47
-#: RadioUnits/index.php:90 RouterosDeviceInterfaces/index.php:75
-#: RouterosDeviceIps/index.php:53 RouterosDevices/index.php:66
+#: RadioUnits/index.php:91 RouterosDeviceInterfaces/index.php:76
+#: RouterosDeviceIps/index.php:54 RouterosDevices/index.php:67
+#: RouterosDevices/search.php:67
 msgid "next"
 msgstr "další"
 
-#: AccessPointContacts/index.php:54 AccessPoints/index.php:55
-#: AntennaTypes/index.php:50 CustomerConnectionIps/index.php:48
-#: CustomerConnections/index.php:56 CustomerPoints/index.php:48
-#: DeviceTypes/index.php:52 ElectricityMeterReadings/index.php:50
-#: Manufacturers/index.php:42 PowerSupplies/index.php:64
+#: AccessPointContacts/index.php:59 AccessPoints/index.php:61
+#: AntennaTypes/index.php:50 CustomerConnectionIps/index.php:46
+#: CustomerConnections/index.php:55 CustomerPoints/index.php:58
+#: DeviceTypes/index.php:52 ElectricityMeterReadings/index.php:55
+#: Manufacturers/index.php:42 PowerSupplies/index.php:67
 #: PowerSupplyTypes/index.php:50 RadarInterferences/devices.php:56
 #: RadarInterferences/index.php:52 RadioLinks/index.php:46
 #: RadioUnitBands/index.php:42 RadioUnitTypes/index.php:48
-#: RadioUnits/index.php:91 RouterosDeviceInterfaces/index.php:76
-#: RouterosDeviceIps/index.php:54 RouterosDevices/index.php:67
+#: RadioUnits/index.php:92 RouterosDeviceInterfaces/index.php:77
+#: RouterosDeviceIps/index.php:55 RouterosDevices/index.php:68
+#: RouterosDevices/search.php:68
 msgid "last"
 msgstr "poslední"
 
-#: AccessPointContacts/index.php:56 AccessPoints/index.php:57
-#: AntennaTypes/index.php:52 CustomerConnectionIps/index.php:50
-#: CustomerConnections/index.php:58 CustomerPoints/index.php:50
-#: DeviceTypes/index.php:54 ElectricityMeterReadings/index.php:52
-#: Manufacturers/index.php:44 PowerSupplies/index.php:66
+#: AccessPointContacts/index.php:61 AccessPoints/index.php:63
+#: AntennaTypes/index.php:52 CustomerConnectionIps/index.php:48
+#: CustomerConnections/index.php:57 CustomerPoints/index.php:60
+#: DeviceTypes/index.php:54 ElectricityMeterReadings/index.php:57
+#: Manufacturers/index.php:44 PowerSupplies/index.php:69
 #: PowerSupplyTypes/index.php:52 RadarInterferences/devices.php:58
 #: RadarInterferences/index.php:54 RadioLinks/index.php:48
 #: RadioUnitBands/index.php:44 RadioUnitTypes/index.php:50
-#: RadioUnits/index.php:93 RouterosDeviceInterfaces/index.php:78
-#: RouterosDeviceIps/index.php:56 RouterosDevices/index.php:69
+#: RadioUnits/index.php:94 RouterosDeviceInterfaces/index.php:79
+#: RouterosDeviceIps/index.php:57 RouterosDevices/index.php:70
+#: RouterosDevices/search.php:70
 msgid ""
 "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
 "total"
@@ -670,127 +699,121 @@ msgid "Delete Access Point Contact"
 msgstr "Odstranit kontakt přístupového bodu"
 
 #: AccessPointContacts/view.php:22 AccessPoints/view.php:22
-#: AccessPoints/view.php:63 AccessPoints/view.php:103 AccessPoints/view.php:139
-#: AccessPoints/view.php:185 AccessPoints/view.php:257 AntennaTypes/view.php:22
-#: AntennaTypes/view.php:66 CustomerConnectionIps/view.php:22
-#: CustomerConnections/view.php:22 CustomerConnections/view.php:62
-#: CustomerConnections/view.php:97 CustomerPoints/view.php:22
-#: CustomerPoints/view.php:58 DeviceTypes/view.php:22 DeviceTypes/view.php:66
-#: ElectricityMeterReadings/view.php:22 Manufacturers/view.php:22
-#: Manufacturers/view.php:50 Manufacturers/view.php:89
-#: Manufacturers/view.php:128 PowerSupplies/view.php:22
-#: PowerSupplyTypes/view.php:22 PowerSupplyTypes/view.php:66
-#: RadarInterferences/view.php:22 RadarInterferences/view.php:60
-#: RadioLinks/view.php:22 RadioLinks/view.php:58 RadioUnitBands/view.php:22
-#: RadioUnitBands/view.php:50 RadioUnitBands/view.php:89
-#: RadioUnitTypes/view.php:22 RadioUnitTypes/view.php:62 RadioUnits/view.php:22
-#: RouterosDeviceInterfaces/view.php:22 RouterosDeviceIps/view.php:22
-#: RouterosDevices/view.php:22 RouterosDevices/view.php:88
-#: RouterosDevices/view.php:143
+#: AntennaTypes/view.php:22 CustomerConnectionIps/view.php:22
+#: CustomerConnections/view.php:22 CustomerPoints/view.php:22
+#: DeviceTypes/view.php:22 ElectricityMeterReadings/view.php:22
+#: Manufacturers/view.php:22 PowerSupplies/view.php:22
+#: PowerSupplyTypes/view.php:22 RadarInterferences/view.php:22
+#: RadioLinks/view.php:22 RadioUnitBands/view.php:22 RadioUnitTypes/view.php:22
+#: RadioUnits/view.php:22 RouterosDeviceInterfaces/view.php:22
+#: RouterosDeviceIps/view.php:22 RouterosDevices/view.php:22
 msgid "Id"
 msgstr "ID"
 
 #: AccessPointContacts/view.php:26 AccessPoints/view.php:26
-#: AccessPoints/view.php:64 AccessPoints/view.php:104 AccessPoints/view.php:140
-#: AccessPoints/view.php:186 AccessPoints/view.php:258 AntennaTypes/view.php:26
-#: AntennaTypes/view.php:67 CustomerConnectionIps/view.php:26
-#: CustomerConnections/view.php:26 CustomerConnections/view.php:63
-#: CustomerConnections/view.php:98 CustomerPoints/view.php:26
-#: CustomerPoints/view.php:59 DeviceTypes/view.php:26 DeviceTypes/view.php:67
+#: AccessPoints/view.php:71 AccessPoints/view.php:109 AccessPoints/view.php:143
+#: AccessPoints/view.php:187 AccessPoints/view.php:257 AntennaTypes/view.php:26
+#: AntennaTypes/view.php:66 CustomerConnectionIps/view.php:26
+#: CustomerConnections/view.php:26 CustomerConnections/view.php:62
+#: CustomerConnections/view.php:93 CustomerPoints/view.php:26
+#: CustomerPoints/view.php:66 DeviceTypes/view.php:26 DeviceTypes/view.php:70
 #: ElectricityMeterReadings/view.php:26 Manufacturers/view.php:26
-#: Manufacturers/view.php:51 Manufacturers/view.php:90
-#: Manufacturers/view.php:129 PowerSupplies/view.php:26
-#: PowerSupplyTypes/view.php:26 PowerSupplyTypes/view.php:67
-#: RadarInterferences/view.php:26 RadarInterferences/view.php:62
-#: RadioLinks/view.php:26 RadioLinks/view.php:59 RadioUnitBands/view.php:26
-#: RadioUnitBands/view.php:51 RadioUnitBands/view.php:90
-#: RadioUnitTypes/view.php:26 RadioUnitTypes/view.php:63
+#: Manufacturers/view.php:50 Manufacturers/view.php:85
+#: Manufacturers/view.php:120 PowerSupplies/view.php:26
+#: PowerSupplyTypes/view.php:26 PowerSupplyTypes/view.php:66
+#: RadarInterferences/view.php:26 RadarInterferences/view.php:61
+#: RadioLinks/view.php:26 RadioLinks/view.php:58 RadioUnitBands/view.php:26
+#: RadioUnitBands/view.php:50 RadioUnitBands/view.php:85
+#: RadioUnitTypes/view.php:26 RadioUnitTypes/view.php:62
 #: RadioUnits/export.php:16 RadioUnits/view.php:26
 #: RouterosDeviceInterfaces/view.php:30 RouterosDeviceIps/view.php:30
-#: RouterosDevices/export.php:17 RouterosDevices/view.php:26
-#: RouterosDevices/view.php:89 RouterosDevices/view.php:144
+#: RouterosDevices/export.php:24 RouterosDevices/view.php:26
+#: RouterosDevices/view.php:90 RouterosDevices/view.php:143
 msgid "Name"
 msgstr "Jméno"
 
-#: AccessPointContacts/view.php:30 ElectricityMeterReadings/view.php:30
-#: PowerSupplies/view.php:34 RadioUnits/export.php:15 RadioUnits/view.php:34
-#: RouterosDevices/export.php:15 RouterosDevices/view.php:30
+#: AccessPointContacts/view.php:30 AntennaTypes/view.php:67
+#: CustomerConnections/view.php:94 DeviceTypes/view.php:71
+#: ElectricityMeterReadings/view.php:30 PowerSupplies/view.php:34
+#: PowerSupplyTypes/view.php:67 RadioLinks/view.php:59
+#: RadioUnitTypes/view.php:63 RadioUnits/export.php:15 RadioUnits/view.php:34
+#: RouterosDevices/export.php:22 RouterosDevices/view.php:30
 msgid "Access Point"
 msgstr "Přístupový bod"
 
-#: AccessPointContacts/view.php:34 AccessPoints/view.php:65
+#: AccessPointContacts/view.php:34 AccessPoints/view.php:72
 msgid "Phone"
 msgstr "Telefon"
 
-#: AccessPointContacts/view.php:38 AccessPoints/view.php:66
+#: AccessPointContacts/view.php:38 AccessPoints/view.php:73
 msgid "Email"
 msgstr "E-mail"
 
-#: AccessPointContacts/view.php:42 AccessPoints/view.php:67
-#: CustomerConnections/view.php:34 CustomerPoints/view.php:61
+#: AccessPointContacts/view.php:42 AccessPoints/view.php:74
+#: CustomerConnections/view.php:34 CustomerPoints/view.php:67
 msgid "Customer Number"
 msgstr "Číslo zákazníka"
 
-#: AccessPointContacts/view.php:46 AccessPoints/view.php:68
-#: CustomerConnections/view.php:38 CustomerPoints/view.php:62
+#: AccessPointContacts/view.php:46 AccessPoints/view.php:75
+#: CustomerConnections/view.php:38 CustomerPoints/view.php:68
 msgid "Contract Number"
 msgstr "Číslo smlouvy"
 
-#: AccessPointContacts/view.php:50 AccessPoints/view.php:42
-#: AccessPoints/view.php:70 AccessPoints/view.php:108 AccessPoints/view.php:149
-#: AccessPoints/view.php:208 AccessPoints/view.php:266 AntennaTypes/view.php:46
-#: AntennaTypes/view.php:90 CustomerConnectionIps/view.php:38
-#: CustomerConnections/view.php:42 CustomerConnections/view.php:67
-#: CustomerConnections/view.php:107 CustomerPoints/view.php:38
-#: CustomerPoints/view.php:64 DeviceTypes/view.php:46 DeviceTypes/view.php:75
+#: AccessPointContacts/view.php:50 AccessPoints/view.php:50
+#: AccessPoints/view.php:77 AccessPoints/view.php:113 AccessPoints/view.php:152
+#: AccessPoints/view.php:209 AccessPoints/view.php:265 AntennaTypes/view.php:46
+#: AntennaTypes/view.php:88 CustomerConnectionIps/view.php:38
+#: CustomerConnections/view.php:42 CustomerConnections/view.php:65
+#: CustomerConnections/view.php:102 CustomerPoints/view.php:46
+#: CustomerPoints/view.php:70 DeviceTypes/view.php:50 DeviceTypes/view.php:79
 #: ElectricityMeterReadings/view.php:42 Manufacturers/view.php:30
-#: Manufacturers/view.php:57 Manufacturers/view.php:96
-#: Manufacturers/view.php:134 PowerSupplies/view.php:62
-#: PowerSupplyTypes/view.php:46 PowerSupplyTypes/view.php:77
-#: RadarInterferences/view.php:46 RadarInterferences/view.php:76
-#: RadioLinks/view.php:38 RadioLinks/view.php:82 RadioUnitBands/view.php:30
-#: RadioUnitBands/view.php:57 RadioUnitBands/view.php:95
-#: RadioUnitTypes/view.php:42 RadioUnitTypes/view.php:86
+#: Manufacturers/view.php:55 Manufacturers/view.php:90
+#: Manufacturers/view.php:124 PowerSupplies/view.php:62
+#: PowerSupplyTypes/view.php:46 PowerSupplyTypes/view.php:75
+#: RadarInterferences/view.php:46 RadarInterferences/view.php:75
+#: RadioLinks/view.php:38 RadioLinks/view.php:80 RadioUnitBands/view.php:30
+#: RadioUnitBands/view.php:55 RadioUnitBands/view.php:89
+#: RadioUnitTypes/view.php:42 RadioUnitTypes/view.php:84
 #: RadioUnits/view.php:106 RouterosDeviceInterfaces/view.php:86
-#: RouterosDeviceIps/view.php:42 RouterosDevices/view.php:74
-#: RouterosDevices/view.php:103 RouterosDevices/view.php:147
+#: RouterosDeviceIps/view.php:42 RouterosDevices/view.php:76
+#: RouterosDevices/view.php:104 RouterosDevices/view.php:146
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: AccessPointContacts/view.php:54 AccessPoints/view.php:46
-#: AccessPoints/view.php:71 AccessPoints/view.php:109 AccessPoints/view.php:150
-#: AccessPoints/view.php:209 AccessPoints/view.php:267 AntennaTypes/view.php:50
-#: AntennaTypes/view.php:91 CustomerConnectionIps/view.php:42
-#: CustomerConnections/view.php:46 CustomerConnections/view.php:68
-#: CustomerConnections/view.php:108 CustomerPoints/view.php:42
-#: CustomerPoints/view.php:65 DeviceTypes/view.php:50 DeviceTypes/view.php:76
+#: AccessPointContacts/view.php:54 AccessPoints/view.php:54
+#: AccessPoints/view.php:78 AccessPoints/view.php:114 AccessPoints/view.php:153
+#: AccessPoints/view.php:210 AccessPoints/view.php:266 AntennaTypes/view.php:50
+#: AntennaTypes/view.php:89 CustomerConnectionIps/view.php:42
+#: CustomerConnections/view.php:46 CustomerConnections/view.php:66
+#: CustomerConnections/view.php:103 CustomerPoints/view.php:50
+#: CustomerPoints/view.php:71 DeviceTypes/view.php:54 DeviceTypes/view.php:80
 #: ElectricityMeterReadings/view.php:46 Manufacturers/view.php:34
-#: Manufacturers/view.php:58 Manufacturers/view.php:97
-#: Manufacturers/view.php:135 PowerSupplies/view.php:66
-#: PowerSupplyTypes/view.php:50 PowerSupplyTypes/view.php:78
-#: RadarInterferences/view.php:50 RadarInterferences/view.php:77
-#: RadioLinks/view.php:42 RadioLinks/view.php:83 RadioUnitBands/view.php:34
-#: RadioUnitBands/view.php:58 RadioUnitBands/view.php:96
-#: RadioUnitTypes/view.php:46 RadioUnitTypes/view.php:87
+#: Manufacturers/view.php:56 Manufacturers/view.php:91
+#: Manufacturers/view.php:125 PowerSupplies/view.php:66
+#: PowerSupplyTypes/view.php:50 PowerSupplyTypes/view.php:76
+#: RadarInterferences/view.php:50 RadarInterferences/view.php:76
+#: RadioLinks/view.php:42 RadioLinks/view.php:81 RadioUnitBands/view.php:34
+#: RadioUnitBands/view.php:56 RadioUnitBands/view.php:90
+#: RadioUnitTypes/view.php:46 RadioUnitTypes/view.php:85
 #: RadioUnits/view.php:110 RouterosDeviceInterfaces/view.php:90
-#: RouterosDeviceIps/view.php:46 RouterosDevices/view.php:78
-#: RouterosDevices/view.php:104 RouterosDevices/view.php:148
+#: RouterosDeviceIps/view.php:46 RouterosDevices/view.php:80
+#: RouterosDevices/view.php:105 RouterosDevices/view.php:147
 msgid "Modified"
 msgstr "Upraveno"
 
-#: AccessPointContacts/view.php:59 AccessPoints/view.php:51
-#: AccessPoints/view.php:69 AccessPoints/view.php:107 AccessPoints/view.php:148
-#: AccessPoints/view.php:207 AntennaTypes/view.php:55 AntennaTypes/view.php:89
+#: AccessPointContacts/view.php:59 AccessPoints/view.php:59
+#: AccessPoints/view.php:76 AccessPoints/view.php:112 AccessPoints/view.php:151
+#: AccessPoints/view.php:208 AntennaTypes/view.php:55 AntennaTypes/view.php:87
 #: CustomerConnectionIps/view.php:47 CustomerConnections/view.php:51
-#: CustomerConnections/view.php:66 CustomerPoints/view.php:47
-#: CustomerPoints/view.php:63 DeviceTypes/view.php:55
+#: CustomerConnections/view.php:64 CustomerPoints/view.php:55
+#: CustomerPoints/view.php:69 DeviceTypes/view.php:59
 #: ElectricityMeterReadings/view.php:51 Manufacturers/view.php:39
-#: Manufacturers/view.php:56 Manufacturers/view.php:95
-#: Manufacturers/view.php:133 PowerSupplies/view.php:71
-#: PowerSupplyTypes/view.php:55 PowerSupplyTypes/view.php:76
-#: RadioLinks/view.php:47 RadioLinks/view.php:81 RadioUnitBands/view.php:39
-#: RadioUnitBands/view.php:56 RadioUnitBands/view.php:94
-#: RadioUnitTypes/view.php:51 RadioUnitTypes/view.php:85
+#: Manufacturers/view.php:54 Manufacturers/view.php:89
+#: Manufacturers/view.php:123 PowerSupplies/view.php:71
+#: PowerSupplyTypes/view.php:55 PowerSupplyTypes/view.php:74
+#: RadioLinks/view.php:47 RadioLinks/view.php:79 RadioUnitBands/view.php:39
+#: RadioUnitBands/view.php:54 RadioUnitBands/view.php:88
+#: RadioUnitTypes/view.php:51 RadioUnitTypes/view.php:83
 #: RadioUnits/view.php:123
 msgid "Note"
 msgstr "Poznámka"
@@ -808,24 +831,32 @@ msgstr "Přidat přístupový bod"
 msgid "Edit Access Point"
 msgstr "Upravit přístupový bod"
 
-#: AccessPoints/index.php:9 CustomerConnections/index.php:9
-#: PowerSupplies/index.php:9 RadioUnits/index.php:9
-#: RouterosDeviceInterfaces/index.php:9 RouterosDeviceIps/index.php:9
-#: RouterosDevices/index.php:9
-msgid "Search"
-msgstr "Hledat"
-
-#: AccessPoints/index.php:14 AccessPoints/map.php:8 AccessPoints/view.php:14
+#: AccessPoints/index.php:15 AccessPoints/map.php:8 AccessPoints/view.php:14
 msgid "New Access Point"
 msgstr "Nový přístupový bod"
 
-#: AccessPoints/index.php:15
+#: AccessPoints/index.php:16
 msgid "Map"
 msgstr "Mapa"
 
-#: AccessPoints/index.php:16 AccessPoints/map.php:10 layout/default.php:58
+#: AccessPoints/index.php:17 AccessPoints/map.php:10 layout/default.php:59
 msgid "Access Points"
 msgstr "Přístupové body"
+
+#: AccessPoints/index.php:26 AccessPoints/view.php:42
+#: CustomerPoints/index.php:24 CustomerPoints/view.php:38
+msgid "Maps"
+msgstr "Mapy"
+
+#: AccessPoints/index.php:40 AccessPoints/view.php:44
+#: CustomerPoints/index.php:37 CustomerPoints/view.php:40
+msgid "Google Maps"
+msgstr "Google Mapy"
+
+#: AccessPoints/index.php:41 AccessPoints/view.php:46
+#: CustomerPoints/index.php:38 CustomerPoints/view.php:42
+msgid "Mapy.cz"
+msgstr "Mapy.cz"
 
 #: AccessPoints/map.php:42
 msgid "Map Options"
@@ -839,226 +870,227 @@ msgstr "Odstranit přístupový bod"
 msgid "Device Name"
 msgstr "Název zařízení"
 
-#: AccessPoints/view.php:34 CustomerPoints/view.php:30 RadioUnits/export.php:40
-#: RouterosDevices/export.php:29
-msgid "Gps X"
-msgstr "Gps X"
-
-#: AccessPoints/view.php:38 CustomerPoints/view.php:34 RadioUnits/export.php:39
-#: RouterosDevices/export.php:28
+#: AccessPoints/view.php:34 CustomerPoints/view.php:30 RadioUnits/export.php:39
+#: RouterosDevices/export.php:35
 msgid "Gps Y"
 msgstr "Gps Y"
 
-#: AccessPoints/view.php:58
+#: AccessPoints/view.php:38 CustomerPoints/view.php:34 RadioUnits/export.php:40
+#: RouterosDevices/export.php:36
+msgid "Gps X"
+msgstr "Gps X"
+
+#: AccessPoints/view.php:66
 msgid "Related Access Point Contacts"
 msgstr "Související kontakty přístupových bodů"
 
-#: AccessPoints/view.php:97 ElectricityMeterReadings/index.php:8
+#: AccessPoints/view.php:103 ElectricityMeterReadings/index.php:15
 #: ElectricityMeterReadings/view.php:14
 msgid "New Electricity Meter Reading"
 msgstr "Nový odečet elektroměru"
 
-#: AccessPoints/view.php:98
+#: AccessPoints/view.php:104
 msgid "Related Electricity Meter Readings"
 msgstr "Související odečty elektroměrů"
 
-#: AccessPoints/view.php:105 ElectricityMeterReadings/view.php:34
+#: AccessPoints/view.php:110 ElectricityMeterReadings/view.php:34
 msgid "Reading Date"
 msgstr "Datum odečtu"
 
-#: AccessPoints/view.php:106 ElectricityMeterReadings/view.php:38
+#: AccessPoints/view.php:111 ElectricityMeterReadings/view.php:38
 msgid "Reading Value"
 msgstr "Hodnota odečtu"
 
-#: AccessPoints/view.php:133 PowerSupplies/index.php:14
+#: AccessPoints/view.php:137 PowerSupplies/index.php:15
 #: PowerSupplies/view.php:14
 msgid "New Power Supply"
 msgstr "Nový napájecí zdroj"
 
-#: AccessPoints/view.php:134 PowerSupplyTypes/view.php:61
+#: AccessPoints/view.php:138 PowerSupplyTypes/view.php:61
 msgid "Related Power Supplies"
 msgstr "Související napájecí zdroje"
 
-#: AccessPoints/view.php:141 PowerSupplyTypes/view.php:68
-msgid "Power Supply Type Id"
-msgstr "ID napájecího zdroje"
+#: AccessPoints/view.php:144 PowerSupplies/view.php:30
+msgid "Power Supply Type"
+msgstr "Typ napájecího zdroje"
 
-#: AccessPoints/view.php:142 AccessPoints/view.php:201
-#: AccessPoints/view.php:263 AntennaTypes/view.php:83
-#: CustomerConnections/view.php:104 DeviceTypes/view.php:72
-#: PowerSupplies/view.php:38 PowerSupplyTypes/view.php:70
-#: RadioLinks/view.php:75 RadioUnitTypes/view.php:79 RadioUnits/export.php:33
-#: RadioUnits/view.php:54 RouterosDevices/export.php:22
-#: RouterosDevices/view.php:62
+#: AccessPoints/view.php:145 AccessPoints/view.php:202
+#: AccessPoints/view.php:262 AntennaTypes/view.php:81
+#: CustomerConnections/view.php:99 DeviceTypes/view.php:76
+#: PowerSupplies/view.php:38 PowerSupplyTypes/view.php:68
+#: RadioLinks/view.php:73 RadioUnitTypes/view.php:77 RadioUnits/export.php:33
+#: RadioUnits/view.php:54 RouterosDevices/export.php:29
+#: RouterosDevices/view.php:64
 msgid "Serial Number"
 msgstr "Sériové číslo"
 
-#: AccessPoints/view.php:143 PowerSupplies/view.php:46
-#: PowerSupplyTypes/view.php:71
+#: AccessPoints/view.php:146 PowerSupplies/view.php:46
+#: PowerSupplyTypes/view.php:69
 msgid "Battery Count"
 msgstr "Počet baterií"
 
-#: AccessPoints/view.php:144 PowerSupplies/view.php:50
-#: PowerSupplyTypes/view.php:72
+#: AccessPoints/view.php:147 PowerSupplies/view.php:50
+#: PowerSupplyTypes/view.php:70
 msgid "Battery Voltage"
 msgstr "Napětí baterie"
 
-#: AccessPoints/view.php:145 PowerSupplies/view.php:54
-#: PowerSupplyTypes/view.php:73
+#: AccessPoints/view.php:148 PowerSupplies/view.php:54
+#: PowerSupplyTypes/view.php:71
 msgid "Battery Capacity"
 msgstr "Kapacita baterie"
 
-#: AccessPoints/view.php:146 PowerSupplies/view.php:58
-#: PowerSupplyTypes/view.php:74
+#: AccessPoints/view.php:149 PowerSupplies/view.php:58
+#: PowerSupplyTypes/view.php:72
 msgid "Battery Replacement"
 msgstr "Výměna baterie"
 
-#: AccessPoints/view.php:147 PowerSupplies/view.php:42
-#: PowerSupplyTypes/view.php:75
+#: AccessPoints/view.php:150 PowerSupplies/view.php:42
+#: PowerSupplyTypes/view.php:73
 msgid "Battery Duration"
 msgstr "Výdrž baterie"
 
-#: AccessPoints/view.php:179 RadioUnits/index.php:14 RadioUnits/view.php:14
+#: AccessPoints/view.php:181 RadioUnits/index.php:15 RadioUnits/view.php:14
 msgid "New Radio Unit"
 msgstr "Nová rádiová jednotka"
 
-#: AccessPoints/view.php:180 AntennaTypes/view.php:61 RadioLinks/view.php:53
+#: AccessPoints/view.php:182 AntennaTypes/view.php:61 RadioLinks/view.php:53
 #: RadioUnitTypes/view.php:57
 msgid "Related Radio Units"
 msgstr "Související rádiové jednotky"
 
-#: AccessPoints/view.php:187 AntennaTypes/view.php:68 RadioLinks/view.php:60
-#: RadioUnitTypes/view.php:64
-msgid "Radio Unit Type Id"
-msgstr "ID typu rádiové jednotky"
+#: AccessPoints/view.php:188 AntennaTypes/view.php:69 RadioLinks/view.php:60
+#: RadioUnits/export.php:17 RadioUnits/view.php:30
+msgid "Radio Unit Type"
+msgstr "Typ rádiové jednotky"
 
-#: AccessPoints/view.php:188 AntennaTypes/view.php:70 RadioLinks/view.php:62
-#: RadioUnitTypes/view.php:66
-msgid "Radio Link Id"
-msgstr "ID rádiového spojení"
+#: AccessPoints/view.php:189 AntennaTypes/view.php:68
+#: RadioUnitTypes/view.php:64 RadioUnits/export.php:18 RadioUnits/view.php:38
+msgid "Radio Link"
+msgstr "Rádiové spojení"
 
-#: AccessPoints/view.php:189 AntennaTypes/view.php:71 RadioLinks/view.php:63
-#: RadioUnitTypes/view.php:67
-msgid "Antenna Type Id"
-msgstr "ID typu antény"
+#: AccessPoints/view.php:190 RadioLinks/view.php:61 RadioUnitTypes/view.php:65
+#: RadioUnits/export.php:19 RadioUnits/view.php:42
+msgid "Antenna Type"
+msgstr "Typ antény"
 
-#: AccessPoints/view.php:190 AntennaTypes/view.php:72 RadioLinks/view.php:64
-#: RadioUnitTypes/view.php:68 RadioUnits/export.php:22 RadioUnits/view.php:46
+#: AccessPoints/view.php:191 AntennaTypes/view.php:70 RadioLinks/view.php:62
+#: RadioUnitTypes/view.php:66 RadioUnits/export.php:22 RadioUnits/view.php:46
 msgid "Polarization"
 msgstr "Polarizace"
 
-#: AccessPoints/view.php:191 AntennaTypes/view.php:73 RadioLinks/view.php:65
-#: RadioUnitTypes/view.php:69 RadioUnits/export.php:23 RadioUnits/view.php:74
+#: AccessPoints/view.php:192 AntennaTypes/view.php:71 RadioLinks/view.php:63
+#: RadioUnitTypes/view.php:67 RadioUnits/export.php:23 RadioUnits/view.php:74
 msgid "Channel Width"
 msgstr "Šířka kanálu"
 
-#: AccessPoints/view.php:192 AntennaTypes/view.php:74 RadioLinks/view.php:66
-#: RadioUnitTypes/view.php:70 RadioUnits/export.php:24 RadioUnits/view.php:78
+#: AccessPoints/view.php:193 AntennaTypes/view.php:72 RadioLinks/view.php:64
+#: RadioUnitTypes/view.php:68 RadioUnits/export.php:24 RadioUnits/view.php:78
 msgid "Tx Frequency"
 msgstr "Tx frekvence"
 
-#: AccessPoints/view.php:193 AntennaTypes/view.php:75 RadioLinks/view.php:67
-#: RadioUnitTypes/view.php:71 RadioUnits/export.php:25 RadioUnits/view.php:82
+#: AccessPoints/view.php:194 AntennaTypes/view.php:73 RadioLinks/view.php:65
+#: RadioUnitTypes/view.php:69 RadioUnits/export.php:25 RadioUnits/view.php:82
 msgid "Rx Frequency"
 msgstr "Rx frekvence"
 
-#: AccessPoints/view.php:194 AntennaTypes/view.php:76 RadioLinks/view.php:68
-#: RadioUnitTypes/view.php:72 RadioUnits/export.php:26 RadioUnits/view.php:86
+#: AccessPoints/view.php:195 AntennaTypes/view.php:74 RadioLinks/view.php:66
+#: RadioUnitTypes/view.php:70 RadioUnits/export.php:26 RadioUnits/view.php:86
 msgid "Tx Power"
 msgstr "Výkon Tx"
 
-#: AccessPoints/view.php:195 AntennaTypes/view.php:77 RadioLinks/view.php:69
-#: RadioUnitTypes/view.php:73 RadioUnits/export.php:27 RadioUnits/view.php:90
+#: AccessPoints/view.php:196 AntennaTypes/view.php:75 RadioLinks/view.php:67
+#: RadioUnitTypes/view.php:71 RadioUnits/export.php:27 RadioUnits/view.php:90
 msgid "Rx Signal"
 msgstr "Rx signál"
 
-#: AccessPoints/view.php:196 AntennaTypes/view.php:78 RadioLinks/view.php:70
-#: RadioUnitTypes/view.php:74 RadioUnits/export.php:28 RadioUnits/view.php:94
+#: AccessPoints/view.php:197 AntennaTypes/view.php:76 RadioLinks/view.php:68
+#: RadioUnitTypes/view.php:72 RadioUnits/export.php:28 RadioUnits/view.php:94
 msgid "Operating Speed"
 msgstr "Provozní rychlost"
 
-#: AccessPoints/view.php:197 AntennaTypes/view.php:79 RadioLinks/view.php:71
-#: RadioUnitTypes/view.php:75 RadioUnits/export.php:29 RadioUnits/view.php:98
+#: AccessPoints/view.php:198 AntennaTypes/view.php:77 RadioLinks/view.php:69
+#: RadioUnitTypes/view.php:73 RadioUnits/export.php:29 RadioUnits/view.php:98
 msgid "Maximal Speed"
 msgstr "Maximální rychlost"
 
-#: AccessPoints/view.php:198 AntennaTypes/view.php:80 RadioLinks/view.php:72
-#: RadioUnitTypes/view.php:76 RadioUnits/export.php:30 RadioUnits/view.php:114
+#: AccessPoints/view.php:199 AntennaTypes/view.php:78 RadioLinks/view.php:70
+#: RadioUnitTypes/view.php:74 RadioUnits/export.php:30 RadioUnits/view.php:114
 msgid "Acm"
 msgstr "Acm"
 
-#: AccessPoints/view.php:199 AntennaTypes/view.php:81 RadioLinks/view.php:73
-#: RadioUnitTypes/view.php:77 RadioUnits/export.php:31 RadioUnits/view.php:118
+#: AccessPoints/view.php:200 AntennaTypes/view.php:79 RadioLinks/view.php:71
+#: RadioUnitTypes/view.php:75 RadioUnits/export.php:31 RadioUnits/view.php:118
 msgid "Atpc"
 msgstr "Atpc"
 
-#: AccessPoints/view.php:200 AccessPoints/view.php:265 AntennaTypes/view.php:82
-#: CustomerConnections/view.php:106 DeviceTypes/view.php:74
-#: RadioLinks/view.php:74 RadioUnitTypes/view.php:78 RadioUnits/export.php:32
-#: RadioUnits/view.php:50 RouterosDevices/export.php:24
-#: RouterosDevices/view.php:70
+#: AccessPoints/view.php:201 AccessPoints/view.php:264 AntennaTypes/view.php:80
+#: CustomerConnections/view.php:101 DeviceTypes/view.php:78
+#: RadioLinks/view.php:72 RadioUnitTypes/view.php:76 RadioUnits/export.php:32
+#: RadioUnits/view.php:50 RouterosDevices/export.php:31
+#: RouterosDevices/view.php:72
 msgid "Firmware Version"
 msgstr "Verze firmwaru"
 
-#: AccessPoints/view.php:202 AntennaTypes/view.php:84 RadioLinks/view.php:76
-#: RadioUnitTypes/view.php:80 RadioUnits/export.php:34 RadioUnits/view.php:58
+#: AccessPoints/view.php:203 AntennaTypes/view.php:82 RadioLinks/view.php:74
+#: RadioUnitTypes/view.php:78 RadioUnits/export.php:34 RadioUnits/view.php:58
 msgid "Station Address"
 msgstr "Adresa stanice"
 
-#: AccessPoints/view.php:203 AntennaTypes/view.php:85 RadioLinks/view.php:77
-#: RadioUnitTypes/view.php:81 RadioUnits/export.php:35 RadioUnits/view.php:102
+#: AccessPoints/view.php:204 AntennaTypes/view.php:83 RadioLinks/view.php:75
+#: RadioUnitTypes/view.php:79 RadioUnits/export.php:35 RadioUnits/view.php:102
 msgid "Expiration Date"
 msgstr "Datum vypršení platnosti"
 
-#: AccessPoints/view.php:204 AccessPoints/view.php:260 AntennaTypes/view.php:86
-#: CustomerConnectionIps/view.php:34 CustomerConnections/view.php:65
-#: CustomerConnections/view.php:101 DeviceTypes/view.php:69
-#: RadioLinks/view.php:78 RadioUnitTypes/view.php:82 RadioUnits/export.php:36
+#: AccessPoints/view.php:205 AccessPoints/view.php:259 AntennaTypes/view.php:84
+#: CustomerConnectionIps/view.php:34 CustomerConnections/view.php:63
+#: CustomerConnections/view.php:96 DeviceTypes/view.php:73
+#: RadioLinks/view.php:76 RadioUnitTypes/view.php:80 RadioUnits/export.php:36
 #: RadioUnits/view.php:62 RouterosDeviceIps/view.php:34
-#: RouterosDevices/export.php:19 RouterosDevices/view.php:42
-#: RouterosDevices/view.php:145
+#: RouterosDevices/export.php:26 RouterosDevices/view.php:42
+#: RouterosDevices/view.php:144
 msgid "Ip Address"
 msgstr "IP adresa"
 
-#: AccessPoints/view.php:205 AntennaTypes/view.php:87 RadioLinks/view.php:79
-#: RadioUnitTypes/view.php:83 RadioUnits/export.php:37 RadioUnits/view.php:66
+#: AccessPoints/view.php:206 AntennaTypes/view.php:85 RadioLinks/view.php:77
+#: RadioUnitTypes/view.php:81 RadioUnits/export.php:37 RadioUnits/view.php:66
 msgid "Device Login"
 msgstr "Uživatelské jméno zařízení"
 
-#: AccessPoints/view.php:206 AntennaTypes/view.php:88 RadioLinks/view.php:80
-#: RadioUnitTypes/view.php:84 RadioUnits/export.php:38 RadioUnits/view.php:70
+#: AccessPoints/view.php:207 AntennaTypes/view.php:86 RadioLinks/view.php:78
+#: RadioUnitTypes/view.php:82 RadioUnits/export.php:38 RadioUnits/view.php:70
 msgid "Device Password"
 msgstr "Heslo zařízení"
 
-#: AccessPoints/view.php:251 RouterosDevices/index.php:14
-#: RouterosDevices/view.php:14
+#: AccessPoints/view.php:251 RouterosDevices/index.php:15
+#: RouterosDevices/search.php:15 RouterosDevices/view.php:14
 msgid "New Routeros Device"
 msgstr "Nové zařízení RouterOS"
 
-#: AccessPoints/view.php:252 CustomerConnections/view.php:92
-#: DeviceTypes/view.php:61
+#: AccessPoints/view.php:252 CustomerConnections/view.php:88
+#: DeviceTypes/view.php:65
 msgid "Related Routeros Devices"
 msgstr "Související zařízení RouterOS"
 
-#: AccessPoints/view.php:259 CustomerConnections/view.php:100
-msgid "Device Type Id"
-msgstr "ID typu zařízení"
+#: AccessPoints/view.php:258 CustomerConnections/view.php:95
+#: RouterosDevices/export.php:25 RouterosDevices/view.php:38
+msgid "Device Type"
+msgstr "Typ zařízení"
 
-#: AccessPoints/view.php:261 CustomerConnections/view.php:102
-#: DeviceTypes/view.php:70 RouterosDevices/export.php:20
-#: RouterosDevices/view.php:54
+#: AccessPoints/view.php:260 CustomerConnections/view.php:97
+#: DeviceTypes/view.php:74 RouterosDevices/export.php:27
+#: RouterosDevices/view.php:56
 msgid "System Description"
 msgstr "Popis systému"
 
-#: AccessPoints/view.php:262 CustomerConnections/view.php:103
-#: DeviceTypes/view.php:71 RouterosDevices/export.php:21
-#: RouterosDevices/view.php:58
+#: AccessPoints/view.php:261 CustomerConnections/view.php:98
+#: DeviceTypes/view.php:75 RouterosDevices/export.php:28
+#: RouterosDevices/view.php:60
 msgid "Board Name"
 msgstr "Název desky"
 
-#: AccessPoints/view.php:264 CustomerConnections/view.php:105
-#: DeviceTypes/view.php:73 RouterosDevices/export.php:23
-#: RouterosDevices/view.php:66
+#: AccessPoints/view.php:263 CustomerConnections/view.php:100
+#: DeviceTypes/view.php:77 RouterosDevices/export.php:30
+#: RouterosDevices/view.php:68
 msgid "Software Version"
 msgstr "Verze softwaru"
 
@@ -1078,7 +1110,7 @@ msgstr "Upravit typ antény"
 msgid "New Antenna Type"
 msgstr "Nový typ antény"
 
-#: AntennaTypes/index.php:9 layout/default.php:77
+#: AntennaTypes/index.php:9 layout/default.php:97
 msgid "Antenna Types"
 msgstr "Typy antén"
 
@@ -1086,32 +1118,28 @@ msgstr "Typy antén"
 msgid "Delete Antenna Type"
 msgstr "Odstranit typ antény"
 
-#: AntennaTypes/view.php:30 RadioUnitTypes/view.php:30
+#: AntennaTypes/view.php:30 Manufacturers/view.php:51
+#: Manufacturers/view.php:121 RadioUnitTypes/view.php:30
 msgid "Radio Unit Band"
 msgstr "Pásmo rádiových jednotek"
 
 #: AntennaTypes/view.php:34 PowerSupplyTypes/view.php:30
+#: RadioUnitBands/view.php:51 RadioUnitBands/view.php:86
 #: RadioUnitTypes/view.php:34 RadioUnits/export.php:20
 msgid "Manufacturer"
 msgstr "Výrobce"
 
-#: AntennaTypes/view.php:38 Manufacturers/view.php:55 Manufacturers/view.php:94
-#: Manufacturers/view.php:132 PowerSupplyTypes/view.php:34
-#: RadioUnitBands/view.php:55 RadioUnitBands/view.php:93
+#: AntennaTypes/view.php:38 Manufacturers/view.php:53 Manufacturers/view.php:88
+#: Manufacturers/view.php:122 PowerSupplyTypes/view.php:34
+#: RadioUnitBands/view.php:53 RadioUnitBands/view.php:87
 #: RadioUnitTypes/view.php:38
 msgid "Part Number"
 msgstr "Číslo dílu"
 
-#: AntennaTypes/view.php:42 Manufacturers/view.php:54
-#: RadioUnitBands/view.php:54
+#: AntennaTypes/view.php:42 Manufacturers/view.php:52
+#: RadioUnitBands/view.php:52
 msgid "Antenna Gain"
 msgstr "Zisk antény"
-
-#: AntennaTypes/view.php:69 CustomerConnections/view.php:99
-#: DeviceTypes/view.php:68 PowerSupplyTypes/view.php:69 RadioLinks/view.php:61
-#: RadioUnitTypes/view.php:65
-msgid "Access Point Id"
-msgstr "ID přístupového bodu"
 
 #: CustomerConnectionIps/add.php:11 CustomerConnectionIps/edit.php:16
 #: CustomerConnectionIps/view.php:13
@@ -1130,7 +1158,7 @@ msgstr "Upravit IP připojení zákazníka"
 msgid "New Customer Connection Ip"
 msgstr "Nová IP připojení zákazníka"
 
-#: CustomerConnectionIps/index.php:9 layout/default.php:71
+#: CustomerConnectionIps/index.php:9 layout/default.php:91
 msgid "Customer Connection Ips"
 msgstr "IP připojení zákazníků"
 
@@ -1138,8 +1166,8 @@ msgstr "IP připojení zákazníků"
 msgid "Delete Customer Connection Ip"
 msgstr "Odstranit IP připojení zákazníka"
 
-#: CustomerConnectionIps/view.php:30 RouterosDevices/export.php:16
-#: RouterosDevices/view.php:34
+#: CustomerConnectionIps/view.php:30 DeviceTypes/view.php:72
+#: RouterosDevices/export.php:23 RouterosDevices/view.php:34
 msgid "Customer Connection"
 msgstr "Připojení zákazníka"
 
@@ -1156,11 +1184,11 @@ msgstr "Přidat připojení zákazníka"
 msgid "Edit Customer Connection"
 msgstr "Upravit připojení zákazníka"
 
-#: CustomerConnections/index.php:14 CustomerConnections/view.php:14
+#: CustomerConnections/index.php:15 CustomerConnections/view.php:14
 msgid "New Customer Connection"
 msgstr "Nové připojení zákazníka"
 
-#: CustomerConnections/index.php:15 layout/default.php:59
+#: CustomerConnections/index.php:16 layout/default.php:90
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
 
@@ -1176,11 +1204,6 @@ msgstr "Zákaznický bod"
 msgid "Related Customer Connection Ips"
 msgstr "Související IP připojení zákazníků"
 
-#: CustomerConnections/view.php:64 CustomerConnections/view.php:109
-#: DeviceTypes/view.php:77
-msgid "Customer Connection Id"
-msgstr "ID připojení zákazníka"
-
 #: CustomerPoints/add.php:11 CustomerPoints/edit.php:16
 #: CustomerPoints/view.php:13
 msgid "List Customer Points"
@@ -1194,11 +1217,11 @@ msgstr "Přidat zákaznický bod"
 msgid "Edit Customer Point"
 msgstr "Upravit zákaznický bod"
 
-#: CustomerPoints/index.php:8 CustomerPoints/view.php:14
+#: CustomerPoints/index.php:15 CustomerPoints/view.php:14
 msgid "New Customer Point"
 msgstr "Nový zákaznický bod"
 
-#: CustomerPoints/index.php:9 layout/default.php:70
+#: CustomerPoints/index.php:16 layout/default.php:60
 msgid "Customer Points"
 msgstr "Zákaznické body"
 
@@ -1206,13 +1229,9 @@ msgstr "Zákaznické body"
 msgid "Delete Customer Point"
 msgstr "Odstranit zákaznický bod"
 
-#: CustomerPoints/view.php:53
+#: CustomerPoints/view.php:61
 msgid "Related Customer Connections"
 msgstr "Související připojení zákazníků"
-
-#: CustomerPoints/view.php:60
-msgid "Customer Point Id"
-msgstr "ID zákaznického bodu"
 
 #: DeviceTypes/add.php:11 DeviceTypes/edit.php:16 DeviceTypes/view.php:13
 msgid "List Device Types"
@@ -1230,7 +1249,7 @@ msgstr "Upravit typ zařízení"
 msgid "New Device Type"
 msgstr "Nový typ zařízení"
 
-#: DeviceTypes/index.php:9 layout/default.php:83
+#: DeviceTypes/index.php:9 layout/default.php:103
 msgid "Device Types"
 msgstr "Typy zařízení"
 
@@ -1250,19 +1269,23 @@ msgstr "Komunita SNMP"
 msgid "Assign Access Point By Device Name"
 msgstr "Přiřazení přístupového bodu podle názvu zařízení"
 
-#: DeviceTypes/view.php:39 DeviceTypes/view.php:43 RadioUnits/view.php:115
-#: RadioUnits/view.php:119
+#: DeviceTypes/view.php:39 DeviceTypes/view.php:43 DeviceTypes/view.php:47
+#: RadioUnits/view.php:115 RadioUnits/view.php:119
 msgid "Yes"
 msgstr "Ano"
 
-#: DeviceTypes/view.php:39 DeviceTypes/view.php:43 RadioUnits/view.php:115
-#: RadioUnits/view.php:119
+#: DeviceTypes/view.php:39 DeviceTypes/view.php:43 DeviceTypes/view.php:47
+#: RadioUnits/view.php:115 RadioUnits/view.php:119
 msgid "No"
 msgstr "Ne"
 
 #: DeviceTypes/view.php:42
 msgid "Assign Customer Connection By Ip"
 msgstr "Přiřadit připojení zákazníka podle IP"
+
+#: DeviceTypes/view.php:46
+msgid "Allow Technicians Access"
+msgstr "Povolit technikům přístup"
 
 #: ElectricityMeterReadings/add.php:11 ElectricityMeterReadings/edit.php:16
 #: ElectricityMeterReadings/view.php:13
@@ -1277,7 +1300,7 @@ msgstr "Přidat odečet elektroměru"
 msgid "Edit Electricity Meter Reading"
 msgstr "Upravit odečet elektroměru"
 
-#: ElectricityMeterReadings/index.php:9 layout/default.php:67
+#: ElectricityMeterReadings/index.php:16 layout/default.php:87
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
@@ -1301,7 +1324,7 @@ msgstr "Upravit výrobce"
 msgid "New Manufacturer"
 msgstr "Nový výrobce"
 
-#: Manufacturers/index.php:9 layout/default.php:78 layout/default.php:88
+#: Manufacturers/index.php:9 layout/default.php:98 layout/default.php:108
 msgid "Manufacturers"
 msgstr "Výrobci"
 
@@ -1313,30 +1336,19 @@ msgstr "Odstranit výrobce"
 msgid "Related Antenna Types"
 msgstr "Související typy antén"
 
-#: Manufacturers/view.php:52 Manufacturers/view.php:130
-#: RadioUnitBands/view.php:52 RadioUnitBands/view.php:91
-msgid "Radio Unit Band Id"
-msgstr "ID pásma rádiové jednotky"
-
-#: Manufacturers/view.php:53 Manufacturers/view.php:91
-#: Manufacturers/view.php:131 RadioUnitBands/view.php:53
-#: RadioUnitBands/view.php:92
-msgid "Manufacturer Id"
-msgstr "ID výrobce"
-
-#: Manufacturers/view.php:84
+#: Manufacturers/view.php:80
 msgid "Related Power Supply Types"
 msgstr "Související typy napájecích zdrojů"
 
-#: Manufacturers/view.php:92 PowerSupplyTypes/view.php:38
+#: Manufacturers/view.php:86 PowerSupplyTypes/view.php:38
 msgid "Voltage"
 msgstr "Napětí"
 
-#: Manufacturers/view.php:93 PowerSupplyTypes/view.php:42
+#: Manufacturers/view.php:87 PowerSupplyTypes/view.php:42
 msgid "Current"
 msgstr "Proud"
 
-#: Manufacturers/view.php:123 RadioUnitBands/view.php:84
+#: Manufacturers/view.php:115 RadioUnitBands/view.php:80
 msgid "Related Radio Unit Types"
 msgstr "Související typy rádiových jednotek"
 
@@ -1352,17 +1364,13 @@ msgstr "Přidat napájecí zdroj"
 msgid "Edit Power Supply"
 msgstr "Upravit napájecí zdroj"
 
-#: PowerSupplies/index.php:15 layout/default.php:62
+#: PowerSupplies/index.php:16 layout/default.php:63
 msgid "Power Supplies"
 msgstr "Napájecí zdroje"
 
 #: PowerSupplies/view.php:12
 msgid "Delete Power Supply"
 msgstr "Odstranit napájecí zdroj"
-
-#: PowerSupplies/view.php:30
-msgid "Power Supply Type"
-msgstr "Typ napájecího zdroje"
 
 #: PowerSupplyTypes/add.php:11 PowerSupplyTypes/edit.php:16
 #: PowerSupplyTypes/view.php:13
@@ -1381,7 +1389,7 @@ msgstr "Upravit typ napájecího zdroje"
 msgid "New Power Supply Type"
 msgstr "Nový typ napájecího zdroje"
 
-#: PowerSupplyTypes/index.php:9 layout/default.php:87
+#: PowerSupplyTypes/index.php:9 layout/default.php:107
 msgid "Power Supply Types"
 msgstr "Typy napájecích zdrojů"
 
@@ -1418,7 +1426,7 @@ msgstr "Nové rušení radaru"
 msgid "Devices That Interfere"
 msgstr "Zařízení, která ruší"
 
-#: RadarInterferences/index.php:11 layout/default.php:84
+#: RadarInterferences/index.php:11 layout/default.php:104
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
@@ -1426,15 +1434,15 @@ msgstr "Rušení radarů"
 msgid "Delete Radar Interference"
 msgstr "Odstranit rušení radaru"
 
-#: RadarInterferences/view.php:30 RadarInterferences/view.php:64
-#: RouterosDeviceInterfaces/view.php:38 RouterosDevices/export.php:25
-#: RouterosDevices/view.php:91
+#: RadarInterferences/view.php:30 RadarInterferences/view.php:63
+#: RouterosDeviceInterfaces/view.php:38 RouterosDevices/export.php:32
+#: RouterosDevices/view.php:92
 msgid "Mac Address"
 msgstr "MAC adresa"
 
-#: RadarInterferences/view.php:34 RadarInterferences/view.php:65
-#: RouterosDeviceInterfaces/view.php:42 RouterosDevices/export.php:27
-#: RouterosDevices/view.php:92
+#: RadarInterferences/view.php:34 RadarInterferences/view.php:64
+#: RouterosDeviceInterfaces/view.php:42 RouterosDevices/export.php:34
+#: RouterosDevices/view.php:93
 msgid "Ssid"
 msgstr "SSID"
 
@@ -1446,68 +1454,69 @@ msgstr "Název rádia"
 msgid "Signal"
 msgstr "Signál"
 
-#: RadarInterferences/view.php:55 RouterosDevices/view.php:83
+#: RadarInterferences/view.php:55 RouterosDevices/view.php:85
 msgid "Related Routeros Device Interfaces"
 msgstr "Související rozhraní zařízení RouterOS"
 
-#: RadarInterferences/view.php:61
-msgid "Routeros Device Id"
-msgstr "ID zařízení RouterOS"
+#: RadarInterferences/view.php:60 RouterosDeviceInterfaces/view.php:26
+#: RouterosDeviceIps/view.php:26
+msgid "Routeros Device"
+msgstr "Zařízení RouterOS"
 
-#: RadarInterferences/view.php:63 RouterosDeviceInterfaces/view.php:34
-#: RouterosDevices/view.php:90
+#: RadarInterferences/view.php:62 RouterosDeviceInterfaces/view.php:34
+#: RouterosDevices/view.php:91
 msgid "Comment"
 msgstr "Komentář"
 
-#: RadarInterferences/view.php:66 RouterosDeviceInterfaces/view.php:46
-#: RouterosDevices/view.php:93
+#: RadarInterferences/view.php:65 RouterosDeviceInterfaces/view.php:46
+#: RouterosDevices/view.php:94
 msgid "Bssid"
 msgstr "BSSID"
 
-#: RadarInterferences/view.php:67 RadioUnits/export.php:21
-#: RouterosDeviceInterfaces/view.php:50 RouterosDevices/export.php:26
-#: RouterosDevices/view.php:94
+#: RadarInterferences/view.php:66 RadioUnits/export.php:21
+#: RouterosDeviceInterfaces/view.php:50 RouterosDevices/export.php:33
+#: RouterosDevices/view.php:95
 msgid "Band"
 msgstr "Pásmo"
 
-#: RadarInterferences/view.php:68 RouterosDeviceInterfaces/view.php:54
-#: RouterosDevices/view.php:95
+#: RadarInterferences/view.php:67 RouterosDeviceInterfaces/view.php:54
+#: RouterosDevices/view.php:96
 msgid "Frequency"
 msgstr "Frekvence"
 
-#: RadarInterferences/view.php:69 RouterosDeviceInterfaces/view.php:58
-#: RouterosDevices/view.php:96
+#: RadarInterferences/view.php:68 RouterosDeviceInterfaces/view.php:58
+#: RouterosDevices/view.php:97
 msgid "Noise Floor"
 msgstr "Noise Floor"
 
-#: RadarInterferences/view.php:70 RouterosDeviceInterfaces/view.php:62
-#: RouterosDevices/view.php:97
+#: RadarInterferences/view.php:69 RouterosDeviceInterfaces/view.php:62
+#: RouterosDevices/view.php:98
 msgid "Client Count"
 msgstr "Počet klientů"
 
-#: RadarInterferences/view.php:71 RouterosDeviceInterfaces/view.php:66
-#: RouterosDevices/view.php:98
+#: RadarInterferences/view.php:70 RouterosDeviceInterfaces/view.php:66
+#: RouterosDevices/view.php:99
 msgid "Overall Tx Ccq"
 msgstr "Celkově Tx Ccq"
 
-#: RadarInterferences/view.php:72 RouterosDeviceInterfaces/view.php:70
-#: RouterosDeviceIps/view.php:38 RouterosDevices/view.php:99
-#: RouterosDevices/view.php:146
+#: RadarInterferences/view.php:71 RouterosDeviceInterfaces/view.php:70
+#: RouterosDeviceIps/view.php:38 RouterosDevices/view.php:100
+#: RouterosDevices/view.php:145
 msgid "Interface Index"
 msgstr "Index rozhraní"
 
-#: RadarInterferences/view.php:73 RouterosDeviceInterfaces/view.php:74
-#: RouterosDevices/view.php:100
+#: RadarInterferences/view.php:72 RouterosDeviceInterfaces/view.php:74
+#: RouterosDevices/view.php:101
 msgid "Interface Type"
 msgstr "Typ rozhraní"
 
-#: RadarInterferences/view.php:74 RouterosDeviceInterfaces/view.php:78
-#: RouterosDevices/view.php:101
+#: RadarInterferences/view.php:73 RouterosDeviceInterfaces/view.php:78
+#: RouterosDevices/view.php:102
 msgid "Interface Admin Status"
 msgstr "Stav správy rozhraní"
 
-#: RadarInterferences/view.php:75 RouterosDeviceInterfaces/view.php:82
-#: RouterosDevices/view.php:102
+#: RadarInterferences/view.php:74 RouterosDeviceInterfaces/view.php:82
+#: RouterosDevices/view.php:103
 msgid "Interface Oper Status"
 msgstr "Provozní stav rozhraní"
 
@@ -1527,7 +1536,7 @@ msgstr "Upravit rádiové spojení"
 msgid "New Radio Link"
 msgstr "Nové rádiové spojení"
 
-#: RadioLinks/index.php:9 layout/default.php:74
+#: RadioLinks/index.php:9 layout/default.php:94
 msgid "Radio Links"
 msgstr "Rádiová spojení"
 
@@ -1560,7 +1569,7 @@ msgstr "Upravit pásmo rádiových jednotek"
 msgid "New Radio Unit Band"
 msgstr "Nové pásmo rádiových jednotek"
 
-#: RadioUnitBands/index.php:9 layout/default.php:76
+#: RadioUnitBands/index.php:9 layout/default.php:96
 msgid "Radio Unit Bands"
 msgstr "Pásma rádiových jednotek"
 
@@ -1585,7 +1594,7 @@ msgstr "Upravit typ rádiové jednotky"
 msgid "New Radio Unit Type"
 msgstr "Nový typ rádiové jednotky"
 
-#: RadioUnitTypes/index.php:9 layout/default.php:75
+#: RadioUnitTypes/index.php:9 layout/default.php:95
 msgid "Radio Unit Types"
 msgstr "Typy rádiových jednotek"
 
@@ -1605,27 +1614,16 @@ msgstr "Přidat rádiovou jednotku"
 msgid "Edit Radio Unit"
 msgstr "Upravit rádiovou jednotku"
 
-#: RadioUnits/export.php:9 RouterosDevices/export.php:9
+#: RadioUnits/export.php:9 RouterosDevices/export.php:16 layout/default.php:112
 msgid "Index"
 msgstr "Index"
 
-#: RadioUnits/export.php:10 RadioUnits/index.php:16 layout/default.php:61
+#: RadioUnits/export.php:10 RadioUnits/index.php:17 layout/default.php:62
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
-#: RadioUnits/export.php:17 RadioUnits/view.php:30
-msgid "Radio Unit Type"
-msgstr "Typ rádiové jednotky"
-
-#: RadioUnits/export.php:18 RadioUnits/view.php:38
-msgid "Radio Link"
-msgstr "Rádiové spojení"
-
-#: RadioUnits/export.php:19 RadioUnits/view.php:42
-msgid "Antenna Type"
-msgstr "Typ antény"
-
-#: RadioUnits/index.php:15 RouterosDevices/index.php:15
+#: RadioUnits/index.php:16 RouterosDevices/index.php:16
+#: RouterosDevices/search.php:16
 msgid "Export"
 msgstr "Export"
 
@@ -1646,21 +1644,17 @@ msgstr "Přidat rozhraní zařízení RouterOS"
 msgid "Edit Routeros Device Interface"
 msgstr "Upravit rozhraní zařízení RouterOS"
 
-#: RouterosDeviceInterfaces/index.php:14 RouterosDeviceInterfaces/view.php:14
+#: RouterosDeviceInterfaces/index.php:15 RouterosDeviceInterfaces/view.php:14
 msgid "New Routeros Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
-#: RouterosDeviceInterfaces/index.php:15 layout/default.php:82
+#: RouterosDeviceInterfaces/index.php:16 layout/default.php:101
 msgid "Routeros Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
 
 #: RouterosDeviceInterfaces/view.php:12
 msgid "Delete Routeros Device Interface"
 msgstr "Odstranit rozhraní zařízení RouterOS"
-
-#: RouterosDeviceInterfaces/view.php:26 RouterosDeviceIps/view.php:26
-msgid "Routeros Device"
-msgstr "Zařízení RouterOS"
 
 #: RouterosDeviceIps/add.php:11 RouterosDeviceIps/edit.php:16
 #: RouterosDeviceIps/view.php:13
@@ -1675,11 +1669,11 @@ msgstr "Přidat IP zařízení RouterOS"
 msgid "Edit Routeros Device Ip"
 msgstr "Upravit IP zařízení RouterOS"
 
-#: RouterosDeviceIps/index.php:14 RouterosDeviceIps/view.php:14
+#: RouterosDeviceIps/index.php:15 RouterosDeviceIps/view.php:14
 msgid "New Routeros Device Ip"
 msgstr "Nová IP zařízení RouterOS"
 
-#: RouterosDeviceIps/index.php:15
+#: RouterosDeviceIps/index.php:16
 msgid "Routeros Device Ips"
 msgstr "IP zařízení RouterOS"
 
@@ -1700,23 +1694,20 @@ msgstr "Přidat zařízení RouterOS"
 msgid "Edit Routeros Device"
 msgstr "Upravit zařízení RouterOS"
 
-#: RouterosDevices/export.php:10 RouterosDevices/index.php:16
+#: RouterosDevices/export.php:17 RouterosDevices/index.php:17
+#: RouterosDevices/search.php:17
 msgid "Routeros Devices"
 msgstr "Zařízení RouterOS"
-
-#: RouterosDevices/export.php:18 RouterosDevices/view.php:38
-msgid "Device Type"
-msgstr "Typ zařízení"
 
 #: RouterosDevices/view.php:12
 msgid "Delete Routeros Device"
 msgstr "Odstranit zařízení RouterOS"
 
-#: RouterosDevices/view.php:46
+#: RouterosDevices/view.php:47
 msgid "Username"
 msgstr "Uživatelské jméno"
 
-#: RouterosDevices/view.php:50
+#: RouterosDevices/view.php:51
 msgid "Password"
 msgstr "Heslo"
 
@@ -1724,18 +1715,59 @@ msgstr "Heslo"
 msgid "Related Routeros Device Ips"
 msgstr "Související IP zařízení RouterOS"
 
-#: layout/default.php:60
+#: layout/default.php:61
 msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
 
-#: layout/default.php:63
+#: layout/default.php:64
+msgid "Users"
+msgstr "Uživatelé"
+
+#: layout/default.php:83
 msgid "Logout"
 msgstr "Odhlášení"
 
-#: layout/default.php:81
+#: layout/default.php:102
 msgid "RouterOS Device Ips"
 msgstr "IP zařízení RouterOS"
+
+#: layout/default.php:111
+msgid "Profile"
+msgstr "Profil"
 
 #: layout/error.php:40
 msgid "Back"
 msgstr "Zpět"
+
+#~ msgid "Power Supply Type Id"
+#~ msgstr "ID napájecího zdroje"
+
+#~ msgid "Radio Unit Type Id"
+#~ msgstr "ID typu rádiové jednotky"
+
+#~ msgid "Radio Link Id"
+#~ msgstr "ID rádiového spojení"
+
+#~ msgid "Antenna Type Id"
+#~ msgstr "ID typu antény"
+
+#~ msgid "Device Type Id"
+#~ msgstr "ID typu zařízení"
+
+#~ msgid "Access Point Id"
+#~ msgstr "ID přístupového bodu"
+
+#~ msgid "Customer Connection Id"
+#~ msgstr "ID připojení zákazníka"
+
+#~ msgid "Customer Point Id"
+#~ msgstr "ID zákaznického bodu"
+
+#~ msgid "Radio Unit Band Id"
+#~ msgstr "ID pásma rádiové jednotky"
+
+#~ msgid "Manufacturer Id"
+#~ msgstr "ID výrobce"
+
+#~ msgid "Routeros Device Id"
+#~ msgstr "ID zařízení RouterOS"
