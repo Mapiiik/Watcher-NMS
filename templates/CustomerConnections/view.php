@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Customer Connection'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="customerConnections view content">
             <h3><?= h($customerConnection->name) ?></h3>
             <table>

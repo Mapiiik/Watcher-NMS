@@ -16,7 +16,7 @@
             <?= $this->Html->link(__('List Customer Connection Ips'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="customerConnectionIps form content">
             <?= $this->Form->create($customerConnectionIp) ?>
             <fieldset>

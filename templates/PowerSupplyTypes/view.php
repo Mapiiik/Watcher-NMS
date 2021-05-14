@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Power Supply Type'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="powerSupplyTypes view content">
             <h3><?= h($powerSupplyType->name) ?></h3>
             <table>

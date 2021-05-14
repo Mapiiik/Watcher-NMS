@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Access Point Contact'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="accessPointContacts view content">
             <h3><?= h($accessPointContact->name) ?></h3>
             <table>

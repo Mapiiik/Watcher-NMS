@@ -16,7 +16,7 @@
             <?= $this->Html->link(__('List Access Point Contacts'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="accessPointContacts form content">
             <?= $this->Form->create($accessPointContact) ?>
             <fieldset>

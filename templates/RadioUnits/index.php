@@ -32,17 +32,11 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('rx_signal') ?></th>
                     <th><?= $this->Paginator->sort('operating_speed') ?></th>
                     <th><?= $this->Paginator->sort('maximal_speed') ?></th>
-                    <th><?= $this->Paginator->sort('acm') ?></th>
-                    <th><?= $this->Paginator->sort('atpc') ?></th>
                     <th><?= $this->Paginator->sort('firmware_version') ?></th>
                     <th><?= $this->Paginator->sort('serial_number') ?></th>
                     <th><?= $this->Paginator->sort('station_address') ?></th>
                     <th><?= $this->Paginator->sort('expiration_date') ?></th>
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
-                    <th><?= $this->Paginator->sort('device_login') ?></th>
-                    <th><?= $this->Paginator->sort('device_password') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -62,17 +56,11 @@ echo $this->Form->end();
                     <td><?= $this->Number->format($radioUnit->rx_signal) ?></td>
                     <td><?= $this->Number->format($radioUnit->operating_speed) ?></td>
                     <td><?= $this->Number->format($radioUnit->maximal_speed) ?></td>
-                    <td><?= h($radioUnit->acm) ?></td>
-                    <td><?= h($radioUnit->atpc) ?></td>
                     <td><?= h($radioUnit->firmware_version) ?></td>
                     <td><?= h($radioUnit->serial_number) ?></td>
                     <td><?= h($radioUnit->station_address) ?></td>
                     <td><?= h($radioUnit->expiration_date) ?></td>
                     <td><?= h($radioUnit->ip_address) ?></td>
-                    <td><?= h($radioUnit->device_login) ?></td>
-                    <td><?= h($radioUnit->device_password) ?></td>
-                    <td><?= h($radioUnit->created) ?></td>
-                    <td><?= h($radioUnit->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $radioUnit->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioUnit->id]) ?>

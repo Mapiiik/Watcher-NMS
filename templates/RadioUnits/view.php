@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="radioUnits view content">
             <h3><?= h($radioUnit->name) ?></h3>
             <table>

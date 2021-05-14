@@ -11,7 +11,7 @@
             <?= $this->Html->link(__('List Routeros Devices'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="routerosDevices form content">
             <?= $this->Form->create($routerosDevice) ?>
             <fieldset>

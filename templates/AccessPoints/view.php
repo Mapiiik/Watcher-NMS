@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="accessPoints view content">
             <h3><?= h($accessPoint->name) ?></h3>
             <table>
@@ -74,8 +74,6 @@
                             <th><?= __('Customer Number') ?></th>
                             <th><?= __('Contract Number') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($accessPoint->access_point_contacts as $accessPointContacts) : ?>
@@ -86,8 +84,6 @@
                             <td><?= $accessPointContacts->has('customer_number') ? $this->Html->link($accessPointContacts->customer_number, env('CRM_ADMIN_URL') . '/customers/' . ($accessPointContacts->customer_number - 110000), ['target' => '_blank']) : '' ?></td>
                             <td><?= h($accessPointContacts->contract_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($accessPointContacts->note)); ?></td>
-                            <td><?= h($accessPointContacts->created) ?></td>
-                            <td><?= h($accessPointContacts->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'AccessPointContacts', 'action' => 'view', $accessPointContacts->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'AccessPointContacts', 'action' => 'edit', $accessPointContacts->id]) ?>
@@ -110,8 +106,6 @@
                             <th><?= __('Reading Date') ?></th>
                             <th><?= __('Reading Value') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($accessPoint->electricity_meter_readings as $electricityMeterReadings) : ?>
@@ -120,8 +114,6 @@
                             <td><?= h($electricityMeterReadings->reading_date) ?></td>
                             <td><?= $this->Number->format($electricityMeterReadings->reading_value, ['after' => ' kWh']) ?></td>
                             <td><?= $this->Text->autoParagraph(h($electricityMeterReadings->note)); ?></td>
-                            <td><?= h($electricityMeterReadings->created) ?></td>
-                            <td><?= h($electricityMeterReadings->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'ElectricityMeterReadings', 'action' => 'view', $electricityMeterReadings->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'ElectricityMeterReadings', 'action' => 'edit', $electricityMeterReadings->id]) ?>
@@ -149,8 +141,6 @@
                             <th><?= __('Battery Replacement') ?></th>
                             <th><?= __('Battery Duration') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($accessPoint->power_supplies as $powerSupplies) : ?>
@@ -164,8 +154,6 @@
                             <td><?= h($powerSupplies->battery_replacement) ?></td>
                             <td><?= h($powerSupplies->battery_duration) ?></td>
                             <td><?= $this->Text->autoParagraph(h($powerSupplies->note)); ?></td>
-                            <td><?= h($powerSupplies->created) ?></td>
-                            <td><?= h($powerSupplies->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id]) ?>
@@ -196,18 +184,12 @@
                             <th><?= __('Rx Signal') ?></th>
                             <th><?= __('Operating Speed') ?></th>
                             <th><?= __('Maximal Speed') ?></th>
-                            <th><?= __('Acm') ?></th>
-                            <th><?= __('Atpc') ?></th>
                             <th><?= __('Firmware Version') ?></th>
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Station Address') ?></th>
                             <th><?= __('Expiration Date') ?></th>
                             <th><?= __('Ip Address') ?></th>
-                            <th><?= __('Device Login') ?></th>
-                            <th><?= __('Device Password') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($accessPoint->radio_units as $radioUnits) : ?>
@@ -224,18 +206,12 @@
                             <td><?= h($radioUnits->rx_signal) ?></td>
                             <td><?= h($radioUnits->operating_speed) ?></td>
                             <td><?= h($radioUnits->maximal_speed) ?></td>
-                            <td><?= h($radioUnits->acm) ?></td>
-                            <td><?= h($radioUnits->atpc) ?></td>
                             <td><?= h($radioUnits->firmware_version) ?></td>
                             <td><?= h($radioUnits->serial_number) ?></td>
                             <td><?= h($radioUnits->station_address) ?></td>
                             <td><?= h($radioUnits->expiration_date) ?></td>
                             <td><?= h($radioUnits->ip_address) ?></td>
-                            <td><?= h($radioUnits->device_login) ?></td>
-                            <td><?= h($radioUnits->device_password) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
-                            <td><?= h($radioUnits->created) ?></td>
-                            <td><?= h($radioUnits->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id]) ?>
@@ -262,8 +238,6 @@
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Software Version') ?></th>
                             <th><?= __('Firmware Version') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($accessPoint->routeros_devices as $routerosDevices) : ?>
@@ -276,8 +250,6 @@
                             <td><?= h($routerosDevices->serial_number) ?></td>
                             <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
-                            <td><?= h($routerosDevices->created) ?></td>
-                            <td><?= h($routerosDevices->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>

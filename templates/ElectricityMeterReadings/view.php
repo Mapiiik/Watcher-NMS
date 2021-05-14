@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Electricity Meter Reading'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="electricityMeterReadings view content">
             <h3><?= h($electricityMeterReading->name) ?></h3>
             <table>

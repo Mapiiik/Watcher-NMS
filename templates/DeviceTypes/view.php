@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Device Type'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="deviceTypes view content">
             <h3><?= h($deviceType->name) ?></h3>
             <table>

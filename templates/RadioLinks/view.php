@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Radio Link'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="radioLinks view content">
             <h3><?= h($radioLink->name) ?></h3>
             <table>
@@ -67,18 +67,12 @@
                             <th><?= __('Rx Signal') ?></th>
                             <th><?= __('Operating Speed') ?></th>
                             <th><?= __('Maximal Speed') ?></th>
-                            <th><?= __('Acm') ?></th>
-                            <th><?= __('Atpc') ?></th>
                             <th><?= __('Firmware Version') ?></th>
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Station Address') ?></th>
                             <th><?= __('Expiration Date') ?></th>
                             <th><?= __('Ip Address') ?></th>
-                            <th><?= __('Device Login') ?></th>
-                            <th><?= __('Device Password') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($radioLink->radio_units as $radioUnits) : ?>
@@ -95,18 +89,12 @@
                             <td><?= h($radioUnits->rx_signal) ?></td>
                             <td><?= h($radioUnits->operating_speed) ?></td>
                             <td><?= h($radioUnits->maximal_speed) ?></td>
-                            <td><?= h($radioUnits->acm) ?></td>
-                            <td><?= h($radioUnits->atpc) ?></td>
                             <td><?= h($radioUnits->firmware_version) ?></td>
                             <td><?= h($radioUnits->serial_number) ?></td>
                             <td><?= h($radioUnits->station_address) ?></td>
                             <td><?= h($radioUnits->expiration_date) ?></td>
                             <td><?= h($radioUnits->ip_address) ?></td>
-                            <td><?= h($radioUnits->device_login) ?></td>
-                            <td><?= h($radioUnits->device_password) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
-                            <td><?= h($radioUnits->created) ?></td>
-                            <td><?= h($radioUnits->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id]) ?>

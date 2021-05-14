@@ -11,7 +11,7 @@
             <?= $this->Html->link(__('List Radar Interferences'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="radarInterferences form content">
             <?= $this->Form->create($radarInterference) ?>
             <fieldset>
