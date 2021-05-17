@@ -146,19 +146,25 @@ return [
         ],
         //user access
         [
-            'role' => ['user', 'technician'],
+            'role' => ['user', 'technician', 'operator'],
             'plugin' => null,
             'controller' => ['AccessPoints', 'AccessPointContacts', 'ElectricityMeterReadings'],
             'action' => ['index', 'view', 'map'],
         ],
         [
-            'role' => ['user', 'technician'],
+            'role' => ['user', 'technician', 'operator'],
             'plugin' => null,
             'controller' => ['RouterosDevices', 'RouterosDeviceIps', 'RouterosDeviceInterfaces', 'DeviceTypes'],
             'action' => ['index', 'view'],
         ],
         [
-            'role' => ['user', 'technician'],
+            'role' => ['operator'],
+            'plugin' => null,
+            'controller' => ['PowerSupplies'],
+            'action' => ['index', 'view', 'add', 'edit'],
+        ],
+        [
+            'role' => ['user', 'technician', 'operator'],
             'plugin' => null,
             'controller' => ['CustomerConnections', 'CustomerPoints', 'CustomerConnectionIps'],
             'action' => ['view'],
