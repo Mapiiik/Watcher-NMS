@@ -36,6 +36,8 @@ return [
      */
     'Datasources' => [
         'default' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Postgres',
             'host' => 'localhost',
             /*
              * CakePHP will use the default DB port based on the driver selected
@@ -44,10 +46,10 @@ return [
              */
             //'port' => 'non_standard_port_number',
 
-            'username' => 'my_app',
-            'password' => 'secret',
+            'username' => 'postgres',
+            'password' => 'postgres',
 
-            'database' => 'my_app',
+            'database' => 'watcher_nms',
             /*
              * If not using the default 'public' schema with the PostgreSQL driver
              * set it here.
@@ -64,12 +66,14 @@ return [
          * The test connection is used during the test suite.
          */
         'test' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Postgres',
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
-            'username' => 'my_app',
-            'password' => 'secret',
-            'database' => 'test_myapp',
-            //'schema' => 'myapp',
+            'username' => 'postgres',
+            'password' => 'postgres',
+            'database' => 'watcher_nms',
+            //'schema' => 'public',
             'url' => env('DATABASE_TEST_URL', null),
         ],
     ],
