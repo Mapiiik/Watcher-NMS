@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - '4.next'
   pull_request:
     branches:
       - '*'
@@ -20,6 +19,16 @@ jobs:
         prefer-lowest: ['']
     name: PHP ${{ matrix.php-version }}
 
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379/tcp
+      memcached:
+        image: memcached
+        ports:
+          - 11211/tcp
+
     steps:
     - name: Setup PostgreSQL latest
       if: matrix.db-type == 'pgsql'
@@ -31,7 +40,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-version }}
-        extensions: mbstring, intl, apcu, pdo_${{ matrix.db-type }}
+        extensions: mbstring, intl, apcu, memcached, redis, pdo_${{ matrix.db-type }}
         ini-values: apc.enable_cli = 1
         coverage: pcov
 
@@ -58,6 +67,9 @@ jobs:
         fi
 
     - name: Run PHPUnit
+      env:
+        REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
+        MEMCACHED_PORT: ${{ job.services.memcached.ports['11211'] }}
       run: |
         if [[ ${{ matrix.db-type }} == 'pgsql' ]]; then export DB_URL='postgres://postgres:postgres@127.0.0.1/watcher_nms'; fi
         if [[ ${{ matrix.php-version }} == '8.0' ]]; then
