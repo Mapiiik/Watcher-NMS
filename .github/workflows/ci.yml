@@ -32,12 +32,11 @@ jobs:
     steps:
     - name: Setup PostgreSQL latest
       if: matrix.db-type == 'pgsql'
-      uses: Daniel-Marynicz/postgresql-action@master
-      with:
-        postgres_image_tag: latest
-        postgres_db: watcher_nms
-        postgres_extensions: uuid-ossp
-      
+      run: docker run --rm --name=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=watcher_nms -p 5432:5432 -d postgres
+
+    - name: Add UUID OSSP extension to PostgreSQL
+      run: docker exec -it postgres psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname="$POSTGRES_DB" -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
+
     - uses: actions/checkout@v2
 
     - name: Setup PHP
