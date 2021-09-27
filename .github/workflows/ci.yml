@@ -35,7 +35,7 @@ jobs:
       run: docker run --rm --name=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=watcher_nms -p 5432:5432 -d postgres
 
     - name: Add UUID OSSP extension to PostgreSQL
-      run: docker exec -it postgres psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname="$POSTGRES_DB" -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
+      run: docker exec postgres psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname="$POSTGRES_DB" -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
 
     - uses: actions/checkout@v2
 
