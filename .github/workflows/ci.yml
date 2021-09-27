@@ -32,7 +32,7 @@ jobs:
     steps:
     - name: Setup PostgreSQL latest
       if: matrix.db-type == 'pgsql'
-      run: docker run --rm --name=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=watcher_nms -p 5432:5432 -d postgres-uuid
+      run: docker run --rm --name=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=watcher_nms -p 5432:5432 -d fintrace/postgres-uuid
 
     - uses: actions/checkout@v2
 
