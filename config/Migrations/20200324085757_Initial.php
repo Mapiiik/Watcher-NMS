@@ -8,6 +8,9 @@ class Initial extends AbstractMigration
 {
     public function up()
     {
+        // create extension for full UUID support
+        $this->execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
+        
         $this->table('access_point_contacts', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
                 'default' => Literal::from('uuid_generate_v4()'),
