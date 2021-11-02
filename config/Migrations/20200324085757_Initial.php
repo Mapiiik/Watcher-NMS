@@ -53,6 +53,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -60,6 +61,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -100,6 +102,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -107,6 +110,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -152,6 +156,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -159,6 +164,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -194,6 +200,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -201,6 +208,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -226,6 +234,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -233,6 +242,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -298,6 +308,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -305,6 +316,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -350,6 +362,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -357,6 +370,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -397,6 +411,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -404,6 +419,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -439,6 +455,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -446,6 +463,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -471,6 +489,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -478,6 +497,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -518,6 +538,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -525,6 +546,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -655,6 +677,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -662,6 +685,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -747,6 +771,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -754,6 +779,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -789,6 +815,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -796,6 +823,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -856,6 +884,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -863,6 +892,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -888,6 +918,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('created', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -895,6 +926,7 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->addColumn('modified', 'timestamp', [
+                'timezone' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => true,
