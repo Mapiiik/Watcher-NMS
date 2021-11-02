@@ -45,7 +45,6 @@ jobs:
         
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
-        
         with:
             php-version: ${{ matrix.php-version }}
             extensions: mbstring, intl, apcu, memcached, redis, pdo_${{ matrix.db-type }}
@@ -65,7 +64,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install dependencies
+      - name: Composer update
         run: |
           composer update
           composer run-script post-install-cmd --no-interaction
@@ -83,40 +82,43 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: mbstring, intl, apcu, memcached, redis
+          tools: cs2pr
+          coverage: none
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-        extensions: mbstring, intl, apcu, memcached, redis
-        tools: cs2pr
-        coverage: none
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-    - name: Get composer cache directory
-      id: composer-cache
-      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          # Use composer.json for key, if composer.lock is not committed.
+          # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
-    - name: Get date part for cache key
-      id: key-date
-      run: echo "::set-output name=date::$(date +'%Y-%m')"
+      - name: Composer install
+        run: |
+          cp composer.json composer.backup
+          composer require --dev phpstan/phpstan psalm/phar
+          mv composer.backup composer.json
 
-    - name: Cache composer dependencies
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ steps.key-date.outputs.date }}-${{ hashFiles('composer.json') }}-${{ matrix.prefer-lowest }}
+      - name: Run PHP CodeSniffer
+        run: vendor/bin/phpcs --colors -p  src/ tests/
 
-    - name: Composer install
-      run: cp composer.json composer.backup && composer require --dev phpstan/phpstan psalm/phar && mv composer.backup composer.json
+      - name: Run psalm
+        if: success() || failure()
+        run: vendor/bin/psalm.phar
 
-    - name: Run PHP CodeSniffer
-      run: vendor/bin/phpcs --colors -p  src/ tests/
-
-    - name: Run psalm
-      if: success() || failure()
-      run: vendor/bin/psalm.phar
-
-    - name: Run phpstan
-      if: success() || failure()
-      run: vendor/bin/phpstan.phar analyse
+      - name: Run phpstan
+        if: success() || failure()
+        run: vendor/bin/phpstan.phar analyse
