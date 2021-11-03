@@ -39,7 +39,7 @@ class RadioUnitsFixture extends TestFixture
                 'serial_number' => 'Lorem ipsum dolor sit amet',
                 'station_address' => 'Lorem ipsum dolor sit amet',
                 'expiration_date' => '2021-11-03',
-                'ip_address' => 'Lorem ipsum dolor sit amet',
+                'ip_address' => '192.168.11.11',
                 'device_login' => 'Lorem ipsum dolor sit amet',
                 'device_password' => 'Lorem ipsum dolor sit amet',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
