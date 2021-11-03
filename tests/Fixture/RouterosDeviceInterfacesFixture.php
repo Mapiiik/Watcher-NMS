@@ -23,7 +23,7 @@ class RouterosDeviceInterfacesFixture extends TestFixture
                 'routeros_device_id' => 'b6aa1ad6-c494-460d-bfb6-0e618173a1a4',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'comment' => 'Lorem ipsum dolor sit amet',
-                'mac_address' => 'Lorem ipsum dolor sit amet',
+                'mac_address' => '11:22:33:44:55:66',
                 'ssid' => 'Lorem ipsum dolor sit amet',
                 'band' => 'Lorem ipsum dolor sit amet',
                 'frequency' => 1,
