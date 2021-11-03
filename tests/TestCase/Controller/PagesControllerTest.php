@@ -147,7 +147,8 @@ class PagesControllerTest extends TestCase
         $this->enableCsrfToken();
         $this->post('/pages/home', ['hello' => 'world']);
 
-        $this->assertResponseCode(200);
+        //$this->assertResponseCode(200);
+        $this->assertResponseCode(400); //bad request from FormProtection
         $this->assertResponseContains('CakePHP');
     }
 }
