@@ -54,8 +54,9 @@ class AppController extends Controller
         $this->loadComponent('FormProtection');
     }
 
-    # App > paginate
-
+    /**
+     * Customize pagination
+     */
     public function paginate($object = null, $settings = [])
     {
         try {
@@ -70,7 +71,9 @@ class AppController extends Controller
         }
     }
 
-    # App > beforeFilter
+    /**
+     * Global beforeFilter
+     */
     public function beforeFilter(EventInterface $event)
     {
         # We check if we have a language set
@@ -78,7 +81,9 @@ class AppController extends Controller
             $this->request->getSession()->write('Config.language', $this->request->getQuery('language'));
         }
 
-        if ($language = $this->request->getSession()->read('Config.language', I18n::getDefaultLocale())) {
+        $language = $this->request->getSession()->read('Config.language', I18n::getDefaultLocale());
+        
+        if ($language) {
             I18n::setLocale($language);
         }
 

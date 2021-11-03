@@ -17,7 +17,7 @@ class RadarInterferencesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class RadarInterferencesController extends AppController
      * View method
      *
      * @param string|null $id Radar Interference id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
@@ -106,6 +106,11 @@ class RadarInterferencesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    /**
+     * Update data from configured URL
+     *
+     * @return \Cake\Http\Response|null Redirects to index.
+     */
     public function updateOnline()
     {
         $runner = new CommandRunner(new Application(dirname(__DIR__) . '/../config'), 'cake');
@@ -118,6 +123,11 @@ class RadarInterferencesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    /**
+     * List devices which interfere
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
     public function devices()
     {
         $radarInterferences = $this->RadarInterferences->find();

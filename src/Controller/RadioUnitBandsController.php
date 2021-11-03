@@ -14,7 +14,7 @@ class RadioUnitBandsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class RadioUnitBandsController extends AppController
      * View method
      *
      * @param string|null $id Radio Unit Band id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)

@@ -14,7 +14,7 @@ class AntennaTypesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
@@ -30,13 +30,21 @@ class AntennaTypesController extends AppController
      * View method
      *
      * @param string|null $id Antenna Type id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $antennaType = $this->AntennaTypes->get($id, [
-            'contain' => ['RadioUnitBands', 'Manufacturers', 'RadioUnits' => ['RadioUnitTypes', 'AccessPoints', 'RadioLinks']],
+            'contain' => [
+                'RadioUnitBands',
+                'Manufacturers',
+                'RadioUnits' => [
+                    'RadioUnitTypes',
+                    'AccessPoints',
+                    'RadioLinks',
+                ],
+            ],
         ]);
 
         $this->set('antennaType', $antennaType);

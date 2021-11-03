@@ -59,7 +59,14 @@ class CustomerConnectionsController extends AppController
     public function view($id = null)
     {
         $customerConnection = $this->CustomerConnections->get($id, [
-            'contain' => ['CustomerPoints', 'CustomerConnectionIps', 'RouterosDevices' => ['AccessPoints', 'DeviceTypes']],
+            'contain' => [
+                'CustomerPoints',
+                'CustomerConnectionIps',
+                'RouterosDevices' => [
+                    'AccessPoints',
+                    'DeviceTypes',
+                ],
+            ],
         ]);
 
         $this->set('customerConnection', $customerConnection);
@@ -74,7 +81,8 @@ class CustomerConnectionsController extends AppController
     {
         $customerConnection = $this->CustomerConnections->newEmptyEntity();
         if ($this->request->is('post')) {
-            $customerConnection = $this->CustomerConnections->patchEntity($customerConnection, $this->request->getData());
+            $customerConnection = $this->CustomerConnections
+                ->patchEntity($customerConnection, $this->request->getData());
 
             if ($customerConnection->customer_number === '') {
                 $accessPointContact->customer_number = null;
@@ -107,7 +115,8 @@ class CustomerConnectionsController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $customerConnection = $this->CustomerConnections->patchEntity($customerConnection, $this->request->getData());
+            $customerConnection = $this->CustomerConnections
+                ->patchEntity($customerConnection, $this->request->getData());
 
             if ($customerConnection->customer_number === '') {
                 $accessPointContact->customer_number = null;

@@ -76,7 +76,8 @@ class AccessPointContactsController extends AppController
     {
         $accessPointContact = $this->AccessPointContacts->newEmptyEntity();
         if ($this->request->is('post')) {
-            $accessPointContact = $this->AccessPointContacts->patchEntity($accessPointContact, $this->request->getData());
+            $accessPointContact = $this->AccessPointContacts
+                ->patchEntity($accessPointContact, $this->request->getData());
 
             if ($accessPointContact->phone === '') {
                 $accessPointContact->phone = null;
@@ -115,7 +116,8 @@ class AccessPointContactsController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $accessPointContact = $this->AccessPointContacts->patchEntity($accessPointContact, $this->request->getData());
+            $accessPointContact = $this->AccessPointContacts
+                ->patchEntity($accessPointContact, $this->request->getData());
 
             if ($accessPointContact->phone === '') {
                 $accessPointContact->phone = null;

@@ -16,7 +16,7 @@ class PowerSuppliesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
@@ -53,7 +53,7 @@ class PowerSuppliesController extends AppController
      * View method
      *
      * @param string|null $id Power Supply id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)

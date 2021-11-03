@@ -16,7 +16,7 @@ class RadioUnitsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
@@ -55,7 +55,7 @@ class RadioUnitsController extends AppController
      * View method
      *
      * @param string|null $id Radio Unit id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
@@ -139,10 +139,23 @@ class RadioUnitsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    /**
+     * Export radio units
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
     public function export()
     {
         $radioUnits = $this->RadioUnits->find('all', [
-            'contain' => ['RadioUnitTypes' => ['RadioUnitBands', 'Manufacturers'], 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
+            'contain' => [
+                'RadioUnitTypes' => [
+                    'RadioUnitBands',
+                    'Manufacturers',
+                ],
+                'AccessPoints',
+                'RadioLinks',
+                'AntennaTypes',
+            ],
             'order' => ['RadioLinks.name' => 'ASC', 'RadioUnits.name' => 'ASC'],
         ]);
 

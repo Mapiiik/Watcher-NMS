@@ -36,14 +36,22 @@ class RouterosDeviceInterfacesController extends AppController
 
         if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
-                'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.comment ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.mac_address::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.ssid ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.bssid::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.band ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.frequency::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDevices.name ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.name ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.comment ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.mac_address::character varying ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.ssid ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.bssid::character varying ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.band ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceInterfaces.frequency::character varying ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
             ];
         }
 
