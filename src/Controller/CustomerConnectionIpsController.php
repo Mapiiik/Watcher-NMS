@@ -53,7 +53,7 @@ class CustomerConnectionIpsController extends AppController
         if ($this->request->is('post')) {
             $customerConnectionIp = $this->CustomerConnectionIps
                 ->patchEntity($customerConnectionIp, $this->request->getData());
-            
+
             if ($this->CustomerConnectionIps->save($customerConnectionIp)) {
                 $this->Flash->success(__('The customer connection ip has been saved.'));
 
@@ -80,7 +80,7 @@ class CustomerConnectionIpsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $customerConnectionIp = $this->CustomerConnectionIps
                 ->patchEntity($customerConnectionIp, $this->request->getData());
-            
+
             if ($this->CustomerConnectionIps->save($customerConnectionIp)) {
                 $this->Flash->success(__('The customer connection ip has been saved.'));
 

@@ -85,7 +85,9 @@ class RouterosDeviceInterfacesController extends AppController
     {
         $routerosDeviceInterface = $this->RouterosDeviceInterfaces->newEmptyEntity();
         if ($this->request->is('post')) {
-            $routerosDeviceInterface = $this->RouterosDeviceInterfaces->patchEntity($routerosDeviceInterface, $this->request->getData());
+            $routerosDeviceInterface = $this->RouterosDeviceInterfaces
+                ->patchEntity($routerosDeviceInterface, $this->request->getData());
+
             if ($this->RouterosDeviceInterfaces->save($routerosDeviceInterface)) {
                 $this->Flash->success(__('The routeros device interface has been saved.'));
 
@@ -110,7 +112,9 @@ class RouterosDeviceInterfacesController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $routerosDeviceInterface = $this->RouterosDeviceInterfaces->patchEntity($routerosDeviceInterface, $this->request->getData());
+            $routerosDeviceInterface = $this->RouterosDeviceInterfaces
+                ->patchEntity($routerosDeviceInterface, $this->request->getData());
+
             if ($this->RouterosDeviceInterfaces->save($routerosDeviceInterface)) {
                 $this->Flash->success(__('The routeros device interface has been saved.'));
 

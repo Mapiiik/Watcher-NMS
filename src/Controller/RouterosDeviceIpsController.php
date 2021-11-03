@@ -36,9 +36,12 @@ class RouterosDeviceIpsController extends AppController
 
         if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
-                'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceIps.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceIps.ip_address::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'RouterosDevices.name ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceIps.name ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
+                'RouterosDeviceIps.ip_address::character varying ILIKE' => '%'
+                . \trim($search->getData('search')) . '%',
             ];
         }
 

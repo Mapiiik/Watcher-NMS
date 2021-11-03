@@ -18,7 +18,7 @@ class AccessPointsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
@@ -52,13 +52,19 @@ class AccessPointsController extends AppController
      * View method
      *
      * @param string|null $id Access Point id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $accessPoint = $this->AccessPoints->get($id, [
-            'contain' => ['AccessPointContacts', 'ElectricityMeterReadings', 'PowerSupplies' => ['PowerSupplyTypes'], 'RadioUnits' => ['RadioUnitTypes', 'RadioLinks', 'AntennaTypes'], 'RouterosDevices' => ['DeviceTypes']],
+            'contain' => [
+                'AccessPointContacts',
+                'ElectricityMeterReadings',
+                'PowerSupplies' => ['PowerSupplyTypes'],
+                'RadioUnits' => ['RadioUnitTypes', 'RadioLinks', 'AntennaTypes'],
+                'RouterosDevices' => ['DeviceTypes'],
+            ],
         ]);
 
         $this->set('accessPoint', $accessPoint);
@@ -128,6 +134,11 @@ class AccessPointsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    /**
+     * Map method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
     public function map()
     {
         $mapOptions = new MapOptionsForm();
@@ -159,12 +170,16 @@ class AccessPointsController extends AppController
                                 'RemoteRouterosDeviceIps' => [
                                     'table' => 'routeros_device_ips',
                                     'type' => 'LEFT',
-                                    'conditions' => 'network(RouterosDeviceIps.ip_address) = network(RemoteRouterosDeviceIps.ip_address) AND RouterosDeviceIps.id <> RemoteRouterosDeviceIps.id',
+                                    'conditions' =>
+                                        'network(RouterosDeviceIps.ip_address) = network(RemoteRouterosDeviceIps.ip_address)'
+                                        . ' AND RouterosDeviceIps.id <> RemoteRouterosDeviceIps.id',
                                 ],
                                 'RemoteRouterosDevices' => [
                                     'table' => 'routeros_devices',
                                     'type' => 'INNER',
-                                    'conditions' => 'RemoteRouterosDeviceIps.routeros_device_id = RemoteRouterosDevices.id AND RouterosDeviceIps.routeros_device_id <> RemoteRouterosDevices.id',
+                                    'conditions' =>
+                                        'RemoteRouterosDeviceIps.routeros_device_id = RemoteRouterosDevices.id'
+                                        . ' AND RouterosDeviceIps.routeros_device_id <> RemoteRouterosDevices.id',
                                 ],
                             ])
                             ->select(['RouterosDeviceIps.routeros_device_id'])
@@ -191,12 +206,17 @@ class AccessPointsController extends AppController
                                 'RemoteRouterosDeviceInterfaces' => [
                                     'table' => 'routeros_device_interfaces',
                                     'type' => 'LEFT',
-                                    'conditions' => 'RouterosDeviceInterfaces.interface_type = 71 AND RemoteRouterosDeviceInterfaces.interface_type = 71 AND (RouterosDeviceInterfaces.mac_address = RemoteRouterosDeviceInterfaces.bssid OR RouterosDeviceInterfaces.bssid = RemoteRouterosDeviceInterfaces.mac_address) AND RouterosDeviceInterfaces.id <> RemoteRouterosDeviceInterfaces.id',
+                                    'conditions' => 'RouterosDeviceInterfaces.interface_type = 71'
+                                    . ' AND RemoteRouterosDeviceInterfaces.interface_type = 71'
+                                    . ' AND (RouterosDeviceInterfaces.mac_address = RemoteRouterosDeviceInterfaces.bssid'
+                                    . ' OR RouterosDeviceInterfaces.bssid = RemoteRouterosDeviceInterfaces.mac_address)'
+                                    . ' AND RouterosDeviceInterfaces.id <> RemoteRouterosDeviceInterfaces.id',
                                 ],
                                 'RemoteRouterosDevices' => [
                                     'table' => 'routeros_devices',
                                     'type' => 'INNER',
-                                    'conditions' => 'RemoteRouterosDeviceInterfaces.routeros_device_id = RemoteRouterosDevices.id AND RouterosDeviceInterfaces.routeros_device_id <> RemoteRouterosDevices.id',
+                                    'conditions' => 'RemoteRouterosDeviceInterfaces.routeros_device_id = RemoteRouterosDevices.id'
+                                    . ' AND RouterosDeviceInterfaces.routeros_device_id <> RemoteRouterosDevices.id',
                                 ],
                             ])
                             ->select(['RouterosDeviceInterfaces.routeros_device_id'])
@@ -219,7 +239,13 @@ class AccessPointsController extends AppController
             $accessPointsQuery->where(['AccessPoints.id' => $mapOptions->getData('access_point_id')]);
             $routerosDevicesFilter->where(['access_point_id' => $mapOptions->getData('access_point_id')]);
 
-            if (($mapOptions->getData('routeros_device_id') <> '') && $this->AccessPoints->RouterosDevices->exists(['RouterosDevices.id' => $mapOptions->getData('routeros_device_id'), 'access_point_id' => $mapOptions->getData('access_point_id')    ])) {
+            if (
+                ($mapOptions->getData('routeros_device_id') <> '')
+                && $this->AccessPoints->RouterosDevices->exists([
+                    'RouterosDevices.id' => $mapOptions->getData('routeros_device_id'),
+                    'access_point_id' => $mapOptions->getData('access_point_id'),
+                ])
+            ) {
                 $accessPointsQuery->contain([
                     'RouterosDevices' => [
                         'conditions' => ['RouterosDevices.id' => $mapOptions->getData('routeros_device_id')],
@@ -247,10 +273,15 @@ class AccessPointsController extends AppController
         foreach ($accessPointsQuery as $accessPoint) {
             // Let's add some markers
             if (is_numeric($accessPoint->gps_y) && is_numeric($accessPoint->gps_x)) {
-                $content = '<b>' . $this->Html->link($accessPoint->name, ['action' => 'view', $accessPoint->id]) . '</b>' . '<br />' . '<br />';
+                $content = '<b>'
+                    . $this->Html->link($accessPoint->name, ['action' => 'view', $accessPoint->id])
+                    . '</b>' . '<br />' . '<br />';
 
                 foreach ($accessPoint->routeros_devices as $routerosDevice) {
-                    $content .= $this->Html->link($routerosDevice->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]) . '<br />';
+                    $content .= $this->Html->link($routerosDevice->name, [
+                        'controller' => 'RouterosDevices',
+                        'action' => 'view', $routerosDevice->id,
+                    ]) . '<br />';
 
                     $content .= '<ul>';
                     if (is_array($routerosDevice->routeros_device_ips)) {
@@ -306,7 +337,8 @@ class AccessPointsController extends AppController
                     $content .= $this->Html->link($routerosDevice->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]) . '<br />';
 
                     $content .= '<ul>';
-        /*            if (is_array($routerosDevice->routeros_device_ips)) {
+/*
+                    if (is_array($routerosDevice->routeros_device_ips)) {
                             foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp) {
                                 //$content .= '<li>' . ' (' . $routerosDeviceIp->ip_address . ') - ' . $this->Html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
                             }
@@ -316,7 +348,8 @@ class AccessPointsController extends AppController
                                 //$content .= '<li>' . ' (' . $routerosDeviceInterface->name . ') - ' . $this->Html->link(__($routerosDeviceInterface->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceInterface->RemoteRouterosDeviceInterfaces['name'] . ')' . '</li>';
                             }
                     }
-        */            $content .= '</ul>';
+*/
+                    $content .= '</ul>';
                 }
             }
 

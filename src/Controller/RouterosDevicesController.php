@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Form\SearchForm;
+use App\Model\Entity\RouterosDevice;
 
 /**
  * RouterosDevices Controller
@@ -169,6 +170,12 @@ class RouterosDevicesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    /**
+     * mask2cidr
+     *
+     * @param string $mask network mask in dotted format
+     * @return int
+     */
     private function mask2cidr($mask = null)
     {
          $long = ip2long($mask);
@@ -177,26 +184,48 @@ class RouterosDevicesController extends AppController
          return 32 - log(($long ^ $base) + 1, 2);
     }
 
+    /**
+     * string to hexa
+     *
+     * @param string $string any text
+     * @return string
+     */
     private function strToHex($string = null)
     {
         $hex = '';
-        for ($i = 0; $i < strlen($string); $i++) {
+        $length = strlen($string);
+
+        for ($i = 0; $i < $length; $i++) {
             $hex .= sprintf('%02.x', ord($string[$i]));
         }
 
         return $hex;
     }
 
+    /**
+     * hexa to string
+     *
+     * @param string $hex text encoded in hexa format
+     * @return string
+     */
     private function hexToStr($hex = null)
     {
         $string = '';
-        for ($i = 0; $i < strlen($hex) - 1; $i += 2) {
+        $length = strlen($hex);
+
+        for ($i = 0; $i < $length - 1; $i += 2) {
             $string .= chr(hexdec($hex[$i] . $hex[$i + 1]));
         }
 
         return $string;
     }
 
+    /**
+     * empty string as null
+     *
+     * @param string $value any text
+     * @return string|null
+     */
     private function nullIfEmptyString($value = null)
     {
         if ($value === '') {
@@ -206,6 +235,16 @@ class RouterosDevicesController extends AppController
         }
     }
 
+    /**
+     * empty load data via SNMP
+     *
+     * @param string $host The SNMP agent
+     * @param string $community The read community
+     * @param int $deviceTypeId DeviceType $id
+     * @param bool $assignAccessPointByDeviceName Assign access point by device name
+     * @param bool $assignCustomerConnectionByIp Assign customer connection by IP
+     * @return string|null
+     */
     private function loadViaSNMP($host = null, $community = null, $deviceTypeId = null, $assignAccessPointByDeviceName = false, $assignCustomerConnectionByIp = false)
     {
         $sourceEncoding = 'CP1250';
@@ -224,7 +263,9 @@ class RouterosDevicesController extends AppController
         // value, and some other things.
         snmp_set_valueretrieval(SNMP_VALUE_PLAIN);
 
-        if ($serialNumber = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.3.0')) {
+        $serialNumber = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.3.0');
+
+        if ($serialNumber) {
             $routerosDevice = $this->RouterosDevices->findOrCreate(['serial_number' => $serialNumber]);
 
             $routerosDevice->device_type_id = $deviceTypeId;
@@ -244,7 +285,10 @@ class RouterosDevicesController extends AppController
                         'conditions' => ['\'' . $routerosDevice->name . '\' ILIKE AccessPoints.device_name || \'%\''],
                     ]
                 );
-                if ($accessPoint = $accessPoints->first()) {
+
+                $accessPoint = $accessPoints->first();
+
+                if ($accessPoint) {
                     $routerosDevice->access_point_id = $accessPoint->id;
                 }
             }
@@ -258,7 +302,10 @@ class RouterosDevicesController extends AppController
                         'order' => ['modified' => 'DESC'],
                     ]
                 );
-                if ($customerConnectionIp = $customerConnectionIps->first()) {
+
+                $customerConnectionIp = $customerConnectionIps->first();
+
+                if ($customerConnectionIp) {
                     $routerosDevice->customer_connection_id = $customerConnectionIp->customer_connection_id;
                 }
             }
@@ -316,7 +363,9 @@ class RouterosDevicesController extends AppController
             // DELETE removed interfaces
             $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new \DateTime('-120 seconds')]);
 
-            for ($i = 0; $i < count($ipAddr); $i++) {
+            $ipAddr_count = count($ipAddr);
+
+            for ($i = 0; $i < $ipAddr_count; $i++) {
                     // check if IP loaded OK, if not do not add
                 if (!ip2long($ipAddr[$i])) {
                     continue;
@@ -331,6 +380,7 @@ class RouterosDevicesController extends AppController
 
                     $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIps);
             }
+            unset($ipAddr_count);
 
             // DELETE removed IPs
             $this->RouterosDevices->RouterosDeviceIps->deleteAll(['routeros_device_id' => $routerosDevice->id, 'modified <' => new \DateTime('-120 seconds')]);
@@ -346,6 +396,12 @@ class RouterosDevicesController extends AppController
         }
     }
 
+    /**
+     * hexa to set string
+     *
+     * @param string $hex text encoded in hexa format
+     * @return string
+     */
     private function hexToSetString($hex)
     {
         $chars = 'abcdefghijklmnopqrstuwvxyzABCDEFGHIJKLMNOPQRSTUWVXYZ0123456789';
@@ -356,8 +412,10 @@ class RouterosDevicesController extends AppController
             $hex_result = '';
             $hex_remain = '';
 
+            $length = strlen($hex);
+
             // divide by base in hex:
-            for ($i = 0; $i < strlen($hex); $i += 1) {
+            for ($i = 0; $i < $length; $i += 1) {
                 $hex_remain = $hex_remain . $hex[$i];
                 $dec_remain = hexdec($hex_remain);
                 // small partial divide in decimals:
@@ -378,22 +436,51 @@ class RouterosDevicesController extends AppController
         return $answer;
     }
 
-    private function getUsername($routerosDevice = null)
+    /**
+     * get RouterOS device username
+     *
+     * @param \App\Model\Entity\RouterosDevice $routerosDevice Entity
+     * @return string
+     */
+    private function getUsername(RouterosDevice $routerosDevice)
     {
         return 'admin';
     }
 
-    private function getPassword($routerosDevice = null)
+    /**
+     * get RouterOS device password
+     *
+     * @param \App\Model\Entity\RouterosDevice $routerosDevice Entity
+     * @return string
+     */
+    private function getPassword(RouterosDevice $routerosDevice)
     {
         $hash = \Cake\Utility\Security::hash($routerosDevice->serial_number, 'sha256', true);
 
         return $this->hexToSetString(substr($hash, 0, 20));
     }
 
+    /**
+     * get configuration script for RouterOS device
+     *
+     * @param string $deviceTypeIdentifier device type
+     * @param string $serialNumber serial number
+     * @return void
+     */
     public function configurationScript($deviceTypeIdentifier = null, $serialNumber = null)
     {
-        if ($deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first()) {
-            if ($routerosDevice = $this->loadViaSNMP($_SERVER['REMOTE_ADDR'], $deviceType->snmp_community, $deviceType->id, $deviceType->assign_access_point_by_device_name, $deviceType->assign_customer_connection_by_ip)) {
+        $deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first();
+
+        if ($deviceType) {
+            $routerosDevice = $this->loadViaSNMP(
+                $_SERVER['REMOTE_ADDR'],
+                $deviceType->snmp_community,
+                $deviceType->id,
+                $deviceType->assign_access_point_by_device_name,
+                $deviceType->assign_customer_connection_by_ip
+            );
+
+            if ($routerosDevice) {
                 echo ':log warning "Watcher NMS: The data was successfully retrieved using SNMP"' . "\n";
 
                 if ($routerosDevice->serial_number == $serialNumber) {
@@ -422,6 +509,11 @@ class RouterosDevicesController extends AppController
         exit;
     }
 
+    /**
+     * Export RouterOS devices
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
     public function export()
     {
         $search = new SearchForm();

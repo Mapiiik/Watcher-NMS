@@ -56,6 +56,11 @@ class AppController extends Controller
 
     /**
      * Customize pagination
+     *
+     * @param \Cake\ORM\Table|string|\Cake\ORM\Query|null $object Table to paginate
+     * (e.g: Table instance, 'TableName' or a Query object)
+     * @param array $settings The settings/configuration used for pagination.
+     * @return \Cake\ORM\ResultSet|\Cake\Datasource\ResultSetInterface Query results
      */
     public function paginate($object = null, $settings = [])
     {
@@ -64,7 +69,10 @@ class AppController extends Controller
 
             return parent::paginate($object, $settings);
         } catch (NotFoundException $e) {
-            $this->Flash->error(__('Unable to find results on page {0}. Redirect to page 1.', $this->request->getQuery('page')));
+            $this->Flash->error(__(
+                'Unable to find results on page {0}. Redirect to page 1.',
+                $this->request->getQuery('page')
+            ));
             $this->redirect(['page' => 1] + $this->request->getQueryParams());
 
             return;
@@ -73,6 +81,9 @@ class AppController extends Controller
 
     /**
      * Global beforeFilter
+     *
+     * @param \Cake\Event\EventInterface $event An Event instance
+     * @return \Cake\Http\Response|null|void
      */
     public function beforeFilter(EventInterface $event)
     {
@@ -82,7 +93,7 @@ class AppController extends Controller
         }
 
         $language = $this->request->getSession()->read('Config.language', I18n::getDefaultLocale());
-        
+
         if ($language) {
             I18n::setLocale($language);
         }
