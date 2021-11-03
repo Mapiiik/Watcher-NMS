@@ -60,7 +60,7 @@ class AppController extends Controller
      * @param \Cake\ORM\Table|string|\Cake\ORM\Query|null $object Table to paginate
      * (e.g: Table instance, 'TableName' or a Query object)
      * @param array $settings The settings/configuration used for pagination.
-     * @return \Cake\ORM\ResultSet|\Cake\Datasource\ResultSetInterface Query results
+     * @return \Cake\ORM\ResultSet|\Cake\Datasource\ResultSetInterface|null Query results
      */
     public function paginate($object = null, $settings = [])
     {
@@ -73,9 +73,12 @@ class AppController extends Controller
                 'Unable to find results on page {0}. Redirect to page 1.',
                 $this->request->getQuery('page')
             ));
-            $this->redirect(['page' => 1] + $this->request->getQueryParams());
+            $this->redirect(
+                ['?' => ['page' => '1'] + $this->request->getQueryParams()]
+                + $this->request->getParam('pass')
+            );
 
-            return;
+            return null;
         }
     }
 

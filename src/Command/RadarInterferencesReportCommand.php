@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Cake\Log\Log;
@@ -16,8 +16,8 @@ use Cake\Routing\Router;
  */
 class RadarInterferencesReportCommand extends Command
 {
-    // Base Command will load the Users model with this property defined.
-    public $modelClass = 'RadarInterferences';
+    // Define the default table. This allows you to use `fetchTable()` without any argument.
+    protected $defaultTable = 'RadarInterferences';
 
     /**
      * Set available arguments
@@ -57,7 +57,7 @@ class RadarInterferencesReportCommand extends Command
             $emails = (string)env('RADAR_INTERFERENCES_REPORT_EMAILS');
         }
 
-        $radarInterferences = $this->RadarInterferences->find();
+        $radarInterferences = $this->fetchTable()->find();
 
         $radarInterferences->join([
             'RouterosDeviceInterfaces' => [
@@ -75,7 +75,7 @@ class RadarInterferencesReportCommand extends Command
             ],
         ]);
 
-        $radarInterferences->select($this->RadarInterferences);
+        $radarInterferences->select($this->fetchTable());
         $radarInterferences->select(['routeros_device_id' => 'RouterosDevices.id']);
         $radarInterferences->select(['routeros_device_name' => 'RouterosDevices.name']);
         $radarInterferences->select(['routeros_device_interface_id' => 'RouterosDeviceInterfaces.id']);
@@ -98,7 +98,8 @@ class RadarInterferencesReportCommand extends Command
 
             $mailer = new Mailer('default');
             $mailer->setFrom([
-                env('EMAIL_TRANSPORT_DEFAULT_SENDER_EMAIL') => env('EMAIL_TRANSPORT_DEFAULT_SENDER_NAME'),
+                (string)env('EMAIL_TRANSPORT_DEFAULT_SENDER_EMAIL')
+                => (string)env('EMAIL_TRANSPORT_DEFAULT_SENDER_NAME'),
             ]);
 
             foreach (explode(' ', $emails) as $email) {
@@ -106,17 +107,16 @@ class RadarInterferencesReportCommand extends Command
             }
             $mailer->setSubject('The radar interfering devices found');
 
-            if (
+            try {
                 $mailer->deliver(
                     "Hello,\n\nthe radar interfering devices ("
                     . $radarInterferences->count()
                     . ") found.\n\nFor more informations go here: "
                     . Router::url(['controller' => 'RadarInterferences', 'action' => 'devices', '_full' => true], true)
-                )
-            ) {
+                );
                 Log::write('debug', 'The radar interfering devices found and reported.');
                 $io->info('The radar interfering devices found and reported.');
-            } else {
+            } catch (\Exception $e) {
                 Log::write('warning', 'The radar interfering devices found but cannot be reported.');
                 $io->abort('The radar interfering devices found but cannot be reported.');
             }

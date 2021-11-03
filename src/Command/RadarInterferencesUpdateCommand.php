@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Cake\Log\Log;
@@ -14,8 +14,8 @@ use Cake\Log\Log;
  */
 class RadarInterferencesUpdateCommand extends Command
 {
-    // Base Command will load the Users model with this property defined.
-    public $modelClass = 'RadarInterferences';
+    // Define the default table. This allows you to use `fetchTable()` without any argument.
+    protected $defaultTable = 'RadarInterferences';
 
     /**
      * Set available arguments
@@ -50,11 +50,11 @@ class RadarInterferencesUpdateCommand extends Command
         $csv = file($url);
 
         if ($csv) {
-            $this->RadarInterferences->deleteAll([]);
+            $this->fetchTable()->deleteAll([]);
             foreach ($csv as $line) {
                 $data = str_getcsv($line, ';');
 
-                $radarInterference = $this->RadarInterferences->newEmptyEntity();
+                $radarInterference = $this->fetchTable()->newEmptyEntity();
 
                 $radarInterference->name = trim($data[0]);
                 $radarInterference->mac_address = trim($data[1]);
@@ -62,7 +62,7 @@ class RadarInterferencesUpdateCommand extends Command
                 $radarInterference->signal = trim($data[3]);
                 $radarInterference->radio_name = trim($data[4]);
 
-                $this->RadarInterferences->save($radarInterference);
+                $this->fetchTable()->save($radarInterference);
             }
             Log::write('debug', 'The radar interferences table has been updated.');
             $io->success('The radar interferences table has been updated.');

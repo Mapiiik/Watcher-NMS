@@ -190,7 +190,7 @@ class RouterosDevicesController extends AppController
          $long = ip2long($mask);
          $base = ip2long('255.255.255.255');
 
-         return 32 - log(($long ^ $base) + 1, 2);
+         return (int)(32 - log(($long ^ $base) + 1, 2));
     }
 
     /**
@@ -249,17 +249,17 @@ class RouterosDevicesController extends AppController
      *
      * @param string $host The SNMP agent
      * @param string $community The read community
-     * @param int $deviceTypeId DeviceType $id
-     * @param bool $assignAccessPointByDeviceName Assign access point by device name
-     * @param bool $assignCustomerConnectionByIp Assign customer connection by IP
-     * @return string|null
+     * @param string $device_type_id Device Type id
+     * @param bool $assign_access_point_by_device_name Assign access point by device name
+     * @param bool $assign_customer_connection_by_ip Assign customer connection by IP
+     * @return \App\Model\Entity\RouterosDevice|null
      */
     private function loadViaSNMP(
         $host = null,
         $community = null,
-        $deviceTypeId = null,
-        $assignAccessPointByDeviceName = false,
-        $assignCustomerConnectionByIp = false
+        $device_type_id = null,
+        $assign_access_point_by_device_name = false,
+        $assign_customer_connection_by_ip = false
     ) {
         $sourceEncoding = 'CP1250';
 
@@ -282,7 +282,7 @@ class RouterosDevicesController extends AppController
         if ($serialNumber) {
             $routerosDevice = $this->RouterosDevices->findOrCreate(['serial_number' => $serialNumber]);
 
-            $routerosDevice->device_type_id = $deviceTypeId;
+            $routerosDevice->device_type_id = $device_type_id;
             $routerosDevice->ip_address = $host;
 
             $routerosDevice->name = iconv($sourceEncoding, 'UTF-8//IGNORE', @snmp2_get($host, $community, '.1.3.6.1.2.1.1.5.0')); // phpcs:ignore
@@ -292,7 +292,7 @@ class RouterosDevicesController extends AppController
             $routerosDevice->firmware_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.4.0'); // phpcs:ignore
 
             // assign access point by device name
-            if ($assignAccessPointByDeviceName) {
+            if ($assign_access_point_by_device_name) {
                 $accessPoints = $this->RouterosDevices->AccessPoints->find(
                     'all',
                     [
@@ -308,7 +308,7 @@ class RouterosDevicesController extends AppController
             }
 
             // assign customer connection by IP
-            if ($assignCustomerConnectionByIp) {
+            if ($assign_customer_connection_by_ip) {
                 $customerConnectionIps = $this->RouterosDevices->CustomerConnections->CustomerConnectionIps->find(
                     'all',
                     [
@@ -446,7 +446,7 @@ class RouterosDevicesController extends AppController
 
             return $routerosDevice;
         } else {
-            return false;
+            return null;
         }
     }
 

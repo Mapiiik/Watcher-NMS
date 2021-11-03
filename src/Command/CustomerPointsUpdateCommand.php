@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Cake\Log\Log;
@@ -14,8 +14,8 @@ use Cake\Log\Log;
  */
 class CustomerPointsUpdateCommand extends Command
 {
-    // Base Command will load the Users model with this property defined.
-    public $modelClass = 'CustomerPoints';
+    // Define the default table. This allows you to use `fetchTable()` without any argument.
+    protected $defaultTable = 'CustomerPoints';
 
     /**
      * Set available arguments
@@ -53,43 +53,43 @@ class CustomerPointsUpdateCommand extends Command
             $importCustomerPoints = json_decode($json);
 
             foreach ($importCustomerPoints as $importCustomerPoint) {
-                $customerPoint = $this->CustomerPoints->findOrCreate([
+                $customerPoint = $this->fetchTable()->findOrCreate([
                     'gps_x' => $importCustomerPoint->gps_x,
                     'gps_y' => $importCustomerPoint->gps_y,
                 ]);
                 $customerPoint->name = $importCustomerPoint->name;
                 $customerPoint->note = $importCustomerPoint->note;
-                $this->CustomerPoints->save($customerPoint);
+                $this->fetchTable()->save($customerPoint);
 
                 foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
-                    $customerConnection = $this->CustomerPoints->CustomerConnections->findOrCreate([
+                    $customerConnection = $this->fetchTable()->CustomerConnections->findOrCreate([
                         'customer_point_id' => $customerPoint->id,
                         'customer_number' => $importCustomerConnection->customer_number,
                         'contract_number' => $importCustomerConnection->contract_number,
                     ]);
                     $customerConnection->name = $importCustomerConnection->name;
                     $customerConnection->note = $importCustomerConnection->note;
-                    $this->CustomerPoints->CustomerConnections->save($customerConnection);
+                    $this->fetchTable()->CustomerConnections->save($customerConnection);
 
                     foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
-                        $customerConnectionIp = $this->CustomerPoints->CustomerConnections->CustomerConnectionIps
+                        $customerConnectionIp = $this->fetchTable()->CustomerConnections->CustomerConnectionIps
                             ->findOrCreate([
                                 'customer_connection_id' => $customerConnection->id,
                                 'ip_address' => $importCustomerConnectionIp->ip_address,
                             ]);
                         $customerConnectionIp->name = $importCustomerConnectionIp->name;
                         $customerConnectionIp->note = $importCustomerConnectionIp->note;
-                        $this->CustomerPoints->CustomerConnections->CustomerConnectionIps->save($customerConnectionIp);
+                        $this->fetchTable()->CustomerConnections->CustomerConnectionIps->save($customerConnectionIp);
                     }
                 }
             }
-            $this->CustomerPoints->deleteAll([
+            $this->fetchTable()->deleteAll([
                 'modified <' => new \DateTime('-600 seconds'),
             ]);
-            $this->CustomerPoints->CustomerConnections->deleteAll([
+            $this->fetchTable()->CustomerConnections->deleteAll([
                 'modified <' => new \DateTime('-600 seconds'),
             ]);
-            $this->CustomerPoints->CustomerConnections->CustomerConnectionIps->deleteAll([
+            $this->fetchTable()->CustomerConnections->CustomerConnectionIps->deleteAll([
                 'modified <' => new \DateTime('-600 seconds'),
             ]);
 
