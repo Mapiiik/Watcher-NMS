@@ -36,7 +36,7 @@ class RouterosDeviceInterfacesFixture extends TestFixture
                 'interface_oper_status' => 1,
                 'created' => 1635924822,
                 'modified' => 1635924822,
-                'bssid' => 'Lorem ipsum dolor sit amet',
+                'bssid' => '11:22:33:44:55:66',
             ],
         ];
         parent::init();
