@@ -19,6 +19,7 @@ namespace App\Test\TestCase\Controller;
 use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
 
 /**
  * PagesControllerTest class
