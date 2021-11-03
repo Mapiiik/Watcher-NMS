@@ -9,6 +9,9 @@ use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Cake\Log\Log;
 
+/**
+ * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
+ */
 class RadarInterferencesUpdateCommand extends Command
 {
     // Base Command will load the Users model with this property defined.
@@ -41,7 +44,7 @@ class RadarInterferencesUpdateCommand extends Command
     {
         $url = $args->getArgument('url');
         if (!isset($url)) {
-            $url = env('RADAR_INTERFERENCES_URL');
+            $url = (string)env('RADAR_INTERFERENCES_URL');
         }
 
         $csv = file($url);

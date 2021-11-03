@@ -11,6 +11,9 @@ use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use Cake\Routing\Router;
 
+/**
+ * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
+ */
 class RadarInterferencesReportCommand extends Command
 {
     // Base Command will load the Users model with this property defined.
@@ -47,11 +50,11 @@ class RadarInterferencesReportCommand extends Command
     {
         $names = $args->getArgument('names');
         if (!isset($names)) {
-            $names = env('RADAR_INTERFERENCES_REPORT_NAMES');
+            $names = (string)env('RADAR_INTERFERENCES_REPORT_NAMES');
         }
         $emails = $args->getArgument('emails');
         if (!isset($emails)) {
-            $emails = env('RADAR_INTERFERENCES_REPORT_EMAILS');
+            $emails = (string)env('RADAR_INTERFERENCES_REPORT_EMAILS');
         }
 
         $radarInterferences = $this->RadarInterferences->find();
@@ -114,8 +117,8 @@ class RadarInterferencesReportCommand extends Command
                 Log::write('debug', 'The radar interfering devices found and reported.');
                 $io->info('The radar interfering devices found and reported.');
             } else {
-                Log::write('warning', 'The radar interfering devices found and but cannot be reported.');
-                $io->abort('The radar interfering devices found and but cannot be reported.');
+                Log::write('warning', 'The radar interfering devices found but cannot be reported.');
+                $io->abort('The radar interfering devices found but cannot be reported.');
             }
         } else {
             Log::write('debug', 'No radar interfering devices found.');

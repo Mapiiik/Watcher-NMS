@@ -11,6 +11,7 @@ use Cake\View\Helper\HtmlHelper;
  * AccessPoints Controller
  *
  * @property \App\Model\Table\AccessPointsTable $AccessPoints
+ * @property \App\Model\Table\CustomerPointsTable $CustomerPoints
  * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class AccessPointsController extends AppController
@@ -73,7 +74,7 @@ class AccessPointsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -94,7 +95,7 @@ class AccessPointsController extends AppController
      * Edit method
      *
      * @param string|null $id Access Point id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)

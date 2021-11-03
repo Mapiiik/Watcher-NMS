@@ -9,6 +9,9 @@ use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Cake\Log\Log;
 
+/**
+ * @property \App\Model\Table\CustomerPointsTable $CustomerPoints
+ */
 class CustomerPointsUpdateCommand extends Command
 {
     // Base Command will load the Users model with this property defined.
@@ -41,7 +44,7 @@ class CustomerPointsUpdateCommand extends Command
     {
         $url = $args->getArgument('url');
         if (!isset($url)) {
-            $url = env('CUSTOMER_POINTS_URL');
+            $url = (string)env('CUSTOMER_POINTS_URL');
         }
 
         $json = file_get_contents($url);
