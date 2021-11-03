@@ -11,36 +11,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 class RouterosDeviceInterfacesFixture extends TestFixture
 {
     /**
-     * Fields
-     *
-     * @var array
-     */
-    // phpcs:disable
-    public $fields = [
-        'id' => ['type' => 'uuid', 'length' => null, 'default' => null, 'null' => false, 'comment' => null, 'precision' => null],
-        'routeros_device_id' => ['type' => 'uuid', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
-        'name' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'comment' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'mac_address' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'ssid' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'band' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'frequency' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'noise_floor' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'client_count' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'overall_tx_ccq' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'interface_index' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'interface_type' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'interface_admin_status' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'interface_oper_status' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'created' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
-        'modified' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
-        'bssid' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-        ],
-    ];
-    // phpcs:enable
-    /**
      * Init method
      *
      * @return void
@@ -49,8 +19,8 @@ class RouterosDeviceInterfacesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => '1c729a5a-b2a7-4389-80d7-a97703864a70',
-                'routeros_device_id' => 'a548ff3a-dd0c-465f-a07c-9527b475d402',
+                'id' => '67e586b2-f349-48a3-bc03-ae0ed8c83f9a',
+                'routeros_device_id' => 'b6aa1ad6-c494-460d-bfb6-0e618173a1a4',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'comment' => 'Lorem ipsum dolor sit amet',
                 'mac_address' => 'Lorem ipsum dolor sit amet',
@@ -64,8 +34,8 @@ class RouterosDeviceInterfacesFixture extends TestFixture
                 'interface_type' => 1,
                 'interface_admin_status' => 1,
                 'interface_oper_status' => 1,
-                'created' => '',
-                'modified' => '',
+                'created' => 1635924822,
+                'modified' => 1635924822,
                 'bssid' => 'Lorem ipsum dolor sit amet',
             ],
         ];

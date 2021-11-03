@@ -11,23 +11,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 class RadioUnitBandsFixture extends TestFixture
 {
     /**
-     * Fields
-     *
-     * @var array
-     */
-    // @codingStandardsIgnoreStart
-    public $fields = [
-        'id' => ['type' => 'uuid', 'length' => null, 'default' => null, 'null' => false, 'comment' => null, 'precision' => null],
-        'name' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'note' => ['type' => 'text', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
-        'created' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
-        'modified' => ['type' => 'timestamptimezone', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-        ],
-    ];
-    // @codingStandardsIgnoreEnd
-    /**
      * Init method
      *
      * @return void
@@ -36,11 +19,11 @@ class RadioUnitBandsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 'd18dfb12-b40a-4084-bcdd-b545cc01d38f',
+                'id' => '04c8767f-d828-42dd-8950-6500917fc0ce',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'created' => '',
-                'modified' => '',
+                'created' => 1635924822,
+                'modified' => 1635924822,
             ],
         ];
         parent::init();
