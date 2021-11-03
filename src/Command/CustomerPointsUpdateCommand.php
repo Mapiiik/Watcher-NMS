@@ -53,6 +53,7 @@ class CustomerPointsUpdateCommand extends Command
             $importCustomerPoints = json_decode($json);
 
             foreach ($importCustomerPoints as $importCustomerPoint) {
+                /** @var \App\Model\Entity\CustomerPoint $customerPoint */
                 $customerPoint = $this->fetchTable()->findOrCreate([
                     'gps_x' => $importCustomerPoint->gps_x,
                     'gps_y' => $importCustomerPoint->gps_y,
