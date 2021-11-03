@@ -9,7 +9,6 @@ use App\Form\SearchForm;
  * RouterosDeviceIps Controller
  *
  * @property \App\Model\Table\RouterosDeviceIpsTable $RouterosDeviceIps
- *
  * @method \App\Model\Entity\RouterosDeviceIp[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RouterosDeviceIpsController extends AppController
@@ -35,15 +34,14 @@ class RouterosDeviceIpsController extends AppController
         }
         $this->set('search', $search);
 
-        if ($search->getData('search') <> '')
-        {
+        if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'RouterosDeviceIps.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'RouterosDeviceIps.ip_address::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
         }
-        
+
         $routerosDeviceIps = $this->paginate($this->RouterosDeviceIps);
 
         $this->set(compact('routerosDeviceIps'));

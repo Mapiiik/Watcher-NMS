@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -14,7 +12,6 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\HasMany $AntennaTypes
  * @property \App\Model\Table\PowerSupplyTypesTable&\Cake\ORM\Association\HasMany $PowerSupplyTypes
  * @property \App\Model\Table\RadioUnitTypesTable&\Cake\ORM\Association\HasMany $RadioUnitTypes
- *
  * @method \App\Model\Entity\Manufacturer get($primaryKey, $options = [])
  * @method \App\Model\Entity\Manufacturer newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Manufacturer[] newEntities(array $data, array $options = [])
@@ -23,7 +20,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Manufacturer patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Manufacturer[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Manufacturer findOrCreate($search, callable $callback = null, $options = [])
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ManufacturersTable extends Table

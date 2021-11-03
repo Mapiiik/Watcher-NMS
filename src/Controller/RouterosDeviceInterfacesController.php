@@ -9,7 +9,6 @@ use App\Form\SearchForm;
  * RouterosDeviceInterfaces Controller
  *
  * @property \App\Model\Table\RouterosDeviceInterfacesTable $RouterosDeviceInterfaces
- *
  * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RouterosDeviceInterfacesController extends AppController
@@ -17,14 +16,14 @@ class RouterosDeviceInterfacesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
         $this->paginate = [
             'contain' => ['RouterosDevices'],
         ];
-        
+
         $search = new SearchForm();
         if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
             if ($search->execute(['search' => $this->request->getQuery('search')])) {
@@ -35,8 +34,7 @@ class RouterosDeviceInterfacesController extends AppController
         }
         $this->set('search', $search);
 
-        if ($search->getData('search') <> '')
-        {
+        if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'RouterosDeviceInterfaces.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
@@ -45,10 +43,10 @@ class RouterosDeviceInterfacesController extends AppController
                 'RouterosDeviceInterfaces.ssid ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'RouterosDeviceInterfaces.bssid::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'RouterosDeviceInterfaces.band ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.frequency::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',                
+                'RouterosDeviceInterfaces.frequency::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
         }
-        
+
         $routerosDeviceInterfaces = $this->paginate($this->RouterosDeviceInterfaces);
 
         $this->set(compact('routerosDeviceInterfaces'));
@@ -58,7 +56,7 @@ class RouterosDeviceInterfacesController extends AppController
      * View method
      *
      * @param string|null $id Routeros Device Interface id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
@@ -73,7 +71,7 @@ class RouterosDeviceInterfacesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -95,7 +93,7 @@ class RouterosDeviceInterfacesController extends AppController
      * Edit method
      *
      * @param string|null $id Routeros Device Interface id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
@@ -120,7 +118,7 @@ class RouterosDeviceInterfacesController extends AppController
      * Delete method
      *
      * @param string|null $id Routeros Device Interface id.
-     * @return \Cake\Http\Response|null Redirects to index.
+     * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)

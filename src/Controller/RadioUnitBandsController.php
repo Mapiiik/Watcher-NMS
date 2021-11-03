@@ -7,7 +7,6 @@ namespace App\Controller;
  * RadioUnitBands Controller
  *
  * @property \App\Model\Table\RadioUnitBandsTable $RadioUnitBands
- *
  * @method \App\Model\Entity\RadioUnitBand[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RadioUnitBandsController extends AppController

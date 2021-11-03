@@ -10,7 +10,6 @@ use Cake\Console\CommandRunner;
  * RadarInterferences Controller
  *
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
- *
  * @method \App\Model\Entity\RadarInterference[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RadarInterferencesController extends AppController
@@ -106,7 +105,7 @@ class RadarInterferencesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    
+
     public function updateOnline()
     {
         $runner = new CommandRunner(new Application(dirname(__DIR__) . '/../config'), 'cake');
@@ -118,30 +117,30 @@ class RadarInterferencesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    
+
     public function devices()
     {
         $radarInterferences = $this->RadarInterferences->find();
-        
+
         $radarInterferences->join([
             'RouterosDeviceInterfaces' => [
                 'table' => 'routeros_device_interfaces',
                 'type' => 'INNER',
-                'conditions' => 'RadarInterferences.mac_address = RouterosDeviceInterfaces.mac_address'
+                'conditions' => 'RadarInterferences.mac_address = RouterosDeviceInterfaces.mac_address',
             ],
             'RouterosDevices' => [
                 'table' => 'routeros_devices',
                 'type' => 'INNER',
-                'conditions' => 'RouterosDeviceInterfaces.routeros_device_id = RouterosDevices.id'
-            ]
+                'conditions' => 'RouterosDeviceInterfaces.routeros_device_id = RouterosDevices.id',
+            ],
         ]);
-        
+
         $radarInterferences->select($this->RadarInterferences);
         $radarInterferences->select(['routeros_device_id' => 'RouterosDevices.id']);
         $radarInterferences->select(['routeros_device_name' => 'RouterosDevices.name']);
         $radarInterferences->select(['routeros_device_interface_id' => 'RouterosDeviceInterfaces.id']);
         $radarInterferences->select(['routeros_device_interface_name' => 'RouterosDeviceInterfaces.name']);
-        
+
         $this->set('radarInterferences', $this->paginate($radarInterferences));
     }
 }

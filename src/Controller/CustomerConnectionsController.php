@@ -9,7 +9,6 @@ use App\Form\SearchForm;
  * CustomerConnections Controller
  *
  * @property \App\Model\Table\CustomerConnectionsTable $CustomerConnections
- *
  * @method \App\Model\Entity\CustomerConnection[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class CustomerConnectionsController extends AppController
@@ -36,8 +35,7 @@ class CustomerConnectionsController extends AppController
         }
         $this->set('search', $search);
 
-        if ($search->getData('search') <> '')
-        {
+        if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'CustomerPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'CustomerConnections.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
@@ -45,7 +43,7 @@ class CustomerConnectionsController extends AppController
                 'CustomerConnections.contract_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
         }
-        
+
         $customerConnections = $this->paginate($this->CustomerConnections);
 
         $this->set(compact('customerConnections'));
@@ -78,9 +76,13 @@ class CustomerConnectionsController extends AppController
         if ($this->request->is('post')) {
             $customerConnection = $this->CustomerConnections->patchEntity($customerConnection, $this->request->getData());
 
-            if ($customerConnection->customer_number === '') $accessPointContact->customer_number = null;
-            if ($customerConnection->contract_number === '') $accessPointContact->contract_number = null;
-            
+            if ($customerConnection->customer_number === '') {
+                $accessPointContact->customer_number = null;
+            }
+            if ($customerConnection->contract_number === '') {
+                $accessPointContact->contract_number = null;
+            }
+
             if ($this->CustomerConnections->save($customerConnection)) {
                 $this->Flash->success(__('The customer connection has been saved.'));
 
@@ -107,9 +109,13 @@ class CustomerConnectionsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $customerConnection = $this->CustomerConnections->patchEntity($customerConnection, $this->request->getData());
 
-            if ($customerConnection->customer_number === '') $accessPointContact->customer_number = null;
-            if ($customerConnection->contract_number === '') $accessPointContact->contract_number = null;
-            
+            if ($customerConnection->customer_number === '') {
+                $accessPointContact->customer_number = null;
+            }
+            if ($customerConnection->contract_number === '') {
+                $accessPointContact->contract_number = null;
+            }
+
             if ($this->CustomerConnections->save($customerConnection)) {
                 $this->Flash->success(__('The customer connection has been saved.'));
 

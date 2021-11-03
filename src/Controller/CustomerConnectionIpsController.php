@@ -7,7 +7,6 @@ namespace App\Controller;
  * CustomerConnectionIps Controller
  *
  * @property \App\Model\Table\CustomerConnectionIpsTable $CustomerConnectionIps
- *
  * @method \App\Model\Entity\CustomerConnectionIp[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class CustomerConnectionIpsController extends AppController

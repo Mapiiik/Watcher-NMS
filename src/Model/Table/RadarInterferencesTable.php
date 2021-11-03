@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -19,7 +17,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RadarInterference patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RadarInterference[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadarInterference findOrCreate($search, callable $callback = null, $options = [])
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RadarInterferencesTable extends Table
@@ -39,7 +36,7 @@ class RadarInterferencesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        
+
         $this->hasMany('RouterosDeviceInterfaces', [
             'foreignKey' => 'mac_address',
             'bindingKey' => 'mac_address',

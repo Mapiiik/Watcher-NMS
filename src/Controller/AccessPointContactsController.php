@@ -35,8 +35,7 @@ class AccessPointContactsController extends AppController
         }
         $this->set('search', $search);
 
-        if ($search->getData('search') <> '')
-        {
+        if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'accessPointContacts.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
@@ -46,7 +45,7 @@ class AccessPointContactsController extends AppController
                 'accessPointContacts.contract_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
         }
-        
+
         $accessPointContacts = $this->paginate($this->AccessPointContacts);
 
         $this->set(compact('accessPointContacts'));
@@ -79,11 +78,19 @@ class AccessPointContactsController extends AppController
         if ($this->request->is('post')) {
             $accessPointContact = $this->AccessPointContacts->patchEntity($accessPointContact, $this->request->getData());
 
-            if ($accessPointContact->phone === '') $accessPointContact->phone = null;
-            if ($accessPointContact->email === '') $accessPointContact->email = null;
-            if ($accessPointContact->customer_number === '') $accessPointContact->customer_number = null;
-            if ($accessPointContact->contract_number === '') $accessPointContact->contract_number = null;
-            
+            if ($accessPointContact->phone === '') {
+                $accessPointContact->phone = null;
+            }
+            if ($accessPointContact->email === '') {
+                $accessPointContact->email = null;
+            }
+            if ($accessPointContact->customer_number === '') {
+                $accessPointContact->customer_number = null;
+            }
+            if ($accessPointContact->contract_number === '') {
+                $accessPointContact->contract_number = null;
+            }
+
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
 
@@ -110,11 +117,19 @@ class AccessPointContactsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $accessPointContact = $this->AccessPointContacts->patchEntity($accessPointContact, $this->request->getData());
 
-            if ($accessPointContact->phone === '') $accessPointContact->phone = null;
-            if ($accessPointContact->email === '') $accessPointContact->email = null;
-            if ($accessPointContact->customer_number === '') $accessPointContact->customer_number = null;
-            if ($accessPointContact->contract_number === '') $accessPointContact->contract_number = null;
-            
+            if ($accessPointContact->phone === '') {
+                $accessPointContact->phone = null;
+            }
+            if ($accessPointContact->email === '') {
+                $accessPointContact->email = null;
+            }
+            if ($accessPointContact->customer_number === '') {
+                $accessPointContact->customer_number = null;
+            }
+            if ($accessPointContact->contract_number === '') {
+                $accessPointContact->contract_number = null;
+            }
+
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
 

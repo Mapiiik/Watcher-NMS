@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -15,7 +14,6 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\RadioLinksTable&\Cake\ORM\Association\BelongsTo $RadioLinks
  * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\BelongsTo $AntennaTypes
- *
  * @method \App\Model\Entity\RadioUnit get($primaryKey, $options = [])
  * @method \App\Model\Entity\RadioUnit newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\RadioUnit[] newEntities(array $data, array $options = [])
@@ -24,7 +22,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RadioUnit patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnit[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnit findOrCreate($search, callable $callback = null, $options = [])
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RadioUnitsTable extends Table

@@ -7,7 +7,6 @@ namespace App\Controller;
  * AntennaTypes Controller
  *
  * @property \App\Model\Table\AntennaTypesTable $AntennaTypes
- *
  * @method \App\Model\Entity\AntennaType[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class AntennaTypesController extends AppController

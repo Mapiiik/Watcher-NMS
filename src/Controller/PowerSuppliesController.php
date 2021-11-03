@@ -9,7 +9,6 @@ use App\Form\SearchForm;
  * PowerSupplies Controller
  *
  * @property \App\Model\Table\PowerSuppliesTable $PowerSupplies
- *
  * @method \App\Model\Entity\PowerSupply[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class PowerSuppliesController extends AppController
@@ -25,7 +24,7 @@ class PowerSuppliesController extends AppController
             'contain' => ['PowerSupplyTypes', 'AccessPoints'],
             'order' => ['name' => 'ASC'],
         ];
-        
+
         $search = new SearchForm();
         if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
             if ($search->execute(['search' => $this->request->getQuery('search')])) {
@@ -36,8 +35,7 @@ class PowerSuppliesController extends AppController
         }
         $this->set('search', $search);
 
-        if ($search->getData('search') <> '')
-        {
+        if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'PowerSupplyTypes.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
@@ -45,7 +43,7 @@ class PowerSuppliesController extends AppController
                 'PowerSupplies.serial_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
         }
-        
+
         $powerSupplies = $this->paginate($this->PowerSupplies);
 
         $this->set(compact('powerSupplies'));

@@ -9,7 +9,6 @@ use App\Form\SearchForm;
  * CustomerPoints Controller
  *
  * @property \App\Model\Table\CustomerPointsTable $CustomerPoints
- *
  * @method \App\Model\Entity\CustomerPoint[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class CustomerPointsController extends AppController
@@ -35,8 +34,7 @@ class CustomerPointsController extends AppController
         }
         $this->set('search', $search);
 
-        if ($search->getData('search') <> '')
-        {
+        if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'CustomerPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];

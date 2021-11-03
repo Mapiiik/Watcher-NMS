@@ -9,7 +9,6 @@ use App\Form\SearchForm;
  * RadioUnits Controller
  *
  * @property \App\Model\Table\RadioUnitsTable $RadioUnits
- *
  * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RadioUnitsController extends AppController
@@ -25,7 +24,7 @@ class RadioUnitsController extends AppController
             'contain' => ['RadioUnitTypes', 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
             'order' => ['name' => 'ASC'],
         ];
-        
+
         $search = new SearchForm();
         if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
             if ($search->execute(['search' => $this->request->getQuery('search')])) {
@@ -36,8 +35,7 @@ class RadioUnitsController extends AppController
         }
         $this->set('search', $search);
 
-        if ($search->getData('search') <> '')
-        {
+        if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'RadioUnitTypes.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
@@ -47,7 +45,7 @@ class RadioUnitsController extends AppController
                 'RadioUnits.station_address ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
         }
-        
+
         $radioUnits = $this->paginate($this->RadioUnits);
 
         $this->set(compact('radioUnits'));
@@ -140,7 +138,7 @@ class RadioUnitsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    
+
     public function export()
     {
         $radioUnits = $this->RadioUnits->find('all', [

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -12,7 +11,6 @@ use Cake\Validation\Validator;
  * RouterosDeviceIps Model
  *
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\BelongsTo $RouterosDevices
- *
  * @method \App\Model\Entity\RouterosDeviceIp get($primaryKey, $options = [])
  * @method \App\Model\Entity\RouterosDeviceIp newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceIp[] newEntities(array $data, array $options = [])
@@ -21,7 +19,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RouterosDeviceIp patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceIp[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceIp findOrCreate($search, callable $callback = null, $options = [])
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RouterosDeviceIpsTable extends Table

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -14,7 +13,6 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\RadioUnitBandsTable&\Cake\ORM\Association\BelongsTo $RadioUnitBands
  * @property \App\Model\Table\ManufacturersTable&\Cake\ORM\Association\BelongsTo $Manufacturers
  * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
- *
  * @method \App\Model\Entity\RadioUnitType get($primaryKey, $options = [])
  * @method \App\Model\Entity\RadioUnitType newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\RadioUnitType[] newEntities(array $data, array $options = [])
@@ -23,7 +21,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RadioUnitType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnitType[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnitType findOrCreate($search, callable $callback = null, $options = [])
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RadioUnitTypesTable extends Table

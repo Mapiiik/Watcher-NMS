@@ -7,7 +7,6 @@ namespace App\Controller;
  * RadioLinks Controller
  *
  * @property \App\Model\Table\RadioLinksTable $RadioLinks
- *
  * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RadioLinksController extends AppController

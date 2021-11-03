@@ -18,8 +18,8 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\EventInterface;
-use Cake\I18n\I18n;
 use Cake\Http\Exception\NotFoundException;
+use Cake\I18n\I18n;
 
 /**
  * Application Controller
@@ -55,36 +55,38 @@ class AppController extends Controller
     }
 
     # App > paginate
-    public function paginate($object = null, $settings = array()) {
-        try
-        {
+
+    public function paginate($object = null, $settings = [])
+    {
+        try {
             $this->paginate['maxLimit'] = 1000;
+
             return parent::paginate($object, $settings);
-        }
-        catch (NotFoundException $e)
-        {
+        } catch (NotFoundException $e) {
             $this->Flash->error(__('Unable to find results on page {0}. Redirect to page 1.', $this->request->getQuery('page')));
             $this->redirect(['page' => 1] + $this->request->getQueryParams());
+
             return;
         }
     }
-    
+
     # App > beforeFilter
-    public function beforeFilter(EventInterface $event) {
+    public function beforeFilter(EventInterface $event)
+    {
         # We check if we have a language set
         if ($this->request->getQuery('language')) {
             $this->request->getSession()->write('Config.language', $this->request->getQuery('language'));
         }
-        
+
         if ($language = $this->request->getSession()->read('Config.language', I18n::getDefaultLocale())) {
             I18n::setLocale($language);
         }
-        
+
         # Disable SecurityComponent POST validation for CakeDC/Users
         if ($this->request->getParam('plugin') === 'CakeDC/Users') {
             $this->Security->setConfig('validatePost', false);
         }
-        
+
         parent::beforeFilter($event);
-  }    
+    }
 }

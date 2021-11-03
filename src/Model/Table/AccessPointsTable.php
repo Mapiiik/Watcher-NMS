@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -15,7 +13,6 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\PowerSuppliesTable&\Cake\ORM\Association\HasMany $PowerSupplies
  * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\HasMany $RouterosDevices
- *
  * @method \App\Model\Entity\AccessPoint newEmptyEntity()
  * @method \App\Model\Entity\AccessPoint newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\AccessPoint[] newEntities(array $data, array $options = [])
@@ -29,7 +26,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class AccessPointsTable extends Table

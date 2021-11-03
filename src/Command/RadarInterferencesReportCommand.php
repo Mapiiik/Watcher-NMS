@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Command;
 
 use Cake\Console\Arguments;
@@ -13,7 +15,13 @@ class RadarInterferencesReportCommand extends Command
 {
     // Base Command will load the Users model with this property defined.
     public $modelClass = 'RadarInterferences';
-    
+
+    /**
+     * Set available arguments
+     *
+     * @param \Cake\Console\ConsoleOptionParser $parser The parser to update
+     * @return \Cake\Console\ConsoleOptionParser
+     */
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser->addArgument('names', [
@@ -24,74 +32,92 @@ class RadarInterferencesReportCommand extends Command
             'help' => 'list of emails for sending the report',
             'required' => false,
         ]);
+
         return $parser;
     }
 
+    /**
+     * Start the Command
+     *
+     * @param \Cake\Console\Arguments $args The command arguments.
+     * @param \Cake\Console\ConsoleIo $io The console io
+     * @return int|null|void The exit code or null for success
+     */
     public function execute(Arguments $args, ConsoleIo $io)
     {
         $names = $args->getArgument('names');
-        if (!isset($names))
-        {
+        if (!isset($names)) {
             $names = env('RADAR_INTERFERENCES_REPORT_NAMES');
         }
         $emails = $args->getArgument('emails');
-        if (!isset($emails))
-        {
+        if (!isset($emails)) {
             $emails = env('RADAR_INTERFERENCES_REPORT_EMAILS');
         }
 
         $radarInterferences = $this->RadarInterferences->find();
-        
+
         $radarInterferences->join([
             'RouterosDeviceInterfaces' => [
                 'table' => 'routeros_device_interfaces',
                 'type' => 'INNER',
-                'conditions' => "RadarInterferences.mac_address = RouterosDeviceInterfaces.mac_address AND to_tsvector(RadarInterferences.name) @@ to_tsquery('" . mb_ereg_replace('\s{1,}', '|', $names) . "')",
+                'conditions' => 'RadarInterferences.mac_address = RouterosDeviceInterfaces.mac_address'
+                    . " AND to_tsvector(RadarInterferences.name) @@ to_tsquery('"
+                    . mb_ereg_replace('\s{1,}', '|', $names)
+                    . "')",
             ],
             'RouterosDevices' => [
                 'table' => 'routeros_devices',
                 'type' => 'INNER',
                 'conditions' => 'RouterosDeviceInterfaces.routeros_device_id = RouterosDevices.id',
-            ]
+            ],
         ]);
-        
+
         $radarInterferences->select($this->RadarInterferences);
         $radarInterferences->select(['routeros_device_id' => 'RouterosDevices.id']);
         $radarInterferences->select(['routeros_device_name' => 'RouterosDevices.name']);
         $radarInterferences->select(['routeros_device_interface_id' => 'RouterosDeviceInterfaces.id']);
         $radarInterferences->select(['routeros_device_interface_name' => 'RouterosDeviceInterfaces.name']);
-        
-        if ($radarInterferences->count() > 0)
-        {
+
+        if ($radarInterferences->count() > 0) {
             $table[] = ['Name', 'MAC Address', 'SSID', 'Radio Name', 'Signal', 'Device Name', 'Interface Name'];
-            foreach ($radarInterferences as $radarInterference)
-            {
-                $table[] = [$radarInterference['name'], $radarInterference['mac_address'], $radarInterference['ssid'], $radarInterference['radio_name'], (string)$radarInterference['signal'], $radarInterference['routeros_device_name'], $radarInterference['routeros_device_interface_name']];
+            foreach ($radarInterferences as $radarInterference) {
+                $table[] = [
+                    $radarInterference['name'],
+                    $radarInterference['mac_address'],
+                    $radarInterference['ssid'],
+                    $radarInterference['radio_name'],
+                    (string)$radarInterference['signal'],
+                    $radarInterference['routeros_device_name'],
+                    $radarInterference['routeros_device_interface_name'],
+                ];
             }
             $io->helper('Table')->output($table);
-            
+
             $mailer = new Mailer('default');
-            $mailer->setFrom([env('EMAIL_TRANSPORT_DEFAULT_SENDER_EMAIL') => env('EMAIL_TRANSPORT_DEFAULT_SENDER_NAME')]);
-            
-            foreach (explode(" ", $emails) as $email)
-            {
+            $mailer->setFrom([
+                env('EMAIL_TRANSPORT_DEFAULT_SENDER_EMAIL') => env('EMAIL_TRANSPORT_DEFAULT_SENDER_NAME'),
+            ]);
+
+            foreach (explode(' ', $emails) as $email) {
                 $mailer->addTo($email);
             }
             $mailer->setSubject('The radar interfering devices found');
-            
-            if ($mailer->deliver("Hello,\n\nthe radar interfering devices (" . $radarInterferences->count() . ") found.\n\nFor more informations go here: " . Router::url(['controller' => 'RadarInterferences', 'action' => 'devices', '_full' => true], true)))
-            {
+
+            if (
+                $mailer->deliver(
+                    "Hello,\n\nthe radar interfering devices ("
+                    . $radarInterferences->count()
+                    . ") found.\n\nFor more informations go here: "
+                    . Router::url(['controller' => 'RadarInterferences', 'action' => 'devices', '_full' => true], true)
+                )
+            ) {
                 Log::write('debug', 'The radar interfering devices found and reported.');
                 $io->info('The radar interfering devices found and reported.');
-            }
-            else
-            {
+            } else {
                 Log::write('warning', 'The radar interfering devices found and but cannot be reported.');
                 $io->abort('The radar interfering devices found and but cannot be reported.');
             }
-        }
-        else
-        {
+        } else {
             Log::write('debug', 'No radar interfering devices found.');
             $io->success('No radar interfering devices found.');
         }

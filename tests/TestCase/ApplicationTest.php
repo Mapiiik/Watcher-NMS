@@ -39,7 +39,7 @@ class ApplicationTest extends IntegrationTestCase
         $app = new Application(dirname(dirname(__DIR__)) . '/config');
         $app->bootstrap();
         $plugins = $app->getPlugins();
-        
+
         $this->assertCount(6, $plugins);
         $this->assertSame('Cake/Repl', $plugins->get('Cake/Repl')->getName());
         $this->assertSame('Bake', $plugins->get('Bake')->getName());

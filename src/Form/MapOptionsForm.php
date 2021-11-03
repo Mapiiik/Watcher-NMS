@@ -26,7 +26,7 @@ class MapOptionsForm extends Form
             ->addField('linked_customers', 'boolean')
             ->addField('access_point_id', 'uuid')
             ->addField('routeros_device_id', 'uuid');
-}
+    }
 
     /**
      * Form validation builder
@@ -48,6 +48,7 @@ class MapOptionsForm extends Form
     protected function _execute(array $data): bool
     {
         $this->setData($data);
+
         return true;
     }
 }
