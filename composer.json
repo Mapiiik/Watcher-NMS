@@ -1,7 +1,7 @@
 {
-    "name": "cakephp/app",
-    "description": "CakePHP skeleton app",
-    "homepage": "https://cakephp.org",
+    "name": "mapik/watcher-nms",
+    "description": "Watcher NMS",
+    "homepage": "https://github.com/Mapiiik/Watcher-NMS",
     "type": "project",
     "license": "MIT",
     "require": {
