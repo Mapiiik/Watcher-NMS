@@ -54,14 +54,13 @@ class RadarInterferencesUpdateCommand extends Command
             foreach ($csv as $line) {
                 $data = str_getcsv($line, ';');
 
-                $radarInterference = $this->fetchTable()->newEmptyEntity();
-
-                $radarInterference->name = trim($data[0]);
-                $radarInterference->mac_address = trim($data[1]);
-                $radarInterference->ssid = trim($data[2]);
-                $radarInterference->signal = trim($data[3]);
-                $radarInterference->radio_name = trim($data[4]);
-
+                $radarInterference = $this->fetchTable()->newEntity([
+                    'name' => trim($data[0]),
+                    'mac_address' => trim($data[1]),
+                    'ssid' => trim($data[2]),
+                    'signal' => trim($data[3]),
+                    'radio_name' => trim($data[4]),
+                ]);
                 $this->fetchTable()->save($radarInterference);
             }
             Log::write('debug', 'The radar interferences table has been updated.');

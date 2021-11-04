@@ -8,6 +8,7 @@ use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Cake\Log\Log;
+use Cake\I18n\FrozenTime;
 
 /**
  * @property \App\Model\Table\CustomerPointsTable $CustomerPoints
@@ -63,35 +64,36 @@ class CustomerPointsUpdateCommand extends Command
                 $this->fetchTable()->save($customerPoint);
 
                 foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
-                    $customerConnection = $this->fetchTable()->CustomerConnections->findOrCreate([
+                    /** @var \App\Model\Entity\CustomerConnection $customerConnection */
+                    $customerConnection = $this->fetchTable('CustomerConnections')->findOrCreate([
                         'customer_point_id' => $customerPoint->id,
                         'customer_number' => $importCustomerConnection->customer_number,
                         'contract_number' => $importCustomerConnection->contract_number,
                     ]);
                     $customerConnection->name = $importCustomerConnection->name;
                     $customerConnection->note = $importCustomerConnection->note;
-                    $this->fetchTable()->CustomerConnections->save($customerConnection);
+                    $this->fetchTable('CustomerConnections')->save($customerConnection);
 
                     foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
-                        $customerConnectionIp = $this->fetchTable()->CustomerConnections->CustomerConnectionIps
-                            ->findOrCreate([
-                                'customer_connection_id' => $customerConnection->id,
-                                'ip_address' => $importCustomerConnectionIp->ip_address,
-                            ]);
+                    /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
+                        $customerConnectionIp = $this->fetchTable('CustomerConnectionIps')->findOrCreate([
+                            'customer_connection_id' => $customerConnection->id,
+                            'ip_address' => $importCustomerConnectionIp->ip_address,
+                        ]);
                         $customerConnectionIp->name = $importCustomerConnectionIp->name;
                         $customerConnectionIp->note = $importCustomerConnectionIp->note;
-                        $this->fetchTable()->CustomerConnections->CustomerConnectionIps->save($customerConnectionIp);
+                        $this->fetchTable('CustomerConnectionIps')->save($customerConnectionIp);
                     }
                 }
             }
             $this->fetchTable()->deleteAll([
-                'modified <' => new \DateTime('-600 seconds'),
+                'modified <' => new FrozenTime('-600 seconds'),
             ]);
-            $this->fetchTable()->CustomerConnections->deleteAll([
-                'modified <' => new \DateTime('-600 seconds'),
+            $this->fetchTable('CustomerConnections')->deleteAll([
+                'modified <' => new FrozenTime('-600 seconds'),
             ]);
-            $this->fetchTable()->CustomerConnections->CustomerConnectionIps->deleteAll([
-                'modified <' => new \DateTime('-600 seconds'),
+            $this->fetchTable('CustomerConnectionIps')->deleteAll([
+                'modified <' => new FrozenTime('-600 seconds'),
             ]);
 
             Log::write('debug', 'The customer points data have been updated.');

@@ -21,6 +21,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $customer_connection_id
+ * @property string|null $username
+ * @property string|null $password
  *
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\DeviceType $device_type
@@ -37,7 +39,7 @@ class RouterosDevice extends Entity
      * be mass assigned. For security purposes, it is advised to set '*' to false
      * (or remove it), and explicitly make individual fields accessible as needed.
      *
-     * @var array
+     * @var array<bool>
      */
     protected $_accessible = [
         'name' => true,
