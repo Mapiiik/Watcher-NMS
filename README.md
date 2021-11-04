@@ -1,6 +1,6 @@
 # Watcher NMS
 
-[![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/mapik/watcher-nms)
+[![Total Downloads](https://img.shields.io/packagist/dt/mapik/watcher-nms.svg?style=flat-square)](https://packagist.org/packages/mapik/watcher-nms)
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%205-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 
 The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
