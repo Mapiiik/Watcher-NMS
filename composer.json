@@ -3,7 +3,7 @@
     "description": "Watcher NMS",
     "homepage": "https://github.com/Mapiiik/Watcher-NMS",
     "type": "project",
-    "license": "MIT",
+    "license": "GPL-2.0-only",
     "require": {
         "php": ">=7.2",
         "cakedc/users": "^9.2",
