@@ -7,8 +7,8 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Cake\Log\Log;
 use Cake\I18n\FrozenTime;
+use Cake\Log\Log;
 
 /**
  * @property \App\Model\Table\CustomerPointsTable $CustomerPoints
@@ -75,7 +75,7 @@ class CustomerPointsUpdateCommand extends Command
                     $this->fetchTable('CustomerConnections')->save($customerConnection);
 
                     foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
-                    /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
+                        /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
                         $customerConnectionIp = $this->fetchTable('CustomerConnectionIps')->findOrCreate([
                             'customer_connection_id' => $customerConnection->id,
                             'ip_address' => $importCustomerConnectionIp->ip_address,

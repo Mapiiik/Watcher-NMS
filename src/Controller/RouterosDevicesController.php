@@ -465,7 +465,7 @@ class RouterosDevicesController extends AppController
         while (!empty($hex) && ($hex !== 0) && ($hex !== dechex(0))) {
             $hex_result = '';
             $hex_remain = '';
-            $dec_remain = '';
+            $dec_remain = 0;
 
             $length = strlen($hex);
 
