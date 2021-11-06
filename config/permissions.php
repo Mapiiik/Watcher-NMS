@@ -137,7 +137,15 @@ return [
             'controller' => 'Pages',
             'action' => 'display',
         ],
-        //api access
+        //always allow access to DebugKit
+        [
+            'role' => '*',
+            'plugin' => 'DebugKit',
+            'controller' => '*',
+            'action' => '*',
+            'bypassAuth' => true,
+        ],
+        //API access
         [
             'role' => ['api'],
             'plugin' => null,
