@@ -43,10 +43,11 @@
         }
     },
     "scripts": {
-        "post-create-project-cmd": [],
-        "post-install-cmd": [
-            "App\\Console\\Installer::postInstall",
+        "post-create-project-cmd": [
             "@migrations"
+        ],
+        "post-install-cmd": [
+            "App\\Console\\Installer::postInstall"
         ],
         "post-update-cmd": [],
         "migrations": [
