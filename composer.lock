@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b9b9d682d7640a7d3e6ccf7fe53db6b",
+    "content-hash": "c2b023bb07374fe6e4cc9a04160293a2",
     "packages": [
         {
             "name": "cakedc/auth",
@@ -640,21 +640,21 @@
         },
         {
             "name": "dereuromark/cakephp-geo",
-            "version": "dev-master",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "a90dc88d5d873de8c5a3f0d9061ed8b458802e4e"
+                "reference": "d25940a6aaebd7756fed39cda3bdeca9d6e70295"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/a90dc88d5d873de8c5a3f0d9061ed8b458802e4e",
-                "reference": "a90dc88d5d873de8c5a3f0d9061ed8b458802e4e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/d25940a6aaebd7756fed39cda3bdeca9d6e70295",
+                "reference": "d25940a6aaebd7756fed39cda3bdeca9d6e70295",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^4.2.0",
-                "php": ">=7.3"
+                "cakephp/cakephp": "^4.0.0",
+                "php": ">=7.2"
             },
             "require-dev": {
                 "dereuromark/cakephp-tools": "^2.0.0",
@@ -665,10 +665,8 @@
                 "geocoder-php/nominatim-provider": "^5.1",
                 "geocoder-php/provider-implementation": "^1.0",
                 "php-http/cakephp-adapter": "0.3.x-dev",
-                "php-http/message": "^1.8.0",
-                "phpunit/phpunit": "^9.5"
+                "php-http/message": "^1.8.0"
             },
-            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -700,7 +698,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2021-11-02T10:23:08+00:00"
+            "time": "2021-05-29T16:47:41+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1578,20 +1576,20 @@
         },
         {
             "name": "psr/container",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "2ae37329ee82f91efadc282cc2d527fd6065a5ef"
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/2ae37329ee82f91efadc282cc2d527fd6065a5ef",
-                "reference": "2ae37329ee82f91efadc282cc2d527fd6065a5ef",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.0"
+                "php": ">=7.4.0"
             },
             "type": "library",
             "extra": {
@@ -1625,9 +1623,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/2.0.1"
+                "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2021-03-24T13:40:57+00:00"
+            "time": "2021-11-05T16:47:00+00:00"
         },
         {
             "name": "psr/http-client",
@@ -4442,16 +4440,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.13.0",
+            "version": "v4.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "50953a2691a922aa1769461637869a0a2faa3f53"
+                "reference": "63a79e8daa781cac14e5195e63ed8ae231dd10fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/50953a2691a922aa1769461637869a0a2faa3f53",
-                "reference": "50953a2691a922aa1769461637869a0a2faa3f53",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/63a79e8daa781cac14e5195e63ed8ae231dd10fd",
+                "reference": "63a79e8daa781cac14e5195e63ed8ae231dd10fd",
                 "shasum": ""
             },
             "require": {
@@ -4492,9 +4490,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.1"
             },
-            "time": "2021-09-20T12:20:58+00:00"
+            "time": "2021-11-03T20:52:16+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -7236,10 +7234,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
-        "league/oauth2-google": 0,
-        "psy/psysh": 0
+        "dereuromark/cakephp-geo": 0,
+        "league/oauth2-google": 0
     },
     "prefer-stable": true,
     "prefer-lowest": false,
