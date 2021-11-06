@@ -20,9 +20,11 @@ if (!defined('STDIN')) {
     define('STDIN', fopen('php://stdin', 'r'));
 }
 
+use Cake\Codeception\Console\Installer as CodeceptionInstaller;
 use Cake\Utility\Security;
 use Composer\Script\Event;
 use Exception;
+use Migrations\Migrations;
 
 /**
  * Provides installation hooks for when this application is installed through
@@ -62,10 +64,13 @@ class Installer
 
         static::setFolderPermissions($rootDir, $io);
         static::setSecuritySalt($rootDir, $io);
+        
+        $migrations = new Migrations();
+        $migrations->migrate();
+        $migrations->migrate(['plugin' => 'CakeDC/Users']);
 
-        $class = 'Cake\Codeception\Console\Installer';
-        if (class_exists($class)) {
-            $class::customizeCodeceptionBinary($event);
+        if (class_exists(CodeceptionInstaller::class)) {
+            CodeceptionInstaller::customizeCodeceptionBinary($event);
         }
     }
 
