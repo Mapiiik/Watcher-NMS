@@ -43,8 +43,15 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "App\\Console\\Installer::postInstall",
-        "post-autoload-dump": [
+        "post-create-project-cmd": [],
+        "post-install-cmd": [
+            "App\\Console\\Installer::postInstall",
+            "@migrations"
+        ],
+        "post-update-cmd": [
+            "@migrations"
+        ],
+        "migrations": [
             "bin/cake migrations migrate",
             "bin/cake migrations migrate --plugin CakeDC/Users",
             "bin/cake schema_cache build"
