@@ -4,7 +4,9 @@ declare(strict_types=1);
 use Migrations\AbstractMigration;
 use Phinx\Util\Literal;
 
-class Initial extends AbstractMigration
+require_once __DIR__ . '/../Seeds/UsersSeed.php';
+
+class InitialNMS extends AbstractMigration
 {
     public function up()
     {
@@ -934,6 +936,12 @@ class Initial extends AbstractMigration
                 'scale' => 6,
             ])
             ->create();
+
+        (new UsersSeed())
+            ->setAdapter($this->getAdapter())
+            ->setInput($this->getInput())
+            ->setOutput($this->getOutput())
+            ->run();
     }
 
     public function down()
