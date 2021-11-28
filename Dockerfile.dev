@@ -11,6 +11,15 @@ RUN echo "Based on commit: $gitcommithash"
 ENV DEBUG "true"
 ENV WEB_DOCUMENT_ROOT "/app/webroot"
 
+# Install PHP-SNMP extension
+RUN set -x \
+ && apt-update \
+ && apt-install libsnmp-dev \
+ && docker-php-ext-configure snmp \
+ && docker-php-ext-install -j$(nproc) snmp \
+ && docker-run-bootstrap \
+ && docker-image-cleanup
+
 # Add on-start commands
 RUN echo '# Composer oprations' >> /opt/docker/provision/entrypoint.d/99-composer.sh \
  && echo 'gosu "${APPLICATION_USER}" composer install -d /app' >> /opt/docker/provision/entrypoint.d/99-composer.sh \
