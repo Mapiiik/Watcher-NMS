@@ -20,8 +20,8 @@ echo $this->Form->end();
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('routeros_device_id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('routeros_device_id') ?></th>
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
                     <th><?= $this->Paginator->sort('interface_index') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -30,8 +30,8 @@ echo $this->Form->end();
             <tbody>
                 <?php foreach ($routerosDeviceIps as $routerosDeviceIp) : ?>
                 <tr>
-                    <td><?= $routerosDeviceIp->has('routeros_device') ? $this->Html->link($routerosDeviceIp->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->routeros_device->id]) : '' ?></td>
                     <td><?= h($routerosDeviceIp->name) ?></td>
+                    <td><?= $routerosDeviceIp->has('routeros_device') ? $this->Html->link($routerosDeviceIp->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->routeros_device->id]) : '' ?></td>
                     <td><?= h($routerosDeviceIp->ip_address) ?></td>
                     <td><?= $this->Number->format($routerosDeviceIp->interface_index) ?></td>
                     <td class="actions">

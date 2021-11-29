@@ -20,8 +20,8 @@ echo $this->Form->end();
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('routeros_device_id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('routeros_device_id') ?></th>
                     <th><?= $this->Paginator->sort('comment') ?></th>
                     <th><?= $this->Paginator->sort('mac_address') ?></th>
                     <th><?= $this->Paginator->sort('ssid') ?></th>
@@ -41,8 +41,8 @@ echo $this->Form->end();
             <tbody>
                 <?php foreach ($routerosDeviceInterfaces as $routerosDeviceInterface) : ?>
                 <tr>
-                    <td><?= $routerosDeviceInterface->has('routeros_device') ? $this->Html->link($routerosDeviceInterface->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->routeros_device->id]) : '' ?></td>
                     <td><?= h($routerosDeviceInterface->name) ?></td>
+                    <td><?= $routerosDeviceInterface->has('routeros_device') ? $this->Html->link($routerosDeviceInterface->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->routeros_device->id]) : '' ?></td>
                     <td><?= h($routerosDeviceInterface->comment) ?></td>
                     <td><?= h($routerosDeviceInterface->mac_address) ?></td>
                     <td><?= h($routerosDeviceInterface->ssid) ?></td>

@@ -20,8 +20,8 @@ echo $this->Form->end();
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('reading_date') ?></th>
                     <th><?= $this->Paginator->sort('reading_value') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -30,8 +30,8 @@ echo $this->Form->end();
             <tbody>
                 <?php foreach ($electricityMeterReadings as $electricityMeterReading) : ?>
                 <tr>
-                    <td><?= $electricityMeterReading->has('access_point') ? $this->Html->link($electricityMeterReading->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $electricityMeterReading->access_point->id]) : '' ?></td>
                     <td><?= h($electricityMeterReading->name) ?></td>
+                    <td><?= $electricityMeterReading->has('access_point') ? $this->Html->link($electricityMeterReading->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $electricityMeterReading->access_point->id]) : '' ?></td>
                     <td><?= h($electricityMeterReading->reading_date) ?></td>
                     <td><?= $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
                     <td class="actions">

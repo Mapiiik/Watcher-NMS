@@ -20,8 +20,8 @@ echo $this->Form->end();
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('power_supply_type_id') ?></th>
                     <th><?= $this->Paginator->sort('serial_number') ?></th>
                     <th><?= $this->Paginator->sort('battery_count') ?></th>
@@ -36,8 +36,8 @@ echo $this->Form->end();
             <tbody>
                 <?php foreach ($powerSupplies as $powerSupply) : ?>
                 <tr>
-                    <td><?= $powerSupply->has('access_point') ? $this->Html->link($powerSupply->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]) : '' ?></td>
                     <td><?= h($powerSupply->name) ?></td>
+                    <td><?= $powerSupply->has('access_point') ? $this->Html->link($powerSupply->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]) : '' ?></td>
                     <td><?= $powerSupply->has('power_supply_type') ? $this->Html->link($powerSupply->power_supply_type->name, ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupply->power_supply_type->id]) : '' ?></td>
                     <td><?= h($powerSupply->serial_number) ?></td>
                     <td><?= $this->Number->format($powerSupply->battery_count) ?></td>
