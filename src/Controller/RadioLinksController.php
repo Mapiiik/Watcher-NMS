@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\SearchForm;
+
 /**
  * RadioLinks Controller
  *
@@ -18,6 +20,31 @@ class RadioLinksController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['RadioUnits' => [
+                'RadioUnitTypes' => ['RadioUnitBands'],
+                'AccessPoints',
+                'RadioLinks',
+                'AntennaTypes',
+            ]],
+        ];
+
+        $search = new SearchForm();
+        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
+            if ($search->execute(['search' => $this->request->getQuery('search')])) {
+                $this->Flash->success(__('Search Set.'));
+            } else {
+                $this->Flash->error(__('There was a problem setting search.'));
+            }
+        }
+        $this->set('search', $search);
+
+        if ($search->getData('search') <> '') {
+            $this->paginate['conditions']['OR'] = [
+                'RadioLinks.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+            ];
+        }
+
         $radioLinks = $this->paginate($this->RadioLinks);
 
         $this->set(compact('radioLinks'));
