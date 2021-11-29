@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2021-05-06 10:14+0200\n"
+"POT-Creation-Date: 2021-11-29 19:40+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,2334 +14,2284 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/AccessPointContactsController.php:31
-#: Controller/AccessPointsController.php:33
-#: Controller/CustomerConnectionsController.php:32
-#: Controller/CustomerPointsController.php:31
-#: Controller/ElectricityMeterReadingsController.php:30
-#: Controller/PowerSuppliesController.php:32
-#: Controller/RadioUnitsController.php:32
-#: Controller/RouterosDeviceInterfacesController.php:31
-#: Controller/RouterosDeviceIpsController.php:31
-#: Controller/RouterosDevicesController.php:32
-#: Controller/RouterosDevicesController.php:448
+#: ./src/Controller/AccessPointContactsController.php:31
+#: ./src/Controller/AccessPointsController.php:33
+#: ./src/Controller/CustomerConnectionsController.php:31
+#: ./src/Controller/CustomerPointsController.php:30
+#: ./src/Controller/ElectricityMeterReadingsController.php:30
+#: ./src/Controller/PowerSuppliesController.php:31
+#: ./src/Controller/RadioLinksController.php:35
+#: ./src/Controller/RadioUnitsController.php:31
+#: ./src/Controller/RouterosDeviceInterfacesController.php:30
+#: ./src/Controller/RouterosDeviceIpsController.php:30
+#: ./src/Controller/RouterosDevicesController.php:32
+#: ./src/Controller/RouterosDevicesController.php:580
 msgid "Search Set."
 msgstr ""
 
-#: Controller/AccessPointContactsController.php:33
-#: Controller/AccessPointsController.php:35
-#: Controller/CustomerConnectionsController.php:34
-#: Controller/CustomerPointsController.php:33
-#: Controller/ElectricityMeterReadingsController.php:32
-#: Controller/PowerSuppliesController.php:34
-#: Controller/RadioUnitsController.php:34
-#: Controller/RouterosDeviceInterfacesController.php:33
-#: Controller/RouterosDeviceIpsController.php:33
-#: Controller/RouterosDevicesController.php:34
-#: Controller/RouterosDevicesController.php:450
+#: ./src/Controller/AccessPointContactsController.php:33
+#: ./src/Controller/AccessPointsController.php:35
+#: ./src/Controller/CustomerConnectionsController.php:33
+#: ./src/Controller/CustomerPointsController.php:32
+#: ./src/Controller/ElectricityMeterReadingsController.php:32
+#: ./src/Controller/PowerSuppliesController.php:33
+#: ./src/Controller/RadioLinksController.php:37
+#: ./src/Controller/RadioUnitsController.php:33
+#: ./src/Controller/RouterosDeviceInterfacesController.php:32
+#: ./src/Controller/RouterosDeviceIpsController.php:32
+#: ./src/Controller/RouterosDevicesController.php:34
+#: ./src/Controller/RouterosDevicesController.php:582
 msgid "There was a problem setting search."
 msgstr ""
 
-#: Controller/AccessPointContactsController.php:88
-#: Controller/AccessPointContactsController.php:119
+#: ./src/Controller/AccessPointContactsController.php:96
+#: ./src/Controller/AccessPointContactsController.php:136
 msgid "The access point contact has been saved."
 msgstr ""
 
-#: Controller/AccessPointContactsController.php:92
-#: Controller/AccessPointContactsController.php:123
+#: ./src/Controller/AccessPointContactsController.php:100
+#: ./src/Controller/AccessPointContactsController.php:140
 msgid "The access point contact could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/AccessPointContactsController.php:141
+#: ./src/Controller/AccessPointContactsController.php:158
 msgid "The access point contact has been deleted."
 msgstr ""
 
-#: Controller/AccessPointContactsController.php:143
+#: ./src/Controller/AccessPointContactsController.php:160
 msgid "The access point contact could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/AccessPointsController.php:80
-#: Controller/AccessPointsController.php:104
+#: ./src/Controller/AccessPointsController.php:85
+#: ./src/Controller/AccessPointsController.php:109
 msgid "The access point has been saved."
 msgstr ""
 
-#: Controller/AccessPointsController.php:84
-#: Controller/AccessPointsController.php:108
+#: ./src/Controller/AccessPointsController.php:89
+#: ./src/Controller/AccessPointsController.php:113
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/AccessPointsController.php:125
+#: ./src/Controller/AccessPointsController.php:130
 msgid "The access point has been deleted."
 msgstr ""
 
-#: Controller/AccessPointsController.php:127
+#: ./src/Controller/AccessPointsController.php:132
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/AntennaTypesController.php:57
-#: Controller/AntennaTypesController.php:83
+#: ./src/Controller/AntennaTypesController.php:64
+#: ./src/Controller/AntennaTypesController.php:90
 msgid "The antenna type has been saved."
 msgstr ""
 
-#: Controller/AntennaTypesController.php:61
-#: Controller/AntennaTypesController.php:87
+#: ./src/Controller/AntennaTypesController.php:68
+#: ./src/Controller/AntennaTypesController.php:94
 msgid "The antenna type could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/AntennaTypesController.php:106
+#: ./src/Controller/AntennaTypesController.php:113
 msgid "The antenna type has been deleted."
 msgstr ""
 
-#: Controller/AntennaTypesController.php:108
+#: ./src/Controller/AntennaTypesController.php:115
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/AppController.php:66
+#: ./src/Controller/AppController.php:72
 msgid "Unable to find results on page {0}. Redirect to page 1."
 msgstr ""
 
-#: Controller/CustomerConnectionIpsController.php:57
-#: Controller/CustomerConnectionIpsController.php:82
+#: ./src/Controller/CustomerConnectionIpsController.php:58
+#: ./src/Controller/CustomerConnectionIpsController.php:85
 msgid "The customer connection ip has been saved."
 msgstr ""
 
-#: Controller/CustomerConnectionIpsController.php:61
-#: Controller/CustomerConnectionIpsController.php:86
+#: ./src/Controller/CustomerConnectionIpsController.php:62
+#: ./src/Controller/CustomerConnectionIpsController.php:89
 msgid "The customer connection ip could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/CustomerConnectionIpsController.php:104
+#: ./src/Controller/CustomerConnectionIpsController.php:107
 msgid "The customer connection ip has been deleted."
 msgstr ""
 
-#: Controller/CustomerConnectionIpsController.php:106
+#: ./src/Controller/CustomerConnectionIpsController.php:109
 msgid "The customer connection ip could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/CustomerConnectionsController.php:85
-#: Controller/CustomerConnectionsController.php:114
+#: ./src/Controller/CustomerConnectionsController.php:88
+#: ./src/Controller/CustomerConnectionsController.php:115
 msgid "The customer connection has been saved."
 msgstr ""
 
-#: Controller/CustomerConnectionsController.php:89
-#: Controller/CustomerConnectionsController.php:118
+#: ./src/Controller/CustomerConnectionsController.php:92
+#: ./src/Controller/CustomerConnectionsController.php:119
 msgid "The customer connection could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/CustomerConnectionsController.php:136
+#: ./src/Controller/CustomerConnectionsController.php:137
 msgid "The customer connection has been deleted."
 msgstr ""
 
-#: Controller/CustomerConnectionsController.php:138
+#: ./src/Controller/CustomerConnectionsController.php:139
 msgid "The customer connection could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/CustomerPointsController.php:77
-#: Controller/CustomerPointsController.php:101
+#: ./src/Controller/CustomerPointsController.php:75
+#: ./src/Controller/CustomerPointsController.php:99
 msgid "The customer point has been saved."
 msgstr ""
 
-#: Controller/CustomerPointsController.php:81
-#: Controller/CustomerPointsController.php:105
+#: ./src/Controller/CustomerPointsController.php:79
+#: ./src/Controller/CustomerPointsController.php:103
 msgid "The customer point could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/CustomerPointsController.php:122
+#: ./src/Controller/CustomerPointsController.php:120
 msgid "The customer point has been deleted."
 msgstr ""
 
-#: Controller/CustomerPointsController.php:124
+#: ./src/Controller/CustomerPointsController.php:122
 msgid "The customer point could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/DeviceTypesController.php:53
-#: Controller/DeviceTypesController.php:77
+#: ./src/Controller/DeviceTypesController.php:53
+#: ./src/Controller/DeviceTypesController.php:77
 msgid "The device type has been saved."
 msgstr ""
 
-#: Controller/DeviceTypesController.php:57
-#: Controller/DeviceTypesController.php:81
+#: ./src/Controller/DeviceTypesController.php:57
+#: ./src/Controller/DeviceTypesController.php:81
 msgid "The device type could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/DeviceTypesController.php:98
+#: ./src/Controller/DeviceTypesController.php:98
 msgid "The device type has been deleted."
 msgstr ""
 
-#: Controller/DeviceTypesController.php:100
+#: ./src/Controller/DeviceTypesController.php:100
 msgid "The device type could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ElectricityMeterReadingsController.php:77
-#: Controller/ElectricityMeterReadingsController.php:102
+#: ./src/Controller/ElectricityMeterReadingsController.php:78
+#: ./src/Controller/ElectricityMeterReadingsController.php:105
 msgid "The electricity meter reading has been saved."
 msgstr ""
 
-#: Controller/ElectricityMeterReadingsController.php:81
-#: Controller/ElectricityMeterReadingsController.php:106
+#: ./src/Controller/ElectricityMeterReadingsController.php:82
+#: ./src/Controller/ElectricityMeterReadingsController.php:109
 msgid "The electricity meter reading could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/ElectricityMeterReadingsController.php:124
+#: ./src/Controller/ElectricityMeterReadingsController.php:127
 msgid "The electricity meter reading has been deleted."
 msgstr ""
 
-#: Controller/ElectricityMeterReadingsController.php:126
+#: ./src/Controller/ElectricityMeterReadingsController.php:129
 msgid "The electricity meter reading could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ManufacturersController.php:54
-#: Controller/ManufacturersController.php:78
+#: ./src/Controller/ManufacturersController.php:57
+#: ./src/Controller/ManufacturersController.php:81
 msgid "The manufacturer has been saved."
 msgstr ""
 
-#: Controller/ManufacturersController.php:58
-#: Controller/ManufacturersController.php:82
+#: ./src/Controller/ManufacturersController.php:61
+#: ./src/Controller/ManufacturersController.php:85
 msgid "The manufacturer could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/ManufacturersController.php:99
+#: ./src/Controller/ManufacturersController.php:102
 msgid "The manufacturer has been deleted."
 msgstr ""
 
-#: Controller/ManufacturersController.php:101
+#: ./src/Controller/ManufacturersController.php:104
 msgid "The manufacturer could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PowerSuppliesController.php:81
-#: Controller/PowerSuppliesController.php:107
+#: ./src/Controller/PowerSuppliesController.php:79
+#: ./src/Controller/PowerSuppliesController.php:105
 msgid "The power supply has been saved."
 msgstr ""
 
-#: Controller/PowerSuppliesController.php:85
-#: Controller/PowerSuppliesController.php:111
+#: ./src/Controller/PowerSuppliesController.php:83
+#: ./src/Controller/PowerSuppliesController.php:109
 msgid "The power supply could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/PowerSuppliesController.php:130
+#: ./src/Controller/PowerSuppliesController.php:128
 msgid "The power supply has been deleted."
 msgstr ""
 
-#: Controller/PowerSuppliesController.php:132
+#: ./src/Controller/PowerSuppliesController.php:130
 msgid "The power supply could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PowerSupplyTypesController.php:57
-#: Controller/PowerSupplyTypesController.php:82
+#: ./src/Controller/PowerSupplyTypesController.php:56
+#: ./src/Controller/PowerSupplyTypesController.php:81
 msgid "The power supply type has been saved."
 msgstr ""
 
-#: Controller/PowerSupplyTypesController.php:61
-#: Controller/PowerSupplyTypesController.php:86
+#: ./src/Controller/PowerSupplyTypesController.php:60
+#: ./src/Controller/PowerSupplyTypesController.php:85
 msgid "The power supply type could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/PowerSupplyTypesController.php:104
+#: ./src/Controller/PowerSupplyTypesController.php:103
 msgid "The power supply type has been deleted."
 msgstr ""
 
-#: Controller/PowerSupplyTypesController.php:106
+#: ./src/Controller/PowerSupplyTypesController.php:105
 msgid "The power supply type could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/RadarInterferencesController.php:57
-#: Controller/RadarInterferencesController.php:81
+#: ./src/Controller/RadarInterferencesController.php:56
+#: ./src/Controller/RadarInterferencesController.php:80
 msgid "The radar interference has been saved."
 msgstr ""
 
-#: Controller/RadarInterferencesController.php:61
-#: Controller/RadarInterferencesController.php:85
+#: ./src/Controller/RadarInterferencesController.php:60
+#: ./src/Controller/RadarInterferencesController.php:84
 msgid "The radar interference could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/RadarInterferencesController.php:102
+#: ./src/Controller/RadarInterferencesController.php:101
 msgid "The radar interference has been deleted."
 msgstr ""
 
-#: Controller/RadarInterferencesController.php:104
+#: ./src/Controller/RadarInterferencesController.php:103
 msgid "The radar interference could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/RadarInterferencesController.php:114
+#: ./src/Controller/RadarInterferencesController.php:118
 msgid "The radar interferences table has been updated."
 msgstr ""
 
-#: Controller/RadarInterferencesController.php:116
+#: ./src/Controller/RadarInterferencesController.php:120
 msgid "The radar interferences table could not be updated. Please, try again."
 msgstr ""
 
-#: Controller/RadioLinksController.php:54
-#: Controller/RadioLinksController.php:78
+#: ./src/Controller/RadioLinksController.php:80
+#: ./src/Controller/RadioLinksController.php:104
 msgid "The radio link has been saved."
 msgstr ""
 
-#: Controller/RadioLinksController.php:58
-#: Controller/RadioLinksController.php:82
+#: ./src/Controller/RadioLinksController.php:84
+#: ./src/Controller/RadioLinksController.php:108
 msgid "The radio link could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/RadioLinksController.php:99
+#: ./src/Controller/RadioLinksController.php:125
 msgid "The radio link has been deleted."
 msgstr ""
 
-#: Controller/RadioLinksController.php:101
+#: ./src/Controller/RadioLinksController.php:127
 msgid "The radio link could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/RadioUnitBandsController.php:54
-#: Controller/RadioUnitBandsController.php:78
+#: ./src/Controller/RadioUnitBandsController.php:53
+#: ./src/Controller/RadioUnitBandsController.php:77
 msgid "The radio unit band has been saved."
 msgstr ""
 
-#: Controller/RadioUnitBandsController.php:58
-#: Controller/RadioUnitBandsController.php:82
+#: ./src/Controller/RadioUnitBandsController.php:57
+#: ./src/Controller/RadioUnitBandsController.php:81
 msgid "The radio unit band could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/RadioUnitBandsController.php:99
+#: ./src/Controller/RadioUnitBandsController.php:98
 msgid "The radio unit band has been deleted."
 msgstr ""
 
-#: Controller/RadioUnitBandsController.php:101
+#: ./src/Controller/RadioUnitBandsController.php:100
 msgid "The radio unit band could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/RadioUnitTypesController.php:57
-#: Controller/RadioUnitTypesController.php:83
+#: ./src/Controller/RadioUnitTypesController.php:64
+#: ./src/Controller/RadioUnitTypesController.php:90
 msgid "The radio unit type has been saved."
 msgstr ""
 
-#: Controller/RadioUnitTypesController.php:61
-#: Controller/RadioUnitTypesController.php:87
+#: ./src/Controller/RadioUnitTypesController.php:68
+#: ./src/Controller/RadioUnitTypesController.php:94
 msgid "The radio unit type could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/RadioUnitTypesController.php:106
+#: ./src/Controller/RadioUnitTypesController.php:113
 msgid "The radio unit type has been deleted."
 msgstr ""
 
-#: Controller/RadioUnitTypesController.php:108
+#: ./src/Controller/RadioUnitTypesController.php:115
 msgid "The radio unit type could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/RadioUnitsController.php:83
-#: Controller/RadioUnitsController.php:111
+#: ./src/Controller/RadioUnitsController.php:81
+#: ./src/Controller/RadioUnitsController.php:109
 msgid "The radio unit has been saved."
 msgstr ""
 
-#: Controller/RadioUnitsController.php:87
-#: Controller/RadioUnitsController.php:115
+#: ./src/Controller/RadioUnitsController.php:85
+#: ./src/Controller/RadioUnitsController.php:113
 msgid "The radio unit could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/RadioUnitsController.php:136
+#: ./src/Controller/RadioUnitsController.php:134
 msgid "The radio unit has been deleted."
 msgstr ""
 
-#: Controller/RadioUnitsController.php:138
+#: ./src/Controller/RadioUnitsController.php:136
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/RouterosDeviceInterfacesController.php:84
-#: Controller/RouterosDeviceInterfacesController.php:109
+#: ./src/Controller/RouterosDeviceInterfacesController.php:92
+#: ./src/Controller/RouterosDeviceInterfacesController.php:119
 msgid "The routeros device interface has been saved."
 msgstr ""
 
-#: Controller/RouterosDeviceInterfacesController.php:88
-#: Controller/RouterosDeviceInterfacesController.php:113
+#: ./src/Controller/RouterosDeviceInterfacesController.php:96
+#: ./src/Controller/RouterosDeviceInterfacesController.php:123
 msgid "The routeros device interface could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/RouterosDeviceInterfacesController.php:131
+#: ./src/Controller/RouterosDeviceInterfacesController.php:141
 msgid "The routeros device interface has been deleted."
 msgstr ""
 
-#: Controller/RouterosDeviceInterfacesController.php:133
+#: ./src/Controller/RouterosDeviceInterfacesController.php:143
 msgid "The routeros device interface could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/RouterosDeviceIpsController.php:79
-#: Controller/RouterosDeviceIpsController.php:104
+#: ./src/Controller/RouterosDeviceIpsController.php:80
+#: ./src/Controller/RouterosDeviceIpsController.php:105
 msgid "The routeros device ip has been saved."
 msgstr ""
 
-#: Controller/RouterosDeviceIpsController.php:83
-#: Controller/RouterosDeviceIpsController.php:108
+#: ./src/Controller/RouterosDeviceIpsController.php:84
+#: ./src/Controller/RouterosDeviceIpsController.php:109
 msgid "The routeros device ip could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/RouterosDeviceIpsController.php:126
+#: ./src/Controller/RouterosDeviceIpsController.php:127
 msgid "The routeros device ip has been deleted."
 msgstr ""
 
-#: Controller/RouterosDeviceIpsController.php:128
+#: ./src/Controller/RouterosDeviceIpsController.php:129
 msgid "The routeros device ip could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/RouterosDevicesController.php:119
-#: Controller/RouterosDevicesController.php:146
+#: ./src/Controller/RouterosDevicesController.php:121
+#: ./src/Controller/RouterosDevicesController.php:148
 msgid "The routeros device has been saved."
 msgstr ""
 
-#: Controller/RouterosDevicesController.php:123
-#: Controller/RouterosDevicesController.php:150
+#: ./src/Controller/RouterosDevicesController.php:125
+#: ./src/Controller/RouterosDevicesController.php:152
 msgid "The routeros device could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/RouterosDevicesController.php:170
+#: ./src/Controller/RouterosDevicesController.php:172
 msgid "The routeros device has been deleted."
 msgstr ""
 
-#: Controller/RouterosDevicesController.php:172
+#: ./src/Controller/RouterosDevicesController.php:174
 msgid "The routeros device could not be deleted. Please, try again."
 msgstr ""
 
-#: AccessPointContacts/add.php:10
-#: AccessPointContacts/edit.php:10
-#: AccessPointContacts/index.php:29
-#: AccessPointContacts/view.php:10
-#: AccessPoints/add.php:10
-#: AccessPoints/edit.php:10
-#: AccessPoints/index.php:29
-#: AccessPoints/view.php:10
-#: AccessPoints/view.php:79
-#: AccessPoints/view.php:115
-#: AccessPoints/view.php:154
-#: AccessPoints/view.php:211
-#: AccessPoints/view.php:267
-#: AntennaTypes/add.php:10
-#: AntennaTypes/edit.php:10
-#: AntennaTypes/index.php:21
-#: AntennaTypes/view.php:10
-#: AntennaTypes/view.php:90
-#: CustomerConnectionIps/add.php:10
-#: CustomerConnectionIps/edit.php:10
-#: CustomerConnectionIps/index.php:19
-#: CustomerConnectionIps/view.php:10
-#: CustomerConnections/add.php:10
-#: CustomerConnections/edit.php:10
-#: CustomerConnections/index.php:27
-#: CustomerConnections/view.php:10
-#: CustomerConnections/view.php:67
-#: CustomerConnections/view.php:104
-#: CustomerPoints/add.php:10
-#: CustomerPoints/edit.php:10
-#: CustomerPoints/index.php:27
-#: CustomerPoints/view.php:10
-#: CustomerPoints/view.php:72
-#: DeviceTypes/add.php:10
-#: DeviceTypes/edit.php:10
-#: DeviceTypes/index.php:22
-#: DeviceTypes/view.php:10
-#: DeviceTypes/view.php:81
-#: ElectricityMeterReadings/add.php:10
-#: ElectricityMeterReadings/edit.php:10
-#: ElectricityMeterReadings/index.php:27
-#: ElectricityMeterReadings/view.php:10
-#: Manufacturers/add.php:10
-#: Manufacturers/edit.php:10
-#: Manufacturers/index.php:17
-#: Manufacturers/view.php:10
-#: Manufacturers/view.php:57
-#: Manufacturers/view.php:92
-#: Manufacturers/view.php:126
-#: PowerSupplies/add.php:10
-#: PowerSupplies/edit.php:10
-#: PowerSupplies/index.php:33
-#: PowerSupplies/view.php:10
-#: PowerSupplyTypes/add.php:10
-#: PowerSupplyTypes/edit.php:10
-#: PowerSupplyTypes/index.php:21
-#: PowerSupplyTypes/view.php:10
-#: PowerSupplyTypes/view.php:77
-#: RadarInterferences/add.php:10
-#: RadarInterferences/devices.php:24
-#: RadarInterferences/edit.php:10
-#: RadarInterferences/index.php:23
-#: RadarInterferences/view.php:10
-#: RadarInterferences/view.php:77
-#: RadioLinks/add.php:10
-#: RadioLinks/edit.php:10
-#: RadioLinks/index.php:19
-#: RadioLinks/view.php:10
-#: RadioLinks/view.php:82
-#: RadioUnitBands/add.php:10
-#: RadioUnitBands/edit.php:10
-#: RadioUnitBands/index.php:17
-#: RadioUnitBands/view.php:10
-#: RadioUnitBands/view.php:57
-#: RadioUnitBands/view.php:91
-#: RadioUnitTypes/add.php:10
-#: RadioUnitTypes/edit.php:10
-#: RadioUnitTypes/index.php:20
-#: RadioUnitTypes/view.php:10
-#: RadioUnitTypes/view.php:86
-#: RadioUnits/add.php:10
-#: RadioUnits/edit.php:10
-#: RadioUnits/export.php:41
-#: RadioUnits/index.php:46
-#: RadioUnits/view.php:10
-#: RouterosDeviceInterfaces/add.php:10
-#: RouterosDeviceInterfaces/edit.php:10
-#: RouterosDeviceInterfaces/index.php:38
-#: RouterosDeviceInterfaces/view.php:10
-#: RouterosDeviceIps/add.php:10
-#: RouterosDeviceIps/edit.php:10
-#: RouterosDeviceIps/index.php:27
-#: RouterosDeviceIps/view.php:10
-#: RouterosDevices/add.php:10
-#: RouterosDevices/edit.php:10
-#: RouterosDevices/export.php:37
-#: RouterosDevices/index.php:34
-#: RouterosDevices/search.php:34
-#: RouterosDevices/view.php:10
-#: RouterosDevices/view.php:106
-#: RouterosDevices/view.php:148
+#: ./templates/AccessPointContacts/add.php:10
+#: ./templates/AccessPointContacts/edit.php:10
+#: ./templates/AccessPointContacts/index.php:29
+#: ./templates/AccessPointContacts/view.php:10
+#: ./templates/AccessPoints/add.php:10
+#: ./templates/AccessPoints/edit.php:10
+#: ./templates/AccessPoints/index.php:29
+#: ./templates/AccessPoints/view.php:10
+#: ./templates/AccessPoints/view.php:77
+#: ./templates/AccessPoints/view.php:109
+#: ./templates/AccessPoints/view.php:144
+#: ./templates/AccessPoints/view.php:193
+#: ./templates/AccessPoints/view.php:241
+#: ./templates/AntennaTypes/add.php:10
+#: ./templates/AntennaTypes/edit.php:10
+#: ./templates/AntennaTypes/index.php:19
+#: ./templates/AntennaTypes/view.php:10
+#: ./templates/AntennaTypes/view.php:84
+#: ./templates/CustomerConnectionIps/add.php:10
+#: ./templates/CustomerConnectionIps/edit.php:10
+#: ./templates/CustomerConnectionIps/index.php:17
+#: ./templates/CustomerConnectionIps/view.php:10
+#: ./templates/CustomerConnections/add.php:10
+#: ./templates/CustomerConnections/edit.php:10
+#: ./templates/CustomerConnections/index.php:27
+#: ./templates/CustomerConnections/view.php:10
+#: ./templates/CustomerConnections/view.php:65
+#: ./templates/CustomerConnections/view.php:98
+#: ./templates/CustomerPoints/add.php:10
+#: ./templates/CustomerPoints/edit.php:10
+#: ./templates/CustomerPoints/index.php:27
+#: ./templates/CustomerPoints/view.php:10
+#: ./templates/CustomerPoints/view.php:70
+#: ./templates/DeviceTypes/add.php:10
+#: ./templates/DeviceTypes/edit.php:10
+#: ./templates/DeviceTypes/index.php:20
+#: ./templates/DeviceTypes/view.php:10
+#: ./templates/DeviceTypes/view.php:79
+#: ./templates/ElectricityMeterReadings/add.php:10
+#: ./templates/ElectricityMeterReadings/edit.php:10
+#: ./templates/ElectricityMeterReadings/index.php:27
+#: ./templates/ElectricityMeterReadings/view.php:10
+#: ./templates/Manufacturers/add.php:10
+#: ./templates/Manufacturers/edit.php:10
+#: ./templates/Manufacturers/index.php:15
+#: ./templates/Manufacturers/view.php:10
+#: ./templates/Manufacturers/view.php:55
+#: ./templates/Manufacturers/view.php:86
+#: ./templates/Manufacturers/view.php:116
+#: ./templates/PowerSupplies/add.php:10
+#: ./templates/PowerSupplies/edit.php:10
+#: ./templates/PowerSupplies/index.php:33
+#: ./templates/PowerSupplies/view.php:10
+#: ./templates/PowerSupplyTypes/add.php:10
+#: ./templates/PowerSupplyTypes/edit.php:10
+#: ./templates/PowerSupplyTypes/index.php:19
+#: ./templates/PowerSupplyTypes/view.php:10
+#: ./templates/PowerSupplyTypes/view.php:75
+#: ./templates/RadarInterferences/add.php:10
+#: ./templates/RadarInterferences/devices.php:22
+#: ./templates/RadarInterferences/edit.php:10
+#: ./templates/RadarInterferences/index.php:21
+#: ./templates/RadarInterferences/view.php:10
+#: ./templates/RadarInterferences/view.php:75
+#: ./templates/RadioLinks/add.php:10
+#: ./templates/RadioLinks/edit.php:10
+#: ./templates/RadioLinks/index.php:41
+#: ./templates/RadioLinks/view.php:10
+#: ./templates/RadioLinks/view.php:76
+#: ./templates/RadioUnitBands/add.php:10
+#: ./templates/RadioUnitBands/edit.php:10
+#: ./templates/RadioUnitBands/index.php:15
+#: ./templates/RadioUnitBands/view.php:10
+#: ./templates/RadioUnitBands/view.php:55
+#: ./templates/RadioUnitBands/view.php:85
+#: ./templates/RadioUnitTypes/add.php:10
+#: ./templates/RadioUnitTypes/edit.php:10
+#: ./templates/RadioUnitTypes/index.php:18
+#: ./templates/RadioUnitTypes/view.php:10
+#: ./templates/RadioUnitTypes/view.php:80
+#: ./templates/RadioUnits/add.php:10
+#: ./templates/RadioUnits/edit.php:10
+#: ./templates/RadioUnits/export.php:41
+#: ./templates/RadioUnits/index.php:42
+#: ./templates/RadioUnits/view.php:10
+#: ./templates/RouterosDeviceInterfaces/add.php:10
+#: ./templates/RouterosDeviceInterfaces/edit.php:10
+#: ./templates/RouterosDeviceInterfaces/index.php:38
+#: ./templates/RouterosDeviceInterfaces/view.php:10
+#: ./templates/RouterosDeviceIps/add.php:10
+#: ./templates/RouterosDeviceIps/edit.php:10
+#: ./templates/RouterosDeviceIps/index.php:27
+#: ./templates/RouterosDeviceIps/view.php:10
+#: ./templates/RouterosDevices/add.php:10
+#: ./templates/RouterosDevices/edit.php:10
+#: ./templates/RouterosDevices/export.php:37
+#: ./templates/RouterosDevices/index.php:34
+#: ./templates/RouterosDevices/view.php:10
+#: ./templates/RouterosDevices/view.php:104
+#: ./templates/RouterosDevices/view.php:142
 msgid "Actions"
 msgstr ""
 
-#: AccessPointContacts/add.php:11
-#: AccessPointContacts/edit.php:16
-#: AccessPointContacts/view.php:13
+#: ./templates/AccessPointContacts/add.php:11
+#: ./templates/AccessPointContacts/edit.php:16
+#: ./templates/AccessPointContacts/view.php:13
 msgid "List Access Point Contacts"
 msgstr ""
 
-#: AccessPointContacts/add.php:18
+#: ./templates/AccessPointContacts/add.php:18
 msgid "Add Access Point Contact"
 msgstr ""
 
-#: AccessPointContacts/add.php:29
-#: AccessPointContacts/edit.php:34
-#: AccessPoints/add.php:27
-#: AccessPoints/edit.php:32
-#: AccessPoints/map.php:51
-#: AntennaTypes/add.php:28
-#: AntennaTypes/edit.php:33
-#: CustomerConnectionIps/add.php:26
-#: CustomerConnectionIps/edit.php:31
-#: CustomerConnections/add.php:27
-#: CustomerConnections/edit.php:32
-#: CustomerPoints/add.php:26
-#: CustomerPoints/edit.php:31
-#: DeviceTypes/add.php:29
-#: DeviceTypes/edit.php:34
-#: ElectricityMeterReadings/add.php:27
-#: ElectricityMeterReadings/edit.php:32
-#: Manufacturers/add.php:24
-#: Manufacturers/edit.php:29
-#: PowerSupplies/add.php:32
-#: PowerSupplies/edit.php:37
-#: PowerSupplyTypes/add.php:28
-#: PowerSupplyTypes/edit.php:33
-#: RadarInterferences/add.php:27
-#: RadarInterferences/edit.php:32
-#: RadioLinks/add.php:26
-#: RadioLinks/edit.php:31
-#: RadioUnitBands/add.php:24
-#: RadioUnitBands/edit.php:29
-#: RadioUnitTypes/add.php:27
-#: RadioUnitTypes/edit.php:32
-#: RadioUnits/add.php:45
-#: RadioUnits/edit.php:50
-#: RouterosDeviceInterfaces/add.php:37
-#: RouterosDeviceInterfaces/edit.php:42
-#: RouterosDeviceIps/add.php:26
-#: RouterosDeviceIps/edit.php:31
-#: RouterosDevices/add.php:32
-#: RouterosDevices/edit.php:37
+#: ./templates/AccessPointContacts/add.php:29
+#: ./templates/AccessPointContacts/edit.php:34
+#: ./templates/AccessPoints/add.php:27
+#: ./templates/AccessPoints/edit.php:32
+#: ./templates/AccessPoints/map.php:51
+#: ./templates/AntennaTypes/add.php:28
+#: ./templates/AntennaTypes/edit.php:33
+#: ./templates/CustomerConnectionIps/add.php:26
+#: ./templates/CustomerConnectionIps/edit.php:31
+#: ./templates/CustomerConnections/add.php:27
+#: ./templates/CustomerConnections/edit.php:32
+#: ./templates/CustomerPoints/add.php:26
+#: ./templates/CustomerPoints/edit.php:31
+#: ./templates/DeviceTypes/add.php:29
+#: ./templates/DeviceTypes/edit.php:34
+#: ./templates/ElectricityMeterReadings/add.php:27
+#: ./templates/ElectricityMeterReadings/edit.php:32
+#: ./templates/Manufacturers/add.php:24
+#: ./templates/Manufacturers/edit.php:29
+#: ./templates/PowerSupplies/add.php:32
+#: ./templates/PowerSupplies/edit.php:37
+#: ./templates/PowerSupplyTypes/add.php:28
+#: ./templates/PowerSupplyTypes/edit.php:33
+#: ./templates/RadarInterferences/add.php:27
+#: ./templates/RadarInterferences/edit.php:32
+#: ./templates/RadioLinks/add.php:26
+#: ./templates/RadioLinks/edit.php:31
+#: ./templates/RadioUnitBands/add.php:24
+#: ./templates/RadioUnitBands/edit.php:29
+#: ./templates/RadioUnitTypes/add.php:27
+#: ./templates/RadioUnitTypes/edit.php:32
+#: ./templates/RadioUnits/add.php:45
+#: ./templates/RadioUnits/edit.php:50
+#: ./templates/RouterosDeviceInterfaces/add.php:37
+#: ./templates/RouterosDeviceInterfaces/edit.php:42
+#: ./templates/RouterosDeviceIps/add.php:26
+#: ./templates/RouterosDeviceIps/edit.php:31
+#: ./templates/RouterosDevices/add.php:32
+#: ./templates/RouterosDevices/edit.php:37
 msgid "Submit"
 msgstr ""
 
-#: AccessPointContacts/edit.php:12
-#: AccessPointContacts/index.php:46
-#: AccessPoints/edit.php:12
-#: AccessPoints/index.php:48
-#: AccessPoints/view.php:94
-#: AccessPoints/view.php:128
-#: AccessPoints/view.php:172
-#: AccessPoints/view.php:242
-#: AccessPoints/view.php:284
-#: AntennaTypes/edit.php:12
-#: AntennaTypes/index.php:37
-#: AntennaTypes/view.php:121
-#: CustomerConnectionIps/edit.php:12
-#: CustomerConnectionIps/index.php:33
-#: CustomerConnections/edit.php:12
-#: CustomerConnections/index.php:42
-#: CustomerConnections/view.php:79
-#: CustomerConnections/view.php:122
-#: CustomerPoints/edit.php:12
-#: CustomerPoints/index.php:45
-#: CustomerPoints/view.php:85
-#: DeviceTypes/edit.php:12
-#: DeviceTypes/index.php:39
-#: DeviceTypes/view.php:99
-#: ElectricityMeterReadings/edit.php:12
-#: ElectricityMeterReadings/index.php:42
-#: Manufacturers/edit.php:12
-#: Manufacturers/index.php:29
-#: Manufacturers/view.php:71
-#: Manufacturers/view.php:106
-#: Manufacturers/view.php:139
-#: PowerSupplies/edit.php:12
-#: PowerSupplies/index.php:54
-#: PowerSupplyTypes/edit.php:12
-#: PowerSupplyTypes/index.php:37
-#: PowerSupplyTypes/view.php:95
-#: RadarInterferences/devices.php:43
-#: RadarInterferences/edit.php:12
-#: RadarInterferences/index.php:39
-#: RadarInterferences/view.php:101
-#: RadioLinks/edit.php:12
-#: RadioLinks/index.php:33
-#: RadioLinks/view.php:113
-#: RadioUnitBands/edit.php:12
-#: RadioUnitBands/index.php:29
-#: RadioUnitBands/view.php:71
-#: RadioUnitBands/view.php:104
-#: RadioUnitTypes/edit.php:12
-#: RadioUnitTypes/index.php:35
-#: RadioUnitTypes/view.php:117
-#: RadioUnits/edit.php:12
-#: RadioUnits/export.php:77
-#: RadioUnits/index.php:79
-#: RouterosDeviceInterfaces/edit.php:12
-#: RouterosDeviceInterfaces/index.php:64
-#: RouterosDeviceIps/edit.php:12
-#: RouterosDeviceIps/index.php:42
-#: RouterosDevices/edit.php:12
-#: RouterosDevices/export.php:75
-#: RouterosDevices/index.php:55
-#: RouterosDevices/search.php:55
-#: RouterosDevices/view.php:129
-#: RouterosDevices/view.php:160
+#: ./templates/AccessPointContacts/edit.php:12
+#: ./templates/AccessPointContacts/index.php:44
+#: ./templates/AccessPoints/edit.php:12
+#: ./templates/AccessPoints/index.php:46
+#: ./templates/AccessPoints/view.php:90
+#: ./templates/AccessPoints/view.php:120
+#: ./templates/AccessPoints/view.php:160
+#: ./templates/AccessPoints/view.php:218
+#: ./templates/AccessPoints/view.php:256
+#: ./templates/AntennaTypes/edit.php:12
+#: ./templates/AntennaTypes/index.php:33
+#: ./templates/AntennaTypes/view.php:109
+#: ./templates/CustomerConnectionIps/edit.php:12
+#: ./templates/CustomerConnectionIps/index.php:29
+#: ./templates/CustomerConnections/edit.php:12
+#: ./templates/CustomerConnections/index.php:40
+#: ./templates/CustomerConnections/view.php:75
+#: ./templates/CustomerConnections/view.php:114
+#: ./templates/CustomerPoints/edit.php:12
+#: ./templates/CustomerPoints/index.php:43
+#: ./templates/CustomerPoints/view.php:81
+#: ./templates/DeviceTypes/edit.php:12
+#: ./templates/DeviceTypes/index.php:35
+#: ./templates/DeviceTypes/view.php:95
+#: ./templates/ElectricityMeterReadings/edit.php:12
+#: ./templates/ElectricityMeterReadings/index.php:40
+#: ./templates/Manufacturers/edit.php:12
+#: ./templates/Manufacturers/index.php:25
+#: ./templates/Manufacturers/view.php:67
+#: ./templates/Manufacturers/view.php:98
+#: ./templates/Manufacturers/view.php:127
+#: ./templates/PowerSupplies/edit.php:12
+#: ./templates/PowerSupplies/index.php:52
+#: ./templates/PowerSupplyTypes/edit.php:12
+#: ./templates/PowerSupplyTypes/index.php:33
+#: ./templates/PowerSupplyTypes/view.php:91
+#: ./templates/RadarInterferences/devices.php:39
+#: ./templates/RadarInterferences/edit.php:12
+#: ./templates/RadarInterferences/index.php:35
+#: ./templates/RadarInterferences/view.php:97
+#: ./templates/RadioLinks/edit.php:12
+#: ./templates/RadioLinks/index.php:67
+#: ./templates/RadioLinks/view.php:101
+#: ./templates/RadioUnitBands/edit.php:12
+#: ./templates/RadioUnitBands/index.php:25
+#: ./templates/RadioUnitBands/view.php:67
+#: ./templates/RadioUnitBands/view.php:96
+#: ./templates/RadioUnitTypes/edit.php:12
+#: ./templates/RadioUnitTypes/index.php:31
+#: ./templates/RadioUnitTypes/view.php:105
+#: ./templates/RadioUnits/edit.php:12
+#: ./templates/RadioUnits/export.php:77
+#: ./templates/RadioUnits/index.php:69
+#: ./templates/RouterosDeviceInterfaces/edit.php:12
+#: ./templates/RouterosDeviceInterfaces/index.php:62
+#: ./templates/RouterosDeviceIps/edit.php:12
+#: ./templates/RouterosDeviceIps/index.php:40
+#: ./templates/RouterosDevices/edit.php:12
+#: ./templates/RouterosDevices/export.php:75
+#: ./templates/RouterosDevices/index.php:53
+#: ./templates/RouterosDevices/view.php:125
+#: ./templates/RouterosDevices/view.php:152
 msgid "Delete"
 msgstr ""
 
-#: AccessPointContacts/edit.php:14
-#: AccessPointContacts/index.php:46
-#: AccessPointContacts/view.php:12
-#: AccessPoints/edit.php:14
-#: AccessPoints/index.php:48
-#: AccessPoints/view.php:12
-#: AccessPoints/view.php:94
-#: AccessPoints/view.php:128
-#: AccessPoints/view.php:172
-#: AccessPoints/view.php:242
-#: AccessPoints/view.php:284
-#: AntennaTypes/edit.php:14
-#: AntennaTypes/index.php:37
-#: AntennaTypes/view.php:12
-#: AntennaTypes/view.php:121
-#: CustomerConnectionIps/edit.php:14
-#: CustomerConnectionIps/index.php:33
-#: CustomerConnectionIps/view.php:12
-#: CustomerConnections/edit.php:14
-#: CustomerConnections/index.php:42
-#: CustomerConnections/view.php:12
-#: CustomerConnections/view.php:79
-#: CustomerConnections/view.php:122
-#: CustomerPoints/edit.php:14
-#: CustomerPoints/index.php:45
-#: CustomerPoints/view.php:12
-#: CustomerPoints/view.php:85
-#: DeviceTypes/edit.php:14
-#: DeviceTypes/index.php:39
-#: DeviceTypes/view.php:12
-#: DeviceTypes/view.php:99
-#: ElectricityMeterReadings/edit.php:14
-#: ElectricityMeterReadings/index.php:42
-#: ElectricityMeterReadings/view.php:12
-#: Manufacturers/edit.php:14
-#: Manufacturers/index.php:29
-#: Manufacturers/view.php:12
-#: Manufacturers/view.php:71
-#: Manufacturers/view.php:106
-#: Manufacturers/view.php:139
-#: PowerSupplies/edit.php:14
-#: PowerSupplies/index.php:54
-#: PowerSupplies/view.php:12
-#: PowerSupplyTypes/edit.php:14
-#: PowerSupplyTypes/index.php:37
-#: PowerSupplyTypes/view.php:12
-#: PowerSupplyTypes/view.php:95
-#: RadarInterferences/devices.php:43
-#: RadarInterferences/edit.php:14
-#: RadarInterferences/index.php:39
-#: RadarInterferences/view.php:12
-#: RadarInterferences/view.php:101
-#: RadioLinks/edit.php:14
-#: RadioLinks/index.php:33
-#: RadioLinks/view.php:12
-#: RadioLinks/view.php:113
-#: RadioUnitBands/edit.php:14
-#: RadioUnitBands/index.php:29
-#: RadioUnitBands/view.php:12
-#: RadioUnitBands/view.php:71
-#: RadioUnitBands/view.php:104
-#: RadioUnitTypes/edit.php:14
-#: RadioUnitTypes/index.php:35
-#: RadioUnitTypes/view.php:12
-#: RadioUnitTypes/view.php:117
-#: RadioUnits/edit.php:14
-#: RadioUnits/export.php:77
-#: RadioUnits/index.php:79
-#: RadioUnits/view.php:12
-#: RouterosDeviceInterfaces/edit.php:14
-#: RouterosDeviceInterfaces/index.php:64
-#: RouterosDeviceInterfaces/view.php:12
-#: RouterosDeviceIps/edit.php:14
-#: RouterosDeviceIps/index.php:42
-#: RouterosDeviceIps/view.php:12
-#: RouterosDevices/edit.php:14
-#: RouterosDevices/export.php:75
-#: RouterosDevices/index.php:55
-#: RouterosDevices/search.php:55
-#: RouterosDevices/view.php:12
-#: RouterosDevices/view.php:129
-#: RouterosDevices/view.php:160
+#: ./templates/AccessPointContacts/edit.php:14
+#: ./templates/AccessPointContacts/index.php:44
+#: ./templates/AccessPointContacts/view.php:12
+#: ./templates/AccessPoints/edit.php:14
+#: ./templates/AccessPoints/index.php:46
+#: ./templates/AccessPoints/view.php:12
+#: ./templates/AccessPoints/view.php:90
+#: ./templates/AccessPoints/view.php:120
+#: ./templates/AccessPoints/view.php:160
+#: ./templates/AccessPoints/view.php:218
+#: ./templates/AccessPoints/view.php:256
+#: ./templates/AntennaTypes/edit.php:14
+#: ./templates/AntennaTypes/index.php:33
+#: ./templates/AntennaTypes/view.php:12
+#: ./templates/AntennaTypes/view.php:109
+#: ./templates/CustomerConnectionIps/edit.php:14
+#: ./templates/CustomerConnectionIps/index.php:29
+#: ./templates/CustomerConnectionIps/view.php:12
+#: ./templates/CustomerConnections/edit.php:14
+#: ./templates/CustomerConnections/index.php:40
+#: ./templates/CustomerConnections/view.php:12
+#: ./templates/CustomerConnections/view.php:75
+#: ./templates/CustomerConnections/view.php:114
+#: ./templates/CustomerPoints/edit.php:14
+#: ./templates/CustomerPoints/index.php:43
+#: ./templates/CustomerPoints/view.php:12
+#: ./templates/CustomerPoints/view.php:81
+#: ./templates/DeviceTypes/edit.php:14
+#: ./templates/DeviceTypes/index.php:35
+#: ./templates/DeviceTypes/view.php:12
+#: ./templates/DeviceTypes/view.php:95
+#: ./templates/ElectricityMeterReadings/edit.php:14
+#: ./templates/ElectricityMeterReadings/index.php:40
+#: ./templates/ElectricityMeterReadings/view.php:12
+#: ./templates/Manufacturers/edit.php:14
+#: ./templates/Manufacturers/index.php:25
+#: ./templates/Manufacturers/view.php:12
+#: ./templates/Manufacturers/view.php:67
+#: ./templates/Manufacturers/view.php:98
+#: ./templates/Manufacturers/view.php:127
+#: ./templates/PowerSupplies/edit.php:14
+#: ./templates/PowerSupplies/index.php:52
+#: ./templates/PowerSupplies/view.php:12
+#: ./templates/PowerSupplyTypes/edit.php:14
+#: ./templates/PowerSupplyTypes/index.php:33
+#: ./templates/PowerSupplyTypes/view.php:12
+#: ./templates/PowerSupplyTypes/view.php:91
+#: ./templates/RadarInterferences/devices.php:39
+#: ./templates/RadarInterferences/edit.php:14
+#: ./templates/RadarInterferences/index.php:35
+#: ./templates/RadarInterferences/view.php:12
+#: ./templates/RadarInterferences/view.php:97
+#: ./templates/RadioLinks/edit.php:14
+#: ./templates/RadioLinks/index.php:67
+#: ./templates/RadioLinks/view.php:12
+#: ./templates/RadioLinks/view.php:101
+#: ./templates/RadioUnitBands/edit.php:14
+#: ./templates/RadioUnitBands/index.php:25
+#: ./templates/RadioUnitBands/view.php:12
+#: ./templates/RadioUnitBands/view.php:67
+#: ./templates/RadioUnitBands/view.php:96
+#: ./templates/RadioUnitTypes/edit.php:14
+#: ./templates/RadioUnitTypes/index.php:31
+#: ./templates/RadioUnitTypes/view.php:12
+#: ./templates/RadioUnitTypes/view.php:105
+#: ./templates/RadioUnits/edit.php:14
+#: ./templates/RadioUnits/export.php:77
+#: ./templates/RadioUnits/index.php:69
+#: ./templates/RadioUnits/view.php:12
+#: ./templates/RouterosDeviceInterfaces/edit.php:14
+#: ./templates/RouterosDeviceInterfaces/index.php:62
+#: ./templates/RouterosDeviceInterfaces/view.php:12
+#: ./templates/RouterosDeviceIps/edit.php:14
+#: ./templates/RouterosDeviceIps/index.php:40
+#: ./templates/RouterosDeviceIps/view.php:12
+#: ./templates/RouterosDevices/edit.php:14
+#: ./templates/RouterosDevices/export.php:75
+#: ./templates/RouterosDevices/index.php:53
+#: ./templates/RouterosDevices/view.php:12
+#: ./templates/RouterosDevices/view.php:125
+#: ./templates/RouterosDevices/view.php:152
 msgid "Are you sure you want to delete # {0}?"
 msgstr ""
 
-#: AccessPointContacts/edit.php:23
-#: AccessPointContacts/view.php:11
+#: ./templates/AccessPointContacts/edit.php:23
+#: ./templates/AccessPointContacts/view.php:11
 msgid "Edit Access Point Contact"
 msgstr ""
 
-#: AccessPointContacts/index.php:10
-#: AccessPoints/index.php:10
-#: CustomerConnections/index.php:10
-#: CustomerPoints/index.php:10
-#: ElectricityMeterReadings/index.php:10
-#: PowerSupplies/index.php:10
-#: RadioUnits/index.php:10
-#: RouterosDeviceInterfaces/index.php:10
-#: RouterosDeviceIps/index.php:10
-#: RouterosDevices/export.php:11
-#: RouterosDevices/index.php:10
-#: RouterosDevices/search.php:10
+#: ./templates/AccessPointContacts/index.php:12
+#: ./templates/AccessPoints/index.php:12
+#: ./templates/CustomerConnections/index.php:12
+#: ./templates/CustomerPoints/index.php:12
+#: ./templates/ElectricityMeterReadings/index.php:12
+#: ./templates/PowerSupplies/index.php:12
+#: ./templates/RadioLinks/index.php:13
+#: ./templates/RadioUnits/index.php:12
+#: ./templates/RouterosDeviceInterfaces/index.php:12
+#: ./templates/RouterosDeviceIps/index.php:12
+#: ./templates/RouterosDevices/export.php:11
+#: ./templates/RouterosDevices/index.php:12
 msgid "Search"
 msgstr ""
 
-#: AccessPointContacts/index.php:15
-#: AccessPointContacts/view.php:14
-#: AccessPoints/view.php:65
+#: ./templates/AccessPointContacts/index.php:17
+#: ./templates/AccessPointContacts/view.php:14
+#: ./templates/AccessPoints/view.php:65
 msgid "New Access Point Contact"
 msgstr ""
 
-#: AccessPointContacts/index.php:16
-#: layout/default.php:86
+#: ./templates/AccessPointContacts/index.php:18
+#: ./templates/layout/default.php:87
 msgid "Access Point Contacts"
 msgstr ""
 
-#: AccessPointContacts/index.php:44
-#: AccessPoints/index.php:46
-#: AccessPoints/view.php:92
-#: AccessPoints/view.php:126
-#: AccessPoints/view.php:170
-#: AccessPoints/view.php:240
-#: AccessPoints/view.php:282
-#: AntennaTypes/index.php:35
-#: AntennaTypes/view.php:119
-#: CustomerConnectionIps/index.php:31
-#: CustomerConnections/index.php:40
-#: CustomerConnections/view.php:77
-#: CustomerConnections/view.php:120
-#: CustomerPoints/index.php:43
-#: CustomerPoints/view.php:83
-#: DeviceTypes/index.php:37
-#: DeviceTypes/view.php:97
-#: ElectricityMeterReadings/index.php:40
-#: Manufacturers/index.php:27
-#: Manufacturers/view.php:69
-#: Manufacturers/view.php:104
-#: Manufacturers/view.php:137
-#: PowerSupplies/index.php:52
-#: PowerSupplyTypes/index.php:35
-#: PowerSupplyTypes/view.php:93
-#: RadarInterferences/devices.php:41
-#: RadarInterferences/index.php:37
-#: RadarInterferences/view.php:99
-#: RadioLinks/index.php:31
-#: RadioLinks/view.php:111
-#: RadioUnitBands/index.php:27
-#: RadioUnitBands/view.php:69
-#: RadioUnitBands/view.php:102
-#: RadioUnitTypes/index.php:33
-#: RadioUnitTypes/view.php:115
-#: RadioUnits/export.php:75
-#: RadioUnits/index.php:77
-#: RouterosDeviceInterfaces/index.php:62
-#: RouterosDeviceIps/index.php:40
-#: RouterosDevices/export.php:73
-#: RouterosDevices/index.php:53
-#: RouterosDevices/search.php:53
-#: RouterosDevices/view.php:127
-#: RouterosDevices/view.php:158
-#: View/Helper/PaginatorHelper.php:1268
+#: ./templates/AccessPointContacts/index.php:42
+#: ./templates/AccessPoints/index.php:44
+#: ./templates/AccessPoints/view.php:88
+#: ./templates/AccessPoints/view.php:118
+#: ./templates/AccessPoints/view.php:158
+#: ./templates/AccessPoints/view.php:216
+#: ./templates/AccessPoints/view.php:254
+#: ./templates/AntennaTypes/index.php:31
+#: ./templates/AntennaTypes/view.php:107
+#: ./templates/CustomerConnectionIps/index.php:27
+#: ./templates/CustomerConnections/index.php:38
+#: ./templates/CustomerConnections/view.php:73
+#: ./templates/CustomerConnections/view.php:112
+#: ./templates/CustomerPoints/index.php:41
+#: ./templates/CustomerPoints/view.php:79
+#: ./templates/DeviceTypes/index.php:33
+#: ./templates/DeviceTypes/view.php:93
+#: ./templates/ElectricityMeterReadings/index.php:38
+#: ./templates/Manufacturers/index.php:23
+#: ./templates/Manufacturers/view.php:65
+#: ./templates/Manufacturers/view.php:96
+#: ./templates/Manufacturers/view.php:125
+#: ./templates/PowerSupplies/index.php:50
+#: ./templates/PowerSupplyTypes/index.php:31
+#: ./templates/PowerSupplyTypes/view.php:89
+#: ./templates/RadarInterferences/devices.php:37
+#: ./templates/RadarInterferences/index.php:33
+#: ./templates/RadarInterferences/view.php:95
+#: ./templates/RadioLinks/index.php:65
+#: ./templates/RadioLinks/view.php:99
+#: ./templates/RadioUnitBands/index.php:23
+#: ./templates/RadioUnitBands/view.php:65
+#: ./templates/RadioUnitBands/view.php:94
+#: ./templates/RadioUnitTypes/index.php:29
+#: ./templates/RadioUnitTypes/view.php:103
+#: ./templates/RadioUnits/export.php:75
+#: ./templates/RadioUnits/index.php:67
+#: ./templates/RouterosDeviceInterfaces/index.php:60
+#: ./templates/RouterosDeviceIps/index.php:38
+#: ./templates/RouterosDevices/export.php:73
+#: ./templates/RouterosDevices/index.php:51
+#: ./templates/RouterosDevices/view.php:123
+#: ./templates/RouterosDevices/view.php:150
+#: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1253
 msgid "View"
 msgstr ""
 
-#: AccessPointContacts/index.php:45
-#: AccessPoints/index.php:47
-#: AccessPoints/view.php:93
-#: AccessPoints/view.php:127
-#: AccessPoints/view.php:171
-#: AccessPoints/view.php:241
-#: AccessPoints/view.php:283
-#: AntennaTypes/index.php:36
-#: AntennaTypes/view.php:120
-#: CustomerConnectionIps/index.php:32
-#: CustomerConnections/index.php:41
-#: CustomerConnections/view.php:78
-#: CustomerConnections/view.php:121
-#: CustomerPoints/index.php:44
-#: CustomerPoints/view.php:84
-#: DeviceTypes/index.php:38
-#: DeviceTypes/view.php:98
-#: ElectricityMeterReadings/index.php:41
-#: Manufacturers/index.php:28
-#: Manufacturers/view.php:70
-#: Manufacturers/view.php:105
-#: Manufacturers/view.php:138
-#: PowerSupplies/index.php:53
-#: PowerSupplyTypes/index.php:36
-#: PowerSupplyTypes/view.php:94
-#: RadarInterferences/devices.php:42
-#: RadarInterferences/index.php:38
-#: RadarInterferences/view.php:100
-#: RadioLinks/index.php:32
-#: RadioLinks/view.php:112
-#: RadioUnitBands/index.php:28
-#: RadioUnitBands/view.php:70
-#: RadioUnitBands/view.php:103
-#: RadioUnitTypes/index.php:34
-#: RadioUnitTypes/view.php:116
-#: RadioUnits/export.php:76
-#: RadioUnits/index.php:78
-#: RouterosDeviceInterfaces/index.php:63
-#: RouterosDeviceIps/index.php:41
-#: RouterosDevices/export.php:74
-#: RouterosDevices/index.php:54
-#: RouterosDevices/search.php:54
-#: RouterosDevices/view.php:128
-#: RouterosDevices/view.php:159
+#: ./templates/AccessPointContacts/index.php:43
+#: ./templates/AccessPoints/index.php:45
+#: ./templates/AccessPoints/view.php:89
+#: ./templates/AccessPoints/view.php:119
+#: ./templates/AccessPoints/view.php:159
+#: ./templates/AccessPoints/view.php:217
+#: ./templates/AccessPoints/view.php:255
+#: ./templates/AntennaTypes/index.php:32
+#: ./templates/AntennaTypes/view.php:108
+#: ./templates/CustomerConnectionIps/index.php:28
+#: ./templates/CustomerConnections/index.php:39
+#: ./templates/CustomerConnections/view.php:74
+#: ./templates/CustomerConnections/view.php:113
+#: ./templates/CustomerPoints/index.php:42
+#: ./templates/CustomerPoints/view.php:80
+#: ./templates/DeviceTypes/index.php:34
+#: ./templates/DeviceTypes/view.php:94
+#: ./templates/ElectricityMeterReadings/index.php:39
+#: ./templates/Manufacturers/index.php:24
+#: ./templates/Manufacturers/view.php:66
+#: ./templates/Manufacturers/view.php:97
+#: ./templates/Manufacturers/view.php:126
+#: ./templates/PowerSupplies/index.php:51
+#: ./templates/PowerSupplyTypes/index.php:32
+#: ./templates/PowerSupplyTypes/view.php:90
+#: ./templates/RadarInterferences/devices.php:38
+#: ./templates/RadarInterferences/index.php:34
+#: ./templates/RadarInterferences/view.php:96
+#: ./templates/RadioLinks/index.php:66
+#: ./templates/RadioLinks/view.php:100
+#: ./templates/RadioUnitBands/index.php:24
+#: ./templates/RadioUnitBands/view.php:66
+#: ./templates/RadioUnitBands/view.php:95
+#: ./templates/RadioUnitTypes/index.php:30
+#: ./templates/RadioUnitTypes/view.php:104
+#: ./templates/RadioUnits/export.php:76
+#: ./templates/RadioUnits/index.php:68
+#: ./templates/RouterosDeviceInterfaces/index.php:61
+#: ./templates/RouterosDeviceIps/index.php:39
+#: ./templates/RouterosDevices/export.php:74
+#: ./templates/RouterosDevices/index.php:52
+#: ./templates/RouterosDevices/view.php:124
+#: ./templates/RouterosDevices/view.php:151
 msgid "Edit"
 msgstr ""
 
-#: AccessPointContacts/index.php:55
-#: AccessPoints/index.php:57
-#: AntennaTypes/index.php:46
-#: CustomerConnectionIps/index.php:42
-#: CustomerConnections/index.php:51
-#: CustomerPoints/index.php:54
-#: DeviceTypes/index.php:48
-#: ElectricityMeterReadings/index.php:51
-#: Manufacturers/index.php:38
-#: PowerSupplies/index.php:63
-#: PowerSupplyTypes/index.php:46
-#: RadarInterferences/devices.php:52
-#: RadarInterferences/index.php:48
-#: RadioLinks/index.php:42
-#: RadioUnitBands/index.php:38
-#: RadioUnitTypes/index.php:44
-#: RadioUnits/index.php:88
-#: RouterosDeviceInterfaces/index.php:73
-#: RouterosDeviceIps/index.php:51
-#: RouterosDevices/index.php:64
-#: RouterosDevices/search.php:64
+#: ./templates/AccessPointContacts/index.php:53
+#: ./templates/AccessPoints/index.php:55
+#: ./templates/AntennaTypes/index.php:42
+#: ./templates/CustomerConnectionIps/index.php:38
+#: ./templates/CustomerConnections/index.php:49
+#: ./templates/CustomerPoints/index.php:52
+#: ./templates/DeviceTypes/index.php:44
+#: ./templates/ElectricityMeterReadings/index.php:49
+#: ./templates/Manufacturers/index.php:34
+#: ./templates/PowerSupplies/index.php:61
+#: ./templates/PowerSupplyTypes/index.php:42
+#: ./templates/RadarInterferences/devices.php:48
+#: ./templates/RadarInterferences/index.php:44
+#: ./templates/RadioLinks/index.php:76
+#: ./templates/RadioUnitBands/index.php:34
+#: ./templates/RadioUnitTypes/index.php:40
+#: ./templates/RadioUnits/index.php:78
+#: ./templates/RouterosDeviceInterfaces/index.php:71
+#: ./templates/RouterosDeviceIps/index.php:49
+#: ./templates/RouterosDevices/index.php:62
 msgid "first"
 msgstr ""
 
-#: AccessPointContacts/index.php:56
-#: AccessPoints/index.php:58
-#: AntennaTypes/index.php:47
-#: CustomerConnectionIps/index.php:43
-#: CustomerConnections/index.php:52
-#: CustomerPoints/index.php:55
-#: DeviceTypes/index.php:49
-#: ElectricityMeterReadings/index.php:52
-#: Manufacturers/index.php:39
-#: PowerSupplies/index.php:64
-#: PowerSupplyTypes/index.php:47
-#: RadarInterferences/devices.php:53
-#: RadarInterferences/index.php:49
-#: RadioLinks/index.php:43
-#: RadioUnitBands/index.php:39
-#: RadioUnitTypes/index.php:45
-#: RadioUnits/index.php:89
-#: RouterosDeviceInterfaces/index.php:74
-#: RouterosDeviceIps/index.php:52
-#: RouterosDevices/index.php:65
-#: RouterosDevices/search.php:65
+#: ./templates/AccessPointContacts/index.php:54
+#: ./templates/AccessPoints/index.php:56
+#: ./templates/AntennaTypes/index.php:43
+#: ./templates/CustomerConnectionIps/index.php:39
+#: ./templates/CustomerConnections/index.php:50
+#: ./templates/CustomerPoints/index.php:53
+#: ./templates/DeviceTypes/index.php:45
+#: ./templates/ElectricityMeterReadings/index.php:50
+#: ./templates/Manufacturers/index.php:35
+#: ./templates/PowerSupplies/index.php:62
+#: ./templates/PowerSupplyTypes/index.php:43
+#: ./templates/RadarInterferences/devices.php:49
+#: ./templates/RadarInterferences/index.php:45
+#: ./templates/RadioLinks/index.php:77
+#: ./templates/RadioUnitBands/index.php:35
+#: ./templates/RadioUnitTypes/index.php:41
+#: ./templates/RadioUnits/index.php:79
+#: ./templates/RouterosDeviceInterfaces/index.php:72
+#: ./templates/RouterosDeviceIps/index.php:50
+#: ./templates/RouterosDevices/index.php:63
 msgid "previous"
 msgstr ""
 
-#: AccessPointContacts/index.php:58
-#: AccessPoints/index.php:60
-#: AntennaTypes/index.php:49
-#: CustomerConnectionIps/index.php:45
-#: CustomerConnections/index.php:54
-#: CustomerPoints/index.php:57
-#: DeviceTypes/index.php:51
-#: ElectricityMeterReadings/index.php:54
-#: Manufacturers/index.php:41
-#: PowerSupplies/index.php:66
-#: PowerSupplyTypes/index.php:49
-#: RadarInterferences/devices.php:55
-#: RadarInterferences/index.php:51
-#: RadioLinks/index.php:45
-#: RadioUnitBands/index.php:41
-#: RadioUnitTypes/index.php:47
-#: RadioUnits/index.php:91
-#: RouterosDeviceInterfaces/index.php:76
-#: RouterosDeviceIps/index.php:54
-#: RouterosDevices/index.php:67
-#: RouterosDevices/search.php:67
+#: ./templates/AccessPointContacts/index.php:56
+#: ./templates/AccessPoints/index.php:58
+#: ./templates/AntennaTypes/index.php:45
+#: ./templates/CustomerConnectionIps/index.php:41
+#: ./templates/CustomerConnections/index.php:52
+#: ./templates/CustomerPoints/index.php:55
+#: ./templates/DeviceTypes/index.php:47
+#: ./templates/ElectricityMeterReadings/index.php:52
+#: ./templates/Manufacturers/index.php:37
+#: ./templates/PowerSupplies/index.php:64
+#: ./templates/PowerSupplyTypes/index.php:45
+#: ./templates/RadarInterferences/devices.php:51
+#: ./templates/RadarInterferences/index.php:47
+#: ./templates/RadioLinks/index.php:79
+#: ./templates/RadioUnitBands/index.php:37
+#: ./templates/RadioUnitTypes/index.php:43
+#: ./templates/RadioUnits/index.php:81
+#: ./templates/RouterosDeviceInterfaces/index.php:74
+#: ./templates/RouterosDeviceIps/index.php:52
+#: ./templates/RouterosDevices/index.php:65
 msgid "next"
 msgstr ""
 
-#: AccessPointContacts/index.php:59
-#: AccessPoints/index.php:61
-#: AntennaTypes/index.php:50
-#: CustomerConnectionIps/index.php:46
-#: CustomerConnections/index.php:55
-#: CustomerPoints/index.php:58
-#: DeviceTypes/index.php:52
-#: ElectricityMeterReadings/index.php:55
-#: Manufacturers/index.php:42
-#: PowerSupplies/index.php:67
-#: PowerSupplyTypes/index.php:50
-#: RadarInterferences/devices.php:56
-#: RadarInterferences/index.php:52
-#: RadioLinks/index.php:46
-#: RadioUnitBands/index.php:42
-#: RadioUnitTypes/index.php:48
-#: RadioUnits/index.php:92
-#: RouterosDeviceInterfaces/index.php:77
-#: RouterosDeviceIps/index.php:55
-#: RouterosDevices/index.php:68
-#: RouterosDevices/search.php:68
+#: ./templates/AccessPointContacts/index.php:57
+#: ./templates/AccessPoints/index.php:59
+#: ./templates/AntennaTypes/index.php:46
+#: ./templates/CustomerConnectionIps/index.php:42
+#: ./templates/CustomerConnections/index.php:53
+#: ./templates/CustomerPoints/index.php:56
+#: ./templates/DeviceTypes/index.php:48
+#: ./templates/ElectricityMeterReadings/index.php:53
+#: ./templates/Manufacturers/index.php:38
+#: ./templates/PowerSupplies/index.php:65
+#: ./templates/PowerSupplyTypes/index.php:46
+#: ./templates/RadarInterferences/devices.php:52
+#: ./templates/RadarInterferences/index.php:48
+#: ./templates/RadioLinks/index.php:80
+#: ./templates/RadioUnitBands/index.php:38
+#: ./templates/RadioUnitTypes/index.php:44
+#: ./templates/RadioUnits/index.php:82
+#: ./templates/RouterosDeviceInterfaces/index.php:75
+#: ./templates/RouterosDeviceIps/index.php:53
+#: ./templates/RouterosDevices/index.php:66
 msgid "last"
 msgstr ""
 
-#: AccessPointContacts/index.php:61
-#: AccessPoints/index.php:63
-#: AntennaTypes/index.php:52
-#: CustomerConnectionIps/index.php:48
-#: CustomerConnections/index.php:57
-#: CustomerPoints/index.php:60
-#: DeviceTypes/index.php:54
-#: ElectricityMeterReadings/index.php:57
-#: Manufacturers/index.php:44
-#: PowerSupplies/index.php:69
-#: PowerSupplyTypes/index.php:52
-#: RadarInterferences/devices.php:58
-#: RadarInterferences/index.php:54
-#: RadioLinks/index.php:48
-#: RadioUnitBands/index.php:44
-#: RadioUnitTypes/index.php:50
-#: RadioUnits/index.php:94
-#: RouterosDeviceInterfaces/index.php:79
-#: RouterosDeviceIps/index.php:57
-#: RouterosDevices/index.php:70
-#: RouterosDevices/search.php:70
+#: ./templates/AccessPointContacts/index.php:59
+#: ./templates/AccessPoints/index.php:61
+#: ./templates/AntennaTypes/index.php:48
+#: ./templates/CustomerConnectionIps/index.php:44
+#: ./templates/CustomerConnections/index.php:55
+#: ./templates/CustomerPoints/index.php:58
+#: ./templates/DeviceTypes/index.php:50
+#: ./templates/ElectricityMeterReadings/index.php:55
+#: ./templates/Manufacturers/index.php:40
+#: ./templates/PowerSupplies/index.php:67
+#: ./templates/PowerSupplyTypes/index.php:48
+#: ./templates/RadarInterferences/devices.php:54
+#: ./templates/RadarInterferences/index.php:50
+#: ./templates/RadioLinks/index.php:82
+#: ./templates/RadioUnitBands/index.php:40
+#: ./templates/RadioUnitTypes/index.php:46
+#: ./templates/RadioUnits/index.php:84
+#: ./templates/RouterosDeviceInterfaces/index.php:77
+#: ./templates/RouterosDeviceIps/index.php:55
+#: ./templates/RouterosDevices/index.php:68
 msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
 
-#: AccessPointContacts/view.php:12
+#: ./templates/AccessPointContacts/view.php:12
 msgid "Delete Access Point Contact"
 msgstr ""
 
-#: AccessPointContacts/view.php:22
-#: AccessPoints/view.php:22
-#: AntennaTypes/view.php:22
-#: CustomerConnectionIps/view.php:22
-#: CustomerConnections/view.php:22
-#: CustomerPoints/view.php:22
-#: DeviceTypes/view.php:22
-#: ElectricityMeterReadings/view.php:22
-#: Manufacturers/view.php:22
-#: PowerSupplies/view.php:22
-#: PowerSupplyTypes/view.php:22
-#: RadarInterferences/view.php:22
-#: RadioLinks/view.php:22
-#: RadioUnitBands/view.php:22
-#: RadioUnitTypes/view.php:22
-#: RadioUnits/view.php:22
-#: RouterosDeviceInterfaces/view.php:22
-#: RouterosDeviceIps/view.php:22
-#: RouterosDevices/view.php:22
+#: ./templates/AccessPointContacts/view.php:22
+#: ./templates/AccessPoints/view.php:22
+#: ./templates/AntennaTypes/view.php:22
+#: ./templates/CustomerConnectionIps/view.php:22
+#: ./templates/CustomerConnections/view.php:22
+#: ./templates/CustomerPoints/view.php:22
+#: ./templates/DeviceTypes/view.php:22
+#: ./templates/ElectricityMeterReadings/view.php:22
+#: ./templates/Manufacturers/view.php:22
+#: ./templates/PowerSupplies/view.php:22
+#: ./templates/PowerSupplyTypes/view.php:22
+#: ./templates/RadarInterferences/view.php:22
+#: ./templates/RadioLinks/view.php:22
+#: ./templates/RadioUnitBands/view.php:22
+#: ./templates/RadioUnitTypes/view.php:22
+#: ./templates/RadioUnits/view.php:22
+#: ./templates/RouterosDeviceInterfaces/view.php:22
+#: ./templates/RouterosDeviceIps/view.php:22
+#: ./templates/RouterosDevices/view.php:22
 msgid "Id"
 msgstr ""
 
-#: AccessPointContacts/view.php:26
-#: AccessPoints/view.php:26
-#: AccessPoints/view.php:71
-#: AccessPoints/view.php:109
-#: AccessPoints/view.php:143
-#: AccessPoints/view.php:187
-#: AccessPoints/view.php:257
-#: AntennaTypes/view.php:26
-#: AntennaTypes/view.php:66
-#: CustomerConnectionIps/view.php:26
-#: CustomerConnections/view.php:26
-#: CustomerConnections/view.php:62
-#: CustomerConnections/view.php:93
-#: CustomerPoints/view.php:26
-#: CustomerPoints/view.php:66
-#: DeviceTypes/view.php:26
-#: DeviceTypes/view.php:70
-#: ElectricityMeterReadings/view.php:26
-#: Manufacturers/view.php:26
-#: Manufacturers/view.php:50
-#: Manufacturers/view.php:85
-#: Manufacturers/view.php:120
-#: PowerSupplies/view.php:26
-#: PowerSupplyTypes/view.php:26
-#: PowerSupplyTypes/view.php:66
-#: RadarInterferences/view.php:26
-#: RadarInterferences/view.php:61
-#: RadioLinks/view.php:26
-#: RadioLinks/view.php:58
-#: RadioUnitBands/view.php:26
-#: RadioUnitBands/view.php:50
-#: RadioUnitBands/view.php:85
-#: RadioUnitTypes/view.php:26
-#: RadioUnitTypes/view.php:62
-#: RadioUnits/export.php:16
-#: RadioUnits/view.php:26
-#: RouterosDeviceInterfaces/view.php:30
-#: RouterosDeviceIps/view.php:30
-#: RouterosDevices/export.php:24
-#: RouterosDevices/view.php:26
-#: RouterosDevices/view.php:90
-#: RouterosDevices/view.php:143
+#: ./templates/AccessPointContacts/view.php:26
+#: ./templates/AccessPoints/view.php:26
+#: ./templates/AccessPoints/view.php:71
+#: ./templates/AccessPoints/view.php:105
+#: ./templates/AccessPoints/view.php:135
+#: ./templates/AccessPoints/view.php:175
+#: ./templates/AccessPoints/view.php:233
+#: ./templates/AntennaTypes/view.php:26
+#: ./templates/AntennaTypes/view.php:66
+#: ./templates/CustomerConnectionIps/view.php:26
+#: ./templates/CustomerConnections/view.php:26
+#: ./templates/CustomerConnections/view.php:62
+#: ./templates/CustomerConnections/view.php:89
+#: ./templates/CustomerPoints/view.php:26
+#: ./templates/CustomerPoints/view.php:66
+#: ./templates/DeviceTypes/view.php:26
+#: ./templates/DeviceTypes/view.php:70
+#: ./templates/ElectricityMeterReadings/view.php:26
+#: ./templates/Manufacturers/view.php:26
+#: ./templates/Manufacturers/view.php:50
+#: ./templates/Manufacturers/view.php:81
+#: ./templates/Manufacturers/view.php:112
+#: ./templates/PowerSupplies/view.php:26
+#: ./templates/PowerSupplyTypes/view.php:26
+#: ./templates/PowerSupplyTypes/view.php:66
+#: ./templates/RadarInterferences/view.php:26
+#: ./templates/RadarInterferences/view.php:61
+#: ./templates/RadioLinks/view.php:26
+#: ./templates/RadioLinks/view.php:58
+#: ./templates/RadioUnitBands/view.php:26
+#: ./templates/RadioUnitBands/view.php:50
+#: ./templates/RadioUnitBands/view.php:81
+#: ./templates/RadioUnitTypes/view.php:26
+#: ./templates/RadioUnitTypes/view.php:62
+#: ./templates/RadioUnits/export.php:16
+#: ./templates/RadioUnits/view.php:26
+#: ./templates/RouterosDeviceInterfaces/view.php:30
+#: ./templates/RouterosDeviceIps/view.php:30
+#: ./templates/RouterosDevices/export.php:24
+#: ./templates/RouterosDevices/view.php:26
+#: ./templates/RouterosDevices/view.php:90
+#: ./templates/RouterosDevices/view.php:139
 msgid "Name"
 msgstr ""
 
-#: AccessPointContacts/view.php:30
-#: AntennaTypes/view.php:67
-#: CustomerConnections/view.php:94
-#: DeviceTypes/view.php:71
-#: ElectricityMeterReadings/view.php:30
-#: PowerSupplies/view.php:34
-#: PowerSupplyTypes/view.php:67
-#: RadioLinks/view.php:59
-#: RadioUnitTypes/view.php:63
-#: RadioUnits/export.php:15
-#: RadioUnits/view.php:34
-#: RouterosDevices/export.php:22
-#: RouterosDevices/view.php:30
+#: ./templates/AccessPointContacts/view.php:30
+#: ./templates/AntennaTypes/view.php:67
+#: ./templates/CustomerConnections/view.php:90
+#: ./templates/DeviceTypes/view.php:71
+#: ./templates/ElectricityMeterReadings/view.php:30
+#: ./templates/PowerSupplies/view.php:34
+#: ./templates/PowerSupplyTypes/view.php:67
+#: ./templates/RadioLinks/view.php:59
+#: ./templates/RadioUnitTypes/view.php:63
+#: ./templates/RadioUnits/export.php:15
+#: ./templates/RadioUnits/view.php:34
+#: ./templates/RouterosDevices/export.php:22
+#: ./templates/RouterosDevices/view.php:30
 msgid "Access Point"
 msgstr ""
 
-#: AccessPointContacts/view.php:34
-#: AccessPoints/view.php:72
+#: ./templates/AccessPointContacts/view.php:34
+#: ./templates/AccessPoints/view.php:72
 msgid "Phone"
 msgstr ""
 
-#: AccessPointContacts/view.php:38
-#: AccessPoints/view.php:73
+#: ./templates/AccessPointContacts/view.php:38
+#: ./templates/AccessPoints/view.php:73
 msgid "Email"
 msgstr ""
 
-#: AccessPointContacts/view.php:42
-#: AccessPoints/view.php:74
-#: CustomerConnections/view.php:34
-#: CustomerPoints/view.php:67
+#: ./templates/AccessPointContacts/view.php:42
+#: ./templates/AccessPoints/view.php:74
+#: ./templates/CustomerConnections/view.php:34
+#: ./templates/CustomerPoints/view.php:67
 msgid "Customer Number"
 msgstr ""
 
-#: AccessPointContacts/view.php:46
-#: AccessPoints/view.php:75
-#: CustomerConnections/view.php:38
-#: CustomerPoints/view.php:68
+#: ./templates/AccessPointContacts/view.php:46
+#: ./templates/AccessPoints/view.php:75
+#: ./templates/CustomerConnections/view.php:38
+#: ./templates/CustomerPoints/view.php:68
 msgid "Contract Number"
 msgstr ""
 
-#: AccessPointContacts/view.php:50
-#: AccessPoints/view.php:50
-#: AccessPoints/view.php:77
-#: AccessPoints/view.php:113
-#: AccessPoints/view.php:152
-#: AccessPoints/view.php:209
-#: AccessPoints/view.php:265
-#: AntennaTypes/view.php:46
-#: AntennaTypes/view.php:88
-#: CustomerConnectionIps/view.php:38
-#: CustomerConnections/view.php:42
-#: CustomerConnections/view.php:65
-#: CustomerConnections/view.php:102
-#: CustomerPoints/view.php:46
-#: CustomerPoints/view.php:70
-#: DeviceTypes/view.php:50
-#: DeviceTypes/view.php:79
-#: ElectricityMeterReadings/view.php:42
-#: Manufacturers/view.php:30
-#: Manufacturers/view.php:55
-#: Manufacturers/view.php:90
-#: Manufacturers/view.php:124
-#: PowerSupplies/view.php:62
-#: PowerSupplyTypes/view.php:46
-#: PowerSupplyTypes/view.php:75
-#: RadarInterferences/view.php:46
-#: RadarInterferences/view.php:75
-#: RadioLinks/view.php:38
-#: RadioLinks/view.php:80
-#: RadioUnitBands/view.php:30
-#: RadioUnitBands/view.php:55
-#: RadioUnitBands/view.php:89
-#: RadioUnitTypes/view.php:42
-#: RadioUnitTypes/view.php:84
-#: RadioUnits/view.php:106
-#: RouterosDeviceInterfaces/view.php:86
-#: RouterosDeviceIps/view.php:42
-#: RouterosDevices/view.php:76
-#: RouterosDevices/view.php:104
-#: RouterosDevices/view.php:146
+#: ./templates/AccessPointContacts/view.php:50
+#: ./templates/AccessPoints/view.php:50
+#: ./templates/AntennaTypes/view.php:46
+#: ./templates/CustomerConnectionIps/view.php:38
+#: ./templates/CustomerConnections/view.php:42
+#: ./templates/CustomerPoints/view.php:46
+#: ./templates/DeviceTypes/view.php:50
+#: ./templates/ElectricityMeterReadings/view.php:42
+#: ./templates/Manufacturers/view.php:30
+#: ./templates/PowerSupplies/view.php:62
+#: ./templates/PowerSupplyTypes/view.php:46
+#: ./templates/RadarInterferences/view.php:46
+#: ./templates/RadioLinks/view.php:38
+#: ./templates/RadioUnitBands/view.php:30
+#: ./templates/RadioUnitTypes/view.php:42
+#: ./templates/RadioUnits/view.php:106
+#: ./templates/RouterosDeviceInterfaces/view.php:86
+#: ./templates/RouterosDeviceIps/view.php:42
+#: ./templates/RouterosDevices/view.php:76
 msgid "Created"
 msgstr ""
 
-#: AccessPointContacts/view.php:54
-#: AccessPoints/view.php:54
-#: AccessPoints/view.php:78
-#: AccessPoints/view.php:114
-#: AccessPoints/view.php:153
-#: AccessPoints/view.php:210
-#: AccessPoints/view.php:266
-#: AntennaTypes/view.php:50
-#: AntennaTypes/view.php:89
-#: CustomerConnectionIps/view.php:42
-#: CustomerConnections/view.php:46
-#: CustomerConnections/view.php:66
-#: CustomerConnections/view.php:103
-#: CustomerPoints/view.php:50
-#: CustomerPoints/view.php:71
-#: DeviceTypes/view.php:54
-#: DeviceTypes/view.php:80
-#: ElectricityMeterReadings/view.php:46
-#: Manufacturers/view.php:34
-#: Manufacturers/view.php:56
-#: Manufacturers/view.php:91
-#: Manufacturers/view.php:125
-#: PowerSupplies/view.php:66
-#: PowerSupplyTypes/view.php:50
-#: PowerSupplyTypes/view.php:76
-#: RadarInterferences/view.php:50
-#: RadarInterferences/view.php:76
-#: RadioLinks/view.php:42
-#: RadioLinks/view.php:81
-#: RadioUnitBands/view.php:34
-#: RadioUnitBands/view.php:56
-#: RadioUnitBands/view.php:90
-#: RadioUnitTypes/view.php:46
-#: RadioUnitTypes/view.php:85
-#: RadioUnits/view.php:110
-#: RouterosDeviceInterfaces/view.php:90
-#: RouterosDeviceIps/view.php:46
-#: RouterosDevices/view.php:80
-#: RouterosDevices/view.php:105
-#: RouterosDevices/view.php:147
+#: ./templates/AccessPointContacts/view.php:54
+#: ./templates/AccessPoints/view.php:54
+#: ./templates/AntennaTypes/view.php:50
+#: ./templates/CustomerConnectionIps/view.php:42
+#: ./templates/CustomerConnections/view.php:46
+#: ./templates/CustomerPoints/view.php:50
+#: ./templates/DeviceTypes/view.php:54
+#: ./templates/ElectricityMeterReadings/view.php:46
+#: ./templates/Manufacturers/view.php:34
+#: ./templates/PowerSupplies/view.php:66
+#: ./templates/PowerSupplyTypes/view.php:50
+#: ./templates/RadarInterferences/view.php:50
+#: ./templates/RadioLinks/view.php:42
+#: ./templates/RadioUnitBands/view.php:34
+#: ./templates/RadioUnitTypes/view.php:46
+#: ./templates/RadioUnits/view.php:110
+#: ./templates/RouterosDeviceInterfaces/view.php:90
+#: ./templates/RouterosDeviceIps/view.php:46
+#: ./templates/RouterosDevices/view.php:80
 msgid "Modified"
 msgstr ""
 
-#: AccessPointContacts/view.php:59
-#: AccessPoints/view.php:59
-#: AccessPoints/view.php:76
-#: AccessPoints/view.php:112
-#: AccessPoints/view.php:151
-#: AccessPoints/view.php:208
-#: AntennaTypes/view.php:55
-#: AntennaTypes/view.php:87
-#: CustomerConnectionIps/view.php:47
-#: CustomerConnections/view.php:51
-#: CustomerConnections/view.php:64
-#: CustomerPoints/view.php:55
-#: CustomerPoints/view.php:69
-#: DeviceTypes/view.php:59
-#: ElectricityMeterReadings/view.php:51
-#: Manufacturers/view.php:39
-#: Manufacturers/view.php:54
-#: Manufacturers/view.php:89
-#: Manufacturers/view.php:123
-#: PowerSupplies/view.php:71
-#: PowerSupplyTypes/view.php:55
-#: PowerSupplyTypes/view.php:74
-#: RadioLinks/view.php:47
-#: RadioLinks/view.php:79
-#: RadioUnitBands/view.php:39
-#: RadioUnitBands/view.php:54
-#: RadioUnitBands/view.php:88
-#: RadioUnitTypes/view.php:51
-#: RadioUnitTypes/view.php:83
-#: RadioUnits/view.php:123
+#: ./templates/AccessPointContacts/view.php:59
+#: ./templates/AccessPoints/view.php:59
+#: ./templates/AccessPoints/view.php:76
+#: ./templates/AccessPoints/view.php:108
+#: ./templates/AccessPoints/view.php:143
+#: ./templates/AccessPoints/view.php:192
+#: ./templates/AntennaTypes/view.php:55
+#: ./templates/AntennaTypes/view.php:83
+#: ./templates/CustomerConnectionIps/view.php:47
+#: ./templates/CustomerConnections/view.php:51
+#: ./templates/CustomerConnections/view.php:64
+#: ./templates/CustomerPoints/view.php:55
+#: ./templates/CustomerPoints/view.php:69
+#: ./templates/DeviceTypes/view.php:59
+#: ./templates/ElectricityMeterReadings/view.php:51
+#: ./templates/Manufacturers/view.php:39
+#: ./templates/Manufacturers/view.php:54
+#: ./templates/Manufacturers/view.php:85
+#: ./templates/Manufacturers/view.php:115
+#: ./templates/PowerSupplies/view.php:71
+#: ./templates/PowerSupplyTypes/view.php:55
+#: ./templates/PowerSupplyTypes/view.php:74
+#: ./templates/RadioLinks/view.php:47
+#: ./templates/RadioLinks/view.php:75
+#: ./templates/RadioUnitBands/view.php:39
+#: ./templates/RadioUnitBands/view.php:54
+#: ./templates/RadioUnitBands/view.php:84
+#: ./templates/RadioUnitTypes/view.php:51
+#: ./templates/RadioUnitTypes/view.php:79
+#: ./templates/RadioUnits/view.php:123
 msgid "Note"
 msgstr ""
 
-#: AccessPoints/add.php:11
-#: AccessPoints/edit.php:16
-#: AccessPoints/map.php:9
-#: AccessPoints/view.php:13
+#: ./templates/AccessPoints/add.php:11
+#: ./templates/AccessPoints/edit.php:16
+#: ./templates/AccessPoints/map.php:9
+#: ./templates/AccessPoints/view.php:13
 msgid "List Access Points"
 msgstr ""
 
-#: AccessPoints/add.php:18
+#: ./templates/AccessPoints/add.php:18
 msgid "Add Access Point"
 msgstr ""
 
-#: AccessPoints/edit.php:23
-#: AccessPoints/view.php:11
+#: ./templates/AccessPoints/edit.php:23
+#: ./templates/AccessPoints/view.php:11
 msgid "Edit Access Point"
 msgstr ""
 
-#: AccessPoints/index.php:15
-#: AccessPoints/map.php:8
-#: AccessPoints/view.php:14
+#: ./templates/AccessPoints/index.php:17
+#: ./templates/AccessPoints/map.php:8
+#: ./templates/AccessPoints/view.php:14
 msgid "New Access Point"
 msgstr ""
 
-#: AccessPoints/index.php:16
+#: ./templates/AccessPoints/index.php:18
 msgid "Map"
 msgstr ""
 
-#: AccessPoints/index.php:17
-#: AccessPoints/map.php:10
-#: layout/default.php:59
+#: ./templates/AccessPoints/index.php:19
+#: ./templates/AccessPoints/map.php:10
+#: ./templates/layout/default.php:59
+#: ./templates/layout/default.php:86
 msgid "Access Points"
 msgstr ""
 
-#: AccessPoints/index.php:26
-#: AccessPoints/view.php:42
-#: CustomerPoints/index.php:24
-#: CustomerPoints/view.php:38
+#: ./templates/AccessPoints/index.php:28
+#: ./templates/AccessPoints/view.php:42
+#: ./templates/CustomerPoints/index.php:26
+#: ./templates/CustomerPoints/view.php:38
 msgid "Maps"
 msgstr ""
 
-#: AccessPoints/index.php:40
-#: AccessPoints/view.php:44
-#: CustomerPoints/index.php:37
-#: CustomerPoints/view.php:40
+#: ./templates/AccessPoints/index.php:40
+#: ./templates/AccessPoints/view.php:44
+#: ./templates/CustomerPoints/index.php:37
+#: ./templates/CustomerPoints/view.php:40
 msgid "Google Maps"
 msgstr ""
 
-#: AccessPoints/index.php:41
-#: AccessPoints/view.php:46
-#: CustomerPoints/index.php:38
-#: CustomerPoints/view.php:42
+#: ./templates/AccessPoints/index.php:41
+#: ./templates/AccessPoints/view.php:46
+#: ./templates/CustomerPoints/index.php:38
+#: ./templates/CustomerPoints/view.php:42
 msgid "Mapy.cz"
 msgstr ""
 
-#: AccessPoints/map.php:42
+#: ./templates/AccessPoints/map.php:42
 msgid "Map Options"
 msgstr ""
 
-#: AccessPoints/view.php:12
+#: ./templates/AccessPoints/view.php:12
 msgid "Delete Access Point"
 msgstr ""
 
-#: AccessPoints/view.php:30
+#: ./templates/AccessPoints/view.php:30
 msgid "Device Name"
 msgstr ""
 
-#: AccessPoints/view.php:34
-#: CustomerPoints/view.php:30
-#: RadioUnits/export.php:39
-#: RouterosDevices/export.php:35
+#: ./templates/AccessPoints/view.php:34
+#: ./templates/CustomerPoints/view.php:30
+#: ./templates/RadioUnits/export.php:39
+#: ./templates/RouterosDevices/export.php:35
 msgid "Gps Y"
 msgstr ""
 
-#: AccessPoints/view.php:38
-#: CustomerPoints/view.php:34
-#: RadioUnits/export.php:40
-#: RouterosDevices/export.php:36
+#: ./templates/AccessPoints/view.php:38
+#: ./templates/CustomerPoints/view.php:34
+#: ./templates/RadioUnits/export.php:40
+#: ./templates/RouterosDevices/export.php:36
 msgid "Gps X"
 msgstr ""
 
-#: AccessPoints/view.php:66
+#: ./templates/AccessPoints/view.php:66
 msgid "Related Access Point Contacts"
 msgstr ""
 
-#: AccessPoints/view.php:103
-#: ElectricityMeterReadings/index.php:15
-#: ElectricityMeterReadings/view.php:14
+#: ./templates/AccessPoints/view.php:99
+#: ./templates/ElectricityMeterReadings/index.php:17
+#: ./templates/ElectricityMeterReadings/view.php:14
 msgid "New Electricity Meter Reading"
 msgstr ""
 
-#: AccessPoints/view.php:104
+#: ./templates/AccessPoints/view.php:100
 msgid "Related Electricity Meter Readings"
 msgstr ""
 
-#: AccessPoints/view.php:110
-#: ElectricityMeterReadings/view.php:34
+#: ./templates/AccessPoints/view.php:106
+#: ./templates/ElectricityMeterReadings/view.php:34
 msgid "Reading Date"
 msgstr ""
 
-#: AccessPoints/view.php:111
-#: ElectricityMeterReadings/view.php:38
+#: ./templates/AccessPoints/view.php:107
+#: ./templates/ElectricityMeterReadings/view.php:38
 msgid "Reading Value"
 msgstr ""
 
-#: AccessPoints/view.php:137
-#: PowerSupplies/index.php:15
-#: PowerSupplies/view.php:14
+#: ./templates/AccessPoints/view.php:129
+#: ./templates/PowerSupplies/index.php:17
+#: ./templates/PowerSupplies/view.php:14
 msgid "New Power Supply"
 msgstr ""
 
-#: AccessPoints/view.php:138
-#: PowerSupplyTypes/view.php:61
+#: ./templates/AccessPoints/view.php:130
+#: ./templates/PowerSupplyTypes/view.php:61
 msgid "Related Power Supplies"
 msgstr ""
 
-#: AccessPoints/view.php:144
-#: PowerSupplies/view.php:30
+#: ./templates/AccessPoints/view.php:136
+#: ./templates/PowerSupplies/view.php:30
 msgid "Power Supply Type"
 msgstr ""
 
-#: AccessPoints/view.php:145
-#: AccessPoints/view.php:202
-#: AccessPoints/view.php:262
-#: AntennaTypes/view.php:81
-#: CustomerConnections/view.php:99
-#: DeviceTypes/view.php:76
-#: PowerSupplies/view.php:38
-#: PowerSupplyTypes/view.php:68
-#: RadioLinks/view.php:73
-#: RadioUnitTypes/view.php:77
-#: RadioUnits/export.php:33
-#: RadioUnits/view.php:54
-#: RouterosDevices/export.php:29
-#: RouterosDevices/view.php:64
+#: ./templates/AccessPoints/view.php:137
+#: ./templates/AccessPoints/view.php:188
+#: ./templates/AccessPoints/view.php:238
+#: ./templates/AntennaTypes/view.php:79
+#: ./templates/CustomerConnections/view.php:95
+#: ./templates/DeviceTypes/view.php:76
+#: ./templates/PowerSupplies/view.php:38
+#: ./templates/PowerSupplyTypes/view.php:68
+#: ./templates/RadioLinks/index.php:38
+#: ./templates/RadioLinks/view.php:71
+#: ./templates/RadioUnitTypes/view.php:75
+#: ./templates/RadioUnits/export.php:33
+#: ./templates/RadioUnits/view.php:54
+#: ./templates/RouterosDevices/export.php:29
+#: ./templates/RouterosDevices/view.php:64
 msgid "Serial Number"
 msgstr ""
 
-#: AccessPoints/view.php:146
-#: PowerSupplies/view.php:46
-#: PowerSupplyTypes/view.php:69
+#: ./templates/AccessPoints/view.php:138
+#: ./templates/PowerSupplies/view.php:46
+#: ./templates/PowerSupplyTypes/view.php:69
 msgid "Battery Count"
 msgstr ""
 
-#: AccessPoints/view.php:147
-#: PowerSupplies/view.php:50
-#: PowerSupplyTypes/view.php:70
+#: ./templates/AccessPoints/view.php:139
+#: ./templates/PowerSupplies/view.php:50
+#: ./templates/PowerSupplyTypes/view.php:70
 msgid "Battery Voltage"
 msgstr ""
 
-#: AccessPoints/view.php:148
-#: PowerSupplies/view.php:54
-#: PowerSupplyTypes/view.php:71
+#: ./templates/AccessPoints/view.php:140
+#: ./templates/PowerSupplies/view.php:54
+#: ./templates/PowerSupplyTypes/view.php:71
 msgid "Battery Capacity"
 msgstr ""
 
-#: AccessPoints/view.php:149
-#: PowerSupplies/view.php:58
-#: PowerSupplyTypes/view.php:72
+#: ./templates/AccessPoints/view.php:141
+#: ./templates/PowerSupplies/view.php:58
+#: ./templates/PowerSupplyTypes/view.php:72
 msgid "Battery Replacement"
 msgstr ""
 
-#: AccessPoints/view.php:150
-#: PowerSupplies/view.php:42
-#: PowerSupplyTypes/view.php:73
+#: ./templates/AccessPoints/view.php:142
+#: ./templates/PowerSupplies/view.php:42
+#: ./templates/PowerSupplyTypes/view.php:73
 msgid "Battery Duration"
 msgstr ""
 
-#: AccessPoints/view.php:181
-#: RadioUnits/index.php:15
-#: RadioUnits/view.php:14
+#: ./templates/AccessPoints/view.php:169
+#: ./templates/RadioUnits/index.php:17
+#: ./templates/RadioUnits/view.php:14
 msgid "New Radio Unit"
 msgstr ""
 
-#: AccessPoints/view.php:182
-#: AntennaTypes/view.php:61
-#: RadioLinks/view.php:53
-#: RadioUnitTypes/view.php:57
+#: ./templates/AccessPoints/view.php:170
+#: ./templates/AntennaTypes/view.php:61
+#: ./templates/RadioLinks/view.php:53
+#: ./templates/RadioUnitTypes/view.php:57
 msgid "Related Radio Units"
 msgstr ""
 
-#: AccessPoints/view.php:188
-#: AntennaTypes/view.php:69
-#: RadioLinks/view.php:60
-#: RadioUnits/export.php:17
-#: RadioUnits/view.php:30
+#: ./templates/AccessPoints/view.php:176
+#: ./templates/AntennaTypes/view.php:69
+#: ./templates/RadioLinks/index.php:28
+#: ./templates/RadioLinks/view.php:60
+#: ./templates/RadioUnits/export.php:17
+#: ./templates/RadioUnits/view.php:30
 msgid "Radio Unit Type"
 msgstr ""
 
-#: AccessPoints/view.php:189
-#: AntennaTypes/view.php:68
-#: RadioUnitTypes/view.php:64
-#: RadioUnits/export.php:18
-#: RadioUnits/view.php:38
+#: ./templates/AccessPoints/view.php:177
+#: ./templates/AntennaTypes/view.php:68
+#: ./templates/RadioUnitTypes/view.php:64
+#: ./templates/RadioUnits/export.php:18
+#: ./templates/RadioUnits/view.php:38
 msgid "Radio Link"
 msgstr ""
 
-#: AccessPoints/view.php:190
-#: RadioLinks/view.php:61
-#: RadioUnitTypes/view.php:65
-#: RadioUnits/export.php:19
-#: RadioUnits/view.php:42
+#: ./templates/AccessPoints/view.php:178
+#: ./templates/RadioLinks/index.php:29
+#: ./templates/RadioLinks/view.php:61
+#: ./templates/RadioUnitTypes/view.php:65
+#: ./templates/RadioUnits/export.php:19
+#: ./templates/RadioUnits/view.php:42
 msgid "Antenna Type"
 msgstr ""
 
-#: AccessPoints/view.php:191
-#: AntennaTypes/view.php:70
-#: RadioLinks/view.php:62
-#: RadioUnitTypes/view.php:66
-#: RadioUnits/export.php:22
-#: RadioUnits/view.php:46
+#: ./templates/AccessPoints/view.php:179
+#: ./templates/AntennaTypes/view.php:70
+#: ./templates/RadioLinks/index.php:30
+#: ./templates/RadioLinks/view.php:62
+#: ./templates/RadioUnitTypes/view.php:66
+#: ./templates/RadioUnits/export.php:22
+#: ./templates/RadioUnits/view.php:46
 msgid "Polarization"
 msgstr ""
 
-#: AccessPoints/view.php:192
-#: AntennaTypes/view.php:71
-#: RadioLinks/view.php:63
-#: RadioUnitTypes/view.php:67
-#: RadioUnits/export.php:23
-#: RadioUnits/view.php:74
+#: ./templates/AccessPoints/view.php:180
+#: ./templates/AntennaTypes/view.php:71
+#: ./templates/RadioLinks/index.php:31
+#: ./templates/RadioLinks/view.php:63
+#: ./templates/RadioUnitTypes/view.php:67
+#: ./templates/RadioUnits/export.php:23
+#: ./templates/RadioUnits/view.php:74
 msgid "Channel Width"
 msgstr ""
 
-#: AccessPoints/view.php:193
-#: AntennaTypes/view.php:72
-#: RadioLinks/view.php:64
-#: RadioUnitTypes/view.php:68
-#: RadioUnits/export.php:24
-#: RadioUnits/view.php:78
+#: ./templates/AccessPoints/view.php:181
+#: ./templates/AntennaTypes/view.php:72
+#: ./templates/RadioLinks/index.php:32
+#: ./templates/RadioLinks/view.php:64
+#: ./templates/RadioUnitTypes/view.php:68
+#: ./templates/RadioUnits/export.php:24
+#: ./templates/RadioUnits/view.php:78
 msgid "Tx Frequency"
 msgstr ""
 
-#: AccessPoints/view.php:194
-#: AntennaTypes/view.php:73
-#: RadioLinks/view.php:65
-#: RadioUnitTypes/view.php:69
-#: RadioUnits/export.php:25
-#: RadioUnits/view.php:82
+#: ./templates/AccessPoints/view.php:182
+#: ./templates/AntennaTypes/view.php:73
+#: ./templates/RadioLinks/index.php:33
+#: ./templates/RadioLinks/view.php:65
+#: ./templates/RadioUnitTypes/view.php:69
+#: ./templates/RadioUnits/export.php:25
+#: ./templates/RadioUnits/view.php:82
 msgid "Rx Frequency"
 msgstr ""
 
-#: AccessPoints/view.php:195
-#: AntennaTypes/view.php:74
-#: RadioLinks/view.php:66
-#: RadioUnitTypes/view.php:70
-#: RadioUnits/export.php:26
-#: RadioUnits/view.php:86
+#: ./templates/AccessPoints/view.php:183
+#: ./templates/AntennaTypes/view.php:74
+#: ./templates/RadioLinks/index.php:34
+#: ./templates/RadioLinks/view.php:66
+#: ./templates/RadioUnitTypes/view.php:70
+#: ./templates/RadioUnits/export.php:26
+#: ./templates/RadioUnits/view.php:86
 msgid "Tx Power"
 msgstr ""
 
-#: AccessPoints/view.php:196
-#: AntennaTypes/view.php:75
-#: RadioLinks/view.php:67
-#: RadioUnitTypes/view.php:71
-#: RadioUnits/export.php:27
-#: RadioUnits/view.php:90
+#: ./templates/AccessPoints/view.php:184
+#: ./templates/AntennaTypes/view.php:75
+#: ./templates/RadioLinks/index.php:35
+#: ./templates/RadioLinks/view.php:67
+#: ./templates/RadioUnitTypes/view.php:71
+#: ./templates/RadioUnits/export.php:27
+#: ./templates/RadioUnits/view.php:90
 msgid "Rx Signal"
 msgstr ""
 
-#: AccessPoints/view.php:197
-#: AntennaTypes/view.php:76
-#: RadioLinks/view.php:68
-#: RadioUnitTypes/view.php:72
-#: RadioUnits/export.php:28
-#: RadioUnits/view.php:94
+#: ./templates/AccessPoints/view.php:185
+#: ./templates/AntennaTypes/view.php:76
+#: ./templates/RadioLinks/index.php:36
+#: ./templates/RadioLinks/view.php:68
+#: ./templates/RadioUnitTypes/view.php:72
+#: ./templates/RadioUnits/export.php:28
+#: ./templates/RadioUnits/view.php:94
 msgid "Operating Speed"
 msgstr ""
 
-#: AccessPoints/view.php:198
-#: AntennaTypes/view.php:77
-#: RadioLinks/view.php:69
-#: RadioUnitTypes/view.php:73
-#: RadioUnits/export.php:29
-#: RadioUnits/view.php:98
+#: ./templates/AccessPoints/view.php:186
+#: ./templates/AntennaTypes/view.php:77
+#: ./templates/RadioLinks/index.php:37
+#: ./templates/RadioLinks/view.php:69
+#: ./templates/RadioUnitTypes/view.php:73
+#: ./templates/RadioUnits/export.php:29
+#: ./templates/RadioUnits/view.php:98
 msgid "Maximal Speed"
 msgstr ""
 
-#: AccessPoints/view.php:199
-#: AntennaTypes/view.php:78
-#: RadioLinks/view.php:70
-#: RadioUnitTypes/view.php:74
-#: RadioUnits/export.php:30
-#: RadioUnits/view.php:114
-msgid "Acm"
-msgstr ""
-
-#: AccessPoints/view.php:200
-#: AntennaTypes/view.php:79
-#: RadioLinks/view.php:71
-#: RadioUnitTypes/view.php:75
-#: RadioUnits/export.php:31
-#: RadioUnits/view.php:118
-msgid "Atpc"
-msgstr ""
-
-#: AccessPoints/view.php:201
-#: AccessPoints/view.php:264
-#: AntennaTypes/view.php:80
-#: CustomerConnections/view.php:101
-#: DeviceTypes/view.php:78
-#: RadioLinks/view.php:72
-#: RadioUnitTypes/view.php:76
-#: RadioUnits/export.php:32
-#: RadioUnits/view.php:50
-#: RouterosDevices/export.php:31
-#: RouterosDevices/view.php:72
+#: ./templates/AccessPoints/view.php:187
+#: ./templates/AccessPoints/view.php:240
+#: ./templates/AntennaTypes/view.php:78
+#: ./templates/CustomerConnections/view.php:97
+#: ./templates/DeviceTypes/view.php:78
+#: ./templates/RadioLinks/view.php:70
+#: ./templates/RadioUnitTypes/view.php:74
+#: ./templates/RadioUnits/export.php:32
+#: ./templates/RadioUnits/view.php:50
+#: ./templates/RouterosDevices/export.php:31
+#: ./templates/RouterosDevices/view.php:72
 msgid "Firmware Version"
 msgstr ""
 
-#: AccessPoints/view.php:203
-#: AntennaTypes/view.php:82
-#: RadioLinks/view.php:74
-#: RadioUnitTypes/view.php:78
-#: RadioUnits/export.php:34
-#: RadioUnits/view.php:58
+#: ./templates/AccessPoints/view.php:189
+#: ./templates/AntennaTypes/view.php:80
+#: ./templates/RadioLinks/index.php:39
+#: ./templates/RadioLinks/view.php:72
+#: ./templates/RadioUnitTypes/view.php:76
+#: ./templates/RadioUnits/export.php:34
+#: ./templates/RadioUnits/view.php:58
 msgid "Station Address"
 msgstr ""
 
-#: AccessPoints/view.php:204
-#: AntennaTypes/view.php:83
-#: RadioLinks/view.php:75
-#: RadioUnitTypes/view.php:79
-#: RadioUnits/export.php:35
-#: RadioUnits/view.php:102
+#: ./templates/AccessPoints/view.php:190
+#: ./templates/AntennaTypes/view.php:81
+#: ./templates/RadioLinks/view.php:73
+#: ./templates/RadioUnitTypes/view.php:77
+#: ./templates/RadioUnits/export.php:35
+#: ./templates/RadioUnits/view.php:102
 msgid "Expiration Date"
 msgstr ""
 
-#: AccessPoints/view.php:205
-#: AccessPoints/view.php:259
-#: AntennaTypes/view.php:84
-#: CustomerConnectionIps/view.php:34
-#: CustomerConnections/view.php:63
-#: CustomerConnections/view.php:96
-#: DeviceTypes/view.php:73
-#: RadioLinks/view.php:76
-#: RadioUnitTypes/view.php:80
-#: RadioUnits/export.php:36
-#: RadioUnits/view.php:62
-#: RouterosDeviceIps/view.php:34
-#: RouterosDevices/export.php:26
-#: RouterosDevices/view.php:42
-#: RouterosDevices/view.php:144
+#: ./templates/AccessPoints/view.php:191
+#: ./templates/AccessPoints/view.php:235
+#: ./templates/AntennaTypes/view.php:82
+#: ./templates/CustomerConnectionIps/view.php:34
+#: ./templates/CustomerConnections/view.php:63
+#: ./templates/CustomerConnections/view.php:92
+#: ./templates/DeviceTypes/view.php:73
+#: ./templates/RadioLinks/index.php:40
+#: ./templates/RadioLinks/view.php:74
+#: ./templates/RadioUnitTypes/view.php:78
+#: ./templates/RadioUnits/export.php:36
+#: ./templates/RadioUnits/view.php:62
+#: ./templates/RouterosDeviceIps/view.php:34
+#: ./templates/RouterosDevices/export.php:26
+#: ./templates/RouterosDevices/view.php:42
+#: ./templates/RouterosDevices/view.php:140
 msgid "Ip Address"
 msgstr ""
 
-#: AccessPoints/view.php:206
-#: AntennaTypes/view.php:85
-#: RadioLinks/view.php:77
-#: RadioUnitTypes/view.php:81
-#: RadioUnits/export.php:37
-#: RadioUnits/view.php:66
-msgid "Device Login"
-msgstr ""
-
-#: AccessPoints/view.php:207
-#: AntennaTypes/view.php:86
-#: RadioLinks/view.php:78
-#: RadioUnitTypes/view.php:82
-#: RadioUnits/export.php:38
-#: RadioUnits/view.php:70
-msgid "Device Password"
-msgstr ""
-
-#: AccessPoints/view.php:251
-#: RouterosDevices/index.php:15
-#: RouterosDevices/search.php:15
-#: RouterosDevices/view.php:14
+#: ./templates/AccessPoints/view.php:227
+#: ./templates/RouterosDevices/index.php:17
+#: ./templates/RouterosDevices/view.php:14
 msgid "New Routeros Device"
 msgstr ""
 
-#: AccessPoints/view.php:252
-#: CustomerConnections/view.php:88
-#: DeviceTypes/view.php:65
+#: ./templates/AccessPoints/view.php:228
+#: ./templates/CustomerConnections/view.php:84
+#: ./templates/DeviceTypes/view.php:65
 msgid "Related Routeros Devices"
 msgstr ""
 
-#: AccessPoints/view.php:258
-#: CustomerConnections/view.php:95
-#: RouterosDevices/export.php:25
-#: RouterosDevices/view.php:38
+#: ./templates/AccessPoints/view.php:234
+#: ./templates/CustomerConnections/view.php:91
+#: ./templates/RouterosDevices/export.php:25
+#: ./templates/RouterosDevices/view.php:38
 msgid "Device Type"
 msgstr ""
 
-#: AccessPoints/view.php:260
-#: CustomerConnections/view.php:97
-#: DeviceTypes/view.php:74
-#: RouterosDevices/export.php:27
-#: RouterosDevices/view.php:56
+#: ./templates/AccessPoints/view.php:236
+#: ./templates/CustomerConnections/view.php:93
+#: ./templates/DeviceTypes/view.php:74
+#: ./templates/RouterosDevices/export.php:27
+#: ./templates/RouterosDevices/view.php:56
 msgid "System Description"
 msgstr ""
 
-#: AccessPoints/view.php:261
-#: CustomerConnections/view.php:98
-#: DeviceTypes/view.php:75
-#: RouterosDevices/export.php:28
-#: RouterosDevices/view.php:60
+#: ./templates/AccessPoints/view.php:237
+#: ./templates/CustomerConnections/view.php:94
+#: ./templates/DeviceTypes/view.php:75
+#: ./templates/RouterosDevices/export.php:28
+#: ./templates/RouterosDevices/view.php:60
 msgid "Board Name"
 msgstr ""
 
-#: AccessPoints/view.php:263
-#: CustomerConnections/view.php:100
-#: DeviceTypes/view.php:77
-#: RouterosDevices/export.php:30
-#: RouterosDevices/view.php:68
+#: ./templates/AccessPoints/view.php:239
+#: ./templates/CustomerConnections/view.php:96
+#: ./templates/DeviceTypes/view.php:77
+#: ./templates/RouterosDevices/export.php:30
+#: ./templates/RouterosDevices/view.php:68
 msgid "Software Version"
 msgstr ""
 
-#: AntennaTypes/add.php:11
-#: AntennaTypes/edit.php:16
-#: AntennaTypes/view.php:13
+#: ./templates/AntennaTypes/add.php:11
+#: ./templates/AntennaTypes/edit.php:16
+#: ./templates/AntennaTypes/view.php:13
 msgid "List Antenna Types"
 msgstr ""
 
-#: AntennaTypes/add.php:18
+#: ./templates/AntennaTypes/add.php:18
 msgid "Add Antenna Type"
 msgstr ""
 
-#: AntennaTypes/edit.php:23
-#: AntennaTypes/view.php:11
+#: ./templates/AntennaTypes/edit.php:23
+#: ./templates/AntennaTypes/view.php:11
 msgid "Edit Antenna Type"
 msgstr ""
 
-#: AntennaTypes/index.php:8
-#: AntennaTypes/view.php:14
+#: ./templates/AntennaTypes/index.php:8
+#: ./templates/AntennaTypes/view.php:14
 msgid "New Antenna Type"
 msgstr ""
 
-#: AntennaTypes/index.php:9
-#: layout/default.php:97
+#: ./templates/AntennaTypes/index.php:9
+#: ./templates/layout/default.php:107
 msgid "Antenna Types"
 msgstr ""
 
-#: AntennaTypes/view.php:12
+#: ./templates/AntennaTypes/view.php:12
 msgid "Delete Antenna Type"
 msgstr ""
 
-#: AntennaTypes/view.php:30
-#: Manufacturers/view.php:51
-#: Manufacturers/view.php:121
-#: RadioUnitTypes/view.php:30
+#: ./templates/AntennaTypes/view.php:30
+#: ./templates/Manufacturers/view.php:51
+#: ./templates/Manufacturers/view.php:113
+#: ./templates/RadioUnitTypes/view.php:30
 msgid "Radio Unit Band"
 msgstr ""
 
-#: AntennaTypes/view.php:34
-#: PowerSupplyTypes/view.php:30
-#: RadioUnitBands/view.php:51
-#: RadioUnitBands/view.php:86
-#: RadioUnitTypes/view.php:34
-#: RadioUnits/export.php:20
+#: ./templates/AntennaTypes/view.php:34
+#: ./templates/PowerSupplyTypes/view.php:30
+#: ./templates/RadioUnitBands/view.php:51
+#: ./templates/RadioUnitBands/view.php:82
+#: ./templates/RadioUnitTypes/view.php:34
+#: ./templates/RadioUnits/export.php:20
 msgid "Manufacturer"
 msgstr ""
 
-#: AntennaTypes/view.php:38
-#: Manufacturers/view.php:53
-#: Manufacturers/view.php:88
-#: Manufacturers/view.php:122
-#: PowerSupplyTypes/view.php:34
-#: RadioUnitBands/view.php:53
-#: RadioUnitBands/view.php:87
-#: RadioUnitTypes/view.php:38
+#: ./templates/AntennaTypes/view.php:38
+#: ./templates/Manufacturers/view.php:53
+#: ./templates/Manufacturers/view.php:84
+#: ./templates/Manufacturers/view.php:114
+#: ./templates/PowerSupplyTypes/view.php:34
+#: ./templates/RadioUnitBands/view.php:53
+#: ./templates/RadioUnitBands/view.php:83
+#: ./templates/RadioUnitTypes/view.php:38
 msgid "Part Number"
 msgstr ""
 
-#: AntennaTypes/view.php:42
-#: Manufacturers/view.php:52
-#: RadioUnitBands/view.php:52
+#: ./templates/AntennaTypes/view.php:42
+#: ./templates/Manufacturers/view.php:52
+#: ./templates/RadioUnitBands/view.php:52
 msgid "Antenna Gain"
 msgstr ""
 
-#: CustomerConnectionIps/add.php:11
-#: CustomerConnectionIps/edit.php:16
-#: CustomerConnectionIps/view.php:13
+#: ./templates/CustomerConnectionIps/add.php:11
+#: ./templates/CustomerConnectionIps/edit.php:16
+#: ./templates/CustomerConnectionIps/view.php:13
 msgid "List Customer Connection Ips"
 msgstr ""
 
-#: CustomerConnectionIps/add.php:18
+#: ./templates/CustomerConnectionIps/add.php:18
 msgid "Add Customer Connection Ip"
 msgstr ""
 
-#: CustomerConnectionIps/edit.php:23
-#: CustomerConnectionIps/view.php:11
+#: ./templates/CustomerConnectionIps/edit.php:23
+#: ./templates/CustomerConnectionIps/view.php:11
 msgid "Edit Customer Connection Ip"
 msgstr ""
 
-#: CustomerConnectionIps/index.php:8
-#: CustomerConnectionIps/view.php:14
+#: ./templates/CustomerConnectionIps/index.php:8
+#: ./templates/CustomerConnectionIps/view.php:14
 msgid "New Customer Connection Ip"
 msgstr ""
 
-#: CustomerConnectionIps/index.php:9
-#: layout/default.php:91
+#: ./templates/CustomerConnectionIps/index.php:9
+#: ./templates/layout/default.php:93
 msgid "Customer Connection Ips"
 msgstr ""
 
-#: CustomerConnectionIps/view.php:12
+#: ./templates/CustomerConnectionIps/view.php:12
 msgid "Delete Customer Connection Ip"
 msgstr ""
 
-#: CustomerConnectionIps/view.php:30
-#: DeviceTypes/view.php:72
-#: RouterosDevices/export.php:23
-#: RouterosDevices/view.php:34
+#: ./templates/CustomerConnectionIps/view.php:30
+#: ./templates/DeviceTypes/view.php:72
+#: ./templates/RouterosDevices/export.php:23
+#: ./templates/RouterosDevices/view.php:34
 msgid "Customer Connection"
 msgstr ""
 
-#: CustomerConnections/add.php:11
-#: CustomerConnections/edit.php:16
-#: CustomerConnections/view.php:13
+#: ./templates/CustomerConnections/add.php:11
+#: ./templates/CustomerConnections/edit.php:16
+#: ./templates/CustomerConnections/view.php:13
 msgid "List Customer Connections"
 msgstr ""
 
-#: CustomerConnections/add.php:18
+#: ./templates/CustomerConnections/add.php:18
 msgid "Add Customer Connection"
 msgstr ""
 
-#: CustomerConnections/edit.php:23
-#: CustomerConnections/view.php:11
+#: ./templates/CustomerConnections/edit.php:23
+#: ./templates/CustomerConnections/view.php:11
 msgid "Edit Customer Connection"
 msgstr ""
 
-#: CustomerConnections/index.php:15
-#: CustomerConnections/view.php:14
+#: ./templates/CustomerConnections/index.php:17
+#: ./templates/CustomerConnections/view.php:14
 msgid "New Customer Connection"
 msgstr ""
 
-#: CustomerConnections/index.php:16
-#: layout/default.php:90
+#: ./templates/CustomerConnections/index.php:18
+#: ./templates/layout/default.php:92
 msgid "Customer Connections"
 msgstr ""
 
-#: CustomerConnections/view.php:12
+#: ./templates/CustomerConnections/view.php:12
 msgid "Delete Customer Connection"
 msgstr ""
 
-#: CustomerConnections/view.php:30
+#: ./templates/CustomerConnections/view.php:30
 msgid "Customer Point"
 msgstr ""
 
-#: CustomerConnections/view.php:57
+#: ./templates/CustomerConnections/view.php:57
 msgid "Related Customer Connection Ips"
 msgstr ""
 
-#: CustomerPoints/add.php:11
-#: CustomerPoints/edit.php:16
-#: CustomerPoints/view.php:13
+#: ./templates/CustomerPoints/add.php:11
+#: ./templates/CustomerPoints/edit.php:16
+#: ./templates/CustomerPoints/view.php:13
 msgid "List Customer Points"
 msgstr ""
 
-#: CustomerPoints/add.php:18
+#: ./templates/CustomerPoints/add.php:18
 msgid "Add Customer Point"
 msgstr ""
 
-#: CustomerPoints/edit.php:23
-#: CustomerPoints/view.php:11
+#: ./templates/CustomerPoints/edit.php:23
+#: ./templates/CustomerPoints/view.php:11
 msgid "Edit Customer Point"
 msgstr ""
 
-#: CustomerPoints/index.php:15
-#: CustomerPoints/view.php:14
+#: ./templates/CustomerPoints/index.php:17
+#: ./templates/CustomerPoints/view.php:14
 msgid "New Customer Point"
 msgstr ""
 
-#: CustomerPoints/index.php:16
-#: layout/default.php:60
+#: ./templates/CustomerPoints/index.php:18
+#: ./templates/layout/default.php:60
+#: ./templates/layout/default.php:91
 msgid "Customer Points"
 msgstr ""
 
-#: CustomerPoints/view.php:12
+#: ./templates/CustomerPoints/view.php:12
 msgid "Delete Customer Point"
 msgstr ""
 
-#: CustomerPoints/view.php:61
+#: ./templates/CustomerPoints/view.php:61
 msgid "Related Customer Connections"
 msgstr ""
 
-#: DeviceTypes/add.php:11
-#: DeviceTypes/edit.php:16
-#: DeviceTypes/view.php:13
+#: ./templates/DeviceTypes/add.php:11
+#: ./templates/DeviceTypes/edit.php:16
+#: ./templates/DeviceTypes/view.php:13
 msgid "List Device Types"
 msgstr ""
 
-#: DeviceTypes/add.php:18
+#: ./templates/DeviceTypes/add.php:18
 msgid "Add Device Type"
 msgstr ""
 
-#: DeviceTypes/edit.php:23
-#: DeviceTypes/view.php:11
+#: ./templates/DeviceTypes/edit.php:23
+#: ./templates/DeviceTypes/view.php:11
 msgid "Edit Device Type"
 msgstr ""
 
-#: DeviceTypes/index.php:8
-#: DeviceTypes/view.php:14
+#: ./templates/DeviceTypes/index.php:8
+#: ./templates/DeviceTypes/view.php:14
 msgid "New Device Type"
 msgstr ""
 
-#: DeviceTypes/index.php:9
-#: layout/default.php:103
+#: ./templates/DeviceTypes/index.php:9
+#: ./templates/layout/default.php:99
 msgid "Device Types"
 msgstr ""
 
-#: DeviceTypes/view.php:12
+#: ./templates/DeviceTypes/view.php:12
 msgid "Delete Device Type"
 msgstr ""
 
-#: DeviceTypes/view.php:30
+#: ./templates/DeviceTypes/view.php:30
 msgid "Identifier"
 msgstr ""
 
-#: DeviceTypes/view.php:34
+#: ./templates/DeviceTypes/view.php:34
 msgid "Snmp Community"
 msgstr ""
 
-#: DeviceTypes/view.php:38
+#: ./templates/DeviceTypes/view.php:38
 msgid "Assign Access Point By Device Name"
 msgstr ""
 
-#: DeviceTypes/view.php:39
-#: DeviceTypes/view.php:43
-#: DeviceTypes/view.php:47
-#: RadioUnits/view.php:115
-#: RadioUnits/view.php:119
+#: ./templates/DeviceTypes/view.php:39
+#: ./templates/DeviceTypes/view.php:43
+#: ./templates/DeviceTypes/view.php:47
+#: ./templates/RadioUnits/view.php:115
+#: ./templates/RadioUnits/view.php:119
 msgid "Yes"
 msgstr ""
 
-#: DeviceTypes/view.php:39
-#: DeviceTypes/view.php:43
-#: DeviceTypes/view.php:47
-#: RadioUnits/view.php:115
-#: RadioUnits/view.php:119
+#: ./templates/DeviceTypes/view.php:39
+#: ./templates/DeviceTypes/view.php:43
+#: ./templates/DeviceTypes/view.php:47
+#: ./templates/RadioUnits/view.php:115
+#: ./templates/RadioUnits/view.php:119
 msgid "No"
 msgstr ""
 
-#: DeviceTypes/view.php:42
+#: ./templates/DeviceTypes/view.php:42
 msgid "Assign Customer Connection By Ip"
 msgstr ""
 
-#: DeviceTypes/view.php:46
+#: ./templates/DeviceTypes/view.php:46
 msgid "Allow Technicians Access"
 msgstr ""
 
-#: ElectricityMeterReadings/add.php:11
-#: ElectricityMeterReadings/edit.php:16
-#: ElectricityMeterReadings/view.php:13
+#: ./templates/ElectricityMeterReadings/add.php:11
+#: ./templates/ElectricityMeterReadings/edit.php:16
+#: ./templates/ElectricityMeterReadings/view.php:13
 msgid "List Electricity Meter Readings"
 msgstr ""
 
-#: ElectricityMeterReadings/add.php:18
+#: ./templates/ElectricityMeterReadings/add.php:18
 msgid "Add Electricity Meter Reading"
 msgstr ""
 
-#: ElectricityMeterReadings/edit.php:23
-#: ElectricityMeterReadings/view.php:11
+#: ./templates/ElectricityMeterReadings/edit.php:23
+#: ./templates/ElectricityMeterReadings/view.php:11
 msgid "Edit Electricity Meter Reading"
 msgstr ""
 
-#: ElectricityMeterReadings/index.php:16
-#: layout/default.php:87
+#: ./templates/ElectricityMeterReadings/index.php:18
+#: ./templates/layout/default.php:88
 msgid "Electricity Meter Readings"
 msgstr ""
 
-#: ElectricityMeterReadings/view.php:12
+#: ./templates/ElectricityMeterReadings/view.php:12
 msgid "Delete Electricity Meter Reading"
 msgstr ""
 
-#: Manufacturers/add.php:11
-#: Manufacturers/edit.php:16
-#: Manufacturers/view.php:13
+#: ./templates/Manufacturers/add.php:11
+#: ./templates/Manufacturers/edit.php:16
+#: ./templates/Manufacturers/view.php:13
 msgid "List Manufacturers"
 msgstr ""
 
-#: Manufacturers/add.php:18
+#: ./templates/Manufacturers/add.php:18
 msgid "Add Manufacturer"
 msgstr ""
 
-#: Manufacturers/edit.php:23
-#: Manufacturers/view.php:11
+#: ./templates/Manufacturers/edit.php:23
+#: ./templates/Manufacturers/view.php:11
 msgid "Edit Manufacturer"
 msgstr ""
 
-#: Manufacturers/index.php:8
-#: Manufacturers/view.php:14
+#: ./templates/Manufacturers/index.php:8
+#: ./templates/Manufacturers/view.php:14
 msgid "New Manufacturer"
 msgstr ""
 
-#: Manufacturers/index.php:9
-#: layout/default.php:98
-#: layout/default.php:108
+#: ./templates/Manufacturers/index.php:9
+#: ./templates/layout/default.php:108
+#: ./templates/layout/default.php:113
 msgid "Manufacturers"
 msgstr ""
 
-#: Manufacturers/view.php:12
+#: ./templates/Manufacturers/view.php:12
 msgid "Delete Manufacturer"
 msgstr ""
 
-#: Manufacturers/view.php:45
-#: RadioUnitBands/view.php:45
+#: ./templates/Manufacturers/view.php:45
+#: ./templates/RadioUnitBands/view.php:45
 msgid "Related Antenna Types"
 msgstr ""
 
-#: Manufacturers/view.php:80
+#: ./templates/Manufacturers/view.php:76
 msgid "Related Power Supply Types"
 msgstr ""
 
-#: Manufacturers/view.php:86
-#: PowerSupplyTypes/view.php:38
+#: ./templates/Manufacturers/view.php:82
+#: ./templates/PowerSupplyTypes/view.php:38
 msgid "Voltage"
 msgstr ""
 
-#: Manufacturers/view.php:87
-#: PowerSupplyTypes/view.php:42
+#: ./templates/Manufacturers/view.php:83
+#: ./templates/PowerSupplyTypes/view.php:42
 msgid "Current"
 msgstr ""
 
-#: Manufacturers/view.php:115
-#: RadioUnitBands/view.php:80
+#: ./templates/Manufacturers/view.php:107
+#: ./templates/RadioUnitBands/view.php:76
 msgid "Related Radio Unit Types"
 msgstr ""
 
-#: PowerSupplies/add.php:11
-#: PowerSupplies/edit.php:16
-#: PowerSupplies/view.php:13
+#: ./templates/PowerSupplies/add.php:11
+#: ./templates/PowerSupplies/edit.php:16
+#: ./templates/PowerSupplies/view.php:13
 msgid "List Power Supplies"
 msgstr ""
 
-#: PowerSupplies/add.php:18
+#: ./templates/PowerSupplies/add.php:18
 msgid "Add Power Supply"
 msgstr ""
 
-#: PowerSupplies/edit.php:23
-#: PowerSupplies/view.php:11
+#: ./templates/PowerSupplies/edit.php:23
+#: ./templates/PowerSupplies/view.php:11
 msgid "Edit Power Supply"
 msgstr ""
 
-#: PowerSupplies/index.php:16
-#: layout/default.php:63
+#: ./templates/PowerSupplies/index.php:18
+#: ./templates/layout/default.php:63
+#: ./templates/layout/default.php:111
 msgid "Power Supplies"
 msgstr ""
 
-#: PowerSupplies/view.php:12
+#: ./templates/PowerSupplies/view.php:12
 msgid "Delete Power Supply"
 msgstr ""
 
-#: PowerSupplyTypes/add.php:11
-#: PowerSupplyTypes/edit.php:16
-#: PowerSupplyTypes/view.php:13
+#: ./templates/PowerSupplyTypes/add.php:11
+#: ./templates/PowerSupplyTypes/edit.php:16
+#: ./templates/PowerSupplyTypes/view.php:13
 msgid "List Power Supply Types"
 msgstr ""
 
-#: PowerSupplyTypes/add.php:18
+#: ./templates/PowerSupplyTypes/add.php:18
 msgid "Add Power Supply Type"
 msgstr ""
 
-#: PowerSupplyTypes/edit.php:23
-#: PowerSupplyTypes/view.php:11
+#: ./templates/PowerSupplyTypes/edit.php:23
+#: ./templates/PowerSupplyTypes/view.php:11
 msgid "Edit Power Supply Type"
 msgstr ""
 
-#: PowerSupplyTypes/index.php:8
-#: PowerSupplyTypes/view.php:14
+#: ./templates/PowerSupplyTypes/index.php:8
+#: ./templates/PowerSupplyTypes/view.php:14
 msgid "New Power Supply Type"
 msgstr ""
 
-#: PowerSupplyTypes/index.php:9
-#: layout/default.php:107
+#: ./templates/PowerSupplyTypes/index.php:9
+#: ./templates/layout/default.php:112
 msgid "Power Supply Types"
 msgstr ""
 
-#: PowerSupplyTypes/view.php:12
+#: ./templates/PowerSupplyTypes/view.php:12
 msgid "Delete Power Supply Type"
 msgstr ""
 
-#: RadarInterferences/add.php:11
-#: RadarInterferences/edit.php:16
-#: RadarInterferences/view.php:13
+#: ./templates/RadarInterferences/add.php:11
+#: ./templates/RadarInterferences/edit.php:16
+#: ./templates/RadarInterferences/view.php:13
 msgid "List Radar Interferences"
 msgstr ""
 
-#: RadarInterferences/add.php:18
+#: ./templates/RadarInterferences/add.php:18
 msgid "Add Radar Interference"
 msgstr ""
 
-#: RadarInterferences/devices.php:8
-#: RadarInterferences/index.php:10
+#: ./templates/RadarInterferences/devices.php:8
+#: ./templates/RadarInterferences/index.php:10
 msgid "Update Online"
 msgstr ""
 
-#: RadarInterferences/devices.php:9
+#: ./templates/RadarInterferences/devices.php:9
 msgid "Radar Interferences - Devices"
 msgstr ""
 
-#: RadarInterferences/edit.php:23
-#: RadarInterferences/view.php:11
+#: ./templates/RadarInterferences/edit.php:23
+#: ./templates/RadarInterferences/view.php:11
 msgid "Edit Radar Interference"
 msgstr ""
 
-#: RadarInterferences/index.php:8
-#: RadarInterferences/view.php:14
+#: ./templates/RadarInterferences/index.php:8
+#: ./templates/RadarInterferences/view.php:14
 msgid "New Radar Interference"
 msgstr ""
 
-#: RadarInterferences/index.php:9
+#: ./templates/RadarInterferences/index.php:9
 msgid "Devices That Interfere"
 msgstr ""
 
-#: RadarInterferences/index.php:11
-#: layout/default.php:104
+#: ./templates/RadarInterferences/index.php:11
+#: ./templates/layout/default.php:100
 msgid "Radar Interferences"
 msgstr ""
 
-#: RadarInterferences/view.php:12
+#: ./templates/RadarInterferences/view.php:12
 msgid "Delete Radar Interference"
 msgstr ""
 
-#: RadarInterferences/view.php:30
-#: RadarInterferences/view.php:63
-#: RouterosDeviceInterfaces/view.php:38
-#: RouterosDevices/export.php:32
-#: RouterosDevices/view.php:92
+#: ./templates/RadarInterferences/view.php:30
+#: ./templates/RadarInterferences/view.php:63
+#: ./templates/RouterosDeviceInterfaces/view.php:38
+#: ./templates/RouterosDevices/export.php:32
+#: ./templates/RouterosDevices/view.php:92
 msgid "Mac Address"
 msgstr ""
 
-#: RadarInterferences/view.php:34
-#: RadarInterferences/view.php:64
-#: RouterosDeviceInterfaces/view.php:42
-#: RouterosDevices/export.php:34
-#: RouterosDevices/view.php:93
+#: ./templates/RadarInterferences/view.php:34
+#: ./templates/RadarInterferences/view.php:64
+#: ./templates/RouterosDeviceInterfaces/view.php:42
+#: ./templates/RouterosDevices/export.php:34
+#: ./templates/RouterosDevices/view.php:93
 msgid "Ssid"
 msgstr ""
 
-#: RadarInterferences/view.php:38
+#: ./templates/RadarInterferences/view.php:38
 msgid "Radio Name"
 msgstr ""
 
-#: RadarInterferences/view.php:42
+#: ./templates/RadarInterferences/view.php:42
 msgid "Signal"
 msgstr ""
 
-#: RadarInterferences/view.php:55
-#: RouterosDevices/view.php:85
+#: ./templates/RadarInterferences/view.php:55
+#: ./templates/RouterosDevices/view.php:85
 msgid "Related Routeros Device Interfaces"
 msgstr ""
 
-#: RadarInterferences/view.php:60
-#: RouterosDeviceInterfaces/view.php:26
-#: RouterosDeviceIps/view.php:26
+#: ./templates/RadarInterferences/view.php:60
+#: ./templates/RouterosDeviceInterfaces/view.php:26
+#: ./templates/RouterosDeviceIps/view.php:26
 msgid "Routeros Device"
 msgstr ""
 
-#: RadarInterferences/view.php:62
-#: RouterosDeviceInterfaces/view.php:34
-#: RouterosDevices/view.php:91
+#: ./templates/RadarInterferences/view.php:62
+#: ./templates/RouterosDeviceInterfaces/view.php:34
+#: ./templates/RouterosDevices/view.php:91
 msgid "Comment"
 msgstr ""
 
-#: RadarInterferences/view.php:65
-#: RouterosDeviceInterfaces/view.php:46
-#: RouterosDevices/view.php:94
+#: ./templates/RadarInterferences/view.php:65
+#: ./templates/RouterosDeviceInterfaces/view.php:46
+#: ./templates/RouterosDevices/view.php:94
 msgid "Bssid"
 msgstr ""
 
-#: RadarInterferences/view.php:66
-#: RadioUnits/export.php:21
-#: RouterosDeviceInterfaces/view.php:50
-#: RouterosDevices/export.php:33
-#: RouterosDevices/view.php:95
+#: ./templates/RadarInterferences/view.php:66
+#: ./templates/RadioUnits/export.php:21
+#: ./templates/RouterosDeviceInterfaces/view.php:50
+#: ./templates/RouterosDevices/export.php:33
+#: ./templates/RouterosDevices/view.php:95
 msgid "Band"
 msgstr ""
 
-#: RadarInterferences/view.php:67
-#: RouterosDeviceInterfaces/view.php:54
-#: RouterosDevices/view.php:96
+#: ./templates/RadarInterferences/view.php:67
+#: ./templates/RouterosDeviceInterfaces/view.php:54
+#: ./templates/RouterosDevices/view.php:96
 msgid "Frequency"
 msgstr ""
 
-#: RadarInterferences/view.php:68
-#: RouterosDeviceInterfaces/view.php:58
-#: RouterosDevices/view.php:97
+#: ./templates/RadarInterferences/view.php:68
+#: ./templates/RouterosDeviceInterfaces/view.php:58
+#: ./templates/RouterosDevices/view.php:97
 msgid "Noise Floor"
 msgstr ""
 
-#: RadarInterferences/view.php:69
-#: RouterosDeviceInterfaces/view.php:62
-#: RouterosDevices/view.php:98
+#: ./templates/RadarInterferences/view.php:69
+#: ./templates/RouterosDeviceInterfaces/view.php:62
+#: ./templates/RouterosDevices/view.php:98
 msgid "Client Count"
 msgstr ""
 
-#: RadarInterferences/view.php:70
-#: RouterosDeviceInterfaces/view.php:66
-#: RouterosDevices/view.php:99
+#: ./templates/RadarInterferences/view.php:70
+#: ./templates/RouterosDeviceInterfaces/view.php:66
+#: ./templates/RouterosDevices/view.php:99
 msgid "Overall Tx Ccq"
 msgstr ""
 
-#: RadarInterferences/view.php:71
-#: RouterosDeviceInterfaces/view.php:70
-#: RouterosDeviceIps/view.php:38
-#: RouterosDevices/view.php:100
-#: RouterosDevices/view.php:145
+#: ./templates/RadarInterferences/view.php:71
+#: ./templates/RouterosDeviceInterfaces/view.php:70
+#: ./templates/RouterosDeviceIps/view.php:38
+#: ./templates/RouterosDevices/view.php:100
+#: ./templates/RouterosDevices/view.php:141
 msgid "Interface Index"
 msgstr ""
 
-#: RadarInterferences/view.php:72
-#: RouterosDeviceInterfaces/view.php:74
-#: RouterosDevices/view.php:101
+#: ./templates/RadarInterferences/view.php:72
+#: ./templates/RouterosDeviceInterfaces/view.php:74
+#: ./templates/RouterosDevices/view.php:101
 msgid "Interface Type"
 msgstr ""
 
-#: RadarInterferences/view.php:73
-#: RouterosDeviceInterfaces/view.php:78
-#: RouterosDevices/view.php:102
+#: ./templates/RadarInterferences/view.php:73
+#: ./templates/RouterosDeviceInterfaces/view.php:78
+#: ./templates/RouterosDevices/view.php:102
 msgid "Interface Admin Status"
 msgstr ""
 
-#: RadarInterferences/view.php:74
-#: RouterosDeviceInterfaces/view.php:82
-#: RouterosDevices/view.php:103
+#: ./templates/RadarInterferences/view.php:74
+#: ./templates/RouterosDeviceInterfaces/view.php:82
+#: ./templates/RouterosDevices/view.php:103
 msgid "Interface Oper Status"
 msgstr ""
 
-#: RadioLinks/add.php:11
-#: RadioLinks/edit.php:16
-#: RadioLinks/view.php:13
+#: ./templates/RadioLinks/add.php:11
+#: ./templates/RadioLinks/edit.php:16
+#: ./templates/RadioLinks/view.php:13
 msgid "List Radio Links"
 msgstr ""
 
-#: RadioLinks/add.php:18
+#: ./templates/RadioLinks/add.php:18
 msgid "Add Radio Link"
 msgstr ""
 
-#: RadioLinks/edit.php:23
-#: RadioLinks/view.php:11
+#: ./templates/RadioLinks/edit.php:23
+#: ./templates/RadioLinks/view.php:11
 msgid "Edit Radio Link"
 msgstr ""
 
-#: RadioLinks/index.php:8
-#: RadioLinks/view.php:14
+#: ./templates/RadioLinks/index.php:18
+#: ./templates/RadioLinks/view.php:14
 msgid "New Radio Link"
 msgstr ""
 
-#: RadioLinks/index.php:9
-#: layout/default.php:94
+#: ./templates/RadioLinks/index.php:19
+#: ./templates/layout/default.php:62
+#: ./templates/layout/default.php:103
 msgid "Radio Links"
 msgstr ""
 
-#: RadioLinks/view.php:12
-msgid "Delete Radio Link"
-msgstr ""
-
-#: RadioLinks/view.php:30
-msgid "Authorization Number"
-msgstr ""
-
-#: RadioLinks/view.php:34
-msgid "Distance"
-msgstr ""
-
-#: RadioUnitBands/add.php:11
-#: RadioUnitBands/edit.php:16
-#: RadioUnitBands/view.php:13
-msgid "List Radio Unit Bands"
-msgstr ""
-
-#: RadioUnitBands/add.php:18
-msgid "Add Radio Unit Band"
-msgstr ""
-
-#: RadioUnitBands/edit.php:23
-#: RadioUnitBands/view.php:11
-msgid "Edit Radio Unit Band"
-msgstr ""
-
-#: RadioUnitBands/index.php:8
-#: RadioUnitBands/view.php:14
-msgid "New Radio Unit Band"
-msgstr ""
-
-#: RadioUnitBands/index.php:9
-#: layout/default.php:96
-msgid "Radio Unit Bands"
-msgstr ""
-
-#: RadioUnitBands/view.php:12
-msgid "Delete Radio Unit Band"
-msgstr ""
-
-#: RadioUnitTypes/add.php:11
-#: RadioUnitTypes/edit.php:16
-#: RadioUnitTypes/view.php:13
-msgid "List Radio Unit Types"
-msgstr ""
-
-#: RadioUnitTypes/add.php:18
-msgid "Add Radio Unit Type"
-msgstr ""
-
-#: RadioUnitTypes/edit.php:23
-#: RadioUnitTypes/view.php:11
-msgid "Edit Radio Unit Type"
-msgstr ""
-
-#: RadioUnitTypes/index.php:8
-#: RadioUnitTypes/view.php:14
-msgid "New Radio Unit Type"
-msgstr ""
-
-#: RadioUnitTypes/index.php:9
-#: layout/default.php:95
-msgid "Radio Unit Types"
-msgstr ""
-
-#: RadioUnitTypes/view.php:12
-msgid "Delete Radio Unit Type"
-msgstr ""
-
-#: RadioUnits/add.php:11
-#: RadioUnits/edit.php:16
-#: RadioUnits/view.php:13
-msgid "List Radio Units"
-msgstr ""
-
-#: RadioUnits/add.php:18
-msgid "Add Radio Unit"
-msgstr ""
-
-#: RadioUnits/edit.php:23
-#: RadioUnits/view.php:11
-msgid "Edit Radio Unit"
-msgstr ""
-
-#: RadioUnits/export.php:9
-#: RouterosDevices/export.php:16
-#: layout/default.php:112
-msgid "Index"
-msgstr ""
-
-#: RadioUnits/export.php:10
-#: RadioUnits/index.php:17
-#: layout/default.php:62
+#: ./templates/RadioLinks/index.php:27
+#: ./templates/RadioUnits/export.php:10
+#: ./templates/RadioUnits/index.php:19
+#: ./templates/layout/default.php:104
 msgid "Radio Units"
 msgstr ""
 
-#: RadioUnits/index.php:16
-#: RouterosDevices/index.php:16
-#: RouterosDevices/search.php:16
+#: ./templates/RadioLinks/view.php:12
+msgid "Delete Radio Link"
+msgstr ""
+
+#: ./templates/RadioLinks/view.php:30
+msgid "Authorization Number"
+msgstr ""
+
+#: ./templates/RadioLinks/view.php:34
+msgid "Distance"
+msgstr ""
+
+#: ./templates/RadioUnitBands/add.php:11
+#: ./templates/RadioUnitBands/edit.php:16
+#: ./templates/RadioUnitBands/view.php:13
+msgid "List Radio Unit Bands"
+msgstr ""
+
+#: ./templates/RadioUnitBands/add.php:18
+msgid "Add Radio Unit Band"
+msgstr ""
+
+#: ./templates/RadioUnitBands/edit.php:23
+#: ./templates/RadioUnitBands/view.php:11
+msgid "Edit Radio Unit Band"
+msgstr ""
+
+#: ./templates/RadioUnitBands/index.php:8
+#: ./templates/RadioUnitBands/view.php:14
+msgid "New Radio Unit Band"
+msgstr ""
+
+#: ./templates/RadioUnitBands/index.php:9
+#: ./templates/layout/default.php:106
+msgid "Radio Unit Bands"
+msgstr ""
+
+#: ./templates/RadioUnitBands/view.php:12
+msgid "Delete Radio Unit Band"
+msgstr ""
+
+#: ./templates/RadioUnitTypes/add.php:11
+#: ./templates/RadioUnitTypes/edit.php:16
+#: ./templates/RadioUnitTypes/view.php:13
+msgid "List Radio Unit Types"
+msgstr ""
+
+#: ./templates/RadioUnitTypes/add.php:18
+msgid "Add Radio Unit Type"
+msgstr ""
+
+#: ./templates/RadioUnitTypes/edit.php:23
+#: ./templates/RadioUnitTypes/view.php:11
+msgid "Edit Radio Unit Type"
+msgstr ""
+
+#: ./templates/RadioUnitTypes/index.php:8
+#: ./templates/RadioUnitTypes/view.php:14
+msgid "New Radio Unit Type"
+msgstr ""
+
+#: ./templates/RadioUnitTypes/index.php:9
+#: ./templates/layout/default.php:105
+msgid "Radio Unit Types"
+msgstr ""
+
+#: ./templates/RadioUnitTypes/view.php:12
+msgid "Delete Radio Unit Type"
+msgstr ""
+
+#: ./templates/RadioUnits/add.php:11
+#: ./templates/RadioUnits/edit.php:16
+#: ./templates/RadioUnits/view.php:13
+msgid "List Radio Units"
+msgstr ""
+
+#: ./templates/RadioUnits/add.php:18
+msgid "Add Radio Unit"
+msgstr ""
+
+#: ./templates/RadioUnits/edit.php:23
+#: ./templates/RadioUnits/view.php:11
+msgid "Edit Radio Unit"
+msgstr ""
+
+#: ./templates/RadioUnits/export.php:9
+#: ./templates/RouterosDevices/export.php:16
+#: ./templates/layout/default.php:117
+msgid "Index"
+msgstr ""
+
+#: ./templates/RadioUnits/export.php:30
+#: ./templates/RadioUnits/view.php:114
+msgid "Acm"
+msgstr ""
+
+#: ./templates/RadioUnits/export.php:31
+#: ./templates/RadioUnits/view.php:118
+msgid "Atpc"
+msgstr ""
+
+#: ./templates/RadioUnits/export.php:37
+#: ./templates/RadioUnits/view.php:66
+msgid "Device Login"
+msgstr ""
+
+#: ./templates/RadioUnits/export.php:38
+#: ./templates/RadioUnits/view.php:70
+msgid "Device Password"
+msgstr ""
+
+#: ./templates/RadioUnits/index.php:18
+#: ./templates/RouterosDevices/index.php:18
 msgid "Export"
 msgstr ""
 
-#: RadioUnits/view.php:12
+#: ./templates/RadioUnits/view.php:12
 msgid "Delete Radio Unit"
 msgstr ""
 
-#: RouterosDeviceInterfaces/add.php:11
-#: RouterosDeviceInterfaces/edit.php:16
-#: RouterosDeviceInterfaces/view.php:13
+#: ./templates/RouterosDeviceInterfaces/add.php:11
+#: ./templates/RouterosDeviceInterfaces/edit.php:16
+#: ./templates/RouterosDeviceInterfaces/view.php:13
 msgid "List Routeros Device Interfaces"
 msgstr ""
 
-#: RouterosDeviceInterfaces/add.php:18
+#: ./templates/RouterosDeviceInterfaces/add.php:18
 msgid "Add Routeros Device Interface"
 msgstr ""
 
-#: RouterosDeviceInterfaces/edit.php:23
-#: RouterosDeviceInterfaces/view.php:11
+#: ./templates/RouterosDeviceInterfaces/edit.php:23
+#: ./templates/RouterosDeviceInterfaces/view.php:11
 msgid "Edit Routeros Device Interface"
 msgstr ""
 
-#: RouterosDeviceInterfaces/index.php:15
-#: RouterosDeviceInterfaces/view.php:14
+#: ./templates/RouterosDeviceInterfaces/index.php:17
+#: ./templates/RouterosDeviceInterfaces/view.php:14
 msgid "New Routeros Device Interface"
 msgstr ""
 
-#: RouterosDeviceInterfaces/index.php:16
-#: layout/default.php:101
+#: ./templates/RouterosDeviceInterfaces/index.php:18
+#: ./templates/layout/default.php:97
 msgid "Routeros Device Interfaces"
 msgstr ""
 
-#: RouterosDeviceInterfaces/view.php:12
+#: ./templates/RouterosDeviceInterfaces/view.php:12
 msgid "Delete Routeros Device Interface"
 msgstr ""
 
-#: RouterosDeviceIps/add.php:11
-#: RouterosDeviceIps/edit.php:16
-#: RouterosDeviceIps/view.php:13
+#: ./templates/RouterosDeviceIps/add.php:11
+#: ./templates/RouterosDeviceIps/edit.php:16
+#: ./templates/RouterosDeviceIps/view.php:13
 msgid "List Routeros Device Ips"
 msgstr ""
 
-#: RouterosDeviceIps/add.php:18
+#: ./templates/RouterosDeviceIps/add.php:18
 msgid "Add Routeros Device Ip"
 msgstr ""
 
-#: RouterosDeviceIps/edit.php:23
-#: RouterosDeviceIps/view.php:11
+#: ./templates/RouterosDeviceIps/edit.php:23
+#: ./templates/RouterosDeviceIps/view.php:11
 msgid "Edit Routeros Device Ip"
 msgstr ""
 
-#: RouterosDeviceIps/index.php:15
-#: RouterosDeviceIps/view.php:14
+#: ./templates/RouterosDeviceIps/index.php:17
+#: ./templates/RouterosDeviceIps/view.php:14
 msgid "New Routeros Device Ip"
 msgstr ""
 
-#: RouterosDeviceIps/index.php:16
+#: ./templates/RouterosDeviceIps/index.php:18
 msgid "Routeros Device Ips"
 msgstr ""
 
-#: RouterosDeviceIps/view.php:12
+#: ./templates/RouterosDeviceIps/view.php:12
 msgid "Delete Routeros Device Ip"
 msgstr ""
 
-#: RouterosDevices/add.php:11
-#: RouterosDevices/edit.php:16
-#: RouterosDevices/view.php:13
+#: ./templates/RouterosDevices/add.php:11
+#: ./templates/RouterosDevices/edit.php:16
+#: ./templates/RouterosDevices/view.php:13
 msgid "List Routeros Devices"
 msgstr ""
 
-#: RouterosDevices/add.php:18
+#: ./templates/RouterosDevices/add.php:18
 msgid "Add Routeros Device"
 msgstr ""
 
-#: RouterosDevices/edit.php:23
-#: RouterosDevices/view.php:11
+#: ./templates/RouterosDevices/edit.php:23
+#: ./templates/RouterosDevices/view.php:11
 msgid "Edit Routeros Device"
 msgstr ""
 
-#: RouterosDevices/export.php:17
-#: RouterosDevices/index.php:17
-#: RouterosDevices/search.php:17
+#: ./templates/RouterosDevices/export.php:17
+#: ./templates/RouterosDevices/index.php:19
+#: ./templates/layout/default.php:96
 msgid "Routeros Devices"
 msgstr ""
 
-#: RouterosDevices/view.php:12
+#: ./templates/RouterosDevices/view.php:12
 msgid "Delete Routeros Device"
 msgstr ""
 
-#: RouterosDevices/view.php:47
+#: ./templates/RouterosDevices/view.php:47
 msgid "Username"
 msgstr ""
 
-#: RouterosDevices/view.php:51
+#: ./templates/RouterosDevices/view.php:51
 msgid "Password"
 msgstr ""
 
-#: RouterosDevices/view.php:138
+#: ./templates/RouterosDevices/view.php:134
 msgid "Related Routeros Device Ips"
 msgstr ""
 
-#: layout/default.php:61
+#: ./templates/layout/default.php:61
 msgid "RouterOS Devices"
 msgstr ""
 
-#: layout/default.php:64
+#: ./templates/layout/default.php:64
 msgid "Users"
 msgstr ""
 
-#: layout/default.php:83
+#: ./templates/layout/default.php:83
 msgid "Logout"
 msgstr ""
 
-#: layout/default.php:102
+#: ./templates/layout/default.php:98
 msgid "RouterOS Device Ips"
 msgstr ""
 
-#: layout/default.php:111
+#: ./templates/layout/default.php:116
 msgid "Profile"
 msgstr ""
 
-#: layout/error.php:40
+#: ./templates/layout/error.php:40
 msgid "Back"
 msgstr ""
 
