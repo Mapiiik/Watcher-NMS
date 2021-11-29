@@ -76,8 +76,6 @@
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Software Version') ?></th>
                             <th><?= __('Firmware Version') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($deviceType->routeros_devices as $routerosDevices) : ?>
@@ -91,8 +89,6 @@
                             <td><?= h($routerosDevices->serial_number) ?></td>
                             <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
-                            <td><?= h($routerosDevices->created) ?></td>
-                            <td><?= h($routerosDevices->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>

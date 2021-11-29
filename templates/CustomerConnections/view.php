@@ -62,8 +62,6 @@
                             <th><?= __('Name') ?></th>
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($customerConnection->customer_connection_ips as $customerConnectionIps) : ?>
@@ -71,8 +69,6 @@
                             <td><?= h($customerConnectionIps->name) ?></td>
                             <td><?= h($customerConnectionIps->ip_address) ?></td>
                             <td><?= $this->Text->autoParagraph(h($customerConnectionIps->note)); ?></td>
-                            <td><?= h($customerConnectionIps->created) ?></td>
-                            <td><?= h($customerConnectionIps->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'CustomerConnectionIps', 'action' => 'view', $customerConnectionIps->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'CustomerConnectionIps', 'action' => 'edit', $customerConnectionIps->id]) ?>
@@ -99,8 +95,6 @@
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Software Version') ?></th>
                             <th><?= __('Firmware Version') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($customerConnection->routeros_devices as $routerosDevices) : ?>
@@ -114,8 +108,6 @@
                             <td><?= h($routerosDevices->serial_number) ?></td>
                             <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
-                            <td><?= h($routerosDevices->created) ?></td>
-                            <td><?= h($routerosDevices->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>

@@ -29,8 +29,6 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('serial_number') ?></th>
                     <th><?= $this->Paginator->sort('software_version') ?></th>
                     <th><?= $this->Paginator->sort('firmware_version') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -47,8 +45,6 @@ echo $this->Form->end();
                     <td><?= h($routerosDevice->serial_number) ?></td>
                     <td><?= h($routerosDevice->software_version) ?></td>
                     <td><?= h($routerosDevice->firmware_version) ?></td>
-                    <td><?= h($routerosDevice->created) ?></td>
-                    <td><?= h($routerosDevice->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $routerosDevice->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $routerosDevice->id]) ?>

@@ -52,8 +52,6 @@
                             <th><?= __('Antenna Gain') ?></th>
                             <th><?= __('Part Number') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($manufacturer->antenna_types as $antennaTypes) : ?>
@@ -63,8 +61,6 @@
                             <td><?= h($antennaTypes->antenna_gain) ?></td>
                             <td><?= h($antennaTypes->part_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($antennaTypes->note)); ?></td>
-                            <td><?= h($antennaTypes->created) ?></td>
-                            <td><?= h($antennaTypes->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'AntennaTypes', 'action' => 'view', $antennaTypes->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'AntennaTypes', 'action' => 'edit', $antennaTypes->id]) ?>
@@ -87,8 +83,6 @@
                             <th><?= __('Current') ?></th>
                             <th><?= __('Part Number') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($manufacturer->power_supply_types as $powerSupplyTypes) : ?>
@@ -98,8 +92,6 @@
                             <td><?= h($powerSupplyTypes->current) ?></td>
                             <td><?= h($powerSupplyTypes->part_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($powerSupplyTypes->note)); ?></td>
-                            <td><?= h($powerSupplyTypes->created) ?></td>
-                            <td><?= h($powerSupplyTypes->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupplyTypes->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'PowerSupplyTypes', 'action' => 'edit', $powerSupplyTypes->id]) ?>
@@ -121,8 +113,6 @@
                             <th><?= __('Radio Unit Band') ?></th>
                             <th><?= __('Part Number') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($manufacturer->radio_unit_types as $radioUnitTypes) : ?>
@@ -131,8 +121,6 @@
                             <td><?= $radioUnitTypes->has('radio_unit_band') ? $this->Html->link($radioUnitTypes->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $radioUnitTypes->radio_unit_band->id]) : '' ?></td>
                             <td><?= h($radioUnitTypes->part_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnitTypes->note)); ?></td>
-                            <td><?= h($radioUnitTypes->created) ?></td>
-                            <td><?= h($radioUnitTypes->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnitTypes->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RadioUnitTypes', 'action' => 'edit', $radioUnitTypes->id]) ?>

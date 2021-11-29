@@ -19,8 +19,6 @@
                     <th><?= $this->Paginator->sort('radio_name') ?></th>
                     <th><?= $this->Paginator->sort('routeros_device_id') ?></th>
                     <th><?= $this->Paginator->sort('routeros_device_interface_id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -35,8 +33,6 @@
                     <td><?= h($radarInterference->radio_name) ?></td>
                     <td><?= $this->Html->link($radarInterference->routeros_device_name, ['controller' => 'RouterosDevices', 'action' => 'view', $radarInterference->routeros_device_id]) ?></td>
                     <td><?= $this->Html->link($radarInterference->routeros_device_interface_name, ['controller' => 'RouterosDeviceInterfaces', 'action' => 'view', $radarInterference->routeros_device_interface_id]) ?></td>
-                    <td><?= h($radarInterference->created) ?></td>
-                    <td><?= h($radarInterference->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $radarInterference->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radarInterference->id]) ?>

@@ -72,8 +72,6 @@
                             <th><?= __('Battery Replacement') ?></th>
                             <th><?= __('Battery Duration') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($powerSupplyType->power_supplies as $powerSupplies) : ?>
@@ -87,8 +85,6 @@
                             <td><?= h($powerSupplies->battery_replacement) ?></td>
                             <td><?= h($powerSupplies->battery_duration) ?></td>
                             <td><?= $this->Text->autoParagraph(h($powerSupplies->note)); ?></td>
-                            <td><?= h($powerSupplies->created) ?></td>
-                            <td><?= h($powerSupplies->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id]) ?>

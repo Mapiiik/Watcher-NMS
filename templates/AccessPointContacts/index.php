@@ -24,8 +24,6 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('customer_number') ?></th>
                     <th><?= $this->Paginator->sort('contract_number') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -38,8 +36,6 @@ echo $this->Form->end();
                     <td><?= h($accessPointContact->email) ?></td>
                     <td><?= h($accessPointContact->customer_number) ?></td>
                     <td><?= h($accessPointContact->contract_number) ?></td>
-                    <td><?= h($accessPointContact->created) ?></td>
-                    <td><?= h($accessPointContact->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $accessPointContact->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accessPointContact->id]) ?>

@@ -67,8 +67,6 @@
                             <th><?= __('Customer Number') ?></th>
                             <th><?= __('Contract Number') ?></th>
                             <th><?= __('Note') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($customerPoint->customer_connections as $customerConnections) : ?>
@@ -77,8 +75,6 @@
                             <td><?= h($customerConnections->customer_number) ?></td>
                             <td><?= h($customerConnections->contract_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($customerConnections->note)); ?></td>
-                            <td><?= h($customerConnections->created) ?></td>
-                            <td><?= h($customerConnections->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnections->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'CustomerConnections', 'action' => 'edit', $customerConnections->id]) ?>

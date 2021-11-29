@@ -22,8 +22,6 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('reading_date') ?></th>
                     <th><?= $this->Paginator->sort('reading_value') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -34,8 +32,6 @@ echo $this->Form->end();
                     <td><?= h($electricityMeterReading->name) ?></td>
                     <td><?= h($electricityMeterReading->reading_date) ?></td>
                     <td><?= $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
-                    <td><?= h($electricityMeterReading->created) ?></td>
-                    <td><?= h($electricityMeterReading->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $electricityMeterReading->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $electricityMeterReading->id]) ?>

@@ -33,8 +33,6 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('interface_type') ?></th>
                     <th><?= $this->Paginator->sort('interface_admin_status') ?></th>
                     <th><?= $this->Paginator->sort('interface_oper_status') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -56,8 +54,6 @@ echo $this->Form->end();
                     <td><?= $this->Number->format($routerosDeviceInterface->interface_type) ?></td>
                     <td><?= $this->Number->format($routerosDeviceInterface->interface_admin_status) ?></td>
                     <td><?= $this->Number->format($routerosDeviceInterface->interface_oper_status) ?></td>
-                    <td><?= h($routerosDeviceInterface->created) ?></td>
-                    <td><?= h($routerosDeviceInterface->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $routerosDeviceInterface->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $routerosDeviceInterface->id]) ?>

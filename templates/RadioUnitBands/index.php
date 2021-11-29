@@ -12,8 +12,6 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -21,8 +19,6 @@
                 <?php foreach ($radioUnitBands as $radioUnitBand): ?>
                 <tr>
                     <td><?= h($radioUnitBand->name) ?></td>
-                    <td><?= h($radioUnitBand->created) ?></td>
-                    <td><?= h($radioUnitBand->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $radioUnitBand->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioUnitBand->id]) ?>

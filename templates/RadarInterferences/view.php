@@ -72,8 +72,6 @@
                             <th><?= __('Interface Type') ?></th>
                             <th><?= __('Interface Admin Status') ?></th>
                             <th><?= __('Interface Oper Status') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($radarInterference->routeros_device_interfaces as $routerosDeviceInterfaces) : ?>
@@ -93,8 +91,6 @@
                             <td><?= h($routerosDeviceInterfaces->interface_type) ?></td>
                             <td><?= h($routerosDeviceInterfaces->interface_admin_status) ?></td>
                             <td><?= h($routerosDeviceInterfaces->interface_oper_status) ?></td>
-                            <td><?= h($routerosDeviceInterfaces->created) ?></td>
-                            <td><?= h($routerosDeviceInterfaces->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'view', $routerosDeviceInterfaces->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'edit', $routerosDeviceInterfaces->id]) ?>

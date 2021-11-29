@@ -16,8 +16,6 @@
                     <th><?= $this->Paginator->sort('voltage') ?></th>
                     <th><?= $this->Paginator->sort('current') ?></th>
                     <th><?= $this->Paginator->sort('part_number') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -29,8 +27,6 @@
                     <td><?= $this->Number->format($powerSupplyType->voltage) ?></td>
                     <td><?= $this->Number->format($powerSupplyType->current) ?></td>
                     <td><?= h($powerSupplyType->part_number) ?></td>
-                    <td><?= h($powerSupplyType->created) ?></td>
-                    <td><?= h($powerSupplyType->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $powerSupplyType->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $powerSupplyType->id]) ?>

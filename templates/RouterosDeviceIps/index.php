@@ -22,8 +22,6 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
                     <th><?= $this->Paginator->sort('interface_index') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -34,8 +32,6 @@ echo $this->Form->end();
                     <td><?= h($routerosDeviceIp->name) ?></td>
                     <td><?= h($routerosDeviceIp->ip_address) ?></td>
                     <td><?= $this->Number->format($routerosDeviceIp->interface_index) ?></td>
-                    <td><?= h($routerosDeviceIp->created) ?></td>
-                    <td><?= h($routerosDeviceIp->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $routerosDeviceIp->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $routerosDeviceIp->id]) ?>

@@ -12,8 +12,6 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -21,8 +19,6 @@
                 <?php foreach ($manufacturers as $manufacturer): ?>
                 <tr>
                     <td><?= h($manufacturer->name) ?></td>
-                    <td><?= h($manufacturer->created) ?></td>
-                    <td><?= h($manufacturer->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $manufacturer->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $manufacturer->id]) ?>

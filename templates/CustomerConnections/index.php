@@ -22,8 +22,6 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('customer_point_id') ?></th>
                     <th><?= $this->Paginator->sort('customer_number') ?></th>
                     <th><?= $this->Paginator->sort('contract_number') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -34,8 +32,6 @@ echo $this->Form->end();
                     <td><?= $customerConnection->has('customer_point') ? $this->Html->link($customerConnection->customer_point->name, ['controller' => 'CustomerPoints', 'action' => 'view', $customerConnection->customer_point->id]) : '' ?></td>
                     <td><?= h($customerConnection->customer_number) ?></td>
                     <td><?= h($customerConnection->contract_number) ?></td>
-                    <td><?= h($customerConnection->created) ?></td>
-                    <td><?= h($customerConnection->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $customerConnection->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $customerConnection->id]) ?>

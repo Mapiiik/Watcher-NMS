@@ -101,8 +101,6 @@
                             <th><?= __('Interface Type') ?></th>
                             <th><?= __('Interface Admin Status') ?></th>
                             <th><?= __('Interface Oper Status') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($routerosDevice->routeros_device_interfaces as $routerosDeviceInterfaces) : ?>
@@ -121,8 +119,6 @@
                             <td><?= h($routerosDeviceInterfaces->interface_type) ?></td>
                             <td><?= h($routerosDeviceInterfaces->interface_admin_status) ?></td>
                             <td><?= h($routerosDeviceInterfaces->interface_oper_status) ?></td>
-                            <td><?= h($routerosDeviceInterfaces->created) ?></td>
-                            <td><?= h($routerosDeviceInterfaces->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'view', $routerosDeviceInterfaces->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'edit', $routerosDeviceInterfaces->id]) ?>
@@ -143,8 +139,6 @@
                             <th><?= __('Name') ?></th>
                             <th><?= __('Ip Address') ?></th>
                             <th><?= __('Interface Index') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIps) : ?>
@@ -152,8 +146,6 @@
                             <td><?= h($routerosDeviceIps->name) ?></td>
                             <td><?= h($routerosDeviceIps->ip_address) ?></td>
                             <td><?= h($routerosDeviceIps->interface_index) ?></td>
-                            <td><?= h($routerosDeviceIps->created) ?></td>
-                            <td><?= h($routerosDeviceIps->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'RouterosDeviceIps', 'action' => 'view', $routerosDeviceIps->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDeviceIps', 'action' => 'edit', $routerosDeviceIps->id]) ?>

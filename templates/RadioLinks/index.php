@@ -14,8 +14,6 @@
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('distance') ?></th>
                     <th><?= $this->Paginator->sort('authorization_number') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -25,8 +23,6 @@
                     <td><?= h($radioLink->name) ?></td>
                     <td><?= $this->Number->format($radioLink->distance) ?></td>
                     <td><?= h($radioLink->authorization_number) ?></td>
-                    <td><?= h($radioLink->created) ?></td>
-                    <td><?= h($radioLink->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $radioLink->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioLink->id]) ?>

@@ -28,8 +28,6 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('battery_replacement') ?></th>
                     <th><?= $this->Paginator->sort('battery_duration') ?></th>
                     <th><?= $this->Paginator->sort('note') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -46,8 +44,6 @@ echo $this->Form->end();
                     <td><?= h($powerSupply->battery_replacement) ?></td>
                     <td><?= h($powerSupply->battery_duration) ?></td>
                     <td><?= $this->Text->autoParagraph(h($powerSupply->note)); ?></td>
-                    <td><?= h($powerSupply->created) ?></td>
-                    <td><?= h($powerSupply->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $powerSupply->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $powerSupply->id]) ?>

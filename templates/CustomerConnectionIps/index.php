@@ -14,8 +14,6 @@
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('customer_connection_id') ?></th>
                     <th><?= $this->Paginator->sort('ip_address') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -25,8 +23,6 @@
                     <td><?= h($customerConnectionIp->name) ?></td>
                     <td><?= $customerConnectionIp->has('customer_connection') ? $this->Html->link($customerConnectionIp->customer_connection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnectionIp->customer_connection->id]) : '' ?></td>
                     <td><?= h($customerConnectionIp->ip_address) ?></td>
-                    <td><?= h($customerConnectionIp->created) ?></td>
-                    <td><?= h($customerConnectionIp->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $customerConnectionIp->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $customerConnectionIp->id]) ?>
