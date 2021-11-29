@@ -6,7 +6,9 @@
 ?>
 <?php
 echo $this->Form->create($search, ['type' => 'get']);
-if ($this->request->getQuery('limit')) echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
+if ($this->request->getQuery('limit')) {
+    echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
+}
 echo $this->Form->control('search', ['label' => __('Search')]);
 echo $this->Form->end();
 ?>
@@ -26,7 +28,7 @@ echo $this->Form->end();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($customerPoints as $customerPoint): ?>
+                <?php foreach ($customerPoints as $customerPoint) : ?>
                 <tr>
                     <td><?= h($customerPoint->name) ?></td>
                     <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>

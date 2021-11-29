@@ -24,23 +24,6 @@ echo $this->Form->end();
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('distance') ?></th>
                     <th><?= $this->Paginator->sort('authorization_number') ?></th>
-                    <th><?= $this->Paginator->sort('RadioUnit.name') ?></th>
-                    <th><?= $this->Paginator->sort('radio_unit_type_id') ?></th>
-                    <th><?= $this->Paginator->sort('radio_link_id') ?></th>
-                    <th><?= $this->Paginator->sort('antenna_type_id') ?></th>
-                    <th><?= $this->Paginator->sort('polarization') ?></th>
-                    <th><?= $this->Paginator->sort('channel_width') ?></th>
-                    <th><?= $this->Paginator->sort('tx_frequency') ?></th>
-                    <th><?= $this->Paginator->sort('rx_frequency') ?></th>
-                    <th><?= $this->Paginator->sort('tx_power') ?></th>
-                    <th><?= $this->Paginator->sort('rx_signal') ?></th>
-                    <th><?= $this->Paginator->sort('operating_speed') ?></th>
-                    <th><?= $this->Paginator->sort('maximal_speed') ?></th>
-                    <th><?= $this->Paginator->sort('firmware_version') ?></th>
-                    <th><?= $this->Paginator->sort('serial_number') ?></th>
-                    <th><?= $this->Paginator->sort('station_address') ?></th>
-                    <th><?= $this->Paginator->sort('expiration_date') ?></th>
-                    <th><?= $this->Paginator->sort('ip_address') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -50,23 +33,6 @@ echo $this->Form->end();
                     <td><?= h($radioLink->name) ?></td>
                     <td><?= $this->Number->format($radioLink->distance) ?></td>
                     <td><?= h($radioLink->authorization_number) ?></td>
-                    <td><?= h($radioUnit->name) ?></td>
-                    <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>
-                    <td><?= $radioUnit->has('radio_link') ? $this->Html->link($radioUnit->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]) : '' ?></td>
-                    <td><?= $radioUnit->has('antenna_type') ? $this->Html->link($radioUnit->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]) : '' ?></td>
-                    <td><?= h($radioUnit->polarization) ?></td>
-                    <td><?= $this->Number->format($radioUnit->channel_width) ?></td>
-                    <td><?= $this->Number->format($radioUnit->tx_frequency) ?></td>
-                    <td><?= $this->Number->format($radioUnit->rx_frequency) ?></td>
-                    <td><?= $this->Number->format($radioUnit->tx_power) ?></td>
-                    <td><?= $this->Number->format($radioUnit->rx_signal) ?></td>
-                    <td><?= $this->Number->format($radioUnit->operating_speed) ?></td>
-                    <td><?= $this->Number->format($radioUnit->maximal_speed) ?></td>
-                    <td><?= h($radioUnit->firmware_version) ?></td>
-                    <td><?= h($radioUnit->serial_number) ?></td>
-                    <td><?= h($radioUnit->station_address) ?></td>
-                    <td><?= h($radioUnit->expiration_date) ?></td>
-                    <td><?= h($radioUnit->ip_address) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $radioLink->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioLink->id]) ?>

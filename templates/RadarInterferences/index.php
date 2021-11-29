@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($radarInterferences as $radarInterference): ?>
+                <?php foreach ($radarInterferences as $radarInterference) : ?>
                 <tr>
                     <td><?= h($radarInterference->name) ?></td>
                     <td><?= h($radarInterference->mac_address) ?></td>

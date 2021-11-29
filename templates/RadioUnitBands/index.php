@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($radioUnitBands as $radioUnitBand): ?>
+                <?php foreach ($radioUnitBands as $radioUnitBand) : ?>
                 <tr>
                     <td><?= h($radioUnitBand->name) ?></td>
                     <td class="actions">

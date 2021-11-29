@@ -6,7 +6,9 @@
 ?>
 <?php
 echo $this->Form->create($search, ['type' => 'get']);
-if ($this->request->getQuery('limit')) echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
+if ($this->request->getQuery('limit')) {
+    echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
+}
 echo $this->Form->control('search', ['label' => __('Search')]);
 echo $this->Form->end();
 ?>
@@ -33,7 +35,7 @@ echo $this->Form->end();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($routerosDevices as $routerosDevice): ?>
+                <?php foreach ($routerosDevices as $routerosDevice) : ?>
                 <tr>
                     <td><?= $routerosDevice->has('access_point') ? $this->Html->link($routerosDevice->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]) : '' ?></td>
                     <td><?= $routerosDevice->has('customer_connection') ? $this->Html->link($routerosDevice->customer_connection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $routerosDevice->customer_connection->id]) : '' ?></td>

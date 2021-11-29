@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($customerConnectionIps as $customerConnectionIp): ?>
+                <?php foreach ($customerConnectionIps as $customerConnectionIp) : ?>
                 <tr>
                     <td><?= h($customerConnectionIp->name) ?></td>
                     <td><?= $customerConnectionIp->has('customer_connection') ? $this->Html->link($customerConnectionIp->customer_connection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnectionIp->customer_connection->id]) : '' ?></td>

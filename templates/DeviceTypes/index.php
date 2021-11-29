@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($deviceTypes as $deviceType): ?>
+                <?php foreach ($deviceTypes as $deviceType) : ?>
                 <tr>
                     <td><?= h($deviceType->name) ?></td>
                     <td><?= h($deviceType->identifier) ?></td>

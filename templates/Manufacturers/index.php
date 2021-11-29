@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($manufacturers as $manufacturer): ?>
+                <?php foreach ($manufacturers as $manufacturer) : ?>
                 <tr>
                     <td><?= h($manufacturer->name) ?></td>
                     <td class="actions">

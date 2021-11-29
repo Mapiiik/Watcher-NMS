@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($radioUnitTypes as $radioUnitType): ?>
+                <?php foreach ($radioUnitTypes as $radioUnitType) : ?>
                 <tr>
                     <td><?= h($radioUnitType->name) ?></td>
                     <td><?= $radioUnitType->has('radio_unit_band') ? $this->Html->link($radioUnitType->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $radioUnitType->radio_unit_band->id]) : '' ?></td>

@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($powerSupplyTypes as $powerSupplyType): ?>
+                <?php foreach ($powerSupplyTypes as $powerSupplyType) : ?>
                 <tr>
                     <td><?= h($powerSupplyType->name) ?></td>
                     <td><?= $powerSupplyType->has('manufacturer') ? $this->Html->link($powerSupplyType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]) : '' ?></td>
