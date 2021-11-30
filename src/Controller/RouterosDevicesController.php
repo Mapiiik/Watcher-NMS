@@ -70,6 +70,7 @@ class RouterosDevicesController extends AppController
         }
         $routerosDevices = $this->RouterosDevices->find('all', $options);
 
+        $this->set(compact('routerosDevices'));
         $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
     }
 
