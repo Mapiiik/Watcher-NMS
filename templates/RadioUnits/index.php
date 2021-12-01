@@ -44,7 +44,7 @@ echo $this->Form->end();
             </thead>
             <tbody>
                 <?php foreach ($radioUnits as $radioUnit) : ?>
-                <tr>
+                <tr style="background-color: <?= h($radioUnit->radio_unit_type->radio_unit_band->color) ?>;">>
                     <td><?= h($radioUnit->name) ?></td>
                     <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
                     <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>

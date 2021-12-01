@@ -21,7 +21,7 @@ class RadioUnitsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['RadioUnitTypes', 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
+            'contain' => ['RadioUnitTypes' => ['RadioUnitBands'], 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
             'order' => ['name' => 'ASC'],
         ];
 

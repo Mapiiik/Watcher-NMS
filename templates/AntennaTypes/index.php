@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <?php foreach ($antennaTypes as $antennaType) : ?>
-                <tr>
+                <tr style="background-color: <?= h($antennaType->radio_unit_band->color) ?>;">
                     <td><?= h($antennaType->name) ?></td>
                     <td><?= $antennaType->has('radio_unit_band') ? $this->Html->link($antennaType->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $antennaType->radio_unit_band->id]) : '' ?></td>
                     <td><?= $antennaType->has('manufacturer') ? $this->Html->link($antennaType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $antennaType->manufacturer->id]) : '' ?></td>
