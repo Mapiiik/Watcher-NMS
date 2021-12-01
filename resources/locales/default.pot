@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2021-11-29 19:40+0000\n"
+"POT-Creation-Date: 2021-12-01 16:52+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: ./src/Controller/RouterosDeviceInterfacesController.php:30
 #: ./src/Controller/RouterosDeviceIpsController.php:30
 #: ./src/Controller/RouterosDevicesController.php:32
-#: ./src/Controller/RouterosDevicesController.php:580
+#: ./src/Controller/RouterosDevicesController.php:633
 msgid "Search Set."
 msgstr ""
 
@@ -40,7 +40,7 @@ msgstr ""
 #: ./src/Controller/RouterosDeviceInterfacesController.php:32
 #: ./src/Controller/RouterosDeviceIpsController.php:32
 #: ./src/Controller/RouterosDevicesController.php:34
-#: ./src/Controller/RouterosDevicesController.php:582
+#: ./src/Controller/RouterosDevicesController.php:635
 msgid "There was a problem setting search."
 msgstr ""
 
@@ -380,21 +380,21 @@ msgstr ""
 msgid "The routeros device ip could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:121
-#: ./src/Controller/RouterosDevicesController.php:148
+#: ./src/Controller/RouterosDevicesController.php:122
+#: ./src/Controller/RouterosDevicesController.php:149
 msgid "The routeros device has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:125
-#: ./src/Controller/RouterosDevicesController.php:152
+#: ./src/Controller/RouterosDevicesController.php:126
+#: ./src/Controller/RouterosDevicesController.php:153
 msgid "The routeros device could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:172
+#: ./src/Controller/RouterosDevicesController.php:173
 msgid "The routeros device has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:174
+#: ./src/Controller/RouterosDevicesController.php:175
 msgid "The routeros device could not be deleted. Please, try again."
 msgstr ""
 
@@ -433,9 +433,9 @@ msgstr ""
 #: ./templates/CustomerPoints/view.php:70
 #: ./templates/DeviceTypes/add.php:10
 #: ./templates/DeviceTypes/edit.php:10
-#: ./templates/DeviceTypes/index.php:20
+#: ./templates/DeviceTypes/index.php:21
 #: ./templates/DeviceTypes/view.php:10
-#: ./templates/DeviceTypes/view.php:79
+#: ./templates/DeviceTypes/view.php:83
 #: ./templates/ElectricityMeterReadings/add.php:10
 #: ./templates/ElectricityMeterReadings/edit.php:10
 #: ./templates/ElectricityMeterReadings/index.php:27
@@ -469,10 +469,10 @@ msgstr ""
 #: ./templates/RadioLinks/view.php:76
 #: ./templates/RadioUnitBands/add.php:10
 #: ./templates/RadioUnitBands/edit.php:10
-#: ./templates/RadioUnitBands/index.php:15
+#: ./templates/RadioUnitBands/index.php:16
 #: ./templates/RadioUnitBands/view.php:10
-#: ./templates/RadioUnitBands/view.php:55
-#: ./templates/RadioUnitBands/view.php:85
+#: ./templates/RadioUnitBands/view.php:59
+#: ./templates/RadioUnitBands/view.php:89
 #: ./templates/RadioUnitTypes/add.php:10
 #: ./templates/RadioUnitTypes/edit.php:10
 #: ./templates/RadioUnitTypes/index.php:18
@@ -524,8 +524,8 @@ msgstr ""
 #: ./templates/CustomerConnections/edit.php:32
 #: ./templates/CustomerPoints/add.php:26
 #: ./templates/CustomerPoints/edit.php:31
-#: ./templates/DeviceTypes/add.php:29
-#: ./templates/DeviceTypes/edit.php:34
+#: ./templates/DeviceTypes/add.php:30
+#: ./templates/DeviceTypes/edit.php:35
 #: ./templates/ElectricityMeterReadings/add.php:27
 #: ./templates/ElectricityMeterReadings/edit.php:32
 #: ./templates/Manufacturers/add.php:24
@@ -538,8 +538,8 @@ msgstr ""
 #: ./templates/RadarInterferences/edit.php:32
 #: ./templates/RadioLinks/add.php:26
 #: ./templates/RadioLinks/edit.php:31
-#: ./templates/RadioUnitBands/add.php:24
-#: ./templates/RadioUnitBands/edit.php:29
+#: ./templates/RadioUnitBands/add.php:25
+#: ./templates/RadioUnitBands/edit.php:30
 #: ./templates/RadioUnitTypes/add.php:27
 #: ./templates/RadioUnitTypes/edit.php:32
 #: ./templates/RadioUnits/add.php:45
@@ -575,8 +575,8 @@ msgstr ""
 #: ./templates/CustomerPoints/index.php:43
 #: ./templates/CustomerPoints/view.php:81
 #: ./templates/DeviceTypes/edit.php:12
-#: ./templates/DeviceTypes/index.php:35
-#: ./templates/DeviceTypes/view.php:95
+#: ./templates/DeviceTypes/index.php:38
+#: ./templates/DeviceTypes/view.php:99
 #: ./templates/ElectricityMeterReadings/edit.php:12
 #: ./templates/ElectricityMeterReadings/index.php:40
 #: ./templates/Manufacturers/edit.php:12
@@ -597,9 +597,9 @@ msgstr ""
 #: ./templates/RadioLinks/index.php:67
 #: ./templates/RadioLinks/view.php:101
 #: ./templates/RadioUnitBands/edit.php:12
-#: ./templates/RadioUnitBands/index.php:25
-#: ./templates/RadioUnitBands/view.php:67
-#: ./templates/RadioUnitBands/view.php:96
+#: ./templates/RadioUnitBands/index.php:27
+#: ./templates/RadioUnitBands/view.php:71
+#: ./templates/RadioUnitBands/view.php:100
 #: ./templates/RadioUnitTypes/edit.php:12
 #: ./templates/RadioUnitTypes/index.php:31
 #: ./templates/RadioUnitTypes/view.php:105
@@ -646,9 +646,9 @@ msgstr ""
 #: ./templates/CustomerPoints/view.php:12
 #: ./templates/CustomerPoints/view.php:81
 #: ./templates/DeviceTypes/edit.php:14
-#: ./templates/DeviceTypes/index.php:35
+#: ./templates/DeviceTypes/index.php:40
 #: ./templates/DeviceTypes/view.php:12
-#: ./templates/DeviceTypes/view.php:95
+#: ./templates/DeviceTypes/view.php:99
 #: ./templates/ElectricityMeterReadings/edit.php:14
 #: ./templates/ElectricityMeterReadings/index.php:40
 #: ./templates/ElectricityMeterReadings/view.php:12
@@ -675,10 +675,10 @@ msgstr ""
 #: ./templates/RadioLinks/view.php:12
 #: ./templates/RadioLinks/view.php:101
 #: ./templates/RadioUnitBands/edit.php:14
-#: ./templates/RadioUnitBands/index.php:25
+#: ./templates/RadioUnitBands/index.php:27
 #: ./templates/RadioUnitBands/view.php:12
-#: ./templates/RadioUnitBands/view.php:67
-#: ./templates/RadioUnitBands/view.php:96
+#: ./templates/RadioUnitBands/view.php:71
+#: ./templates/RadioUnitBands/view.php:100
 #: ./templates/RadioUnitTypes/edit.php:14
 #: ./templates/RadioUnitTypes/index.php:31
 #: ./templates/RadioUnitTypes/view.php:12
@@ -748,8 +748,8 @@ msgstr ""
 #: ./templates/CustomerConnections/view.php:112
 #: ./templates/CustomerPoints/index.php:41
 #: ./templates/CustomerPoints/view.php:79
-#: ./templates/DeviceTypes/index.php:33
-#: ./templates/DeviceTypes/view.php:93
+#: ./templates/DeviceTypes/index.php:35
+#: ./templates/DeviceTypes/view.php:97
 #: ./templates/ElectricityMeterReadings/index.php:38
 #: ./templates/Manufacturers/index.php:23
 #: ./templates/Manufacturers/view.php:65
@@ -763,9 +763,9 @@ msgstr ""
 #: ./templates/RadarInterferences/view.php:95
 #: ./templates/RadioLinks/index.php:65
 #: ./templates/RadioLinks/view.php:99
-#: ./templates/RadioUnitBands/index.php:23
-#: ./templates/RadioUnitBands/view.php:65
-#: ./templates/RadioUnitBands/view.php:94
+#: ./templates/RadioUnitBands/index.php:25
+#: ./templates/RadioUnitBands/view.php:69
+#: ./templates/RadioUnitBands/view.php:98
 #: ./templates/RadioUnitTypes/index.php:29
 #: ./templates/RadioUnitTypes/view.php:103
 #: ./templates/RadioUnits/export.php:75
@@ -795,8 +795,8 @@ msgstr ""
 #: ./templates/CustomerConnections/view.php:113
 #: ./templates/CustomerPoints/index.php:42
 #: ./templates/CustomerPoints/view.php:80
-#: ./templates/DeviceTypes/index.php:34
-#: ./templates/DeviceTypes/view.php:94
+#: ./templates/DeviceTypes/index.php:36
+#: ./templates/DeviceTypes/view.php:98
 #: ./templates/ElectricityMeterReadings/index.php:39
 #: ./templates/Manufacturers/index.php:24
 #: ./templates/Manufacturers/view.php:66
@@ -810,9 +810,9 @@ msgstr ""
 #: ./templates/RadarInterferences/view.php:96
 #: ./templates/RadioLinks/index.php:66
 #: ./templates/RadioLinks/view.php:100
-#: ./templates/RadioUnitBands/index.php:24
-#: ./templates/RadioUnitBands/view.php:66
-#: ./templates/RadioUnitBands/view.php:95
+#: ./templates/RadioUnitBands/index.php:26
+#: ./templates/RadioUnitBands/view.php:70
+#: ./templates/RadioUnitBands/view.php:99
 #: ./templates/RadioUnitTypes/index.php:30
 #: ./templates/RadioUnitTypes/view.php:104
 #: ./templates/RadioUnits/export.php:76
@@ -832,7 +832,7 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/index.php:38
 #: ./templates/CustomerConnections/index.php:49
 #: ./templates/CustomerPoints/index.php:52
-#: ./templates/DeviceTypes/index.php:44
+#: ./templates/DeviceTypes/index.php:50
 #: ./templates/ElectricityMeterReadings/index.php:49
 #: ./templates/Manufacturers/index.php:34
 #: ./templates/PowerSupplies/index.php:61
@@ -840,7 +840,7 @@ msgstr ""
 #: ./templates/RadarInterferences/devices.php:48
 #: ./templates/RadarInterferences/index.php:44
 #: ./templates/RadioLinks/index.php:76
-#: ./templates/RadioUnitBands/index.php:34
+#: ./templates/RadioUnitBands/index.php:36
 #: ./templates/RadioUnitTypes/index.php:40
 #: ./templates/RadioUnits/index.php:78
 #: ./templates/RouterosDeviceInterfaces/index.php:71
@@ -855,7 +855,7 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/index.php:39
 #: ./templates/CustomerConnections/index.php:50
 #: ./templates/CustomerPoints/index.php:53
-#: ./templates/DeviceTypes/index.php:45
+#: ./templates/DeviceTypes/index.php:51
 #: ./templates/ElectricityMeterReadings/index.php:50
 #: ./templates/Manufacturers/index.php:35
 #: ./templates/PowerSupplies/index.php:62
@@ -863,7 +863,7 @@ msgstr ""
 #: ./templates/RadarInterferences/devices.php:49
 #: ./templates/RadarInterferences/index.php:45
 #: ./templates/RadioLinks/index.php:77
-#: ./templates/RadioUnitBands/index.php:35
+#: ./templates/RadioUnitBands/index.php:37
 #: ./templates/RadioUnitTypes/index.php:41
 #: ./templates/RadioUnits/index.php:79
 #: ./templates/RouterosDeviceInterfaces/index.php:72
@@ -878,7 +878,7 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/index.php:41
 #: ./templates/CustomerConnections/index.php:52
 #: ./templates/CustomerPoints/index.php:55
-#: ./templates/DeviceTypes/index.php:47
+#: ./templates/DeviceTypes/index.php:53
 #: ./templates/ElectricityMeterReadings/index.php:52
 #: ./templates/Manufacturers/index.php:37
 #: ./templates/PowerSupplies/index.php:64
@@ -886,7 +886,7 @@ msgstr ""
 #: ./templates/RadarInterferences/devices.php:51
 #: ./templates/RadarInterferences/index.php:47
 #: ./templates/RadioLinks/index.php:79
-#: ./templates/RadioUnitBands/index.php:37
+#: ./templates/RadioUnitBands/index.php:39
 #: ./templates/RadioUnitTypes/index.php:43
 #: ./templates/RadioUnits/index.php:81
 #: ./templates/RouterosDeviceInterfaces/index.php:74
@@ -901,7 +901,7 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/index.php:42
 #: ./templates/CustomerConnections/index.php:53
 #: ./templates/CustomerPoints/index.php:56
-#: ./templates/DeviceTypes/index.php:48
+#: ./templates/DeviceTypes/index.php:54
 #: ./templates/ElectricityMeterReadings/index.php:53
 #: ./templates/Manufacturers/index.php:38
 #: ./templates/PowerSupplies/index.php:65
@@ -909,7 +909,7 @@ msgstr ""
 #: ./templates/RadarInterferences/devices.php:52
 #: ./templates/RadarInterferences/index.php:48
 #: ./templates/RadioLinks/index.php:80
-#: ./templates/RadioUnitBands/index.php:38
+#: ./templates/RadioUnitBands/index.php:40
 #: ./templates/RadioUnitTypes/index.php:44
 #: ./templates/RadioUnits/index.php:82
 #: ./templates/RouterosDeviceInterfaces/index.php:75
@@ -924,7 +924,7 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/index.php:44
 #: ./templates/CustomerConnections/index.php:55
 #: ./templates/CustomerPoints/index.php:58
-#: ./templates/DeviceTypes/index.php:50
+#: ./templates/DeviceTypes/index.php:56
 #: ./templates/ElectricityMeterReadings/index.php:55
 #: ./templates/Manufacturers/index.php:40
 #: ./templates/PowerSupplies/index.php:67
@@ -932,7 +932,7 @@ msgstr ""
 #: ./templates/RadarInterferences/devices.php:54
 #: ./templates/RadarInterferences/index.php:50
 #: ./templates/RadioLinks/index.php:82
-#: ./templates/RadioUnitBands/index.php:40
+#: ./templates/RadioUnitBands/index.php:42
 #: ./templates/RadioUnitTypes/index.php:46
 #: ./templates/RadioUnits/index.php:84
 #: ./templates/RouterosDeviceInterfaces/index.php:77
@@ -983,7 +983,7 @@ msgstr ""
 #: ./templates/CustomerPoints/view.php:26
 #: ./templates/CustomerPoints/view.php:66
 #: ./templates/DeviceTypes/view.php:26
-#: ./templates/DeviceTypes/view.php:70
+#: ./templates/DeviceTypes/view.php:74
 #: ./templates/ElectricityMeterReadings/view.php:26
 #: ./templates/Manufacturers/view.php:26
 #: ./templates/Manufacturers/view.php:50
@@ -997,8 +997,8 @@ msgstr ""
 #: ./templates/RadioLinks/view.php:26
 #: ./templates/RadioLinks/view.php:58
 #: ./templates/RadioUnitBands/view.php:26
-#: ./templates/RadioUnitBands/view.php:50
-#: ./templates/RadioUnitBands/view.php:81
+#: ./templates/RadioUnitBands/view.php:54
+#: ./templates/RadioUnitBands/view.php:85
 #: ./templates/RadioUnitTypes/view.php:26
 #: ./templates/RadioUnitTypes/view.php:62
 #: ./templates/RadioUnits/export.php:16
@@ -1015,7 +1015,7 @@ msgstr ""
 #: ./templates/AccessPointContacts/view.php:30
 #: ./templates/AntennaTypes/view.php:67
 #: ./templates/CustomerConnections/view.php:90
-#: ./templates/DeviceTypes/view.php:71
+#: ./templates/DeviceTypes/view.php:75
 #: ./templates/ElectricityMeterReadings/view.php:30
 #: ./templates/PowerSupplies/view.php:34
 #: ./templates/PowerSupplyTypes/view.php:67
@@ -1058,14 +1058,14 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/view.php:38
 #: ./templates/CustomerConnections/view.php:42
 #: ./templates/CustomerPoints/view.php:46
-#: ./templates/DeviceTypes/view.php:50
+#: ./templates/DeviceTypes/view.php:54
 #: ./templates/ElectricityMeterReadings/view.php:42
 #: ./templates/Manufacturers/view.php:30
 #: ./templates/PowerSupplies/view.php:62
 #: ./templates/PowerSupplyTypes/view.php:46
 #: ./templates/RadarInterferences/view.php:46
 #: ./templates/RadioLinks/view.php:38
-#: ./templates/RadioUnitBands/view.php:30
+#: ./templates/RadioUnitBands/view.php:34
 #: ./templates/RadioUnitTypes/view.php:42
 #: ./templates/RadioUnits/view.php:106
 #: ./templates/RouterosDeviceInterfaces/view.php:86
@@ -1080,14 +1080,14 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/view.php:42
 #: ./templates/CustomerConnections/view.php:46
 #: ./templates/CustomerPoints/view.php:50
-#: ./templates/DeviceTypes/view.php:54
+#: ./templates/DeviceTypes/view.php:58
 #: ./templates/ElectricityMeterReadings/view.php:46
 #: ./templates/Manufacturers/view.php:34
 #: ./templates/PowerSupplies/view.php:66
 #: ./templates/PowerSupplyTypes/view.php:50
 #: ./templates/RadarInterferences/view.php:50
 #: ./templates/RadioLinks/view.php:42
-#: ./templates/RadioUnitBands/view.php:34
+#: ./templates/RadioUnitBands/view.php:38
 #: ./templates/RadioUnitTypes/view.php:46
 #: ./templates/RadioUnits/view.php:110
 #: ./templates/RouterosDeviceInterfaces/view.php:90
@@ -1109,7 +1109,7 @@ msgstr ""
 #: ./templates/CustomerConnections/view.php:64
 #: ./templates/CustomerPoints/view.php:55
 #: ./templates/CustomerPoints/view.php:69
-#: ./templates/DeviceTypes/view.php:59
+#: ./templates/DeviceTypes/view.php:63
 #: ./templates/ElectricityMeterReadings/view.php:51
 #: ./templates/Manufacturers/view.php:39
 #: ./templates/Manufacturers/view.php:54
@@ -1120,9 +1120,9 @@ msgstr ""
 #: ./templates/PowerSupplyTypes/view.php:74
 #: ./templates/RadioLinks/view.php:47
 #: ./templates/RadioLinks/view.php:75
-#: ./templates/RadioUnitBands/view.php:39
-#: ./templates/RadioUnitBands/view.php:54
-#: ./templates/RadioUnitBands/view.php:84
+#: ./templates/RadioUnitBands/view.php:43
+#: ./templates/RadioUnitBands/view.php:58
+#: ./templates/RadioUnitBands/view.php:88
 #: ./templates/RadioUnitTypes/view.php:51
 #: ./templates/RadioUnitTypes/view.php:79
 #: ./templates/RadioUnits/view.php:123
@@ -1254,7 +1254,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:238
 #: ./templates/AntennaTypes/view.php:79
 #: ./templates/CustomerConnections/view.php:95
-#: ./templates/DeviceTypes/view.php:76
+#: ./templates/DeviceTypes/view.php:80
 #: ./templates/PowerSupplies/view.php:38
 #: ./templates/PowerSupplyTypes/view.php:68
 #: ./templates/RadioLinks/index.php:38
@@ -1420,7 +1420,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:240
 #: ./templates/AntennaTypes/view.php:78
 #: ./templates/CustomerConnections/view.php:97
-#: ./templates/DeviceTypes/view.php:78
+#: ./templates/DeviceTypes/view.php:82
 #: ./templates/RadioLinks/view.php:70
 #: ./templates/RadioUnitTypes/view.php:74
 #: ./templates/RadioUnits/export.php:32
@@ -1455,7 +1455,7 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/view.php:34
 #: ./templates/CustomerConnections/view.php:63
 #: ./templates/CustomerConnections/view.php:92
-#: ./templates/DeviceTypes/view.php:73
+#: ./templates/DeviceTypes/view.php:77
 #: ./templates/RadioLinks/index.php:40
 #: ./templates/RadioLinks/view.php:74
 #: ./templates/RadioUnitTypes/view.php:78
@@ -1476,7 +1476,7 @@ msgstr ""
 
 #: ./templates/AccessPoints/view.php:228
 #: ./templates/CustomerConnections/view.php:84
-#: ./templates/DeviceTypes/view.php:65
+#: ./templates/DeviceTypes/view.php:69
 msgid "Related Routeros Devices"
 msgstr ""
 
@@ -1489,7 +1489,7 @@ msgstr ""
 
 #: ./templates/AccessPoints/view.php:236
 #: ./templates/CustomerConnections/view.php:93
-#: ./templates/DeviceTypes/view.php:74
+#: ./templates/DeviceTypes/view.php:78
 #: ./templates/RouterosDevices/export.php:27
 #: ./templates/RouterosDevices/view.php:56
 msgid "System Description"
@@ -1497,7 +1497,7 @@ msgstr ""
 
 #: ./templates/AccessPoints/view.php:237
 #: ./templates/CustomerConnections/view.php:94
-#: ./templates/DeviceTypes/view.php:75
+#: ./templates/DeviceTypes/view.php:79
 #: ./templates/RouterosDevices/export.php:28
 #: ./templates/RouterosDevices/view.php:60
 msgid "Board Name"
@@ -1505,7 +1505,7 @@ msgstr ""
 
 #: ./templates/AccessPoints/view.php:239
 #: ./templates/CustomerConnections/view.php:96
-#: ./templates/DeviceTypes/view.php:77
+#: ./templates/DeviceTypes/view.php:81
 #: ./templates/RouterosDevices/export.php:30
 #: ./templates/RouterosDevices/view.php:68
 msgid "Software Version"
@@ -1549,8 +1549,8 @@ msgstr ""
 
 #: ./templates/AntennaTypes/view.php:34
 #: ./templates/PowerSupplyTypes/view.php:30
-#: ./templates/RadioUnitBands/view.php:51
-#: ./templates/RadioUnitBands/view.php:82
+#: ./templates/RadioUnitBands/view.php:55
+#: ./templates/RadioUnitBands/view.php:86
 #: ./templates/RadioUnitTypes/view.php:34
 #: ./templates/RadioUnits/export.php:20
 msgid "Manufacturer"
@@ -1561,15 +1561,15 @@ msgstr ""
 #: ./templates/Manufacturers/view.php:84
 #: ./templates/Manufacturers/view.php:114
 #: ./templates/PowerSupplyTypes/view.php:34
-#: ./templates/RadioUnitBands/view.php:53
-#: ./templates/RadioUnitBands/view.php:83
+#: ./templates/RadioUnitBands/view.php:57
+#: ./templates/RadioUnitBands/view.php:87
 #: ./templates/RadioUnitTypes/view.php:38
 msgid "Part Number"
 msgstr ""
 
 #: ./templates/AntennaTypes/view.php:42
 #: ./templates/Manufacturers/view.php:52
-#: ./templates/RadioUnitBands/view.php:52
+#: ./templates/RadioUnitBands/view.php:56
 msgid "Antenna Gain"
 msgstr ""
 
@@ -1603,7 +1603,7 @@ msgid "Delete Customer Connection Ip"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/view.php:30
-#: ./templates/DeviceTypes/view.php:72
+#: ./templates/DeviceTypes/view.php:76
 #: ./templates/RouterosDevices/export.php:23
 #: ./templates/RouterosDevices/view.php:34
 msgid "Customer Connection"
@@ -1724,6 +1724,7 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:39
 #: ./templates/DeviceTypes/view.php:43
 #: ./templates/DeviceTypes/view.php:47
+#: ./templates/DeviceTypes/view.php:51
 #: ./templates/RadioUnits/view.php:115
 #: ./templates/RadioUnits/view.php:119
 msgid "Yes"
@@ -1732,6 +1733,7 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:39
 #: ./templates/DeviceTypes/view.php:43
 #: ./templates/DeviceTypes/view.php:47
+#: ./templates/DeviceTypes/view.php:51
 #: ./templates/RadioUnits/view.php:115
 #: ./templates/RadioUnits/view.php:119
 msgid "No"
@@ -1743,6 +1745,10 @@ msgstr ""
 
 #: ./templates/DeviceTypes/view.php:46
 msgid "Allow Technicians Access"
+msgstr ""
+
+#: ./templates/DeviceTypes/view.php:50
+msgid "Automatically Set A Unique Password"
 msgstr ""
 
 #: ./templates/ElectricityMeterReadings/add.php:11
@@ -1800,7 +1806,7 @@ msgid "Delete Manufacturer"
 msgstr ""
 
 #: ./templates/Manufacturers/view.php:45
-#: ./templates/RadioUnitBands/view.php:45
+#: ./templates/RadioUnitBands/view.php:49
 msgid "Related Antenna Types"
 msgstr ""
 
@@ -1819,7 +1825,7 @@ msgid "Current"
 msgstr ""
 
 #: ./templates/Manufacturers/view.php:107
-#: ./templates/RadioUnitBands/view.php:76
+#: ./templates/RadioUnitBands/view.php:80
 msgid "Related Radio Unit Types"
 msgstr ""
 
@@ -2096,6 +2102,10 @@ msgstr ""
 
 #: ./templates/RadioUnitBands/view.php:12
 msgid "Delete Radio Unit Band"
+msgstr ""
+
+#: ./templates/RadioUnitBands/view.php:30
+msgid "Color"
 msgstr ""
 
 #: ./templates/RadioUnitTypes/add.php:11
