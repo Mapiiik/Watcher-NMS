@@ -34,7 +34,11 @@
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $deviceType->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $deviceType->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $deviceType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $deviceType->id)]) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $deviceType->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $deviceType->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
