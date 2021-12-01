@@ -272,7 +272,11 @@ class RouterosDevicesController extends AppController
 
         $serialNumber = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.3.0'); // phpcs:ignore
 
-        return $serialNumber;
+        if ($serialNumber) {
+            return $serialNumber;
+        } else {
+            return null;
+        }
     }
 
     /**
