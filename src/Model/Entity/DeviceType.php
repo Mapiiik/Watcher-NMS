@@ -18,6 +18,7 @@ use Cake\ORM\Entity;
  * @property bool $assign_access_point_by_device_name
  * @property bool $assign_customer_connection_by_ip
  * @property bool $allow_technicians_access
+ * @property bool $automatically_set_a_unique_password
  *
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  */
@@ -42,6 +43,7 @@ class DeviceType extends Entity
         'assign_access_point_by_device_name' => true,
         'assign_customer_connection_by_ip' => true,
         'allow_technicians_access' => true,
+        'automatically_set_a_unique_password' => true,
         'routeros_devices' => true,
     ];
 }

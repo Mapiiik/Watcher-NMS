@@ -47,6 +47,10 @@
                     <td><?= $deviceType->allow_technicians_access ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Automatically Set A Unique Password') ?></th>
+                    <td><?= $deviceType->automatically_set_a_unique_password ? __('Yes') : __('No'); ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($deviceType->created) ?></td>
                 </tr>

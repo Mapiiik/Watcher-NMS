@@ -24,6 +24,7 @@
                     echo $this->Form->control('assign_access_point_by_device_name');
                     echo $this->Form->control('assign_customer_connection_by_ip');
                     echo $this->Form->control('allow_technicians_access');
+                    echo $this->Form->control('automatically_set_a_unique_password');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

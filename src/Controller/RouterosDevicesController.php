@@ -244,7 +244,39 @@ class RouterosDevicesController extends AppController
     }
 
     /**
-     * empty load data via SNMP
+     * load serial number via SNMP
+     *
+     * @param string $host The SNMP agent
+     * @param string $community The read community
+     * @return string|null
+     */
+    private function loadSerialNumberViaSNMP(
+        $host = null,
+        $community = null
+    ) {
+        $sourceEncoding = 'CP1250';
+
+        // numeric OIDs
+        snmp_set_oid_output_format(SNMP_OID_OUTPUT_NUMERIC);
+
+        // Get just the values.
+        //snmp_set_quick_print(1);
+
+        // For sequence types, return just the numbers, not the string and numbers.
+        //snmp_set_enum_print(1);
+
+        // Don't let the SNMP library get cute with value interpretation.  This makes
+        // MAC addresses return the 6 binary bytes, timeticks to return just the integer
+        // value, and some other things.
+        snmp_set_valueretrieval(SNMP_VALUE_PLAIN);
+
+        $serialNumber = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.3.0'); // phpcs:ignore
+
+        return $serialNumber;
+    }
+
+    /**
+     * update data via SNMP
      *
      * @param string $host The SNMP agent
      * @param string $community The read community
@@ -253,7 +285,7 @@ class RouterosDevicesController extends AppController
      * @param bool $assign_customer_connection_by_ip Assign customer connection by IP
      * @return \App\Model\Entity\RouterosDevice|null
      */
-    private function loadViaSNMP(
+    private function updateDataViaSNMP(
         $host = null,
         $community = null,
         $device_type_id = null,
@@ -526,41 +558,57 @@ class RouterosDevicesController extends AppController
         $deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first();
 
         if ($deviceType) {
-            $routerosDevice = $this->loadViaSNMP(
+            $routerosDeviceSerialNumber = $this->loadSerialNumberViaSNMP(
                 $_SERVER['REMOTE_ADDR'],
-                $deviceType->snmp_community,
-                $deviceType->id,
-                $deviceType->assign_access_point_by_device_name,
-                $deviceType->assign_customer_connection_by_ip
+                $deviceType->snmp_community
             );
 
-            if ($routerosDevice) {
-                echo ':log warning "Watcher NMS: The data was successfully retrieved using SNMP"' . "\n";
+            if ($routerosDeviceSerialNumber) {
+                if ($routerosDeviceSerialNumber == $serialNumber) {
+                    echo ':log warning "Watcher NMS: The retrieved serial number matches the request.'
+                        . ' Loading and updating data.' . "\n";
 
-                if ($routerosDevice->serial_number == $serialNumber) {
-                    echo ':log warning "Watcher NMS: Retrieved serial number matched request'
-                    . ', sending individual config"' . "\n";
+                    $routerosDevice = $this->updateDataViaSNMP(
+                        $_SERVER['REMOTE_ADDR'],
+                        $deviceType->snmp_community,
+                        $deviceType->id,
+                        $deviceType->assign_access_point_by_device_name,
+                        $deviceType->assign_customer_connection_by_ip
+                    );
 
-                    echo "\n";
+                    if ($routerosDevice) {
+                        echo ':log warning "Watcher NMS: The data was successfully retrieved via SNMP."' . "\n";
 
-                    echo '/user' . "\n";
-                    echo ':if ([:len [find name="' . $this->getUsername($routerosDevice) . '"]] = 0) do={' . "\n";
-                    echo '    :log warning "Watcher NMS: Adding '
-                    . $this->getUsername($routerosDevice) . ' user"' . "\n";
-                    echo '    add name="' . $this->getUsername($routerosDevice)
-                    . '" group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";
-                    echo '} else={' . "\n";
-                    echo '    :log warning "Watcher NMS: Updating '
-                    . $this->getUsername($routerosDevice) . ' user"' . "\n";
-                    echo '    set [find name="' . $this->getUsername($routerosDevice)
-                    . '"] group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";
-                    echo '}' . "\n";
-                    echo ':log warning "Watcher NMS: OK"' . "\n";
+                        if ($deviceType->automatically_set_a_unique_password) {
+                            echo ':log warning "Watcher NMS: The unique password should be set automatically.'
+                                . ' Sending configuration.' . "\n";
+
+                            echo "\n";
+
+                            echo '/user' . "\n";
+                            echo ':if ([:len [find name="' . $this->getUsername($routerosDevice) . '"]] = 0) do={'
+                                . "\n";
+                            echo '    :log warning "Watcher NMS: Adding '
+                            . $this->getUsername($routerosDevice) . ' user"' . "\n";
+                            echo '    add name="' . $this->getUsername($routerosDevice)
+                            . '" group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";
+                            echo '} else={' . "\n";
+                            echo '    :log warning "Watcher NMS: Updating '
+                            . $this->getUsername($routerosDevice) . ' user"' . "\n";
+                            echo '    set [find name="' . $this->getUsername($routerosDevice)
+                            . '"] group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";
+                            echo '}' . "\n";
+                            echo ':log warning "Watcher NMS: OK"' . "\n";
+                        }
+                    } else {
+                        echo ':log error "Watcher NMS: Unable to read data via SNMP."' . "\n";
+                    }
                 } else {
-                    echo ':log error "Watcher NMS: Retrieved serial number not matched request"' . "\n";
+                    echo ':log error "Watcher NMS: The retrieved serial number does not match the request.'
+                        . ' Ignoring request."' . "\n";
                 }
             } else {
-                echo ':log error "Watcher NMS: Could not retrieve data using SNMP"' . "\n";
+                echo ':log error "Watcher NMS: Unable to read serial number via SNMP. Ignoring request."' . "\n";
             }
         } else {
             echo ':log error "Watcher NMS: Unknown device type identifier"' . "\n";

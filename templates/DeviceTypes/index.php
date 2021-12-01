@@ -17,6 +17,7 @@
                     <th><?= $this->Paginator->sort('assign_access_point_by_device_name') ?></th>
                     <th><?= $this->Paginator->sort('assign_customer_connection_by_ip') ?></th>
                     <th><?= $this->Paginator->sort('allow_technicians_access') ?></th>
+                    <th><?= $this->Paginator->sort('automatically_set_a_unique_password') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <td><?= h($deviceType->assign_access_point_by_device_name) ?></td>
                     <td><?= h($deviceType->assign_customer_connection_by_ip) ?></td>
                     <td><?= h($deviceType->allow_technicians_access) ?></td>
+                    <td><?= h($deviceType->automatically_set_a_unique_password) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $deviceType->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $deviceType->id]) ?>
