@@ -570,7 +570,7 @@ class RouterosDevicesController extends AppController
             if ($routerosDeviceSerialNumber) {
                 if ($routerosDeviceSerialNumber == $serialNumber) {
                     echo ':log warning "Watcher NMS: The retrieved serial number matches the request.'
-                        . ' Loading and updating data.' . "\n";
+                        . ' Loading and updating data."' . "\n";
 
                     $routerosDevice = $this->updateDataViaSNMP(
                         $_SERVER['REMOTE_ADDR'],
@@ -585,7 +585,7 @@ class RouterosDevicesController extends AppController
 
                         if ($deviceType->automatically_set_a_unique_password) {
                             echo ':log warning "Watcher NMS: The unique password should be set automatically.'
-                                . ' Sending configuration.' . "\n";
+                                . ' Sending configuration."' . "\n";
 
                             echo "\n";
 
@@ -615,7 +615,7 @@ class RouterosDevicesController extends AppController
                 echo ':log error "Watcher NMS: Unable to read serial number via SNMP. Ignoring request."' . "\n";
             }
         } else {
-            echo ':log error "Watcher NMS: Unknown device type identifier"' . "\n";
+            echo ':log error "Watcher NMS: Unknown device type identifier. Ignoring request."' . "\n";
         }
         exit;
     }
