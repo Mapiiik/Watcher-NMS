@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property string $id
  * @property string|null $name
+ * @property string|null $color
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
@@ -30,6 +31,7 @@ class RadioUnitBand extends Entity
      */
     protected $_accessible = [
         'name' => true,
+        'color' => true,
         'note' => true,
         'created' => true,
         'modified' => true,

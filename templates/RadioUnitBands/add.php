@@ -18,6 +18,7 @@
                 <legend><?= __('Add Radio Unit Band') ?></legend>
                 <?php
                     echo $this->Form->control('name');
+                    echo $this->Form->control('color', ['type' => 'color']);
                     echo $this->Form->control('note');
                 ?>
             </fieldset>

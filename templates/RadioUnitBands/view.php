@@ -27,6 +27,10 @@
                     <td><?= h($radioUnitBand->name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Color') ?></th>
+                    <td style="background-color: <?= h($radioUnitBand->color) ?>;"><?= h($radioUnitBand->color) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($radioUnitBand->created) ?></td>
                 </tr>
