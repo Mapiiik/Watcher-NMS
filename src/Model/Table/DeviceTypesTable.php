@@ -42,6 +42,8 @@ class DeviceTypesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->hasMany('RouterosDevices', [
             'foreignKey' => 'device_type_id',

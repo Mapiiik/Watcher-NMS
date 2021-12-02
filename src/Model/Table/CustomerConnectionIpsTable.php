@@ -43,6 +43,8 @@ class CustomerConnectionIpsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->belongsTo('CustomerConnections', [
             'foreignKey' => 'customer_connection_id',

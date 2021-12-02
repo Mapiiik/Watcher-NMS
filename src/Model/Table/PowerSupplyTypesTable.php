@@ -39,6 +39,8 @@ class PowerSupplyTypesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->belongsTo('Manufacturers', [
             'foreignKey' => 'manufacturer_id',

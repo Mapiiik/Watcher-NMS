@@ -43,6 +43,8 @@ class RouterosDeviceInterfacesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->belongsTo('RouterosDevices', [
             'foreignKey' => 'routeros_device_id',

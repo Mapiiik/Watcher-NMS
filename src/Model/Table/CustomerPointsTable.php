@@ -42,6 +42,8 @@ class CustomerPointsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->hasMany('CustomerConnections', [
             'foreignKey' => 'customer_point_id',

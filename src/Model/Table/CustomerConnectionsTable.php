@@ -45,6 +45,8 @@ class CustomerConnectionsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->belongsTo('CustomerPoints', [
             'foreignKey' => 'customer_point_id',

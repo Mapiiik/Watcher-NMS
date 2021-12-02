@@ -41,6 +41,8 @@ class RadioUnitsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->belongsTo('RadioUnitTypes', [
             'foreignKey' => 'radio_unit_type_id',

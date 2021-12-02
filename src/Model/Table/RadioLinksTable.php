@@ -37,6 +37,8 @@ class RadioLinksTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->hasMany('RadioUnits', [
             'foreignKey' => 'radio_link_id',

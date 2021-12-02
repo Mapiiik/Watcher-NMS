@@ -43,6 +43,8 @@ class ElectricityMeterReadingsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->belongsTo('AccessPoints', [
             'foreignKey' => 'access_point_id',

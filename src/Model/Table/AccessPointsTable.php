@@ -45,6 +45,8 @@ class AccessPointsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Footprint');
+        $this->addBehavior('StringModifications');
 
         $this->hasMany('AccessPointContacts', [
             'foreignKey' => 'access_point_id',
