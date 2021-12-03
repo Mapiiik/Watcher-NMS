@@ -20,9 +20,18 @@ class RadioUnitsController extends AppController
      */
     public function index()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
+        $conditions = [];
+        if (isset($access_point_id)) {
+            $conditions = ['RadioUnits.access_point_id' => $access_point_id];
+        }
+
         $this->paginate = [
             'contain' => ['RadioUnitTypes' => ['RadioUnitBands'], 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
             'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
         ];
 
         $search = new SearchForm();
@@ -74,11 +83,23 @@ class RadioUnitsController extends AppController
      */
     public function add()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $radioUnit = $this->RadioUnits->newEmptyEntity();
+
+        if (isset($access_point_id)) {
+            $radioUnit = $this->RadioUnits->patchEntity($radioUnit, ['access_point_id' => $access_point_id]);
+        }
+
         if ($this->request->is('post')) {
             $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->request->getData());
             if ($this->RadioUnits->save($radioUnit)) {
                 $this->Flash->success(__('The radio unit has been saved.'));
+
+                if (isset($access_point_id)) {
+                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                }
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -100,6 +121,9 @@ class RadioUnitsController extends AppController
      */
     public function edit($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $radioUnit = $this->RadioUnits->get($id, [
             'contain' => [],
         ]);
@@ -107,6 +131,10 @@ class RadioUnitsController extends AppController
             $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->request->getData());
             if ($this->RadioUnits->save($radioUnit)) {
                 $this->Flash->success(__('The radio unit has been saved.'));
+
+                if (isset($access_point_id)) {
+                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                }
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -128,12 +156,18 @@ class RadioUnitsController extends AppController
      */
     public function delete($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+
         $this->request->allowMethod(['post', 'delete']);
         $radioUnit = $this->RadioUnits->get($id);
         if ($this->RadioUnits->delete($radioUnit)) {
             $this->Flash->success(__('The radio unit has been deleted.'));
         } else {
             $this->Flash->error(__('The radio unit could not be deleted. Please, try again.'));
+        }
+
+        if (isset($access_point_id)) {
+            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
         }
 
         return $this->redirect(['action' => 'index']);

@@ -23,7 +23,7 @@
                 <legend><?= __('Edit Electricity Meter Reading') ?></legend>
                 <?php
                     echo $this->Form->control('name');
-                    echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
+                    if (!isset($access_point_id)) echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                     echo $this->Form->control('reading_date', ['empty' => true]);
                     echo $this->Form->control('reading_value');
                     echo $this->Form->control('note');

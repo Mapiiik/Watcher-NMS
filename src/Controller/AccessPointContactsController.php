@@ -20,9 +20,18 @@ class AccessPointContactsController extends AppController
      */
     public function index()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
+        $conditions = [];
+        if (isset($access_point_id)) {
+            $conditions = ['AccessPointContacts.access_point_id' => $access_point_id];
+        }
+
         $this->paginate = [
             'contain' => ['AccessPoints'],
             'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
         ];
 
         $search = new SearchForm();
@@ -38,11 +47,11 @@ class AccessPointContactsController extends AppController
         if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'accessPointContacts.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'accessPointContacts.phone ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'accessPointContacts.email ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'accessPointContacts.customer_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'accessPointContacts.contract_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'AccessPointContacts.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'AccessPointContacts.phone ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'AccessPointContacts.email ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'AccessPointContacts.customer_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'AccessPointContacts.contract_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
         }
 
@@ -74,7 +83,15 @@ class AccessPointContactsController extends AppController
      */
     public function add()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $accessPointContact = $this->AccessPointContacts->newEmptyEntity();
+
+        if (isset($access_point_id)) {
+            $accessPointContact = $this->AccessPointContacts->patchEntity($accessPointContact, ['access_point_id' => $access_point_id]);
+        }
+
         if ($this->request->is('post')) {
             $accessPointContact = $this->AccessPointContacts
                 ->patchEntity($accessPointContact, $this->request->getData());
@@ -95,6 +112,10 @@ class AccessPointContactsController extends AppController
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
 
+                if (isset($access_point_id)) {
+                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                }
+
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The access point contact could not be saved. Please, try again.'));
@@ -112,6 +133,9 @@ class AccessPointContactsController extends AppController
      */
     public function edit($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $accessPointContact = $this->AccessPointContacts->get($id, [
             'contain' => [],
         ]);
@@ -135,6 +159,10 @@ class AccessPointContactsController extends AppController
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
 
+                if (isset($access_point_id)) {
+                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                }
+
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The access point contact could not be saved. Please, try again.'));
@@ -152,12 +180,18 @@ class AccessPointContactsController extends AppController
      */
     public function delete($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+
         $this->request->allowMethod(['post', 'delete']);
         $accessPointContact = $this->AccessPointContacts->get($id);
         if ($this->AccessPointContacts->delete($accessPointContact)) {
             $this->Flash->success(__('The access point contact has been deleted.'));
         } else {
             $this->Flash->error(__('The access point contact could not be deleted. Please, try again.'));
+        }
+
+        if (isset($access_point_id)) {
+            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
         }
 
         return $this->redirect(['action' => 'index']);

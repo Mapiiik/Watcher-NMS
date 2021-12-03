@@ -19,7 +19,7 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('radio_unit_type_id', ['options' => $radioUnitTypes, 'empty' => true]);
-                    echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
+                    if (!isset($access_point_id)) echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                     echo $this->Form->control('radio_link_id', ['options' => $radioLinks, 'empty' => true]);
                     echo $this->Form->control('antenna_type_id', ['options' => $antennaTypes, 'empty' => true]);
                     echo $this->Form->control('polarization');

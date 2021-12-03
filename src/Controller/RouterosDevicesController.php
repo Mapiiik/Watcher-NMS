@@ -21,9 +21,18 @@ class RouterosDevicesController extends AppController
      */
     public function index()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
+        $conditions = [];
+        if (isset($access_point_id)) {
+            $conditions = ['RouterosDevices.access_point_id' => $access_point_id];
+        }
+
         $this->paginate = [
             'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections'],
             'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
         ];
 
         $search = new SearchForm();
@@ -115,11 +124,23 @@ class RouterosDevicesController extends AppController
      */
     public function add()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $routerosDevice = $this->RouterosDevices->newEmptyEntity();
+
+        if (isset($access_point_id)) {
+            $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, ['access_point_id' => $access_point_id]);
+        }
+
         if ($this->request->is('post')) {
             $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->request->getData());
             if ($this->RouterosDevices->save($routerosDevice)) {
                 $this->Flash->success(__('The routeros device has been saved.'));
+
+                if (isset($access_point_id)) {
+                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                }
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -140,6 +161,9 @@ class RouterosDevicesController extends AppController
      */
     public function edit($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $routerosDevice = $this->RouterosDevices->get($id, [
             'contain' => [],
         ]);
@@ -147,6 +171,10 @@ class RouterosDevicesController extends AppController
             $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->request->getData());
             if ($this->RouterosDevices->save($routerosDevice)) {
                 $this->Flash->success(__('The routeros device has been saved.'));
+
+                if (isset($access_point_id)) {
+                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                }
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -167,12 +195,18 @@ class RouterosDevicesController extends AppController
      */
     public function delete($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+
         $this->request->allowMethod(['post', 'delete']);
         $routerosDevice = $this->RouterosDevices->get($id);
         if ($this->RouterosDevices->delete($routerosDevice)) {
             $this->Flash->success(__('The routeros device has been deleted.'));
         } else {
             $this->Flash->error(__('The routeros device could not be deleted. Please, try again.'));
+        }
+
+        if (isset($access_point_id)) {
+            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
         }
 
         return $this->redirect(['action' => 'index']);

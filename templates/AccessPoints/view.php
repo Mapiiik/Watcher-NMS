@@ -224,7 +224,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Routeros Device'), ['controller' => 'Routeros Devices', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
+                <?= $this->Html->link(__('New Routeros Device'), ['controller' => 'RouterosDevices', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
                 <h4><?= __('Related Routeros Devices') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
                 <div class="table-responsive">

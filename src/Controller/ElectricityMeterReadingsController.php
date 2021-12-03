@@ -20,8 +20,17 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function index()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
+        $conditions = [];
+        if (isset($access_point_id)) {
+            $conditions = ['ElectricityMeterReadings.access_point_id' => $access_point_id];
+        }
+
         $this->paginate = [
             'contain' => ['AccessPoints'],
+            'conditions' => $conditions,
         ];
 
         $search = new SearchForm();
@@ -37,7 +46,7 @@ class ElectricityMeterReadingsController extends AppController
         if ($search->getData('search') <> '') {
             $this->paginate['conditions']['OR'] = [
                 'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'electricityMeterReadings.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+                'ElectricityMeterReadings.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
         }
 
@@ -69,13 +78,25 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function add()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $electricityMeterReading = $this->ElectricityMeterReadings->newEmptyEntity();
+
+        if (isset($access_point_id)) {
+            $electricityMeterReading = $this->ElectricityMeterReadings->patchEntity($electricityMeterReading, ['access_point_id' => $access_point_id]);
+        }
+
         if ($this->request->is('post')) {
             $electricityMeterReading = $this->ElectricityMeterReadings
                 ->patchEntity($electricityMeterReading, $this->request->getData());
 
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {
                 $this->Flash->success(__('The electricity meter reading has been saved.'));
+
+                if (isset($access_point_id)) {
+                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                }
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -94,6 +115,9 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function edit($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $electricityMeterReading = $this->ElectricityMeterReadings->get($id, [
             'contain' => [],
         ]);
@@ -103,6 +127,10 @@ class ElectricityMeterReadingsController extends AppController
 
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {
                 $this->Flash->success(__('The electricity meter reading has been saved.'));
+
+                if (isset($access_point_id)) {
+                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                }
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -121,12 +149,18 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function delete($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+
         $this->request->allowMethod(['post', 'delete']);
         $electricityMeterReading = $this->ElectricityMeterReadings->get($id);
         if ($this->ElectricityMeterReadings->delete($electricityMeterReading)) {
             $this->Flash->success(__('The electricity meter reading has been deleted.'));
         } else {
             $this->Flash->error(__('The electricity meter reading could not be deleted. Please, try again.'));
+        }
+
+        if (isset($access_point_id)) {
+            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
         }
 
         return $this->redirect(['action' => 'index']);

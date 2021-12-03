@@ -53,6 +53,18 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/', ['controller' => 'AccessPoints', 'action' => 'index']);
 
     /*
+     * Access Points - nested routes
+     */
+    $builder->connect('/access-points/{access_point_id}', ['controller' => 'AccessPoints', 'action' => 'view'])
+        ->setPatterns(['access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}'])->setPass(['access_point_id']);
+    $builder->connect('/access-points/{access_point_id}/edit', ['controller' => 'AccessPoints', 'action' => 'edit'])
+        ->setPatterns(['access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}'])->setPass(['access_point_id']);
+    $builder->connect('/access-points/{access_point_id}/{controller}', ['action' => 'index'])
+        ->setPatterns(['access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}']);
+    $builder->connect('/access-points/{access_point_id}/{controller}/{action}/*', [])
+        ->setPatterns(['access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}']);
+
+    /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $builder->connect('/pages/*', 'Pages::display');
@@ -100,4 +112,22 @@ $routes->scope('/api', function (RouteBuilder $builder) {
            ],
         ],
     ]);
+});
+
+use Cake\Routing\Router;
+use Cake\Http\ServerRequest;
+
+Router::addUrlFilter(function (array $params, ServerRequest $request) {
+
+    if (
+        (isset($params['controller']) && in_array($params['controller'], ['AccessPointContacts', 'ElectricityMeterReadings', 'PowerSupplies', 'RadioUnits', 'RouterosDevices'])) ||
+        (!isset($params['controller']) && in_array($request->getParam('controller'), ['AccessPointContacts', 'ElectricityMeterReadings', 'PowerSupplies', 'RadioUnits', 'RouterosDevices']))
+    ) {
+        //inject access_point_id
+        if ($request->getParam('access_point_id') && !isset($params['access_point_id'])) {
+            $params['access_point_id'] = $request->getParam('access_point_id');
+        }
+    }
+
+    return $params;
 });

@@ -118,6 +118,9 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <?php endif; ?>
         </div>
     </nav>
+
+    <?= $this->request->getParam('access_point_id') ? $this->cell('AccessPoint') : ''; ?>
+
     <main class="main">
         <div class="container">
             <?= $this->Flash->render() ?>

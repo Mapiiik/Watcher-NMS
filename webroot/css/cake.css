@@ -311,3 +311,21 @@ th {
 .active {
     font-weight: bold;
 }
+
+.nav-container {
+    padding-left: 0px;
+}
+
+.nav-content {
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+    padding-left: 1rem;
+}
+
+.nav-content-left {
+    min-width: 20rem;
+}
+
+.nav-content-right {
+    text-align: right;
+}

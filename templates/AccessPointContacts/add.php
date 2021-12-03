@@ -18,7 +18,7 @@
                 <legend><?= __('Add Access Point Contact') ?></legend>
                 <?php
                     echo $this->Form->control('name');
-                    echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
+                    if (!isset($access_point_id)) echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                     echo $this->Form->control('phone');
                     echo $this->Form->control('email');
                     echo $this->Form->control('customer_number');
