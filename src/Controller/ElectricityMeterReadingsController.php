@@ -84,7 +84,8 @@ class ElectricityMeterReadingsController extends AppController
         $electricityMeterReading = $this->ElectricityMeterReadings->newEmptyEntity();
 
         if (isset($access_point_id)) {
-            $electricityMeterReading = $this->ElectricityMeterReadings->patchEntity($electricityMeterReading, ['access_point_id' => $access_point_id]);
+            $electricityMeterReading = $this->ElectricityMeterReadings
+                ->patchEntity($electricityMeterReading, ['access_point_id' => $access_point_id]);
         }
 
         if ($this->request->is('post')) {
