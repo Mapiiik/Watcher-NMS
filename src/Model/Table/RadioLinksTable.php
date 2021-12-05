@@ -87,14 +87,14 @@ class RadioLinksTable extends Table
     public function findBand(Query $query, array $options)
     {
         $query
-            ->matching('RadioUnits', function (Query $q) use ($options) {
-                return $q->matching('RadioUnitTypes', function (Query $q) use ($options) {
+            ->innerJoinWith('RadioUnits', function (Query $q) use ($options) {
+                return $q->innerJoinWith('RadioUnitTypes', function (Query $q) use ($options) {
                     return $q->where([
                         'RadioUnitTypes.radio_unit_band_id' => $options['radio_unit_band_id'],
                     ]);
                 });
             })
-            ->group(['RadioLinks.id', 'RadioUnits.id', 'RadioUnitTypes.id']);
+            ->group(['RadioLinks.id']);
 
         return $query;
     }
