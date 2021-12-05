@@ -45,9 +45,19 @@ class RadioLinksController extends AppController
             ];
         }
 
+        if ($this->request->getQuery('band') <> '') {
+            $this->paginate['finder'] = [
+                'band' => [
+                    'radio_unit_band_id' => $this->request->getQuery('band'),
+                ],
+            ];
+        }
+
         $radioLinks = $this->paginate($this->RadioLinks);
 
-        $this->set(compact('radioLinks'));
+        $radioUnitBands = $this->RadioLinks->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', ['order' => 'name']);
+
+        $this->set(compact('radioLinks', 'radioUnitBands'));
     }
 
     /**

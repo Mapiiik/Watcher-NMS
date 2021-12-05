@@ -2,14 +2,16 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnit[]|\Cake\Collection\CollectionInterface $radioUnits
+ * @var \App\Model\Entity\RadioUnitBands[]|\Cake\Collection\CollectionInterface $radioUnitBands
  */
 ?>
 <?php
-echo $this->Form->create($search, ['type' => 'get']);
+echo $this->Form->create($search, ['type' => 'get', 'valueSources' => ['query', 'context']]);
 if ($this->request->getQuery('limit')) {
     echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
 }
 echo $this->Form->control('search', ['label' => __('Search')]);
+echo $this->Form->control('band', ['label' => __('Band'), 'options' => $radioUnitBands, 'empty' => true, 'onchange' => 'this.form.submit();']);
 echo $this->Form->end();
 ?>
 
@@ -44,7 +46,7 @@ echo $this->Form->end();
             </thead>
             <tbody>
                 <?php foreach ($radioUnits as $radioUnit) : ?>
-                <tr style="background-color: <?= h($radioUnit->radio_unit_type->radio_unit_band->color) ?>;">
+                <tr style="background-color: <?= isset($radioUnit->radio_unit_type->radio_unit_band->color) ? h($radioUnit->radio_unit_type->radio_unit_band->color) : 'transparent' ?>;">
                     <td><?= h($radioUnit->name) ?></td>
                     <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
                     <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>

@@ -6,11 +6,12 @@
 ?>
 
 <?php
-echo $this->Form->create($search, ['type' => 'get']);
+echo $this->Form->create($search, ['type' => 'get', 'valueSources' => ['query', 'context']]);
 if ($this->request->getQuery('limit')) {
     echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
 }
 echo $this->Form->control('search', ['label' => __('Search')]);
+echo $this->Form->control('band', ['label' => __('Band'), 'options' => $radioUnitBands, 'empty' => true, 'onchange' => 'this.form.submit();']);
 echo $this->Form->end();
 ?>
 
@@ -43,7 +44,7 @@ echo $this->Form->end();
             </thead>
             <tbody>
                 <?php foreach ($radioLinks as $radioLink) : ?>
-                <tr style="background-color: <?= h($radioLink->radio_units[0]->radio_unit_type->radio_unit_band->color) ?>;">
+                <tr style="background-color: <?= isset($radioLink->radio_units[0]->radio_unit_type->radio_unit_band->color) ? h($radioLink->radio_units[0]->radio_unit_type->radio_unit_band->color) : 'transparent' ?>;">
                     <td><?= h($radioLink->name) ?></td>
                     <td><?= $this->Number->format($radioLink->distance) ?></td>
                     <td><?= h($radioLink->authorization_number) ?></td>

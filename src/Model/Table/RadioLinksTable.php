@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -74,5 +75,26 @@ class RadioLinksTable extends Table
             ->allowEmptyString('note');
 
         return $validator;
+    }
+
+    /**
+     * Default validation rules.
+     *
+     * @param \Cake\ORM\Query $query Query instance.
+     * @return \Cake\ORM\Query
+     */
+    public function findBand(Query $query, array $options)
+    {
+        $query
+            ->matching('RadioUnits', function (Query $q) use ($options) {
+                return $q->matching('RadioUnitTypes', function (Query $q) use ($options) {
+                    return $q->where([
+                        'RadioUnitTypes.radio_unit_band_id' => $options['radio_unit_band_id'],
+                    ]);
+                });
+            })
+            ->group(['RadioLinks.id', 'RadioUnits.id', 'RadioUnitTypes.id']);
+
+        return $query;
     }
 }
