@@ -55,7 +55,8 @@ class RadioLinksController extends AppController
 
         $radioLinks = $this->paginate($this->RadioLinks);
 
-        $radioUnitBands = $this->RadioLinks->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', ['order' => 'name']);
+        $radioUnitBands = $this->RadioLinks
+            ->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', ['order' => 'name']);
 
         $this->set(compact('radioLinks', 'radioUnitBands'));
     }

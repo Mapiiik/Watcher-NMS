@@ -81,6 +81,7 @@ class RadioLinksTable extends Table
      * Default validation rules.
      *
      * @param \Cake\ORM\Query $query Query instance.
+     * @param array $options Options for search.
      * @return \Cake\ORM\Query
      */
     public function findBand(Query $query, array $options)
