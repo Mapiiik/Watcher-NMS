@@ -14,14 +14,19 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\RadioLinksTable&\Cake\ORM\Association\BelongsTo $RadioLinks
  * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\BelongsTo $AntennaTypes
- * @method \App\Model\Entity\RadioUnit get($primaryKey, $options = [])
- * @method \App\Model\Entity\RadioUnit newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\RadioUnit newEmptyEntity()
+ * @method \App\Model\Entity\RadioUnit newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnit[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\RadioUnit get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RadioUnit findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RadioUnit patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\RadioUnit[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnit|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RadioUnit saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RadioUnit patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\RadioUnit[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\RadioUnit findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RadioUnitsTable extends Table

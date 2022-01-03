@@ -11,14 +11,19 @@ use Cake\Validation\Validator;
  * RadioLinks Model
  *
  * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
- * @method \App\Model\Entity\RadioLink get($primaryKey, $options = [])
- * @method \App\Model\Entity\RadioLink newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\RadioLink newEmptyEntity()
+ * @method \App\Model\Entity\RadioLink newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RadioLink[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\RadioLink get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RadioLink findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RadioLink patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\RadioLink[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadioLink|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RadioLink saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RadioLink patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\RadioLink[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\RadioLink findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RadioLinksTable extends Table

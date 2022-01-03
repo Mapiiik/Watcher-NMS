@@ -11,14 +11,19 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\HasMany $AntennaTypes
  * @property \App\Model\Table\RadioUnitTypesTable&\Cake\ORM\Association\HasMany $RadioUnitTypes
- * @method \App\Model\Entity\RadioUnitBand get($primaryKey, $options = [])
- * @method \App\Model\Entity\RadioUnitBand newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\RadioUnitBand newEmptyEntity()
+ * @method \App\Model\Entity\RadioUnitBand newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnitBand[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\RadioUnitBand get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RadioUnitBand findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RadioUnitBand patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\RadioUnitBand[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnitBand|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RadioUnitBand saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RadioUnitBand patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\RadioUnitBand[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\RadioUnitBand findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RadioUnitBand[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnitBand[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnitBand[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnitBand[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RadioUnitBandsTable extends Table

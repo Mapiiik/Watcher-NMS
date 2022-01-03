@@ -11,14 +11,19 @@ use Cake\Validation\Validator;
  * RouterosDeviceIps Model
  *
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\BelongsTo $RouterosDevices
- * @method \App\Model\Entity\RouterosDeviceIp get($primaryKey, $options = [])
- * @method \App\Model\Entity\RouterosDeviceIp newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp newEmptyEntity()
+ * @method \App\Model\Entity\RouterosDeviceIp newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceIp[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceIp|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RouterosDeviceIp saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RouterosDeviceIp patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\RouterosDeviceIp[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\RouterosDeviceIp findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceIp[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RouterosDeviceIpsTable extends Table

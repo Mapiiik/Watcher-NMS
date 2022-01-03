@@ -12,14 +12,19 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\ManufacturersTable&\Cake\ORM\Association\BelongsTo $Manufacturers
  * @property \App\Model\Table\PowerSuppliesTable&\Cake\ORM\Association\HasMany $PowerSupplies
- * @method \App\Model\Entity\PowerSupplyType get($primaryKey, $options = [])
- * @method \App\Model\Entity\PowerSupplyType newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\PowerSupplyType newEmptyEntity()
+ * @method \App\Model\Entity\PowerSupplyType newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\PowerSupplyType[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\PowerSupplyType get($primaryKey, $options = [])
+ * @method \App\Model\Entity\PowerSupplyType findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\PowerSupplyType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\PowerSupplyType[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\PowerSupplyType|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\PowerSupplyType saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\PowerSupplyType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\PowerSupplyType[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\PowerSupplyType findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\PowerSupplyType[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\PowerSupplyType[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\PowerSupplyType[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\PowerSupplyType[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class PowerSupplyTypesTable extends Table

@@ -12,14 +12,19 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\HasMany $AntennaTypes
  * @property \App\Model\Table\PowerSupplyTypesTable&\Cake\ORM\Association\HasMany $PowerSupplyTypes
  * @property \App\Model\Table\RadioUnitTypesTable&\Cake\ORM\Association\HasMany $RadioUnitTypes
- * @method \App\Model\Entity\Manufacturer get($primaryKey, $options = [])
- * @method \App\Model\Entity\Manufacturer newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Manufacturer newEmptyEntity()
+ * @method \App\Model\Entity\Manufacturer newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Manufacturer[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Manufacturer get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Manufacturer findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Manufacturer patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Manufacturer[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\Manufacturer|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\Manufacturer saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Manufacturer patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Manufacturer[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Manufacturer findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Manufacturer[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Manufacturer[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Manufacturer[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Manufacturer[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ManufacturersTable extends Table
