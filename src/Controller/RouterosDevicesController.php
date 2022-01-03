@@ -130,8 +130,7 @@ class RouterosDevicesController extends AppController
         $routerosDevice = $this->RouterosDevices->newEmptyEntity();
 
         if (isset($access_point_id)) {
-            $routerosDevice = $this->RouterosDevices
-                ->patchEntity($routerosDevice, ['access_point_id' => $access_point_id]);
+            $routerosDevice->access_point_id = $access_point_id;
         }
 
         if ($this->request->is('post')) {

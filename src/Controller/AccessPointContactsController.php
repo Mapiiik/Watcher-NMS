@@ -89,8 +89,7 @@ class AccessPointContactsController extends AppController
         $accessPointContact = $this->AccessPointContacts->newEmptyEntity();
 
         if (isset($access_point_id)) {
-            $accessPointContact = $this->AccessPointContacts
-                ->patchEntity($accessPointContact, ['access_point_id' => $access_point_id]);
+            $accessPointContact->access_point_id = $access_point_id;
         }
 
         if ($this->request->is('post')) {

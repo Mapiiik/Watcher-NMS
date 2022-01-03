@@ -87,7 +87,7 @@ class PowerSuppliesController extends AppController
         $powerSupply = $this->PowerSupplies->newEmptyEntity();
 
         if (isset($access_point_id)) {
-            $powerSupply = $this->PowerSupplies->patchEntity($powerSupply, ['access_point_id' => $access_point_id]);
+            $powerSupply->access_point_id = $access_point_id;
         }
 
         if ($this->request->is('post')) {

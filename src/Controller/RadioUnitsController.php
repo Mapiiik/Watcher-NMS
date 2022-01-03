@@ -97,7 +97,7 @@ class RadioUnitsController extends AppController
         $radioUnit = $this->RadioUnits->newEmptyEntity();
 
         if (isset($access_point_id)) {
-            $radioUnit = $this->RadioUnits->patchEntity($radioUnit, ['access_point_id' => $access_point_id]);
+            $radioUnit->access_point_id = $access_point_id;
         }
 
         if ($this->request->is('post')) {
