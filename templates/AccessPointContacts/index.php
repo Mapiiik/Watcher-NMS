@@ -52,7 +52,7 @@ echo $this->Form->end();
                         <?= $this->Html->link(
                             __('Edit'),
                             ['action' => 'edit', $accessPointContact->id],
-                            ['class' => 'button float-right win-link']
+                            ['class' => 'win-link']
                         ) ?>
                         <?= $this->Form->postLink(
                             __('Delete'),
