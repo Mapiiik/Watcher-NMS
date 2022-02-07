@@ -143,7 +143,7 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
 
             <?= !is_null($this->request->getSession()->read('Auth.id')) ? $this->AuthLink->link(
                 __('Logout'),
-                ['plugin' => 'CakeDC/Users', 'controller' => 'Users', 'action' => 'logout', 'plugin' => null],
+                ['controller' => 'Users', 'action' => 'logout', 'plugin' => 'CakeDC/Users'],
                 ['class' => 'button button-outline']
             ) : '' ?>
 
