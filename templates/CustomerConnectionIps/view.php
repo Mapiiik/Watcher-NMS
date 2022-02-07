@@ -8,10 +8,29 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Customer Connection Ip'), ['action' => 'edit', $customerConnectionIp->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Customer Connection Ip'), ['action' => 'delete', $customerConnectionIp->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnectionIp->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Customer Connection Ips'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Customer Connection Ip'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Customer Connection Ip'),
+                ['action' => 'edit', $customerConnectionIp->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Customer Connection Ip'),
+                ['action' => 'delete', $customerConnectionIp->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $customerConnectionIp->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
+            <?= $this->Html->link(
+                __('List Customer Connection Ips'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Customer Connection Ip'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -28,7 +47,16 @@
                 </tr>
                 <tr>
                     <th><?= __('Customer Connection') ?></th>
-                    <td><?= $customerConnectionIp->has('customer_connection') ? $this->Html->link($customerConnectionIp->customer_connection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnectionIp->customer_connection->id]) : '' ?></td>
+                    <td>
+                        <?= $customerConnectionIp->has('customer_connection') ? $this->Html->link(
+                            $customerConnectionIp->customer_connection->name,
+                            [
+                                'controller' => 'CustomerConnections',
+                                'action' => 'view',
+                                $customerConnectionIp->customer_connection->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Ip Address') ?></th>

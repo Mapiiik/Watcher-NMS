@@ -17,16 +17,18 @@
             <fieldset>
                 <legend><?= __('Add Power Supply') ?></legend>
                 <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('power_supply_type_id', ['options' => $powerSupplyTypes, 'empty' => true]);
-                    if (!isset($access_point_id)) echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
-                    echo $this->Form->control('serial_number');
-                    echo $this->Form->control('battery_count');
-                    echo $this->Form->control('battery_voltage');
-                    echo $this->Form->control('battery_capacity');
-                    echo $this->Form->control('battery_replacement', ['empty' => true]);
-                    echo $this->Form->control('battery_duration');
-                    echo $this->Form->control('note');
+                echo $this->Form->control('name');
+                echo $this->Form->control('power_supply_type_id', ['options' => $powerSupplyTypes, 'empty' => true]);
+                if (!isset($access_point_id)) {
+                    echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
+                }
+                echo $this->Form->control('serial_number');
+                echo $this->Form->control('battery_count');
+                echo $this->Form->control('battery_voltage');
+                echo $this->Form->control('battery_capacity');
+                echo $this->Form->control('battery_replacement', ['empty' => true]);
+                echo $this->Form->control('battery_duration');
+                echo $this->Form->control('note');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

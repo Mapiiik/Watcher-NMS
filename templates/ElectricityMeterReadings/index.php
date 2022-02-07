@@ -14,7 +14,11 @@ echo $this->Form->end();
 ?>
 
 <div class="electricityMeterReadings index content">
-    <?= $this->Html->link(__('New Electricity Meter Reading'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(
+        __('New Electricity Meter Reading'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link']
+    ) ?>
     <h3><?= __('Electricity Meter Readings') ?></h3>
     <div class="table-responsive">
         <table>
@@ -31,13 +35,33 @@ echo $this->Form->end();
                 <?php foreach ($electricityMeterReadings as $electricityMeterReading) : ?>
                 <tr>
                     <td><?= h($electricityMeterReading->name) ?></td>
-                    <td><?= $electricityMeterReading->has('access_point') ? $this->Html->link($electricityMeterReading->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $electricityMeterReading->access_point->id]) : '' ?></td>
+                    <td>
+                        <?= $electricityMeterReading->has('access_point') ? $this->Html->link(
+                            $electricityMeterReading->access_point->name,
+                            [
+                                'controller' => 'AccessPoints',
+                                'action' => 'view',
+                                $electricityMeterReading->access_point->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                     <td><?= h($electricityMeterReading->reading_date) ?></td>
                     <td><?= $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $electricityMeterReading->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $electricityMeterReading->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $electricityMeterReading->id], ['confirm' => __('Are you sure you want to delete # {0}?', $electricityMeterReading->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $electricityMeterReading->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $electricityMeterReading->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $electricityMeterReading->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $electricityMeterReading->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -52,6 +76,8 @@ echo $this->Form->end();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

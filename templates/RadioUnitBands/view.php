@@ -8,8 +8,19 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Radio Unit Band'), ['action' => 'edit', $radioUnitBand->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Radio Unit Band'), ['action' => 'delete', $radioUnitBand->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitBand->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Radio Unit Band'),
+                ['action' => 'edit', $radioUnitBand->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Radio Unit Band'),
+                ['action' => 'delete', $radioUnitBand->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $radioUnitBand->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
             <?= $this->Html->link(__('List Radio Unit Bands'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Radio Unit Band'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
@@ -61,14 +72,34 @@
                         <?php foreach ($radioUnitBand->antenna_types as $antennaTypes) : ?>
                         <tr>
                             <td><?= h($antennaTypes->name) ?></td>
-                            <td><?= $antennaTypes->has('manufacturer') ? $this->Html->link($antennaTypes->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $antennaTypes->manufacturer->id]) : '' ?></td>
+                            <td>
+                                <?= $antennaTypes->has('manufacturer') ? $this->Html->link(
+                                    $antennaTypes->manufacturer->name,
+                                    [
+                                        'controller' => 'Manufacturers',
+                                        'action' => 'view',
+                                        $antennaTypes->manufacturer->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
                             <td><?= h($antennaTypes->antenna_gain) ?></td>
                             <td><?= h($antennaTypes->part_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($antennaTypes->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'AntennaTypes', 'action' => 'view', $antennaTypes->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'AntennaTypes', 'action' => 'edit', $antennaTypes->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'AntennaTypes', 'action' => 'delete', $antennaTypes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $antennaTypes->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'AntennaTypes', 'action' => 'view', $antennaTypes->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'AntennaTypes', 'action' => 'edit', $antennaTypes->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'AntennaTypes', 'action' => 'delete', $antennaTypes->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $antennaTypes->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -91,13 +122,33 @@
                         <?php foreach ($radioUnitBand->radio_unit_types as $radioUnitTypes) : ?>
                         <tr>
                             <td><?= h($radioUnitTypes->name) ?></td>
-                            <td><?= $radioUnitTypes->has('manufacturer') ? $this->Html->link($radioUnitTypes->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $radioUnitTypes->manufacturer->id]) : '' ?></td>
+                            <td>
+                                <?= $radioUnitTypes->has('manufacturer') ? $this->Html->link(
+                                    $radioUnitTypes->manufacturer->name,
+                                    [
+                                        'controller' => 'Manufacturers',
+                                        'action' => 'view',
+                                        $radioUnitTypes->manufacturer->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
                             <td><?= h($radioUnitTypes->part_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnitTypes->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnitTypes->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'RadioUnitTypes', 'action' => 'edit', $radioUnitTypes->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RadioUnitTypes', 'action' => 'delete', $radioUnitTypes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitTypes->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnitTypes->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'RadioUnitTypes', 'action' => 'edit', $radioUnitTypes->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'RadioUnitTypes', 'action' => 'delete', $radioUnitTypes->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitTypes->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

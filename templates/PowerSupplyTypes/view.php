@@ -8,10 +8,29 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Power Supply Type'), ['action' => 'edit', $powerSupplyType->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Power Supply Type'), ['action' => 'delete', $powerSupplyType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplyType->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Power Supply Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Power Supply Type'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Power Supply Type'),
+                ['action' => 'edit', $powerSupplyType->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Power Supply Type'),
+                ['action' => 'delete', $powerSupplyType->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $powerSupplyType->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
+            <?= $this->Html->link(
+                __('List Power Supply Types'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Power Supply Type'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -28,7 +47,12 @@
                 </tr>
                 <tr>
                     <th><?= __('Manufacturer') ?></th>
-                    <td><?= $powerSupplyType->has('manufacturer') ? $this->Html->link($powerSupplyType->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]) : '' ?></td>
+                    <td>
+                        <?= $powerSupplyType->has('manufacturer') ? $this->Html->link(
+                            $powerSupplyType->manufacturer->name,
+                            ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Part Number') ?></th>
@@ -77,7 +101,16 @@
                         <?php foreach ($powerSupplyType->power_supplies as $powerSupplies) : ?>
                         <tr>
                             <td><?= h($powerSupplies->name) ?></td>
-                            <td><?= $powerSupplies->has('access_point') ? $this->Html->link($powerSupplies->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $powerSupplies->access_point->id]) : '' ?></td>
+                            <td>
+                                <?= $powerSupplies->has('access_point') ? $this->Html->link(
+                                    $powerSupplies->access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $powerSupplies->access_point->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
                             <td><?= h($powerSupplies->battery_count) ?></td>
                             <td><?= h($powerSupplies->battery_voltage) ?></td>
@@ -86,9 +119,20 @@
                             <td><?= h($powerSupplies->battery_duration) ?></td>
                             <td><?= $this->Text->autoParagraph(h($powerSupplies->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'PowerSupplies', 'action' => 'delete', $powerSupplies->id], ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'PowerSupplies', 'action' => 'delete', $powerSupplies->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

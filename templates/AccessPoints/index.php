@@ -14,7 +14,7 @@ echo $this->Form->end();
 ?>
 
 <div class="accessPoints index content">
-    <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <?= $this->Html->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
     <h3><?= __('Access Points') ?></h3>
     <div class="table-responsive">
@@ -37,13 +37,39 @@ echo $this->Form->end();
                     <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
                     <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('Google Maps'), ['controller' => 'https:////maps.google.com', 'action' => 'maps?q=' . htmlspecialchars("{$accessPoint->gps_y},{$accessPoint->gps_x}")], ['target' => '_blank']) ?>
-                        <?= $this->Html->link(__('Mapy.cz'), ['controller' => 'https:////mapy.cz', 'action' => 'zakladni?source=coor&id=' . htmlspecialchars("{$accessPoint->gps_x},{$accessPoint->gps_y}")], ['target' => '_blank']) ?>
+                        <?= $this->Html->link(
+                            __('Google Maps'),
+                            [
+                                'controller' => 'https:////maps.google.com',
+                                'action' => 'maps?q=' . htmlspecialchars(
+                                    "{$accessPoint->gps_y},{$accessPoint->gps_x}"
+                                ),
+                            ],
+                            ['target' => '_blank']
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Mapy.cz'),
+                            [
+                                'controller' => 'https:////mapy.cz',
+                                'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
+                                    "{$accessPoint->gps_x},{$accessPoint->gps_y}"
+                                ),
+                            ],
+                            ['target' => '_blank']
+                        ) ?>
                     </td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $accessPoint->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accessPoint->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $accessPoint->id], ['confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id)]) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $accessPoint->id],
+                            ['class' => 'win-link',]
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $accessPoint->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -58,6 +84,8 @@ echo $this->Form->end();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

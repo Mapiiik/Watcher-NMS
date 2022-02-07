@@ -11,9 +11,16 @@
             <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $radarInterference->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id), 'class' => 'side-nav-item']
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id),
+                    'class' => 'side-nav-item',
+                ]
             ) ?>
-            <?= $this->Html->link(__('List Radar Interferences'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('List Radar Interferences'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">

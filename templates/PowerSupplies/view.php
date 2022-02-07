@@ -8,10 +8,29 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Power Supply'), ['action' => 'edit', $powerSupply->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Power Supply'), ['action' => 'delete', $powerSupply->id], ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupply->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Power Supplies'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Power Supply'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Power Supply'),
+                ['action' => 'edit', $powerSupply->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Power Supply'),
+                ['action' => 'delete', $powerSupply->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $powerSupply->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
+            <?= $this->Html->link(
+                __('List Power Supplies'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Power Supply'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -28,11 +47,25 @@
                 </tr>
                 <tr>
                     <th><?= __('Power Supply Type') ?></th>
-                    <td><?= $powerSupply->has('power_supply_type') ? $this->Html->link($powerSupply->power_supply_type->name, ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupply->power_supply_type->id]) : '' ?></td>
+                    <td>
+                        <?= $powerSupply->has('power_supply_type') ? $this->Html->link(
+                            $powerSupply->power_supply_type->name,
+                            [
+                                'controller' => 'PowerSupplyTypes',
+                                'action' => 'view',
+                                $powerSupply->power_supply_type->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Access Point') ?></th>
-                    <td><?= $powerSupply->has('access_point') ? $this->Html->link($powerSupply->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]) : '' ?></td>
+                    <td>
+                        <?= $powerSupply->has('access_point') ? $this->Html->link(
+                            $powerSupply->access_point->name,
+                            ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Serial Number') ?></th>

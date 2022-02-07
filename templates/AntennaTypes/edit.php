@@ -11,7 +11,10 @@
             <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $antennaType->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $antennaType->id), 'class' => 'side-nav-item']
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $antennaType->id),
+                    'class' => 'side-nav-item',
+                ]
             ) ?>
             <?= $this->Html->link(__('List Antenna Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>

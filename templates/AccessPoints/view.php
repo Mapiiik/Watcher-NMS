@@ -8,8 +8,19 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Access Point'), ['action' => 'edit', $accessPoint->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Access Point'), ['action' => 'delete', $accessPoint->id], ['confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Access Point'),
+                ['action' => 'edit', $accessPoint->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Access Point'),
+                ['action' => 'delete', $accessPoint->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
             <?= $this->Html->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
@@ -41,9 +52,27 @@
                 <tr>
                     <th><?= __('Maps') ?></th>
                     <td>
-                        <?= $this->Html->link(__('Google Maps'), ['controller' => 'https:////maps.google.com', 'action' => 'maps?q=' . htmlspecialchars("{$accessPoint->gps_y},{$accessPoint->gps_x}")], ['target' => '_blank']) ?>
+                        <?= $this->Html->link(
+                            __('Google Maps'),
+                            [
+                                'controller' => 'https:////maps.google.com',
+                                'action' => 'maps?q=' . htmlspecialchars(
+                                    "{$accessPoint->gps_y},{$accessPoint->gps_x}"
+                                ),
+                            ],
+                            ['target' => '_blank']
+                        ) ?>
                         ,
-                        <?= $this->Html->link(__('Mapy.cz'), ['controller' => 'https:////mapy.cz', 'action' => 'zakladni?source=coor&id=' . htmlspecialchars("{$accessPoint->gps_x},{$accessPoint->gps_y}")], ['target' => '_blank']) ?>
+                        <?= $this->Html->link(
+                            __('Mapy.cz'),
+                            [
+                                'controller' => 'https:////mapy.cz',
+                                'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
+                                    "{$accessPoint->gps_x},{$accessPoint->gps_y}"
+                                ),
+                            ],
+                            ['target' => '_blank']
+                        ) ?>
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +91,11 @@
                 </blockquote>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Access Point Contact'), ['controller' => 'AccessPointContacts', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
+                <?= $this->Html->link(
+                    __('New Access Point Contact'),
+                    ['controller' => 'AccessPointContacts', 'action' => 'add'],
+                    ['class' => 'button button-small float-right win-link']
+                ) ?>
                 <h4><?= __('Related Access Point Contacts') ?></h4>
                 <?php if (!empty($accessPoint->access_point_contacts)) : ?>
                 <div class="table-responsive">
@@ -81,13 +114,47 @@
                             <td><?= h($accessPointContacts->name) ?></td>
                             <td><?= h($accessPointContacts->phone) ?></td>
                             <td><?= h($accessPointContacts->email) ?></td>
-                            <td><?= $accessPointContacts->has('customer_number') ? $this->Html->link($accessPointContacts->customer_number, env('CRM_ADMIN_URL') . '/customers/' . ($accessPointContacts->customer_number - 110000), ['target' => '_blank']) : '' ?></td>
+                            <td>
+                                <?= $accessPointContacts->has('customer_number') ? $this->Html->link(
+                                    $accessPointContacts->customer_number,
+                                    env('CRM_ADMIN_URL') . '/customers/' . (
+                                        $accessPointContacts->customer_number - 110000
+                                    ),
+                                    ['target' => '_blank']
+                                ) : '' ?>
+                            </td>
                             <td><?= h($accessPointContacts->contract_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($accessPointContacts->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'AccessPointContacts', 'action' => 'view', $accessPointContacts->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'AccessPointContacts', 'action' => 'edit', $accessPointContacts->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'AccessPointContacts', 'action' => 'delete', $accessPointContacts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointContacts->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    [
+                                        'controller' => 'AccessPointContacts',
+                                        'action' => 'view',
+                                        $accessPointContacts->id,
+                                    ]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    [
+                                        'controller' => 'AccessPointContacts',
+                                        'action' => 'edit',
+                                        $accessPointContacts->id,
+                                    ],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    [
+                                        'controller' => 'AccessPointContacts',
+                                        'action' => 'delete',
+                                        $accessPointContacts->id,
+                                    ],
+                                    ['confirm' => __(
+                                        'Are you sure you want to delete # {0}?',
+                                        $accessPointContacts->id
+                                    )]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -96,7 +163,11 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Electricity Meter Reading'), ['controller' => 'ElectricityMeterReadings', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
+                <?= $this->Html->link(
+                    __('New Electricity Meter Reading'),
+                    ['controller' => 'ElectricityMeterReadings', 'action' => 'add'],
+                    ['class' => 'button button-small float-right win-link']
+                ) ?>
                 <h4><?= __('Related Electricity Meter Readings') ?></h4>
                 <?php if (!empty($accessPoint->electricity_meter_readings)) : ?>
                 <div class="table-responsive">
@@ -112,12 +183,40 @@
                         <tr>
                             <td><?= h($electricityMeterReadings->name) ?></td>
                             <td><?= h($electricityMeterReadings->reading_date) ?></td>
-                            <td><?= $this->Number->format($electricityMeterReadings->reading_value, ['after' => ' kWh']) ?></td>
+                            <td><?= $this->Number->format($electricityMeterReadings->reading_value, [
+                                'after' => ' kWh',
+                            ]) ?></td>
                             <td><?= $this->Text->autoParagraph(h($electricityMeterReadings->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'ElectricityMeterReadings', 'action' => 'view', $electricityMeterReadings->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'ElectricityMeterReadings', 'action' => 'edit', $electricityMeterReadings->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'ElectricityMeterReadings', 'action' => 'delete', $electricityMeterReadings->id], ['confirm' => __('Are you sure you want to delete # {0}?', $electricityMeterReadings->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    [
+                                        'controller' => 'ElectricityMeterReadings',
+                                        'action' => 'view',
+                                        $electricityMeterReadings->id,
+                                    ]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    [
+                                        'controller' => 'ElectricityMeterReadings',
+                                        'action' => 'edit',
+                                        $electricityMeterReadings->id,
+                                    ],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    [
+                                        'controller' => 'ElectricityMeterReadings',
+                                        'action' => 'delete',
+                                        $electricityMeterReadings->id,
+                                    ],
+                                    ['confirm' => __(
+                                        'Are you sure you want to delete # {0}?',
+                                        $electricityMeterReadings->id
+                                    )]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -126,7 +225,11 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Power Supply'), ['controller' => 'PowerSupplies', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
+                <?= $this->Html->link(
+                    __('New Power Supply'),
+                    ['controller' => 'PowerSupplies', 'action' => 'add'],
+                    ['class' => 'button button-small float-right win-link']
+                ) ?>
                 <h4><?= __('Related Power Supplies') ?></h4>
                 <?php if (!empty($accessPoint->power_supplies)) : ?>
                 <div class="table-responsive">
@@ -146,7 +249,16 @@
                         <?php foreach ($accessPoint->power_supplies as $powerSupplies) : ?>
                         <tr>
                             <td><?= h($powerSupplies->name) ?></td>
-                            <td><?= $powerSupplies->has('power_supply_type') ? $this->Html->link($powerSupplies->power_supply_type->name, ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupplies->power_supply_type->id]) : '' ?></td>
+                            <td>
+                                <?= $powerSupplies->has('power_supply_type') ? $this->Html->link(
+                                    $powerSupplies->power_supply_type->name,
+                                    [
+                                        'controller' => 'PowerSupplyTypes',
+                                        'action' => 'view',
+                                        $powerSupplies->power_supply_type->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
                             <td><?= h($powerSupplies->battery_count) ?></td>
                             <td><?= h($powerSupplies->battery_voltage) ?></td>
@@ -155,9 +267,20 @@
                             <td><?= h($powerSupplies->battery_duration) ?></td>
                             <td><?= $this->Text->autoParagraph(h($powerSupplies->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'PowerSupplies', 'action' => 'delete', $powerSupplies->id], ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'PowerSupplies', 'action' => 'delete', $powerSupplies->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -166,7 +289,11 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Radio Unit'), ['controller' => 'RadioUnits', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
+                <?= $this->Html->link(
+                    __('New Radio Unit'),
+                    ['controller' => 'RadioUnits', 'action' => 'add'],
+                    ['class' => 'button button-small float-right win-link']
+                ) ?>
                 <h4><?= __('Related Radio Units') ?></h4>
                 <?php if (!empty($accessPoint->radio_units)) : ?>
                 <div class="table-responsive">
@@ -195,9 +322,28 @@
                         <?php foreach ($accessPoint->radio_units as $radioUnits) : ?>
                         <tr>
                             <td><?= h($radioUnits->name) ?></td>
-                            <td><?= $radioUnits->has('radio_unit_type') ? $this->Html->link($radioUnits->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnits->radio_unit_type->id]) : '' ?></td>
-                            <td><?= $radioUnits->has('radio_link') ? $this->Html->link($radioUnits->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id]) : '' ?></td>
-                            <td><?= $radioUnits->has('antenna_type') ? $this->Html->link($radioUnits->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id]) : '' ?></td>
+                            <td>
+                                <?= $radioUnits->has('radio_unit_type') ? $this->Html->link(
+                                    $radioUnits->radio_unit_type->name,
+                                    [
+                                        'controller' => 'RadioUnitTypes',
+                                        'action' => 'view',
+                                        $radioUnits->radio_unit_type->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                            <td>
+                                <?= $radioUnits->has('radio_link') ? $this->Html->link(
+                                    $radioUnits->radio_link->name,
+                                    ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id]
+                                ) : '' ?>
+                            </td>
+                            <td>
+                                <?= $radioUnits->has('antenna_type') ? $this->Html->link(
+                                    $radioUnits->antenna_type->name,
+                                    ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id]
+                                ) : '' ?>
+                            </td>
                             <td><?= h($radioUnits->polarization) ?></td>
                             <td><?= h($radioUnits->channel_width) ?></td>
                             <td><?= h($radioUnits->tx_frequency) ?></td>
@@ -213,9 +359,20 @@
                             <td><?= h($radioUnits->ip_address) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RadioUnits', 'action' => 'delete', $radioUnits->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'RadioUnits', 'action' => 'delete', $radioUnits->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -224,7 +381,11 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(__('New Routeros Device'), ['controller' => 'RouterosDevices', 'action' => 'add'], ['class' => 'button button-small float-right']) ?>
+                <?= $this->Html->link(
+                    __('New Routeros Device'),
+                    ['controller' => 'RouterosDevices', 'action' => 'add'],
+                    ['class' => 'button button-small float-right win-link']
+                ) ?>
                 <h4><?= __('Related Routeros Devices') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
                 <div class="table-responsive">
@@ -243,7 +404,15 @@
                         <?php foreach ($accessPoint->routeros_devices as $routerosDevices) : ?>
                         <tr>
                             <td><?= h($routerosDevices->name) ?></td>
-                            <td><?= $routerosDevices->has('device_type') ? $this->Html->link($routerosDevices->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevices->device_type->id]) : '' ?></td>
+                            <td>
+                                <?= $routerosDevices->has('device_type') ? $this->Html->link(
+                                    $routerosDevices->device_type->name,
+                                    [
+                                        'controller' => 'DeviceTypes',
+                                        'action' => 'view',
+                                        $routerosDevices->device_type->id,
+                                    ]
+                                ) : '' ?></td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
                             <td><?= h($routerosDevices->system_description) ?></td>
                             <td><?= h($routerosDevices->board_name) ?></td>
@@ -251,9 +420,20 @@
                             <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

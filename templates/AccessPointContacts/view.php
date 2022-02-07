@@ -8,10 +8,29 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Access Point Contact'), ['action' => 'edit', $accessPointContact->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Access Point Contact'), ['action' => 'delete', $accessPointContact->id], ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointContact->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Access Point Contacts'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Access Point Contact'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Access Point Contact'),
+                ['action' => 'edit', $accessPointContact->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Access Point Contact'),
+                ['action' => 'delete', $accessPointContact->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $accessPointContact->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
+            <?= $this->Html->link(
+                __('List Access Point Contacts'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Access Point Contact'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -28,7 +47,10 @@
                 </tr>
                 <tr>
                     <th><?= __('Access Point') ?></th>
-                    <td><?= $accessPointContact->has('access_point') ? $this->Html->link($accessPointContact->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]) : '' ?></td>
+                    <td><?= $accessPointContact->has('access_point') ? $this->Html->link(
+                        $accessPointContact->access_point->name,
+                        ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]
+                    ) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Phone') ?></th>
@@ -40,7 +62,11 @@
                 </tr>
                 <tr>
                     <th><?= __('Customer Number') ?></th>
-                    <td><?= $accessPointContact->has('customer_number') ? $this->Html->link($accessPointContact->customer_number, env('CRM_ADMIN_URL') . '/customers/' . ($accessPointContact->customer_number - 110000), ['target' => '_blank']) : '' ?></td>
+                    <td><?= $accessPointContact->has('customer_number') ? $this->Html->link(
+                        $accessPointContact->customer_number,
+                        env('CRM_ADMIN_URL') . '/customers/' . ($accessPointContact->customer_number - 110000),
+                        ['target' => '_blank']
+                    ) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Contract Number') ?></th>

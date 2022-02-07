@@ -3,8 +3,9 @@
         <div class="nav-content-left">
             <?= $this->AuthLink->link(
                 '<h4>' . __('Access Point') . ': ' . h($accessPoint->name) . '</h4>',
-                ['plugin' => null, 'controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id], ['escape' => false, 'class' => ''])
-            ?>
+                ['plugin' => null, 'controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
+                ['escape' => false, 'class' => '']
+            ) ?>
         </div>
         <div class="nav-content-right">
             <?= $this->request->getParam('controller') <> 'AccessPoints' ?

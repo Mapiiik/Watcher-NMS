@@ -14,7 +14,11 @@ echo $this->Form->end();
 ?>
 
 <div class="customerConnections index content">
-    <?= $this->Html->link(__('New Customer Connection'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(
+        __('New Customer Connection'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link']
+    ) ?>
     <h3><?= __('Customer Connections') ?></h3>
     <div class="table-responsive">
         <table>
@@ -31,13 +35,32 @@ echo $this->Form->end();
                 <?php foreach ($customerConnections as $customerConnection) : ?>
                 <tr>
                     <td><?= h($customerConnection->name) ?></td>
-                    <td><?= $customerConnection->has('customer_point') ? $this->Html->link($customerConnection->customer_point->name, ['controller' => 'CustomerPoints', 'action' => 'view', $customerConnection->customer_point->id]) : '' ?></td>
+                    <td>
+                        <?= $customerConnection->has('customer_point') ? $this->Html->link(
+                            $customerConnection->customer_point->name,
+                            [
+                                'controller' => 'CustomerPoints',
+                                'action' => 'view',
+                                $customerConnection->customer_point->id,
+                            ]
+                        ) : '' ?></td>
                     <td><?= h($customerConnection->customer_number) ?></td>
                     <td><?= h($customerConnection->contract_number) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $customerConnection->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $customerConnection->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $customerConnection->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnection->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $customerConnection->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $customerConnection->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $customerConnection->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnection->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -52,6 +75,8 @@ echo $this->Form->end();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

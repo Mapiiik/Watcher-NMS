@@ -8,8 +8,19 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Device Type'), ['action' => 'edit', $deviceType->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Device Type'), ['action' => 'delete', $deviceType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $deviceType->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Device Type'),
+                ['action' => 'edit', $deviceType->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Device Type'),
+                ['action' => 'delete', $deviceType->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $deviceType->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
             <?= $this->Html->link(__('List Device Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Device Type'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
@@ -85,8 +96,26 @@
                         <?php foreach ($deviceType->routeros_devices as $routerosDevices) : ?>
                         <tr>
                             <td><?= h($routerosDevices->name) ?></td>
-                            <td><?= $routerosDevices->has('access_point') ? $this->Html->link($routerosDevices->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevices->access_point->id]) : '' ?></td>
-                            <td><?= $routerosDevices->has('customer_connection') ? $this->Html->link($routerosDevices->customer_connection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $routerosDevices->customer_connection->id]) : '' ?></td>
+                            <td>
+                                <?= $routerosDevices->has('access_point') ? $this->Html->link(
+                                    $routerosDevices->access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $routerosDevices->access_point->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                            <td>
+                                <?= $routerosDevices->has('customer_connection') ? $this->Html->link(
+                                    $routerosDevices->customer_connection->name,
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'view',
+                                        $routerosDevices->customer_connection->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
                             <td><?= h($routerosDevices->system_description) ?></td>
                             <td><?= h($routerosDevices->board_name) ?></td>
@@ -94,9 +123,20 @@
                             <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

@@ -8,10 +8,29 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Customer Connection'), ['action' => 'edit', $customerConnection->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Customer Connection'), ['action' => 'delete', $customerConnection->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnection->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Customer Connections'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Customer Connection'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Customer Connection'),
+                ['action' => 'edit', $customerConnection->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Customer Connection'),
+                ['action' => 'delete', $customerConnection->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $customerConnection->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
+            <?= $this->Html->link(
+                __('List Customer Connections'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Customer Connection'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -28,11 +47,26 @@
                 </tr>
                 <tr>
                     <th><?= __('Customer Point') ?></th>
-                    <td><?= $customerConnection->has('customer_point') ? $this->Html->link($customerConnection->customer_point->name, ['controller' => 'CustomerPoints', 'action' => 'view', $customerConnection->customer_point->id]) : '' ?></td>
+                    <td>
+                        <?= $customerConnection->has('customer_point') ? $this->Html->link(
+                            $customerConnection->customer_point->name,
+                            [
+                                'controller' => 'CustomerPoints',
+                                'action' => 'view',
+                                $customerConnection->customer_point->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Customer Number') ?></th>
-                    <td><?= $customerConnection->has('customer_number') ? $this->Html->link($customerConnection->customer_number, env('CRM_ADMIN_URL') . '/customers/' . ($customerConnection->customer_number - 110000), ['target' => '_blank']) : '' ?></td>
+                    <td>
+                        <?= $customerConnection->has('customer_number') ? $this->Html->link(
+                            $customerConnection->customer_number,
+                            env('CRM_ADMIN_URL') . '/customers/' . ($customerConnection->customer_number - 110000),
+                            ['target' => '_blank']
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Contract Number') ?></th>
@@ -70,9 +104,35 @@
                             <td><?= h($customerConnectionIps->ip_address) ?></td>
                             <td><?= $this->Text->autoParagraph(h($customerConnectionIps->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'CustomerConnectionIps', 'action' => 'view', $customerConnectionIps->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'CustomerConnectionIps', 'action' => 'edit', $customerConnectionIps->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'CustomerConnectionIps', 'action' => 'delete', $customerConnectionIps->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnectionIps->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    [
+                                        'controller' => 'CustomerConnectionIps',
+                                        'action' => 'view',
+                                        $customerConnectionIps->id,
+                                    ]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    [
+                                        'controller' => 'CustomerConnectionIps',
+                                        'action' => 'edit',
+                                        $customerConnectionIps->id,
+                                    ],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    [
+                                        'controller' => 'CustomerConnectionIps',
+                                        'action' => 'delete',
+                                        $customerConnectionIps->id,
+                                    ],
+                                    ['confirm' => __(
+                                        'Are you sure you want to delete # {0}?',
+                                        $customerConnectionIps->id
+                                    )]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -100,8 +160,26 @@
                         <?php foreach ($customerConnection->routeros_devices as $routerosDevices) : ?>
                         <tr>
                             <td><?= h($routerosDevices->name) ?></td>
-                            <td><?= $routerosDevices->has('access_point') ? $this->Html->link($routerosDevices->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevices->access_point->id]) : '' ?></td>
-                            <td><?= $routerosDevices->has('device_type') ? $this->Html->link($routerosDevices->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevices->device_type->id]) : '' ?></td>
+                            <td>
+                                <?= $routerosDevices->has('access_point') ? $this->Html->link(
+                                    $routerosDevices->access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $routerosDevices->access_point->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                            <td>
+                                <?= $routerosDevices->has('device_type') ? $this->Html->link(
+                                    $routerosDevices->device_type->name,
+                                    [
+                                        'controller' => 'DeviceTypes',
+                                        'action' => 'view',
+                                        $routerosDevices->device_type->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
                             <td><?= h($routerosDevices->system_description) ?></td>
                             <td><?= h($routerosDevices->board_name) ?></td>
@@ -109,9 +187,22 @@
                             <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'RouterosDevices',
+                                    'action' => 'view',
+                                    $routerosDevices->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

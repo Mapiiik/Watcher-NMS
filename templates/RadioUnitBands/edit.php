@@ -11,7 +11,10 @@
             <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $radioUnitBand->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitBand->id), 'class' => 'side-nav-item']
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $radioUnitBand->id),
+                    'class' => 'side-nav-item',
+                ]
             ) ?>
             <?= $this->Html->link(__('List Radio Unit Bands'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>

@@ -14,7 +14,7 @@ echo $this->Form->end();
 ?>
 
 <div class="powerSupplies index content">
-    <?= $this->Html->link(__('New Power Supply'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Power Supply'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Power Supplies') ?></h3>
     <div class="table-responsive">
         <table>
@@ -37,8 +37,22 @@ echo $this->Form->end();
                 <?php foreach ($powerSupplies as $powerSupply) : ?>
                 <tr>
                     <td><?= h($powerSupply->name) ?></td>
-                    <td><?= $powerSupply->has('access_point') ? $this->Html->link($powerSupply->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]) : '' ?></td>
-                    <td><?= $powerSupply->has('power_supply_type') ? $this->Html->link($powerSupply->power_supply_type->name, ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupply->power_supply_type->id]) : '' ?></td>
+                    <td>
+                        <?= $powerSupply->has('access_point') ? $this->Html->link(
+                            $powerSupply->access_point->name,
+                            ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $powerSupply->has('power_supply_type') ? $this->Html->link(
+                            $powerSupply->power_supply_type->name,
+                            [
+                                'controller' => 'PowerSupplyTypes',
+                                'action' => 'view',
+                                $powerSupply->power_supply_type->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                     <td><?= h($powerSupply->serial_number) ?></td>
                     <td><?= $this->Number->format($powerSupply->battery_count) ?></td>
                     <td><?= $this->Number->format($powerSupply->battery_voltage) ?></td>
@@ -47,9 +61,20 @@ echo $this->Form->end();
                     <td><?= h($powerSupply->battery_duration) ?></td>
                     <td><?= $this->Text->autoParagraph(h($powerSupply->note)); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $powerSupply->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $powerSupply->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $powerSupply->id], ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupply->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $powerSupply->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $powerSupply->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $powerSupply->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupply->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -64,6 +89,8 @@ echo $this->Form->end();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

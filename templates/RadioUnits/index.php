@@ -11,12 +11,17 @@ if ($this->request->getQuery('limit')) {
     echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
 }
 echo $this->Form->control('search', ['label' => __('Search')]);
-echo $this->Form->control('band', ['label' => __('Band'), 'options' => $radioUnitBands, 'empty' => true, 'onchange' => 'this.form.submit();']);
+echo $this->Form->control('band', [
+    'label' => __('Band'),
+    'options' => $radioUnitBands,
+    'empty' => true,
+    'onchange' => 'this.form.submit();',
+]);
 echo $this->Form->end();
 ?>
 
 <div class="radioUnits index content">
-    <?= $this->Html->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <?= $this->Html->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
     <h3><?= __('Radio Units') ?></h3>
     <div class="table-responsive">
@@ -46,12 +51,32 @@ echo $this->Form->end();
             </thead>
             <tbody>
                 <?php foreach ($radioUnits as $radioUnit) : ?>
-                <tr style="background-color: <?= isset($radioUnit->radio_unit_type->radio_unit_band->color) ? h($radioUnit->radio_unit_type->radio_unit_band->color) : 'transparent' ?>;">
+                <tr style="<?= $radioUnit->radio_unit_type->radio_unit_band->style ?>">
                     <td><?= h($radioUnit->name) ?></td>
-                    <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
-                    <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>
-                    <td><?= $radioUnit->has('radio_link') ? $this->Html->link($radioUnit->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]) : '' ?></td>
-                    <td><?= $radioUnit->has('antenna_type') ? $this->Html->link($radioUnit->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]) : '' ?></td>
+                    <td>
+                        <?= $radioUnit->has('access_point') ? $this->Html->link(
+                            $radioUnit->access_point->name,
+                            ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->has('radio_unit_type') ? $this->Html->link(
+                            $radioUnit->radio_unit_type->name,
+                            ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->has('radio_link') ? $this->Html->link(
+                            $radioUnit->radio_link->name,
+                            ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->has('antenna_type') ? $this->Html->link(
+                            $radioUnit->antenna_type->name,
+                            ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]
+                        ) : '' ?>
+                    </td>
                     <td><?= h($radioUnit->polarization) ?></td>
                     <td><?= $this->Number->format($radioUnit->channel_width) ?></td>
                     <td><?= $this->Number->format($radioUnit->tx_frequency) ?></td>
@@ -66,9 +91,20 @@ echo $this->Form->end();
                     <td><?= h($radioUnit->expiration_date) ?></td>
                     <td><?= h($radioUnit->ip_address) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $radioUnit->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioUnit->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $radioUnit->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $radioUnit->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $radioUnit->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $radioUnit->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -83,6 +119,8 @@ echo $this->Form->end();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

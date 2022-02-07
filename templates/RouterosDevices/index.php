@@ -14,7 +14,7 @@ echo $this->Form->end();
 ?>
 
 <div class="routerosDevices index content">
-    <?= $this->Html->link(__('New Routeros Device'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Routeros Device'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <?= $this->Html->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
     <h3><?= __('Routeros Devices') ?></h3>
     <div class="table-responsive">
@@ -38,9 +38,28 @@ echo $this->Form->end();
                 <?php foreach ($routerosDevices as $routerosDevice) : ?>
                 <tr>
                     <td><?= h($routerosDevice->name) ?></td>
-                    <td><?= $routerosDevice->has('access_point') ? $this->Html->link($routerosDevice->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]) : '' ?></td>
-                    <td><?= $routerosDevice->has('customer_connection') ? $this->Html->link($routerosDevice->customer_connection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $routerosDevice->customer_connection->id]) : '' ?></td>
-                    <td><?= $routerosDevice->has('device_type') ? $this->Html->link($routerosDevice->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id]) : '' ?></td>
+                    <td>
+                        <?= $routerosDevice->has('access_point') ? $this->Html->link(
+                            $routerosDevice->access_point->name,
+                            ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $routerosDevice->has('customer_connection') ? $this->Html->link(
+                            $routerosDevice->customer_connection->name,
+                            [
+                                'controller' => 'CustomerConnections',
+                                'action' => 'view',
+                                $routerosDevice->customer_connection->id,
+                            ]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $routerosDevice->has('device_type') ? $this->Html->link(
+                            $routerosDevice->device_type->name,
+                            ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id]
+                        ) : '' ?>
+                    </td>
                     <td><?= h($routerosDevice->ip_address) ?></td>
                     <td><?= h($routerosDevice->system_description) ?></td>
                     <td><?= h($routerosDevice->board_name) ?></td>
@@ -48,9 +67,20 @@ echo $this->Form->end();
                     <td><?= h($routerosDevice->software_version) ?></td>
                     <td><?= h($routerosDevice->firmware_version) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $routerosDevice->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $routerosDevice->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $routerosDevice->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $routerosDevice->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $routerosDevice->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $routerosDevice->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -65,6 +95,8 @@ echo $this->Form->end();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

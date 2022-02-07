@@ -14,7 +14,7 @@ echo $this->Form->end();
 ?>
 
 <div class="customerPoints index content">
-    <?= $this->Html->link(__('New Customer Point'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Customer Point'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Customer Points') ?></h3>
     <div class="table-responsive">
         <table>
@@ -34,13 +34,42 @@ echo $this->Form->end();
                     <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
                     <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('Google Maps'), ['controller' => 'https:////maps.google.com', 'action' => 'maps?q=' . htmlspecialchars("{$customerPoint->gps_y},{$customerPoint->gps_x}")], ['target' => '_blank']) ?>
-                        <?= $this->Html->link(__('Mapy.cz'), ['controller' => 'https:////mapy.cz', 'action' => 'zakladni?source=coor&id=' . htmlspecialchars("{$customerPoint->gps_x},{$customerPoint->gps_y}")], ['target' => '_blank']) ?>
+                        <?= $this->Html->link(
+                            __('Google Maps'),
+                            [
+                                'controller' => 'https:////maps.google.com',
+                                'action' => 'maps?q=' . htmlspecialchars(
+                                    "{$customerPoint->gps_y},{$customerPoint->gps_x}"
+                                ),
+                            ],
+                            ['target' => '_blank']
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Mapy.cz'),
+                            [
+                                'controller' => 'https:////mapy.cz',
+                                'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
+                                    "{$customerPoint->gps_x},{$customerPoint->gps_y}"
+                                ),
+                            ],
+                            ['target' => '_blank']
+                        ) ?>
                     </td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $customerPoint->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $customerPoint->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $customerPoint->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customerPoint->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $customerPoint->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $customerPoint->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $customerPoint->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $customerPoint->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -55,6 +84,8 @@ echo $this->Form->end();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

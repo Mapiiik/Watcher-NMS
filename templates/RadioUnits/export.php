@@ -42,16 +42,54 @@ $this->layout = 'clean';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($radioUnits as $radioUnit): ?>
+                <?php foreach ($radioUnits as $radioUnit) : ?>
                 <tr>
                     <?php //debug($radioUnit); ?>
-                    <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
+                    <td>
+                        <?= $radioUnit->has('access_point') ? $this->Html->link(
+                            $radioUnit->access_point->name,
+                            ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]
+                        ) : '' ?>
+                    </td>
                     <td><?= h($radioUnit->name) ?></td>
-                    <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>
-                    <td><?= $radioUnit->has('radio_link') ? $this->Html->link($radioUnit->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]) : '' ?></td>
-                    <td><?= $radioUnit->has('antenna_type') ? $this->Html->link($radioUnit->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]) : '' ?></td>
-                    <td><?= $radioUnit->radio_unit_type->has('manufacturer') ? $this->Html->link($radioUnit->radio_unit_type->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $radioUnit->radio_unit_type->manufacturer->id]) : '' ?></td>
-                    <td><?= $radioUnit->radio_unit_type->has('radio_unit_band') ? $this->Html->link($radioUnit->radio_unit_type->radio_unit_band->name, ['controller' => 'RadioUnitBands', 'action' => 'view', $radioUnit->radio_unit_type->radio_unit_band->id]) : '' ?></td>
+                    <td>
+                        <?= $radioUnit->has('radio_unit_type') ? $this->Html->link(
+                            $radioUnit->radio_unit_type->name,
+                            ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->has('radio_link') ? $this->Html->link(
+                            $radioUnit->radio_link->name,
+                            ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->has('antenna_type') ? $this->Html->link(
+                            $radioUnit->antenna_type->name,
+                            ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->radio_unit_type->has('manufacturer') ? $this->Html->link(
+                            $radioUnit->radio_unit_type->manufacturer->name,
+                            [
+                                'controller' => 'Manufacturers',
+                                'action' => 'view',
+                                $radioUnit->radio_unit_type->manufacturer->id,
+                            ]
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->radio_unit_type->has('radio_unit_band') ? $this->Html->link(
+                            $radioUnit->radio_unit_type->radio_unit_band->name,
+                            [
+                                'controller' => 'RadioUnitBands',
+                                'action' => 'view',
+                                $radioUnit->radio_unit_type->radio_unit_band->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                     <td><?= h($radioUnit->polarization) ?></td>
                     <td><?= $this->Number->format($radioUnit->channel_width) ?></td>
                     <td><?= $this->Number->format($radioUnit->tx_frequency) ?></td>
@@ -72,9 +110,20 @@ $this->layout = 'clean';
                     <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_y) : '' ?></td>
                     <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_x) : '' ?></td>
                     <td>
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $radioUnit->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radioUnit->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $radioUnit->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $radioUnit->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $radioUnit->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $radioUnit->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

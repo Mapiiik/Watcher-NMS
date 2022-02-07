@@ -5,9 +5,21 @@
  */
 ?>
 <div class="radarInterferences index content">
-    <?= $this->Html->link(__('New Radar Interference'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <?= $this->Html->link(__('Devices That Interfere'), ['action' => 'devices'], ['class' => 'button float-right']) ?>
-    <?= $this->Html->link(__('Update Online'), ['action' => 'updateOnline'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(
+        __('New Radar Interference'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link']
+    ) ?>
+    <?= $this->Html->link(
+        __('Devices That Interfere'),
+        ['action' => 'devices'],
+        ['class' => 'button float-right']
+    ) ?>
+    <?= $this->Html->link(
+        __('Update Online'),
+        ['action' => 'updateOnline'],
+        ['class' => 'button float-right']
+    ) ?>
     <h3><?= __('Radar Interferences') ?></h3>
     <div class="table-responsive">
         <table>
@@ -30,9 +42,20 @@
                     <td><?= $this->Number->format($radarInterference->signal) ?></td>
                     <td><?= h($radarInterference->radio_name) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $radarInterference->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radarInterference->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $radarInterference->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $radarInterference->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $radarInterference->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $radarInterference->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -47,6 +70,8 @@
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

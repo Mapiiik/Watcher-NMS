@@ -8,10 +8,28 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Routeros Device'), ['action' => 'edit', $routerosDevice->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Routeros Device'), ['action' => 'delete', $routerosDevice->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Routeros Devices'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Routeros Device'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Routeros Device'),
+                ['action' => 'edit', $routerosDevice->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Routeros Device'),
+                ['action' => 'delete', $routerosDevice->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id),
+                    'class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->Html->link(
+                __('List Routeros Devices'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Routeros Device'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -28,21 +46,44 @@
                 </tr>
                 <tr>
                     <th><?= __('Access Point') ?></th>
-                    <td><?= $routerosDevice->has('access_point') ? $this->Html->link($routerosDevice->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]) : '' ?></td>
+                    <td>
+                        <?= $routerosDevice->has('access_point') ? $this->Html->link(
+                            $routerosDevice->access_point->name,
+                            ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Customer Connection') ?></th>
-                    <td><?= $routerosDevice->has('customer_connection') ? $this->Html->link($routerosDevice->customer_connection->name, ['controller' => 'CustomerConnections', 'action' => 'view', $routerosDevice->customer_connection->id]) : '' ?></td>
+                    <td>
+                        <?= $routerosDevice->has('customer_connection') ? $this->Html->link(
+                            $routerosDevice->customer_connection->name,
+                            [
+                                'controller' => 'CustomerConnections',
+                                'action' => 'view',
+                                $routerosDevice->customer_connection->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Device Type') ?></th>
-                    <td><?= $routerosDevice->has('device_type') ? $this->Html->link($routerosDevice->device_type->name, ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id]) : '' ?></td>
+                    <td>
+                        <?= $routerosDevice->has('device_type') ? $this->Html->link(
+                            $routerosDevice->device_type->name,
+                            [
+                                'controller' => 'DeviceTypes',
+                                'action' => 'view',
+                                $routerosDevice->device_type->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Ip Address') ?></th>
                     <td><?= h($routerosDevice->ip_address) ?></td>
                 </tr>
-                <?php if (isset($routerosDevice->username) && isset($routerosDevice->password)): ?>
+                <?php if (isset($routerosDevice->username) && isset($routerosDevice->password)) : ?>
                 <tr>
                     <th><?= __('Username') ?></th>
                     <td><?= h($routerosDevice->username) ?></td>
@@ -120,9 +161,35 @@
                             <td><?= h($routerosDeviceInterfaces->interface_admin_status) ?></td>
                             <td><?= h($routerosDeviceInterfaces->interface_oper_status) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'view', $routerosDeviceInterfaces->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'edit', $routerosDeviceInterfaces->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RouterosDeviceInterfaces', 'action' => 'delete', $routerosDeviceInterfaces->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterfaces->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    [
+                                        'controller' => 'RouterosDeviceInterfaces',
+                                        'action' => 'view',
+                                        $routerosDeviceInterfaces->id,
+                                    ]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    [
+                                        'controller' => 'RouterosDeviceInterfaces',
+                                        'action' => 'edit',
+                                        $routerosDeviceInterfaces->id,
+                                    ],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    [
+                                        'controller' => 'RouterosDeviceInterfaces',
+                                        'action' => 'delete',
+                                        $routerosDeviceInterfaces->id,
+                                    ],
+                                    ['confirm' => __(
+                                        'Are you sure you want to delete # {0}?',
+                                        $routerosDeviceInterfaces->id
+                                    )]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -147,9 +214,20 @@
                             <td><?= h($routerosDeviceIps->ip_address) ?></td>
                             <td><?= h($routerosDeviceIps->interface_index) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'RouterosDeviceIps', 'action' => 'view', $routerosDeviceIps->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'RouterosDeviceIps', 'action' => 'edit', $routerosDeviceIps->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'RouterosDeviceIps', 'action' => 'delete', $routerosDeviceIps->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIps->id)]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'RouterosDeviceIps', 'action' => 'view', $routerosDeviceIps->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    ['controller' => 'RouterosDeviceIps', 'action' => 'edit', $routerosDeviceIps->id],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'RouterosDeviceIps', 'action' => 'delete', $routerosDeviceIps->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIps->id)]
+                                ) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

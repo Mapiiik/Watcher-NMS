@@ -5,7 +5,7 @@
  */
 ?>
 <div class="deviceTypes index content">
-    <?= $this->Html->link(__('New Device Type'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Device Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Device Types') ?></h3>
     <div class="table-responsive">
         <table>
@@ -32,8 +32,15 @@
                     <td><?= h($deviceType->allow_technicians_access) ?></td>
                     <td><?= h($deviceType->automatically_set_a_unique_password) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $deviceType->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $deviceType->id]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $deviceType->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $deviceType->id],
+                            ['class' => 'win-link']
+                        ) ?>
                         <?= $this->Form->postLink(
                             __('Delete'),
                             ['action' => 'delete', $deviceType->id],
@@ -53,6 +60,8 @@
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

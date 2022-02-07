@@ -8,10 +8,29 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Routeros Device Interface'), ['action' => 'edit', $routerosDeviceInterface->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Routeros Device Interface'), ['action' => 'delete', $routerosDeviceInterface->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterface->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Routeros Device Interfaces'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Routeros Device Interface'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Routeros Device Interface'),
+                ['action' => 'edit', $routerosDeviceInterface->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Routeros Device Interface'),
+                ['action' => 'delete', $routerosDeviceInterface->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterface->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
+            <?= $this->Html->link(
+                __('List Routeros Device Interfaces'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Routeros Device Interface'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -24,7 +43,16 @@
                 </tr>
                 <tr>
                     <th><?= __('Routeros Device') ?></th>
-                    <td><?= $routerosDeviceInterface->has('routeros_device') ? $this->Html->link($routerosDeviceInterface->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->routeros_device->id]) : '' ?></td>
+                    <td>
+                        <?= $routerosDeviceInterface->has('routeros_device') ? $this->Html->link(
+                            $routerosDeviceInterface->routeros_device->name,
+                            [
+                                'controller' => 'RouterosDevices',
+                                'action' => 'view',
+                                $routerosDeviceInterface->routeros_device->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Name') ?></th>

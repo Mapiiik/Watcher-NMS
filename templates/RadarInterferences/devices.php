@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($radarInterferences as $radarInterference): ?>
+                <?php foreach ($radarInterferences as $radarInterference) : ?>
                 <tr>
                     <td><?= h($radarInterference->id) ?></td>
                     <td><?= h($radarInterference->name) ?></td>
@@ -31,12 +31,41 @@
                     <td><?= h($radarInterference->ssid) ?></td>
                     <td><?= $this->Number->format($radarInterference->signal) ?></td>
                     <td><?= h($radarInterference->radio_name) ?></td>
-                    <td><?= $this->Html->link($radarInterference->routeros_device_name, ['controller' => 'RouterosDevices', 'action' => 'view', $radarInterference->routeros_device_id]) ?></td>
-                    <td><?= $this->Html->link($radarInterference->routeros_device_interface_name, ['controller' => 'RouterosDeviceInterfaces', 'action' => 'view', $radarInterference->routeros_device_interface_id]) ?></td>
+                    <td>
+                        <?= $this->Html->link(
+                            $radarInterference->routeros_device_name,
+                            [
+                                'controller' => 'RouterosDevices',
+                                'action' => 'view',
+                                $radarInterference->routeros_device_id,
+                            ]
+                        ) ?>
+                    </td>
+                    <td>
+                        <?= $this->Html->link(
+                            $radarInterference->routeros_device_interface_name,
+                            [
+                                'controller' => 'RouterosDeviceInterfaces',
+                                'action' => 'view',
+                                $radarInterference->routeros_device_interface_id,
+                            ]
+                        ) ?>
+                    </td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $radarInterference->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $radarInterference->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $radarInterference->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $radarInterference->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $radarInterference->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $radarInterference->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -51,6 +80,8 @@
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

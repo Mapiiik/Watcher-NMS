@@ -14,7 +14,11 @@ echo $this->Form->end();
 ?>
 
 <div class="routerosDeviceInterfaces index content">
-    <?= $this->Html->link(__('New Routeros Device Interface'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(
+        __('New Routeros Device Interface'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link']
+    ) ?>
     <h3><?= __('Routeros Device Interfaces') ?></h3>
     <div class="table-responsive">
         <table>
@@ -42,7 +46,16 @@ echo $this->Form->end();
                 <?php foreach ($routerosDeviceInterfaces as $routerosDeviceInterface) : ?>
                 <tr>
                     <td><?= h($routerosDeviceInterface->name) ?></td>
-                    <td><?= $routerosDeviceInterface->has('routeros_device') ? $this->Html->link($routerosDeviceInterface->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->routeros_device->id]) : '' ?></td>
+                    <td>
+                        <?= $routerosDeviceInterface->has('routeros_device') ? $this->Html->link(
+                            $routerosDeviceInterface->routeros_device->name,
+                            [
+                                'controller' => 'RouterosDevices',
+                                'action' => 'view',
+                                $routerosDeviceInterface->routeros_device->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                     <td><?= h($routerosDeviceInterface->comment) ?></td>
                     <td><?= h($routerosDeviceInterface->mac_address) ?></td>
                     <td><?= h($routerosDeviceInterface->ssid) ?></td>
@@ -57,9 +70,20 @@ echo $this->Form->end();
                     <td><?= $this->Number->format($routerosDeviceInterface->interface_admin_status) ?></td>
                     <td><?= $this->Number->format($routerosDeviceInterface->interface_oper_status) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $routerosDeviceInterface->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $routerosDeviceInterface->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $routerosDeviceInterface->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterface->id)]) ?>
+                        <?= $this->Html->link(
+                            __('View'),
+                            ['action' => 'view', $routerosDeviceInterface->id]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __('Edit'),
+                            ['action' => 'edit', $routerosDeviceInterface->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $routerosDeviceInterface->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterface->id)]
+                        ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -74,6 +98,8 @@ echo $this->Form->end();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+        ) ?></p>
     </div>
 </div>

@@ -8,10 +8,29 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Routeros Device Ip'), ['action' => 'edit', $routerosDeviceIp->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Routeros Device Ip'), ['action' => 'delete', $routerosDeviceIp->id], ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIp->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Routeros Device Ips'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Routeros Device Ip'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Routeros Device Ip'),
+                ['action' => 'edit', $routerosDeviceIp->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Routeros Device Ip'),
+                ['action' => 'delete', $routerosDeviceIp->id],
+                [
+                    'confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIp->id),
+                    'class' => 'side-nav-item',
+                ]
+            ) ?>
+            <?= $this->Html->link(
+                __('List Routeros Device Ips'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Routeros Device Ip'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -24,7 +43,16 @@
                 </tr>
                 <tr>
                     <th><?= __('Routeros Device') ?></th>
-                    <td><?= $routerosDeviceIp->has('routeros_device') ? $this->Html->link($routerosDeviceIp->routeros_device->name, ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->routeros_device->id]) : '' ?></td>
+                    <td>
+                        <?= $routerosDeviceIp->has('routeros_device') ? $this->Html->link(
+                            $routerosDeviceIp->routeros_device->name,
+                            [
+                                'controller' => 'RouterosDevices',
+                                'action' => 'view',
+                                $routerosDeviceIp->routeros_device->id,
+                            ]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Name') ?></th>

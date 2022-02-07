@@ -8,10 +8,26 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Radio Unit'), ['action' => 'edit', $radioUnit->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Radio Unit'), ['action' => 'delete', $radioUnit->id], ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Radio Units'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(
+                __('Edit Radio Unit'),
+                ['action' => 'edit', $radioUnit->id],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Form->postLink(
+                __('Delete Radio Unit'),
+                ['action' => 'delete', $radioUnit->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id), 'class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('List Radio Units'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(
+                __('New Radio Unit'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item']
+            ) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -28,19 +44,39 @@
                 </tr>
                 <tr>
                     <th><?= __('Radio Unit Type') ?></th>
-                    <td><?= $radioUnit->has('radio_unit_type') ? $this->Html->link($radioUnit->radio_unit_type->name, ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]) : '' ?></td>
+                    <td>
+                        <?= $radioUnit->has('radio_unit_type') ? $this->Html->link(
+                            $radioUnit->radio_unit_type->name,
+                            ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Access Point') ?></th>
-                    <td><?= $radioUnit->has('access_point') ? $this->Html->link($radioUnit->access_point->name, ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]) : '' ?></td>
+                    <td>
+                        <?= $radioUnit->has('access_point') ? $this->Html->link(
+                            $radioUnit->access_point->name,
+                            ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Radio Link') ?></th>
-                    <td><?= $radioUnit->has('radio_link') ? $this->Html->link($radioUnit->radio_link->name, ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]) : '' ?></td>
+                    <td>
+                        <?= $radioUnit->has('radio_link') ? $this->Html->link(
+                            $radioUnit->radio_link->name,
+                            ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Antenna Type') ?></th>
-                    <td><?= $radioUnit->has('antenna_type') ? $this->Html->link($radioUnit->antenna_type->name, ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]) : '' ?></td>
+                    <td>
+                        <?= $radioUnit->has('antenna_type') ? $this->Html->link(
+                            $radioUnit->antenna_type->name,
+                            ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]
+                        ) : '' ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Polarization') ?></th>
