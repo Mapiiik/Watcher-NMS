@@ -5,7 +5,10 @@ function popupwindow(url, title, w, h) {
 }    
 $(document).ready(function() {
     $(".win-link").on("click", function(e) {
-        var win = popupwindow(this.href, 'edit', 1200, 600);
+        var url = new URL(this.href);
+        url.searchParams.append('win-link', 'true');
+
+        var win = popupwindow(url.href, 'win-link', 1200, 600);
         e.preventDefault();
         
         var timer = setInterval(function() {   

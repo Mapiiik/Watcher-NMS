@@ -118,6 +118,9 @@ use Cake\Routing\Router;
 use Cake\Http\ServerRequest;
 
 Router::addUrlFilter(function (array $params, ServerRequest $request) {
+    if ($request->getQuery('win-link') == 'true') {
+        $params['?']['win-link'] = 'true';
+    }
 
     if (
         (isset($params['controller']) && in_array($params['controller'], ['AccessPointContacts', 'ElectricityMeterReadings', 'PowerSupplies', 'RadioUnits', 'RouterosDevices'])) ||
