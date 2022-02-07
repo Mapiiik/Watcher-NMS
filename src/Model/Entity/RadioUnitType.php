@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string $style
  *
  * @property \App\Model\Entity\RadioUnitBand $radio_unit_band
  * @property \App\Model\Entity\Manufacturer $manufacturer
@@ -44,4 +45,20 @@ class RadioUnitType extends Entity
         'manufacturer' => true,
         'radio_units' => true,
     ];
+
+    /**
+     * getter for style
+     *
+     * @return string
+     */
+    protected function _getStyle(): string
+    {
+        $style = '';
+
+        if (isset($this->radio_unit_band->color)) {
+            $style = 'background-color: ' . $this->radio_unit_band->color . ';';
+        }
+
+        return $style;
+    }
 }

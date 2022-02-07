@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <?php foreach ($antennaTypes as $antennaType) : ?>
-                <tr style="<?= $antennaType->radio_unit_band->style ?>">
+                <tr style="<?= $antennaType->style ?>">
                     <td><?= h($antennaType->name) ?></td>
                     <td>
                         <?= $antennaType->has('radio_unit_band') ? $this->Html->link(

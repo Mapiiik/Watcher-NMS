@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <?php foreach ($radioUnitTypes as $radioUnitType) : ?>
-                <tr style="<?= $radioUnitType->radio_unit_band->style ?>">
+                <tr style="<?= $radioUnitType->style ?>">
                     <td><?= h($radioUnitType->name) ?></td>
                     <td>
                         <?= $radioUnitType->has('radio_unit_band') ? $this->Html->link(

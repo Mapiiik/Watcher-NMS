@@ -49,7 +49,7 @@ echo $this->Form->end();
             </thead>
             <tbody>
                 <?php foreach ($radioLinks as $radioLink) : ?>
-                <tr style="<?= $radioLink->radio_units[0]->radio_unit_type->radio_unit_band->style ?>">
+                <tr style="<?= $radioLink->style ?>">
                     <td><?= h($radioLink->name) ?></td>
                     <td><?= $this->Number->format($radioLink->distance) ?></td>
                     <td><?= h($radioLink->authorization_number) ?></td>

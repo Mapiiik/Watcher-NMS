@@ -51,7 +51,7 @@ echo $this->Form->end();
             </thead>
             <tbody>
                 <?php foreach ($radioUnits as $radioUnit) : ?>
-                <tr style="<?= $radioUnit->radio_unit_type->radio_unit_band->style ?>">
+                <tr style="<?= $radioUnit->style ?>">
                     <td><?= h($radioUnit->name) ?></td>
                     <td>
                         <?= $radioUnit->has('access_point') ? $this->Html->link(
