@@ -57,7 +57,7 @@ class ElectricityMeterRedingsReportCommand extends Command
                 'conditions' => ['month_of_electricity_meter_reading' => (int)$now->i18nFormat('L')],
             ])
             ->contain('ElectricityMeterReadings', function ($q) {
-                return $q->order(['reading_date' => 'DESC'])->limit(1);
+                return $q->order(['reading_date' => 'DESC']);
             });
 
         if ($access_points->count() > 0) {
