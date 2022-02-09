@@ -419,7 +419,7 @@ return [
         'defaults' => 'database',
         'timeout' => 1440,
     ],
-    
+
     'GoogleMap' => [
         'autoCenter' => true,
         'autoScript' => true,
@@ -434,5 +434,5 @@ return [
         'infoWindow' => [
             'maxWidth' => 500,
         ],
-],
+    ],
 ];

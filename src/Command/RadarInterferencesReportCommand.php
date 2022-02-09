@@ -54,7 +54,7 @@ class RadarInterferencesReportCommand extends Command
         }
         $emails = $args->getArgument('emails');
         if (!isset($emails)) {
-            $emails = (string)env('RADAR_INTERFERENCES_REPORT_EMAILS');
+            $emails = (string)env('REPORT_EMAILS');
         }
 
         $radarInterferences = $this->fetchTable()->find();
@@ -97,10 +97,6 @@ class RadarInterferencesReportCommand extends Command
             $io->helper('Table')->output($table);
 
             $mailer = new Mailer('default');
-            $mailer->setFrom([
-                (string)env('EMAIL_TRANSPORT_DEFAULT_SENDER_EMAIL')
-                => (string)env('EMAIL_TRANSPORT_DEFAULT_SENDER_NAME'),
-            ]);
 
             foreach (explode(' ', $emails) as $email) {
                 $mailer->addTo($email);
