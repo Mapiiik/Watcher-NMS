@@ -108,7 +108,10 @@ class ElectricityMeterRedingsReportCommand extends Command
                 Log::write('debug', 'The electricity meter readings to be made have been reported.');
                 $io->info('The electricity meter readings to be made have been reported.');
             } catch (\Exception $e) {
-                Log::write('warning', 'The electricity meter readings to be made cannot be reported.');
+                Log::write(
+                    'warning',
+                    'The electricity meter readings to be made cannot be reported. (' . $e->getMessage() . ')'
+                );
                 $io->abort('The electricity meter readings to be made cannot be reported.');
             }
         } else {

@@ -113,7 +113,10 @@ class RadarInterferencesReportCommand extends Command
                 Log::write('debug', 'The radar interfering devices found and reported.');
                 $io->info('The radar interfering devices found and reported.');
             } catch (\Exception $e) {
-                Log::write('warning', 'The radar interfering devices found but cannot be reported.');
+                Log::write(
+                    'warning',
+                    'The radar interfering devices found but cannot be reported. (' . $e->getMessage() . ')'
+                );
                 $io->abort('The radar interfering devices found but cannot be reported.');
             }
         } else {
