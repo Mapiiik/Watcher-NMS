@@ -5,11 +5,24 @@
  */
 ?>
 <?php
-echo $this->Form->create($search, ['type' => 'get']);
+echo $this->Form->create($search, ['type' => 'get', 'valueSources' => ['query', 'context']]);
 if ($this->request->getQuery('limit')) {
     echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
 }
 echo $this->Form->control('search', ['label' => __('Search')]);
+echo $this->Form->control('maximum_age', [
+    'label' => __('Maximum Age'),
+    'options' => [
+        1 => __dn('cake', '{0} day', '{0} days', 1, 1),
+        7 => __dn('cake', '{0} day', '{0} days', 7, 7),
+        14 => __dn('cake', '{0} day', '{0} days', 14, 14),
+        28 => __dn('cake', '{0} day', '{0} days', 28, 28),
+        56 => __dn('cake', '{0} day', '{0} days', 56, 56),
+        365 => __dn('cake', '{0} day', '{0} days', 365, 365),
+    ],
+    'default' => 14,
+    'onchange' => 'this.form.submit();',
+]);
 echo $this->Form->end();
 ?>
 

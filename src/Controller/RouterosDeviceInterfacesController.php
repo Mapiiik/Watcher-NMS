@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Form\SearchForm;
+use Cake\I18n\FrozenDate;
 
 /**
  * RouterosDeviceInterfaces Controller
@@ -53,6 +54,14 @@ class RouterosDeviceInterfacesController extends AppController
                 'RouterosDeviceInterfaces.frequency::character varying ILIKE' => '%'
                 . \trim($search->getData('search')) . '%',
             ];
+        }
+
+        if ($this->request->getQuery('maximum_age') <> '') {
+            $this->paginate['conditions']['RouterosDeviceInterfaces.modified >'] =
+                (new FrozenDate())->subDays((int)$this->request->getQuery('maximum_age'));
+        } else {
+            $this->paginate['conditions']['RouterosDeviceInterfaces.modified >'] =
+                (new FrozenDate())->subDays(14);
         }
 
         $routerosDeviceInterfaces = $this->paginate($this->RouterosDeviceInterfaces);

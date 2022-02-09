@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Form\SearchForm;
 use App\Model\Entity\RouterosDevice;
+use Cake\I18n\FrozenDate;
 
 /**
  * RouterosDevices Controller
@@ -55,6 +56,14 @@ class RouterosDevicesController extends AppController
                 'RouterosDevices.board_name ILIKE' => '%' . \trim($search->getData('search')) . '%',
                 'RouterosDevices.serial_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
             ];
+        }
+
+        if ($this->request->getQuery('maximum_age') <> '') {
+            $this->paginate['conditions']['RouterosDevices.modified >'] =
+                (new FrozenDate())->subDays((int)$this->request->getQuery('maximum_age'));
+        } else {
+            $this->paginate['conditions']['RouterosDevices.modified >'] =
+                (new FrozenDate())->subDays(14);
         }
 
         $routerosDevices = $this->paginate($this->RouterosDevices);
