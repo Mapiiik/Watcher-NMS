@@ -268,7 +268,7 @@ class AccessPointsController extends AppController
         $customerConnections = [];
 
         if ($mapOptions->getData('linked_customers') == 1) {
-            $this->loadModel('CustomerPoints');
+            $this->fetchTable('CustomerPoints');
             $customerPoints = $this->CustomerPoints->find()->indexBy('id')->toArray();
             $customerConnections = $this->CustomerPoints->CustomerConnections->find()->indexBy('id')->toArray();
         }
