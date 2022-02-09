@@ -509,9 +509,9 @@ class RouterosDevicesController extends AppController
             ]);
 
             // REMOVE OLD DATA FROM DATABASE
-            $this->RouterosDevices->deleteAll(['modified <' => new \DateTime('-28 days')]);
-            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new \DateTime('-28 days')]);
-            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new \DateTime('-28 days')]);
+            $this->RouterosDevices->deleteAll(['modified <' => new \DateTime('-365 days')]);
+            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new \DateTime('-365 days')]);
+            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new \DateTime('-365 days')]);
 
             return $routerosDevice;
         } else {
