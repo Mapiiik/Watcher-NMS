@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property int|null $month_of_electricity_meter_reading
  *
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
@@ -41,6 +42,7 @@ class AccessPoint extends Entity
         'note' => true,
         'created' => true,
         'modified' => true,
+        'month_of_electricity_meter_reading' => true,
         'access_point_contacts' => true,
         'power_supplies' => true,
         'radio_units' => true,

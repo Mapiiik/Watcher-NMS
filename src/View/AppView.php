@@ -41,4 +41,20 @@ class AppView extends View
         $this->loadHelper('CakeDC/Users.User');
         $this->loadHelper('CakeDC/Users.AuthLink');
     }
+
+    /**
+     * Months method
+     *
+     * @return string[] Months names
+     */
+    public static function months()
+    {
+        $formatter = new \IntlDateFormatter(null, \IntlDateFormatter::FULL, \IntlDateFormatter::FULL);
+        $formatter->setPattern('LLLL');
+        for ($m = 1; $m <= 12; $m++) {
+            $months[$m] = $formatter->format(mktime(0, 0, 0, $m, 12));
+        }
+
+        return $months;
+    }
 }

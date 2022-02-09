@@ -23,6 +23,7 @@ echo $this->Form->end();
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('device_name') ?></th>
+                    <th><?= $this->Paginator->sort('month_of_electricity_meter_reading') ?></th>
                     <th><?= $this->Paginator->sort('gps_y') ?></th>
                     <th><?= $this->Paginator->sort('gps_x') ?></th>
                     <th class="actions"><?= __('Maps') ?></th>
@@ -34,6 +35,7 @@ echo $this->Form->end();
                 <tr>
                     <td><?= h($accessPoint->name) ?></td>
                     <td><?= h($accessPoint->device_name) ?></td>
+                    <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
                     <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
                     <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
                     <td class="actions">

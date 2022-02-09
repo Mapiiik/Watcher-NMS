@@ -42,6 +42,10 @@
                     <td><?= h($accessPoint->device_name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Month Of Electricity Meter Reading') ?></th>
+                    <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Gps Y') ?></th>
                     <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
                 </tr>

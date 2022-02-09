@@ -17,11 +17,16 @@
             <fieldset>
                 <legend><?= __('Add Access Point') ?></legend>
                 <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('device_name');
-                    echo $this->Form->control('gps_y');
-                    echo $this->Form->control('gps_x');
-                    echo $this->Form->control('note');
+                echo $this->Form->control('name');
+                echo $this->Form->control('device_name');
+                echo $this->Form->control('month_of_electricity_meter_reading', [
+                    'empty' => true,
+                    'type' => 'select',
+                    'options' => $this->months(),
+                ]);
+                echo $this->Form->control('gps_y');
+                echo $this->Form->control('gps_x');
+                echo $this->Form->control('note');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
