@@ -125,7 +125,8 @@ class RadioUnitsController extends AppController
 
         if (isset($radioUnit->radio_unit_type_id)) {
             $antennaTypes->where(['OR' => [
-                'radio_unit_band_id' => $this->RadioUnits->RadioUnitTypes->get($radioUnit->radio_unit_type_id)->radio_unit_band_id,
+                'radio_unit_band_id' => $this->RadioUnits->RadioUnitTypes
+                    ->get($radioUnit->radio_unit_type_id)->radio_unit_band_id,
                 'radio_unit_band_id IS NULL',
             ]]);
         }
@@ -172,7 +173,8 @@ class RadioUnitsController extends AppController
 
         if (isset($radioUnit->radio_unit_type_id)) {
             $antennaTypes->where(['OR' => [
-                'radio_unit_band_id' => $this->RadioUnits->RadioUnitTypes->get($radioUnit->radio_unit_type_id)->radio_unit_band_id,
+                'radio_unit_band_id' => $this->RadioUnits->RadioUnitTypes
+                    ->get($radioUnit->radio_unit_type_id)->radio_unit_band_id,
                 'radio_unit_band_id IS NULL',
             ]]);
         }
