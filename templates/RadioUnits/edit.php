@@ -23,7 +23,21 @@
                 <legend><?= __('Edit Radio Unit') ?></legend>
                 <?php
                 echo $this->Form->control('name');
-                echo $this->Form->control('radio_unit_type_id', ['options' => $radioUnitTypes, 'empty' => true]);
+
+                echo $this->Form->control('radio_unit_type_id', [
+                    'options' => $radioUnitTypes,
+                    'empty' => true,
+                    'onchange' => '
+                    var refresh = document.createElement("input");
+                    refresh.type = "hidden";
+                    refresh.name = "refresh";
+                    refresh.value = "refresh";
+                    this.form.appendChild(refresh);
+                    this.form.submit();
+                    ',
+                ]);
+                $this->Form->unlockField('refresh'); //disable form security check
+
                 if (!isset($access_point_id)) {
                     echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                 }

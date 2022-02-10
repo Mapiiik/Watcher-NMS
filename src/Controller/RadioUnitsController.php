@@ -102,21 +102,34 @@ class RadioUnitsController extends AppController
 
         if ($this->request->is('post')) {
             $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->request->getData());
-            if ($this->RadioUnits->save($radioUnit)) {
-                $this->Flash->success(__('The radio unit has been saved.'));
 
-                if (isset($access_point_id)) {
-                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+            if ($this->request->getData('refresh') == 'refresh') {
+                // only refresh
+            } else {
+                if ($this->RadioUnits->save($radioUnit)) {
+                    $this->Flash->success(__('The radio unit has been saved.'));
+
+                    if (isset($access_point_id)) {
+                        return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                    }
+
+                    return $this->redirect(['action' => 'index']);
                 }
-
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
         }
         $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['order' => 'name']);
         $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['order' => 'name']);
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['order' => 'name']);
         $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['order' => 'name']);
+
+        if (isset($radioUnit->radio_unit_type_id)) {
+            $antennaTypes->where(['OR' => [
+                'radio_unit_band_id' => $this->RadioUnits->RadioUnitTypes->get($radioUnit->radio_unit_type_id)->radio_unit_band_id,
+                'radio_unit_band_id IS NULL',
+            ]]);
+        }
+
         $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
     }
 
@@ -136,22 +149,34 @@ class RadioUnitsController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->request->getData());
-            if ($this->RadioUnits->save($radioUnit)) {
-                $this->Flash->success(__('The radio unit has been saved.'));
+            if ($this->request->getData('refresh') == 'refresh') {
+                // only refresh
+            } else {
+                $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->request->getData());
+                if ($this->RadioUnits->save($radioUnit)) {
+                    $this->Flash->success(__('The radio unit has been saved.'));
 
-                if (isset($access_point_id)) {
-                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                    if (isset($access_point_id)) {
+                        return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                    }
+
+                    return $this->redirect(['action' => 'index']);
                 }
-
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
         }
         $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['order' => 'name']);
         $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['order' => 'name']);
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['order' => 'name']);
         $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['order' => 'name']);
+
+        if (isset($radioUnit->radio_unit_type_id)) {
+            $antennaTypes->where(['OR' => [
+                'radio_unit_band_id' => $this->RadioUnits->RadioUnitTypes->get($radioUnit->radio_unit_type_id)->radio_unit_band_id,
+                'radio_unit_band_id IS NULL',
+            ]]);
+        }
+
         $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
     }
 
