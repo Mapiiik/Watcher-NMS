@@ -28,12 +28,12 @@
                     'options' => $radioUnitTypes,
                     'empty' => true,
                     'onchange' => '
-                    var refresh = document.createElement("input");
-                    refresh.type = "hidden";
-                    refresh.name = "refresh";
-                    refresh.value = "refresh";
-                    this.form.appendChild(refresh);
-                    this.form.submit();
+                        var refresh = document.createElement("input");
+                        refresh.type = "hidden";
+                        refresh.name = "refresh";
+                        refresh.value = "refresh";
+                        this.form.appendChild(refresh);
+                        this.form.submit();
                     ',
                 ]);
                 $this->Form->unlockField('refresh'); //disable form security check
