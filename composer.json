@@ -4,6 +4,16 @@
     "homepage": "https://github.com/Mapiiik/Watcher-NMS",
     "type": "project",
     "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Martin Patočka",
+            "email": "mapik@mapik.net"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Mapiiik/Watcher-NMS/issues",
+        "source": "https://github.com/Mapiiik/Watcher-NMS"
+    },
     "require": {
         "php": ">=7.2",
         "cakedc/users": "^9.2",
