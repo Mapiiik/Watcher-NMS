@@ -27,6 +27,7 @@ class RadioLinksController extends AppController
                 'RadioLinks',
                 'AntennaTypes',
             ]],
+            'order' => ['name' => 'ASC'],
         ];
 
         $search = new SearchForm();
