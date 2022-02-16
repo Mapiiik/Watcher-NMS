@@ -66,6 +66,11 @@
                 </blockquote>
             </div>
             <div class="related">
+            <?= $this->Html->link(
+                    __('New Radio Unit'),
+                    ['controller' => 'RadioUnits', 'action' => 'add', '?' => ['radio_link_id' => $radioLink->id]],
+                    ['class' => 'button button-small float-right win-link']
+                ) ?>
                 <h4><?= __('Related Radio Units') ?></h4>
                 <?php if (!empty($radioLink->radio_units)) : ?>
                 <div class="table-responsive">
