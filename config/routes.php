@@ -116,39 +116,36 @@ $routes->scope('/api', function (RouteBuilder $builder) {
     ]);
 });
 
-Router::addUrlFilter(function (array $params, ServerRequest $request) {
-    //fix for console routes
-    if (is_null($request)) {
-        return $params;
-    }
-
-    //persistent win-link parameter
-    if ($request->getQuery('win-link') == 'true') {
-        $params['?']['win-link'] = 'true';
-    }
-
-    //controllers related to access points
-    if (
-        (isset($params['controller']) && in_array($params['controller'], [
-            'AccessPointContacts',
-            'ElectricityMeterReadings',
-            'PowerSupplies',
-            'RadioUnits',
-            'RouterosDevices',
-        ]))
-        || (!isset($params['controller']) && in_array($request->getParam('controller'), [
-            'AccessPointContacts',
-            'ElectricityMeterReadings',
-            'PowerSupplies',
-            'RadioUnits',
-            'RouterosDevices',
-        ]))
-    ) {
-        //inject access_point_id
-        if ($request->getParam('access_point_id') && !isset($params['access_point_id'])) {
-            $params['access_point_id'] = $request->getParam('access_point_id');
+if (!is_null($request)) { //check if not console route
+    Router::addUrlFilter(function (array $params, ServerRequest $request) {
+        //persistent win-link parameter
+        if ($request->getQuery('win-link') == 'true') {
+            $params['?']['win-link'] = 'true';
         }
-    }
 
-    return $params;
-});
+        //controllers related to access points
+        if (
+            (isset($params['controller']) && in_array($params['controller'], [
+                'AccessPointContacts',
+                'ElectricityMeterReadings',
+                'PowerSupplies',
+                'RadioUnits',
+                'RouterosDevices',
+            ]))
+            || (!isset($params['controller']) && in_array($request->getParam('controller'), [
+                'AccessPointContacts',
+                'ElectricityMeterReadings',
+                'PowerSupplies',
+                'RadioUnits',
+                'RouterosDevices',
+            ]))
+        ) {
+            //inject access_point_id
+            if ($request->getParam('access_point_id') && !isset($params['access_point_id'])) {
+                $params['access_point_id'] = $request->getParam('access_point_id');
+            }
+        }
+
+        return $params;
+    });
+}
