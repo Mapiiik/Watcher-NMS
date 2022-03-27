@@ -21,8 +21,10 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use Cake\Http\ServerRequest;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
 
 /*
  * The default class to use for all routes
@@ -92,10 +94,10 @@ $routes->scope('/', function (RouteBuilder $builder) {
  * ```
  * $routes->scope('/api', function (RouteBuilder $builder) {
  *     // No $builder->applyMiddleware() here.
- *     
+ *
  *     // Parse specified extensions from URLs
  *     // $builder->setExtensions(['json', 'xml']);
- *     
+ *
  *     // Connect API actions here.
  * });
  * ```
@@ -109,22 +111,38 @@ $routes->scope('/api', function (RouteBuilder $builder) {
             'search' => [
                 'action' => 'search',
                 'method' => 'GET',
-           ],
+            ],
         ],
     ]);
 });
 
-use Cake\Routing\Router;
-use Cake\Http\ServerRequest;
-
 Router::addUrlFilter(function (array $params, ServerRequest $request) {
+    //fix for console routes
+    if (is_null($request)) {
+        return $params;
+    }
+
+    //persistent win-link parameter
     if ($request->getQuery('win-link') == 'true') {
         $params['?']['win-link'] = 'true';
     }
 
+    //controllers related to access points
     if (
-        (isset($params['controller']) && in_array($params['controller'], ['AccessPointContacts', 'ElectricityMeterReadings', 'PowerSupplies', 'RadioUnits', 'RouterosDevices'])) ||
-        (!isset($params['controller']) && in_array($request->getParam('controller'), ['AccessPointContacts', 'ElectricityMeterReadings', 'PowerSupplies', 'RadioUnits', 'RouterosDevices']))
+        (isset($params['controller']) && in_array($params['controller'], [
+            'AccessPointContacts',
+            'ElectricityMeterReadings',
+            'PowerSupplies',
+            'RadioUnits',
+            'RouterosDevices',
+        ]))
+        || (!isset($params['controller']) && in_array($request->getParam('controller'), [
+            'AccessPointContacts',
+            'ElectricityMeterReadings',
+            'PowerSupplies',
+            'RadioUnits',
+            'RouterosDevices',
+        ]))
     ) {
         //inject access_point_id
         if ($request->getParam('access_point_id') && !isset($params['access_point_id'])) {
