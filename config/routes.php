@@ -116,7 +116,7 @@ $routes->scope('/api', function (RouteBuilder $builder) {
     ]);
 });
 
-if (!is_null($request)) { //check if not console route
+if (isset($request)) { //check if not console route
     Router::addUrlFilter(function (array $params, ServerRequest $request) {
         //persistent win-link parameter
         if ($request->getQuery('win-link') == 'true') {
