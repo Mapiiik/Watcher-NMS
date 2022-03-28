@@ -66,10 +66,10 @@ class CustomerPointsUpdateCommand extends Command
                 foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
                     /** @var \App\Model\Entity\CustomerConnection $customerConnection */
                     $customerConnection = $this->fetchTable('CustomerConnections')->findOrCreate([
-                        'customer_point_id' => $customerPoint->id,
                         'customer_number' => $importCustomerConnection->customer_number,
                         'contract_number' => $importCustomerConnection->contract_number,
                     ]);
+                    $customerConnection->customer_point_id = $customerPoint->id;
                     $customerConnection->name = $importCustomerConnection->name;
                     $customerConnection->note = $importCustomerConnection->note;
                     $this->fetchTable('CustomerConnections')->save($customerConnection);
