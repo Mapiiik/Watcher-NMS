@@ -105,8 +105,12 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
 $routes->scope('/api', function (RouteBuilder $builder) {
     $builder->setExtensions(['json']);
+
+    $builder->resources('AccessPoints', [
+        'only' => ['index', 'view'],
+    ]);
     $builder->resources('RouterosDevices', [
-        'only' => ['search'],
+        'only' => ['index', 'view', 'search'],
         'map' => [
             'search' => [
                 'action' => 'search',

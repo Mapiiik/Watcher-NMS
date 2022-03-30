@@ -149,8 +149,8 @@ return [
         [
             'role' => ['api'],
             'plugin' => null,
-            'controller' => ['RouterosDevices'],
-            'action' => ['search'],
+            'controller' => ['AccessPoints', 'RouterosDevices'],
+            'action' => ['index', 'view', 'search'],
         ],
         //user access
         [

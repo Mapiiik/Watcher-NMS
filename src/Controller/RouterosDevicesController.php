@@ -69,6 +69,7 @@ class RouterosDevicesController extends AppController
         $routerosDevices = $this->paginate($this->RouterosDevices);
 
         $this->set(compact('routerosDevices'));
+        $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
     }
 
     /**
@@ -124,6 +125,7 @@ class RouterosDevicesController extends AppController
         }
 
         $this->set('routerosDevice', $routerosDevice);
+        $this->viewBuilder()->setOption('serialize', ['routerosDevice']);
     }
 
     /**
