@@ -23,7 +23,7 @@ class AccessPointsController extends AppController
         $accessPoints = $this->AccessPoints->find('all')->all();
 
         $this->set('accessPoints', $accessPoints);
-        $this->viewBuilder()->setOption('serialize', ['accessPoints']);        
+        $this->viewBuilder()->setOption('serialize', ['accessPoints']);
     }
 
     /**
@@ -57,7 +57,7 @@ class AccessPointsController extends AppController
     public function add()
     {
         $this->request->allowMethod(['post', 'put']);
-        $accessPoint = $this->AccessPoints->newEmptyEntity($this->request->getData());
+        $accessPoint = $this->AccessPoints->newEntity($this->request->getData());
         if ($this->AccessPoints->save($accessPoint)) {
             $message = 'Saved';
         } else {

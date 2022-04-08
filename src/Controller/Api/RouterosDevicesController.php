@@ -23,7 +23,7 @@ class RouterosDevicesController extends AppController
         $routerosDevices = $this->RouterosDevices->find('all')->all();
 
         $this->set('routerosDevices', $routerosDevices);
-        $this->viewBuilder()->setOption('serialize', ['routerosDevices']);        
+        $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
     }
 
     /**
@@ -84,7 +84,7 @@ class RouterosDevicesController extends AppController
     public function add()
     {
         $this->request->allowMethod(['post', 'put']);
-        $routerosDevice = $this->RouterosDevices->newEmptyEntity($this->request->getData());
+        $routerosDevice = $this->RouterosDevices->newEntity($this->request->getData());
         if ($this->RouterosDevices->save($routerosDevice)) {
             $message = 'Saved';
         } else {
