@@ -47,7 +47,6 @@ class AccessPointsController extends AppController
         $accessPoints = $this->paginate($this->AccessPoints);
 
         $this->set(compact('accessPoints'));
-        $this->viewBuilder()->setOption('serialize', ['accessPoints']);
     }
 
     /**
@@ -70,7 +69,6 @@ class AccessPointsController extends AppController
         ]);
 
         $this->set('accessPoint', $accessPoint);
-        $this->viewBuilder()->setOption('serialize', ['accessPoint']);
     }
 
     /**

@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Form\SearchForm;
 use App\Model\Entity\RouterosDevice;
 use Cake\I18n\FrozenDate;
+use Cake\Utility\Security;
 
 /**
  * RouterosDevices Controller
@@ -69,28 +70,6 @@ class RouterosDevicesController extends AppController
         $routerosDevices = $this->paginate($this->RouterosDevices);
 
         $this->set(compact('routerosDevices'));
-        $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
-    }
-
-    /**
-     * Search method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function search()
-    {
-        $options = [
-            'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections'],
-            'order' => ['RouterosDevices.modified' => 'DESC'],
-        ];
-
-        if ($this->request->is(['get']) && ($this->request->getQuery('ip')) !== null) {
-            $options['conditions']['ip_address'] = $this->request->getQuery('ip');
-        }
-        $routerosDevices = $this->RouterosDevices->find('all', $options);
-
-        $this->set(compact('routerosDevices'));
-        $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
     }
 
     /**
@@ -125,7 +104,6 @@ class RouterosDevicesController extends AppController
         }
 
         $this->set('routerosDevice', $routerosDevice);
-        $this->viewBuilder()->setOption('serialize', ['routerosDevice']);
     }
 
     /**
@@ -590,7 +568,7 @@ class RouterosDevicesController extends AppController
      */
     private function getPassword(RouterosDevice $routerosDevice)
     {
-        $hash = \Cake\Utility\Security::hash($routerosDevice->serial_number, 'sha256', true);
+        $hash = Security::hash($routerosDevice->serial_number, 'sha256', true);
 
         return $this->hexToSetString(substr($hash, 0, 20));
     }

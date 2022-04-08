@@ -148,6 +148,7 @@ return [
         //API access
         [
             'role' => ['api'],
+            'prefix' => 'Api',
             'plugin' => null,
             'controller' => ['AccessPoints', 'RouterosDevices'],
             'action' => ['index', 'view', 'search'],
