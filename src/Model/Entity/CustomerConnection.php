@@ -19,6 +19,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\CustomerPoint $customer_point
+ * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\CustomerConnectionIp[] $customer_connection_ips
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  */
