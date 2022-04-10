@@ -50,7 +50,8 @@ class AccessPointsTable extends Table
         $this->addBehavior('Footprint');
         $this->addBehavior('StringModifications');
 
-        $this->belongsTo('AccessPoints', [
+        $this->belongsTo('ParentAccessPoints', [
+            'className' => 'AccessPoints',
             'foreignKey' => 'parent_access_point_id',
         ]);
         $this->hasMany('AccessPointContacts', [

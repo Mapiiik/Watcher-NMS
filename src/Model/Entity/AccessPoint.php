@@ -19,6 +19,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property int|null $month_of_electricity_meter_reading
  *
+ * @property \App\Model\Entity\AccessPoint $parent_access_point
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
  * @property \App\Model\Entity\RadioUnit[] $radio_units
