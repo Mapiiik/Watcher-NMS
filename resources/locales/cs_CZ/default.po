@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-02-09 14:02+0000\n"
-"PO-Revision-Date: 2022-02-09 15:28+0100\n"
+"POT-Creation-Date: 2022-04-10 17:04+0000\n"
+"PO-Revision-Date: 2022-04-10 19:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -16,32 +16,32 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #: src/Controller/AccessPointContactsController.php:40
-#: src/Controller/AccessPointsController.php:33
+#: src/Controller/AccessPointsController.php:34
 #: src/Controller/CustomerConnectionsController.php:31
 #: src/Controller/CustomerPointsController.php:30
 #: src/Controller/ElectricityMeterReadingsController.php:39
 #: src/Controller/PowerSuppliesController.php:40
-#: src/Controller/RadioLinksController.php:35
+#: src/Controller/RadioLinksController.php:36
 #: src/Controller/RadioUnitsController.php:40
 #: src/Controller/RouterosDeviceInterfacesController.php:31
 #: src/Controller/RouterosDeviceIpsController.php:31
-#: src/Controller/RouterosDevicesController.php:42
-#: src/Controller/RouterosDevicesController.php:676
+#: src/Controller/RouterosDevicesController.php:43
+#: src/Controller/RouterosDevicesController.php:656
 msgid "Search Set."
 msgstr "Hledání nastaveno."
 
 #: src/Controller/AccessPointContactsController.php:42
-#: src/Controller/AccessPointsController.php:35
+#: src/Controller/AccessPointsController.php:36
 #: src/Controller/CustomerConnectionsController.php:33
 #: src/Controller/CustomerPointsController.php:32
 #: src/Controller/ElectricityMeterReadingsController.php:41
 #: src/Controller/PowerSuppliesController.php:42
-#: src/Controller/RadioLinksController.php:37
+#: src/Controller/RadioLinksController.php:38
 #: src/Controller/RadioUnitsController.php:42
 #: src/Controller/RouterosDeviceInterfacesController.php:33
 #: src/Controller/RouterosDeviceIpsController.php:33
-#: src/Controller/RouterosDevicesController.php:44
-#: src/Controller/RouterosDevicesController.php:678
+#: src/Controller/RouterosDevicesController.php:45
+#: src/Controller/RouterosDevicesController.php:658
 msgid "There was a problem setting search."
 msgstr "Při při nastavování hledání došlo k potížím."
 
@@ -63,21 +63,21 @@ msgstr "Kontakt přístupového bodu byl odstraněn."
 msgid "The access point contact could not be deleted. Please, try again."
 msgstr "Kontakt přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:85
-#: src/Controller/AccessPointsController.php:109
+#: src/Controller/AccessPointsController.php:87
+#: src/Controller/AccessPointsController.php:112
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:89
-#: src/Controller/AccessPointsController.php:113
+#: src/Controller/AccessPointsController.php:91
+#: src/Controller/AccessPointsController.php:116
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:130
+#: src/Controller/AccessPointsController.php:136
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:132
+#: src/Controller/AccessPointsController.php:138
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
@@ -121,21 +121,21 @@ msgstr "IP adresa připojení zákazníka byla odstraněna."
 msgid "The customer connection ip could not be deleted. Please, try again."
 msgstr "IP adresu připojení zákazníka nelze odstranit. Opakujte akci."
 
-#: src/Controller/CustomerConnectionsController.php:88
-#: src/Controller/CustomerConnectionsController.php:115
+#: src/Controller/CustomerConnectionsController.php:89
+#: src/Controller/CustomerConnectionsController.php:117
 msgid "The customer connection has been saved."
 msgstr "Připojení zákazníka bylo uloženo."
 
-#: src/Controller/CustomerConnectionsController.php:92
-#: src/Controller/CustomerConnectionsController.php:119
+#: src/Controller/CustomerConnectionsController.php:93
+#: src/Controller/CustomerConnectionsController.php:121
 msgid "The customer connection could not be saved. Please, try again."
 msgstr "Připojení zákazníka nelze uložit. Opakujte akci."
 
-#: src/Controller/CustomerConnectionsController.php:137
+#: src/Controller/CustomerConnectionsController.php:140
 msgid "The customer connection has been deleted."
 msgstr "Připojení zákazníka bylo odstraněno."
 
-#: src/Controller/CustomerConnectionsController.php:139
+#: src/Controller/CustomerConnectionsController.php:142
 msgid "The customer connection could not be deleted. Please, try again."
 msgstr "Připojení zákazníka nelze odstranit. Opakujte akci."
 
@@ -273,21 +273,21 @@ msgstr "Tabulka radarových rušení byla aktualizována."
 msgid "The radar interferences table could not be updated. Please, try again."
 msgstr "Tabulku radarových rušení nelze aktualizovat. Opakujte akci."
 
-#: src/Controller/RadioLinksController.php:91
-#: src/Controller/RadioLinksController.php:115
+#: src/Controller/RadioLinksController.php:92
+#: src/Controller/RadioLinksController.php:116
 msgid "The radio link has been saved."
 msgstr "Rádiový spoj byl uložen."
 
-#: src/Controller/RadioLinksController.php:95
-#: src/Controller/RadioLinksController.php:119
+#: src/Controller/RadioLinksController.php:96
+#: src/Controller/RadioLinksController.php:120
 msgid "The radio link could not be saved. Please, try again."
 msgstr "Rádiový spoj nelze uložit. Opakujte akci."
 
-#: src/Controller/RadioLinksController.php:136
+#: src/Controller/RadioLinksController.php:137
 msgid "The radio link has been deleted."
 msgstr "Rádiový spoj byl odstraněn."
 
-#: src/Controller/RadioLinksController.php:138
+#: src/Controller/RadioLinksController.php:139
 msgid "The radio link could not be deleted. Please, try again."
 msgstr "Rádiový spoj nelze odstranit. Opakujte akci."
 
@@ -327,21 +327,21 @@ msgstr "Typ rádiové jednotky byl odstraněn."
 msgid "The radio unit type could not be deleted. Please, try again."
 msgstr "Typ rádiové jednotky nelze odstranit. Opakujte akci."
 
-#: src/Controller/RadioUnitsController.php:106
-#: src/Controller/RadioUnitsController.php:141
+#: src/Controller/RadioUnitsController.php:110
+#: src/Controller/RadioUnitsController.php:158
 msgid "The radio unit has been saved."
 msgstr "Rádiová jednotka byla uložena."
 
-#: src/Controller/RadioUnitsController.php:114
-#: src/Controller/RadioUnitsController.php:149
+#: src/Controller/RadioUnitsController.php:118
+#: src/Controller/RadioUnitsController.php:166
 msgid "The radio unit could not be saved. Please, try again."
 msgstr "Rádiovou jednotku nelze uložit. Opakujte akci."
 
-#: src/Controller/RadioUnitsController.php:172
+#: src/Controller/RadioUnitsController.php:199
 msgid "The radio unit has been deleted."
 msgstr "Rádiová jednotka byla odstraněna."
 
-#: src/Controller/RadioUnitsController.php:174
+#: src/Controller/RadioUnitsController.php:201
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr "Rádiovou jednotku nelze odstranit. Opakujte akci."
 
@@ -381,21 +381,21 @@ msgstr "IP routeros zařízení byla odstraněna."
 msgid "The routeros device ip could not be deleted. Please, try again."
 msgstr "IP adresu zařízení routeros nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:148
-#: src/Controller/RouterosDevicesController.php:182
+#: src/Controller/RouterosDevicesController.php:128
+#: src/Controller/RouterosDevicesController.php:162
 msgid "The routeros device has been saved."
 msgstr "Zařízení routeros bylo uloženo."
 
-#: src/Controller/RouterosDevicesController.php:156
-#: src/Controller/RouterosDevicesController.php:190
+#: src/Controller/RouterosDevicesController.php:136
+#: src/Controller/RouterosDevicesController.php:170
 msgid "The routeros device could not be saved. Please, try again."
 msgstr "Zařízení routeros nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:212
+#: src/Controller/RouterosDevicesController.php:192
 msgid "The routeros device has been deleted."
 msgstr "Zařízení routeros bylo odstraněno."
 
-#: src/Controller/RouterosDevicesController.php:214
+#: src/Controller/RouterosDevicesController.php:194
 msgid "The routeros device could not be deleted. Please, try again."
 msgstr "Zařízení routeros nelze odstranit. Opakujte akci."
 
@@ -403,10 +403,10 @@ msgstr "Zařízení routeros nelze odstranit. Opakujte akci."
 #: templates/AccessPointContacts/edit.php:10
 #: templates/AccessPointContacts/index.php:33
 #: templates/AccessPointContacts/view.php:10 templates/AccessPoints/add.php:10
-#: templates/AccessPoints/edit.php:10 templates/AccessPoints/index.php:30
-#: templates/AccessPoints/view.php:10 templates/AccessPoints/view.php:114
-#: templates/AccessPoints/view.php:184 templates/AccessPoints/view.php:251
-#: templates/AccessPoints/view.php:324 templates/AccessPoints/view.php:406
+#: templates/AccessPoints/edit.php:10 templates/AccessPoints/index.php:31
+#: templates/AccessPoints/view.php:10 templates/AccessPoints/view.php:126
+#: templates/AccessPoints/view.php:196 templates/AccessPoints/view.php:263
+#: templates/AccessPoints/view.php:336 templates/AccessPoints/view.php:418
 #: templates/AntennaTypes/add.php:10 templates/AntennaTypes/edit.php:10
 #: templates/AntennaTypes/index.php:19 templates/AntennaTypes/view.php:10
 #: templates/AntennaTypes/view.php:104
@@ -416,10 +416,10 @@ msgstr "Zařízení routeros nelze odstranit. Opakujte akci."
 #: templates/CustomerConnectionIps/view.php:10
 #: templates/CustomerConnections/add.php:10
 #: templates/CustomerConnections/edit.php:10
-#: templates/CustomerConnections/index.php:31
+#: templates/CustomerConnections/index.php:32
 #: templates/CustomerConnections/view.php:10
-#: templates/CustomerConnections/view.php:99
-#: templates/CustomerConnections/view.php:158
+#: templates/CustomerConnections/view.php:111
+#: templates/CustomerConnections/view.php:170
 #: templates/CustomerPoints/add.php:10 templates/CustomerPoints/edit.php:10
 #: templates/CustomerPoints/index.php:27 templates/CustomerPoints/view.php:10
 #: templates/CustomerPoints/view.php:99 templates/DeviceTypes/add.php:10
@@ -446,7 +446,7 @@ msgstr "Zařízení routeros nelze odstranit. Opakujte akci."
 #: templates/RadarInterferences/view.php:10
 #: templates/RadarInterferences/view.php:94 templates/RadioLinks/add.php:10
 #: templates/RadioLinks/edit.php:10 templates/RadioLinks/index.php:47
-#: templates/RadioLinks/view.php:10 templates/RadioLinks/view.php:92
+#: templates/RadioLinks/view.php:10 templates/RadioLinks/view.php:97
 #: templates/RadioUnitBands/add.php:10 templates/RadioUnitBands/edit.php:10
 #: templates/RadioUnitBands/index.php:16 templates/RadioUnitBands/view.php:10
 #: templates/RadioUnitBands/view.php:70 templates/RadioUnitBands/view.php:120
@@ -482,13 +482,13 @@ msgid "Add Access Point Contact"
 msgstr "Přidat kontakt přístupového bodu"
 
 #: templates/AccessPointContacts/add.php:35
-#: templates/AccessPointContacts/edit.php:43 templates/AccessPoints/add.php:32
-#: templates/AccessPoints/edit.php:40 templates/AccessPoints/map.php:56
+#: templates/AccessPointContacts/edit.php:43 templates/AccessPoints/add.php:36
+#: templates/AccessPoints/edit.php:44 templates/AccessPoints/map.php:56
 #: templates/AntennaTypes/add.php:28 templates/AntennaTypes/edit.php:36
 #: templates/CustomerConnectionIps/add.php:33
 #: templates/CustomerConnectionIps/edit.php:41
-#: templates/CustomerConnections/add.php:31
-#: templates/CustomerConnections/edit.php:39
+#: templates/CustomerConnections/add.php:32
+#: templates/CustomerConnections/edit.php:40
 #: templates/CustomerPoints/add.php:26 templates/CustomerPoints/edit.php:34
 #: templates/DeviceTypes/add.php:30 templates/DeviceTypes/edit.php:35
 #: templates/ElectricityMeterReadings/add.php:33
@@ -500,8 +500,8 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/RadarInterferences/edit.php:39 templates/RadioLinks/add.php:26
 #: templates/RadioLinks/edit.php:31 templates/RadioUnitBands/add.php:25
 #: templates/RadioUnitBands/edit.php:33 templates/RadioUnitTypes/add.php:27
-#: templates/RadioUnitTypes/edit.php:35 templates/RadioUnits/add.php:47
-#: templates/RadioUnits/edit.php:52
+#: templates/RadioUnitTypes/edit.php:35 templates/RadioUnits/add.php:61
+#: templates/RadioUnits/edit.php:66
 #: templates/RouterosDeviceInterfaces/add.php:41
 #: templates/RouterosDeviceInterfaces/edit.php:49
 #: templates/RouterosDeviceIps/add.php:30
@@ -512,17 +512,17 @@ msgstr "Potvrdit"
 
 #: templates/AccessPointContacts/edit.php:12
 #: templates/AccessPointContacts/index.php:58
-#: templates/AccessPoints/edit.php:12 templates/AccessPoints/index.php:71
-#: templates/AccessPoints/view.php:151 templates/AccessPoints/view.php:213
-#: templates/AccessPoints/view.php:284 templates/AccessPoints/view.php:376
-#: templates/AccessPoints/view.php:437 templates/AntennaTypes/edit.php:12
+#: templates/AccessPoints/edit.php:12 templates/AccessPoints/index.php:81
+#: templates/AccessPoints/view.php:163 templates/AccessPoints/view.php:225
+#: templates/AccessPoints/view.php:296 templates/AccessPoints/view.php:388
+#: templates/AccessPoints/view.php:449 templates/AntennaTypes/edit.php:12
 #: templates/AntennaTypes/index.php:51 templates/AntennaTypes/view.php:156
 #: templates/CustomerConnectionIps/edit.php:12
 #: templates/CustomerConnectionIps/index.php:46
 #: templates/CustomerConnections/edit.php:12
-#: templates/CustomerConnections/index.php:60
-#: templates/CustomerConnections/view.php:125
-#: templates/CustomerConnections/view.php:202
+#: templates/CustomerConnections/index.php:70
+#: templates/CustomerConnections/view.php:137
+#: templates/CustomerConnections/view.php:214
 #: templates/CustomerPoints/edit.php:12 templates/CustomerPoints/index.php:69
 #: templates/CustomerPoints/view.php:126 templates/DeviceTypes/edit.php:12
 #: templates/DeviceTypes/index.php:45 templates/DeviceTypes/view.php:136
@@ -538,7 +538,7 @@ msgstr "Potvrdit"
 #: templates/RadarInterferences/edit.php:12
 #: templates/RadarInterferences/index.php:55
 #: templates/RadarInterferences/view.php:141 templates/RadioLinks/edit.php:12
-#: templates/RadioLinks/index.php:118 templates/RadioLinks/view.php:144
+#: templates/RadioLinks/index.php:118 templates/RadioLinks/view.php:149
 #: templates/RadioUnitBands/edit.php:12 templates/RadioUnitBands/index.php:35
 #: templates/RadioUnitBands/view.php:99 templates/RadioUnitBands/view.php:148
 #: templates/RadioUnitTypes/edit.php:12 templates/RadioUnitTypes/index.php:49
@@ -559,20 +559,20 @@ msgstr "Odstranit"
 #: templates/AccessPointContacts/edit.php:15
 #: templates/AccessPointContacts/index.php:60
 #: templates/AccessPointContacts/view.php:20 templates/AccessPoints/edit.php:15
-#: templates/AccessPoints/index.php:73 templates/AccessPoints/view.php:20
-#: templates/AccessPoints/view.php:157 templates/AccessPoints/view.php:219
-#: templates/AccessPoints/view.php:286 templates/AccessPoints/view.php:378
-#: templates/AccessPoints/view.php:439 templates/AntennaTypes/edit.php:15
+#: templates/AccessPoints/index.php:83 templates/AccessPoints/view.php:20
+#: templates/AccessPoints/view.php:169 templates/AccessPoints/view.php:231
+#: templates/AccessPoints/view.php:298 templates/AccessPoints/view.php:390
+#: templates/AccessPoints/view.php:451 templates/AntennaTypes/edit.php:15
 #: templates/AntennaTypes/index.php:53 templates/AntennaTypes/view.php:20
 #: templates/AntennaTypes/view.php:158
 #: templates/CustomerConnectionIps/edit.php:15
 #: templates/CustomerConnectionIps/index.php:48
 #: templates/CustomerConnectionIps/view.php:20
 #: templates/CustomerConnections/edit.php:15
-#: templates/CustomerConnections/index.php:62
+#: templates/CustomerConnections/index.php:72
 #: templates/CustomerConnections/view.php:20
-#: templates/CustomerConnections/view.php:131
-#: templates/CustomerConnections/view.php:204
+#: templates/CustomerConnections/view.php:143
+#: templates/CustomerConnections/view.php:216
 #: templates/CustomerPoints/edit.php:15 templates/CustomerPoints/index.php:71
 #: templates/CustomerPoints/view.php:20 templates/CustomerPoints/view.php:132
 #: templates/DeviceTypes/edit.php:14 templates/DeviceTypes/index.php:47
@@ -594,7 +594,7 @@ msgstr "Odstranit"
 #: templates/RadarInterferences/view.php:20
 #: templates/RadarInterferences/view.php:147 templates/RadioLinks/edit.php:14
 #: templates/RadioLinks/index.php:120 templates/RadioLinks/view.php:19
-#: templates/RadioLinks/view.php:146 templates/RadioUnitBands/edit.php:15
+#: templates/RadioLinks/view.php:151 templates/RadioUnitBands/edit.php:15
 #: templates/RadioUnitBands/index.php:37 templates/RadioUnitBands/view.php:20
 #: templates/RadioUnitBands/view.php:101 templates/RadioUnitBands/view.php:150
 #: templates/RadioUnitTypes/edit.php:15 templates/RadioUnitTypes/index.php:51
@@ -635,7 +635,8 @@ msgid "Search"
 msgstr "Hledat"
 
 #: templates/AccessPointContacts/index.php:18
-#: templates/AccessPointContacts/view.php:30 templates/AccessPoints/view.php:99
+#: templates/AccessPointContacts/view.php:30
+#: templates/AccessPoints/view.php:111
 msgid "New Access Point Contact"
 msgstr "Nový kontakt přístupového bodu"
 
@@ -644,14 +645,14 @@ msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
 #: templates/AccessPointContacts/index.php:51
-#: templates/AccessPoints/index.php:64 templates/AccessPoints/view.php:134
-#: templates/AccessPoints/view.php:196 templates/AccessPoints/view.php:275
-#: templates/AccessPoints/view.php:367 templates/AccessPoints/view.php:428
+#: templates/AccessPoints/index.php:74 templates/AccessPoints/view.php:146
+#: templates/AccessPoints/view.php:208 templates/AccessPoints/view.php:287
+#: templates/AccessPoints/view.php:379 templates/AccessPoints/view.php:440
 #: templates/AntennaTypes/index.php:42 templates/AntennaTypes/view.php:147
 #: templates/CustomerConnectionIps/index.php:39
-#: templates/CustomerConnections/index.php:51
-#: templates/CustomerConnections/view.php:108
-#: templates/CustomerConnections/view.php:191
+#: templates/CustomerConnections/index.php:61
+#: templates/CustomerConnections/view.php:120
+#: templates/CustomerConnections/view.php:203
 #: templates/CustomerPoints/index.php:60 templates/CustomerPoints/view.php:109
 #: templates/DeviceTypes/index.php:36 templates/DeviceTypes/view.php:127
 #: templates/ElectricityMeterReadings/index.php:52
@@ -662,7 +663,7 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RadarInterferences/devices.php:56
 #: templates/RadarInterferences/index.php:46
 #: templates/RadarInterferences/view.php:124 templates/RadioLinks/index.php:109
-#: templates/RadioLinks/view.php:135 templates/RadioUnitBands/index.php:26
+#: templates/RadioLinks/view.php:140 templates/RadioUnitBands/index.php:26
 #: templates/RadioUnitBands/view.php:90 templates/RadioUnitBands/view.php:139
 #: templates/RadioUnitTypes/index.php:40 templates/RadioUnitTypes/view.php:148
 #: templates/RadioUnits/export.php:114 templates/RadioUnits/index.php:95
@@ -672,19 +673,19 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/index.php:84
 #: templates/RouterosDevices/view.php:165
 #: templates/RouterosDevices/view.php:218
-#: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1253
+#: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1260
 msgid "View"
 msgstr "Zobrazit"
 
 #: templates/AccessPointContacts/index.php:53
-#: templates/AccessPoints/index.php:66 templates/AccessPoints/view.php:142
-#: templates/AccessPoints/view.php:204 templates/AccessPoints/view.php:279
-#: templates/AccessPoints/view.php:371 templates/AccessPoints/view.php:432
+#: templates/AccessPoints/index.php:76 templates/AccessPoints/view.php:154
+#: templates/AccessPoints/view.php:216 templates/AccessPoints/view.php:291
+#: templates/AccessPoints/view.php:383 templates/AccessPoints/view.php:444
 #: templates/AntennaTypes/index.php:46 templates/AntennaTypes/view.php:151
 #: templates/CustomerConnectionIps/index.php:41
-#: templates/CustomerConnections/index.php:55
-#: templates/CustomerConnections/view.php:116
-#: templates/CustomerConnections/view.php:197
+#: templates/CustomerConnections/index.php:65
+#: templates/CustomerConnections/view.php:128
+#: templates/CustomerConnections/view.php:209
 #: templates/CustomerPoints/index.php:64 templates/CustomerPoints/view.php:117
 #: templates/DeviceTypes/index.php:40 templates/DeviceTypes/view.php:131
 #: templates/ElectricityMeterReadings/index.php:56
@@ -695,7 +696,7 @@ msgstr "Zobrazit"
 #: templates/RadarInterferences/devices.php:60
 #: templates/RadarInterferences/index.php:50
 #: templates/RadarInterferences/view.php:132 templates/RadioLinks/index.php:113
-#: templates/RadioLinks/view.php:139 templates/RadioUnitBands/index.php:30
+#: templates/RadioLinks/view.php:144 templates/RadioUnitBands/index.php:30
 #: templates/RadioUnitBands/view.php:94 templates/RadioUnitBands/view.php:143
 #: templates/RadioUnitTypes/index.php:44 templates/RadioUnitTypes/view.php:152
 #: templates/RadioUnits/export.php:118 templates/RadioUnits/index.php:99
@@ -709,9 +710,9 @@ msgid "Edit"
 msgstr "Upravit"
 
 #: templates/AccessPointContacts/index.php:70
-#: templates/AccessPoints/index.php:83 templates/AntennaTypes/index.php:63
+#: templates/AccessPoints/index.php:93 templates/AntennaTypes/index.php:63
 #: templates/CustomerConnectionIps/index.php:58
-#: templates/CustomerConnections/index.php:72
+#: templates/CustomerConnections/index.php:82
 #: templates/CustomerPoints/index.php:81 templates/DeviceTypes/index.php:57
 #: templates/ElectricityMeterReadings/index.php:73
 #: templates/Manufacturers/index.php:45 templates/PowerSupplies/index.php:86
@@ -727,9 +728,9 @@ msgid "first"
 msgstr "první"
 
 #: templates/AccessPointContacts/index.php:71
-#: templates/AccessPoints/index.php:84 templates/AntennaTypes/index.php:64
+#: templates/AccessPoints/index.php:94 templates/AntennaTypes/index.php:64
 #: templates/CustomerConnectionIps/index.php:59
-#: templates/CustomerConnections/index.php:73
+#: templates/CustomerConnections/index.php:83
 #: templates/CustomerPoints/index.php:82 templates/DeviceTypes/index.php:58
 #: templates/ElectricityMeterReadings/index.php:74
 #: templates/Manufacturers/index.php:46 templates/PowerSupplies/index.php:87
@@ -745,9 +746,9 @@ msgid "previous"
 msgstr "předchozí"
 
 #: templates/AccessPointContacts/index.php:73
-#: templates/AccessPoints/index.php:86 templates/AntennaTypes/index.php:66
+#: templates/AccessPoints/index.php:96 templates/AntennaTypes/index.php:66
 #: templates/CustomerConnectionIps/index.php:61
-#: templates/CustomerConnections/index.php:75
+#: templates/CustomerConnections/index.php:85
 #: templates/CustomerPoints/index.php:84 templates/DeviceTypes/index.php:60
 #: templates/ElectricityMeterReadings/index.php:76
 #: templates/Manufacturers/index.php:48 templates/PowerSupplies/index.php:89
@@ -763,9 +764,9 @@ msgid "next"
 msgstr "další"
 
 #: templates/AccessPointContacts/index.php:74
-#: templates/AccessPoints/index.php:87 templates/AntennaTypes/index.php:67
+#: templates/AccessPoints/index.php:97 templates/AntennaTypes/index.php:67
 #: templates/CustomerConnectionIps/index.php:62
-#: templates/CustomerConnections/index.php:76
+#: templates/CustomerConnections/index.php:86
 #: templates/CustomerPoints/index.php:85 templates/DeviceTypes/index.php:61
 #: templates/ElectricityMeterReadings/index.php:77
 #: templates/Manufacturers/index.php:49 templates/PowerSupplies/index.php:90
@@ -781,9 +782,9 @@ msgid "last"
 msgstr "poslední"
 
 #: templates/AccessPointContacts/index.php:77
-#: templates/AccessPoints/index.php:90 templates/AntennaTypes/index.php:70
+#: templates/AccessPoints/index.php:100 templates/AntennaTypes/index.php:70
 #: templates/CustomerConnectionIps/index.php:65
-#: templates/CustomerConnections/index.php:79
+#: templates/CustomerConnections/index.php:89
 #: templates/CustomerPoints/index.php:88 templates/DeviceTypes/index.php:64
 #: templates/ElectricityMeterReadings/index.php:80
 #: templates/Manufacturers/index.php:52 templates/PowerSupplies/index.php:93
@@ -824,14 +825,14 @@ msgid "Id"
 msgstr "ID"
 
 #: templates/AccessPointContacts/view.php:45 templates/AccessPoints/view.php:37
-#: templates/AccessPoints/view.php:108 templates/AccessPoints/view.php:180
-#: templates/AccessPoints/view.php:242 templates/AccessPoints/view.php:306
-#: templates/AccessPoints/view.php:398 templates/AntennaTypes/view.php:37
+#: templates/AccessPoints/view.php:120 templates/AccessPoints/view.php:192
+#: templates/AccessPoints/view.php:254 templates/AccessPoints/view.php:318
+#: templates/AccessPoints/view.php:410 templates/AntennaTypes/view.php:37
 #: templates/AntennaTypes/view.php:86
 #: templates/CustomerConnectionIps/view.php:45
 #: templates/CustomerConnections/view.php:45
-#: templates/CustomerConnections/view.php:96
-#: templates/CustomerConnections/view.php:149
+#: templates/CustomerConnections/view.php:108
+#: templates/CustomerConnections/view.php:161
 #: templates/CustomerPoints/view.php:37 templates/CustomerPoints/view.php:95
 #: templates/DeviceTypes/view.php:37 templates/DeviceTypes/view.php:85
 #: templates/ElectricityMeterReadings/view.php:45
@@ -841,7 +842,7 @@ msgstr "ID"
 #: templates/PowerSupplyTypes/view.php:90
 #: templates/RadarInterferences/view.php:45
 #: templates/RadarInterferences/view.php:80 templates/RadioLinks/view.php:42
-#: templates/RadioLinks/view.php:74 templates/RadioUnitBands/view.php:37
+#: templates/RadioLinks/view.php:79 templates/RadioUnitBands/view.php:37
 #: templates/RadioUnitBands/view.php:65 templates/RadioUnitBands/view.php:116
 #: templates/RadioUnitTypes/view.php:45 templates/RadioUnitTypes/view.php:91
 #: templates/RadioUnits/export.php:16 templates/RadioUnits/view.php:42
@@ -854,10 +855,11 @@ msgid "Name"
 msgstr "Jméno"
 
 #: templates/AccessPointContacts/view.php:49 templates/AntennaTypes/view.php:87
-#: templates/CustomerConnections/view.php:150 templates/DeviceTypes/view.php:86
+#: templates/CustomerConnections/view.php:62
+#: templates/CustomerConnections/view.php:162 templates/DeviceTypes/view.php:86
 #: templates/ElectricityMeterReadings/view.php:49
 #: templates/PowerSupplies/view.php:62 templates/PowerSupplyTypes/view.php:91
-#: templates/RadioLinks/view.php:75 templates/RadioUnitTypes/view.php:92
+#: templates/RadioLinks/view.php:80 templates/RadioUnitTypes/view.php:92
 #: templates/RadioUnits/export.php:15 templates/RadioUnits/view.php:55
 #: templates/RouterosDevices/export.php:24
 #: templates/RouterosDevices/view.php:48
@@ -866,33 +868,33 @@ msgid "Access Point"
 msgstr "Přístupový bod"
 
 #: templates/AccessPointContacts/view.php:56
-#: templates/AccessPoints/view.php:109
+#: templates/AccessPoints/view.php:121
 msgid "Phone"
 msgstr "Telefon"
 
 #: templates/AccessPointContacts/view.php:60
-#: templates/AccessPoints/view.php:110
+#: templates/AccessPoints/view.php:122
 msgid "Email"
 msgstr "E-mail"
 
 #: templates/AccessPointContacts/view.php:64
-#: templates/AccessPoints/view.php:111
-#: templates/CustomerConnections/view.php:62
+#: templates/AccessPoints/view.php:123
+#: templates/CustomerConnections/view.php:74
 #: templates/CustomerPoints/view.php:96
 msgid "Customer Number"
 msgstr "Číslo zákazníka"
 
 #: templates/AccessPointContacts/view.php:72
-#: templates/AccessPoints/view.php:112
-#: templates/CustomerConnections/view.php:72
+#: templates/AccessPoints/view.php:124
+#: templates/CustomerConnections/view.php:84
 #: templates/CustomerPoints/view.php:97
 msgid "Contract Number"
 msgstr "Číslo smlouvy"
 
-#: templates/AccessPointContacts/view.php:76 templates/AccessPoints/view.php:83
+#: templates/AccessPointContacts/view.php:76 templates/AccessPoints/view.php:95
 #: templates/AntennaTypes/view.php:66
 #: templates/CustomerConnectionIps/view.php:66
-#: templates/CustomerConnections/view.php:76
+#: templates/CustomerConnections/view.php:88
 #: templates/CustomerPoints/view.php:75 templates/DeviceTypes/view.php:65
 #: templates/ElectricityMeterReadings/view.php:70
 #: templates/Manufacturers/view.php:49 templates/PowerSupplies/view.php:95
@@ -906,10 +908,10 @@ msgstr "Číslo smlouvy"
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: templates/AccessPointContacts/view.php:80 templates/AccessPoints/view.php:87
+#: templates/AccessPointContacts/view.php:80 templates/AccessPoints/view.php:99
 #: templates/AntennaTypes/view.php:70
 #: templates/CustomerConnectionIps/view.php:70
-#: templates/CustomerConnections/view.php:80
+#: templates/CustomerConnections/view.php:92
 #: templates/CustomerPoints/view.php:79 templates/DeviceTypes/view.php:69
 #: templates/ElectricityMeterReadings/view.php:74
 #: templates/Manufacturers/view.php:53 templates/PowerSupplies/view.php:99
@@ -923,13 +925,14 @@ msgstr "Vytvořeno"
 msgid "Modified"
 msgstr "Upraveno"
 
-#: templates/AccessPointContacts/view.php:85 templates/AccessPoints/view.php:92
-#: templates/AccessPoints/view.php:113 templates/AccessPoints/view.php:183
-#: templates/AccessPoints/view.php:250 templates/AccessPoints/view.php:323
-#: templates/AntennaTypes/view.php:75 templates/AntennaTypes/view.php:103
+#: templates/AccessPointContacts/view.php:85
+#: templates/AccessPoints/view.php:104 templates/AccessPoints/view.php:125
+#: templates/AccessPoints/view.php:195 templates/AccessPoints/view.php:262
+#: templates/AccessPoints/view.php:335 templates/AntennaTypes/view.php:75
+#: templates/AntennaTypes/view.php:103
 #: templates/CustomerConnectionIps/view.php:75
-#: templates/CustomerConnections/view.php:85
-#: templates/CustomerConnections/view.php:98
+#: templates/CustomerConnections/view.php:97
+#: templates/CustomerConnections/view.php:110
 #: templates/CustomerPoints/view.php:84 templates/CustomerPoints/view.php:98
 #: templates/DeviceTypes/view.php:74
 #: templates/ElectricityMeterReadings/view.php:79
@@ -937,7 +940,7 @@ msgstr "Upraveno"
 #: templates/Manufacturers/view.php:124 templates/Manufacturers/view.php:165
 #: templates/PowerSupplies/view.php:104 templates/PowerSupplyTypes/view.php:79
 #: templates/PowerSupplyTypes/view.php:98 templates/RadioLinks/view.php:63
-#: templates/RadioLinks/view.php:91 templates/RadioUnitBands/view.php:54
+#: templates/RadioLinks/view.php:96 templates/RadioUnitBands/view.php:54
 #: templates/RadioUnitBands/view.php:69 templates/RadioUnitBands/view.php:119
 #: templates/RadioUnitTypes/view.php:80 templates/RadioUnitTypes/view.php:108
 #: templates/RadioUnits/view.php:159
@@ -971,17 +974,17 @@ msgstr "Mapa"
 msgid "Access Points"
 msgstr "Přístupové body"
 
-#: templates/AccessPoints/index.php:29 templates/AccessPoints/view.php:57
+#: templates/AccessPoints/index.php:30 templates/AccessPoints/view.php:69
 #: templates/CustomerPoints/index.php:26 templates/CustomerPoints/view.php:49
 msgid "Maps"
 msgstr "Mapy"
 
-#: templates/AccessPoints/index.php:43 templates/AccessPoints/view.php:60
+#: templates/AccessPoints/index.php:53 templates/AccessPoints/view.php:72
 #: templates/CustomerPoints/index.php:38 templates/CustomerPoints/view.php:52
 msgid "Google Maps"
 msgstr "Google Mapy"
 
-#: templates/AccessPoints/index.php:53 templates/AccessPoints/view.php:71
+#: templates/AccessPoints/index.php:63 templates/AccessPoints/view.php:83
 #: templates/CustomerPoints/index.php:48 templates/CustomerPoints/view.php:63
 msgid "Mapy.cz"
 msgstr "Mapy.cz"
@@ -999,205 +1002,209 @@ msgid "Device Name"
 msgstr "Název zařízení"
 
 #: templates/AccessPoints/view.php:45
+msgid "Parent Access Point"
+msgstr "Nadřazený přístupový bod"
+
+#: templates/AccessPoints/view.php:57
 msgid "Month Of Electricity Meter Reading"
 msgstr "Měsíc odečítání elektroměru"
 
-#: templates/AccessPoints/view.php:49 templates/CustomerPoints/view.php:41
+#: templates/AccessPoints/view.php:61 templates/CustomerPoints/view.php:41
 #: templates/RadioUnits/export.php:39 templates/RouterosDevices/export.php:37
 msgid "Gps Y"
 msgstr "Gps Y"
 
-#: templates/AccessPoints/view.php:53 templates/CustomerPoints/view.php:45
+#: templates/AccessPoints/view.php:65 templates/CustomerPoints/view.php:45
 #: templates/RadioUnits/export.php:40 templates/RouterosDevices/export.php:38
 msgid "Gps X"
 msgstr "Gps X"
 
-#: templates/AccessPoints/view.php:103
+#: templates/AccessPoints/view.php:115
 msgid "Related Access Point Contacts"
 msgstr "Související kontakty přístupových bodů"
 
-#: templates/AccessPoints/view.php:171
+#: templates/AccessPoints/view.php:183
 #: templates/ElectricityMeterReadings/index.php:18
 #: templates/ElectricityMeterReadings/view.php:30
 msgid "New Electricity Meter Reading"
 msgstr "Nový odečet elektroměru"
 
-#: templates/AccessPoints/view.php:175
+#: templates/AccessPoints/view.php:187
 msgid "Related Electricity Meter Readings"
 msgstr "Související odečty elektroměrů"
 
-#: templates/AccessPoints/view.php:181
+#: templates/AccessPoints/view.php:193
 #: templates/ElectricityMeterReadings/view.php:62
 msgid "Reading Date"
 msgstr "Datum odečtu"
 
-#: templates/AccessPoints/view.php:182
+#: templates/AccessPoints/view.php:194
 #: templates/ElectricityMeterReadings/view.php:66
 msgid "Reading Value"
 msgstr "Hodnota odečtu"
 
-#: templates/AccessPoints/view.php:233 templates/PowerSupplies/index.php:17
+#: templates/AccessPoints/view.php:245 templates/PowerSupplies/index.php:17
 #: templates/PowerSupplies/view.php:30
 msgid "New Power Supply"
 msgstr "Nový napájecí zdroj"
 
-#: templates/AccessPoints/view.php:237 templates/PowerSupplyTypes/view.php:85
+#: templates/AccessPoints/view.php:249 templates/PowerSupplyTypes/view.php:85
 msgid "Related Power Supplies"
 msgstr "Související napájecí zdroje"
 
-#: templates/AccessPoints/view.php:243 templates/PowerSupplies/view.php:49
+#: templates/AccessPoints/view.php:255 templates/PowerSupplies/view.php:49
 msgid "Power Supply Type"
 msgstr "Typ napájecího zdroje"
 
-#: templates/AccessPoints/view.php:244 templates/AccessPoints/view.php:319
-#: templates/AccessPoints/view.php:403 templates/AntennaTypes/view.php:99
-#: templates/CustomerConnections/view.php:155 templates/DeviceTypes/view.php:91
+#: templates/AccessPoints/view.php:256 templates/AccessPoints/view.php:331
+#: templates/AccessPoints/view.php:415 templates/AntennaTypes/view.php:99
+#: templates/CustomerConnections/view.php:167 templates/DeviceTypes/view.php:91
 #: templates/PowerSupplies/view.php:71 templates/PowerSupplyTypes/view.php:92
-#: templates/RadioLinks/index.php:44 templates/RadioLinks/view.php:87
+#: templates/RadioLinks/index.php:44 templates/RadioLinks/view.php:92
 #: templates/RadioUnitTypes/view.php:104 templates/RadioUnits/export.php:33
 #: templates/RadioUnits/view.php:90 templates/RouterosDevices/export.php:31
 #: templates/RouterosDevices/view.php:105
 msgid "Serial Number"
 msgstr "Sériové číslo"
 
-#: templates/AccessPoints/view.php:245 templates/PowerSupplies/view.php:79
+#: templates/AccessPoints/view.php:257 templates/PowerSupplies/view.php:79
 #: templates/PowerSupplyTypes/view.php:93
 msgid "Battery Count"
 msgstr "Počet baterií"
 
-#: templates/AccessPoints/view.php:246 templates/PowerSupplies/view.php:83
+#: templates/AccessPoints/view.php:258 templates/PowerSupplies/view.php:83
 #: templates/PowerSupplyTypes/view.php:94
 msgid "Battery Voltage"
 msgstr "Napětí baterie"
 
-#: templates/AccessPoints/view.php:247 templates/PowerSupplies/view.php:87
+#: templates/AccessPoints/view.php:259 templates/PowerSupplies/view.php:87
 #: templates/PowerSupplyTypes/view.php:95
 msgid "Battery Capacity"
 msgstr "Kapacita baterie"
 
-#: templates/AccessPoints/view.php:248 templates/PowerSupplies/view.php:91
+#: templates/AccessPoints/view.php:260 templates/PowerSupplies/view.php:91
 #: templates/PowerSupplyTypes/view.php:96
 msgid "Battery Replacement"
 msgstr "Výměna baterie"
 
-#: templates/AccessPoints/view.php:249 templates/PowerSupplies/view.php:75
+#: templates/AccessPoints/view.php:261 templates/PowerSupplies/view.php:75
 #: templates/PowerSupplyTypes/view.php:97
 msgid "Battery Duration"
 msgstr "Výdrž baterie"
 
-#: templates/AccessPoints/view.php:297 templates/RadioUnits/index.php:24
-#: templates/RadioUnits/view.php:27
+#: templates/AccessPoints/view.php:309 templates/RadioLinks/view.php:70
+#: templates/RadioUnits/index.php:24 templates/RadioUnits/view.php:27
 msgid "New Radio Unit"
 msgstr "Nová rádiová jednotka"
 
-#: templates/AccessPoints/view.php:301 templates/AntennaTypes/view.php:81
-#: templates/RadioLinks/view.php:69 templates/RadioUnitTypes/view.php:86
+#: templates/AccessPoints/view.php:313 templates/AntennaTypes/view.php:81
+#: templates/RadioLinks/view.php:74 templates/RadioUnitTypes/view.php:86
 msgid "Related Radio Units"
 msgstr "Související rádiové jednotky"
 
-#: templates/AccessPoints/view.php:307 templates/AntennaTypes/view.php:89
-#: templates/RadioLinks/index.php:34 templates/RadioLinks/view.php:76
+#: templates/AccessPoints/view.php:319 templates/AntennaTypes/view.php:89
+#: templates/RadioLinks/index.php:34 templates/RadioLinks/view.php:81
 #: templates/RadioUnits/export.php:17 templates/RadioUnits/view.php:46
 msgid "Radio Unit Type"
 msgstr "Typ rádiové jednotky"
 
-#: templates/AccessPoints/view.php:308 templates/AntennaTypes/view.php:88
+#: templates/AccessPoints/view.php:320 templates/AntennaTypes/view.php:88
 #: templates/RadioUnitTypes/view.php:93 templates/RadioUnits/export.php:18
 #: templates/RadioUnits/view.php:64
 msgid "Radio Link"
 msgstr "Rádiový spoj"
 
-#: templates/AccessPoints/view.php:309 templates/RadioLinks/index.php:35
-#: templates/RadioLinks/view.php:77 templates/RadioUnitTypes/view.php:94
+#: templates/AccessPoints/view.php:321 templates/RadioLinks/index.php:35
+#: templates/RadioLinks/view.php:82 templates/RadioUnitTypes/view.php:94
 #: templates/RadioUnits/export.php:19 templates/RadioUnits/view.php:73
 msgid "Antenna Type"
 msgstr "Typ antény"
 
-#: templates/AccessPoints/view.php:310 templates/AntennaTypes/view.php:90
-#: templates/RadioLinks/index.php:36 templates/RadioLinks/view.php:78
+#: templates/AccessPoints/view.php:322 templates/AntennaTypes/view.php:90
+#: templates/RadioLinks/index.php:36 templates/RadioLinks/view.php:83
 #: templates/RadioUnitTypes/view.php:95 templates/RadioUnits/export.php:22
 #: templates/RadioUnits/view.php:82
 msgid "Polarization"
 msgstr "Polarizace"
 
-#: templates/AccessPoints/view.php:311 templates/AntennaTypes/view.php:91
-#: templates/RadioLinks/index.php:37 templates/RadioLinks/view.php:79
+#: templates/AccessPoints/view.php:323 templates/AntennaTypes/view.php:91
+#: templates/RadioLinks/index.php:37 templates/RadioLinks/view.php:84
 #: templates/RadioUnitTypes/view.php:96 templates/RadioUnits/export.php:23
 #: templates/RadioUnits/view.php:110
 msgid "Channel Width"
 msgstr "Šířka kanálu"
 
-#: templates/AccessPoints/view.php:312 templates/AntennaTypes/view.php:92
-#: templates/RadioLinks/index.php:38 templates/RadioLinks/view.php:80
+#: templates/AccessPoints/view.php:324 templates/AntennaTypes/view.php:92
+#: templates/RadioLinks/index.php:38 templates/RadioLinks/view.php:85
 #: templates/RadioUnitTypes/view.php:97 templates/RadioUnits/export.php:24
 #: templates/RadioUnits/view.php:114
 msgid "Tx Frequency"
 msgstr "Tx frekvence"
 
-#: templates/AccessPoints/view.php:313 templates/AntennaTypes/view.php:93
-#: templates/RadioLinks/index.php:39 templates/RadioLinks/view.php:81
+#: templates/AccessPoints/view.php:325 templates/AntennaTypes/view.php:93
+#: templates/RadioLinks/index.php:39 templates/RadioLinks/view.php:86
 #: templates/RadioUnitTypes/view.php:98 templates/RadioUnits/export.php:25
 #: templates/RadioUnits/view.php:118
 msgid "Rx Frequency"
 msgstr "Rx frekvence"
 
-#: templates/AccessPoints/view.php:314 templates/AntennaTypes/view.php:94
-#: templates/RadioLinks/index.php:40 templates/RadioLinks/view.php:82
+#: templates/AccessPoints/view.php:326 templates/AntennaTypes/view.php:94
+#: templates/RadioLinks/index.php:40 templates/RadioLinks/view.php:87
 #: templates/RadioUnitTypes/view.php:99 templates/RadioUnits/export.php:26
 #: templates/RadioUnits/view.php:122
 msgid "Tx Power"
 msgstr "Výkon Tx"
 
-#: templates/AccessPoints/view.php:315 templates/AntennaTypes/view.php:95
-#: templates/RadioLinks/index.php:41 templates/RadioLinks/view.php:83
+#: templates/AccessPoints/view.php:327 templates/AntennaTypes/view.php:95
+#: templates/RadioLinks/index.php:41 templates/RadioLinks/view.php:88
 #: templates/RadioUnitTypes/view.php:100 templates/RadioUnits/export.php:27
 #: templates/RadioUnits/view.php:126
 msgid "Rx Signal"
 msgstr "Rx signál"
 
-#: templates/AccessPoints/view.php:316 templates/AntennaTypes/view.php:96
-#: templates/RadioLinks/index.php:42 templates/RadioLinks/view.php:84
+#: templates/AccessPoints/view.php:328 templates/AntennaTypes/view.php:96
+#: templates/RadioLinks/index.php:42 templates/RadioLinks/view.php:89
 #: templates/RadioUnitTypes/view.php:101 templates/RadioUnits/export.php:28
 #: templates/RadioUnits/view.php:130
 msgid "Operating Speed"
 msgstr "Provozní rychlost"
 
-#: templates/AccessPoints/view.php:317 templates/AntennaTypes/view.php:97
-#: templates/RadioLinks/index.php:43 templates/RadioLinks/view.php:85
+#: templates/AccessPoints/view.php:329 templates/AntennaTypes/view.php:97
+#: templates/RadioLinks/index.php:43 templates/RadioLinks/view.php:90
 #: templates/RadioUnitTypes/view.php:102 templates/RadioUnits/export.php:29
 #: templates/RadioUnits/view.php:134
 msgid "Maximal Speed"
 msgstr "Maximální rychlost"
 
-#: templates/AccessPoints/view.php:318 templates/AccessPoints/view.php:405
+#: templates/AccessPoints/view.php:330 templates/AccessPoints/view.php:417
 #: templates/AntennaTypes/view.php:98
-#: templates/CustomerConnections/view.php:157 templates/DeviceTypes/view.php:93
-#: templates/RadioLinks/view.php:86 templates/RadioUnitTypes/view.php:103
+#: templates/CustomerConnections/view.php:169 templates/DeviceTypes/view.php:93
+#: templates/RadioLinks/view.php:91 templates/RadioUnitTypes/view.php:103
 #: templates/RadioUnits/export.php:32 templates/RadioUnits/view.php:86
 #: templates/RouterosDevices/export.php:33
 #: templates/RouterosDevices/view.php:113
 msgid "Firmware Version"
 msgstr "Verze firmwaru"
 
-#: templates/AccessPoints/view.php:320 templates/AntennaTypes/view.php:100
-#: templates/RadioLinks/index.php:45 templates/RadioLinks/view.php:88
+#: templates/AccessPoints/view.php:332 templates/AntennaTypes/view.php:100
+#: templates/RadioLinks/index.php:45 templates/RadioLinks/view.php:93
 #: templates/RadioUnitTypes/view.php:105 templates/RadioUnits/export.php:34
 #: templates/RadioUnits/view.php:94
 msgid "Station Address"
 msgstr "Adresa stanice"
 
-#: templates/AccessPoints/view.php:321 templates/AntennaTypes/view.php:101
-#: templates/RadioLinks/view.php:89 templates/RadioUnitTypes/view.php:106
+#: templates/AccessPoints/view.php:333 templates/AntennaTypes/view.php:101
+#: templates/RadioLinks/view.php:94 templates/RadioUnitTypes/view.php:106
 #: templates/RadioUnits/export.php:35 templates/RadioUnits/view.php:138
 msgid "Expiration Date"
 msgstr "Datum vypršení platnosti"
 
-#: templates/AccessPoints/view.php:322 templates/AccessPoints/view.php:400
+#: templates/AccessPoints/view.php:334 templates/AccessPoints/view.php:412
 #: templates/AntennaTypes/view.php:102
 #: templates/CustomerConnectionIps/view.php:62
-#: templates/CustomerConnections/view.php:97
-#: templates/CustomerConnections/view.php:152 templates/DeviceTypes/view.php:88
-#: templates/RadioLinks/index.php:46 templates/RadioLinks/view.php:90
+#: templates/CustomerConnections/view.php:109
+#: templates/CustomerConnections/view.php:164 templates/DeviceTypes/view.php:88
+#: templates/RadioLinks/index.php:46 templates/RadioLinks/view.php:95
 #: templates/RadioUnitTypes/view.php:107 templates/RadioUnits/export.php:36
 #: templates/RadioUnits/view.php:98 templates/RouterosDeviceIps/view.php:62
 #: templates/RouterosDevices/export.php:28
@@ -1205,39 +1212,39 @@ msgstr "Datum vypršení platnosti"
 msgid "Ip Address"
 msgstr "IP adresa"
 
-#: templates/AccessPoints/view.php:389 templates/RouterosDevices/index.php:30
+#: templates/AccessPoints/view.php:401 templates/RouterosDevices/index.php:30
 #: templates/RouterosDevices/view.php:29
 msgid "New Routeros Device"
 msgstr "Nové zařízení RouterOS"
 
-#: templates/AccessPoints/view.php:393
-#: templates/CustomerConnections/view.php:144 templates/DeviceTypes/view.php:80
+#: templates/AccessPoints/view.php:405
+#: templates/CustomerConnections/view.php:156 templates/DeviceTypes/view.php:80
 msgid "Related Routeros Devices"
 msgstr "Související zařízení RouterOS"
 
-#: templates/AccessPoints/view.php:399
-#: templates/CustomerConnections/view.php:151
+#: templates/AccessPoints/view.php:411
+#: templates/CustomerConnections/view.php:163
 #: templates/RouterosDevices/export.php:27
 #: templates/RouterosDevices/view.php:70
 msgid "Device Type"
 msgstr "Typ zařízení"
 
-#: templates/AccessPoints/view.php:401
-#: templates/CustomerConnections/view.php:153 templates/DeviceTypes/view.php:89
+#: templates/AccessPoints/view.php:413
+#: templates/CustomerConnections/view.php:165 templates/DeviceTypes/view.php:89
 #: templates/RouterosDevices/export.php:29
 #: templates/RouterosDevices/view.php:97
 msgid "System Description"
 msgstr "Popis systému"
 
-#: templates/AccessPoints/view.php:402
-#: templates/CustomerConnections/view.php:154 templates/DeviceTypes/view.php:90
+#: templates/AccessPoints/view.php:414
+#: templates/CustomerConnections/view.php:166 templates/DeviceTypes/view.php:90
 #: templates/RouterosDevices/export.php:30
 #: templates/RouterosDevices/view.php:101
 msgid "Board Name"
 msgstr "Název desky"
 
-#: templates/AccessPoints/view.php:404
-#: templates/CustomerConnections/view.php:156 templates/DeviceTypes/view.php:92
+#: templates/AccessPoints/view.php:416
+#: templates/CustomerConnections/view.php:168 templates/DeviceTypes/view.php:92
 #: templates/RouterosDevices/export.php:32
 #: templates/RouterosDevices/view.php:109
 msgid "Software Version"
@@ -1358,7 +1365,7 @@ msgstr "Odstranit připojení zákazníka"
 msgid "Customer Point"
 msgstr "Zákaznický bod"
 
-#: templates/CustomerConnections/view.php:91
+#: templates/CustomerConnections/view.php:103
 msgid "Related Customer Connection Ips"
 msgstr "Související IP připojení zákazníků"
 
