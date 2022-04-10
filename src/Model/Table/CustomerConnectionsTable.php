@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  * CustomerConnections Model
  *
  * @property \App\Model\Table\CustomerPointsTable&\Cake\ORM\Association\BelongsTo $CustomerPoints
+ * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\CustomerConnectionIpsTable&\Cake\ORM\Association\HasMany $CustomerConnectionIps
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\HasMany $RouterosDevices
  * @method \App\Model\Entity\CustomerConnection newEmptyEntity()
@@ -50,6 +51,9 @@ class CustomerConnectionsTable extends Table
 
         $this->belongsTo('CustomerPoints', [
             'foreignKey' => 'customer_point_id',
+        ]);
+        $this->belongsTo('AccessPoints', [
+            'foreignKey' => 'access_point_id',
         ]);
         $this->hasMany('CustomerConnectionIps', [
             'foreignKey' => 'customer_connection_id',
@@ -103,6 +107,7 @@ class CustomerConnectionsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['customer_point_id'], 'CustomerPoints'));
+        $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
 
         return $rules;
     }

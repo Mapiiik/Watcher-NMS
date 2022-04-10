@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property string|null $name
  * @property string|null $customer_point_id
+ * @property string|null $access_point_id
  * @property string|null $customer_number
  * @property string|null $contract_number
  * @property string|null $note
@@ -35,6 +36,7 @@ class CustomerConnection extends Entity
     protected $_accessible = [
         'name' => true,
         'customer_point_id' => true,
+        'access_point_id' => true,
         'customer_number' => true,
         'contract_number' => true,
         'note' => true,
