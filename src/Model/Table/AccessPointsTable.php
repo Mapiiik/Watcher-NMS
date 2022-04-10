@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
  * AccessPoints Model
  *
+ * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\AccessPointContactsTable&\Cake\ORM\Association\HasMany $AccessPointContacts
  * @property \App\Model\Table\PowerSuppliesTable&\Cake\ORM\Association\HasMany $PowerSupplies
  * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
@@ -48,6 +50,9 @@ class AccessPointsTable extends Table
         $this->addBehavior('Footprint');
         $this->addBehavior('StringModifications');
 
+        $this->belongsTo('AccessPoints', [
+            'foreignKey' => 'parent_access_point_id',
+        ]);
         $this->hasMany('AccessPointContacts', [
             'foreignKey' => 'access_point_id',
         ]);
@@ -98,5 +103,19 @@ class AccessPointsTable extends Table
             ->allowEmptyString('note');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn(['parent_access_point_id'], 'AccessPoints'));
+
+        return $rules;
     }
 }

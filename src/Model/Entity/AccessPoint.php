@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property string $id
  * @property string|null $name
+ * @property string|null $parent_access_point_id
  * @property string|null $device_name
  * @property float|null $gps_x
  * @property float|null $gps_y
@@ -36,6 +37,7 @@ class AccessPoint extends Entity
      */
     protected $_accessible = [
         'name' => true,
+        'parent_access_point_id' => true,
         'device_name' => true,
         'gps_x' => true,
         'gps_y' => true,
