@@ -59,6 +59,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <th><?= __('Access Point') ?></th>
+                    <td>
+                        <?= $customerConnection->has('access_point') ? $this->Html->link(
+                            $customerConnection->access_point->name,
+                            [
+                                'controller' => 'AccessPoints',
+                                'action' => 'view',
+                                $customerConnection->access_point->id,
+                            ]
+                        ) : '' ?>
+                    </td>
+                <tr>
                     <th><?= __('Customer Number') ?></th>
                     <td>
                         <?= $customerConnection->has('customer_number') ? $this->Html->link(

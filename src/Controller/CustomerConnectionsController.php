@@ -21,7 +21,7 @@ class CustomerConnectionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['CustomerPoints'],
+            'contain' => ['CustomerPoints', 'AccessPoints'],
             'order' => ['name' => 'ASC'],
         ];
 
@@ -61,6 +61,7 @@ class CustomerConnectionsController extends AppController
         $customerConnection = $this->CustomerConnections->get($id, [
             'contain' => [
                 'CustomerPoints',
+                'AccessPoints',
                 'CustomerConnectionIps',
                 'RouterosDevices' => [
                     'AccessPoints',
@@ -92,7 +93,8 @@ class CustomerConnectionsController extends AppController
             $this->Flash->error(__('The customer connection could not be saved. Please, try again.'));
         }
         $customerPoints = $this->CustomerConnections->CustomerPoints->find('list', ['order' => 'name']);
-        $this->set(compact('customerConnection', 'customerPoints'));
+        $accessPoints = $this->CustomerConnections->AccessPoints->find('list', ['order' => 'name']);
+        $this->set(compact('customerConnection', 'customerPoints', 'accessPoints'));
     }
 
     /**
@@ -119,7 +121,8 @@ class CustomerConnectionsController extends AppController
             $this->Flash->error(__('The customer connection could not be saved. Please, try again.'));
         }
         $customerPoints = $this->CustomerConnections->CustomerPoints->find('list', ['order' => 'name']);
-        $this->set(compact('customerConnection', 'customerPoints'));
+        $accessPoints = $this->CustomerConnections->AccessPoints->find('list', ['order' => 'name']);
+        $this->set(compact('customerConnection', 'customerPoints', 'accessPoints'));
     }
 
     /**

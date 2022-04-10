@@ -31,6 +31,7 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('customer_point_id', ['options' => $customerPoints, 'empty' => true]);
+                    echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                     echo $this->Form->control('customer_number');
                     echo $this->Form->control('contract_number');
                     echo $this->Form->control('note');
