@@ -42,6 +42,18 @@
                     <td><?= h($accessPoint->device_name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Parent Access Point') ?></th>
+                    <td><?= $accessPoint->has('parent_access_point') ?
+                        $this->Html->link(
+                            $accessPoint->parent_access_point->name,
+                            [
+                                'controller' => 'AccessPoints',
+                                'action' => 'view',
+                                $accessPoint->parent_access_point->id,
+                            ]
+                        ) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Month Of Electricity Meter Reading') ?></th>
                     <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
                 </tr>

@@ -19,6 +19,10 @@
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('device_name');
+                echo $this->Form->control('parent_access_point_id', [
+                    'options' => $parentAccessPoints,
+                    'empty' => true,
+                ]);
                 echo $this->Form->control('month_of_electricity_meter_reading', [
                     'empty' => true,
                     'type' => 'select',

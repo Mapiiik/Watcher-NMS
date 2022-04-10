@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
 /**
  * AccessPoints Model
  *
- * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
+ * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $ParentAccessPoints
  * @property \App\Model\Table\AccessPointContactsTable&\Cake\ORM\Association\HasMany $AccessPointContacts
  * @property \App\Model\Table\PowerSuppliesTable&\Cake\ORM\Association\HasMany $PowerSupplies
  * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
@@ -115,7 +115,7 @@ class AccessPointsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['parent_access_point_id'], 'AccessPoints'));
+        $rules->add($rules->existsIn(['parent_access_point_id'], 'ParentAccessPoints'));
 
         return $rules;
     }
