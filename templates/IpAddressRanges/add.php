@@ -34,13 +34,23 @@
                 ]);
                 echo $this->Form->control('note');
                 echo $this->Form->control('for_subnets');
-                echo $this->Form->control('for_customer_addresses_set_via_radius');
-                echo $this->Form->control('for_customer_addresses_set_manually');
-                echo $this->Form->control('for_technology_addresses_set_manually');
-                echo $this->Form->control('for_customer_networks_set_via_radius');
-                echo $this->Form->control('for_customer_networks_set_manually');
-                echo $this->Form->control('for_technology_networks_set_manually');
                 ?>
+                <div class="row">
+                    <div class="column-responsive">
+                        <?php
+                        echo $this->Form->control('for_customer_addresses_set_via_radius');
+                        echo $this->Form->control('for_customer_addresses_set_manually');
+                        echo $this->Form->control('for_technology_addresses_set_manually');
+                        ?>
+                    </div>
+                    <div class="column-responsive">
+                        <?php
+                        echo $this->Form->control('for_customer_networks_set_via_radius');
+                        echo $this->Form->control('for_customer_networks_set_manually');
+                        echo $this->Form->control('for_technology_networks_set_manually');
+                        ?>
+                    </div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
