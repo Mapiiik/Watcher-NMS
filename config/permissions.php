@@ -129,7 +129,7 @@ return [
                 }
 
                 return false;
-            }
+            },
         ],
         //all roles allowed to Pages/display
         [
@@ -150,7 +150,7 @@ return [
             'role' => ['api'],
             'prefix' => 'Api',
             'plugin' => null,
-            'controller' => ['AccessPoints', 'RouterosDevices'],
+            'controller' => ['AccessPoints', 'IpAddressRanges', 'RouterosDevices'],
             'action' => ['index', 'view', 'search'],
         ],
         //user access
@@ -178,5 +178,5 @@ return [
             'controller' => ['CustomerConnections', 'CustomerPoints', 'CustomerConnectionIps'],
             'action' => ['view'],
         ],
-    ]
+    ],
 ];
