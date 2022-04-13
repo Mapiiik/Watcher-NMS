@@ -26,7 +26,6 @@ class IpAddressRangesTableTest extends TestCase
     protected $fixtures = [
         'app.IpAddressRanges',
         'app.AccessPoints',
-        'app.ParentIpAddressRanges',
     ];
 
     /**

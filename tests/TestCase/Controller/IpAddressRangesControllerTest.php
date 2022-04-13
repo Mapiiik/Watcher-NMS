@@ -23,7 +23,6 @@ class IpAddressRangesControllerTest extends TestCase
     protected $fixtures = [
         'app.IpAddressRanges',
         'app.AccessPoints',
-        'app.ParentIpAddressRanges',
     ];
 
     /**
