@@ -131,6 +131,7 @@ if (!(php_sapi_name() == 'cli')) {
             (isset($params['controller']) && in_array($params['controller'], [
                 'AccessPointContacts',
                 'ElectricityMeterReadings',
+                'IpAddressRanges',
                 'PowerSupplies',
                 'RadioUnits',
                 'RouterosDevices',
@@ -138,6 +139,7 @@ if (!(php_sapi_name() == 'cli')) {
             || (!isset($params['controller']) && in_array($request->getParam('controller'), [
                 'AccessPointContacts',
                 'ElectricityMeterReadings',
+                'IpAddressRanges',
                 'PowerSupplies',
                 'RadioUnits',
                 'RouterosDevices',

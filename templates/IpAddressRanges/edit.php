@@ -30,10 +30,12 @@
                 echo $this->Form->control('name');
                 echo $this->Form->control('ip_network');
                 echo $this->Form->control('ip_gateway');
-                echo $this->Form->control('access_point_id', [
-                    'options' => $accessPoints,
-                    'empty' => true,
-                ]);
+                if (!isset($access_point_id)) {
+                    echo $this->Form->control('access_point_id', [
+                        'options' => $accessPoints,
+                        'empty' => true,
+                    ]);
+                }
                 echo $this->Form->control('parent_ip_address_range_id', [
                     'options' => $parentIpAddressRanges,
                     'empty' => true,

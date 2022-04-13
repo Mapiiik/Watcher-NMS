@@ -24,6 +24,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
  * @property \App\Model\Entity\RadioUnit[] $radio_units
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
+ * @property \App\Model\Entity\IpAddressRange[] $ip_address_ranges
  */
 class AccessPoint extends Entity
 {
@@ -50,5 +51,6 @@ class AccessPoint extends Entity
         'power_supplies' => true,
         'radio_units' => true,
         'routeros_devices' => true,
+        'ip_address_ranges' => true,
     ];
 }

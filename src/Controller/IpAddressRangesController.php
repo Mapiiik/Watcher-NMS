@@ -18,8 +18,18 @@ class IpAddressRangesController extends AppController
      */
     public function index()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
+        $conditions = [];
+        if (isset($access_point_id)) {
+            $conditions = ['ipAddressRanges.access_point_id' => $access_point_id];
+        }
+
         $this->paginate = [
             'contain' => ['AccessPoints', 'ParentIpAddressRanges'],
+            'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
         ];
         $ipAddressRanges = $this->paginate($this->IpAddressRanges);
 
@@ -49,7 +59,15 @@ class IpAddressRangesController extends AppController
      */
     public function add()
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $ipAddressRange = $this->IpAddressRanges->newEmptyEntity();
+
+        if (isset($access_point_id)) {
+            $ipAddressRange->access_point_id = $access_point_id;
+        }
+
         if ($this->request->is('post')) {
             $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->request->getData());
             if ($this->IpAddressRanges->save($ipAddressRange)) {
@@ -77,6 +95,9 @@ class IpAddressRangesController extends AppController
      */
     public function edit($id = null)
     {
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         $ipAddressRange = $this->IpAddressRanges->get($id, [
             'contain' => [],
         ]);
