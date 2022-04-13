@@ -84,6 +84,13 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
                 ])]
             ) ?>
             <?= $this->AuthLink->link(
+                __('Ip Address Ranges'),
+                ['controller' => 'IpAddressRanges', 'action' => 'index', 'plugin' => null],
+                ['class' => 'button' . $buttonSelected([
+                    'IpAddressRanges',
+                ])]
+            ) ?>
+            <?= $this->AuthLink->link(
                 __('RouterOS Devices'),
                 ['controller' => 'RouterosDevices', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button' . $buttonSelected([

@@ -1,0 +1,44 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Test\Fixture;
+
+use Cake\TestSuite\Fixture\TestFixture;
+
+/**
+ * IpAddressRangesFixture
+ */
+class IpAddressRangesFixture extends TestFixture
+{
+    /**
+     * Init method
+     *
+     * @return void
+     */
+    public function init(): void
+    {
+        $this->records = [
+            [
+                'id' => 'c22cef67-ab70-4363-af2d-a3e7456c1ea5',
+                'created' => 1649838578,
+                'created_by' => '19c2eef7-2084-434f-8abe-226c4c8c5de9',
+                'modified' => 1649838578,
+                'modified_by' => '3e261865-2572-49e3-8f21-11197cc38759',
+                'name' => 'Lorem ipsum dolor sit amet',
+                'ip_network' => 'Lorem ipsum dolor sit amet',
+                'ip_gateway' => 'Lorem ipsum dolor sit amet',
+                'access_point_id' => 'c3ce84d8-9e3e-41a0-837e-4a2747333391',
+                'parent_ip_address_range_id' => 'fa060f68-b28c-40fe-b734-1abb6a78c179',
+                'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+                'for_subnets' => 1,
+                'for_customer_addresses_set_via_radius' => 1,
+                'for_customer_addresses_set_manually' => 1,
+                'for_technology_addresses_set_manually' => 1,
+                'for_customer_networks_set_via_radius' => 1,
+                'for_customer_networks_set_manually' => 1,
+                'for_technology_networks_set_manually' => 1,
+            ],
+        ];
+        parent::init();
+    }
+}

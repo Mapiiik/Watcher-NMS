@@ -75,7 +75,7 @@ echo $this->Form->end();
                         <?= $this->Html->link(
                             __('Edit'),
                             ['action' => 'edit', $accessPoint->id],
-                            ['class' => 'win-link',]
+                            ['class' => 'win-link']
                         ) ?>
                         <?= $this->Form->postLink(
                             __('Delete'),
