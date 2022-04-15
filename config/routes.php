@@ -107,7 +107,14 @@ $routes->prefix('Api', function (RouteBuilder $builder) {
     $builder->setExtensions(['json']);
 
     $builder->resources('AccessPoints');
-    $builder->resources('IpAddressRanges');
+    $builder->resources('IpAddressRanges', [
+        'map' => [
+            'search' => [
+                'action' => 'search',
+                'method' => 'GET',
+            ],
+        ],
+    ]);
     $builder->resources('RouterosDevices', [
         'map' => [
             'search' => [

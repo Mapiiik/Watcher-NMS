@@ -20,10 +20,68 @@ class IpAddressRangesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['AccessPoints', 'ParentIpAddressRanges'],
+        $ipAddressRanges = $this->IpAddressRanges->find('all', [
+            'contain' => [
+                'AccessPoints',
+                'ParentIpAddressRanges',
+            ],
+        ])->all();
+
+        $this->set(compact('ipAddressRanges'));
+        $this->viewBuilder()->setOption('serialize', ['ipAddressRanges']);
+    }
+
+    /**
+     * Search method
+     *
+     * @property \App\Model\Table\IpAddressRangesTable $IpAddressRanges
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function search()
+    {
+        $options = [
+            'contain' => [
+                'AccessPoints',
+                'ParentIpAddressRanges',
+            ],
         ];
-        $ipAddressRanges = $this->paginate($this->IpAddressRanges);
+
+        if ($this->request->getQuery('access_point_id') !== null) {
+            $options['conditions']['IpAddressRanges.access_point_id'] = $this->request->getQuery('access_point_id');
+        }
+        if ($this->request->getQuery('for_subnets') !== null) {
+            $options['conditions']['IpAddressRanges.for_subnets'] = $this->request->getQuery('for_subnets');
+        }
+        if ($this->request->getQuery('for_customer_addresses_set_via_radius') !== null) {
+            $options['conditions']['IpAddressRanges.for_customer_addresses_set_via_radius']
+                = $this->request->getQuery('for_customer_addresses_set_via_radius');
+        }
+        if ($this->request->getQuery('for_customer_addresses_set_manually') !== null) {
+            $options['conditions']['IpAddressRanges.for_customer_addresses_set_manually']
+                = $this->request->getQuery('for_customer_addresses_set_manually');
+        }
+        if ($this->request->getQuery('for_technology_addresses_set_manually') !== null) {
+            $options['conditions']['IpAddressRanges.for_technology_addresses_set_manually']
+                = $this->request->getQuery('for_technology_addresses_set_manually');
+        }
+        if ($this->request->getQuery('for_customer_networks_set_via_radius') !== null) {
+            $options['conditions']['IpAddressRanges.for_customer_networks_set_via_radius']
+                = $this->request->getQuery('for_customer_networks_set_via_radius');
+        }
+        if ($this->request->getQuery('for_customer_networks_set_manually') !== null) {
+            $options['conditions']['IpAddressRanges.for_customer_networks_set_manually']
+                = $this->request->getQuery('for_customer_networks_set_manually');
+        }
+        if ($this->request->getQuery('for_technology_networks_set_manually') !== null) {
+            $options['conditions']['IpAddressRanges.for_technology_networks_set_manually']
+                = $this->request->getQuery('for_technology_networks_set_manually');
+        }
+
+        if ($this->request->getQuery('ip_address') !== null) {
+            $options['conditions']['IpAddressRanges.ip_network >>='] = $this->request->getQuery('ip_address');
+        }
+
+        $ipAddressRanges = $this->IpAddressRanges->find('all', $options);
 
         $this->set(compact('ipAddressRanges'));
         $this->viewBuilder()->setOption('serialize', ['ipAddressRanges']);
