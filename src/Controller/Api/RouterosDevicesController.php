@@ -44,8 +44,8 @@ class RouterosDevicesController extends AppController
             'order' => ['RouterosDevices.modified' => 'DESC'],
         ];
 
-        if ($this->request->is(['get']) && ($this->request->getQuery('ip')) !== null) {
-            $options['conditions']['ip_address'] = $this->request->getQuery('ip');
+        if ($this->request->is(['get']) && ($this->request->getQuery('ip_address')) !== null) {
+            $options['conditions']['ip_address'] = $this->request->getQuery('ip_address');
         }
         $routerosDevices = $this->RouterosDevices->find('all', $options);
 
