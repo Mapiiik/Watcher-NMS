@@ -44,6 +44,7 @@ class IpAddressRangesController extends AppController
                 'AccessPoints',
                 'ParentIpAddressRanges',
             ],
+            'order' => ['masklen(IpAddressRanges.ip_network)' => 'DESC'],
         ];
 
         if ($this->request->getQuery('access_point_id') !== null) {
