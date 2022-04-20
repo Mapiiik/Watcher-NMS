@@ -61,7 +61,13 @@ class ElectricityMeterRedingsReportCommand extends Command
             });
 
         if ($access_points->count() > 0) {
-            $table[] = ['Access Point', 'Last Reading Date', 'Last Reading Value', 'Number of days since last'];
+            $table[] = [
+                'Access Point',
+                'Contract Conditions',
+                'Last Reading Date',
+                'Last Reading Value',
+                'Number of days since last',
+            ];
             foreach ($access_points as $access_point) {
                 if (isset($access_point->electricity_meter_readings[0])) {
                     $last_reading = $access_point->electricity_meter_readings[0];
@@ -71,6 +77,7 @@ class ElectricityMeterRedingsReportCommand extends Command
 
                 $table[] = [
                     $access_point->name,
+                    $access_point->contract_conditions,
                     $last_reading->reading_date,
                     $last_reading->reading_value,
                     $last_reading->has('reading_date') ? $last_reading->reading_date->diffInDays($now, false) : 'Never',
