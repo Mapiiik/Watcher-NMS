@@ -107,6 +107,10 @@ class AccessPointsTable extends Table
             ->scalar('note')
             ->allowEmptyString('note');
 
+        $validator
+            ->scalar('contract_conditions')
+            ->allowEmptyString('contract_conditions');
+
         return $validator;
     }
 

@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property float|null $gps_x
  * @property float|null $gps_y
  * @property string|null $note
+ * @property string|null $contract_conditions
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property int|null $month_of_electricity_meter_reading
@@ -44,6 +45,7 @@ class AccessPoint extends Entity
         'gps_x' => true,
         'gps_y' => true,
         'note' => true,
+        'contract_conditions' => true,
         'created' => true,
         'modified' => true,
         'month_of_electricity_meter_reading' => true,

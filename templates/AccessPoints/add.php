@@ -30,6 +30,7 @@
                 ]);
                 echo $this->Form->control('gps_y');
                 echo $this->Form->control('gps_x');
+                echo $this->Form->control('contract_conditions');
                 echo $this->Form->control('note');
                 ?>
             </fieldset>

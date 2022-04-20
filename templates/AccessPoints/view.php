@@ -101,6 +101,12 @@
                 </tr>
             </table>
             <div class="text">
+                <strong><?= __('Contract Conditions') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($accessPoint->contract_conditions)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>
                     <?= $this->Text->autoParagraph(h($accessPoint->note)); ?>
