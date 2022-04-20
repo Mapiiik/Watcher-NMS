@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class AddAutomaticallySetAUniquePasswordToDeviceTypes extends AbstractMigration
+class AddContractConditionsToAccessPoints extends AbstractMigration
 {
     /**
      * Change Method.
@@ -15,10 +15,10 @@ class AddAutomaticallySetAUniquePasswordToDeviceTypes extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('device_types');
-        $table->addColumn('automatically_set_a_unique_password', 'boolean', [
-            'default' => false,
-            'null' => false,
+        $table = $this->table('access_points');
+        $table->addColumn('contract_conditions', 'text', [
+            'default' => null,
+            'null' => true,
         ]);
         $table->update();
     }
