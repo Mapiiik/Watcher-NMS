@@ -24,6 +24,8 @@ use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\MiddlewareQueue;
+use Cake\I18n\FrozenDate;
+use Cake\I18n\FrozenTime;
 use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
@@ -71,6 +73,14 @@ class Application extends BaseApplication
 
         // dereuromark/cakephp-geo
         $this->addPlugin('Geo');
+
+        // Set time and date format if specified in environment
+        if (!empty(env('APP_TIME_FORMAT'))) {
+            FrozenTime::setToStringFormat(env('APP_TIME_FORMAT'));
+        }
+        if (!empty(env('APP_DATE_FORMAT'))) {
+            FrozenDate::setToStringFormat(env('APP_DATE_FORMAT'));
+        }
     }
 
     /**
