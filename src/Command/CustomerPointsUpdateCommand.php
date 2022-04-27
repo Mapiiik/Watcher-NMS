@@ -54,35 +54,55 @@ class CustomerPointsUpdateCommand extends Command
             $importCustomerPoints = json_decode($json);
 
             foreach ($importCustomerPoints as $importCustomerPoint) {
-                /** @var \App\Model\Entity\CustomerPoint $customerPoint */
-                $customerPoint = $this->fetchTable()->findOrCreate([
-                    'gps_x' => $importCustomerPoint->gps_x,
-                    'gps_y' => $importCustomerPoint->gps_y,
-                ]);
-                $customerPoint->name = $importCustomerPoint->name;
-                $customerPoint->note = $importCustomerPoint->note;
-                $this->fetchTable()->save($customerPoint);
+                if (!empty($importCustomerPoint->gps_x) && !empty($importCustomerPoint->gps_y)) {
+                    /** @var \App\Model\Entity\CustomerPoint $customerPoint */
+                    $customerPoint = $this->fetchTable()->findOrCreate([
+                        'gps_x' => $importCustomerPoint->gps_x,
+                        'gps_y' => $importCustomerPoint->gps_y,
+                    ]);
+                    $customerPoint->name = $importCustomerPoint->name ?? null;
+                    $customerPoint->note = $importCustomerPoint->note ?? null;
+                    if (!$this->fetchTable()->save($customerPoint)) {
+                        Log::warning('The customer point could not be saved.');
+                    }
+                } else {
+                    unset($customerPoint);
+                }
 
+                // save customer connections
                 foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
                     /** @var \App\Model\Entity\CustomerConnection $customerConnection */
                     $customerConnection = $this->fetchTable('CustomerConnections')->findOrCreate([
                         'customer_number' => $importCustomerConnection->customer_number,
                         'contract_number' => $importCustomerConnection->contract_number,
                     ]);
-                    $customerConnection->customer_point_id = $customerPoint->id;
+                    $customerConnection->customer_point_id = $customerPoint->id ?? null;
+                    $customerConnection->access_point_id = $importCustomerConnection->access_point_id ?? null;
                     $customerConnection->name = $importCustomerConnection->name;
                     $customerConnection->note = $importCustomerConnection->note;
-                    $this->fetchTable('CustomerConnections')->save($customerConnection);
 
-                    foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
-                        /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
-                        $customerConnectionIp = $this->fetchTable('CustomerConnectionIps')->findOrCreate([
-                            'customer_connection_id' => $customerConnection->id,
-                            'ip_address' => $importCustomerConnectionIp->ip_address,
-                        ]);
-                        $customerConnectionIp->name = $importCustomerConnectionIp->name;
-                        $customerConnectionIp->note = $importCustomerConnectionIp->note;
-                        $this->fetchTable('CustomerConnectionIps')->save($customerConnectionIp);
+                    if (!$this->fetchTable('CustomerConnections')->save($customerConnection)) {
+                        Log::warning(
+                            'The customer connection could not be saved.'
+                            . ' (' . $importCustomerConnection->contract_number . ')'
+                        );
+                    } else {
+                        // save customer connection IP addresses
+                        foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
+                            /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
+                            $customerConnectionIp = $this->fetchTable('CustomerConnectionIps')->findOrCreate([
+                                'customer_connection_id' => $customerConnection->id,
+                                'ip_address' => $importCustomerConnectionIp->ip_address,
+                            ]);
+                            $customerConnectionIp->name = $importCustomerConnectionIp->name;
+                            $customerConnectionIp->note = $importCustomerConnectionIp->note;
+                            if (!$this->fetchTable('CustomerConnectionIps')->save($customerConnectionIp)) {
+                                Log::warning(
+                                    'The customer connection IP address could not be saved.'
+                                    . ' (' . $importCustomerConnectionIp->ip_address . ')'
+                                );
+                            }
+                        }
                     }
                 }
             }
@@ -96,10 +116,10 @@ class CustomerPointsUpdateCommand extends Command
                 'modified <' => new FrozenTime('-600 seconds'),
             ]);
 
-            Log::write('debug', 'The customer points data have been updated.');
+            Log::debug('The customer points data have been updated.');
             $io->success('The customer points data have been updated.');
         } else {
-            Log::write('warning', 'The customer points data could not be updated. Please, try again.');
+            Log::error('The customer points data could not be updated. Please, try again.');
             $io->abort('The customer points data could not be updated. Please, try again.');
         }
     }
