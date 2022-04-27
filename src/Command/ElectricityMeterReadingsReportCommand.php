@@ -15,7 +15,7 @@ use Cake\ORM\Entity;
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
  */
-class ElectricityMeterRedingsReportCommand extends Command
+class ElectricityMeterReadingsReportCommand extends Command
 {
     // Define the default table. This allows you to use `fetchTable()` without any argument.
     protected $defaultTable = 'AccessPoints';
