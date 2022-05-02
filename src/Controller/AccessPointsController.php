@@ -199,7 +199,8 @@ class AccessPointsController extends AppController
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
                             ->select(['RemoteRouterosDevices.customer_connection_id'])
-                            ->select(['RemoteRouterosDeviceIps.ip_address']);
+                            ->select(['RemoteRouterosDeviceIps.ip_address'])
+                            ->where(['RemoteRouterosDevices.modified >' => (new FrozenDate())->subDays(14)]);
                         },
                     ],
                 ],
@@ -242,7 +243,8 @@ class AccessPointsController extends AppController
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
                             ->select(['RemoteRouterosDevices.customer_connection_id'])
-                            ->select(['RemoteRouterosDeviceInterfaces.name']);
+                            ->select(['RemoteRouterosDeviceInterfaces.name'])
+                            ->where(['RemoteRouterosDevices.modified >' => (new FrozenDate())->subDays(14)]);
                         },
                     ],
                 ],
