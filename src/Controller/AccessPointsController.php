@@ -165,7 +165,9 @@ class AccessPointsController extends AppController
         $accessPointsQuery->contain([
             'RouterosDevices' => [
                 'sort' => ['RouterosDevices.name' => 'ASC'],
-                'conditions' => ['RouterosDevices.modified >' => (new FrozenDate())->subDays(14)],
+                'conditions' => [
+                    'RouterosDevices.modified >' => (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                ],
             ],
         ]);
 
@@ -191,7 +193,8 @@ class AccessPointsController extends AppController
                                     'conditions' => [
                                         'RemoteRouterosDeviceIps.routeros_device_id = RemoteRouterosDevices.id'
                                             . ' AND RouterosDeviceIps.routeros_device_id <> RemoteRouterosDevices.id',
-                                        'RemoteRouterosDevices.modified >' => (new FrozenDate())->subDays(14),
+                                        'RemoteRouterosDevices.modified >' =>
+                                            (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
                                     ],
                                 ],
                             ])
@@ -236,8 +239,8 @@ class AccessPointsController extends AppController
                                             . ' = RemoteRouterosDevices.id'
                                             . ' AND RouterosDeviceInterfaces.routeros_device_id'
                                             . ' <> RemoteRouterosDevices.id',
-                                        'RemoteRouterosDevices.modified >' => (new FrozenDate())->subDays(14),
-
+                                        'RemoteRouterosDevices.modified >' =>
+                                            (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
                                     ],
                                 ],
                             ])
