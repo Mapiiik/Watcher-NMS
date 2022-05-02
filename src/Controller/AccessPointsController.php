@@ -395,48 +395,51 @@ class AccessPointsController extends AppController
 
         foreach ($remoteCustomerPoints as $remoteCustomerPointId => $remoteCustomerPoint) {
             $customerPoint = $customerPoints[$remoteCustomerPointId];
-            $content = '<b>' . $html->link(
-                $customerPoint->name,
-                ['controller' => 'CustomerPoints', 'action' => 'view', $customerPoint->id]
-            ) . '</b>' . '<br />';
 
-            foreach ($remoteCustomerPoint as $remoteCustomerConnectionId => $remoteCustomerConnection) {
-                $customerConnection = $customerConnections[$remoteCustomerConnectionId];
-                $content .= '<br />' . '<b>' . $html->link(
-                    $customerConnection->name,
-                    ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnection->id]
+            if (is_numeric($customerPoint->gps_y) && is_numeric($customerPoint->gps_x)) {
+                $content = '<b>' . $html->link(
+                    $customerPoint->name,
+                    ['controller' => 'CustomerPoints', 'action' => 'view', $customerPoint->id]
                 ) . '</b>' . '<br />';
 
-                foreach ($remoteCustomerConnection as $routerosDevice) {
-                    $content .= $html->link(
-                        $routerosDevice->name,
-                        ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
-                    ) . '<br />';
+                foreach ($remoteCustomerPoint as $remoteCustomerConnectionId => $remoteCustomerConnection) {
+                    $customerConnection = $customerConnections[$remoteCustomerConnectionId];
+                    $content .= '<br />' . '<b>' . $html->link(
+                        $customerConnection->name,
+                        ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnection->id]
+                    ) . '</b>' . '<br />';
 
-                    $content .= '<ul>';
-/*
-                    if (is_array($routerosDevice->routeros_device_ips)) {
-                            foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp) {
-                                //$content .= '<li>' . ' (' . $routerosDeviceIp->ip_address . ') - ' . $html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
-                            }
+                    foreach ($remoteCustomerConnection as $routerosDevice) {
+                        $content .= $html->link(
+                            $routerosDevice->name,
+                            ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
+                        ) . '<br />';
+
+                        $content .= '<ul>';
+    /*
+                        if (is_array($routerosDevice->routeros_device_ips)) {
+                                foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp) {
+                                    //$content .= '<li>' . ' (' . $routerosDeviceIp->ip_address . ') - ' . $html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
+                                }
+                        }
+                        if (is_array($routerosDevice->routeros_device_interfaces)) {
+                                foreach ($routerosDevice->routeros_device_interfaces as $routerosDeviceInterface) {
+                                    //$content .= '<li>' . ' (' . $routerosDeviceInterface->name . ') - ' . $html->link(__($routerosDeviceInterface->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceInterface->RemoteRouterosDeviceInterfaces['name'] . ')' . '</li>';
+                                }
+                        }
+    */
+                        $content .= '</ul>';
                     }
-                    if (is_array($routerosDevice->routeros_device_interfaces)) {
-                            foreach ($routerosDevice->routeros_device_interfaces as $routerosDeviceInterface) {
-                                //$content .= '<li>' . ' (' . $routerosDeviceInterface->name . ') - ' . $html->link(__($routerosDeviceInterface->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceInterface->RemoteRouterosDeviceInterfaces['name'] . ')' . '</li>';
-                            }
-                    }
-*/
-                    $content .= '</ul>';
                 }
-            }
 
-            $mapMarkers[] = [
-                'lat' => $customerPoint->gps_y,
-                'lng' => $customerPoint->gps_x,
-                'title' => $customerPoint->name,
-                'content' => $content,
-                'iconSet' => 'green',
-            ];
+                $mapMarkers[] = [
+                    'lat' => $customerPoint->gps_y,
+                    'lng' => $customerPoint->gps_x,
+                    'title' => $customerPoint->name,
+                    'content' => $content,
+                    'iconSet' => 'green',
+                ];
+            }
         }
         unset($remoteCustomerPoints);
 
