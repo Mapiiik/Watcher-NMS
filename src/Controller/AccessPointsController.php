@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Form\MapOptionsForm;
 use App\Form\SearchForm;
+use Cake\I18n\FrozenDate;
 use Cake\View\Helper\HtmlHelper;
 
 /**
@@ -164,6 +165,7 @@ class AccessPointsController extends AppController
         $accessPointsQuery->contain([
             'RouterosDevices' => [
                 'sort' => ['RouterosDevices.name' => 'ASC'],
+                'conditions' => ['RouterosDevices.modified >' => (new FrozenDate())->subDays(14)],
             ],
         ]);
 
