@@ -188,9 +188,11 @@ class AccessPointsController extends AppController
                                 'RemoteRouterosDevices' => [
                                     'table' => 'routeros_devices',
                                     'type' => 'INNER',
-                                    'conditions' =>
+                                    'conditions' => [
                                         'RemoteRouterosDeviceIps.routeros_device_id = RemoteRouterosDevices.id'
-                                        . ' AND RouterosDeviceIps.routeros_device_id <> RemoteRouterosDevices.id',
+                                            . ' AND RouterosDeviceIps.routeros_device_id <> RemoteRouterosDevices.id',
+                                        'RemoteRouterosDevices.modified >' => (new FrozenDate())->subDays(14),
+                                    ],
                                 ],
                             ])
                             ->select(['RouterosDeviceIps.routeros_device_id'])
@@ -199,8 +201,7 @@ class AccessPointsController extends AppController
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
                             ->select(['RemoteRouterosDevices.customer_connection_id'])
-                            ->select(['RemoteRouterosDeviceIps.ip_address'])
-                            ->where(['RemoteRouterosDevices.modified >' => (new FrozenDate())->subDays(14)]);
+                            ->select(['RemoteRouterosDeviceIps.ip_address']);
                         },
                     ],
                 ],
@@ -220,21 +221,24 @@ class AccessPointsController extends AppController
                                     'type' => 'LEFT',
                                     'conditions' =>
                                         'RouterosDeviceInterfaces.interface_type = 71'
-                                        . ' AND RemoteRouterosDeviceInterfaces.interface_type = 71'
-                                        . ' AND (RouterosDeviceInterfaces.mac_address'
-                                        . ' = RemoteRouterosDeviceInterfaces.bssid'
-                                        . ' OR RouterosDeviceInterfaces.bssid'
-                                        . ' = RemoteRouterosDeviceInterfaces.mac_address)'
-                                        . ' AND RouterosDeviceInterfaces.id <> RemoteRouterosDeviceInterfaces.id',
+                                            . ' AND RemoteRouterosDeviceInterfaces.interface_type = 71'
+                                            . ' AND (RouterosDeviceInterfaces.mac_address'
+                                            . ' = RemoteRouterosDeviceInterfaces.bssid'
+                                            . ' OR RouterosDeviceInterfaces.bssid'
+                                            . ' = RemoteRouterosDeviceInterfaces.mac_address)'
+                                            . ' AND RouterosDeviceInterfaces.id <> RemoteRouterosDeviceInterfaces.id',
                                 ],
                                 'RemoteRouterosDevices' => [
                                     'table' => 'routeros_devices',
                                     'type' => 'INNER',
-                                    'conditions' =>
+                                    'conditions' => [
                                         'RemoteRouterosDeviceInterfaces.routeros_device_id'
-                                        . ' = RemoteRouterosDevices.id'
-                                        . ' AND RouterosDeviceInterfaces.routeros_device_id'
-                                        . ' <> RemoteRouterosDevices.id',
+                                            . ' = RemoteRouterosDevices.id'
+                                            . ' AND RouterosDeviceInterfaces.routeros_device_id'
+                                            . ' <> RemoteRouterosDevices.id',
+                                        'RemoteRouterosDevices.modified >' => (new FrozenDate())->subDays(14),
+
+                                    ],
                                 ],
                             ])
                             ->select(['RouterosDeviceInterfaces.routeros_device_id'])
@@ -243,8 +247,7 @@ class AccessPointsController extends AppController
                             ->select(['RemoteRouterosDevices.name'])
                             ->select(['RemoteRouterosDevices.access_point_id'])
                             ->select(['RemoteRouterosDevices.customer_connection_id'])
-                            ->select(['RemoteRouterosDeviceInterfaces.name'])
-                            ->where(['RemoteRouterosDevices.modified >' => (new FrozenDate())->subDays(14)]);
+                            ->select(['RemoteRouterosDeviceInterfaces.name']);
                         },
                     ],
                 ],
