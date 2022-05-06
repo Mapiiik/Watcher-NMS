@@ -298,15 +298,18 @@
                             <td><?= $ipAddressRange->for_technology_networks_set_manually ?
                                 __('Yes') : __('No'); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['action' => 'view', $ipAddressRange->id]) ?>
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'IpAddressRanges', 'action' => 'view', $ipAddressRange->id]
+                                ) ?>
                                 <?= $this->Html->link(
                                     __('Edit'),
-                                    ['action' => 'edit', $ipAddressRange->id],
+                                    ['controller' => 'IpAddressRanges', 'action' => 'edit', $ipAddressRange->id],
                                     ['class' => 'win-link']
                                 ) ?>
                                 <?= $this->Form->postLink(
                                     __('Delete'),
-                                    ['action' => 'delete', $ipAddressRange->id],
+                                    ['controller' => 'IpAddressRanges', 'action' => 'delete', $ipAddressRange->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id)]
                                 ) ?>
                             </td>
