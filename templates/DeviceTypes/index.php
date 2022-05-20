@@ -27,10 +27,10 @@
                     <td><?= h($deviceType->name) ?></td>
                     <td><?= h($deviceType->identifier) ?></td>
                     <td><?= h($deviceType->snmp_community) ?></td>
-                    <td><?= h($deviceType->assign_access_point_by_device_name) ?></td>
-                    <td><?= h($deviceType->assign_customer_connection_by_ip) ?></td>
-                    <td><?= h($deviceType->allow_technicians_access) ?></td>
-                    <td><?= h($deviceType->automatically_set_a_unique_password) ?></td>
+                    <td><?= $deviceType->assign_access_point_by_device_name ? __('Yes') : __('No'); ?></td>
+                    <td><?= $deviceType->assign_customer_connection_by_ip ? __('Yes') : __('No'); ?></td>
+                    <td><?= $deviceType->allow_technicians_access ? __('Yes') : __('No'); ?></td>
+                    <td><?= $deviceType->automatically_set_a_unique_password ? __('Yes') : __('No'); ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
                             __('View'),
