@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\SearchForm;
 use App\Model\Entity\RouterosDevice;
 use Cake\I18n\FrozenDate;
 use Cake\Utility\Security;
@@ -26,9 +25,39 @@ class RouterosDevicesController extends AppController
         $access_point_id = $this->request->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
+        // filter
         $conditions = [];
         if (isset($access_point_id)) {
-            $conditions = ['RouterosDevices.access_point_id' => $access_point_id];
+            $conditions[] = [
+                'RouterosDevices.access_point_id' => $access_point_id,
+            ];
+        }
+        $maximum_age = $this->request->getQuery('maximum_age');
+        if (!empty($maximum_age)) {
+            $conditions[] = [
+                'RouterosDevices.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
+            ];
+        } else {
+            $conditions[] = [
+                'RouterosDevices.modified >' => FrozenDate::create()->subDays(14),
+            ];
+        }
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RouterosDevices.name ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.ip_address::character varying ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.system_description ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.board_name ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.serial_number ILIKE' => '%' . trim($search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
+                    'DeviceTypes.name ILIKE' => '%' . trim($search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
         }
 
         $this->paginate = [
@@ -36,36 +65,6 @@ class RouterosDevicesController extends AppController
             'order' => ['name' => 'ASC'],
             'conditions' => $conditions,
         ];
-
-        $search = new SearchForm();
-        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
-            if ($search->execute(['search' => $this->request->getQuery('search')])) {
-                $this->Flash->success(__('Search Set.'));
-            } else {
-                $this->Flash->error(__('There was a problem setting search.'));
-            }
-        }
-        $this->set('search', $search);
-
-        if ($search->getData('search') <> '') {
-            $this->paginate['conditions']['OR'] = [
-                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'CustomerConnections.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.ip_address::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.system_description ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.board_name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.serial_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
-            ];
-        }
-
-        if ($this->request->getQuery('maximum_age') <> '') {
-            $this->paginate['conditions']['RouterosDevices.modified >'] =
-                (new FrozenDate())->subDays((int)$this->request->getQuery('maximum_age'));
-        } else {
-            $this->paginate['conditions']['RouterosDevices.modified >'] =
-                (new FrozenDate())->subDays(14);
-        }
 
         $routerosDevices = $this->paginate($this->RouterosDevices);
 
@@ -650,28 +649,42 @@ class RouterosDevicesController extends AppController
      */
     public function export()
     {
-        $search = new SearchForm();
-        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
-            if ($search->execute(['search' => $this->request->getQuery('search')])) {
-                $this->Flash->success(__('Search Set.'));
-            } else {
-                $this->Flash->error(__('There was a problem setting search.'));
-            }
-        }
-        $this->set('search', $search);
+        $access_point_id = $this->request->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
 
-        if ($search->getData('search') <> '') {
-            $conditions['OR'] = [
-                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'CustomerConnections.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.ip_address::character varying ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.system_description ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.board_name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RouterosDevices.serial_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
+        // filter
+        $conditions = [];
+        if (isset($access_point_id)) {
+            $conditions[] = [
+                'RouterosDevices.access_point_id' => $access_point_id,
+            ];
+        }
+        $maximum_age = $this->request->getQuery('maximum_age');
+        if (!empty($maximum_age)) {
+            $conditions[] = [
+                'RouterosDevices.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
             ];
         } else {
-            $conditions = [];
+            $conditions[] = [
+                'RouterosDevices.modified >' => FrozenDate::create()->subDays(14),
+            ];
+        }
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RouterosDevices.name ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.ip_address::character varying ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.system_description ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.board_name ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.serial_number ILIKE' => '%' . trim($search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
+                    'DeviceTypes.name ILIKE' => '%' . trim($search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
         }
 
         $routerosDevices = $this->RouterosDevices->find('all', [
@@ -681,8 +694,8 @@ class RouterosDevicesController extends AppController
                 'CustomerConnections' => ['CustomerPoints'],
                 'RouterosDeviceInterfaces',
             ],
-            'conditions' => $conditions,
             'order' => ['AccessPoints.name' => 'ASC', 'RouterosDevices.name' => 'ASC'],
+            'conditions' => $conditions,
         ]);
 
         $this->set(compact('routerosDevices'));

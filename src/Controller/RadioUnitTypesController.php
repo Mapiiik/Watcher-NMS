@@ -18,8 +18,25 @@ class RadioUnitTypesController extends AppController
      */
     public function index()
     {
+        // filter
+        $conditions = [];
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RadioUnitTypes.name ILIKE' => '%' . trim($search) . '%',
+                    'RadioUnitBands.name ILIKE' => '%' . trim($search) . '%',
+                    'Manufacturers.name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
+        }
+
         $this->paginate = [
             'contain' => ['RadioUnitBands', 'Manufacturers'],
+            'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
         ];
         $radioUnitTypes = $this->paginate($this->RadioUnitTypes);
 

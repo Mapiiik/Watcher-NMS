@@ -21,9 +21,26 @@ class IpAddressRangesController extends AppController
         $access_point_id = $this->request->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
+        // filter
         $conditions = [];
         if (isset($access_point_id)) {
-            $conditions = ['ipAddressRanges.access_point_id' => $access_point_id];
+            $conditions[] = [
+                'ipAddressRanges.access_point_id' => $access_point_id,
+            ];
+        }
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'IpAddressRanges.name ILIKE' => '%' . trim($search) . '%',
+                    'IpAddressRanges.ip_network::character varying ILIKE' => '%' . trim($search) . '%',
+                    'IpAddressRanges.ip_gateway::character varying ILIKE' => '%' . trim($search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
+                    'ParentIpAddressRanges.name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
         }
 
         $this->paginate = [

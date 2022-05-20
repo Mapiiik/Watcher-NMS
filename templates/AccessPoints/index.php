@@ -4,14 +4,19 @@
  * @var \App\Model\Entity\AccessPoint[]|\Cake\Collection\CollectionInterface $accessPoints
  */
 ?>
-<?php
-echo $this->Form->create($search, ['type' => 'get']);
-if ($this->request->getQuery('limit')) {
-    echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
-}
-echo $this->Form->control('search', ['label' => __('Search')]);
-echo $this->Form->end();
-?>
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
+<?= $this->getRequest()->getQuery('limit') ? $this->Form->hidden('limit') : '' ?>
+
+<div class="row">
+    <div class="column-responsive">
+        <?= $this->Form->control('search', [
+            'label' => __('Search'),
+            'type' => 'search',
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+</div>
+<?= $this->Form->end() ?>
 
 <div class="accessPoints index content">
     <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>

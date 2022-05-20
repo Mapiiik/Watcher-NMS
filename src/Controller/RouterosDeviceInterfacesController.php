@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\SearchForm;
 use Cake\I18n\FrozenDate;
 
 /**
@@ -21,48 +20,41 @@ class RouterosDeviceInterfacesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['RouterosDevices'],
-        ];
-
-        $search = new SearchForm();
-        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
-            if ($search->execute(['search' => $this->request->getQuery('search')])) {
-                $this->Flash->success(__('Search Set.'));
-            } else {
-                $this->Flash->error(__('There was a problem setting search.'));
-            }
-        }
-        $this->set('search', $search);
-
-        if ($search->getData('search') <> '') {
-            $this->paginate['conditions']['OR'] = [
-                'RouterosDevices.name ILIKE' => '%'
-                . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.name ILIKE' => '%'
-                . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.comment ILIKE' => '%'
-                . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.mac_address::character varying ILIKE' => '%'
-                . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.ssid ILIKE' => '%'
-                . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.bssid::character varying ILIKE' => '%'
-                . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.band ILIKE' => '%'
-                . \trim($search->getData('search')) . '%',
-                'RouterosDeviceInterfaces.frequency::character varying ILIKE' => '%'
-                . \trim($search->getData('search')) . '%',
+        // filter
+        $conditions = [];
+        $maximum_age = $this->request->getQuery('maximum_age');
+        if (!empty($maximum_age)) {
+            $conditions[] = [
+                'RouterosDeviceInterfaces.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
+            ];
+        } else {
+            $conditions[] = [
+                'RouterosDeviceInterfaces.modified >' => FrozenDate::create()->subDays(14),
             ];
         }
 
-        if ($this->request->getQuery('maximum_age') <> '') {
-            $this->paginate['conditions']['RouterosDeviceInterfaces.modified >'] =
-                (new FrozenDate())->subDays((int)$this->request->getQuery('maximum_age'));
-        } else {
-            $this->paginate['conditions']['RouterosDeviceInterfaces.modified >'] =
-                (new FrozenDate())->subDays(14);
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RouterosDeviceInterfaces.name ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDeviceInterfaces.comment ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDeviceInterfaces.mac_address::character varying ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDeviceInterfaces.ssid ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDeviceInterfaces.bssid::character varying ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDeviceInterfaces.band ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDeviceInterfaces.frequency::character varying ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
         }
+
+        $this->paginate = [
+            'contain' => ['RouterosDevices'],
+            'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
+        ];
 
         $routerosDeviceInterfaces = $this->paginate($this->RouterosDeviceInterfaces);
 

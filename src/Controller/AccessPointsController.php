@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Form\MapOptionsForm;
-use App\Form\SearchForm;
 use Cake\I18n\FrozenDate;
 use Cake\View\Helper\HtmlHelper;
 
@@ -24,27 +23,25 @@ class AccessPointsController extends AppController
      */
     public function index()
     {
+        // filter
+        $conditions = [];
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
+                    'AccessPoints.device_name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
+        }
+
         $this->paginate = [
             'contain' => ['ParentAccessPoints'],
             'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
         ];
-
-        $search = new SearchForm();
-        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
-            if ($search->execute(['search' => $this->request->getQuery('search')])) {
-                $this->Flash->success(__('Search Set.'));
-            } else {
-                $this->Flash->error(__('There was a problem setting search.'));
-            }
-        }
-        $this->set('search', $search);
-
-        if ($search->getData('search') <> '') {
-            $this->paginate['conditions']['OR'] = [
-                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'AccessPoints.device_name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-            ];
-        }
 
         $accessPoints = $this->paginate($this->AccessPoints);
 

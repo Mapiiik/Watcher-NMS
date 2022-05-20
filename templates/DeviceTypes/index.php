@@ -4,6 +4,20 @@
  * @var \App\Model\Entity\DeviceType[]|\Cake\Collection\CollectionInterface $deviceTypes
  */
 ?>
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
+<?= $this->getRequest()->getQuery('limit') ? $this->Form->hidden('limit') : '' ?>
+
+<div class="row">
+    <div class="column-responsive">
+        <?= $this->Form->control('search', [
+            'label' => __('Search'),
+            'type' => 'search',
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+</div>
+<?= $this->Form->end() ?>
+
 <div class="deviceTypes index content">
     <?= $this->Html->link(__('New Device Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Device Types') ?></h3>

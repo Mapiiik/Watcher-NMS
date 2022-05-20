@@ -4,27 +4,34 @@
  * @var \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Collection\CollectionInterface $routerosDeviceInterfaces
  */
 ?>
-<?php
-echo $this->Form->create($search, ['type' => 'get', 'valueSources' => ['query', 'context']]);
-if ($this->request->getQuery('limit')) {
-    echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
-}
-echo $this->Form->control('search', ['label' => __('Search')]);
-echo $this->Form->control('maximum_age', [
-    'label' => __('Maximum Age'),
-    'options' => [
-        1 => __dn('cake', '{0} day', '{0} days', 1, 1),
-        7 => __dn('cake', '{0} day', '{0} days', 7, 7),
-        14 => __dn('cake', '{0} day', '{0} days', 14, 14),
-        28 => __dn('cake', '{0} day', '{0} days', 28, 28),
-        56 => __dn('cake', '{0} day', '{0} days', 56, 56),
-        365 => __dn('cake', '{0} day', '{0} days', 365, 365),
-    ],
-    'default' => 14,
-    'onchange' => 'this.form.submit();',
-]);
-echo $this->Form->end();
-?>
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
+<?= $this->getRequest()->getQuery('limit') ? $this->Form->hidden('limit') : '' ?>
+
+<div class="row">
+    <div class="column-responsive">
+        <?= $this->Form->control('search', [
+            'label' => __('Search'),
+            'type' => 'search',
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+    <div class="column-responsive">
+        <?= $this->Form->control('maximum_age', [
+            'label' => __('Maximum Age'),
+            'options' => [
+                1 => __dn('cake', '{0} day', '{0} days', 1, 1),
+                7 => __dn('cake', '{0} day', '{0} days', 7, 7),
+                14 => __dn('cake', '{0} day', '{0} days', 14, 14),
+                28 => __dn('cake', '{0} day', '{0} days', 28, 28),
+                56 => __dn('cake', '{0} day', '{0} days', 56, 56),
+                365 => __dn('cake', '{0} day', '{0} days', 365, 365),
+            ],
+            'default' => 14,
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+</div>
+<?= $this->Form->end() ?>
 
 <div class="routerosDeviceInterfaces index content">
     <?= $this->Html->link(

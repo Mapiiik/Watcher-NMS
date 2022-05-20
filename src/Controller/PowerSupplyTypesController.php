@@ -18,9 +18,26 @@ class PowerSupplyTypesController extends AppController
      */
     public function index()
     {
+        // filter
+        $conditions = [];
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'PowerSupplyTypes.name ILIKE' => '%' . trim($search) . '%',
+                    'Manufacturers.name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
+        }
+
         $this->paginate = [
             'contain' => ['Manufacturers'],
+            'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
         ];
+
         $powerSupplyTypes = $this->paginate($this->PowerSupplyTypes);
 
         $this->set(compact('powerSupplyTypes'));

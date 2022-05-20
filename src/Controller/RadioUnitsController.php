@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\SearchForm;
-
 /**
  * RadioUnits Controller
  *
@@ -23,9 +21,34 @@ class RadioUnitsController extends AppController
         $access_point_id = $this->request->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
+        // filter
         $conditions = [];
         if (isset($access_point_id)) {
-            $conditions = ['RadioUnits.access_point_id' => $access_point_id];
+            $conditions[] = [
+                'RadioUnits.access_point_id' => $access_point_id,
+            ];
+        }
+        $radio_unit_band_id = $this->request->getQuery('radio_unit_band_id');
+        if (!empty($radio_unit_band_id)) {
+            $conditions[] = [
+                'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
+            ];
+        }
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RadioUnits.name ILIKE' => '%' . trim($search) . '%',
+                    'RadioUnits.serial_number ILIKE' => '%' . trim($search) . '%',
+                    'RadioUnits.station_address ILIKE' => '%' . trim($search) . '%',
+                    'RadioUnitTypes.name ILIKE' => '%' . trim($search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
+                    'RadioLinks.name ILIKE' => '%' . trim($search) . '%',
+                    'AntennaTypes.name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
         }
 
         $this->paginate = [
@@ -33,33 +56,6 @@ class RadioUnitsController extends AppController
             'order' => ['name' => 'ASC'],
             'conditions' => $conditions,
         ];
-
-        $search = new SearchForm();
-        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
-            if ($search->execute(['search' => $this->request->getQuery('search')])) {
-                $this->Flash->success(__('Search Set.'));
-            } else {
-                $this->Flash->error(__('There was a problem setting search.'));
-            }
-        }
-        $this->set('search', $search);
-
-        if ($search->getData('search') <> '') {
-            $this->paginate['conditions']['OR'] = [
-                'RadioUnitTypes.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RadioLinks.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RadioUnits.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RadioUnits.serial_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'RadioUnits.station_address ILIKE' => '%' . \trim($search->getData('search')) . '%',
-            ];
-        }
-
-        if ($this->request->getQuery('band') <> '') {
-            $this->paginate['conditions'][] = [
-                'RadioUnitTypes.radio_unit_band_id' => $this->request->getQuery('band'),
-            ];
-        }
 
         $radioUnits = $this->paginate($this->RadioUnits);
 

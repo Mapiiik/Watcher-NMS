@@ -21,6 +21,27 @@ class RadarInterferencesController extends AppController
      */
     public function index()
     {
+        // filter
+        $conditions = [];
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RadarInterferences.name ILIKE' => '%' . trim($search) . '%',
+                    'RadarInterferences.mac_address::character varying ILIKE' => '%' . trim($search) . '%',
+                    'RadarInterferences.ssid ILIKE' => '%' . trim($search) . '%',
+                    'RadarInterferences.radio_name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
+        }
+
+        $this->paginate = [
+            'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
+        ];
+
         $radarInterferences = $this->paginate($this->RadarInterferences);
 
         $this->set(compact('radarInterferences'));

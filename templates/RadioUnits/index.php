@@ -2,23 +2,28 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnit[]|\Cake\Collection\CollectionInterface $radioUnits
- * @var \App\Model\Entity\RadioUnitBands[]|\Cake\Collection\CollectionInterface $radioUnitBands
+ * @var \App\Model\Entity\RadioUnitBand[]|\Cake\Collection\CollectionInterface $radioUnitBands
  */
 ?>
-<?php
-echo $this->Form->create($search, ['type' => 'get', 'valueSources' => ['query', 'context']]);
-if ($this->request->getQuery('limit')) {
-    echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
-}
-echo $this->Form->control('search', ['label' => __('Search')]);
-echo $this->Form->control('band', [
-    'label' => __('Band'),
-    'options' => $radioUnitBands,
-    'empty' => true,
-    'onchange' => 'this.form.submit();',
-]);
-echo $this->Form->end();
-?>
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
+<?= $this->getRequest()->getQuery('limit') ? $this->Form->hidden('limit') : '' ?>
+
+<div class="row">
+    <div class="column-responsive">
+        <?= $this->Form->control('search', [
+            'label' => __('Search'),
+            'type' => 'search',
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+    <div class="column-responsive">
+        <?= $this->Form->control('radio_unit_band_id', [
+            'empty' => true,
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+</div>
+<?= $this->Form->end() ?>
 
 <div class="radioUnits index content">
     <?= $this->Html->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\SearchForm;
-
 /**
  * AccessPointContacts Controller
  *
@@ -23,9 +21,27 @@ class AccessPointContactsController extends AppController
         $access_point_id = $this->request->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
+        // filter
         $conditions = [];
         if (isset($access_point_id)) {
-            $conditions = ['AccessPointContacts.access_point_id' => $access_point_id];
+            $conditions[] = [
+                'AccessPointContacts.access_point_id' => $access_point_id,
+            ];
+        }
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
+                    'AccessPointContacts.name ILIKE' => '%' . trim($search) . '%',
+                    'AccessPointContacts.phone ILIKE' => '%' . trim($search) . '%',
+                    'AccessPointContacts.email ILIKE' => '%' . trim($search) . '%',
+                    'AccessPointContacts.customer_number ILIKE' => '%' . trim($search) . '%',
+                    'AccessPointContacts.contract_number ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
         }
 
         $this->paginate = [
@@ -33,27 +49,6 @@ class AccessPointContactsController extends AppController
             'order' => ['name' => 'ASC'],
             'conditions' => $conditions,
         ];
-
-        $search = new SearchForm();
-        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
-            if ($search->execute(['search' => $this->request->getQuery('search')])) {
-                $this->Flash->success(__('Search Set.'));
-            } else {
-                $this->Flash->error(__('There was a problem setting search.'));
-            }
-        }
-        $this->set('search', $search);
-
-        if ($search->getData('search') <> '') {
-            $this->paginate['conditions']['OR'] = [
-                'AccessPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'AccessPointContacts.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'AccessPointContacts.phone ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'AccessPointContacts.email ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'AccessPointContacts.customer_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
-                'AccessPointContacts.contract_number ILIKE' => '%' . \trim($search->getData('search')) . '%',
-            ];
-        }
 
         $accessPointContacts = $this->paginate($this->AccessPointContacts);
 

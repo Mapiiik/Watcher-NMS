@@ -4,6 +4,20 @@
  * @var \App\Model\Entity\IpAddressRange[]|\Cake\Collection\CollectionInterface $ipAddressRanges
  */
 ?>
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
+<?= $this->getRequest()->getQuery('limit') ? $this->Form->hidden('limit') : '' ?>
+
+<div class="row">
+    <div class="column-responsive">
+        <?= $this->Form->control('search', [
+            'label' => __('Search'),
+            'type' => 'search',
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+</div>
+<?= $this->Form->end() ?>
+
 <div class="ipAddressRanges index content">
     <?= $this->Html->link(
         __('New Ip Address Range'),

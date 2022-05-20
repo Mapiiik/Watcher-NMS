@@ -4,6 +4,20 @@
  * @var \App\Model\Entity\PowerSupplyType[]|\Cake\Collection\CollectionInterface $powerSupplyTypes
  */
 ?>
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
+<?= $this->getRequest()->getQuery('limit') ? $this->Form->hidden('limit') : '' ?>
+
+<div class="row">
+    <div class="column-responsive">
+        <?= $this->Form->control('search', [
+            'label' => __('Search'),
+            'type' => 'search',
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+</div>
+<?= $this->Form->end() ?>
+
 <div class="powerSupplyTypes index content">
     <?= $this->Html->link(
         __('New Power Supply Type'),

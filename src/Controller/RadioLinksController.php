@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\SearchForm;
-
 /**
  * RadioLinks Controller
  *
@@ -20,6 +18,26 @@ class RadioLinksController extends AppController
      */
     public function index()
     {
+        // filter
+        $conditions = [];
+        $finder = [];
+        $radio_unit_band_id = $this->request->getQuery('radio_unit_band_id');
+        if (!empty($radio_unit_band_id)) {
+            $finder['band'] = [
+                'radio_unit_band_id' => $radio_unit_band_id,
+            ];
+        }
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RadioLinks.name ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
+        }
+
         $this->paginate = [
             'contain' => ['RadioUnits' => [
                 'RadioUnitTypes' => ['RadioUnitBands'],
@@ -28,31 +46,9 @@ class RadioLinksController extends AppController
                 'AntennaTypes',
             ]],
             'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
+            'finder' => $finder,
         ];
-
-        $search = new SearchForm();
-        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
-            if ($search->execute(['search' => $this->request->getQuery('search')])) {
-                $this->Flash->success(__('Search Set.'));
-            } else {
-                $this->Flash->error(__('There was a problem setting search.'));
-            }
-        }
-        $this->set('search', $search);
-
-        if ($search->getData('search') <> '') {
-            $this->paginate['conditions']['OR'] = [
-                'RadioLinks.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
-            ];
-        }
-
-        if ($this->request->getQuery('band') <> '') {
-            $this->paginate['finder'] = [
-                'band' => [
-                    'radio_unit_band_id' => $this->request->getQuery('band'),
-                ],
-            ];
-        }
 
         $radioLinks = $this->paginate($this->RadioLinks);
 

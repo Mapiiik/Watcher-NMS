@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnit[]|\Cake\Collection\CollectionInterface $radioUnits
  */
-$this->layout = 'clean';
+$this->setLayout('clean');
 ?>
 <div class="radioUnits index content">
     <?= $this->Html->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
@@ -107,8 +107,8 @@ $this->layout = 'clean';
                     <td><?= h($radioUnit->ip_address) ?></td>
                     <td><?= h($radioUnit->device_login) ?></td>
                     <td><?= h($radioUnit->device_password) ?></td>
-                    <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_y) : '' ?></td>
-                    <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_x) : '' ?></td>
+                    <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_y ?? '') : '' ?></td>
+                    <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_x ?? '') : '' ?></td>
                     <td>
                         <?= $this->Html->link(
                             __('View'),

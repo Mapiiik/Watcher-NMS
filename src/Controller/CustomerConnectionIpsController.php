@@ -18,8 +18,27 @@ class CustomerConnectionIpsController extends AppController
      */
     public function index()
     {
+        // filter
+        $conditions = [];
+
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'CustomerConnectionIps.name ILIKE' => '%' . trim($search) . '%',
+                    'CustomerConnectionIps.ip_address::character varying ILIKE' => '%' . trim($search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim($search) . '%',
+                    'CustomerConnections.customer_number ILIKE' => '%' . trim($search) . '%',
+                    'CustomerConnections.contract_number ILIKE' => '%' . trim($search) . '%',
+                ],
+            ];
+        }
+
         $this->paginate = [
             'contain' => ['CustomerConnections'],
+            'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
         ];
         $customerConnectionIps = $this->paginate($this->CustomerConnectionIps);
 

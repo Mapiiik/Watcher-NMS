@@ -3,16 +3,36 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RouterosDevice[]|\Cake\Collection\CollectionInterface $routerosDevices
  */
-$this->layout = 'clean';
+$this->setLayout('clean');
 ?>
-<?php
-echo $this->Form->create($search, ['type' => 'get']);
-if ($this->request->getQuery('limit')) {
-    echo $this->Form->hidden('limit', ['value' => $this->request->getQuery('limit')]);
-}
-echo $this->Form->control('search', ['label' => __('Search')]);
-echo $this->Form->end();
-?>
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
+<?= $this->getRequest()->getQuery('limit') ? $this->Form->hidden('limit') : '' ?>
+
+<div class="row">
+    <div class="column-responsive">
+        <?= $this->Form->control('search', [
+            'label' => __('Search'),
+            'type' => 'search',
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+    <div class="column-responsive">
+        <?= $this->Form->control('maximum_age', [
+            'label' => __('Maximum Age'),
+            'options' => [
+                1 => __dn('cake', '{0} day', '{0} days', 1, 1),
+                7 => __dn('cake', '{0} day', '{0} days', 7, 7),
+                14 => __dn('cake', '{0} day', '{0} days', 14, 14),
+                28 => __dn('cake', '{0} day', '{0} days', 28, 28),
+                56 => __dn('cake', '{0} day', '{0} days', 56, 56),
+                365 => __dn('cake', '{0} day', '{0} days', 365, 365),
+            ],
+            'default' => 14,
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+</div>
+<?= $this->Form->end() ?>
 
 <div class="routerosDevices index content" style="clear: both;">
     <?= $this->Html->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
@@ -41,19 +61,6 @@ echo $this->Form->end();
             </thead>
             <tbody>
                 <?php foreach ($routerosDevices as $routerosDevice) : ?>
-                    <?php
-                    $is_wireless = false;
-                    if ($routerosDevice->has('routeros_device_interfaces')) {
-                        foreach ($routerosDevice->routeros_device_interfaces as $routeros_device_interface) {
-                            if (isset($routeros_device_interface->band)) {
-                                $is_wireless = true;
-                            }
-                        }
-                    }
-                    if (!$is_wireless) {
-                        continue;
-                    }
-                    ?>
                     <tr>
                         <td>
                             <?= $routerosDevice->has('access_point') ? $this->Html->link(
@@ -115,15 +122,15 @@ echo $this->Form->end();
                             ?></td>
                         <td>
                             <?= $routerosDevice->has('access_point') ?
-                                h($routerosDevice->access_point->gps_y) : '' ?>
+                                h($routerosDevice->access_point->gps_y ?? '') . '<br />' : '' ?>
                             <?= $routerosDevice->has('customer_connection') ?
-                                h($routerosDevice->customer_connection->customer_point->gps_y) : '' ?>
+                                h($routerosDevice->customer_connection->customer_point->gps_y ?? '') . '<br />' : '' ?>
                         </td>
                         <td>
                             <?= $routerosDevice->has('access_point') ?
-                                h($routerosDevice->access_point->gps_x) : '' ?>
+                                h($routerosDevice->access_point->gps_x ?? '') . '<br />' : '' ?>
                             <?= $routerosDevice->has('customer_connection') ?
-                                h($routerosDevice->customer_connection->customer_point->gps_x) : '' ?>
+                                h($routerosDevice->customer_connection->customer_point->gps_x ?? '') . '<br />' : '' ?>
                         </td>
                         <td class="actions">
                             <?= $this->Html->link(

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\SearchForm;
-
 /**
  * CustomerPoints Controller
  *
@@ -20,25 +18,23 @@ class CustomerPointsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'order' => ['name' => 'ASC'],
-        ];
+        // filter
+        $conditions = [];
 
-        $search = new SearchForm();
-        if ($this->request->is(['get']) && ($this->request->getQuery('search')) !== null) {
-            if ($search->execute(['search' => $this->request->getQuery('search')])) {
-                $this->Flash->success(__('Search Set.'));
-            } else {
-                $this->Flash->error(__('There was a problem setting search.'));
-            }
-        }
-        $this->set('search', $search);
-
-        if ($search->getData('search') <> '') {
-            $this->paginate['conditions']['OR'] = [
-                'CustomerPoints.name ILIKE' => '%' . \trim($search->getData('search')) . '%',
+        // search
+        $search = $this->request->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'CustomerPoints.name ILIKE' => '%' . trim($search) . '%',
+                ],
             ];
         }
+
+        $this->paginate = [
+            'order' => ['name' => 'ASC'],
+            'conditions' => $conditions,
+        ];
 
         $customerPoints = $this->paginate($this->CustomerPoints);
 
