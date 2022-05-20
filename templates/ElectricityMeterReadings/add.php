@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ElectricityMeterReading $electricityMeterReading
+ * @var string[]|\Cake\Collection\CollectionInterface $accessPoints
  */
 ?>
 <div class="row">

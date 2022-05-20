@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\PowerSupplyType $powerSupplyType
+ * @var string[]|\Cake\Collection\CollectionInterface $manufacturers
  */
 ?>
 <div class="row">

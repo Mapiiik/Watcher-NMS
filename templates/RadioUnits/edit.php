@@ -2,6 +2,10 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnit $radioUnit
+ * @var string[]|\Cake\Collection\CollectionInterface $accessPoints
+ * @var string[]|\Cake\Collection\CollectionInterface $antennaTypes
+ * @var string[]|\Cake\Collection\CollectionInterface $radioLinks
+ * @var string[]|\Cake\Collection\CollectionInterface $radioUnitTypes
  */
 ?>
 <div class="row">

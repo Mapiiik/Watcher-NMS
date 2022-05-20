@@ -64,7 +64,7 @@
                     <th><?= __('Customer Number') ?></th>
                     <td><?= $accessPointContact->has('customer_number') ? $this->Html->link(
                         $accessPointContact->customer_number,
-                        env('CRM_ADMIN_URL') . '/customers/' . ($accessPointContact->customer_number - 110000),
+                        env('CRM_ADMIN_URL') . '/customers/' . ((int)$accessPointContact->customer_number - 110000),
                         ['target' => '_blank']
                     ) : '' ?></td>
                 </tr>

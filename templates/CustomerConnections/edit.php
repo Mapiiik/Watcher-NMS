@@ -2,6 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\CustomerConnection $customerConnection
+ * @var string[]|\Cake\Collection\CollectionInterface $accessPoints
+ * @var string[]|\Cake\Collection\CollectionInterface $customerPoints
  */
 ?>
 <div class="row">

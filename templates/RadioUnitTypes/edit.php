@@ -2,6 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnitType $radioUnitType
+ * @var string[]|\Cake\Collection\CollectionInterface $manufacturers
+ * @var string[]|\Cake\Collection\CollectionInterface $radioUnitBands
  */
 ?>
 <div class="row">
