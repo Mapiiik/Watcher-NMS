@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP 4.2.4\n"
-"POT-Creation-Date: 2022-02-09 14:02+0000\n"
-"PO-Revision-Date: 2022-02-09 15:25+0100\n"
+"POT-Creation-Date: 2022-05-27 16:54+0200\n"
+"PO-Revision-Date: 2022-05-27 16:55+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -26,33 +26,6 @@ msgstr "Požadovaná adresa {0} nebyla na tomto serveru nalezena."
 #: templates/Error/error500.php:38
 msgid "An Internal Error Has Occurred"
 msgstr "Došlo k vnitřní chybě"
-
-#: templates/RouterosDeviceInterfaces/index.php:16
-#: templates/RouterosDeviceInterfaces/index.php:17
-#: templates/RouterosDeviceInterfaces/index.php:18
-#: templates/RouterosDeviceInterfaces/index.php:19
-#: templates/RouterosDeviceInterfaces/index.php:20
-#: templates/RouterosDeviceInterfaces/index.php:21
-#: templates/RouterosDeviceIps/index.php:16
-#: templates/RouterosDeviceIps/index.php:17
-#: templates/RouterosDeviceIps/index.php:18
-#: templates/RouterosDeviceIps/index.php:19
-#: templates/RouterosDeviceIps/index.php:20
-#: templates/RouterosDeviceIps/index.php:21
-#: templates/RouterosDevices/index.php:16
-#: templates/RouterosDevices/index.php:17
-#: templates/RouterosDevices/index.php:18
-#: templates/RouterosDevices/index.php:19
-#: templates/RouterosDevices/index.php:20
-#: templates/RouterosDevices/index.php:21
-#: vendor/cakephp/cakephp/src/I18n/RelativeTimeFormatter.php:65
-#: vendor/cakephp/cakephp/src/I18n/RelativeTimeFormatter.php:141
-#: vendor/cakephp/cakephp/src/I18n/RelativeTimeFormatter.php:363
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} den"
-msgstr[1] "{0} dny"
-msgstr[2] "{0} dnů"
 
 #: vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:462
 msgid "You are not authorized to access that location."
@@ -86,11 +59,11 @@ msgstr ""
 msgid "Missing or incorrect CSRF session key"
 msgstr "Chybějící nebo nesprávný klíč relace CSRF"
 
-#: vendor/cakephp/cakephp/src/Http/Response.php:1490
+#: vendor/cakephp/cakephp/src/Http/Response.php:1460
 msgid "The requested file contains `..` and will not be read."
 msgstr "Požadovaný soubor obsahuje '.. ' a nebude načten."
 
-#: vendor/cakephp/cakephp/src/Http/Response.php:1498
+#: vendor/cakephp/cakephp/src/Http/Response.php:1468
 msgid "The requested file was not found"
 msgstr "Požadovaný soubor nebyl nalezen"
 
@@ -239,6 +212,15 @@ msgid_plural "{0} weeks"
 msgstr[0] "{0} týden"
 msgstr[1] "{0} týdny"
 msgstr[2] "{0} týdnů"
+
+#: vendor/cakephp/cakephp/src/I18n/RelativeTimeFormatter.php:65
+#: vendor/cakephp/cakephp/src/I18n/RelativeTimeFormatter.php:141
+#: vendor/cakephp/cakephp/src/I18n/RelativeTimeFormatter.php:363
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} den"
+msgstr[1] "{0} dny"
+msgstr[2] "{0} dnů"
 
 #: vendor/cakephp/cakephp/src/I18n/RelativeTimeFormatter.php:70
 #: vendor/cakephp/cakephp/src/I18n/RelativeTimeFormatter.php:144
