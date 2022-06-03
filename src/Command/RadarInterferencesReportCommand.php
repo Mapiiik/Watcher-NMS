@@ -82,7 +82,15 @@ class RadarInterferencesReportCommand extends Command
         $radarInterferences->select(['routeros_device_interface_name' => 'RouterosDeviceInterfaces.name']);
 
         if ($radarInterferences->count() > 0) {
-            $table[] = ['Name', 'MAC Address', 'SSID', 'Radio Name', 'Signal', 'Device Name', 'Interface Name'];
+            $table[] = [
+                __('Name'),
+                __('MAC Address'),
+                __('SSID'),
+                __('Radio Name'),
+                __('Signal'),
+                __('Device Name'),
+                __('Interface Name'),
+            ];
             foreach ($radarInterferences as $radarInterference) {
                 $table[] = [
                     $radarInterference['name'],
@@ -101,27 +109,39 @@ class RadarInterferencesReportCommand extends Command
             foreach (explode(' ', $emails) as $email) {
                 $mailer->addTo($email);
             }
-            $mailer->setSubject('The radar interfering devices found');
+            $mailer->setSubject(__('Devices that interfere with radar found'));
 
             try {
                 $mailer->deliver(
-                    "Hello,\n\nthe radar interfering devices ("
-                    . $radarInterferences->count()
-                    . ") found.\n\nFor more informations go here: "
-                    . Router::url(['controller' => 'RadarInterferences', 'action' => 'devices', '_full' => true], true)
+                    __(
+                        'Devices that interfere with radar ({count}) found.',
+                        ['count' => $radarInterferences->count()]
+                    ) . PHP_EOL
+                    . PHP_EOL
+                    . __(
+                        'For more informations go here: {url}',
+                        [
+                            'url' => Router::url([
+                                'controller' => 'RadarInterferences',
+                                'action' => 'devices',
+                                '_full' => true,
+                            ], true),
+                        ]
+                    ) . PHP_EOL
                 );
-                Log::write('debug', 'The radar interfering devices found and reported.');
-                $io->info('The radar interfering devices found and reported.');
+
+                Log::write('debug', 'Devices that interfere with radar found and reported.');
+                $io->info(__('Devices that interfere with radar found and reported.'));
             } catch (\Exception $e) {
                 Log::write(
                     'warning',
-                    'The radar interfering devices found but cannot be reported. (' . $e->getMessage() . ')'
+                    'Devices that interfere with radar found but cannot be reported. (' . $e->getMessage() . ')'
                 );
-                $io->abort('The radar interfering devices found but cannot be reported.');
+                $io->abort(__('Devices that interfere with radar found but cannot be reported.'));
             }
         } else {
-            Log::write('debug', 'No radar interfering devices found.');
-            $io->success('No radar interfering devices found.');
+            Log::write('debug', 'No devices that interfere with radar found.');
+            $io->success(__('No devices that interfere with radar found.'));
         }
     }
 }

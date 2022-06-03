@@ -62,11 +62,11 @@ class ElectricityMeterReadingsReportCommand extends Command
 
         if ($access_points->count() > 0) {
             $table[] = [
-                'Access Point',
-                'Contract Conditions',
-                'Last Reading Date',
-                'Last Reading Value',
-                'Number of days since last',
+                __('Access Point'),
+                __('Contract Conditions'),
+                __('Last Reading Date'),
+                __('Last Reading Value'),
+                __('Number of days since last'),
             ];
             foreach ($access_points as $access_point) {
                 if (isset($access_point->electricity_meter_readings[0])) {
@@ -90,11 +90,15 @@ class ElectricityMeterReadingsReportCommand extends Command
             foreach (explode(' ', $emails) as $email) {
                 $mailer->addTo($email);
             }
-            $mailer->setSubject('Electricity meter readings - ' . $now->i18nFormat('LLLL YYYY'));
+            $mailer->setSubject(__('Electricity Meter Readings') . ' - ' . $now->i18nFormat('LLLL YYYY'));
             $mailer->setEmailFormat('html');
 
-            $body = '<h2>These electricity meter readings should take place in '
-                    . $now->i18nFormat('LLLL YYYY') . '.<h2>' . PHP_EOL;
+            $body = '<h2>'
+                . __(
+                    'These electricity meter readings should take place in {month}.',
+                    ['month' => $now->i18nFormat('LLLL YYYY')]
+                )
+                . '</h2>' . PHP_EOL;
 
             $body .= '<style>table, th, td { border: 1px solid; }</style>' . PHP_EOL;
 
@@ -113,17 +117,17 @@ class ElectricityMeterReadingsReportCommand extends Command
             try {
                 $mailer->deliver($body);
                 Log::write('debug', 'The electricity meter readings to be made have been reported.');
-                $io->info('The electricity meter readings to be made have been reported.');
+                $io->info(__('The electricity meter readings to be made have been reported.'));
             } catch (\Exception $e) {
                 Log::write(
                     'warning',
                     'The electricity meter readings to be made cannot be reported. (' . $e->getMessage() . ')'
                 );
-                $io->abort('The electricity meter readings to be made cannot be reported.');
+                $io->abort(__('The electricity meter readings to be made cannot be reported.'));
             }
         } else {
             Log::write('debug', 'There is no need to take any electricity meter readings this month.');
-            $io->success('There is no need to take any electricity meter readings this month.');
+            $io->success(__('There is no need to take any electricity meter readings this month.'));
         }
     }
 }

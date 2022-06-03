@@ -64,10 +64,10 @@ class RadarInterferencesUpdateCommand extends Command
                 $this->fetchTable()->save($radarInterference);
             }
             Log::write('debug', 'The radar interferences table has been updated.');
-            $io->success('The radar interferences table has been updated.');
+            $io->success(__('The radar interferences table has been updated.'));
         } else {
             Log::write('warning', 'The radar interferences table could not be updated. Please, try again.');
-            $io->abort('The radar interferences table could not be updated. Please, try again.');
+            $io->abort(__('The radar interferences table could not be updated. Please, try again.'));
         }
     }
 }

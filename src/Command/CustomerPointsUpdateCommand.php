@@ -117,10 +117,10 @@ class CustomerPointsUpdateCommand extends Command
             ]);
 
             Log::debug('The customer points data have been updated.');
-            $io->success('The customer points data have been updated.');
+            $io->success(__('The customer points data have been updated.'));
         } else {
             Log::error('The customer points data could not be updated. Please, try again.');
-            $io->abort('The customer points data could not be updated. Please, try again.');
+            $io->abort(__('The customer points data could not be updated. Please, try again.'));
         }
     }
 }
