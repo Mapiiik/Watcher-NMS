@@ -75,7 +75,9 @@
                     <td>
                         <?= $customerConnection->has('customer_number') ? $this->Html->link(
                             $customerConnection->customer_number,
-                            env('CRM_ADMIN_URL') . '/customers/' . ((int)$customerConnection->customer_number - 110000),
+                            env('WATCHER_CRM_URL') . '/admin/customers/' . (
+                                (int)$customerConnection->customer_number - (int)env('CUSTOMER_SERIES', '0')
+                            ),
                             ['target' => '_blank']
                         ) : '' ?>
                     </td>

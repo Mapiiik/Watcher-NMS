@@ -139,8 +139,8 @@
                             <td>
                                 <?= $accessPointContacts->has('customer_number') ? $this->Html->link(
                                     $accessPointContacts->customer_number,
-                                    env('CRM_ADMIN_URL') . '/customers/' . (
-                                        (int)$accessPointContacts->customer_number - 110000
+                                    env('WATCHER_CRM_URL') . '/admin/customers/' . (
+                                        (int)$accessPointContacts->customer_number - (int)env('CUSTOMER_SERIES', '0')
                                     ),
                                     ['target' => '_blank']
                                 ) : '' ?>
