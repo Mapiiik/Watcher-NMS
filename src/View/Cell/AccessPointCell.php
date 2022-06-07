@@ -37,7 +37,7 @@ class AccessPointCell extends Cell
         $access_point_id = $this->request->getParam('access_point_id');
 
         if ($access_point_id) {
-            $accessPoint = $this->getTableLocator()->get('AccessPoints')->get($access_point_id);
+            $accessPoint = $this->fetchTable('AccessPoints')->get($access_point_id);
 
             $this->set(compact('accessPoint'));
         }
