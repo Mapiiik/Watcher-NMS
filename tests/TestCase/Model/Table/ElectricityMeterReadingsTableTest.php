@@ -37,7 +37,7 @@ class ElectricityMeterReadingsTableTest extends TestCase
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('ElectricityMeterReadings') ? [] : ['className' => ElectricityMeterReadingsTable::class];
-        $this->ElectricityMeterReadings = $this->getTableLocator()->get('ElectricityMeterReadings', $config);
+        $this->ElectricityMeterReadings = $this->fetchTable('ElectricityMeterReadings', $config);
     }
 
     /**

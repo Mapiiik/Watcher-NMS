@@ -37,7 +37,7 @@ class IpAddressRangesTableTest extends TestCase
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('IpAddressRanges') ? [] : ['className' => IpAddressRangesTable::class];
-        $this->IpAddressRanges = $this->getTableLocator()->get('IpAddressRanges', $config);
+        $this->IpAddressRanges = $this->fetchTable('IpAddressRanges', $config);
     }
 
     /**
