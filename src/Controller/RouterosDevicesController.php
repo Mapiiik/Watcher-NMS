@@ -238,6 +238,7 @@ class RouterosDevicesController extends AppController
      * @param string $hex text encoded in hexa format
      * @return string
      */
+    /*
     private function hexToStr($hex = null)
     {
         $string = '';
@@ -249,6 +250,7 @@ class RouterosDevicesController extends AppController
 
         return $string;
     }
+    */
 
     /**
      * empty string as null
