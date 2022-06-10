@@ -96,8 +96,32 @@
                     <td><?= h($powerSupply->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $powerSupply->has('creator') ? $this->Html->link(
+                        $powerSupply->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $powerSupply->creator->id,
+                        ]
+                    ) : h($powerSupply->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($powerSupply->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $powerSupply->has('modifier') ? $this->Html->link(
+                        $powerSupply->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $powerSupply->modifier->id,
+                        ]
+                    ) : h($powerSupply->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

@@ -79,8 +79,32 @@
                     <td><?= h($accessPointContact->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $accessPointContact->has('creator') ? $this->Html->link(
+                        $accessPointContact->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $accessPointContact->creator->id,
+                        ]
+                    ) : h($accessPointContact->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($accessPointContact->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $accessPointContact->has('modifier') ? $this->Html->link(
+                        $accessPointContact->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $accessPointContact->modifier->id,
+                        ]
+                    ) : h($accessPointContact->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

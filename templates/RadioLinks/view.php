@@ -55,8 +55,32 @@
                     <td><?= h($radioLink->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $radioLink->has('creator') ? $this->Html->link(
+                        $radioLink->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $radioLink->creator->id,
+                        ]
+                    ) : h($radioLink->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($radioLink->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $radioLink->has('modifier') ? $this->Html->link(
+                        $radioLink->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $radioLink->modifier->id,
+                        ]
+                    ) : h($radioLink->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

@@ -91,8 +91,32 @@
                     <td><?= h($customerConnection->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $customerConnection->has('creator') ? $this->Html->link(
+                        $customerConnection->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $customerConnection->creator->id,
+                        ]
+                    ) : h($customerConnection->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($customerConnection->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $customerConnection->has('modifier') ? $this->Html->link(
+                        $customerConnection->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $customerConnection->modifier->id,
+                        ]
+                    ) : h($customerConnection->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

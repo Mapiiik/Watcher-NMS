@@ -61,7 +61,11 @@ class ElectricityMeterReadingsController extends AppController
     public function view($id = null)
     {
         $electricityMeterReading = $this->ElectricityMeterReadings->get($id, [
-            'contain' => ['AccessPoints'],
+            'contain' => [
+                'AccessPoints',
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set(compact('electricityMeterReading'));

@@ -76,8 +76,32 @@
                     <td><?= h($customerPoint->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $customerPoint->has('creator') ? $this->Html->link(
+                        $customerPoint->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $customerPoint->creator->id,
+                        ]
+                    ) : h($customerPoint->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($customerPoint->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $customerPoint->has('modifier') ? $this->Html->link(
+                        $customerPoint->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $customerPoint->modifier->id,
+                        ]
+                    ) : h($customerPoint->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

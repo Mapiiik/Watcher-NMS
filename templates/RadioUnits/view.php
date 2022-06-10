@@ -139,20 +139,44 @@
                     <td><?= h($radioUnit->expiration_date) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($radioUnit->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($radioUnit->modified) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Acm') ?></th>
                     <td><?= $radioUnit->acm ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Atpc') ?></th>
                     <td><?= $radioUnit->atpc ? __('Yes') : __('No'); ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($radioUnit->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $radioUnit->has('creator') ? $this->Html->link(
+                        $radioUnit->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $radioUnit->creator->id,
+                        ]
+                    ) : h($radioUnit->created_by) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($radioUnit->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $radioUnit->has('modifier') ? $this->Html->link(
+                        $radioUnit->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $radioUnit->modifier->id,
+                        ]
+                    ) : h($radioUnit->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

@@ -61,6 +61,8 @@ class AntennaTypesController extends AppController
                     'AccessPoints',
                     'RadioLinks',
                 ],
+                'Creators',
+                'Modifiers',
             ],
         ]);
 

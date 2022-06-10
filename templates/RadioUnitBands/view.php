@@ -46,8 +46,32 @@
                     <td><?= h($radioUnitBand->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $radioUnitBand->has('creator') ? $this->Html->link(
+                        $radioUnitBand->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $radioUnitBand->creator->id,
+                        ]
+                    ) : h($radioUnitBand->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($radioUnitBand->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $radioUnitBand->has('modifier') ? $this->Html->link(
+                        $radioUnitBand->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $radioUnitBand->modifier->id,
+                        ]
+                    ) : h($radioUnitBand->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

@@ -87,6 +87,8 @@ class RouterosDevicesController extends AppController
                 'CustomerConnections',
                 'RouterosDeviceInterfaces',
                 'RouterosDeviceIps',
+                'Creators',
+                'Modifiers',
             ],
         ]);
 

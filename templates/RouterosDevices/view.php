@@ -118,8 +118,32 @@
                     <td><?= h($routerosDevice->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $routerosDevice->has('creator') ? $this->Html->link(
+                        $routerosDevice->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $routerosDevice->creator->id,
+                        ]
+                    ) : h($routerosDevice->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($routerosDevice->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $routerosDevice->has('modifier') ? $this->Html->link(
+                        $routerosDevice->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $routerosDevice->modifier->id,
+                        ]
+                    ) : h($routerosDevice->modified_by) ?></td>
                 </tr>
             </table>
             <div class="related">

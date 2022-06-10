@@ -96,8 +96,32 @@
                     <td><?= h($accessPoint->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $accessPoint->has('creator') ? $this->Html->link(
+                        $accessPoint->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $accessPoint->creator->id,
+                        ]
+                    ) : h($accessPoint->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($accessPoint->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $accessPoint->has('modifier') ? $this->Html->link(
+                        $accessPoint->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $accessPoint->modifier->id,
+                        ]
+                    ) : h($accessPoint->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

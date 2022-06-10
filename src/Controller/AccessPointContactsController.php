@@ -65,7 +65,11 @@ class AccessPointContactsController extends AppController
     public function view($id = null)
     {
         $accessPointContact = $this->AccessPointContacts->get($id, [
-            'contain' => ['AccessPoints'],
+            'contain' => [
+                'AccessPoints',
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set(compact('accessPointContact'));

@@ -66,7 +66,11 @@ class RouterosDeviceIpsController extends AppController
     public function view($id = null)
     {
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id, [
-            'contain' => ['RouterosDevices'],
+            'contain' => [
+                'RouterosDevices',
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set('routerosDeviceIp', $routerosDeviceIp);
@@ -81,7 +85,9 @@ class RouterosDeviceIpsController extends AppController
     {
         $routerosDeviceIp = $this->RouterosDeviceIps->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
-            $routerosDeviceIp = $this->RouterosDeviceIps->patchEntity($routerosDeviceIp, $this->getRequest()->getData());
+            $routerosDeviceIp = $this->RouterosDeviceIps
+                ->patchEntity($routerosDeviceIp, $this->getRequest()->getData());
+
             if ($this->RouterosDeviceIps->save($routerosDeviceIp)) {
                 $this->Flash->success(__('The routeros device ip has been saved.'));
 
@@ -106,7 +112,9 @@ class RouterosDeviceIpsController extends AppController
             'contain' => [],
         ]);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
-            $routerosDeviceIp = $this->RouterosDeviceIps->patchEntity($routerosDeviceIp, $this->getRequest()->getData());
+            $routerosDeviceIp = $this->RouterosDeviceIps
+                ->patchEntity($routerosDeviceIp, $this->getRequest()->getData());
+
             if ($this->RouterosDeviceIps->save($routerosDeviceIp)) {
                 $this->Flash->success(__('The routeros device ip has been saved.'));
 

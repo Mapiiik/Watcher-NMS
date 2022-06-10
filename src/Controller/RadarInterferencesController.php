@@ -57,7 +57,11 @@ class RadarInterferencesController extends AppController
     public function view($id = null)
     {
         $radarInterference = $this->RadarInterferences->get($id, [
-            'contain' => ['RouterosDeviceInterfaces' => ['RouterosDevices']],
+            'contain' => [
+                'RouterosDeviceInterfaces' => ['RouterosDevices'],
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set('radarInterference', $radarInterference);
@@ -72,7 +76,9 @@ class RadarInterferencesController extends AppController
     {
         $radarInterference = $this->RadarInterferences->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
-            $radarInterference = $this->RadarInterferences->patchEntity($radarInterference, $this->getRequest()->getData());
+            $radarInterference = $this->RadarInterferences
+                ->patchEntity($radarInterference, $this->getRequest()->getData());
+
             if ($this->RadarInterferences->save($radarInterference)) {
                 $this->Flash->success(__('The radar interference has been saved.'));
 
@@ -96,7 +102,9 @@ class RadarInterferencesController extends AppController
             'contain' => [],
         ]);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
-            $radarInterference = $this->RadarInterferences->patchEntity($radarInterference, $this->getRequest()->getData());
+            $radarInterference = $this->RadarInterferences
+                ->patchEntity($radarInterference, $this->getRequest()->getData());
+
             if ($this->RadarInterferences->save($radarInterference)) {
                 $this->Flash->success(__('The radar interference has been saved.'));
 

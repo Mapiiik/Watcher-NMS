@@ -67,8 +67,32 @@
                     <td><?= h($customerConnectionIp->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $customerConnectionIp->has('creator') ? $this->Html->link(
+                        $customerConnectionIp->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $customerConnectionIp->creator->id,
+                        ]
+                    ) : h($customerConnectionIp->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($customerConnectionIp->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $customerConnectionIp->has('modifier') ? $this->Html->link(
+                        $customerConnectionIp->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $customerConnectionIp->modifier->id,
+                        ]
+                    ) : h($customerConnectionIp->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

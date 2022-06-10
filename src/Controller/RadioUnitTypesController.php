@@ -61,6 +61,8 @@ class RadioUnitTypesController extends AppController
                     'RadioLinks',
                     'AntennaTypes',
                 ],
+                'Creators',
+                'Modifiers',
             ],
         ]);
 

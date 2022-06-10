@@ -66,8 +66,32 @@
                     <td><?= h($radarInterference->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $radarInterference->has('creator') ? $this->Html->link(
+                        $radarInterference->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $radarInterference->creator->id,
+                        ]
+                    ) : h($radarInterference->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($radarInterference->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $radarInterference->has('modifier') ? $this->Html->link(
+                        $radarInterference->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $radarInterference->modifier->id,
+                        ]
+                    ) : h($radarInterference->modified_by) ?></td>
                 </tr>
             </table>
             <div class="related">

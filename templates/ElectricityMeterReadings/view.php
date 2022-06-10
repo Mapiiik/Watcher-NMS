@@ -71,8 +71,32 @@
                     <td><?= h($electricityMeterReading->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $electricityMeterReading->has('creator') ? $this->Html->link(
+                        $electricityMeterReading->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $electricityMeterReading->creator->id,
+                        ]
+                    ) : h($electricityMeterReading->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($electricityMeterReading->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $electricityMeterReading->has('modifier') ? $this->Html->link(
+                        $electricityMeterReading->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $electricityMeterReading->modifier->id,
+                        ]
+                    ) : h($electricityMeterReading->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

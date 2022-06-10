@@ -66,8 +66,32 @@
                     <td><?= h($deviceType->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $deviceType->has('creator') ? $this->Html->link(
+                        $deviceType->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $deviceType->creator->id,
+                        ]
+                    ) : h($deviceType->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($deviceType->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $deviceType->has('modifier') ? $this->Html->link(
+                        $deviceType->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $deviceType->modifier->id,
+                        ]
+                    ) : h($deviceType->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

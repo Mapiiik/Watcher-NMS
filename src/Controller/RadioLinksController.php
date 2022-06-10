@@ -68,7 +68,11 @@ class RadioLinksController extends AppController
     public function view($id = null)
     {
         $radioLink = $this->RadioLinks->get($id, [
-            'contain' => ['RadioUnits' => ['RadioUnitTypes', 'AccessPoints', 'AntennaTypes']],
+            'contain' => [
+                'RadioUnits' => ['RadioUnitTypes', 'AccessPoints', 'AntennaTypes'],
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set('radioLink', $radioLink);

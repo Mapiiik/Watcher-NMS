@@ -71,7 +71,11 @@ class RouterosDeviceInterfacesController extends AppController
     public function view($id = null)
     {
         $routerosDeviceInterface = $this->RouterosDeviceInterfaces->get($id, [
-            'contain' => ['RouterosDevices'],
+            'contain' => [
+                'RouterosDevices',
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set('routerosDeviceInterface', $routerosDeviceInterface);

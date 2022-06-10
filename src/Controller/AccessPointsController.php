@@ -66,6 +66,8 @@ class AccessPointsController extends AppController
                 'RadioUnits' => ['RadioUnitTypes', 'RadioLinks', 'AntennaTypes'],
                 'RouterosDevices' => ['DeviceTypes'],
                 'IpAddressRanges' => ['ParentIpAddressRanges'],
+                'Creators',
+                'Modifiers',
             ],
         ]);
 

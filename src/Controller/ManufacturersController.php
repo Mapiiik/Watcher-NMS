@@ -55,6 +55,8 @@ class ManufacturersController extends AppController
                 'AntennaTypes' => ['RadioUnitBands'],
                 'PowerSupplyTypes',
                 'RadioUnitTypes' => ['RadioUnitBands'],
+                'Creators',
+                'Modifiers',
             ],
         ]);
 

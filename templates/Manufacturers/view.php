@@ -50,8 +50,32 @@
                     <td><?= h($manufacturer->created) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Created By') ?></th>
+                    <td><?= $manufacturer->has('creator') ? $this->Html->link(
+                        $manufacturer->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $manufacturer->creator->id,
+                        ]
+                    ) : h($manufacturer->created_by) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Modified') ?></th>
                     <td><?= h($manufacturer->modified) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified By') ?></th>
+                    <td><?= $manufacturer->has('modifier') ? $this->Html->link(
+                        $manufacturer->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $manufacturer->modifier->id,
+                        ]
+                    ) : h($manufacturer->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

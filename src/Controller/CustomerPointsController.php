@@ -51,7 +51,11 @@ class CustomerPointsController extends AppController
     public function view($id = null)
     {
         $customerPoint = $this->CustomerPoints->get($id, [
-            'contain' => ['CustomerConnections'],
+            'contain' => [
+                'CustomerConnections',
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set('customerPoint', $customerPoint);

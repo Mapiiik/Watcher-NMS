@@ -64,6 +64,8 @@ class CustomerConnectionsController extends AppController
                     'AccessPoints',
                     'DeviceTypes',
                 ],
+                'Creators',
+                'Modifiers',
             ],
         ]);
 

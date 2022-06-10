@@ -63,7 +63,12 @@ class PowerSuppliesController extends AppController
     public function view($id = null)
     {
         $powerSupply = $this->PowerSupplies->get($id, [
-            'contain' => ['PowerSupplyTypes', 'AccessPoints'],
+            'contain' => [
+                'PowerSupplyTypes',
+                'AccessPoints',
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set('powerSupply', $powerSupply);

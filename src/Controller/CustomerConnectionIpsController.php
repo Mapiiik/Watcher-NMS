@@ -55,7 +55,11 @@ class CustomerConnectionIpsController extends AppController
     public function view($id = null)
     {
         $customerConnectionIp = $this->CustomerConnectionIps->get($id, [
-            'contain' => ['CustomerConnections'],
+            'contain' => [
+                'CustomerConnections',
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set('customerConnectionIp', $customerConnectionIp);

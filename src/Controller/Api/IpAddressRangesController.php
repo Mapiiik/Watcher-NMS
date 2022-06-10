@@ -48,10 +48,12 @@ class IpAddressRangesController extends AppController
         ];
 
         if ($this->getRequest()->getQuery('access_point_id') !== null) {
-            $options['conditions']['IpAddressRanges.access_point_id'] = $this->getRequest()->getQuery('access_point_id');
+            $options['conditions']['IpAddressRanges.access_point_id']
+                = $this->getRequest()->getQuery('access_point_id');
         }
         if ($this->getRequest()->getQuery('for_subnets') !== null) {
-            $options['conditions']['IpAddressRanges.for_subnets'] = $this->getRequest()->getQuery('for_subnets');
+            $options['conditions']['IpAddressRanges.for_subnets']
+                = $this->getRequest()->getQuery('for_subnets');
         }
         if ($this->getRequest()->getQuery('for_customer_addresses_set_via_radius') !== null) {
             $options['conditions']['IpAddressRanges.for_customer_addresses_set_via_radius']
