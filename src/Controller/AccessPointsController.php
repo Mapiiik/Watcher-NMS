@@ -278,14 +278,14 @@ class AccessPointsController extends AppController
             }
         }
 
-        $accessPoints = $this->AccessPoints->find()->indexBy('id')->toArray();
+        $accessPoints = $this->AccessPoints->find()->all()->indexBy('id')->toArray();
 
         $customerPoints = [];
         $customerConnections = [];
 
         if ($mapOptions->getData('linked_customers') == 1) {
-            $customerPoints = $this->fetchTable('CustomerPoints')->find()->indexBy('id')->toArray();
-            $customerConnections = $this->fetchTable('CustomerConnections')->find()->indexBy('id')->toArray();
+            $customerPoints = $this->fetchTable('CustomerPoints')->find()->all()->indexBy('id')->toArray();
+            $customerConnections = $this->fetchTable('CustomerConnections')->find()->all()->indexBy('id')->toArray();
         }
 
         $remoteAccessPointPolylines = [];
