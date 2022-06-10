@@ -101,6 +101,14 @@ class AppController extends Controller
             I18n::setLocale($language);
         }
 
+        # We check if we have a high contrast set
+        if (is_numeric($this->getRequest()->getQuery('high-contrast'))) {
+            $this->getRequest()->getSession()->write(
+                'Config.high-contrast',
+                (int)$this->getRequest()->getQuery('high-contrast') == 1
+            );
+        }
+
         # Disable SecurityComponent POST validation for CakeDC/Users
         if ($this->request->getParam('plugin') === 'CakeDC/Users') {
             $this->Security->setConfig('validatePost', false);

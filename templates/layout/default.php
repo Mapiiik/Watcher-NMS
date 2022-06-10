@@ -30,9 +30,19 @@ $request = $this->getRequest();
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
-    
     <?= $this->Html->script(['https://code.jquery.com/jquery.min.js', 'links.js']) ?>
+
+    <?php if (filter_var(env('ENABLE_SELECT2', false), FILTER_VALIDATE_BOOLEAN)) : ?>
+        <?= $this->Html->css(['https://cdn.jsdelivr.net/npm/select2/dist/css/select2.min.css']) ?>
+        <?= $this->Html->script([
+            'https://cdn.jsdelivr.net/npm/select2/dist/js/select2.min.js',
+            'select2-settings.js',
+        ]) ?>
+    <?php endif ?>
+
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+    <?= $request->getSession()->read('Config.high-contrast') ? $this->Html->css(['high-contrast']) : '' ?>
+    
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -329,6 +339,19 @@ $request = $this->getRequest();
         </div>
     </main>
     <footer>
+        <br>
+        <div class="container">
+            <div class="float-right">
+            <?= $this->Form->create(null, ['type' => 'get']) ?>
+                <?= $this->Form->control('high-contrast', [
+                    'label' => __('High Contrast'),
+                    'type' => 'checkbox',
+                    'checked' => $request->getSession()->read('Config.high-contrast'),
+                    'onchange' => 'this.form.submit();',
+                ]) ?>
+            <?= $this->Form->end() ?>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
