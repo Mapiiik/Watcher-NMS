@@ -11,8 +11,10 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property \Cake\I18n\FrozenTime|null $created
  * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property string|null $name
  * @property string $ip_network
  * @property string|null $ip_gateway

@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use Cake\ORM\RulesChecker;
-use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
@@ -27,7 +26,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\IpAddressRange[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class IpAddressRangesTable extends Table
+class IpAddressRangesTable extends AppTable
 {
     /**
      * Initialize method
@@ -68,14 +67,6 @@ class IpAddressRangesTable extends Table
         $validator
             ->uuid('id')
             ->allowEmptyString('id', null, 'create');
-
-        $validator
-            ->uuid('created_by')
-            ->allowEmptyString('created_by');
-
-        $validator
-            ->uuid('modified_by')
-            ->allowEmptyString('modified_by');
 
         $validator
             ->scalar('name')

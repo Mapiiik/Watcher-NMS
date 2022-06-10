@@ -99,7 +99,15 @@
                 </tr>
                 <tr>
                     <th><?= __('Created By') ?></th>
-                    <td><?= h($ipAddressRange->created_by) ?></td>
+                    <td><?= $ipAddressRange->has('creator') ? $this->Html->link(
+                        $ipAddressRange->creator->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $ipAddressRange->creator->id,
+                        ]
+                    ) : h($ipAddressRange->created_by) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Modified') ?></th>
@@ -107,7 +115,15 @@
                 </tr>
                 <tr>
                     <th><?= __('Modified By') ?></th>
-                    <td><?= h($ipAddressRange->modified_by) ?></td>
+                    <td><?= $ipAddressRange->has('modifier') ? $this->Html->link(
+                        $ipAddressRange->modifier->username,
+                        [
+                            'plugin' => 'CakeDC/Users',
+                            'controller' => 'Users',
+                            'action' => 'view',
+                            $ipAddressRange->modifier->id,
+                        ]
+                    ) : h($ipAddressRange->modified_by) ?></td>
                 </tr>
             </table>
             <div class="text">

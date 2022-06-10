@@ -63,7 +63,12 @@ class IpAddressRangesController extends AppController
     public function view($id = null)
     {
         $ipAddressRange = $this->IpAddressRanges->get($id, [
-            'contain' => ['AccessPoints', 'ParentIpAddressRanges'],
+            'contain' => [
+                'AccessPoints',
+                'ParentIpAddressRanges',
+                'Creators',
+                'Modifiers',
+            ],
         ]);
 
         $this->set(compact('ipAddressRange'));
