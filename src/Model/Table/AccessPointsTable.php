@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use Cake\ORM\RulesChecker;
-use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
@@ -31,7 +30,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class AccessPointsTable extends Table
+class AccessPointsTable extends AppTable
 {
     /**
      * Initialize method

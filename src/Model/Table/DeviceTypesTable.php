@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
@@ -25,7 +24,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\DeviceType[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class DeviceTypesTable extends Table
+class DeviceTypesTable extends AppTable
 {
     /**
      * Initialize method
