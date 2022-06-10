@@ -20,7 +20,11 @@ use Cake\ORM\Entity;
  * @property float|null $battery_duration
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
  * @property \App\Model\Entity\PowerSupplyType $power_supply_type
  * @property \App\Model\Entity\AccessPoint $access_point
@@ -48,7 +52,9 @@ class PowerSupply extends Entity
         'battery_duration' => true,
         'note' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'power_supply_type' => true,
         'access_point' => true,
     ];

@@ -12,7 +12,11 @@ use Cake\ORM\Entity;
  * @property string|null $name
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
  * @property \App\Model\Entity\AntennaType[] $antenna_types
  * @property \App\Model\Entity\PowerSupplyType[] $power_supply_types
@@ -33,7 +37,9 @@ class Manufacturer extends Entity
         'name' => true,
         'note' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'antenna_types' => true,
         'power_supply_types' => true,
         'radio_unit_types' => true,

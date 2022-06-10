@@ -15,7 +15,11 @@ use Cake\ORM\Entity;
  * @property int|null $signal
  * @property string|null $radio_name
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  */
 class RadarInterference extends Entity
 {
@@ -35,6 +39,8 @@ class RadarInterference extends Entity
         'signal' => true,
         'radio_name' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
     ];
 }

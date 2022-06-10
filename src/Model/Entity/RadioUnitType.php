@@ -15,7 +15,11 @@ use Cake\ORM\Entity;
  * @property string|null $part_number
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property string $style
  *
  * @property \App\Model\Entity\RadioUnitBand $radio_unit_band
@@ -40,7 +44,9 @@ class RadioUnitType extends Entity
         'part_number' => true,
         'note' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'radio_unit_band' => true,
         'manufacturer' => true,
         'radio_units' => true,

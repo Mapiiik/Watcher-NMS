@@ -14,7 +14,11 @@ use Cake\ORM\Entity;
  * @property string|null $snmp_community
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property bool $assign_access_point_by_device_name
  * @property bool $assign_customer_connection_by_ip
  * @property bool $allow_technicians_access
@@ -39,7 +43,9 @@ class DeviceType extends Entity
         'snmp_community' => true,
         'note' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'assign_access_point_by_device_name' => true,
         'assign_customer_connection_by_ip' => true,
         'allow_technicians_access' => true,

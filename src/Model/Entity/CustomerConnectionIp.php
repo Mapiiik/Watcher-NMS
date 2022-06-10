@@ -14,7 +14,11 @@ use Cake\ORM\Entity;
  * @property string|null $ip_address
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
  * @property \App\Model\Entity\CustomerConnection $customer_connection
  */
@@ -35,7 +39,9 @@ class CustomerConnectionIp extends Entity
         'ip_address' => true,
         'note' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'customer_connection' => true,
     ];
 }

@@ -14,7 +14,11 @@ use Cake\ORM\Entity;
  * @property string|null $authorization_number
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property string $style
  *
  * @property \App\Model\Entity\RadioUnit[] $radio_units
@@ -36,7 +40,9 @@ class RadioLink extends Entity
         'authorization_number' => true,
         'note' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'radio_units' => true,
     ];
 

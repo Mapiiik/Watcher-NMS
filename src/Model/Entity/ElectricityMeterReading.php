@@ -15,7 +15,11 @@ use Cake\ORM\Entity;
  * @property float|null $reading_value
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
  * @property \App\Model\Entity\AccessPoint $access_point
  */
@@ -37,7 +41,9 @@ class ElectricityMeterReading extends Entity
         'reading_value' => true,
         'note' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'access_point' => true,
     ];
 }

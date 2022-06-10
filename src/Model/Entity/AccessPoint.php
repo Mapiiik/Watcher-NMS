@@ -17,7 +17,11 @@ use Cake\ORM\Entity;
  * @property string|null $note
  * @property string|null $contract_conditions
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property int|null $month_of_electricity_meter_reading
  *
  * @property \App\Model\Entity\AccessPoint $parent_access_point
@@ -47,7 +51,9 @@ class AccessPoint extends Entity
         'note' => true,
         'contract_conditions' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'month_of_electricity_meter_reading' => true,
         'access_point_contacts' => true,
         'power_supplies' => true,

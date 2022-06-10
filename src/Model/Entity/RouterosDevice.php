@@ -19,7 +19,11 @@ use Cake\ORM\Entity;
  * @property string|null $software_version
  * @property string|null $firmware_version
  * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $created_by
+ * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $modified_by
+ * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property string|null $customer_connection_id
  * @property string|null $username
  * @property string|null $password
@@ -52,7 +56,9 @@ class RouterosDevice extends Entity
         'software_version' => true,
         'firmware_version' => true,
         'created' => true,
+        'created_by' => true,
         'modified' => true,
+        'modified_by' => true,
         'customer_connection_id' => true,
         'access_point' => true,
         'device_type' => true,
