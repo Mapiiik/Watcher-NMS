@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b497496becba21e9f5101306e817020",
+    "content-hash": "da7166b951ad483ad007c43232e224ba",
     "packages": [
         {
             "name": "cakedc/auth",
@@ -642,21 +642,21 @@
         },
         {
             "name": "dereuromark/cakephp-geo",
-            "version": "2.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "d25940a6aaebd7756fed39cda3bdeca9d6e70295"
+                "reference": "5347780fafa83eccb8dc7432d1560cfa300c82a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/d25940a6aaebd7756fed39cda3bdeca9d6e70295",
-                "reference": "d25940a6aaebd7756fed39cda3bdeca9d6e70295",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/5347780fafa83eccb8dc7432d1560cfa300c82a1",
+                "reference": "5347780fafa83eccb8dc7432d1560cfa300c82a1",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^4.0.0",
-                "php": ">=7.2"
+                "cakephp/cakephp": "^4.2.0",
+                "php": ">=7.3"
             },
             "require-dev": {
                 "dereuromark/cakephp-tools": "^2.0.0",
@@ -667,8 +667,10 @@
                 "geocoder-php/nominatim-provider": "^5.1",
                 "geocoder-php/provider-implementation": "^1.0",
                 "php-http/cakephp-adapter": "0.3.x-dev",
-                "php-http/message": "^1.8.0"
+                "php-http/message": "^1.8.0",
+                "phpunit/phpunit": "^9.5"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -700,7 +702,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2021-05-29T16:47:41+00:00"
+            "time": "2022-02-20T02:52:09+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -7356,7 +7358,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dereuromark/cakephp-geo": 0,
+        "dereuromark/cakephp-geo": 20,
         "league/oauth2-google": 0
     },
     "prefer-stable": true,
