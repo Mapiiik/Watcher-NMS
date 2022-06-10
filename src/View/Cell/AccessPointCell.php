@@ -34,7 +34,7 @@ class AccessPointCell extends Cell
      */
     public function display()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
+        $access_point_id = $this->request->getParam('access_point_id');
 
         if ($access_point_id) {
             $accessPoint = $this->fetchTable('AccessPoints')->get($access_point_id);
