@@ -22,7 +22,7 @@ class CustomerConnectionIpsController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -69,9 +69,9 @@ class CustomerConnectionIpsController extends AppController
     public function add()
     {
         $customerConnectionIp = $this->CustomerConnectionIps->newEmptyEntity();
-        if ($this->request->is('post')) {
+        if ($this->getRequest()->is('post')) {
             $customerConnectionIp = $this->CustomerConnectionIps
-                ->patchEntity($customerConnectionIp, $this->request->getData());
+                ->patchEntity($customerConnectionIp, $this->getRequest()->getData());
 
             if ($this->CustomerConnectionIps->save($customerConnectionIp)) {
                 $this->Flash->success(__('The customer connection ip has been saved.'));
@@ -96,9 +96,9 @@ class CustomerConnectionIpsController extends AppController
         $customerConnectionIp = $this->CustomerConnectionIps->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $customerConnectionIp = $this->CustomerConnectionIps
-                ->patchEntity($customerConnectionIp, $this->request->getData());
+                ->patchEntity($customerConnectionIp, $this->getRequest()->getData());
 
             if ($this->CustomerConnectionIps->save($customerConnectionIp)) {
                 $this->Flash->success(__('The customer connection ip has been saved.'));
@@ -120,7 +120,7 @@ class CustomerConnectionIpsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $customerConnectionIp = $this->CustomerConnectionIps->get($id);
         if ($this->CustomerConnectionIps->delete($customerConnectionIp)) {
             $this->Flash->success(__('The customer connection ip has been deleted.'));

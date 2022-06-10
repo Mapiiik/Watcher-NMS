@@ -22,7 +22,7 @@ class RadioUnitTypesController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -75,8 +75,8 @@ class RadioUnitTypesController extends AppController
     public function add()
     {
         $radioUnitType = $this->RadioUnitTypes->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $radioUnitType = $this->RadioUnitTypes->patchEntity($radioUnitType, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $radioUnitType = $this->RadioUnitTypes->patchEntity($radioUnitType, $this->getRequest()->getData());
             if ($this->RadioUnitTypes->save($radioUnitType)) {
                 $this->Flash->success(__('The radio unit type has been saved.'));
 
@@ -101,8 +101,8 @@ class RadioUnitTypesController extends AppController
         $radioUnitType = $this->RadioUnitTypes->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $radioUnitType = $this->RadioUnitTypes->patchEntity($radioUnitType, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $radioUnitType = $this->RadioUnitTypes->patchEntity($radioUnitType, $this->getRequest()->getData());
             if ($this->RadioUnitTypes->save($radioUnitType)) {
                 $this->Flash->success(__('The radio unit type has been saved.'));
 
@@ -124,7 +124,7 @@ class RadioUnitTypesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $radioUnitType = $this->RadioUnitTypes->get($id);
         if ($this->RadioUnitTypes->delete($radioUnitType)) {
             $this->Flash->success(__('The radio unit type has been deleted.'));

@@ -22,7 +22,7 @@ class CustomerConnectionsController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -78,9 +78,9 @@ class CustomerConnectionsController extends AppController
     public function add()
     {
         $customerConnection = $this->CustomerConnections->newEmptyEntity();
-        if ($this->request->is('post')) {
+        if ($this->getRequest()->is('post')) {
             $customerConnection = $this->CustomerConnections
-                ->patchEntity($customerConnection, $this->request->getData());
+                ->patchEntity($customerConnection, $this->getRequest()->getData());
 
             if ($this->CustomerConnections->save($customerConnection)) {
                 $this->Flash->success(__('The customer connection has been saved.'));
@@ -106,9 +106,9 @@ class CustomerConnectionsController extends AppController
         $customerConnection = $this->CustomerConnections->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $customerConnection = $this->CustomerConnections
-                ->patchEntity($customerConnection, $this->request->getData());
+                ->patchEntity($customerConnection, $this->getRequest()->getData());
 
             if ($this->CustomerConnections->save($customerConnection)) {
                 $this->Flash->success(__('The customer connection has been saved.'));
@@ -131,7 +131,7 @@ class CustomerConnectionsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $customerConnection = $this->CustomerConnections->get($id);
         if ($this->CustomerConnections->delete($customerConnection)) {
             $this->Flash->success(__('The customer connection has been deleted.'));

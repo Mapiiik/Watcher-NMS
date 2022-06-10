@@ -18,7 +18,7 @@ class IpAddressRangesController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         // filter
@@ -30,7 +30,7 @@ class IpAddressRangesController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -76,7 +76,7 @@ class IpAddressRangesController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $ipAddressRange = $this->IpAddressRanges->newEmptyEntity();
@@ -85,8 +85,8 @@ class IpAddressRangesController extends AppController
             $ipAddressRange->access_point_id = $access_point_id;
         }
 
-        if ($this->request->is('post')) {
-            $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->getRequest()->getData());
             if ($this->IpAddressRanges->save($ipAddressRange)) {
                 $this->Flash->success(__('The ip address range has been saved.'));
 
@@ -112,14 +112,14 @@ class IpAddressRangesController extends AppController
      */
     public function edit($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $ipAddressRange = $this->IpAddressRanges->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->getRequest()->getData());
             if ($this->IpAddressRanges->save($ipAddressRange)) {
                 $this->Flash->success(__('The ip address range has been saved.'));
 
@@ -146,7 +146,7 @@ class IpAddressRangesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $ipAddressRange = $this->IpAddressRanges->get($id);
         if ($this->IpAddressRanges->delete($ipAddressRange)) {
             $this->Flash->success(__('The ip address range has been deleted.'));

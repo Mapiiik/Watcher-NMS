@@ -44,8 +44,8 @@ class RouterosDevicesController extends AppController
             'order' => ['RouterosDevices.modified' => 'DESC'],
         ];
 
-        if ($this->request->is(['get']) && ($this->request->getQuery('ip_address')) !== null) {
-            $options['conditions']['ip_address'] = $this->request->getQuery('ip_address');
+        if ($this->getRequest()->is(['get']) && ($this->getRequest()->getQuery('ip_address')) !== null) {
+            $options['conditions']['ip_address'] = $this->getRequest()->getQuery('ip_address');
         }
         $routerosDevices = $this->RouterosDevices->find('all', $options);
 
@@ -83,8 +83,8 @@ class RouterosDevicesController extends AppController
      */
     public function add()
     {
-        $this->request->allowMethod(['post', 'put']);
-        $routerosDevice = $this->RouterosDevices->newEntity($this->request->getData());
+        $this->getRequest()->allowMethod(['post', 'put']);
+        $routerosDevice = $this->RouterosDevices->newEntity($this->getRequest()->getData());
         if ($this->RouterosDevices->save($routerosDevice)) {
             $message = 'Saved';
         } else {
@@ -106,9 +106,9 @@ class RouterosDevicesController extends AppController
      */
     public function edit($id = null)
     {
-        $this->request->allowMethod(['patch', 'post', 'put']);
+        $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $routerosDevice = $this->RouterosDevices->get($id);
-        $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->request->getData());
+        $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
         if ($this->RouterosDevices->save($routerosDevice)) {
             $message = 'Saved';
         } else {
@@ -130,7 +130,7 @@ class RouterosDevicesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['delete']);
+        $this->getRequest()->allowMethod(['delete']);
         $routerosDevice = $this->RouterosDevices->get($id);
         if ($this->RouterosDevices->delete($routerosDevice)) {
             $message = 'Deleted';

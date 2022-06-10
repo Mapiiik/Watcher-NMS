@@ -27,7 +27,7 @@ class AccessPointsController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -80,8 +80,8 @@ class AccessPointsController extends AppController
     public function add()
     {
         $accessPoint = $this->AccessPoints->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->getRequest()->getData());
             if ($this->AccessPoints->save($accessPoint)) {
                 $this->Flash->success(__('The access point has been saved.'));
 
@@ -105,8 +105,8 @@ class AccessPointsController extends AppController
         $accessPoint = $this->AccessPoints->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->getRequest()->getData());
             if ($this->AccessPoints->save($accessPoint)) {
                 $this->Flash->success(__('The access point has been saved.'));
 
@@ -129,7 +129,7 @@ class AccessPointsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $accessPoint = $this->AccessPoints->get($id);
         if ($this->AccessPoints->delete($accessPoint)) {
             $this->Flash->success(__('The access point has been deleted.'));
@@ -148,8 +148,8 @@ class AccessPointsController extends AppController
     public function map()
     {
         $mapOptions = new MapOptionsForm();
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            if ($mapOptions->execute($this->request->getData())) {
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            if ($mapOptions->execute($this->getRequest()->getData())) {
                 $this->Flash->success('Map Options Set.');
             } else {
                 $this->Flash->error('There was a problem setting your map options.');

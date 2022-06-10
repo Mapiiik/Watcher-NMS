@@ -22,7 +22,7 @@ class PowerSupplyTypesController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -67,8 +67,8 @@ class PowerSupplyTypesController extends AppController
     public function add()
     {
         $powerSupplyType = $this->PowerSupplyTypes->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $powerSupplyType = $this->PowerSupplyTypes->patchEntity($powerSupplyType, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $powerSupplyType = $this->PowerSupplyTypes->patchEntity($powerSupplyType, $this->getRequest()->getData());
             if ($this->PowerSupplyTypes->save($powerSupplyType)) {
                 $this->Flash->success(__('The power supply type has been saved.'));
 
@@ -92,8 +92,8 @@ class PowerSupplyTypesController extends AppController
         $powerSupplyType = $this->PowerSupplyTypes->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $powerSupplyType = $this->PowerSupplyTypes->patchEntity($powerSupplyType, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $powerSupplyType = $this->PowerSupplyTypes->patchEntity($powerSupplyType, $this->getRequest()->getData());
             if ($this->PowerSupplyTypes->save($powerSupplyType)) {
                 $this->Flash->success(__('The power supply type has been saved.'));
 
@@ -114,7 +114,7 @@ class PowerSupplyTypesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $powerSupplyType = $this->PowerSupplyTypes->get($id);
         if ($this->PowerSupplyTypes->delete($powerSupplyType)) {
             $this->Flash->success(__('The power supply type has been deleted.'));

@@ -8,10 +8,10 @@
             ) ?>
         </div>
         <div class="nav-content-right">
-            <?= $this->request->getParam('controller') <> 'AccessPoints' ?
+            <?= $this->getRequest()->getParam('controller') <> 'AccessPoints' ?
                 $this->AuthLink->link(
                     'X',
-                    ['access_point_id' => false, '?' => $this->request->getQueryParams()] + $this->request->getParam('pass'),
+                    ['access_point_id' => false, '?' => $this->getRequest()->getQueryParams()] + $this->getRequest()->getParam('pass'),
                     ['class' => 'button button-small']
                 ) :
                 ''

@@ -22,7 +22,7 @@ class CustomerPointsController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -65,8 +65,8 @@ class CustomerPointsController extends AppController
     public function add()
     {
         $customerPoint = $this->CustomerPoints->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $customerPoint = $this->CustomerPoints->patchEntity($customerPoint, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $customerPoint = $this->CustomerPoints->patchEntity($customerPoint, $this->getRequest()->getData());
             if ($this->CustomerPoints->save($customerPoint)) {
                 $this->Flash->success(__('The customer point has been saved.'));
 
@@ -89,8 +89,8 @@ class CustomerPointsController extends AppController
         $customerPoint = $this->CustomerPoints->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $customerPoint = $this->CustomerPoints->patchEntity($customerPoint, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $customerPoint = $this->CustomerPoints->patchEntity($customerPoint, $this->getRequest()->getData());
             if ($this->CustomerPoints->save($customerPoint)) {
                 $this->Flash->success(__('The customer point has been saved.'));
 
@@ -110,7 +110,7 @@ class CustomerPointsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $customerPoint = $this->CustomerPoints->get($id);
         if ($this->CustomerPoints->delete($customerPoint)) {
             $this->Flash->success(__('The customer point has been deleted.'));

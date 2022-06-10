@@ -22,7 +22,7 @@ class RouterosDeviceInterfacesController extends AppController
     {
         // filter
         $conditions = [];
-        $maximum_age = $this->request->getQuery('maximum_age');
+        $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
                 'RouterosDeviceInterfaces.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
@@ -34,7 +34,7 @@ class RouterosDeviceInterfacesController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -85,9 +85,9 @@ class RouterosDeviceInterfacesController extends AppController
     public function add()
     {
         $routerosDeviceInterface = $this->RouterosDeviceInterfaces->newEmptyEntity();
-        if ($this->request->is('post')) {
+        if ($this->getRequest()->is('post')) {
             $routerosDeviceInterface = $this->RouterosDeviceInterfaces
-                ->patchEntity($routerosDeviceInterface, $this->request->getData());
+                ->patchEntity($routerosDeviceInterface, $this->getRequest()->getData());
 
             if ($this->RouterosDeviceInterfaces->save($routerosDeviceInterface)) {
                 $this->Flash->success(__('The routeros device interface has been saved.'));
@@ -112,9 +112,9 @@ class RouterosDeviceInterfacesController extends AppController
         $routerosDeviceInterface = $this->RouterosDeviceInterfaces->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $routerosDeviceInterface = $this->RouterosDeviceInterfaces
-                ->patchEntity($routerosDeviceInterface, $this->request->getData());
+                ->patchEntity($routerosDeviceInterface, $this->getRequest()->getData());
 
             if ($this->RouterosDeviceInterfaces->save($routerosDeviceInterface)) {
                 $this->Flash->success(__('The routeros device interface has been saved.'));
@@ -136,7 +136,7 @@ class RouterosDeviceInterfacesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDeviceInterface = $this->RouterosDeviceInterfaces->get($id);
         if ($this->RouterosDeviceInterfaces->delete($routerosDeviceInterface)) {
             $this->Flash->success(__('The routeros device interface has been deleted.'));

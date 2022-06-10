@@ -22,7 +22,7 @@ class ManufacturersController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -69,8 +69,8 @@ class ManufacturersController extends AppController
     public function add()
     {
         $manufacturer = $this->Manufacturers->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $manufacturer = $this->Manufacturers->patchEntity($manufacturer, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $manufacturer = $this->Manufacturers->patchEntity($manufacturer, $this->getRequest()->getData());
             if ($this->Manufacturers->save($manufacturer)) {
                 $this->Flash->success(__('The manufacturer has been saved.'));
 
@@ -93,8 +93,8 @@ class ManufacturersController extends AppController
         $manufacturer = $this->Manufacturers->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $manufacturer = $this->Manufacturers->patchEntity($manufacturer, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $manufacturer = $this->Manufacturers->patchEntity($manufacturer, $this->getRequest()->getData());
             if ($this->Manufacturers->save($manufacturer)) {
                 $this->Flash->success(__('The manufacturer has been saved.'));
 
@@ -114,7 +114,7 @@ class ManufacturersController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $manufacturer = $this->Manufacturers->get($id);
         if ($this->Manufacturers->delete($manufacturer)) {
             $this->Flash->success(__('The manufacturer has been deleted.'));

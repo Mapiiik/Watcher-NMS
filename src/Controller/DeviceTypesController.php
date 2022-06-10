@@ -22,7 +22,7 @@ class DeviceTypesController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -65,8 +65,8 @@ class DeviceTypesController extends AppController
     public function add()
     {
         $deviceType = $this->DeviceTypes->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $deviceType = $this->DeviceTypes->patchEntity($deviceType, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $deviceType = $this->DeviceTypes->patchEntity($deviceType, $this->getRequest()->getData());
             if ($this->DeviceTypes->save($deviceType)) {
                 $this->Flash->success(__('The device type has been saved.'));
 
@@ -89,8 +89,8 @@ class DeviceTypesController extends AppController
         $deviceType = $this->DeviceTypes->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $deviceType = $this->DeviceTypes->patchEntity($deviceType, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $deviceType = $this->DeviceTypes->patchEntity($deviceType, $this->getRequest()->getData());
             if ($this->DeviceTypes->save($deviceType)) {
                 $this->Flash->success(__('The device type has been saved.'));
 
@@ -110,7 +110,7 @@ class DeviceTypesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $deviceType = $this->DeviceTypes->get($id);
         if ($this->DeviceTypes->delete($deviceType)) {
             $this->Flash->success(__('The device type has been deleted.'));

@@ -22,7 +22,7 @@ class RouterosDevicesController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         // filter
@@ -32,7 +32,7 @@ class RouterosDevicesController extends AppController
                 'RouterosDevices.access_point_id' => $access_point_id,
             ];
         }
-        $maximum_age = $this->request->getQuery('maximum_age');
+        $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
                 'RouterosDevices.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
@@ -44,7 +44,7 @@ class RouterosDevicesController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -112,7 +112,7 @@ class RouterosDevicesController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $routerosDevice = $this->RouterosDevices->newEmptyEntity();
@@ -121,8 +121,8 @@ class RouterosDevicesController extends AppController
             $routerosDevice->access_point_id = $access_point_id;
         }
 
-        if ($this->request->is('post')) {
-            $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
             if ($this->RouterosDevices->save($routerosDevice)) {
                 $this->Flash->success(__('The routeros device has been saved.'));
 
@@ -149,14 +149,14 @@ class RouterosDevicesController extends AppController
      */
     public function edit($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $routerosDevice = $this->RouterosDevices->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
             if ($this->RouterosDevices->save($routerosDevice)) {
                 $this->Flash->success(__('The routeros device has been saved.'));
 
@@ -183,9 +183,9 @@ class RouterosDevicesController extends AppController
      */
     public function delete($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
 
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDevice = $this->RouterosDevices->get($id);
         if ($this->RouterosDevices->delete($routerosDevice)) {
             $this->Flash->success(__('The routeros device has been deleted.'));
@@ -649,7 +649,7 @@ class RouterosDevicesController extends AppController
      */
     public function export()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         // filter
@@ -659,7 +659,7 @@ class RouterosDevicesController extends AppController
                 'RouterosDevices.access_point_id' => $access_point_id,
             ];
         }
-        $maximum_age = $this->request->getQuery('maximum_age');
+        $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
                 'RouterosDevices.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
@@ -671,7 +671,7 @@ class RouterosDevicesController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [

@@ -71,11 +71,11 @@ class AppController extends Controller
         } catch (NotFoundException $e) {
             $this->Flash->error(__(
                 'Unable to find results on page {0}. Redirect to page 1.',
-                $this->request->getQuery('page')
+                $this->getRequest()->getQuery('page')
             ));
             $this->redirect(
-                ['?' => ['page' => '1'] + $this->request->getQueryParams()]
-                + $this->request->getParam('pass')
+                ['?' => ['page' => '1'] + $this->getRequest()->getQueryParams()]
+                + $this->getRequest()->getParam('pass')
             );
 
             return null;
@@ -91,11 +91,11 @@ class AppController extends Controller
     public function beforeFilter(EventInterface $event)
     {
         # We check if we have a language set
-        if ($this->request->getQuery('language')) {
-            $this->request->getSession()->write('Config.language', $this->request->getQuery('language'));
+        if ($this->getRequest()->getQuery('language')) {
+            $this->getRequest()->getSession()->write('Config.language', $this->getRequest()->getQuery('language'));
         }
 
-        $language = $this->request->getSession()->read('Config.language', I18n::getDefaultLocale());
+        $language = $this->getRequest()->getSession()->read('Config.language', I18n::getDefaultLocale());
 
         if ($language) {
             I18n::setLocale($language);
@@ -110,7 +110,7 @@ class AppController extends Controller
         }
 
         # Disable SecurityComponent POST validation for CakeDC/Users
-        if ($this->request->getParam('plugin') === 'CakeDC/Users') {
+        if ($this->getRequest()->getParam('plugin') === 'CakeDC/Users') {
             $this->Security->setConfig('validatePost', false);
         }
 

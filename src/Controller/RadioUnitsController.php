@@ -18,7 +18,7 @@ class RadioUnitsController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         // filter
@@ -28,7 +28,7 @@ class RadioUnitsController extends AppController
                 'RadioUnits.access_point_id' => $access_point_id,
             ];
         }
-        $radio_unit_band_id = $this->request->getQuery('radio_unit_band_id');
+        $radio_unit_band_id = $this->getRequest()->getQuery('radio_unit_band_id');
         if (!empty($radio_unit_band_id)) {
             $conditions[] = [
                 'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
@@ -36,7 +36,7 @@ class RadioUnitsController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -87,7 +87,7 @@ class RadioUnitsController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $radioUnit = $this->RadioUnits->newEmptyEntity();
@@ -96,10 +96,10 @@ class RadioUnitsController extends AppController
             $radioUnit->access_point_id = $access_point_id;
         }
 
-        if ($this->request->is('post')) {
-            $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->getRequest()->getData());
 
-            if ($this->request->getData('refresh') == 'refresh') {
+            if ($this->getRequest()->getData('refresh') == 'refresh') {
                 // only refresh
             } else {
                 if ($this->RadioUnits->save($radioUnit)) {
@@ -139,17 +139,17 @@ class RadioUnitsController extends AppController
      */
     public function edit($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $radioUnit = $this->RadioUnits->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            if ($this->request->getData('refresh') == 'refresh') {
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            if ($this->getRequest()->getData('refresh') == 'refresh') {
                 // only refresh
             } else {
-                $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->request->getData());
+                $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->getRequest()->getData());
                 if ($this->RadioUnits->save($radioUnit)) {
                     $this->Flash->success(__('The radio unit has been saved.'));
 
@@ -187,9 +187,9 @@ class RadioUnitsController extends AppController
      */
     public function delete($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
 
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $radioUnit = $this->RadioUnits->get($id);
         if ($this->RadioUnits->delete($radioUnit)) {
             $this->Flash->success(__('The radio unit has been deleted.'));

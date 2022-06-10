@@ -18,7 +18,7 @@ class AccessPointContactsController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         // filter
@@ -30,7 +30,7 @@ class AccessPointContactsController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -78,7 +78,7 @@ class AccessPointContactsController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $accessPointContact = $this->AccessPointContacts->newEmptyEntity();
@@ -87,9 +87,9 @@ class AccessPointContactsController extends AppController
             $accessPointContact->access_point_id = $access_point_id;
         }
 
-        if ($this->request->is('post')) {
+        if ($this->getRequest()->is('post')) {
             $accessPointContact = $this->AccessPointContacts
-                ->patchEntity($accessPointContact, $this->request->getData());
+                ->patchEntity($accessPointContact, $this->getRequest()->getData());
 
             if ($accessPointContact->phone === '') {
                 $accessPointContact->phone = null;
@@ -128,15 +128,15 @@ class AccessPointContactsController extends AppController
      */
     public function edit($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $accessPointContact = $this->AccessPointContacts->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $accessPointContact = $this->AccessPointContacts
-                ->patchEntity($accessPointContact, $this->request->getData());
+                ->patchEntity($accessPointContact, $this->getRequest()->getData());
 
             if ($accessPointContact->phone === '') {
                 $accessPointContact->phone = null;
@@ -175,9 +175,9 @@ class AccessPointContactsController extends AppController
      */
     public function delete($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
 
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $accessPointContact = $this->AccessPointContacts->get($id);
         if ($this->AccessPointContacts->delete($accessPointContact)) {
             $this->Flash->success(__('The access point contact has been deleted.'));

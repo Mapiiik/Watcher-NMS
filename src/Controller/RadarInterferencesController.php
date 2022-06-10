@@ -25,7 +25,7 @@ class RadarInterferencesController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -71,8 +71,8 @@ class RadarInterferencesController extends AppController
     public function add()
     {
         $radarInterference = $this->RadarInterferences->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $radarInterference = $this->RadarInterferences->patchEntity($radarInterference, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $radarInterference = $this->RadarInterferences->patchEntity($radarInterference, $this->getRequest()->getData());
             if ($this->RadarInterferences->save($radarInterference)) {
                 $this->Flash->success(__('The radar interference has been saved.'));
 
@@ -95,8 +95,8 @@ class RadarInterferencesController extends AppController
         $radarInterference = $this->RadarInterferences->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $radarInterference = $this->RadarInterferences->patchEntity($radarInterference, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $radarInterference = $this->RadarInterferences->patchEntity($radarInterference, $this->getRequest()->getData());
             if ($this->RadarInterferences->save($radarInterference)) {
                 $this->Flash->success(__('The radar interference has been saved.'));
 
@@ -116,7 +116,7 @@ class RadarInterferencesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $radarInterference = $this->RadarInterferences->get($id);
         if ($this->RadarInterferences->delete($radarInterference)) {
             $this->Flash->success(__('The radar interference has been deleted.'));

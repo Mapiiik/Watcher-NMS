@@ -18,7 +18,7 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         // filter
@@ -30,7 +30,7 @@ class ElectricityMeterReadingsController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -74,7 +74,7 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $electricityMeterReading = $this->ElectricityMeterReadings->newEmptyEntity();
@@ -83,9 +83,9 @@ class ElectricityMeterReadingsController extends AppController
             $electricityMeterReading->access_point_id = $access_point_id;
         }
 
-        if ($this->request->is('post')) {
+        if ($this->getRequest()->is('post')) {
             $electricityMeterReading = $this->ElectricityMeterReadings
-                ->patchEntity($electricityMeterReading, $this->request->getData());
+                ->patchEntity($electricityMeterReading, $this->getRequest()->getData());
 
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {
                 $this->Flash->success(__('The electricity meter reading has been saved.'));
@@ -111,15 +111,15 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function edit($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $electricityMeterReading = $this->ElectricityMeterReadings->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $electricityMeterReading = $this->ElectricityMeterReadings
-                ->patchEntity($electricityMeterReading, $this->request->getData());
+                ->patchEntity($electricityMeterReading, $this->getRequest()->getData());
 
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {
                 $this->Flash->success(__('The electricity meter reading has been saved.'));
@@ -145,9 +145,9 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function delete($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
 
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $electricityMeterReading = $this->ElectricityMeterReadings->get($id);
         if ($this->ElectricityMeterReadings->delete($electricityMeterReading)) {
             $this->Flash->success(__('The electricity meter reading has been deleted.'));

@@ -22,7 +22,7 @@ class RadioUnitBandsController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -65,8 +65,8 @@ class RadioUnitBandsController extends AppController
     public function add()
     {
         $radioUnitBand = $this->RadioUnitBands->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $radioUnitBand = $this->RadioUnitBands->patchEntity($radioUnitBand, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $radioUnitBand = $this->RadioUnitBands->patchEntity($radioUnitBand, $this->getRequest()->getData());
             if ($this->RadioUnitBands->save($radioUnitBand)) {
                 $this->Flash->success(__('The radio unit band has been saved.'));
 
@@ -89,8 +89,8 @@ class RadioUnitBandsController extends AppController
         $radioUnitBand = $this->RadioUnitBands->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $radioUnitBand = $this->RadioUnitBands->patchEntity($radioUnitBand, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $radioUnitBand = $this->RadioUnitBands->patchEntity($radioUnitBand, $this->getRequest()->getData());
             if ($this->RadioUnitBands->save($radioUnitBand)) {
                 $this->Flash->success(__('The radio unit band has been saved.'));
 
@@ -110,7 +110,7 @@ class RadioUnitBandsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $radioUnitBand = $this->RadioUnitBands->get($id);
         if ($this->RadioUnitBands->delete($radioUnitBand)) {
             $this->Flash->success(__('The radio unit band has been deleted.'));

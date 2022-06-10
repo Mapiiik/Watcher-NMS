@@ -56,8 +56,8 @@ class AccessPointsController extends AppController
      */
     public function add()
     {
-        $this->request->allowMethod(['post', 'put']);
-        $accessPoint = $this->AccessPoints->newEntity($this->request->getData());
+        $this->getRequest()->allowMethod(['post', 'put']);
+        $accessPoint = $this->AccessPoints->newEntity($this->getRequest()->getData());
         if ($this->AccessPoints->save($accessPoint)) {
             $message = 'Saved';
         } else {
@@ -79,9 +79,9 @@ class AccessPointsController extends AppController
      */
     public function edit($id = null)
     {
-        $this->request->allowMethod(['patch', 'post', 'put']);
+        $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $accessPoint = $this->AccessPoints->get($id);
-        $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->request->getData());
+        $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->getRequest()->getData());
         if ($this->AccessPoints->save($accessPoint)) {
             $message = 'Saved';
         } else {
@@ -103,7 +103,7 @@ class AccessPointsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['delete']);
+        $this->getRequest()->allowMethod(['delete']);
         $accessPoint = $this->AccessPoints->get($id);
         if ($this->AccessPoints->delete($accessPoint)) {
             $message = 'Deleted';

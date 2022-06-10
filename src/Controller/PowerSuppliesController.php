@@ -18,7 +18,7 @@ class PowerSuppliesController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         // filter
@@ -30,7 +30,7 @@ class PowerSuppliesController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -76,7 +76,7 @@ class PowerSuppliesController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $powerSupply = $this->PowerSupplies->newEmptyEntity();
@@ -85,8 +85,8 @@ class PowerSuppliesController extends AppController
             $powerSupply->access_point_id = $access_point_id;
         }
 
-        if ($this->request->is('post')) {
-            $powerSupply = $this->PowerSupplies->patchEntity($powerSupply, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $powerSupply = $this->PowerSupplies->patchEntity($powerSupply, $this->getRequest()->getData());
             if ($this->PowerSupplies->save($powerSupply)) {
                 $this->Flash->success(__('The power supply has been saved.'));
 
@@ -112,14 +112,14 @@ class PowerSuppliesController extends AppController
      */
     public function edit($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
         $powerSupply = $this->PowerSupplies->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $powerSupply = $this->PowerSupplies->patchEntity($powerSupply, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $powerSupply = $this->PowerSupplies->patchEntity($powerSupply, $this->getRequest()->getData());
             if ($this->PowerSupplies->save($powerSupply)) {
                 $this->Flash->success(__('The power supply has been saved.'));
 
@@ -145,9 +145,9 @@ class PowerSuppliesController extends AppController
      */
     public function delete($id = null)
     {
-        $access_point_id = $this->request->getParam('access_point_id');
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
 
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $powerSupply = $this->PowerSupplies->get($id);
         if ($this->PowerSupplies->delete($powerSupply)) {
             $this->Flash->success(__('The power supply has been deleted.'));

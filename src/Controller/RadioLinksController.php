@@ -21,7 +21,7 @@ class RadioLinksController extends AppController
         // filter
         $conditions = [];
         $finder = [];
-        $radio_unit_band_id = $this->request->getQuery('radio_unit_band_id');
+        $radio_unit_band_id = $this->getRequest()->getQuery('radio_unit_band_id');
         if (!empty($radio_unit_band_id)) {
             $finder['band'] = [
                 'radio_unit_band_id' => $radio_unit_band_id,
@@ -29,7 +29,7 @@ class RadioLinksController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -82,8 +82,8 @@ class RadioLinksController extends AppController
     public function add()
     {
         $radioLink = $this->RadioLinks->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $radioLink = $this->RadioLinks->patchEntity($radioLink, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $radioLink = $this->RadioLinks->patchEntity($radioLink, $this->getRequest()->getData());
             if ($this->RadioLinks->save($radioLink)) {
                 $this->Flash->success(__('The radio link has been saved.'));
 
@@ -106,8 +106,8 @@ class RadioLinksController extends AppController
         $radioLink = $this->RadioLinks->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $radioLink = $this->RadioLinks->patchEntity($radioLink, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $radioLink = $this->RadioLinks->patchEntity($radioLink, $this->getRequest()->getData());
             if ($this->RadioLinks->save($radioLink)) {
                 $this->Flash->success(__('The radio link has been saved.'));
 
@@ -127,7 +127,7 @@ class RadioLinksController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $radioLink = $this->RadioLinks->get($id);
         if ($this->RadioLinks->delete($radioLink)) {
             $this->Flash->success(__('The radio link has been deleted.'));

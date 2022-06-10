@@ -22,7 +22,7 @@ class RouterosDeviceIpsController extends AppController
     {
         // filter
         $conditions = [];
-        $maximum_age = $this->request->getQuery('maximum_age');
+        $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
                 'RouterosDeviceIps.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
@@ -34,7 +34,7 @@ class RouterosDeviceIpsController extends AppController
         }
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -80,8 +80,8 @@ class RouterosDeviceIpsController extends AppController
     public function add()
     {
         $routerosDeviceIp = $this->RouterosDeviceIps->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $routerosDeviceIp = $this->RouterosDeviceIps->patchEntity($routerosDeviceIp, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $routerosDeviceIp = $this->RouterosDeviceIps->patchEntity($routerosDeviceIp, $this->getRequest()->getData());
             if ($this->RouterosDeviceIps->save($routerosDeviceIp)) {
                 $this->Flash->success(__('The routeros device ip has been saved.'));
 
@@ -105,8 +105,8 @@ class RouterosDeviceIpsController extends AppController
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $routerosDeviceIp = $this->RouterosDeviceIps->patchEntity($routerosDeviceIp, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $routerosDeviceIp = $this->RouterosDeviceIps->patchEntity($routerosDeviceIp, $this->getRequest()->getData());
             if ($this->RouterosDeviceIps->save($routerosDeviceIp)) {
                 $this->Flash->success(__('The routeros device ip has been saved.'));
 
@@ -127,7 +127,7 @@ class RouterosDeviceIpsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id);
         if ($this->RouterosDeviceIps->delete($routerosDeviceIp)) {
             $this->Flash->success(__('The routeros device ip has been deleted.'));

@@ -22,7 +22,7 @@ class AntennaTypesController extends AppController
         $conditions = [];
 
         // search
-        $search = $this->request->getQuery('search');
+        $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
@@ -75,8 +75,8 @@ class AntennaTypesController extends AppController
     public function add()
     {
         $antennaType = $this->AntennaTypes->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $antennaType = $this->AntennaTypes->patchEntity($antennaType, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $antennaType = $this->AntennaTypes->patchEntity($antennaType, $this->getRequest()->getData());
             if ($this->AntennaTypes->save($antennaType)) {
                 $this->Flash->success(__('The antenna type has been saved.'));
 
@@ -101,8 +101,8 @@ class AntennaTypesController extends AppController
         $antennaType = $this->AntennaTypes->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $antennaType = $this->AntennaTypes->patchEntity($antennaType, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $antennaType = $this->AntennaTypes->patchEntity($antennaType, $this->getRequest()->getData());
             if ($this->AntennaTypes->save($antennaType)) {
                 $this->Flash->success(__('The antenna type has been saved.'));
 
@@ -124,7 +124,7 @@ class AntennaTypesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $antennaType = $this->AntennaTypes->get($id);
         if ($this->AntennaTypes->delete($antennaType)) {
             $this->Flash->success(__('The antenna type has been deleted.'));
