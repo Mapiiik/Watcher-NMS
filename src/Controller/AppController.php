@@ -151,9 +151,9 @@ class AppController extends Controller
             'app_version',
             function () {
                 if (AppController::gitRepositoryPresent() && AppController::gitBinaryCallable()) {
-                    $version = rtrim(shell_exec('git describe --tags 2>/dev/null'));
-                    if ($version) {
-                        return $version;
+                    $version = shell_exec('git describe --tags 2>/dev/null');
+                    if (is_string($version)) {
+                        return rtrim($version);
                     }
                 }
 
@@ -173,9 +173,9 @@ class AppController extends Controller
             'app_changelog',
             function () {
                 if (AppController::gitRepositoryPresent() && AppController::gitBinaryCallable()) {
-                    $changelog = rtrim(shell_exec('git log -10 --decorate=short'));
-                    if ($changelog) {
-                        return $changelog;
+                    $changelog = shell_exec('git log -10 --decorate=short');
+                    if (is_string($changelog)) {
+                            return rtrim($changelog);
                     }
                 }
 
