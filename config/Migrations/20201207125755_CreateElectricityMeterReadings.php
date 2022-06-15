@@ -16,7 +16,7 @@ class CreateElectricityMeterReadings extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('electricity_meter_readings', ['id' => false, 'primary_key' => ['id']])
+        $this->table('electricity_meter_readings', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
                 'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,

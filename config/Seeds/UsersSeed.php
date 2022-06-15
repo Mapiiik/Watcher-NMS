@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
+namespace Migrations;
+
 use Cake\Utility\Text;
-use Migrations\AbstractSeed;
 
 /**
  * Users seed.

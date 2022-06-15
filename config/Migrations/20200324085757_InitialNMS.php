@@ -1,18 +1,27 @@
 <?php
 declare(strict_types=1);
 
-use Migrations\AbstractMigration;
-use Phinx\Util\Literal;
+require_once dirname(__DIR__) . '/Seeds/UsersSeed.php';
 
-require_once __DIR__ . '/../Seeds/UsersSeed.php';
+use Migrations\AbstractMigration;
+use Migrations\UsersSeed;
+use Phinx\Util\Literal;
 
 class InitialNMS extends AbstractMigration
 {
+    /**
+     * Up Method.
+     *
+     * More information on this method is available here:
+     * https://book.cakephp.org/phinx/0/en/migrations.html#the-up-method
+     *
+     * @return void
+     */
     public function up()
     {
         // create extension for full UUID support
         $this->execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
-        
+
         $this->table('access_point_contacts', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
                 'default' => Literal::from('uuid_generate_v4()'),
@@ -392,7 +401,7 @@ class InitialNMS extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('mac_address', 'string', [
+            ->addColumn('mac_address', 'macaddr', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -717,7 +726,7 @@ class InitialNMS extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('mac_address', 'string', [
+            ->addColumn('mac_address', 'macaddr', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -944,6 +953,14 @@ class InitialNMS extends AbstractMigration
             ->run();
     }
 
+    /**
+     * Down Method.
+     *
+     * More information on this method is available here:
+     * https://book.cakephp.org/phinx/0/en/migrations.html#the-down-method
+     *
+     * @return void
+     */
     public function down()
     {
         $this->table('access_point_contacts')->drop()->save();

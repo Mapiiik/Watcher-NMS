@@ -16,7 +16,7 @@ class CreateCustomerConnectionIps extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('customer_connection_ips', ['id' => false, 'primary_key' => ['id']])
+        $this->table('customer_connection_ips', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
                 'default' => Literal::from('uuid_generate_v4()'),
                 'limit' => null,
