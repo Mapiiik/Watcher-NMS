@@ -100,7 +100,10 @@ class ElectricityMeterReadingsReportCommand extends Command
                 )
                 . '</h2>' . PHP_EOL;
 
-            $body .= '<style>table, th, td { border: 1px solid; }</style>' . PHP_EOL;
+            $body .= '<style>' . PHP_EOL
+                . 'table, th, td { border: 1px solid; }' . PHP_EOL
+                . 'table { width: 100%; border-collapse: collapse; }' . PHP_EOL
+                . '</style>' . PHP_EOL;
 
             $body .= '<table>' . PHP_EOL;
             foreach ($table as $row) {
