@@ -5,7 +5,9 @@ namespace App\Controller;
 
 use App\Form\MapOptionsForm;
 use Cake\I18n\FrozenDate;
+use Cake\ORM\Query;
 use Cake\View\Helper\HtmlHelper;
+use Cake\View\View;
 
 /**
  * AccessPoints Controller
@@ -176,7 +178,7 @@ class AccessPointsController extends AppController
                     'RouterosDeviceIps' => [
                         'sort' => ['RouterosDeviceIps.ip_address' => 'ASC'],
                         'strategy' => 'subquery',
-                        'queryBuilder' => function ($q) {
+                        'queryBuilder' => function (Query $q) {
                             return $q->join([
                                 'RemoteRouterosDeviceIps' => [
                                     'table' => 'routeros_device_ips',
@@ -216,7 +218,7 @@ class AccessPointsController extends AppController
                     'RouterosDeviceInterfaces' => [
                         'sort' => ['RouterosDeviceInterfaces.name' => 'ASC'],
                         'strategy' => 'subquery',
-                        'queryBuilder' => function ($q) {
+                        'queryBuilder' => function (Query $q) {
                             return $q->join([
                                 'RemoteRouterosDeviceInterfaces' => [
                                     'table' => 'routeros_device_interfaces',
@@ -294,7 +296,7 @@ class AccessPointsController extends AppController
         $mapMarkers = [];
         $mapPolylines = [];
 
-        $html = new HtmlHelper(new \Cake\View\View());
+        $html = new HtmlHelper(new View());
 
         foreach ($accessPointsQuery as $accessPoint) {
             // Let's add some markers
@@ -310,7 +312,7 @@ class AccessPointsController extends AppController
                     ]) . '<br />';
 
                     $content .= '<ul>';
-                    if (is_array($routerosDevice->routeros_device_ips)) {
+                    if (!empty($routerosDevice->routeros_device_ips)) {
                         foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp) {
                             $content .= '<li>'
                                 . ' (' . $routerosDeviceIp->ip_address . ') - '
@@ -322,6 +324,7 @@ class AccessPointsController extends AppController
                                         $routerosDeviceIp->RemoteRouterosDevices['id'],
                                     ]
                                 ) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
+
                             if (
                                 isset($routerosDeviceIp->RemoteRouterosDevices['access_point_id'])
                                 && ($routerosDeviceIp->RemoteRouterosDevices['access_point_id'] <> $accessPoint->id)
@@ -330,26 +333,35 @@ class AccessPointsController extends AppController
                                 $remoteAccessPointPolylines[$accessPoint->id][$remote_access_point_id]['type'] = 'ip';
                                 unset($remote_access_point_id);
                             }
-                            if (isset($customerConnections[$routerosDeviceIp->RemoteRouterosDevices['customer_connection_id']])) { // phpcs:ignore
-                                $remote_customer_connection = $customerConnections[$routerosDeviceIp->RemoteRouterosDevices['customer_connection_id']]; // phpcs:ignore
-                                $remote_customer_point_id = $remote_customer_connection['customer_point_id'];
 
-                                $remoteCustomerPointPolylines[$accessPoint->id][$remote_customer_point_id]['type'] = 'ip'; // phpcs:ignore
+                            if (
+                                isset($customerConnections[$routerosDeviceIp
+                                    ->RemoteRouterosDevices['customer_connection_id']])
+                            ) {
+                                $remote_customer_point_id = $customerConnections[$routerosDeviceIp
+                                    ->RemoteRouterosDevices['customer_connection_id']]
+                                        ->customer_point_id;
+
+                                $remoteCustomerPointPolylines[$accessPoint->id][$remote_customer_point_id] = [
+                                    'type' => 'ip',
+                                ];
 
                                 $remote_customer_point = new \stdClass();
                                 $remote_customer_point->id = $routerosDeviceIp->RemoteRouterosDevices['id'];
                                 $remote_customer_point->name = $routerosDeviceIp->RemoteRouterosDevices['name'];
                                 $remote_customer_point->routeros_device_ips[] = $routerosDeviceIp;
 
-                                $remoteCustomerPoints[$remote_customer_point_id][$routerosDeviceIp->RemoteRouterosDevices['customer_connection_id']][$routerosDeviceIp->RemoteRouterosDevices['id']] = $remote_customer_point; // phpcs:ignore
+                                $remoteCustomerPoints[$remote_customer_point_id][$routerosDeviceIp
+                                    ->RemoteRouterosDevices['customer_connection_id']][$routerosDeviceIp
+                                        ->RemoteRouterosDevices['id']] = $remote_customer_point;
 
-                                unset($remote_customer_connection);
                                 unset($remote_customer_point_id);
                                 unset($remote_customer_point);
                             }
                         }
                     }
-                    if (is_array($routerosDevice->routeros_device_interfaces)) {
+
+                    if (!empty($routerosDevice->routeros_device_interfaces)) {
                         foreach ($routerosDevice->routeros_device_interfaces as $routerosDeviceInterface) {
                             $content .= '<li>'
                                 . ' (' . $routerosDeviceInterface->name . ') - '
@@ -371,17 +383,32 @@ class AccessPointsController extends AppController
                                     <> $accessPoint->id
                                 )
                             ) {
-                                $remoteAccessPointPolylines[$accessPoint->id][$routerosDeviceInterface->RemoteRouterosDevices['access_point_id']]['type'] = 'wifi'; // phpcs:ignore
+                                $remoteAccessPointPolylines[$accessPoint->id][$routerosDeviceInterface
+                                    ->RemoteRouterosDevices['access_point_id']] = [
+                                        'type' => 'wifi',
+                                    ];
                             }
-                            if (isset($customerConnections[$routerosDeviceInterface->RemoteRouterosDevices['customer_connection_id']])) { // phpcs:ignore
-                                $remoteCustomerPointPolylines[$accessPoint->id][$customerConnections[$routerosDeviceInterface->RemoteRouterosDevices['customer_connection_id']]['customer_point_id']]['type'] = 'wifi'; // phpcs:ignore
+                            if (
+                                isset($customerConnections[$routerosDeviceInterface
+                                    ->RemoteRouterosDevices['customer_connection_id']])
+                            ) {
+                                $remoteCustomerPointPolylines[$accessPoint
+                                    ->id][$customerConnections[$routerosDeviceInterface
+                                        ->RemoteRouterosDevices['customer_connection_id']]
+                                            ->customer_point_id] = [
+                                                'type' => 'wifi',
+                                            ];
 
                                 $remote_customer_point = new \stdClass();
                                 $remote_customer_point->id = $routerosDeviceInterface->RemoteRouterosDevices['id'];
                                 $remote_customer_point->name = $routerosDeviceInterface->RemoteRouterosDevices['name'];
                                 $remote_customer_point->routeros_device_interfaces[] = $routerosDeviceInterface;
 
-                                $remoteCustomerPoints[$customerConnections[$routerosDeviceInterface->RemoteRouterosDevices['customer_connection_id']]['customer_point_id']][$routerosDeviceInterface->RemoteRouterosDevices['customer_connection_id']][$routerosDeviceInterface->RemoteRouterosDevices['id']] = $remote_customer_point;  // phpcs:ignore
+                                $remoteCustomerPoints[$customerConnections[$routerosDeviceInterface
+                                    ->RemoteRouterosDevices['customer_connection_id']]
+                                        ->customer_point_id][$routerosDeviceInterface
+                                            ->RemoteRouterosDevices['customer_connection_id']][$routerosDeviceInterface
+                                                ->RemoteRouterosDevices['id']] = $remote_customer_point;
 
                                 unset($remote_customer_point);
                             }
@@ -403,51 +430,38 @@ class AccessPointsController extends AppController
         }
 
         foreach ($remoteCustomerPoints as $remoteCustomerPointId => $remoteCustomerPoint) {
-            $customerPoint = $customerPoints[$remoteCustomerPointId];
+            if (isset($customerPoints[$remoteCustomerPointId])) {
+                $customerPoint = $customerPoints[$remoteCustomerPointId];
 
-            if (is_numeric($customerPoint->gps_y) && is_numeric($customerPoint->gps_x)) {
-                $content = '<b>' . $html->link(
-                    $customerPoint->name,
-                    ['controller' => 'CustomerPoints', 'action' => 'view', $customerPoint->id]
-                ) . '</b>' . '<br />';
-
-                foreach ($remoteCustomerPoint as $remoteCustomerConnectionId => $remoteCustomerConnection) {
-                    $customerConnection = $customerConnections[$remoteCustomerConnectionId];
-                    $content .= '<br />' . '<b>' . $html->link(
-                        $customerConnection->name,
-                        ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnection->id]
+                if (is_numeric($customerPoint->gps_y) && is_numeric($customerPoint->gps_x)) {
+                    $content = '<b>' . $html->link(
+                        $customerPoint->name,
+                        ['controller' => 'CustomerPoints', 'action' => 'view', $customerPoint->id]
                     ) . '</b>' . '<br />';
 
-                    foreach ($remoteCustomerConnection as $routerosDevice) {
-                        $content .= $html->link(
-                            $routerosDevice->name,
-                            ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
-                        ) . '<br />';
+                    foreach ($remoteCustomerPoint as $remoteCustomerConnectionId => $remoteCustomerConnection) {
+                        $customerConnection = $customerConnections[$remoteCustomerConnectionId];
+                        $content .= '<br />' . '<b>' . $html->link(
+                            $customerConnection->name,
+                            ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnection->id]
+                        ) . '</b>' . '<br />';
 
-                        $content .= '<ul>';
-    /*
-                        if (is_array($routerosDevice->routeros_device_ips)) {
-                                foreach ($routerosDevice->routeros_device_ips as $routerosDeviceIp) {
-                                    //$content .= '<li>' . ' (' . $routerosDeviceIp->ip_address . ') - ' . $html->link(__($routerosDeviceIp->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceIp->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceIp->RemoteRouterosDeviceIps['ip_address'] . ')' . '</li>';
-                                }
+                        foreach ($remoteCustomerConnection as $routerosDevice) {
+                            $content .= $html->link(
+                                $routerosDevice->name,
+                                ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
+                            ) . '<br />';
                         }
-                        if (is_array($routerosDevice->routeros_device_interfaces)) {
-                                foreach ($routerosDevice->routeros_device_interfaces as $routerosDeviceInterface) {
-                                    //$content .= '<li>' . ' (' . $routerosDeviceInterface->name . ') - ' . $html->link(__($routerosDeviceInterface->RemoteRouterosDevices['name']), ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDeviceInterface->RemoteRouterosDevices['id']]) . ' (' . $routerosDeviceInterface->RemoteRouterosDeviceInterfaces['name'] . ')' . '</li>';
-                                }
-                        }
-    */
-                        $content .= '</ul>';
                     }
-                }
 
-                $mapMarkers[] = [
-                    'lat' => $customerPoint->gps_y,
-                    'lng' => $customerPoint->gps_x,
-                    'title' => $customerPoint->name,
-                    'content' => $content,
-                    'iconSet' => 'green',
-                ];
+                    $mapMarkers[] = [
+                        'lat' => $customerPoint->gps_y,
+                        'lng' => $customerPoint->gps_x,
+                        'title' => $customerPoint->name,
+                        'content' => $content,
+                        'iconSet' => 'green',
+                    ];
+                }
             }
         }
         unset($remoteCustomerPoints);
@@ -455,8 +469,10 @@ class AccessPointsController extends AppController
         foreach ($remoteAccessPointPolylines as $key1 => $value1) {
             foreach ($value1 as $key2 => $value2) {
                 if (
-                    is_numeric($accessPoints[$key1]->gps_y)
+                    isset($accessPoints[$key1])
+                    && is_numeric($accessPoints[$key1]->gps_y)
                     && is_numeric($accessPoints[$key1]->gps_x)
+                    && isset($accessPoints[$key2])
                     && is_numeric($accessPoints[$key2]->gps_y)
                     && is_numeric($accessPoints[$key2]->gps_x)
                 ) {
@@ -483,8 +499,10 @@ class AccessPointsController extends AppController
         foreach ($remoteCustomerPointPolylines as $key1 => $value1) {
             foreach ($value1 as $key2 => $value2) {
                 if (
-                    is_numeric($accessPoints[$key1]->gps_y)
+                    isset($accessPoints[$key1])
+                    && is_numeric($accessPoints[$key1]->gps_y)
                     && is_numeric($accessPoints[$key1]->gps_x)
+                    && isset($customerPoints[$key2])
                     && is_numeric($customerPoints[$key2]->gps_y)
                     && is_numeric($customerPoints[$key2]->gps_x)
                 ) {
