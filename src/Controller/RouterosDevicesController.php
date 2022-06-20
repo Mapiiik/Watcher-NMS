@@ -4,8 +4,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\Entity\RouterosDevice;
-use Cake\I18n\FrozenDate;
+use Cake\I18n\FrozenTime;
+use Cake\Log\Log;
 use Cake\Utility\Security;
+use SNMP;
+use SNMPException;
 
 /**
  * RouterosDevices Controller
@@ -15,6 +18,13 @@ use Cake\Utility\Security;
  */
 class RouterosDevicesController extends AppController
 {
+    /**
+     * SNMP instance
+     *
+     * @var \SNMP|null
+     */
+    private $snmp = null;
+
     /**
      * Index method
      *
@@ -35,11 +45,11 @@ class RouterosDevicesController extends AppController
         $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
-                'RouterosDevices.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
+                'RouterosDevices.modified >' => FrozenTime::create()->subDays((int)$maximum_age),
             ];
         } else {
             $conditions[] = [
-                'RouterosDevices.modified >' => FrozenDate::create()->subDays(14),
+                'RouterosDevices.modified >' => FrozenTime::create()->subDays(14),
             ];
         }
 
@@ -270,75 +280,130 @@ class RouterosDevicesController extends AppController
     }
 
     /**
-     * load serial number via SNMP
+     * Create SNMP instance for RouterOS Device
      *
-     * @param string $host The SNMP agent
-     * @param string $community The read community
-     * @return string|null
+     * @param string $host SNMP host
+     * @param string $community SNMP reading community
+     * @return void
      */
-    private function loadSerialNumberViaSNMP(
-        $host = null,
-        $community = null
-    ) {
-        $sourceEncoding = 'CP1250';
+    private function snmpCreate(string $host, string $community)
+    {
+        $this->snmp = new SNMP(SNMP::VERSION_2C, $host, $community);
+        $this->snmp->oid_output_format = SNMP_OID_OUTPUT_NUMERIC;
+        $this->snmp->valueretrieval = SNMP_VALUE_OBJECT | SNMP_VALUE_PLAIN;
+        $this->snmp->exceptions_enabled = SNMP::ERRNO_ANY;
+    }
 
-        // numeric OIDs
-        snmp_set_oid_output_format(SNMP_OID_OUTPUT_NUMERIC);
+    /**
+     * Close SNMP instance for RouterOS Device
+     *
+     * @return bool
+     */
+    private function snmpClose()
+    {
+        return $this->snmp->close();
+    }
 
-        // Get just the values.
-        //snmp_set_quick_print(1);
+    /**
+     * SNMP GET for RouterOS Device
+     *
+     * @param string $oid SNMP oid
+     * @return \stdClass|null
+     */
+    private function snmpGet(string $oid)
+    {
+        try {
+            /** @var \stdClass|false $result */
+            $result = $this->snmp->get($oid);
+        } catch (SNMPException $e) {
+            if (!in_array($e->getCode(), [8])) {
+                Log::warning('RouterOS Devices - SNMP - ' . $e->getMessage());
+                echo ':log warning "Watcher NMS: SNMP - ' . $e->getMessage() . '"' . "\n";
+            }
+            $result = false;
+        }
 
-        // For sequence types, return just the numbers, not the string and numbers.
-        //snmp_set_enum_print(1);
+        if (is_object($result)) {
+            if (in_array($result->type, [SNMP_OCTET_STR])) {
+                $result->text = iconv('CP1250', 'UTF-8//IGNORE', $result->value);
+            }
 
-        // Don't let the SNMP library get cute with value interpretation.  This makes
-        // MAC addresses return the 6 binary bytes, timeticks to return just the integer
-        // value, and some other things.
-        snmp_set_valueretrieval(SNMP_VALUE_PLAIN);
-
-        $serialNumber = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.3.0'); // phpcs:ignore
-
-        if ($serialNumber) {
-            return $serialNumber;
+            return $result;
         } else {
             return null;
         }
     }
 
     /**
+     * SNMP WALK for RouterOS Device
+     *
+     * @param string $oid SNMP oid
+     * @param bool $suffix_as_keys If set to TRUE subtree prefix will be removed from keys.
+     * @return array<\stdClass>|null
+     */
+    private function snmpWalk(string $oid, bool $suffix_as_keys = false)
+    {
+        try {
+            $result = $this->snmp->walk($oid, $suffix_as_keys);
+        } catch (SNMPException $e) {
+            if (!in_array($e->getCode(), [8])) {
+                Log::warning('RouterOS Devices - SNMP - ' . $e->getMessage());
+                echo ':log warning "Watcher NMS: SNMP - ' . $e->getMessage() . '"' . "\n";
+            }
+            $result = false;
+        }
+
+        if ($result) {
+            foreach ($result as $key => $value) {
+                if (in_array($value->type, [SNMP_OCTET_STR])) {
+                    $result[$key]->text = iconv('CP1250', 'UTF-8//IGNORE', $value->value);
+                }
+            }
+
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * load serial number via SNMP
+     *
+     * @param string $host SNMP host
+     * @param string $community SNMP reading community
+     * @return string|null
+     */
+    private function loadSerialNumberViaSNMP(string $host, string $community)
+    {
+        $this->snmpCreate($host, $community);
+        $result = $this->snmpGet('.1.3.6.1.4.1.14988.1.1.7.3.0')->text ?? null;
+        $this->snmpClose();
+
+        return $result;
+    }
+
+    /**
      * update data via SNMP
      *
-     * @param string $host The SNMP agent
-     * @param string $community The read community
+     * @param string $host SNMP host
+     * @param string $community SNMP reading community
      * @param string $device_type_id Device Type id
      * @param bool $assign_access_point_by_device_name Assign access point by device name
      * @param bool $assign_customer_connection_by_ip Assign customer connection by IP
      * @return \App\Model\Entity\RouterosDevice|null
      */
     private function updateDataViaSNMP(
-        $host = null,
-        $community = null,
-        $device_type_id = null,
-        $assign_access_point_by_device_name = false,
-        $assign_customer_connection_by_ip = false
+        string $host,
+        string $community,
+        string $device_type_id,
+        bool $assign_access_point_by_device_name = false,
+        bool $assign_customer_connection_by_ip = false
     ) {
-        $sourceEncoding = 'CP1250';
+        $result = null;
 
-        // numeric OIDs
-        snmp_set_oid_output_format(SNMP_OID_OUTPUT_NUMERIC);
+        $this->snmpCreate($host, $community);
 
-        // Get just the values.
-        //snmp_set_quick_print(1);
-
-        // For sequence types, return just the numbers, not the string and numbers.
-        //snmp_set_enum_print(1);
-
-        // Don't let the SNMP library get cute with value interpretation.  This makes
-        // MAC addresses return the 6 binary bytes, timeticks to return just the integer
-        // value, and some other things.
-        snmp_set_valueretrieval(SNMP_VALUE_PLAIN);
-
-        $serialNumber = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.3.0'); // phpcs:ignore
+        $serialNumber = $this->snmpGet('.1.3.6.1.4.1.14988.1.1.7.3.0')->text ?? null;
 
         if ($serialNumber) {
             $routerosDevice = $this->RouterosDevices->findOrCreate(['serial_number' => $serialNumber]);
@@ -346,11 +411,11 @@ class RouterosDevicesController extends AppController
             $routerosDevice->device_type_id = $device_type_id;
             $routerosDevice->ip_address = $host;
 
-            $routerosDevice->name = iconv($sourceEncoding, 'UTF-8//IGNORE', @snmp2_get($host, $community, '.1.3.6.1.2.1.1.5.0')); // phpcs:ignore
-            $routerosDevice->system_description = iconv($sourceEncoding, 'UTF-8//IGNORE', @snmp2_get($host, $community, '.1.3.6.1.2.1.1.1.0')); // phpcs:ignore
-            $routerosDevice->board_name = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.8.0'); // phpcs:ignore
-            $routerosDevice->software_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.4.4.0'); // phpcs:ignore
-            $routerosDevice->firmware_version = @snmp2_get($host, $community, '.1.3.6.1.4.1.14988.1.1.7.4.0'); // phpcs:ignore
+            $routerosDevice->name = $this->snmpGet('.1.3.6.1.2.1.1.5.0')->text ?? null;
+            $routerosDevice->system_description = $this->snmpGet('.1.3.6.1.2.1.1.1.0')->text ?? null;
+            $routerosDevice->board_name = $this->snmpGet('.1.3.6.1.4.1.14988.1.1.7.8.0')->text ?? null;
+            $routerosDevice->software_version = $this->snmpGet('.1.3.6.1.4.1.14988.1.1.4.4.0')->text ?? null;
+            $routerosDevice->firmware_version = $this->snmpGet('.1.3.6.1.4.1.14988.1.1.7.4.0')->text ?? null;
 
             // assign access point by device name
             if ($assign_access_point_by_device_name) {
@@ -387,71 +452,74 @@ class RouterosDevicesController extends AppController
 
             $this->RouterosDevices->save($routerosDevice);
 
-            $ipAddr = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.1'); // phpcs:ignore
-            $ipNetMask = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.3'); // phpcs:ignore
-            $ipIfIndex = @snmp2_walk($host, $community, '.1.3.6.1.2.1.4.20.1.2'); // phpcs:ignore
+            // INTERFACES
+            $ifTableIndexes = $this->snmpWalk('.1.3.6.1.2.1.2.2.1.1', true);
+            $ifTable = $this->snmpWalk('.1.3.6.1.2.1.2.2.1', true);
+            $mtxrWlApTable = $this->snmpWalk('.1.3.6.1.4.1.14988.1.1.1.3.1', true);
+            $mtxrWlStatTable = $this->snmpWalk('.1.3.6.1.4.1.14988.1.1.1.1.1', true);
 
-            $ifTableIndexes = @snmp2_real_walk($host, $community, '.1.3.6.1.2.1.2.2.1.1'); // phpcs:ignore
-            $ifTable = @snmp2_real_walk($host, $community, '.1.3.6.1.2.1.2.2.1'); // phpcs:ignore
-            $mtxrWlApTable = @snmp2_real_walk($host, $community, '.1.3.6.1.4.1.14988.1.1.1.3.1'); // phpcs:ignore
-            $mtxrWlStatTable = @snmp2_real_walk($host, $community, '.1.3.6.1.4.1.14988.1.1.1.1.1'); // phpcs:ignore
-
-            foreach ($ifTableIndexes as $ifIndex) {
+            foreach ($ifTableIndexes as $ifTableIndex) {
+                $ifIndex = $ifTableIndex->value;
                 $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces
                     ->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ifIndex]);
 
-                $routerosDeviceInterface->name = iconv(
-                    $sourceEncoding,
-                    'UTF-8//IGNORE',
-                    $ifTable['.1.3.6.1.2.1.2.2.1.2.' . $ifIndex]
-                );
-                $routerosDeviceInterface->comment = iconv(
-                    $sourceEncoding,
-                    'UTF-8//IGNORE',
-                    @snmp2_get($host, $community, '.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex) // phpcs:ignore
-                );
-                $routerosDeviceInterface->interface_admin_status = $ifTable['.1.3.6.1.2.1.2.2.1.7.' . $ifIndex];
-                $routerosDeviceInterface->interface_oper_status = $ifTable['.1.3.6.1.2.1.2.2.1.8.' . $ifIndex];
-                $routerosDeviceInterface->interface_type = $ifTable['.1.3.6.1.2.1.2.2.1.3.' . $ifIndex];
-                $routerosDeviceInterface->mac_address = $this->nullIfEmptyString(
-                    $this->strToHex($ifTable['.1.3.6.1.2.1.2.2.1.6.' . $ifIndex])
-                );
+                $routerosDeviceInterface
+                    ->name = $ifTable['2.' . $ifIndex]->text ?? null;
+                $routerosDeviceInterface
+                    ->comment = $this->snmpGet('.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex)->text ?? null;
+                $routerosDeviceInterface
+                    ->interface_admin_status = $ifTable['7.' . $ifIndex]->value ?? null;
+                $routerosDeviceInterface
+                    ->interface_oper_status = $ifTable['8.' . $ifIndex]->value ?? null;
+                $routerosDeviceInterface
+                    ->interface_type = $ifTable['3.' . $ifIndex]->value ?? null;
+                $routerosDeviceInterface
+                    ->mac_address = $this->nullIfEmptyString(
+                        $this->strToHex(
+                            $ifTable['6.' . $ifIndex]->value ?? null
+                        )
+                    );
 
-                if (isset($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex])) {
-                    $routerosDeviceInterface->ssid = iconv(
-                        $sourceEncoding,
-                        'UTF-8//IGNORE',
-                        $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.4.' . $ifIndex]
-                    );
-                    $routerosDeviceInterface->bssid = $this->nullIfEmptyString(
-                        $this->strToHex($mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.5.' . $ifIndex])
-                    );
+                // wireless access point
+                if (isset($mtxrWlApTable['4.' . $ifIndex])) {
                     $routerosDeviceInterface
-                        ->band = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.8.' . $ifIndex];
+                        ->ssid = $mtxrWlApTable['4.' . $ifIndex]->text ?? null;
                     $routerosDeviceInterface
-                        ->frequency = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.7.' . $ifIndex];
+                        ->bssid = $this->nullIfEmptyString(
+                            $this->strToHex(
+                                $mtxrWlApTable['5.' . $ifIndex]->value ?? null
+                            )
+                        );
                     $routerosDeviceInterface
-                        ->noise_floor = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.9.' . $ifIndex];
+                        ->band = $mtxrWlApTable['8.' . $ifIndex]->text ?? null;
                     $routerosDeviceInterface
-                        ->client_count = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.6.' . $ifIndex];
+                        ->frequency = $mtxrWlApTable['7.' . $ifIndex]->value ?? null;
                     $routerosDeviceInterface
-                        ->overall_tx_ccq = $mtxrWlApTable['.1.3.6.1.4.1.14988.1.1.1.3.1.10.' . $ifIndex];
-                } elseif (isset($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex])) {
-                    $routerosDeviceInterface->ssid = iconv(
-                        $sourceEncoding,
-                        'UTF-8//IGNORE',
-                        $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.5.' . $ifIndex]
-                    );
-                    $routerosDeviceInterface->bssid = $this->nullIfEmptyString(
-                        $this->strToHex($mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.6.' . $ifIndex])
-                    );
+                        ->noise_floor = $mtxrWlApTable['9.' . $ifIndex]->value ?? null;
                     $routerosDeviceInterface
-                        ->band = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.8.' . $ifIndex];
+                        ->client_count = $mtxrWlApTable['6.' . $ifIndex]->value ?? null;
                     $routerosDeviceInterface
-                        ->frequency = $mtxrWlStatTable['.1.3.6.1.4.1.14988.1.1.1.1.1.7.' . $ifIndex];
+                        ->overall_tx_ccq = $mtxrWlApTable['10.' . $ifIndex]->value ?? null;
+
+                // wireless station
+                } elseif (isset($mtxrWlStatTable['5.' . $ifIndex])) {
+                    $routerosDeviceInterface
+                        ->ssid = $mtxrWlStatTable['5.' . $ifIndex]->text ?? null;
+                    $routerosDeviceInterface
+                        ->bssid = $this->nullIfEmptyString(
+                            $this->strToHex(
+                                $mtxrWlStatTable['6.' . $ifIndex]->value ?? null
+                            )
+                        );
+                    $routerosDeviceInterface
+                        ->band = $mtxrWlStatTable['8.' . $ifIndex]->text ?? null;
+                    $routerosDeviceInterface
+                        ->frequency = $mtxrWlStatTable['7.' . $ifIndex]->value ?? null;
                     $routerosDeviceInterface->noise_floor = null;
                     $routerosDeviceInterface->client_count = null;
                     $routerosDeviceInterface->overall_tx_ccq = null;
+
+                // no wireless
                 } else {
                     $routerosDeviceInterface->ssid = null;
                     $routerosDeviceInterface->bssid = null;
@@ -468,47 +536,51 @@ class RouterosDevicesController extends AppController
             // DELETE removed interfaces
             $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll([
                 'routeros_device_id' => $routerosDevice->id,
-                'modified <' => new \DateTime('-120 seconds'),
+                'modified <' => new FrozenTime('-120 seconds'),
             ]);
 
-            $ipAddr_count = count($ipAddr);
+            // IP ADDRESSES
+            $ipAddresses = $this->snmpWalk('.1.3.6.1.2.1.4.20.1.1', true);
+            $ipNetMasks = $this->snmpWalk('.1.3.6.1.2.1.4.20.1.3', true);
+            $ipIfIndexes = $this->snmpWalk('.1.3.6.1.2.1.4.20.1.2', true);
 
-            for ($i = 0; $i < $ipAddr_count; $i++) {
+            foreach ($ipAddresses as $ipAddressKey => $ipAddress) {
                 // check if IP loaded OK, if not do not add
-                if (!ip2long($ipAddr[$i])) {
+                if (!ip2long($ipAddress->value)) {
                     continue;
                 }
-                if (!ip2long($ipNetMask[$i])) {
+                if (!ip2long($ipNetMasks[$ipAddressKey]->value)) {
                     continue;
                 }
 
                 $routerosDeviceIps = $this->RouterosDevices->RouterosDeviceIps->findOrCreate([
                     'routeros_device_id' => $routerosDevice->id,
-                    'interface_index' => $ipIfIndex[$i],
-                    'ip_address' => $data['ip'] = $ipAddr[$i] . '/' . $this->mask2cidr($ipNetMask[$i]),
+                    'interface_index' => $ipIfIndexes[$ipAddressKey]->value ?? null,
+                    'ip_address' => $ipAddress->value . '/' . $this->mask2cidr($ipNetMasks[$ipAddressKey]->value),
                 ]);
 
                 $routerosDeviceIps->name = null;
 
                 $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIps);
             }
-            unset($ipAddr_count);
 
             // DELETE removed IPs
             $this->RouterosDevices->RouterosDeviceIps->deleteAll([
                 'routeros_device_id' => $routerosDevice->id,
-                'modified <' => new \DateTime('-120 seconds'),
+                'modified <' => new FrozenTime('-120 seconds'),
             ]);
 
             // REMOVE OLD DATA FROM DATABASE
-            $this->RouterosDevices->deleteAll(['modified <' => new \DateTime('-365 days')]);
-            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new \DateTime('-365 days')]);
-            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new \DateTime('-365 days')]);
+            $this->RouterosDevices->deleteAll(['modified <' => new FrozenTime('-365 days')]);
+            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new FrozenTime('-365 days')]);
+            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new FrozenTime('-365 days')]);
 
-            return $routerosDevice;
-        } else {
-            return null;
+            $result = $routerosDevice;
         }
+
+        $this->snmpClose();
+
+        return $result;
     }
 
     /**
@@ -666,11 +738,11 @@ class RouterosDevicesController extends AppController
         $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
-                'RouterosDevices.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
+                'RouterosDevices.modified >' => FrozenTime::create()->subDays((int)$maximum_age),
             ];
         } else {
             $conditions[] = [
-                'RouterosDevices.modified >' => FrozenDate::create()->subDays(14),
+                'RouterosDevices.modified >' => FrozenTime::create()->subDays(14),
             ];
         }
 
