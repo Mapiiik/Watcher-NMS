@@ -548,7 +548,7 @@ class RouterosDevicesController extends AppController
             $ipNetMasks = $this->snmpWalk('.1.3.6.1.2.1.4.20.1.3', true);
             $ipIfIndexes = $this->snmpWalk('.1.3.6.1.2.1.4.20.1.2', true);
 
-            if (is_array($ifTableIndexes)) {
+            if (is_array($ipAddresses)) {
                 foreach ($ipAddresses as $ipAddressKey => $ipAddress) {
                     // check if IP loaded OK, if not do not add
                     if (!ip2long($ipAddress->value)) {
