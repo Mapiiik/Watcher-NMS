@@ -460,117 +460,121 @@ class RouterosDevicesController extends AppController
             $mtxrWlApTable = $this->snmpWalk('.1.3.6.1.4.1.14988.1.1.1.3.1', true);
             $mtxrWlStatTable = $this->snmpWalk('.1.3.6.1.4.1.14988.1.1.1.1.1', true);
 
-            foreach ($ifTableIndexes as $ifTableIndex) {
-                $ifIndex = $ifTableIndex->value;
-                $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces
-                    ->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ifIndex]);
+            if (is_array($ifTableIndexes)) {
+                foreach ($ifTableIndexes as $ifTableIndex) {
+                    $ifIndex = $ifTableIndex->value;
+                    $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces
+                        ->findOrCreate(['routeros_device_id' => $routerosDevice->id, 'interface_index' => $ifIndex]);
 
-                $routerosDeviceInterface
-                    ->name = $ifTable['2.' . $ifIndex]->text ?? null;
-                $routerosDeviceInterface
-                    ->comment = $this->snmpGet('.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex)->text ?? null;
-                $routerosDeviceInterface
-                    ->interface_admin_status = $ifTable['7.' . $ifIndex]->value ?? null;
-                $routerosDeviceInterface
-                    ->interface_oper_status = $ifTable['8.' . $ifIndex]->value ?? null;
-                $routerosDeviceInterface
-                    ->interface_type = $ifTable['3.' . $ifIndex]->value ?? null;
-                $routerosDeviceInterface
-                    ->mac_address = $this->nullIfEmptyString(
-                        $this->strToHex(
-                            $ifTable['6.' . $ifIndex]->value ?? null
-                        )
-                    );
-
-                // wireless access point
-                if (isset($mtxrWlApTable['4.' . $ifIndex])) {
                     $routerosDeviceInterface
-                        ->ssid = $mtxrWlApTable['4.' . $ifIndex]->text ?? null;
+                        ->name = $ifTable['2.' . $ifIndex]->text ?? null;
                     $routerosDeviceInterface
-                        ->bssid = $this->nullIfEmptyString(
+                        ->comment = $this->snmpGet('.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex)->text ?? null;
+                    $routerosDeviceInterface
+                        ->interface_admin_status = $ifTable['7.' . $ifIndex]->value ?? null;
+                    $routerosDeviceInterface
+                        ->interface_oper_status = $ifTable['8.' . $ifIndex]->value ?? null;
+                    $routerosDeviceInterface
+                        ->interface_type = $ifTable['3.' . $ifIndex]->value ?? null;
+                    $routerosDeviceInterface
+                        ->mac_address = $this->nullIfEmptyString(
                             $this->strToHex(
-                                $mtxrWlApTable['5.' . $ifIndex]->value ?? null
+                                $ifTable['6.' . $ifIndex]->value ?? ''
                             )
                         );
-                    $routerosDeviceInterface
-                        ->band = $mtxrWlApTable['8.' . $ifIndex]->text ?? null;
-                    $routerosDeviceInterface
-                        ->frequency = $mtxrWlApTable['7.' . $ifIndex]->value ?? null;
-                    $routerosDeviceInterface
-                        ->noise_floor = $mtxrWlApTable['9.' . $ifIndex]->value ?? null;
-                    $routerosDeviceInterface
-                        ->client_count = $mtxrWlApTable['6.' . $ifIndex]->value ?? null;
-                    $routerosDeviceInterface
-                        ->overall_tx_ccq = $mtxrWlApTable['10.' . $ifIndex]->value ?? null;
 
-                // wireless station
-                } elseif (isset($mtxrWlStatTable['5.' . $ifIndex])) {
-                    $routerosDeviceInterface
-                        ->ssid = $mtxrWlStatTable['5.' . $ifIndex]->text ?? null;
-                    $routerosDeviceInterface
-                        ->bssid = $this->nullIfEmptyString(
-                            $this->strToHex(
-                                $mtxrWlStatTable['6.' . $ifIndex]->value ?? null
-                            )
-                        );
-                    $routerosDeviceInterface
-                        ->band = $mtxrWlStatTable['8.' . $ifIndex]->text ?? null;
-                    $routerosDeviceInterface
-                        ->frequency = $mtxrWlStatTable['7.' . $ifIndex]->value ?? null;
-                    $routerosDeviceInterface->noise_floor = null;
-                    $routerosDeviceInterface->client_count = null;
-                    $routerosDeviceInterface->overall_tx_ccq = null;
+                    // wireless access point
+                    if (isset($mtxrWlApTable['4.' . $ifIndex])) {
+                        $routerosDeviceInterface
+                            ->ssid = $mtxrWlApTable['4.' . $ifIndex]->text ?? null;
+                        $routerosDeviceInterface
+                            ->bssid = $this->nullIfEmptyString(
+                                $this->strToHex(
+                                    $mtxrWlApTable['5.' . $ifIndex]->value ?? ''
+                                )
+                            );
+                        $routerosDeviceInterface
+                            ->band = $mtxrWlApTable['8.' . $ifIndex]->text ?? null;
+                        $routerosDeviceInterface
+                            ->frequency = $mtxrWlApTable['7.' . $ifIndex]->value ?? null;
+                        $routerosDeviceInterface
+                            ->noise_floor = $mtxrWlApTable['9.' . $ifIndex]->value ?? null;
+                        $routerosDeviceInterface
+                            ->client_count = $mtxrWlApTable['6.' . $ifIndex]->value ?? null;
+                        $routerosDeviceInterface
+                            ->overall_tx_ccq = $mtxrWlApTable['10.' . $ifIndex]->value ?? null;
 
-                // no wireless
-                } else {
-                    $routerosDeviceInterface->ssid = null;
-                    $routerosDeviceInterface->bssid = null;
-                    $routerosDeviceInterface->band = null;
-                    $routerosDeviceInterface->frequency = null;
-                    $routerosDeviceInterface->noise_floor = null;
-                    $routerosDeviceInterface->client_count = null;
-                    $routerosDeviceInterface->overall_tx_ccq = null;
+                    // wireless station
+                    } elseif (isset($mtxrWlStatTable['5.' . $ifIndex])) {
+                        $routerosDeviceInterface
+                            ->ssid = $mtxrWlStatTable['5.' . $ifIndex]->text ?? null;
+                        $routerosDeviceInterface
+                            ->bssid = $this->nullIfEmptyString(
+                                $this->strToHex(
+                                    $mtxrWlStatTable['6.' . $ifIndex]->value ?? ''
+                                )
+                            );
+                        $routerosDeviceInterface
+                            ->band = $mtxrWlStatTable['8.' . $ifIndex]->text ?? null;
+                        $routerosDeviceInterface
+                            ->frequency = $mtxrWlStatTable['7.' . $ifIndex]->value ?? null;
+                        $routerosDeviceInterface->noise_floor = null;
+                        $routerosDeviceInterface->client_count = null;
+                        $routerosDeviceInterface->overall_tx_ccq = null;
+
+                    // no wireless
+                    } else {
+                        $routerosDeviceInterface->ssid = null;
+                        $routerosDeviceInterface->bssid = null;
+                        $routerosDeviceInterface->band = null;
+                        $routerosDeviceInterface->frequency = null;
+                        $routerosDeviceInterface->noise_floor = null;
+                        $routerosDeviceInterface->client_count = null;
+                        $routerosDeviceInterface->overall_tx_ccq = null;
+                    }
+
+                    $this->RouterosDevices->RouterosDeviceInterfaces->save($routerosDeviceInterface);
                 }
 
-                $this->RouterosDevices->RouterosDeviceInterfaces->save($routerosDeviceInterface);
+                // DELETE removed interfaces
+                $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll([
+                    'routeros_device_id' => $routerosDevice->id,
+                    'modified <' => new FrozenTime('-120 seconds'),
+                ]);
             }
-
-            // DELETE removed interfaces
-            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll([
-                'routeros_device_id' => $routerosDevice->id,
-                'modified <' => new FrozenTime('-120 seconds'),
-            ]);
 
             // IP ADDRESSES
             $ipAddresses = $this->snmpWalk('.1.3.6.1.2.1.4.20.1.1', true);
             $ipNetMasks = $this->snmpWalk('.1.3.6.1.2.1.4.20.1.3', true);
             $ipIfIndexes = $this->snmpWalk('.1.3.6.1.2.1.4.20.1.2', true);
 
-            foreach ($ipAddresses as $ipAddressKey => $ipAddress) {
-                // check if IP loaded OK, if not do not add
-                if (!ip2long($ipAddress->value)) {
-                    continue;
-                }
-                if (!ip2long($ipNetMasks[$ipAddressKey]->value)) {
-                    continue;
+            if (is_array($ifTableIndexes)) {
+                foreach ($ipAddresses as $ipAddressKey => $ipAddress) {
+                    // check if IP loaded OK, if not do not add
+                    if (!ip2long($ipAddress->value)) {
+                        continue;
+                    }
+                    if (!ip2long($ipNetMasks[$ipAddressKey]->value)) {
+                        continue;
+                    }
+
+                    $routerosDeviceIps = $this->RouterosDevices->RouterosDeviceIps->findOrCreate([
+                        'routeros_device_id' => $routerosDevice->id,
+                        'interface_index' => $ipIfIndexes[$ipAddressKey]->value ?? null,
+                        'ip_address' => $ipAddress->value . '/' . $this->mask2cidr($ipNetMasks[$ipAddressKey]->value),
+                    ]);
+
+                    $routerosDeviceIps->name = null;
+
+                    $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIps);
                 }
 
-                $routerosDeviceIps = $this->RouterosDevices->RouterosDeviceIps->findOrCreate([
+                // DELETE removed IPs
+                $this->RouterosDevices->RouterosDeviceIps->deleteAll([
                     'routeros_device_id' => $routerosDevice->id,
-                    'interface_index' => $ipIfIndexes[$ipAddressKey]->value ?? null,
-                    'ip_address' => $ipAddress->value . '/' . $this->mask2cidr($ipNetMasks[$ipAddressKey]->value),
+                    'modified <' => new FrozenTime('-120 seconds'),
                 ]);
-
-                $routerosDeviceIps->name = null;
-
-                $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIps);
             }
-
-            // DELETE removed IPs
-            $this->RouterosDevices->RouterosDeviceIps->deleteAll([
-                'routeros_device_id' => $routerosDevice->id,
-                'modified <' => new FrozenTime('-120 seconds'),
-            ]);
 
             // REMOVE OLD DATA FROM DATABASE
             $this->RouterosDevices->deleteAll(['modified <' => new FrozenTime('-365 days')]);
