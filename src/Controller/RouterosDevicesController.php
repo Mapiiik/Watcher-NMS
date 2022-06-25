@@ -238,7 +238,8 @@ class RouterosDevicesController extends AppController
         $length = strlen($string);
 
         for ($i = 0; $i < $length; $i++) {
-            $hex .= ':' . sprintf('%02.x', ord($string[$i]));
+            $hex .= empty($hex) ? '' : ':';
+            $hex .= sprintf('%02.x', ord($string[$i]));
         }
 
         return $hex;
