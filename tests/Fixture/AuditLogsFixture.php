@@ -19,10 +19,10 @@ class AuditLogsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 'f0700a74-85d3-43fa-86b8-0d42cc3a500d',
-                'transaction' => '4787c5d7-2d66-44fa-a6e9-27aeec00ef66',
+                'id' => '2d133409-0730-4908-84dc-54547cbcfbff',
+                'transaction' => '7b7d51ba-a496-45ed-84b7-dc328e8787c2',
                 'type' => 'Lorem',
-                'primary_key' => 'e4f5548f-6d48-4e3c-8af8-e58bb694472b',
+                'primary_key' => '',
                 'display_value' => 'Lorem ipsum dolor sit amet',
                 'source' => 'Lorem ipsum dolor sit amet',
                 'parent_source' => 'Lorem ipsum dolor sit amet',
@@ -30,7 +30,7 @@ class AuditLogsFixture extends TestFixture
                 'original' => '',
                 'changed' => '',
                 'meta' => '',
-                'created' => 1656169761,
+                'created' => 1656188883,
             ],
         ];
         parent::init();

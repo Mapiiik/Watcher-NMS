@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property string $transaction
  * @property string $type
- * @property string|null $primary_key
+ * @property array|null $primary_key
  * @property string|null $display_value
  * @property string $source
  * @property string|null $parent_source

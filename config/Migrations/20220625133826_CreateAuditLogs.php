@@ -16,6 +16,9 @@ class CreateAuditLogs extends AbstractMigration
      */
     public function up()
     {
+        // create extension for full UUID support
+        $this->execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
+
         $this->table('audit_logs', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [
                 'default' => Literal::from('uuid_generate_v4()'),
@@ -32,7 +35,7 @@ class CreateAuditLogs extends AbstractMigration
                 'limit' => 7,
                 'null' => false,
             ])
-            ->addColumn('primary_key', 'uuid', [
+            ->addColumn('primary_key', 'jsonb', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -57,17 +60,17 @@ class CreateAuditLogs extends AbstractMigration
                 'limit' => 255,
                 'null' => true,
             ])
-            ->addColumn('original', 'json', [
+            ->addColumn('original', 'jsonb', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('changed', 'json', [
+            ->addColumn('changed', 'jsonb', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('meta', 'json', [
+            ->addColumn('meta', 'jsonb', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,

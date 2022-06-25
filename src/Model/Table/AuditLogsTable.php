@@ -63,7 +63,6 @@ class AuditLogsTable extends Table
             ->notEmptyString('type');
 
         $validator
-            ->uuid('primary_key')
             ->allowEmptyString('primary_key');
 
         $validator
