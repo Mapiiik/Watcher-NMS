@@ -39,7 +39,7 @@ class PowerSuppliesTable extends AppTable
         parent::initialize($config);
 
         $this->setTable('power_supplies');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

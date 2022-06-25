@@ -35,7 +35,7 @@
     </aside>
     <div class="column-responsive column-90">
         <div class="powerSupplies view content">
-            <h3><?= h($powerSupply->id) ?></h3>
+            <h3><?= h($powerSupply->name) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Id') ?></th>
