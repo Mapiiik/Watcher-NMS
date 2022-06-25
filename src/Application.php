@@ -72,6 +72,9 @@ class Application extends BaseApplication
         $this->addPlugin(\CakeDC\Users\Plugin::class);
         Configure::write('Users.config', ['users']);
 
+        // Persisting audit log
+        $this->addPlugin('AuditStash');
+
         // dereuromark/cakephp-geo
         $this->addPlugin('Geo');
 
