@@ -28,6 +28,8 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\PowerSupplyType $power_supply_type
  * @property \App\Model\Entity\AccessPoint $access_point
+ *
+ * @property string $name_for_lists
  */
 class PowerSupply extends Entity
 {
@@ -58,4 +60,16 @@ class PowerSupply extends Entity
         'power_supply_type' => true,
         'access_point' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return $this->has('serial_number') ?
+            strval($this->name) . ' (' . strval($this->serial_number) . ')' :
+            strval($this->name);
+    }
 }

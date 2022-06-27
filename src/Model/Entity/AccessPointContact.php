@@ -24,6 +24,8 @@ use Cake\ORM\Entity;
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
  * @property \App\Model\Entity\AccessPoint $access_point
+ *
+ * @property string $name_for_lists
  */
 class AccessPointContact extends Entity
 {
@@ -50,4 +52,14 @@ class AccessPointContact extends Entity
         'modified_by' => true,
         'access_point' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return strval($this->name);
+    }
 }

@@ -21,6 +21,8 @@ use Cake\ORM\Entity;
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
  * @property \App\Model\Entity\CustomerConnection[] $customer_connections
+ *
+ * @property string $name_for_lists
  */
 class CustomerPoint extends Entity
 {
@@ -44,4 +46,14 @@ class CustomerPoint extends Entity
         'modified_by' => true,
         'customer_connections' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return strval($this->name);
+    }
 }

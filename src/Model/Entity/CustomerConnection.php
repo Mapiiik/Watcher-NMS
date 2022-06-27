@@ -26,6 +26,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\CustomerConnectionIp[] $customer_connection_ips
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
+ *
+ * @property string $name_for_lists
  */
 class CustomerConnection extends Entity
 {
@@ -53,4 +55,16 @@ class CustomerConnection extends Entity
         'customer_connection_ips' => true,
         'routeros_devices' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return $this->has('contract_number') ?
+            strval($this->name) . ' (' . strval($this->contract_number) . ')' :
+            strval($this->name);
+    }
 }

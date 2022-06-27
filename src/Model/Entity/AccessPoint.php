@@ -30,6 +30,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\RadioUnit[] $radio_units
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  * @property \App\Model\Entity\IpAddressRange[] $ip_address_ranges
+ *
+ * @property string $name_for_lists
  */
 class AccessPoint extends Entity
 {
@@ -61,4 +63,14 @@ class AccessPoint extends Entity
         'routeros_devices' => true,
         'ip_address_ranges' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return strval($this->name);
+    }
 }

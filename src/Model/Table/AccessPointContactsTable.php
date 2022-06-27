@@ -38,7 +38,7 @@ class AccessPointContactsTable extends AppTable
         parent::initialize($config);
 
         $this->setTable('access_point_contacts');
-        $this->setDisplayField('name');
+        $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

@@ -31,6 +31,8 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\IpAddressRange $parent_ip_address_range
+ *
+ * @property string $name_for_lists
  */
 class IpAddressRange extends Entity
 {
@@ -64,4 +66,16 @@ class IpAddressRange extends Entity
         'access_point' => true,
         'parent_ip_address_range' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return $this->has('ip_network') ?
+            strval($this->name) . ' (' . strval($this->ip_network) . ')' :
+            strval($this->name);
+    }
 }

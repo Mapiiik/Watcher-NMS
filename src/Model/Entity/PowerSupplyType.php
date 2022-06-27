@@ -24,6 +24,8 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Manufacturer $manufacturer
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
+ *
+ * @property string $name_for_lists
  */
 class PowerSupplyType extends Entity
 {
@@ -50,4 +52,14 @@ class PowerSupplyType extends Entity
         'manufacturer' => true,
         'power_supplies' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return strval($this->name);
+    }
 }

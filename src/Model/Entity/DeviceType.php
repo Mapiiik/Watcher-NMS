@@ -25,6 +25,8 @@ use Cake\ORM\Entity;
  * @property bool $automatically_set_a_unique_password
  *
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
+ *
+ * @property string $name_for_lists
  */
 class DeviceType extends Entity
 {
@@ -52,4 +54,14 @@ class DeviceType extends Entity
         'automatically_set_a_unique_password' => true,
         'routeros_devices' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return strval($this->name);
+    }
 }

@@ -21,6 +21,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\AntennaType[] $antenna_types
  * @property \App\Model\Entity\PowerSupplyType[] $power_supply_types
  * @property \App\Model\Entity\RadioUnitType[] $radio_unit_types
+ *
+ * @property string $name_for_lists
  */
 class Manufacturer extends Entity
 {
@@ -44,4 +46,14 @@ class Manufacturer extends Entity
         'power_supply_types' => true,
         'radio_unit_types' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return strval($this->name);
+    }
 }

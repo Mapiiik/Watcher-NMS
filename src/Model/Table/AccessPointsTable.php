@@ -43,7 +43,7 @@ class AccessPointsTable extends AppTable
         parent::initialize($config);
 
         $this->setTable('access_points');
-        $this->setDisplayField('name');
+        $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

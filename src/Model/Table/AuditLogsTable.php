@@ -37,7 +37,7 @@ class AuditLogsTable extends Table
         parent::initialize($config);
 
         $this->setTable('audit_logs');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

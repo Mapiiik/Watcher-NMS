@@ -18,10 +18,12 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $modified_by
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
- * @property string $style
  *
  * @property \App\Model\Entity\AntennaType[] $antenna_types
  * @property \App\Model\Entity\RadioUnitType[] $radio_unit_types
+ *
+ * @property string $name_for_lists
+ * @property string $style
  */
 class RadioUnitBand extends Entity
 {
@@ -45,6 +47,16 @@ class RadioUnitBand extends Entity
         'antenna_types' => true,
         'radio_unit_types' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return strval($this->name);
+    }
 
     /**
      * getter for style

@@ -38,7 +38,7 @@ class RouterosDeviceInterfacesTable extends AppTable
         parent::initialize($config);
 
         $this->setTable('routeros_device_interfaces');
-        $this->setDisplayField('name');
+        $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

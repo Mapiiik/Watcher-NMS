@@ -41,7 +41,7 @@ class CustomerConnectionsTable extends AppTable
         parent::initialize($config);
 
         $this->setTable('customer_connections');
-        $this->setDisplayField('name');
+        $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

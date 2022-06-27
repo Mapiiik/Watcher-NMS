@@ -38,7 +38,7 @@ class ElectricityMeterReadingsTable extends AppTable
         parent::initialize($config);
 
         $this->setTable('electricity_meter_readings');
-        $this->setDisplayField('name');
+        $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

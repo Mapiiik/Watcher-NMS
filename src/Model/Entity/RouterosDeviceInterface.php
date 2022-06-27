@@ -32,6 +32,8 @@ use Cake\ORM\Entity;
  * @property string|null $bssid
  *
  * @property \App\Model\Entity\RouterosDevice $routeros_device
+ *
+ * @property string $name_for_lists
  */
 class RouterosDeviceInterface extends Entity
 {
@@ -66,4 +68,16 @@ class RouterosDeviceInterface extends Entity
         'bssid' => true,
         'routeros_device' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return $this->has('mac_address') ?
+            strval($this->name) . ' (' . strval($this->mac_address) . ')' :
+            strval($this->name);
+    }
 }

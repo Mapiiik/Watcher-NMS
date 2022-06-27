@@ -21,6 +21,8 @@ use Cake\ORM\Entity;
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
  * @property \App\Model\Entity\RouterosDevice $routeros_device
+ *
+ * @property string $name_for_lists
  */
 class RouterosDeviceIp extends Entity
 {
@@ -44,4 +46,16 @@ class RouterosDeviceIp extends Entity
         'modified_by' => true,
         'routeros_device' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return $this->has('ip_address') ?
+            strval($this->name) . ' (' . strval($this->ip_address) . ')' :
+            strval($this->name);
+    }
 }

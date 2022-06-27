@@ -38,12 +38,14 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $modified_by
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
- * @property string $style
  *
  * @property \App\Model\Entity\RadioUnitType $radio_unit_type
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\RadioLink $radio_link
  * @property \App\Model\Entity\AntennaType $antenna_type
+ *
+ * @property string $name_for_lists
+ * @property string $style
  */
 class RadioUnit extends Entity
 {
@@ -89,6 +91,18 @@ class RadioUnit extends Entity
         'radio_link' => true,
         'antenna_type' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return $this->has('serial_number') ?
+            strval($this->name) . ' (' . strval($this->serial_number) . ')' :
+            strval($this->name);
+    }
 
     /**
      * getter for style

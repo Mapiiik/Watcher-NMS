@@ -39,7 +39,7 @@ class IpAddressRangesTable extends AppTable
         parent::initialize($config);
 
         $this->setTable('ip_address_ranges');
-        $this->setDisplayField('name');
+        $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

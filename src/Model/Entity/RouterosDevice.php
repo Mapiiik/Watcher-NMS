@@ -33,6 +33,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\CustomerConnection $customer_connection
  * @property \App\Model\Entity\RouterosDeviceInterface[] $routeros_device_interfaces
  * @property \App\Model\Entity\RouterosDeviceIp[] $routeros_device_ips
+ *
+ * @property string $name_for_lists
  */
 class RouterosDevice extends Entity
 {
@@ -66,4 +68,16 @@ class RouterosDevice extends Entity
         'routeros_device_interfaces' => true,
         'routeros_device_ips' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return $this->has('serial_number') ?
+            strval($this->name) . ' (' . strval($this->serial_number) . ')' :
+            strval($this->name);
+    }
 }

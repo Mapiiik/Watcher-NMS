@@ -38,7 +38,7 @@ class CustomerConnectionIpsTable extends AppTable
         parent::initialize($config);
 
         $this->setTable('customer_connection_ips');
-        $this->setDisplayField('name');
+        $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

@@ -21,11 +21,13 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $modified_by
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
- * @property string $style
  *
  * @property \App\Model\Entity\RadioUnitBand $radio_unit_band
  * @property \App\Model\Entity\Manufacturer $manufacturer
  * @property \App\Model\Entity\RadioUnit[] $radio_units
+ *
+ * @property string $name_for_lists
+ * @property string $style
  */
 class AntennaType extends Entity
 {
@@ -53,6 +55,16 @@ class AntennaType extends Entity
         'manufacturer' => true,
         'radio_units' => true,
     ];
+
+    /**
+     * getter for name for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        return strval($this->name);
+    }
 
     /**
      * getter for style
