@@ -16,7 +16,7 @@ $user = ${$tableAlias};
             <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="users view content">
             <h3><?= h($user->username) ?></h3>
             <table>
