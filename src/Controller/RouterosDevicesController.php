@@ -467,6 +467,8 @@ class RouterosDevicesController extends AppController
             $routerosDevice = $this->RouterosDevices
                 ->patchEntity($routerosDevice, $routerosDeviceData);
 
+            $routerosDevice->modified = FrozenTime::now();
+
             $this->RouterosDevices->save($routerosDevice);
 
             // INTERFACES
@@ -553,6 +555,8 @@ class RouterosDevicesController extends AppController
                     $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces
                         ->patchEntity($routerosDeviceInterface, $routerosDeviceInterfaceData);
 
+                    $routerosDeviceInterface->modified = FrozenTime::now();
+
                     $this->RouterosDevices->RouterosDeviceInterfaces->save($routerosDeviceInterface);
                 }
 
@@ -600,6 +604,8 @@ class RouterosDevicesController extends AppController
 
                     $routerosDeviceIp = $this->RouterosDevices->RouterosDeviceIps
                         ->patchEntity($routerosDeviceIp, $routerosDeviceIpData);
+
+                    $routerosDeviceIp->modified = FrozenTime::now();
 
                     $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIp);
                 }
