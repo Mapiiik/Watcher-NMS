@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-06-29 14:09+0200\n"
-"PO-Revision-Date: 2022-06-29 14:09+0200\n"
+"POT-Creation-Date: 2022-06-29 15:41+0200\n"
+"PO-Revision-Date: 2022-06-29 15:48+0200\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -30,7 +30,7 @@ msgstr "Data zákaznických bodů nelze aktualizovat. Zkuste to prosím znovu."
 #: templates/CustomerConnections/view.php:188
 #: templates/DeviceTypes/view.php:110
 #: templates/ElectricityMeterReadings/view.php:49
-#: templates/IpAddressRanges/view.php:45 templates/PowerSupplies/view.php:62
+#: templates/IpAddressRanges/view.php:49 templates/PowerSupplies/view.php:62
 #: templates/PowerSupplyTypes/view.php:115 templates/RadioLinks/view.php:104
 #: templates/RadioUnitTypes/view.php:116 templates/RadioUnits/export.php:15
 #: templates/RadioUnits/view.php:55 templates/RouterosDevices/export.php:42
@@ -91,7 +91,7 @@ msgstr "Tento měsíc není třeba provádět žádné odečty elektroměrů."
 #: templates/CustomerPoints/view.php:37 templates/CustomerPoints/view.php:119
 #: templates/DeviceTypes/view.php:37 templates/DeviceTypes/view.php:109
 #: templates/ElectricityMeterReadings/view.php:45
-#: templates/IpAddressRanges/view.php:33 templates/Manufacturers/view.php:45
+#: templates/IpAddressRanges/view.php:37 templates/Manufacturers/view.php:45
 #: templates/Manufacturers/view.php:93 templates/Manufacturers/view.php:144
 #: templates/Manufacturers/view.php:186 templates/PowerSupplies/view.php:45
 #: templates/PowerSupplyTypes/view.php:45
@@ -606,6 +606,11 @@ msgstr "Zařízení routeros nelze odstranit. Opakujte akci."
 #: templates/RouterosDevices/index.php:52 templates/RouterosDevices/view.php:10
 #: templates/RouterosDevices/view.php:169
 #: templates/RouterosDevices/view.php:233
+#: templates/plugin/CakeDC/Users/Users/add.php:12
+#: templates/plugin/CakeDC/Users/Users/edit.php:12
+#: templates/plugin/CakeDC/Users/Users/index.php:26
+#: templates/plugin/CakeDC/Users/Users/view.php:12
+#: templates/plugin/CakeDC/Users/Users/view.php:116
 msgid "Actions"
 msgstr "Akce"
 
@@ -646,6 +651,8 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/RouterosDeviceIps/add.php:31
 #: templates/RouterosDeviceIps/edit.php:39 templates/RouterosDevices/add.php:46
 #: templates/RouterosDevices/edit.php:54
+#: templates/plugin/CakeDC/Users/Users/add.php:31
+#: templates/plugin/CakeDC/Users/Users/edit.php:43
 msgid "Submit"
 msgstr "Potvrdit"
 
@@ -694,6 +701,9 @@ msgstr "Potvrdit"
 #: templates/RouterosDevices/index.php:98
 #: templates/RouterosDevices/view.php:206
 #: templates/RouterosDevices/view.php:251
+#: templates/plugin/CakeDC/Users/Users/edit.php:14
+#: templates/plugin/CakeDC/Users/Users/index.php:46
+#: templates/plugin/CakeDC/Users/Users/view.php:137
 msgid "Delete"
 msgstr "Odstranit"
 
@@ -755,6 +765,10 @@ msgstr "Odstranit"
 #: templates/RouterosDevices/index.php:100
 #: templates/RouterosDevices/view.php:20 templates/RouterosDevices/view.php:212
 #: templates/RouterosDevices/view.php:253
+#: templates/plugin/CakeDC/Users/Users/edit.php:16
+#: templates/plugin/CakeDC/Users/Users/index.php:46
+#: templates/plugin/CakeDC/Users/Users/view.php:14
+#: templates/plugin/CakeDC/Users/Users/view.php:137
 msgid "Are you sure you want to delete # {0}?"
 msgstr "Opravdu chcete odstranit # {0}?"
 
@@ -822,6 +836,8 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/index.php:89
 #: templates/RouterosDevices/view.php:189
 #: templates/RouterosDevices/view.php:242
+#: templates/plugin/CakeDC/Users/Users/index.php:43
+#: templates/plugin/CakeDC/Users/Users/view.php:135
 #: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1260
 msgid "View"
 msgstr "Zobrazit"
@@ -857,6 +873,8 @@ msgstr "Zobrazit"
 #: templates/RouterosDevices/index.php:93
 #: templates/RouterosDevices/view.php:197
 #: templates/RouterosDevices/view.php:246
+#: templates/plugin/CakeDC/Users/Users/index.php:45
+#: templates/plugin/CakeDC/Users/Users/view.php:136
 msgid "Edit"
 msgstr "Upravit"
 
@@ -875,6 +893,7 @@ msgstr "Upravit"
 #: templates/RouterosDeviceInterfaces/index.php:113
 #: templates/RouterosDeviceIps/index.php:91
 #: templates/RouterosDevices/index.php:110
+#: templates/plugin/CakeDC/Users/Users/index.php:55
 msgid "first"
 msgstr "první"
 
@@ -893,6 +912,7 @@ msgstr "první"
 #: templates/RouterosDeviceInterfaces/index.php:114
 #: templates/RouterosDeviceIps/index.php:92
 #: templates/RouterosDevices/index.php:111
+#: templates/plugin/CakeDC/Users/Users/index.php:56
 msgid "previous"
 msgstr "předchozí"
 
@@ -911,6 +931,7 @@ msgstr "předchozí"
 #: templates/RouterosDeviceInterfaces/index.php:116
 #: templates/RouterosDeviceIps/index.php:94
 #: templates/RouterosDevices/index.php:113
+#: templates/plugin/CakeDC/Users/Users/index.php:58
 msgid "next"
 msgstr "další"
 
@@ -929,6 +950,7 @@ msgstr "další"
 #: templates/RouterosDeviceInterfaces/index.php:117
 #: templates/RouterosDeviceIps/index.php:95
 #: templates/RouterosDevices/index.php:114
+#: templates/plugin/CakeDC/Users/Users/index.php:59
 msgid "last"
 msgstr "poslední"
 
@@ -947,6 +969,7 @@ msgstr "poslední"
 #: templates/RouterosDeviceInterfaces/index.php:120
 #: templates/RouterosDeviceIps/index.php:98
 #: templates/RouterosDevices/index.php:117
+#: templates/plugin/CakeDC/Users/Users/index.php:61
 msgid ""
 "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
 "total"
@@ -964,7 +987,7 @@ msgstr "Odstranit kontakt přístupového bodu"
 #: templates/CustomerConnections/view.php:41
 #: templates/CustomerPoints/view.php:33 templates/DeviceTypes/view.php:33
 #: templates/ElectricityMeterReadings/view.php:41
-#: templates/IpAddressRanges/view.php:93 templates/Manufacturers/view.php:41
+#: templates/IpAddressRanges/view.php:33 templates/Manufacturers/view.php:41
 #: templates/PowerSupplies/view.php:41 templates/PowerSupplyTypes/view.php:41
 #: templates/RadarInterferences/view.php:41 templates/RadioLinks/view.php:38
 #: templates/RadioUnitBands/view.php:33 templates/RadioUnitTypes/view.php:41
@@ -972,6 +995,7 @@ msgstr "Odstranit kontakt přístupového bodu"
 #: templates/RouterosDeviceInterfaces/view.php:41
 #: templates/RouterosDeviceIps/view.php:41
 #: templates/RouterosDevices/view.php:40
+#: templates/plugin/CakeDC/Users/Users/view.php:102
 msgid "Id"
 msgstr "ID"
 
@@ -982,6 +1006,7 @@ msgstr "Telefon"
 
 #: templates/AccessPointContacts/view.php:60
 #: templates/AccessPoints/view.php:152
+#: templates/plugin/CakeDC/Users/Users/view.php:28
 msgid "Email"
 msgstr "E-mail"
 
@@ -1013,6 +1038,8 @@ msgstr "Číslo smlouvy"
 #: templates/RouterosDeviceInterfaces/view.php:114
 #: templates/RouterosDeviceIps/view.php:70
 #: templates/RouterosDevices/view.php:117
+#: templates/plugin/CakeDC/Users/Users/view.php:88
+#: templates/plugin/CakeDC/Users/Users/view.php:114
 msgid "Created"
 msgstr "Vytvořeno"
 
@@ -1047,6 +1074,8 @@ msgstr "Vytvořil"
 #: templates/RouterosDeviceInterfaces/view.php:130
 #: templates/RouterosDeviceIps/view.php:86
 #: templates/RouterosDevices/view.php:133
+#: templates/plugin/CakeDC/Users/Users/view.php:92
+#: templates/plugin/CakeDC/Users/Users/view.php:115
 msgid "Modified"
 msgstr "Upraveno"
 
@@ -1204,11 +1233,16 @@ msgstr "Související rozsahy IP adres"
 #: templates/IpAddressRanges/index.php:68
 #: templates/IpAddressRanges/index.php:69
 #: templates/IpAddressRanges/index.php:70
-#: templates/IpAddressRanges/index.php:71 templates/IpAddressRanges/view.php:66
-#: templates/IpAddressRanges/view.php:70 templates/IpAddressRanges/view.php:74
-#: templates/IpAddressRanges/view.php:78 templates/IpAddressRanges/view.php:82
-#: templates/IpAddressRanges/view.php:86 templates/IpAddressRanges/view.php:90
+#: templates/IpAddressRanges/index.php:71 templates/IpAddressRanges/view.php:70
+#: templates/IpAddressRanges/view.php:74 templates/IpAddressRanges/view.php:78
+#: templates/IpAddressRanges/view.php:82 templates/IpAddressRanges/view.php:86
+#: templates/IpAddressRanges/view.php:90 templates/IpAddressRanges/view.php:94
 #: templates/RadioUnits/view.php:143 templates/RadioUnits/view.php:147
+#: templates/plugin/CakeDC/Users/Users/index.php:36
+#: templates/plugin/CakeDC/Users/Users/index.php:37
+#: templates/plugin/CakeDC/Users/Users/view.php:41
+#: templates/plugin/CakeDC/Users/Users/view.php:45
+#: templates/plugin/CakeDC/Users/Users/view.php:77
 msgid "Yes"
 msgstr "Ano"
 
@@ -1225,11 +1259,16 @@ msgstr "Ano"
 #: templates/IpAddressRanges/index.php:68
 #: templates/IpAddressRanges/index.php:69
 #: templates/IpAddressRanges/index.php:70
-#: templates/IpAddressRanges/index.php:71 templates/IpAddressRanges/view.php:66
-#: templates/IpAddressRanges/view.php:70 templates/IpAddressRanges/view.php:74
-#: templates/IpAddressRanges/view.php:78 templates/IpAddressRanges/view.php:82
-#: templates/IpAddressRanges/view.php:86 templates/IpAddressRanges/view.php:90
+#: templates/IpAddressRanges/index.php:71 templates/IpAddressRanges/view.php:70
+#: templates/IpAddressRanges/view.php:74 templates/IpAddressRanges/view.php:78
+#: templates/IpAddressRanges/view.php:82 templates/IpAddressRanges/view.php:86
+#: templates/IpAddressRanges/view.php:90 templates/IpAddressRanges/view.php:94
 #: templates/RadioUnits/view.php:143 templates/RadioUnits/view.php:147
+#: templates/plugin/CakeDC/Users/Users/index.php:36
+#: templates/plugin/CakeDC/Users/Users/index.php:37
+#: templates/plugin/CakeDC/Users/Users/view.php:41
+#: templates/plugin/CakeDC/Users/Users/view.php:45
+#: templates/plugin/CakeDC/Users/Users/view.php:77
 msgid "No"
 msgstr "Ne"
 
@@ -1681,43 +1720,43 @@ msgstr "Rozsahy IP adres"
 msgid "Delete Ip Address Range"
 msgstr "Odstranit rozsah IP adres"
 
-#: templates/IpAddressRanges/view.php:37
+#: templates/IpAddressRanges/view.php:41
 msgid "Ip Network"
 msgstr "IP síť"
 
-#: templates/IpAddressRanges/view.php:41
+#: templates/IpAddressRanges/view.php:45
 msgid "Ip Gateway"
 msgstr "IP brána"
 
-#: templates/IpAddressRanges/view.php:53
+#: templates/IpAddressRanges/view.php:57
 msgid "Parent Ip Address Range"
 msgstr "Nadřazený rozsah IP adres"
 
-#: templates/IpAddressRanges/view.php:65
+#: templates/IpAddressRanges/view.php:69
 msgid "For Subnets"
 msgstr "Pro podsítě"
 
-#: templates/IpAddressRanges/view.php:69
+#: templates/IpAddressRanges/view.php:73
 msgid "For Customer Addresses Set Via Radius"
 msgstr "Pro adresy zákazníků nastavené přes RADIUS"
 
-#: templates/IpAddressRanges/view.php:73
+#: templates/IpAddressRanges/view.php:77
 msgid "For Customer Addresses Set Manually"
 msgstr "Pro adresy zákazníků nastavené ručně"
 
-#: templates/IpAddressRanges/view.php:77
+#: templates/IpAddressRanges/view.php:81
 msgid "For Technology Addresses Set Manually"
 msgstr "Pro adresy technologií nastavené ručně"
 
-#: templates/IpAddressRanges/view.php:81
+#: templates/IpAddressRanges/view.php:85
 msgid "For Customer Networks Set Via Radius"
 msgstr "Pro sítě zákazníků nastavené přes RADIUS"
 
-#: templates/IpAddressRanges/view.php:85
+#: templates/IpAddressRanges/view.php:89
 msgid "For Customer Networks Set Manually"
 msgstr "Pro sítě zákazníků nastavené ručně"
 
-#: templates/IpAddressRanges/view.php:89
+#: templates/IpAddressRanges/view.php:93
 msgid "For Technology Networks Set Manually"
 msgstr "Pro sítě technologií nastavené ručně"
 
@@ -2060,7 +2099,6 @@ msgid "Edit Radio Unit"
 msgstr "Upravit rádiovou jednotku"
 
 #: templates/RadioUnits/export.php:9 templates/RouterosDevices/export.php:36
-#: templates/layout/default.php:329
 msgid "Index"
 msgstr "Index"
 
@@ -2205,6 +2243,8 @@ msgid "Delete Routeros Device"
 msgstr "Odstranit zařízení RouterOS"
 
 #: templates/RouterosDevices/view.php:88
+#: templates/plugin/CakeDC/Users/Users/view.php:24
+#: templates/plugin/CakeDC/Users/Users/view.php:104
 msgid "Username"
 msgstr "Uživatelské jméno"
 
@@ -2225,6 +2265,7 @@ msgid "User Related"
 msgstr "Související s uživatelem"
 
 #: templates/Settings/index.php:13
+#: templates/plugin/CakeDC/Users/Users/index.php:44
 msgid "Change Password"
 msgstr "Změnit heslo"
 
@@ -2233,6 +2274,9 @@ msgid "User Profile"
 msgstr "Uživatelský profil"
 
 #: templates/Settings/index.php:23
+#: templates/plugin/CakeDC/Users/Users/add.php:13
+#: templates/plugin/CakeDC/Users/Users/edit.php:18
+#: templates/plugin/CakeDC/Users/Users/view.php:15
 msgid "List Users"
 msgstr "Seznam uživatelů"
 
@@ -2252,25 +2296,137 @@ msgstr "Odhlášení"
 msgid "RouterOS Device Ips"
 msgstr "IP zařízení RouterOS"
 
-#: templates/layout/default.php:324
-msgid "Profile"
-msgstr "Profil"
-
-#: templates/layout/default.php:349
+#: templates/layout/default.php:337
 msgid "Changelog"
 msgstr "Seznam změn"
 
-#: templates/layout/default.php:350
+#: templates/layout/default.php:338
 msgid "Version"
 msgstr "Verze"
 
-#: templates/layout/default.php:356
+#: templates/layout/default.php:344
 msgid "High Contrast"
 msgstr "Vysoký kontrast"
 
 #: templates/layout/error.php:40
 msgid "Back"
 msgstr "Zpět"
+
+#: templates/plugin/CakeDC/Users/Users/add.php:20
+msgid "Add User"
+msgstr "Přidat uživatele"
+
+#: templates/plugin/CakeDC/Users/Users/edit.php:25
+#: templates/plugin/CakeDC/Users/Users/view.php:13
+msgid "Edit User"
+msgstr "Upravit uživatele"
+
+#: templates/plugin/CakeDC/Users/Users/index.php:10
+#: templates/plugin/CakeDC/Users/Users/view.php:16
+msgid "New User"
+msgstr "Nový uživatel"
+
+#: templates/plugin/CakeDC/Users/Users/index.php:11
+msgid "Users"
+msgstr "Uživatelé"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:14
+msgid "Delete User"
+msgstr "Smazat uživatele"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:32
+msgid "First Name"
+msgstr "Jméno"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:36
+msgid "Last Name"
+msgstr "Příjmení"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:40
+#: templates/plugin/CakeDC/Users/Users/view.php:105
+msgid "Active"
+msgstr "Aktivní"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:44
+msgid "Is Superuser"
+msgstr "Je superuživatel"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:48
+msgid "Role"
+msgstr "Role"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:52
+msgid "Api Token"
+msgstr "Token rozhraní API"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:56
+#: templates/plugin/CakeDC/Users/Users/view.php:110
+msgid "Token"
+msgstr "Token"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:60
+#: templates/plugin/CakeDC/Users/Users/view.php:112
+msgid "Token Expires"
+msgstr "Platnost tokenu vyprší"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:64
+msgid "Activation Date"
+msgstr "Datum aktivace"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:68
+msgid "Tos Date"
+msgstr "Tos Datum"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:72
+msgid "Secret"
+msgstr "Tajemství"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:76
+msgid "Secret Verified"
+msgstr "Tajemství ověřeno"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:80
+msgid "Additional Data"
+msgstr "Doplňující údaje"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:84
+msgid "Last Login"
+msgstr "Poslední přihlášení"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:97
+msgid "Related Social Accounts"
+msgstr "Související sociální účty"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:103
+msgid "Provider"
+msgstr "Poskytovatel"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:106
+msgid "Reference"
+msgstr "Reference"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:107
+msgid "Avatar"
+msgstr "Profilový obrázek"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:108
+msgid "Description"
+msgstr "Popis"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:109
+msgid "Link"
+msgstr "Odkaz"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:111
+msgid "Token Secret"
+msgstr "Tajemství tokenu"
+
+#: templates/plugin/CakeDC/Users/Users/view.php:113
+msgid "Data"
+msgstr "Data"
+
+#~ msgid "Profile"
+#~ msgstr "Profil"
 
 #~ msgid "Radar interfering devices found"
 #~ msgstr "Nalezena radarová interferenční zařízení"
