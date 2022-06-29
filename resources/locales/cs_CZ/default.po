@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-06-22 08:36+0200\n"
-"PO-Revision-Date: 2022-06-22 08:40+0200\n"
+"POT-Creation-Date: 2022-06-29 12:08+0200\n"
+"PO-Revision-Date: 2022-06-29 12:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -225,7 +225,7 @@ msgstr "Typ antény byl odstraněn."
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr "Typ antény nelze odstranit. Opakujte akci."
 
-#: src/Controller/AppController.php:77
+#: src/Controller/AppController.php:79
 msgid "Unable to find results on page {0}. Redirect to page 1."
 msgstr "Nelze najít výsledky na stránce {0}. Přesměrování na stranu 1."
 

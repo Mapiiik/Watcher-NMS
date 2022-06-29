@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-06-22 08:36+0200\n"
+"POT-Creation-Date: 2022-06-29 12:08+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -243,7 +243,7 @@ msgstr ""
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AppController.php:77
+#: ./src/Controller/AppController.php:79
 msgid "Unable to find results on page {0}. Redirect to page 1."
 msgstr ""
 
