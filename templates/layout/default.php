@@ -130,9 +130,12 @@ $request = $this->getRequest();
                 ['class' => 'button button-small' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]
             ) ?>
             <?= $this->AuthLink->link(
-                __('Users'),
-                ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'CakeDC/Users'],
-                ['class' => 'button button-small' . $buttonSelected(['Users', 'Profile'])]
+                __('Settings'),
+                ['controller' => 'Settings', 'action' => 'index', 'plugin' => null],
+                ['class' => 'button button-small' . $buttonSelected([
+                    'Settings',
+                    'Users',
+                ])]
             ) ?>
 
             <?= env('WATCHER_CRM_URL') ?
@@ -167,7 +170,7 @@ $request = $this->getRequest();
                     value="<?= $urlWithQuery(['language' => 'en_US']) ?>">English</option>
             </select>
 
-            <?= ($this->getRequest()->getAttribute('identity') != null) ? $this->AuthLink->link(
+            <?= $this->getRequest()->getAttribute('identity') != null ? $this->AuthLink->link(
                 __('Logout'),
                 ['controller' => 'Users', 'action' => 'logout', 'plugin' => 'CakeDC/Users'],
                 ['class' => 'button button-small button-outline']
@@ -314,18 +317,6 @@ $request = $this->getRequest();
                     __('Manufacturers'),
                     ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null],
                     ['class' => 'button button-small' . $buttonSelected(['Manufacturers'])]
-                ) ?>
-            <?php endif; ?>
-            <?php if (in_array($this->getName(), ['Users'])) : ?>
-                <?= $this->AuthLink->link(
-                    __('Profile'),
-                    ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'CakeDC/Users'],
-                    ['class' => 'button button-small' . $buttonSelected(['profile'])]
-                ) ?>
-                <?= $this->AuthLink->link(
-                    __('Index'),
-                    ['controller' => 'Users', 'action' => 'index', 'plugin' => 'CakeDC/Users'],
-                    ['class' => 'button button-small' . $buttonSelected(['index'])]
                 ) ?>
             <?php endif; ?>
         </div>
