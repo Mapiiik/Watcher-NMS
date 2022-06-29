@@ -30,6 +30,10 @@
             <h3><?= h($ipAddressRange->name) ?></h3>
             <table>
                 <tr>
+                    <th><?= __('Id') ?></th>
+                    <td><?= h($ipAddressRange->id) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Name') ?></th>
                     <td><?= h($ipAddressRange->name) ?></td>
                 </tr>
@@ -88,10 +92,6 @@
                 <tr>
                     <th><?= __('For Technology Networks Set Manually') ?></th>
                     <td><?= $ipAddressRange->for_technology_networks_set_manually ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($ipAddressRange->id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>
