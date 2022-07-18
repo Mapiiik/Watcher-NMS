@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "99dd8662d17c72164414959e8b249197",
+    "content-hash": "61b3b217e624420c0576ba68942cdd77",
     "packages": [
         {
             "name": "cakedc/auth",
@@ -1028,52 +1028,6 @@
             "time": "2022-06-20T21:43:11+00:00"
         },
         {
-            "name": "kdesilva/audit-trail",
-            "version": "4.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kkdesilva/audit-trail.git",
-                "reference": "dd9f0ddcae18606f2d1b049c78b8cbc223b194a4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kkdesilva/audit-trail/zipball/dd9f0ddcae18606f2d1b049c78b8cbc223b194a4",
-                "reference": "dd9f0ddcae18606f2d1b049c78b8cbc223b194a4",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/orm": "^4.0",
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "cakephp/cakephp": "^4.0",
-                "cakephp/cakephp-codesniffer": "^4.0.0",
-                "cakephp/elastic-search": "^3.0",
-                "friendsofcake/process-mq": "dev-master",
-                "phpunit/phpunit": "^8.0"
-            },
-            "suggest": {
-                "cakephp/elastic-search": "The default persister engine for audit-stash is elastic search and requires this plugin",
-                "friendsofcake/crud": "audit-stash provide Crud Action classes for displaying audit logs",
-                "friendsofcake/process-mq": "Use this package if you prefer sending the audit events to RabbitMQ"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "AuditStash\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Flexible and rock solid audit log tracking plugin for cakephp",
-            "support": {
-                "source": "https://github.com/kkdesilva/audit-trail/tree/4.4.2"
-            },
-            "time": "2022-02-14T09:59:04+00:00"
-        },
-        {
             "name": "laminas/laminas-diactoros",
             "version": "2.13.0",
             "source": {
@@ -1445,6 +1399,53 @@
                 "source": "https://github.com/thephpleague/oauth2-google/tree/4.0.0"
             },
             "time": "2021-03-04T21:12:06+00:00"
+        },
+        {
+            "name": "mapik/audit-log",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Mapiiik/audit-log.git",
+                "reference": "7491660b0ac98ebbbf580b13e2f3af4b398327d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Mapiiik/audit-log/zipball/7491660b0ac98ebbbf580b13e2f3af4b398327d2",
+                "reference": "7491660b0ac98ebbbf580b13e2f3af4b398327d2",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/orm": "^4.0",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^4.0",
+                "cakephp/cakephp-codesniffer": "^4.0.0",
+                "cakephp/elastic-search": "^3.0",
+                "friendsofcake/process-mq": "dev-master",
+                "phpunit/phpunit": "^8.0"
+            },
+            "suggest": {
+                "cakephp/elastic-search": "The optional persister engine for audit-log is elastic search and requires this plugin",
+                "friendsofcake/crud": "audit-log provide Crud Action classes for displaying audit logs",
+                "friendsofcake/process-mq": "Use this package if you prefer sending the audit events to RabbitMQ"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "AuditLog\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Flexible and rock solid audit log tracking plugin for CakePHP",
+            "support": {
+                "source": "https://github.com/Mapiiik/audit-log/tree/master"
+            },
+            "time": "2022-07-18T10:13:20+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -7281,6 +7282,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "dereuromark/cakephp-geo": 20,
+        "mapik/audit-log": 20,
         "league/oauth2-google": 0
     },
     "prefer-stable": true,

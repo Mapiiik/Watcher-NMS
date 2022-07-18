@@ -352,8 +352,8 @@ return [
     /*
      * Persisting audit log configuration
      */
-    'AuditStash' => [
-        'persister' => 'AuditStash\Persister\TablePersister',
+    'AuditLog' => [
+        'persister' => 'AuditLog\Persister\TablePersister',
         'blacklist' => ['created', 'created_by', 'modified', 'modified_by'],
         'extractMetaFields' => [
             'user' => 'username',
