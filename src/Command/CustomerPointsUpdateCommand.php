@@ -51,15 +51,22 @@ class CustomerPointsUpdateCommand extends Command
         $json = file_get_contents($url);
 
         if ($json) {
+            $start_time = new FrozenTime();
             $importCustomerPoints = json_decode($json);
 
             foreach ($importCustomerPoints as $importCustomerPoint) {
                 if (!empty($importCustomerPoint->gps_x) && !empty($importCustomerPoint->gps_y)) {
                     /** @var \App\Model\Entity\CustomerPoint $customerPoint */
-                    $customerPoint = $this->fetchTable()->findOrCreate([
-                        'gps_x' => $importCustomerPoint->gps_x,
-                        'gps_y' => $importCustomerPoint->gps_y,
-                    ]);
+                    $customerPoint =
+                        $this->fetchTable()->find()->where([
+                            'gps_x' => $importCustomerPoint->gps_x,
+                            'gps_y' => $importCustomerPoint->gps_y,
+                        ])->first()
+                        ??
+                        $this->fetchTable()->newEntity([
+                            'gps_x' => $importCustomerPoint->gps_x,
+                            'gps_y' => $importCustomerPoint->gps_y,
+                        ]);
 
                     // update data
                     /** @var \App\Model\Entity\CustomerPoint $customerPoint */
@@ -79,10 +86,16 @@ class CustomerPointsUpdateCommand extends Command
                 // save customer connections
                 foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
                     /** @var \App\Model\Entity\CustomerConnection $customerConnection */
-                    $customerConnection = $this->fetchTable('CustomerConnections')->findOrCreate([
-                        'customer_number' => $importCustomerConnection->customer_number,
-                        'contract_number' => $importCustomerConnection->contract_number,
-                    ]);
+                    $customerConnection =
+                        $this->fetchTable('CustomerConnections')->find()->where([
+                            'customer_number' => $importCustomerConnection->customer_number,
+                            'contract_number' => $importCustomerConnection->contract_number,
+                        ])->first()
+                        ??
+                        $this->fetchTable('CustomerConnections')->newEntity([
+                            'customer_number' => $importCustomerConnection->customer_number,
+                            'contract_number' => $importCustomerConnection->contract_number,
+                        ]);
 
                     // update data
                     /** @var \App\Model\Entity\CustomerConnection $customerConnection */
@@ -103,10 +116,16 @@ class CustomerPointsUpdateCommand extends Command
                         // save customer connection IP addresses
                         foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
                             /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
-                            $customerConnectionIp = $this->fetchTable('CustomerConnectionIps')->findOrCreate([
-                                'customer_connection_id' => $customerConnection->id,
-                                'ip_address' => $importCustomerConnectionIp->ip_address,
-                            ]);
+                            $customerConnectionIp =
+                                $this->fetchTable('CustomerConnectionIps')->find()->where([
+                                    'customer_connection_id' => $customerConnection->id,
+                                    'ip_address' => $importCustomerConnectionIp->ip_address,
+                                ])->first()
+                                ??
+                                $this->fetchTable('CustomerConnectionIps')->newEntity([
+                                    'customer_connection_id' => $customerConnection->id,
+                                    'ip_address' => $importCustomerConnectionIp->ip_address,
+                                ]);
 
                             // update data
                             /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
@@ -127,15 +146,17 @@ class CustomerPointsUpdateCommand extends Command
                     }
                 }
             }
-            $this->fetchTable()->deleteAll([
-                'modified <' => new FrozenTime('-600 seconds'),
-            ]);
-            $this->fetchTable('CustomerConnections')->deleteAll([
-                'modified <' => new FrozenTime('-600 seconds'),
-            ]);
-            $this->fetchTable('CustomerConnectionIps')->deleteAll([
-                'modified <' => new FrozenTime('-600 seconds'),
-            ]);
+
+            // delete old records
+            $this->fetchTable()->deleteMany(
+                $this->fetchTable()->find()->where(['modified <' => $start_time])->all()
+            );
+            $this->fetchTable('CustomerConnections')->deleteMany(
+                $this->fetchTable('CustomerConnections')->find()->where(['modified <' => $start_time])->all()
+            );
+            $this->fetchTable('CustomerConnectionIps')->deleteMany(
+                $this->fetchTable('CustomerConnectionIps')->find()->where(['modified <' => $start_time])->all()
+            );
 
             Log::debug('The customer points data have been updated.');
             $io->success(__('The customer points data have been updated.'));
