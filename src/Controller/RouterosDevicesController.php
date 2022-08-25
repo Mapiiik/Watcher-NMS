@@ -409,6 +409,7 @@ class RouterosDevicesController extends AppController
         $serialNumber = $this->snmpGet('.1.3.6.1.4.1.14988.1.1.7.3.0')->text ?? null;
 
         if ($serialNumber) {
+            $start_time = new FrozenTime();
             $routerosDeviceData = [
                 'device_type_id' => $device_type_id,
                 'ip_address' => $host,
@@ -562,10 +563,12 @@ class RouterosDevicesController extends AppController
                 }
 
                 // DELETE removed interfaces
-                $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll([
-                    'routeros_device_id' => $routerosDevice->id,
-                    'modified <' => new FrozenTime('-120 seconds'),
-                ]);
+                $this->RouterosDevices->RouterosDeviceInterfaces->deleteMany(
+                    $this->RouterosDevices->RouterosDeviceInterfaces->find()->where([
+                        'routeros_device_id' => $routerosDevice->id,
+                        'modified <' => $start_time,
+                    ])->all()
+                );
             }
 
             // IP ADDRESSES
@@ -615,16 +618,30 @@ class RouterosDevicesController extends AppController
                 }
 
                 // DELETE removed IPs
-                $this->RouterosDevices->RouterosDeviceIps->deleteAll([
-                    'routeros_device_id' => $routerosDevice->id,
-                    'modified <' => new FrozenTime('-120 seconds'),
-                ]);
+                $this->RouterosDevices->RouterosDeviceIps->deleteMany(
+                    $this->RouterosDevices->RouterosDeviceIps->find()->where([
+                        'routeros_device_id' => $routerosDevice->id,
+                        'modified <' => $start_time,
+                    ])->all()
+                );
             }
 
             // REMOVE OLD DATA FROM DATABASE
-            $this->RouterosDevices->deleteAll(['modified <' => new FrozenTime('-365 days')]);
-            $this->RouterosDevices->RouterosDeviceInterfaces->deleteAll(['modified <' => new FrozenTime('-365 days')]);
-            $this->RouterosDevices->RouterosDeviceIps->deleteAll(['modified <' => new FrozenTime('-365 days')]);
+            $this->RouterosDevices->deleteMany(
+                $this->RouterosDevices->find()->where([
+                    'modified <' => new FrozenTime('-365 days'),
+                ])->all()
+            );
+            $this->RouterosDevices->RouterosDeviceInterfaces->deleteMany(
+                $this->RouterosDevices->RouterosDeviceInterfaces->find()->where([
+                    'modified <' => new FrozenTime('-365 days'),
+                ])->all()
+            );
+            $this->RouterosDevices->RouterosDeviceIps->deleteMany(
+                $this->RouterosDevices->RouterosDeviceIps->find()->where([
+                    'modified <' => new FrozenTime('-365 days'),
+                ])->all()
+            );
 
             $result = $routerosDevice;
         }
