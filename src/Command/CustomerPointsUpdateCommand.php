@@ -60,8 +60,15 @@ class CustomerPointsUpdateCommand extends Command
                         'gps_x' => $importCustomerPoint->gps_x,
                         'gps_y' => $importCustomerPoint->gps_y,
                     ]);
-                    $customerPoint->name = $importCustomerPoint->name ?? null;
-                    $customerPoint->note = $importCustomerPoint->note ?? null;
+
+                    // update data
+                    /** @var \App\Model\Entity\CustomerPoint $customerPoint */
+                    $customerPoint = $this->fetchTable()->patchEntity($customerPoint, [
+                        'name' => $importCustomerPoint->name ?? null,
+                        'note' => $importCustomerPoint->note ?? null,
+                    ]);
+                    $customerPoint->modified = FrozenTime::now();
+
                     if (!$this->fetchTable()->save($customerPoint)) {
                         Log::warning('The customer point could not be saved.');
                     }
@@ -76,10 +83,16 @@ class CustomerPointsUpdateCommand extends Command
                         'customer_number' => $importCustomerConnection->customer_number,
                         'contract_number' => $importCustomerConnection->contract_number,
                     ]);
-                    $customerConnection->customer_point_id = $customerPoint->id ?? null;
-                    $customerConnection->access_point_id = $importCustomerConnection->access_point_id ?? null;
-                    $customerConnection->name = $importCustomerConnection->name;
-                    $customerConnection->note = $importCustomerConnection->note;
+
+                    // update data
+                    /** @var \App\Model\Entity\CustomerConnection $customerConnection */
+                    $customerConnection = $this->fetchTable('CustomerConnections')->patchEntity($customerConnection, [
+                        'customer_point_id' => $customerPoint->id ?? null,
+                        'access_point_id' => $importCustomerConnection->access_point_id ?? null,
+                        'name' => $importCustomerConnection->name ?? null,
+                        'note' => $importCustomerConnection->note ?? null,
+                    ]);
+                    $customerConnection->modified = FrozenTime::now();
 
                     if (!$this->fetchTable('CustomerConnections')->save($customerConnection)) {
                         Log::warning(
@@ -94,8 +107,16 @@ class CustomerPointsUpdateCommand extends Command
                                 'customer_connection_id' => $customerConnection->id,
                                 'ip_address' => $importCustomerConnectionIp->ip_address,
                             ]);
-                            $customerConnectionIp->name = $importCustomerConnectionIp->name;
-                            $customerConnectionIp->note = $importCustomerConnectionIp->note;
+
+                            // update data
+                            /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
+                            $customerConnectionIp = $this->fetchTable('CustomerConnectionIps')
+                                ->patchEntity($customerConnectionIp, [
+                                    'name' => $importCustomerConnectionIp->name ?? null,
+                                    'note' => $importCustomerConnectionIp->note ?? null,
+                                ]);
+                            $customerConnectionIp->modified = FrozenTime::now();
+
                             if (!$this->fetchTable('CustomerConnectionIps')->save($customerConnectionIp)) {
                                 Log::warning(
                                     'The customer connection IP address could not be saved.'
