@@ -95,19 +95,6 @@ class AccessPointContactsController extends AppController
             $accessPointContact = $this->AccessPointContacts
                 ->patchEntity($accessPointContact, $this->getRequest()->getData());
 
-            if ($accessPointContact->phone === '') {
-                $accessPointContact->phone = null;
-            }
-            if ($accessPointContact->email === '') {
-                $accessPointContact->email = null;
-            }
-            if ($accessPointContact->customer_number === '') {
-                $accessPointContact->customer_number = null;
-            }
-            if ($accessPointContact->contract_number === '') {
-                $accessPointContact->contract_number = null;
-            }
-
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
 
@@ -141,19 +128,6 @@ class AccessPointContactsController extends AppController
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $accessPointContact = $this->AccessPointContacts
                 ->patchEntity($accessPointContact, $this->getRequest()->getData());
-
-            if ($accessPointContact->phone === '') {
-                $accessPointContact->phone = null;
-            }
-            if ($accessPointContact->email === '') {
-                $accessPointContact->email = null;
-            }
-            if ($accessPointContact->customer_number === '') {
-                $accessPointContact->customer_number = null;
-            }
-            if ($accessPointContact->contract_number === '') {
-                $accessPointContact->contract_number = null;
-            }
 
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
