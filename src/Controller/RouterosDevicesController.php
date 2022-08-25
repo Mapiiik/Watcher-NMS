@@ -454,16 +454,17 @@ class RouterosDevicesController extends AppController
                 }
             }
 
-            // save data
-            $routerosDevice = $this->RouterosDevices
-                ->findOrCreate(
-                    ['serial_number' => $serialNumber],
-                    function ($entity) use ($routerosDeviceData) {
-                        // Only called when a new record is created.
-                        $entity->name = $routerosDeviceData['name'];
-                    }
-                );
+            // load entity
+            $routerosDevice =
+                $this->RouterosDevices->find()->where([
+                    'serial_number' => $serialNumber,
+                ])->first()
+                ??
+                $this->RouterosDevices->newEntity([
+                    'serial_number' => $serialNumber,
+                ]);
 
+            // update data
             $routerosDevice = $this->RouterosDevices
                 ->patchEntity($routerosDevice, $routerosDeviceData);
 
@@ -539,19 +540,19 @@ class RouterosDevicesController extends AppController
                         ]);
                     }
 
-                    // save data
-                    $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces
-                        ->findOrCreate(
-                            [
-                                'routeros_device_id' => $routerosDevice->id,
-                                'interface_index' => $ifIndex,
-                            ],
-                            function ($entity) use ($routerosDeviceInterfaceData) {
-                                // Only called when a new record is created.
-                                $entity->name = $routerosDeviceInterfaceData['name'];
-                            }
-                        );
+                    // load entity
+                    $routerosDeviceInterface =
+                        $this->RouterosDevices->RouterosDeviceInterfaces->find()->where([
+                            'routeros_device_id' => $routerosDevice->id,
+                            'interface_index' => $ifIndex,
+                        ])->first()
+                        ??
+                        $this->RouterosDevices->RouterosDeviceInterfaces->newEntity([
+                            'routeros_device_id' => $routerosDevice->id,
+                            'interface_index' => $ifIndex,
+                        ]);
 
+                    // update data
                     $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces
                         ->patchEntity($routerosDeviceInterface, $routerosDeviceInterfaceData);
 
@@ -586,22 +587,25 @@ class RouterosDevicesController extends AppController
                         'name' => $ipAddress->value,
                     ];
 
-                    // save data
-                    $routerosDeviceIp = $this->RouterosDevices->RouterosDeviceIps
-                        ->findOrCreate(
-                            [
-                                'routeros_device_id' => $routerosDevice->id,
-                                'interface_index' => $ipIfIndexes[$ipAddressKey]->value ?? null,
-                                'ip_address' => $ipAddress->value . '/' . $this->mask2cidr(
-                                    $ipNetMasks[$ipAddressKey]->value
-                                ),
-                            ],
-                            function ($entity) use ($routerosDeviceIpData) {
-                                // Only called when a new record is created.
-                                $entity->name = $routerosDeviceIpData['name'];
-                            }
-                        );
+                    // load entity
+                    $routerosDeviceIp =
+                        $this->RouterosDevices->RouterosDeviceIps->find()->where([
+                            'routeros_device_id' => $routerosDevice->id,
+                            'interface_index' => $ipIfIndexes[$ipAddressKey]->value ?? null,
+                            'ip_address' => $ipAddress->value . '/' . $this->mask2cidr(
+                                $ipNetMasks[$ipAddressKey]->value
+                            ),
+                        ])->first()
+                        ??
+                        $this->RouterosDevices->RouterosDeviceIps->newEntity([
+                            'routeros_device_id' => $routerosDevice->id,
+                            'interface_index' => $ipIfIndexes[$ipAddressKey]->value ?? null,
+                            'ip_address' => $ipAddress->value . '/' . $this->mask2cidr(
+                                $ipNetMasks[$ipAddressKey]->value
+                            ),
+                        ]);
 
+                    // update data
                     $routerosDeviceIp = $this->RouterosDevices->RouterosDeviceIps
                         ->patchEntity($routerosDeviceIp, $routerosDeviceIpData);
 
