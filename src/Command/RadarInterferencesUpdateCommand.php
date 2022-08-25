@@ -80,11 +80,7 @@ class RadarInterferencesUpdateCommand extends Command
 
             // delete old records
             $this->fetchTable()->deleteMany(
-                $this->fetchTable()->find()
-                    ->where([
-                        'modified <' => $start_time,
-                    ])
-                    ->all()
+                $this->fetchTable()->find()->where(['modified <' => $start_time])->all()
             );
 
             Log::write('debug', 'The radar interferences table has been updated.');
