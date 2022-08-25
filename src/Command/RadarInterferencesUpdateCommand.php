@@ -7,7 +7,10 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
+use Cake\I18n\FrozenTime;
 use Cake\Log\Log;
+use Cake\Utility\Text;
+use SplObjectStorage;
 
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
@@ -50,19 +53,40 @@ class RadarInterferencesUpdateCommand extends Command
         $csv = file($url);
 
         if ($csv) {
-            $this->fetchTable()->deleteAll([]);
+            $start_time = new FrozenTime();
             foreach ($csv as $line) {
                 $data = str_getcsv($line, ';');
 
-                $radarInterference = $this->fetchTable()->newEntity([
-                    'name' => trim($data[0]),
-                    'mac_address' => trim($data[1]),
-                    'ssid' => trim($data[2]),
-                    'signal' => trim($data[3]),
-                    'radio_name' => trim($data[4]),
-                ]);
+                /** @var \App\Model\Entity\RadarInterference $radarInterference */
+                $radarInterference = $this->fetchTable()->findOrCreate(
+                    [
+                        'name' => trim($data[0]),
+                        'mac_address' => trim($data[1]),
+                        'ssid' => trim($data[2]),
+                        'signal' => trim($data[3]),
+                        'radio_name' => trim($data[4]),
+                    ],
+                    null,
+                    [
+                        '_auditQueue' => new SplObjectStorage(),
+                        '_auditTransaction' => Text::uuid(),
+                    ]
+                );
+
+                $radarInterference->modified = new FrozenTime();
+
                 $this->fetchTable()->save($radarInterference);
             }
+
+            // delete old records
+            $this->fetchTable()->deleteMany(
+                $this->fetchTable()->find()
+                    ->where([
+                        'modified <' => $start_time,
+                    ])
+                    ->all()
+            );
+
             Log::write('debug', 'The radar interferences table has been updated.');
             $io->success(__('The radar interferences table has been updated.'));
         } else {

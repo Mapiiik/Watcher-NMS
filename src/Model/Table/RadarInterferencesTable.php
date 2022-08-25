@@ -41,7 +41,6 @@ class RadarInterferencesTable extends AppTable
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('Footprint');
-        $this->addBehavior('StringModifications');
 
         $this->hasMany('RouterosDeviceInterfaces', [
             'foreignKey' => 'mac_address',
