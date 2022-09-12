@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use Cake\Cache\Cache;
 use Cake\ORM\Entity;
+use Geo\Geocoder\Geocoder;
 
 /**
  * AccessPoint Entity
@@ -32,6 +34,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\IpAddressRange[] $ip_address_ranges
  *
  * @property string $name_for_lists
+ * @property string|null $most_accurate_address
  */
 class AccessPoint extends Entity
 {
@@ -72,5 +75,32 @@ class AccessPoint extends Entity
     protected function _getNameForLists(): string
     {
         return strval($this->name);
+    }
+
+    /**
+     * getter for most accurate address
+     *
+     * @return string|null
+     */
+    protected function _getMostAccurateAddress(): ?string
+    {
+        /** @var \Geocoder\Model\AddressCollection $address_collection */
+        $address_collection = Cache::remember(
+            'access_point__most_accurate_address_' . $this->id,
+            function () {
+                $geocoder = new Geocoder([
+                    'apiKey' => env('GOOLE_MAP_API_KEY', null),
+                ]);
+                $result = $geocoder->reverse($this->gps_y, $this->gps_x);
+
+                return $result;
+            },
+            'default'
+        );
+
+        /** @var \Geocoder\Provider\GoogleMaps\Model\GoogleAddress $address */
+        $address = $address_collection->first();
+
+        return $address->getFormattedAddress();
     }
 }

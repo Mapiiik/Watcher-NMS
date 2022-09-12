@@ -92,6 +92,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <th><?= __('Installation Address') ?></th>
+                    <td><?= h($accessPoint->most_accurate_address) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($accessPoint->created) ?></td>
                 </tr>
