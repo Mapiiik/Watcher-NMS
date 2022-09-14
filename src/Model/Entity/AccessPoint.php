@@ -88,6 +88,10 @@ class AccessPoint extends Entity
             return '(' . __('You must provide an Google Map API key.') . ')';
         }
 
+        if (!(is_numeric($this->gps_y) && is_numeric($this->gps_x))) {
+            return '(' . __('You need to set the correct GPS coordinates.') . ')';
+        }
+
         /** @var \Geocoder\Model\AddressCollection $address_collection */
         $address_collection = Cache::remember(
             'access_point__address_lookup_' . $this->id,
