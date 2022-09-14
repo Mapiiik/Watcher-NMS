@@ -34,7 +34,7 @@ use Geo\Geocoder\Geocoder;
  * @property \App\Model\Entity\IpAddressRange[] $ip_address_ranges
  *
  * @property string $name_for_lists
- * @property string|null $most_accurate_address
+ * @property string|null $nearest_found_address
  */
 class AccessPoint extends Entity
 {
@@ -78,18 +78,23 @@ class AccessPoint extends Entity
     }
 
     /**
-     * getter for most accurate address
+     * getter for nearest found address
      *
      * @return string|null
      */
-    protected function _getMostAccurateAddress(): ?string
+    protected function _getNearestFoundAddress(): ?string
     {
+        if (env('GOOLE_MAP_API_KEY') === null) {
+            return '(' . __('You must provide an Google Map API key.') . ')';
+        }
+
         /** @var \Geocoder\Model\AddressCollection $address_collection */
         $address_collection = Cache::remember(
-            'access_point__most_accurate_address_' . $this->id,
+            'access_point__address_lookup_' . $this->id,
             function () {
                 $geocoder = new Geocoder([
                     'apiKey' => env('GOOLE_MAP_API_KEY', null),
+                    'locale' => env('APP_DEFAULT_LOCALE', 'en_US'),
                 ]);
                 $result = $geocoder->reverse($this->gps_y, $this->gps_x);
 
