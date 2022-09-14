@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-09-14 09:44+0200\n"
-"PO-Revision-Date: 2022-09-14 09:57+0200\n"
+"POT-Creation-Date: 2022-09-14 10:22+0200\n"
+"PO-Revision-Date: 2022-09-14 10:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -538,6 +538,10 @@ msgstr "Zařízení routeros nelze odstranit. Opakujte akci."
 #: src/Model/Entity/AccessPoint.php:88
 msgid "You must provide an Google Map API key."
 msgstr "Musíte zadat klíč Google Map API."
+
+#: src/Model/Entity/AccessPoint.php:92
+msgid "You need to set the correct GPS coordinates."
+msgstr "Je třeba nastavit správné souřadnice GPS."
 
 #: templates/AccessPointContacts/add.php:11
 #: templates/AccessPointContacts/edit.php:11
