@@ -167,6 +167,12 @@ return [
             'action' => ['index', 'view'],
         ],
         [
+            'role' => ['technician', 'operator'],
+            'plugin' => null,
+            'controller' => ['IpAddressRanges'],
+            'action' => ['index', 'view'],
+        ],
+        [
             'role' => ['operator'],
             'plugin' => null,
             'controller' => ['PowerSupplies'],
