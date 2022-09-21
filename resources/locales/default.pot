@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-09-14 10:22+0200\n"
+"POT-Creation-Date: 2022-09-21 20:10+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -561,6 +561,26 @@ msgstr ""
 msgid "You need to set the correct GPS coordinates."
 msgstr ""
 
+#: ./src/Model/Entity/AppUser.php:33
+msgid "User"
+msgstr ""
+
+#: ./src/Model/Entity/AppUser.php:34
+msgid "Technician"
+msgstr ""
+
+#: ./src/Model/Entity/AppUser.php:35
+msgid "Operator"
+msgstr ""
+
+#: ./src/Model/Entity/AppUser.php:36
+msgid "Admin"
+msgstr ""
+
+#: ./src/Model/Entity/AppUser.php:37
+msgid "API"
+msgstr ""
+
 #: ./templates/AccessPointContacts/add.php:11
 #: ./templates/AccessPointContacts/edit.php:11
 #: ./templates/AccessPointContacts/index.php:36
@@ -670,7 +690,7 @@ msgstr ""
 #: ./templates/plugin/CakeDC/Users/Users/edit.php:12
 #: ./templates/plugin/CakeDC/Users/Users/index.php:26
 #: ./templates/plugin/CakeDC/Users/Users/view.php:12
-#: ./templates/plugin/CakeDC/Users/Users/view.php:116
+#: ./templates/plugin/CakeDC/Users/Users/view.php:124
 msgid "Actions"
 msgstr ""
 
@@ -726,7 +746,7 @@ msgstr ""
 #: ./templates/RouterosDevices/add.php:46
 #: ./templates/RouterosDevices/edit.php:54
 #: ./templates/plugin/CakeDC/Users/Users/add.php:31
-#: ./templates/plugin/CakeDC/Users/Users/edit.php:43
+#: ./templates/plugin/CakeDC/Users/Users/edit.php:51
 msgid "Submit"
 msgstr ""
 
@@ -797,7 +817,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:251
 #: ./templates/plugin/CakeDC/Users/Users/edit.php:14
 #: ./templates/plugin/CakeDC/Users/Users/index.php:46
-#: ./templates/plugin/CakeDC/Users/Users/view.php:137
+#: ./templates/plugin/CakeDC/Users/Users/view.php:145
 msgid "Delete"
 msgstr ""
 
@@ -889,7 +909,7 @@ msgstr ""
 #: ./templates/plugin/CakeDC/Users/Users/edit.php:16
 #: ./templates/plugin/CakeDC/Users/Users/index.php:46
 #: ./templates/plugin/CakeDC/Users/Users/view.php:14
-#: ./templates/plugin/CakeDC/Users/Users/view.php:137
+#: ./templates/plugin/CakeDC/Users/Users/view.php:145
 msgid "Are you sure you want to delete # {0}?"
 msgstr ""
 
@@ -979,7 +999,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:189
 #: ./templates/RouterosDevices/view.php:242
 #: ./templates/plugin/CakeDC/Users/Users/index.php:43
-#: ./templates/plugin/CakeDC/Users/Users/view.php:135
+#: ./templates/plugin/CakeDC/Users/Users/view.php:143
 #: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1260
 msgid "View"
 msgstr ""
@@ -1030,7 +1050,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:197
 #: ./templates/RouterosDevices/view.php:246
 #: ./templates/plugin/CakeDC/Users/Users/index.php:45
-#: ./templates/plugin/CakeDC/Users/Users/view.php:136
+#: ./templates/plugin/CakeDC/Users/Users/view.php:144
 msgid "Edit"
 msgstr ""
 
@@ -1183,7 +1203,7 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/view.php:41
 #: ./templates/RouterosDeviceIps/view.php:41
 #: ./templates/RouterosDevices/view.php:40
-#: ./templates/plugin/CakeDC/Users/Users/view.php:102
+#: ./templates/plugin/CakeDC/Users/Users/view.php:110
 msgid "Id"
 msgstr ""
 
@@ -1194,7 +1214,7 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:60
 #: ./templates/AccessPoints/view.php:156
-#: ./templates/plugin/CakeDC/Users/Users/view.php:28
+#: ./templates/plugin/CakeDC/Users/Users/view.php:30
 msgid "Email"
 msgstr ""
 
@@ -1232,8 +1252,8 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/view.php:114
 #: ./templates/RouterosDeviceIps/view.php:70
 #: ./templates/RouterosDevices/view.php:117
-#: ./templates/plugin/CakeDC/Users/Users/view.php:88
-#: ./templates/plugin/CakeDC/Users/Users/view.php:114
+#: ./templates/plugin/CakeDC/Users/Users/view.php:94
+#: ./templates/plugin/CakeDC/Users/Users/view.php:122
 msgid "Created"
 msgstr ""
 
@@ -1280,8 +1300,8 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/view.php:130
 #: ./templates/RouterosDeviceIps/view.php:86
 #: ./templates/RouterosDevices/view.php:133
-#: ./templates/plugin/CakeDC/Users/Users/view.php:92
-#: ./templates/plugin/CakeDC/Users/Users/view.php:115
+#: ./templates/plugin/CakeDC/Users/Users/view.php:98
+#: ./templates/plugin/CakeDC/Users/Users/view.php:123
 msgid "Modified"
 msgstr ""
 
@@ -1497,9 +1517,9 @@ msgstr ""
 #: ./templates/RadioUnits/view.php:147
 #: ./templates/plugin/CakeDC/Users/Users/index.php:36
 #: ./templates/plugin/CakeDC/Users/Users/index.php:37
-#: ./templates/plugin/CakeDC/Users/Users/view.php:41
-#: ./templates/plugin/CakeDC/Users/Users/view.php:45
-#: ./templates/plugin/CakeDC/Users/Users/view.php:77
+#: ./templates/plugin/CakeDC/Users/Users/view.php:47
+#: ./templates/plugin/CakeDC/Users/Users/view.php:51
+#: ./templates/plugin/CakeDC/Users/Users/view.php:83
 msgid "Yes"
 msgstr ""
 
@@ -1536,9 +1556,9 @@ msgstr ""
 #: ./templates/RadioUnits/view.php:147
 #: ./templates/plugin/CakeDC/Users/Users/index.php:36
 #: ./templates/plugin/CakeDC/Users/Users/index.php:37
-#: ./templates/plugin/CakeDC/Users/Users/view.php:41
-#: ./templates/plugin/CakeDC/Users/Users/view.php:45
-#: ./templates/plugin/CakeDC/Users/Users/view.php:77
+#: ./templates/plugin/CakeDC/Users/Users/view.php:47
+#: ./templates/plugin/CakeDC/Users/Users/view.php:51
+#: ./templates/plugin/CakeDC/Users/Users/view.php:83
 msgid "No"
 msgstr ""
 
@@ -2648,8 +2668,8 @@ msgid "Delete Routeros Device"
 msgstr ""
 
 #: ./templates/RouterosDevices/view.php:88
-#: ./templates/plugin/CakeDC/Users/Users/view.php:24
-#: ./templates/plugin/CakeDC/Users/Users/view.php:104
+#: ./templates/plugin/CakeDC/Users/Users/view.php:26
+#: ./templates/plugin/CakeDC/Users/Users/view.php:112
 msgid "Username"
 msgstr ""
 
@@ -2740,94 +2760,94 @@ msgstr ""
 msgid "Delete User"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:32
+#: ./templates/plugin/CakeDC/Users/Users/view.php:34
 msgid "First Name"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:36
+#: ./templates/plugin/CakeDC/Users/Users/view.php:38
 msgid "Last Name"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:40
-#: ./templates/plugin/CakeDC/Users/Users/view.php:105
-msgid "Active"
-msgstr ""
-
-#: ./templates/plugin/CakeDC/Users/Users/view.php:44
-msgid "Is Superuser"
-msgstr ""
-
-#: ./templates/plugin/CakeDC/Users/Users/view.php:48
+#: ./templates/plugin/CakeDC/Users/Users/view.php:42
 msgid "Role"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:52
+#: ./templates/plugin/CakeDC/Users/Users/view.php:46
+msgid "Is Superuser"
+msgstr ""
+
+#: ./templates/plugin/CakeDC/Users/Users/view.php:50
+#: ./templates/plugin/CakeDC/Users/Users/view.php:113
+msgid "Active"
+msgstr ""
+
+#: ./templates/plugin/CakeDC/Users/Users/view.php:58
 msgid "Api Token"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:56
-#: ./templates/plugin/CakeDC/Users/Users/view.php:110
+#: ./templates/plugin/CakeDC/Users/Users/view.php:62
+#: ./templates/plugin/CakeDC/Users/Users/view.php:118
 msgid "Token"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:60
-#: ./templates/plugin/CakeDC/Users/Users/view.php:112
+#: ./templates/plugin/CakeDC/Users/Users/view.php:66
+#: ./templates/plugin/CakeDC/Users/Users/view.php:120
 msgid "Token Expires"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:64
+#: ./templates/plugin/CakeDC/Users/Users/view.php:70
 msgid "Activation Date"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:68
+#: ./templates/plugin/CakeDC/Users/Users/view.php:74
 msgid "Tos Date"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:72
+#: ./templates/plugin/CakeDC/Users/Users/view.php:78
 msgid "Secret"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:76
+#: ./templates/plugin/CakeDC/Users/Users/view.php:82
 msgid "Secret Verified"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:80
+#: ./templates/plugin/CakeDC/Users/Users/view.php:86
 msgid "Additional Data"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:84
+#: ./templates/plugin/CakeDC/Users/Users/view.php:90
 msgid "Last Login"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:97
+#: ./templates/plugin/CakeDC/Users/Users/view.php:105
 msgid "Related Social Accounts"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:103
+#: ./templates/plugin/CakeDC/Users/Users/view.php:111
 msgid "Provider"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:106
+#: ./templates/plugin/CakeDC/Users/Users/view.php:114
 msgid "Reference"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:107
+#: ./templates/plugin/CakeDC/Users/Users/view.php:115
 msgid "Avatar"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:108
+#: ./templates/plugin/CakeDC/Users/Users/view.php:116
 msgid "Description"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:109
+#: ./templates/plugin/CakeDC/Users/Users/view.php:117
 msgid "Link"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:111
+#: ./templates/plugin/CakeDC/Users/Users/view.php:119
 msgid "Token Secret"
 msgstr ""
 
-#: ./templates/plugin/CakeDC/Users/Users/view.php:113
+#: ./templates/plugin/CakeDC/Users/Users/view.php:121
 msgid "Data"
 msgstr ""
 
