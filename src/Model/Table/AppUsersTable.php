@@ -4,15 +4,12 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use AuditLog\Persister\TablePersister;
-use Cake\ORM\Table;
+use CakeDC\Users\Model\Table\UsersTable;
 
 /**
- * Single database table
- *
- * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Creators
- * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Modifiers
+ * Users database table
  */
-class AppTable extends Table
+class AppUsersTable extends UsersTable
 {
     /**
      * Initialize method
@@ -34,18 +31,5 @@ class AppTable extends Table
             'serializeFields' => false,
             'primaryKeyExtractionStrategy' => TablePersister::STRATEGY_RAW,
         ]);
-
-        if ($this->hasField('created_by')) {
-            $this->belongsTo('Creators', [
-                'className' => 'AppUsers',
-                'foreignKey' => 'created_by',
-            ]);
-        }
-        if ($this->hasField('modified_by')) {
-            $this->belongsTo('Modifiers', [
-                'className' => 'AppUsers',
-                'foreignKey' => 'modified_by',
-            ]);
-        }
     }
 }

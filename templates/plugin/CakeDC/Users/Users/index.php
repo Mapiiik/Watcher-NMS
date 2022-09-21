@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Cake\Datasource\EntityInterface[]|\Cake\Collection\CollectionInterface $users
+ * @var \App\Model\Entity\AppUser[]|\Cake\Collection\CollectionInterface $users
  */
 
 $users = ${$tableAlias};
@@ -35,7 +35,7 @@ $users = ${$tableAlias};
                     <td><?= h($user->last_name) ?></td>
                     <td><?= $user->active ? __('Yes') : __('No'); ?></td>
                     <td><?= $user->is_superuser ? __('Yes') : __('No'); ?></td>
-                    <td><?= h($user->role) ?></td>
+                    <td><?= h($user->getRoleName()) ?></td>
                     <td><?= h($user->last_login) ?></td>
                     <td><?= h($user->created) ?></td>
                     <td><?= h($user->modified) ?></td>
