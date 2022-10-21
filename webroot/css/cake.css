@@ -41,11 +41,20 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6 {
     color: #363637;
-    margin-bottom: 1.0rem;
+    margin-bottom: 0.3rem;
 }
 
 h4 {
     font-size: 2rem;
+    padding-bottom: 0.3rem;
+}
+
+.main h4 {
+    border-bottom: 0.1rem #e0e2e5 solid;
+}
+
+hr {
+    border-top: 0.1rem solid #363637;
 }
 
 a {
@@ -132,7 +141,7 @@ tr:hover td {
 th, td {
     border: 0.1rem solid #aaaaaa;
     vertical-align: baseline;
-    padding: 0.5rem 0.5rem;
+    padding: 0.3rem 0.3rem;
 }
 
 td:first-child,
@@ -222,7 +231,7 @@ th {
 }
 
 .related {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 /* Flash messages */
