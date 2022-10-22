@@ -157,6 +157,12 @@ return [
         [
             'role' => ['user', 'technician', 'operator'],
             'plugin' => null,
+            'controller' => ['Settings'],
+            'action' => ['index'],
+        ],
+        [
+            'role' => ['user', 'technician', 'operator'],
+            'plugin' => null,
             'controller' => ['AccessPoints', 'AccessPointContacts', 'ElectricityMeterReadings'],
             'action' => ['index', 'view', 'map'],
         ],
