@@ -147,7 +147,9 @@ return [
         ],
         //API access
         [
-            'role' => ['api'],
+            'role' => [
+                'api',
+            ],
             'prefix' => 'Api',
             'plugin' => null,
             'controller' => [
@@ -155,35 +157,50 @@ return [
                 'IpAddressRanges',
                 'RouterosDevices',
             ],
-            'action' => ['index', 'view', 'search'],
+            'action' => [
+                'index',
+                'view',
+                'search',
+            ],
         ],
         //all roles access
         [
-            'role' => ['*'],
+            'role' => '*',
             'plugin' => null,
-            'controller' => ['Settings'],
-            'action' => ['index'],
+            'controller' => [
+                'Settings',
+            ],
+            'action' => [
+                'index',
+            ],
         ],
         [
-            'role' => ['*'],
+            'role' => '*',
             'plugin' => null,
             'controller' => [
                 'AccessPoints',
             ],
-            'action' => ['index', 'view', 'map'],
+            'action' => [
+                'index',
+                'view',
+                'map',
+            ],
         ],
         [
-            'role' => ['*'],
+            'role' => '*',
             'plugin' => null,
             'controller' => [
                 'AccessPointContacts',
                 'ElectricityMeterReadings',
                 'IpAddressRanges',
             ],
-            'action' => ['index', 'view'],
+            'action' => [
+                'index',
+                'view',
+            ],
         ],
         [
-            'role' => ['*'],
+            'role' => '*',
             'plugin' => null,
             'controller' => [
                 'RouterosDevices',
@@ -191,17 +208,22 @@ return [
                 'RouterosDeviceInterfaces',
                 'DeviceTypes',
             ],
-            'action' => ['index', 'view'],
+            'action' => [
+                'index',
+                'view',
+            ],
         ],
         [
-            'role' => ['*'],
+            'role' => '*',
             'plugin' => null,
             'controller' => [
                 'CustomerConnections',
                 'CustomerPoints',
                 'CustomerConnectionIps',
             ],
-            'action' => ['view'],
+            'action' => [
+                'view',
+            ],
         ],
         // specific roles access
         [
@@ -212,7 +234,12 @@ return [
             'controller' => [
                 'PowerSupplies',
             ],
-            'action' => ['index', 'view', 'add', 'edit'],
+            'action' => [
+                'index',
+                'view',
+                'add',
+                'edit',
+            ],
         ],
     ],
 ];
