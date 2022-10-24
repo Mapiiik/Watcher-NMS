@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-09-21 20:10+0200\n"
-"PO-Revision-Date: 2022-09-21 20:14+0200\n"
+"POT-Creation-Date: 2022-10-24 10:30+0200\n"
+"PO-Revision-Date: 2022-10-24 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: src/Command/CustomerPointsUpdateCommand.php:162
 msgid "The customer points data have been updated."
@@ -517,21 +517,21 @@ msgstr "IP routeros zařízení byla odstraněna."
 msgid "The routeros device ip could not be deleted. Please, try again."
 msgstr "IP adresu zařízení routeros nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:139
-#: src/Controller/RouterosDevicesController.php:173
+#: src/Controller/RouterosDevicesController.php:142
+#: src/Controller/RouterosDevicesController.php:176
 msgid "The routeros device has been saved."
 msgstr "Zařízení routeros bylo uloženo."
 
-#: src/Controller/RouterosDevicesController.php:147
-#: src/Controller/RouterosDevicesController.php:181
+#: src/Controller/RouterosDevicesController.php:150
+#: src/Controller/RouterosDevicesController.php:184
 msgid "The routeros device could not be saved. Please, try again."
 msgstr "Zařízení routeros nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:203
+#: src/Controller/RouterosDevicesController.php:206
 msgid "The routeros device has been deleted."
 msgstr "Zařízení routeros bylo odstraněno."
 
-#: src/Controller/RouterosDevicesController.php:205
+#: src/Controller/RouterosDevicesController.php:208
 msgid "The routeros device could not be deleted. Please, try again."
 msgstr "Zařízení routeros nelze odstranit. Opakujte akci."
 
@@ -548,18 +548,30 @@ msgid "User"
 msgstr "Uživatel"
 
 #: src/Model/Entity/AppUser.php:34
-msgid "Technician"
-msgstr "Technik"
+msgid "Customer Service Technician"
+msgstr "Technik zákaznického servisu"
 
 #: src/Model/Entity/AppUser.php:35
-msgid "Operator"
-msgstr "Operátor"
+msgid "Network Technician"
+msgstr "Síťový technik"
 
 #: src/Model/Entity/AppUser.php:36
+msgid "Sales Representative"
+msgstr "Obchodní zástupce"
+
+#: src/Model/Entity/AppUser.php:37
+msgid "Sales Manager"
+msgstr "Manažer prodeje"
+
+#: src/Model/Entity/AppUser.php:38
+msgid "Bookkeeper"
+msgstr "Účetní"
+
+#: src/Model/Entity/AppUser.php:39
 msgid "Admin"
 msgstr "Admin"
 
-#: src/Model/Entity/AppUser.php:37
+#: src/Model/Entity/AppUser.php:40
 msgid "API"
 msgstr "API"
 
@@ -2456,6 +2468,9 @@ msgstr "Tajemství tokenu"
 #: templates/plugin/CakeDC/Users/Users/view.php:121
 msgid "Data"
 msgstr "Data"
+
+#~ msgid "Operator"
+#~ msgstr "Operátor"
 
 #~ msgid "Profile"
 #~ msgstr "Profil"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-09-21 20:10+0200\n"
+"POT-Creation-Date: 2022-10-24 10:30+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -535,21 +535,21 @@ msgstr ""
 msgid "The routeros device ip could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:139
-#: ./src/Controller/RouterosDevicesController.php:173
+#: ./src/Controller/RouterosDevicesController.php:142
+#: ./src/Controller/RouterosDevicesController.php:176
 msgid "The routeros device has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:147
-#: ./src/Controller/RouterosDevicesController.php:181
+#: ./src/Controller/RouterosDevicesController.php:150
+#: ./src/Controller/RouterosDevicesController.php:184
 msgid "The routeros device could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:203
+#: ./src/Controller/RouterosDevicesController.php:206
 msgid "The routeros device has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:205
+#: ./src/Controller/RouterosDevicesController.php:208
 msgid "The routeros device could not be deleted. Please, try again."
 msgstr ""
 
@@ -566,18 +566,30 @@ msgid "User"
 msgstr ""
 
 #: ./src/Model/Entity/AppUser.php:34
-msgid "Technician"
+msgid "Customer Service Technician"
 msgstr ""
 
 #: ./src/Model/Entity/AppUser.php:35
-msgid "Operator"
+msgid "Network Technician"
 msgstr ""
 
 #: ./src/Model/Entity/AppUser.php:36
-msgid "Admin"
+msgid "Sales Representative"
 msgstr ""
 
 #: ./src/Model/Entity/AppUser.php:37
+msgid "Sales Manager"
+msgstr ""
+
+#: ./src/Model/Entity/AppUser.php:38
+msgid "Bookkeeper"
+msgstr ""
+
+#: ./src/Model/Entity/AppUser.php:39
+msgid "Admin"
+msgstr ""
+
+#: ./src/Model/Entity/AppUser.php:40
 msgid "API"
 msgstr ""
 
