@@ -107,7 +107,10 @@ class RouterosDevicesController extends AppController
             $routerosDevice->password = $this->getPassword($routerosDevice);
         }
         if (
-            in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['technician', 'operator'])
+            in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, [
+                'customer-service-technician',
+                'network-technician',
+            ])
             && $routerosDevice->device_type->allow_technicians_access
         ) {
             $routerosDevice->username = $this->getUsername($routerosDevice);
