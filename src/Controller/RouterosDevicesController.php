@@ -582,10 +582,10 @@ class RouterosDevicesController extends AppController
             if (is_array($ipAddresses)) {
                 foreach ($ipAddresses as $ipAddressKey => $ipAddress) {
                     // check if IP loaded OK, if not do not add
-                    if (!ip2long($ipAddress->value)) {
+                    if (filter_var($ipAddress->value, FILTER_VALIDATE_IP) == false) {
                         continue;
                     }
-                    if (!ip2long($ipNetMasks[$ipAddressKey]->value)) {
+                    if (filter_var($ipNetMasks[$ipAddressKey]->value, FILTER_VALIDATE_IP) == false) {
                         continue;
                     }
 
