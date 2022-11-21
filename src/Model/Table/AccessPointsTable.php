@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * AccessPoints Model
  *
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $ParentAccessPoints
+ * @property \App\Model\Table\AccessPointTypesTable&\Cake\ORM\Association\BelongsTo $AccessPointTypes
  * @property \App\Model\Table\AccessPointContactsTable&\Cake\ORM\Association\HasMany $AccessPointContacts
  * @property \App\Model\Table\PowerSuppliesTable&\Cake\ORM\Association\HasMany $PowerSupplies
  * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
@@ -50,6 +51,9 @@ class AccessPointsTable extends AppTable
         $this->addBehavior('Footprint');
         $this->addBehavior('StringModifications');
 
+        $this->belongsTo('AccessPointTypes', [
+            'foreignKey' => 'access_point_type_id',
+        ]);
         $this->belongsTo('ParentAccessPoints', [
             'className' => 'AccessPoints',
             'foreignKey' => 'parent_access_point_id',
@@ -122,6 +126,7 @@ class AccessPointsTable extends AppTable
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add($rules->existsIn(['access_point_type_id'], 'AccessPointTypes'));
         $rules->add($rules->existsIn(['parent_access_point_id'], 'ParentAccessPoints'));
 
         return $rules;

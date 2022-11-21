@@ -40,7 +40,10 @@ class AccessPointsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['ParentAccessPoints'],
+            'contain' => [
+                'AccessPointTypes',
+                'ParentAccessPoints',
+            ],
             'order' => ['name' => 'ASC'],
             'conditions' => $conditions,
         ];
@@ -61,6 +64,7 @@ class AccessPointsController extends AppController
     {
         $accessPoint = $this->AccessPoints->get($id, [
             'contain' => [
+                'AccessPointTypes',
                 'ParentAccessPoints',
                 'AccessPointContacts',
                 'ElectricityMeterReadings',
@@ -93,8 +97,9 @@ class AccessPointsController extends AppController
             }
             $this->Flash->error(__('The access point could not be saved. Please, try again.'));
         }
+        $accessPointTypes = $this->AccessPoints->AccessPointTypes->find('list', ['order' => 'name']);
         $parentAccessPoints = $this->AccessPoints->ParentAccessPoints->find('list', ['order' => 'name']);
-        $this->set(compact('accessPoint', 'parentAccessPoints'));
+        $this->set(compact('accessPoint', 'accessPointTypes', 'parentAccessPoints'));
     }
 
     /**
@@ -118,10 +123,11 @@ class AccessPointsController extends AppController
             }
             $this->Flash->error(__('The access point could not be saved. Please, try again.'));
         }
+        $accessPointTypes = $this->AccessPoints->AccessPointTypes->find('list', ['order' => 'name']);
         $parentAccessPoints = $this->AccessPoints->ParentAccessPoints
             ->find('list', ['order' => 'name'])
             ->where(['ParentAccessPoints.id !=' => $id]);
-        $this->set(compact('accessPoint', 'parentAccessPoints'));
+        $this->set(compact('accessPoint', 'accessPointTypes', 'parentAccessPoints'));
     }
 
     /**

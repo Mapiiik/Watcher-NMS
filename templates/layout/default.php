@@ -82,6 +82,7 @@ $request = $this->getRequest();
                 ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([
                     'AccessPoints',
+                    'AccessPointTypes',
                     'AccessPointContacts',
                     'ElectricityMeterReadings',
                 ])]
@@ -181,6 +182,7 @@ $request = $this->getRequest();
             if (
                 in_array($this->getName(), [
                     'AccessPoints',
+                    'AccessPointTypes',
                     'AccessPointContacts',
                     'ElectricityMeterReadings',
                 ])
@@ -189,6 +191,11 @@ $request = $this->getRequest();
                     __('Access Points'),
                     ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null],
                     ['class' => 'button button-small' . $buttonSelected(['AccessPoints'])]
+                ) ?>
+                <?= $this->AuthLink->link(
+                    __('Access Point Types'),
+                    ['controller' => 'AccessPointTypes', 'action' => 'index', 'plugin' => null],
+                    ['class' => 'button button-small' . $buttonSelected(['AccessPointTypes'])]
                 ) ?>
                 <?= $this->AuthLink->link(
                     __('Access Point Contacts'),

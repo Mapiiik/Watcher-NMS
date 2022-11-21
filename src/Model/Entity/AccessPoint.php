@@ -12,6 +12,7 @@ use Geo\Geocoder\Geocoder;
  *
  * @property string $id
  * @property string|null $name
+ * @property string|null $access_point_type_id
  * @property string|null $parent_access_point_id
  * @property string|null $device_name
  * @property float|null $gps_x
@@ -26,6 +27,7 @@ use Geo\Geocoder\Geocoder;
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property int|null $month_of_electricity_meter_reading
  *
+ * @property \App\Model\Entity\AccessPointType $access_point_type
  * @property \App\Model\Entity\AccessPoint $parent_access_point
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
@@ -49,6 +51,7 @@ class AccessPoint extends Entity
      */
     protected $_accessible = [
         'name' => true,
+        'access_point_type_id' => true,
         'parent_access_point_id' => true,
         'device_name' => true,
         'gps_x' => true,

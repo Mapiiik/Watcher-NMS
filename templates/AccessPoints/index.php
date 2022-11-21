@@ -26,6 +26,7 @@
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('device_name') ?></th>
+                    <th><?= $this->Paginator->sort('access_point_type_id') ?></th>
                     <th><?= $this->Paginator->sort('parent_access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('month_of_electricity_meter_reading') ?></th>
                     <th><?= $this->Paginator->sort('gps_y') ?></th>
@@ -39,6 +40,15 @@
                 <tr>
                     <td><?= h($accessPoint->name) ?></td>
                     <td><?= h($accessPoint->device_name) ?></td>
+                    <td><?= $accessPoint->has('access_point_type') ?
+                        $this->Html->link(
+                            $accessPoint->access_point_type->name,
+                            [
+                                'controller' => 'AccessPointTypes',
+                                'action' => 'view',
+                                $accessPoint->access_point_type->id,
+                            ]
+                        ) : '' ?></td>
                     <td><?= $accessPoint->has('parent_access_point') ?
                         $this->Html->link(
                             $accessPoint->parent_access_point->name,

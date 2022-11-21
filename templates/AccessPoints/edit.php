@@ -28,6 +28,10 @@
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('device_name');
+                echo $this->Form->control('access_point_type_id', [
+                    'options' => $accessPointTypes,
+                    'empty' => true,
+                ]);
                 echo $this->Form->control('parent_access_point_id', [
                     'options' => $parentAccessPoints,
                     'empty' => true,

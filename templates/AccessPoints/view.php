@@ -42,6 +42,18 @@
                     <td><?= h($accessPoint->device_name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Access Point Type') ?></th>
+                    <td><?= $accessPoint->has('access_point_type') ?
+                        $this->Html->link(
+                            $accessPoint->access_point_type->name,
+                            [
+                                'controller' => 'AccessPointTypes',
+                                'action' => 'view',
+                                $accessPoint->access_point_type->id,
+                            ]
+                        ) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Parent Access Point') ?></th>
                     <td><?= $accessPoint->has('parent_access_point') ?
                         $this->Html->link(
