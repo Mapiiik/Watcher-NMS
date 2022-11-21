@@ -30,6 +30,7 @@ use Geo\Geocoder\Geocoder;
  * @property \App\Model\Entity\AccessPointType $access_point_type
  * @property \App\Model\Entity\AccessPoint $parent_access_point
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
+ * @property \App\Model\Entity\ElectricityMeterReading[] $electricity_meter_readings
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
  * @property \App\Model\Entity\RadioUnit[] $radio_units
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices

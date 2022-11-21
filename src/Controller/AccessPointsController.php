@@ -67,7 +67,7 @@ class AccessPointsController extends AppController
                 'AccessPointTypes',
                 'ParentAccessPoints',
                 'AccessPointContacts',
-                'ElectricityMeterReadings',
+                'ElectricityMeterReadings' => ['sort' => ['reading_date' => 'DESC']],
                 'PowerSupplies' => ['PowerSupplyTypes'],
                 'RadioUnits' => ['RadioUnitTypes', 'RadioLinks', 'AntennaTypes'],
                 'RouterosDevices' => ['DeviceTypes'],
@@ -76,6 +76,27 @@ class AccessPointsController extends AppController
                 'Modifiers',
             ],
         ]);
+
+        // calculation of daily consumption
+        $i = 0;
+        while (
+            isset($accessPoint->electricity_meter_readings[$i])
+            && isset($accessPoint->electricity_meter_readings[$i]->reading_date)
+            && isset($accessPoint->electricity_meter_readings[$i + 1])
+            && isset($accessPoint->electricity_meter_readings[$i + 1]->reading_date)
+        ) {
+            $new =& $accessPoint->electricity_meter_readings[$i];
+            $old =& $accessPoint->electricity_meter_readings[$i + 1];
+
+            $new['daily_consumption'] =
+                ($new->reading_value - $old->reading_value) / $new->reading_date->diffInDays($old->reading_date);
+
+            $i++;
+
+            unset($new);
+            unset($old);
+        }
+        unset($i);
 
         $this->set('accessPoint', $accessPoint);
     }

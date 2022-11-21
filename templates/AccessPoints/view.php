@@ -238,6 +238,8 @@
                             <th><?= __('Name') ?></th>
                             <th><?= __('Reading Date') ?></th>
                             <th><?= __('Reading Value') ?></th>
+                            <th><?= __('Daily Consumption') ?></th>
+                            <th><?= __('Yearly Consumption') ?></th>
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -248,6 +250,14 @@
                             <td><?= $this->Number->format($electricityMeterReadings->reading_value, [
                                 'after' => ' kWh',
                             ]) ?></td>
+                            <td><?= $electricityMeterReadings['daily_consumption'] ?
+                                $this->Number->format($electricityMeterReadings['daily_consumption'], [
+                                    'after' => ' kWh',
+                                ]) : '' ?></td>
+                            <td><?= $electricityMeterReadings['daily_consumption'] ?
+                                $this->Number->format($electricityMeterReadings['daily_consumption'] * 365, [
+                                    'after' => ' kWh',
+                                ]) : '' ?></td>
                             <td><?= $this->Text->autoParagraph(h($electricityMeterReadings->note)); ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(
