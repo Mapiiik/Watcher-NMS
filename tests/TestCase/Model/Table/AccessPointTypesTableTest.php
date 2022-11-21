@@ -25,8 +25,6 @@ class AccessPointTypesTableTest extends TestCase
      */
     protected $fixtures = [
         'app.AccessPointTypes',
-        'app.Creators',
-        'app.Modifiers',
         'app.AccessPoints',
     ];
 
