@@ -23,15 +23,26 @@ $map = $this->GoogleMap->map($options);
 // You can echo it now anywhere, it does not matter if you add markers afterwards
 echo $map;
 
+$icons = [];
+
 foreach ($mapMarkers as $mapMarker) {
+    $icon_color = str_replace('#', '', $mapMarker['color']);
+    if (!isset($icons[$icon_color])) {
+        $icons[$icon_color] = $this->GoogleMap->icon(
+            'http://chart.apis.google.com/chart?chst=d_map_pin_letter'
+            . '&chld=%E2%80%A2|' . $icon_color
+        );
+    }
+
     $this->GoogleMap->addMarker([
         'lat' => $mapMarker['lat'],
         'lng' => $mapMarker['lng'],
         'title' => $mapMarker['title'],
         'content' => $mapMarker['content'],
-        'icon' => $this->GoogleMap->iconSet($mapMarker['iconSet']),
+        'icon' => $icons[$icon_color],
     ]);
 }
+unset($icons);
 
 foreach ($mapPolylines as $mapPolyline) {
     $this->GoogleMap->addPolyline($mapPolyline['from'], $mapPolyline['to'], $mapPolyline['options']);

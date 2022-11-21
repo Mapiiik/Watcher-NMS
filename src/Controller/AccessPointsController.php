@@ -170,6 +170,7 @@ class AccessPointsController extends AppController
         $accessPointsQuery = $this->AccessPoints->find();
 
         $accessPointsQuery->contain([
+            'AccessPointTypes',
             'RouterosDevices' => [
                 'sort' => ['RouterosDevices.name' => 'ASC'],
                 'conditions' => [
@@ -428,7 +429,7 @@ class AccessPointsController extends AppController
                     'lng' => $accessPoint->gps_x,
                     'title' => $accessPoint->name,
                     'content' => $content,
-                    'iconSet' => 'red',
+                    'color' => $accessPoint->access_point_type->color ?? '#FE7569',
                 ];
 
                 unset($content);
@@ -465,7 +466,7 @@ class AccessPointsController extends AppController
                         'lng' => $customerPoint->gps_x,
                         'title' => $customerPoint->name,
                         'content' => $content,
-                        'iconSet' => 'green',
+                        'color' => '#65BA4A',
                     ];
                 }
             }
