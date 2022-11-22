@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP 4.2.4\n"
-"POT-Creation-Date: 2022-10-24 09:08+0200\n"
-"PO-Revision-Date: 2022-10-24 09:13+0200\n"
+"POT-Creation-Date: 2022-11-22 10:16+0100\n"
+"PO-Revision-Date: 2022-11-22 10:17+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -287,6 +287,6 @@ msgstr "Upravit {0}"
 msgid "New {0}"
 msgstr "Nový {0}"
 
-#: vendor/cakephp/cakephp/src/View/Helper/FormHelper.php:1917
+#: vendor/cakephp/cakephp/src/View/Helper/FormHelper.php:1916
 msgid "Submit"
 msgstr "Potvrdit"
