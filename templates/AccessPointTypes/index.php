@@ -17,7 +17,11 @@
 <?= $this->Form->end() ?>
 
 <div class="accessPointTypes index content">
-    <?= $this->Html->link(__('New Access Point Type'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(
+        __('New Access Point Type'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link']
+    ) ?>
     <h3><?= __('Access Point Types') ?></h3>
     <div class="table-responsive">
         <table>

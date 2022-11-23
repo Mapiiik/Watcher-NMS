@@ -33,7 +33,7 @@
             ) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive column-90">
         <div class="accessPointTypes view content">
             <h3><?= h($accessPointType->name) ?></h3>
             <table>
