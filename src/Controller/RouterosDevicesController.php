@@ -585,10 +585,13 @@ class RouterosDevicesController extends AppController
                     if (filter_var($ipAddress->value, FILTER_VALIDATE_IP) == false) {
                         continue;
                     }
-                    if (isset($ipNetMasks[$ipAddressKey]) == false) {
+                    if (isset($ipNetMasks[$ipAddressKey]) === false) {
                         continue;
                     }
-                    if (filter_var($ipNetMasks[$ipAddressKey]->value, FILTER_VALIDATE_IP) == false) {
+                    if (filter_var($ipNetMasks[$ipAddressKey]->value, FILTER_VALIDATE_IP) === false) {
+                        continue;
+                    }
+                    if (isset($ipIfIndexes[$ipAddressKey]) === false) {
                         continue;
                     }
 
