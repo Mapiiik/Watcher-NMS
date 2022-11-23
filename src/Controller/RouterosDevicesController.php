@@ -603,7 +603,7 @@ class RouterosDevicesController extends AppController
                     $routerosDeviceIp =
                         $this->RouterosDevices->RouterosDeviceIps->find()->where([
                             'routeros_device_id' => $routerosDevice->id,
-                            'interface_index' => $ipIfIndexes[$ipAddressKey]->value ?? null,
+                            'interface_index' => $ipIfIndexes[$ipAddressKey]->value,
                             'ip_address' => $ipAddress->value . '/' . $this->mask2cidr(
                                 $ipNetMasks[$ipAddressKey]->value
                             ),
@@ -611,7 +611,7 @@ class RouterosDevicesController extends AppController
                         ??
                         $this->RouterosDevices->RouterosDeviceIps->newEntity([
                             'routeros_device_id' => $routerosDevice->id,
-                            'interface_index' => $ipIfIndexes[$ipAddressKey]->value ?? null,
+                            'interface_index' => $ipIfIndexes[$ipAddressKey]->value,
                             'ip_address' => $ipAddress->value . '/' . $this->mask2cidr(
                                 $ipNetMasks[$ipAddressKey]->value
                             ),
