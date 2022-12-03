@@ -288,7 +288,7 @@ class RouterosDevicesController extends AppController
      *
      * @param string $host SNMP host
      * @param string $community SNMP reading community
-     * @return never
+     * @return void
      */
     private function snmpCreate(string $host, string $community)
     {
