@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-11-22 10:16+0100\n"
-"PO-Revision-Date: 2022-11-22 10:21+0100\n"
+"POT-Creation-Date: 2022-12-03 16:31+0100\n"
+"PO-Revision-Date: 2022-12-03 16:38+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: src/Command/CustomerPointsUpdateCommand.php:162
 msgid "The customer points data have been updated."
@@ -600,7 +600,7 @@ msgstr "API"
 #: templates/AccessPointContacts/index.php:36
 #: templates/AccessPointContacts/view.php:10
 #: templates/AccessPointTypes/add.php:12 templates/AccessPointTypes/edit.php:12
-#: templates/AccessPointTypes/index.php:28
+#: templates/AccessPointTypes/index.php:32
 #: templates/AccessPointTypes/view.php:10
 #: templates/AccessPointTypes/view.php:104 templates/AccessPoints/add.php:11
 #: templates/AccessPoints/edit.php:11 templates/AccessPoints/index.php:35
@@ -725,7 +725,7 @@ msgstr "Potvrdit"
 #: templates/AccessPointContacts/edit.php:13
 #: templates/AccessPointContacts/index.php:61
 #: templates/AccessPointTypes/edit.php:14
-#: templates/AccessPointTypes/index.php:49
+#: templates/AccessPointTypes/index.php:53
 #: templates/AccessPointTypes/view.php:155 templates/AccessPoints/edit.php:13
 #: templates/AccessPoints/index.php:94 templates/AccessPoints/view.php:209
 #: templates/AccessPoints/view.php:281 templates/AccessPoints/view.php:361
@@ -779,7 +779,7 @@ msgstr "Odstranit"
 #: templates/AccessPointContacts/index.php:63
 #: templates/AccessPointContacts/view.php:20
 #: templates/AccessPointTypes/edit.php:17
-#: templates/AccessPointTypes/index.php:51
+#: templates/AccessPointTypes/index.php:55
 #: templates/AccessPointTypes/view.php:20
 #: templates/AccessPointTypes/view.php:157 templates/AccessPoints/edit.php:16
 #: templates/AccessPoints/index.php:96 templates/AccessPoints/view.php:20
@@ -879,7 +879,7 @@ msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
 #: templates/AccessPointContacts/index.php:54
-#: templates/AccessPointTypes/index.php:40
+#: templates/AccessPointTypes/index.php:44
 #: templates/AccessPointTypes/view.php:146 templates/AccessPoints/index.php:87
 #: templates/AccessPoints/view.php:192 templates/AccessPoints/view.php:264
 #: templates/AccessPoints/view.php:352 templates/AccessPoints/view.php:416
@@ -917,7 +917,7 @@ msgid "View"
 msgstr "Zobrazit"
 
 #: templates/AccessPointContacts/index.php:56
-#: templates/AccessPointTypes/index.php:44
+#: templates/AccessPointTypes/index.php:48
 #: templates/AccessPointTypes/view.php:150 templates/AccessPoints/index.php:89
 #: templates/AccessPoints/view.php:200 templates/AccessPoints/view.php:272
 #: templates/AccessPoints/view.php:356 templates/AccessPoints/view.php:420
@@ -954,7 +954,7 @@ msgid "Edit"
 msgstr "Upravit"
 
 #: templates/AccessPointContacts/index.php:73
-#: templates/AccessPointTypes/index.php:61 templates/AccessPoints/index.php:106
+#: templates/AccessPointTypes/index.php:65 templates/AccessPoints/index.php:106
 #: templates/AntennaTypes/index.php:75
 #: templates/CustomerConnectionIps/index.php:70
 #: templates/CustomerConnections/index.php:85
@@ -974,7 +974,7 @@ msgid "first"
 msgstr "první"
 
 #: templates/AccessPointContacts/index.php:74
-#: templates/AccessPointTypes/index.php:62 templates/AccessPoints/index.php:107
+#: templates/AccessPointTypes/index.php:66 templates/AccessPoints/index.php:107
 #: templates/AntennaTypes/index.php:76
 #: templates/CustomerConnectionIps/index.php:71
 #: templates/CustomerConnections/index.php:86
@@ -994,7 +994,7 @@ msgid "previous"
 msgstr "předchozí"
 
 #: templates/AccessPointContacts/index.php:76
-#: templates/AccessPointTypes/index.php:64 templates/AccessPoints/index.php:109
+#: templates/AccessPointTypes/index.php:68 templates/AccessPoints/index.php:109
 #: templates/AntennaTypes/index.php:78
 #: templates/CustomerConnectionIps/index.php:73
 #: templates/CustomerConnections/index.php:88
@@ -1014,7 +1014,7 @@ msgid "next"
 msgstr "další"
 
 #: templates/AccessPointContacts/index.php:77
-#: templates/AccessPointTypes/index.php:65 templates/AccessPoints/index.php:110
+#: templates/AccessPointTypes/index.php:69 templates/AccessPoints/index.php:110
 #: templates/AntennaTypes/index.php:79
 #: templates/CustomerConnectionIps/index.php:74
 #: templates/CustomerConnections/index.php:89
@@ -1034,7 +1034,7 @@ msgid "last"
 msgstr "poslední"
 
 #: templates/AccessPointContacts/index.php:80
-#: templates/AccessPointTypes/index.php:68 templates/AccessPoints/index.php:113
+#: templates/AccessPointTypes/index.php:72 templates/AccessPoints/index.php:113
 #: templates/AntennaTypes/index.php:82
 #: templates/CustomerConnectionIps/index.php:77
 #: templates/CustomerConnections/index.php:92
@@ -1218,12 +1218,12 @@ msgstr "Přidat typ přístupového bodu"
 msgid "Edit Access Point Type"
 msgstr "Upravit typ přístupového bodu"
 
-#: templates/AccessPointTypes/index.php:20
+#: templates/AccessPointTypes/index.php:21
 #: templates/AccessPointTypes/view.php:30
 msgid "New Access Point Type"
 msgstr "Nový typ přístupového bodu"
 
-#: templates/AccessPointTypes/index.php:21 templates/layout/default.php:196
+#: templates/AccessPointTypes/index.php:25 templates/layout/default.php:196
 msgid "Access Point Types"
 msgstr "Typy přístupových bodů"
 

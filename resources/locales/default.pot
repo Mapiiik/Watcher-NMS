@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-11-22 10:16+0100\n"
+"POT-Creation-Date: 2022-12-03 16:31+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -620,7 +620,7 @@ msgstr ""
 #: ./templates/AccessPointContacts/view.php:10
 #: ./templates/AccessPointTypes/add.php:12
 #: ./templates/AccessPointTypes/edit.php:12
-#: ./templates/AccessPointTypes/index.php:28
+#: ./templates/AccessPointTypes/index.php:32
 #: ./templates/AccessPointTypes/view.php:10
 #: ./templates/AccessPointTypes/view.php:104
 #: ./templates/AccessPoints/add.php:11
@@ -793,7 +793,7 @@ msgstr ""
 #: ./templates/AccessPointContacts/edit.php:13
 #: ./templates/AccessPointContacts/index.php:61
 #: ./templates/AccessPointTypes/edit.php:14
-#: ./templates/AccessPointTypes/index.php:49
+#: ./templates/AccessPointTypes/index.php:53
 #: ./templates/AccessPointTypes/view.php:155
 #: ./templates/AccessPoints/edit.php:13
 #: ./templates/AccessPoints/index.php:94
@@ -868,7 +868,7 @@ msgstr ""
 #: ./templates/AccessPointContacts/index.php:63
 #: ./templates/AccessPointContacts/view.php:20
 #: ./templates/AccessPointTypes/edit.php:17
-#: ./templates/AccessPointTypes/index.php:51
+#: ./templates/AccessPointTypes/index.php:55
 #: ./templates/AccessPointTypes/view.php:20
 #: ./templates/AccessPointTypes/view.php:157
 #: ./templates/AccessPoints/edit.php:16
@@ -1002,7 +1002,7 @@ msgid "Access Point Contacts"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:54
-#: ./templates/AccessPointTypes/index.php:40
+#: ./templates/AccessPointTypes/index.php:44
 #: ./templates/AccessPointTypes/view.php:146
 #: ./templates/AccessPoints/index.php:87
 #: ./templates/AccessPoints/view.php:192
@@ -1055,7 +1055,7 @@ msgid "View"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:56
-#: ./templates/AccessPointTypes/index.php:44
+#: ./templates/AccessPointTypes/index.php:48
 #: ./templates/AccessPointTypes/view.php:150
 #: ./templates/AccessPoints/index.php:89
 #: ./templates/AccessPoints/view.php:200
@@ -1107,7 +1107,7 @@ msgid "Edit"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:73
-#: ./templates/AccessPointTypes/index.php:61
+#: ./templates/AccessPointTypes/index.php:65
 #: ./templates/AccessPoints/index.php:106
 #: ./templates/AntennaTypes/index.php:75
 #: ./templates/CustomerConnectionIps/index.php:70
@@ -1133,7 +1133,7 @@ msgid "first"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:74
-#: ./templates/AccessPointTypes/index.php:62
+#: ./templates/AccessPointTypes/index.php:66
 #: ./templates/AccessPoints/index.php:107
 #: ./templates/AntennaTypes/index.php:76
 #: ./templates/CustomerConnectionIps/index.php:71
@@ -1159,7 +1159,7 @@ msgid "previous"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:76
-#: ./templates/AccessPointTypes/index.php:64
+#: ./templates/AccessPointTypes/index.php:68
 #: ./templates/AccessPoints/index.php:109
 #: ./templates/AntennaTypes/index.php:78
 #: ./templates/CustomerConnectionIps/index.php:73
@@ -1185,7 +1185,7 @@ msgid "next"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:77
-#: ./templates/AccessPointTypes/index.php:65
+#: ./templates/AccessPointTypes/index.php:69
 #: ./templates/AccessPoints/index.php:110
 #: ./templates/AntennaTypes/index.php:79
 #: ./templates/CustomerConnectionIps/index.php:74
@@ -1211,7 +1211,7 @@ msgid "last"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:80
-#: ./templates/AccessPointTypes/index.php:68
+#: ./templates/AccessPointTypes/index.php:72
 #: ./templates/AccessPoints/index.php:113
 #: ./templates/AntennaTypes/index.php:82
 #: ./templates/CustomerConnectionIps/index.php:77
@@ -1440,12 +1440,12 @@ msgstr ""
 msgid "Edit Access Point Type"
 msgstr ""
 
-#: ./templates/AccessPointTypes/index.php:20
+#: ./templates/AccessPointTypes/index.php:21
 #: ./templates/AccessPointTypes/view.php:30
 msgid "New Access Point Type"
 msgstr ""
 
-#: ./templates/AccessPointTypes/index.php:21
+#: ./templates/AccessPointTypes/index.php:25
 #: ./templates/layout/default.php:196
 msgid "Access Point Types"
 msgstr ""
