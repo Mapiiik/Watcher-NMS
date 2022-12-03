@@ -288,7 +288,7 @@ class RouterosDevicesController extends AppController
      *
      * @param string $host SNMP host
      * @param string $community SNMP reading community
-     * @return void
+     * @return never
      */
     private function snmpCreate(string $host, string $community)
     {
@@ -730,7 +730,7 @@ class RouterosDevicesController extends AppController
      *
      * @param string $deviceTypeIdentifier device type
      * @param string $serialNumber serial number
-     * @return void
+     * @return never
      */
     public function configurationScript($deviceTypeIdentifier = null, $serialNumber = null)
     {
