@@ -730,9 +730,9 @@ class RouterosDevicesController extends AppController
      *
      * @param string $deviceTypeIdentifier device type
      * @param string $serialNumber serial number
-     * @return never
+     * @return void
      */
-    public function configurationScript($deviceTypeIdentifier = null, $serialNumber = null)
+    public function configurationScript($deviceTypeIdentifier = null, $serialNumber = null): void
     {
         $deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first();
 

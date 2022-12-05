@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\AccessPoint $accessPoint
+ * @var bool $compact
+ */
+?>
 <div class="container nav-container">
     <div class="content nav-content top-nav">
         <div class="nav-content-left">
@@ -11,7 +18,10 @@
             <?= $this->getRequest()->getParam('controller') <> 'AccessPoints' ?
                 $this->AuthLink->link(
                     'X',
-                    ['access_point_id' => false, '?' => $this->getRequest()->getQueryParams()] + $this->getRequest()->getParam('pass'),
+                    [
+                        'access_point_id' => false,
+                        '?' => $this->getRequest()->getQueryParams(),
+                    ] + $this->getRequest()->getParam('pass'),
                     ['class' => 'button button-small']
                 ) :
                 ''
