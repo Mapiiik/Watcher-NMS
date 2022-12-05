@@ -32,6 +32,7 @@
 *.jpg binary
 *.gif binary
 *.webp binary
+*.avif binary
 *.ico binary
 *.mo binary
 *.pdf binary
