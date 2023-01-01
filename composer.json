@@ -24,7 +24,7 @@
         "geocoder-php/google-maps-provider": "^4.4",
         "league/oauth2-google": "^4.0",
         "mapik/audit-log": "^1.0",
-        "mobiledetect/mobiledetectlib": "^2.8",
+        "mobiledetect/mobiledetectlib": "^3.74",
         "php-http/cakephp-adapter": "^0.3.0",
         "php-http/message": "^1.8.0"
     },
