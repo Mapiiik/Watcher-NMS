@@ -296,16 +296,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "4.4.9",
+            "version": "4.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "b3e6add8a6af520f15d01c80c6ed4e68e70d1302"
+                "reference": "3b089816d7cae4cff0a2a4de3e1ee651f73979df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/b3e6add8a6af520f15d01c80c6ed4e68e70d1302",
-                "reference": "b3e6add8a6af520f15d01c80c6ed4e68e70d1302",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/3b089816d7cae4cff0a2a4de3e1ee651f73979df",
+                "reference": "3b089816d7cae4cff0a2a4de3e1ee651f73979df",
                 "shasum": ""
             },
             "require": {
@@ -396,7 +396,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2022-12-30T02:48:54+00:00"
+            "time": "2023-01-06T03:13:27+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1324,16 +1324,16 @@
         },
         {
             "name": "laminas/laminas-httphandlerrunner",
-            "version": "2.4.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-httphandlerrunner.git",
-                "reference": "d15af53895fd581b5a448a09fd9a4baebc4ae6e5"
+                "reference": "7a47834aaad7852816d2ec4fdbb0492163b039ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-httphandlerrunner/zipball/d15af53895fd581b5a448a09fd9a4baebc4ae6e5",
-                "reference": "d15af53895fd581b5a448a09fd9a4baebc4ae6e5",
+                "url": "https://api.github.com/repos/laminas/laminas-httphandlerrunner/zipball/7a47834aaad7852816d2ec4fdbb0492163b039ae",
+                "reference": "7a47834aaad7852816d2ec4fdbb0492163b039ae",
                 "shasum": ""
             },
             "require": {
@@ -1345,9 +1345,9 @@
             "require-dev": {
                 "laminas/laminas-coding-standard": "~2.4.0",
                 "laminas/laminas-diactoros": "^2.18",
-                "phpunit/phpunit": "^9.5.25",
-                "psalm/plugin-phpunit": "^0.17.0",
-                "vimeo/psalm": "^4.28"
+                "phpunit/phpunit": "^9.5.26",
+                "psalm/plugin-phpunit": "^0.18.0",
+                "vimeo/psalm": "^5.0.0"
             },
             "type": "library",
             "extra": {
@@ -1387,7 +1387,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-10-25T13:41:39+00:00"
+            "time": "2023-01-05T21:54:03+00:00"
         },
         {
             "name": "league/container",
@@ -1756,21 +1756,21 @@
         },
         {
             "name": "php-http/cakephp-adapter",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/cakephp-adapter.git",
-                "reference": "12ff751fa42961ea770efd69cde1841b2d347cee"
+                "reference": "463a6aa58310f64ede669280363feb9fb8215a8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/cakephp-adapter/zipball/12ff751fa42961ea770efd69cde1841b2d347cee",
-                "reference": "12ff751fa42961ea770efd69cde1841b2d347cee",
+                "url": "https://api.github.com/repos/php-http/cakephp-adapter/zipball/463a6aa58310f64ede669280363feb9fb8215a8c",
+                "reference": "463a6aa58310f64ede669280363feb9fb8215a8c",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^4.0",
-                "php": ">=7.2",
+                "cakephp/cakephp": "^4.2",
+                "php": ">=7.4",
                 "php-http/discovery": "^1.0",
                 "php-http/httplug": "^2.0"
             },
@@ -1779,7 +1779,9 @@
                 "psr/http-client-implementation": "1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.5"
+                "php-http/message-factory": "^1.0.2",
+                "phpunit/phpunit": "^9.5",
+                "spryker/code-sniffer": "^0.17.15"
             },
             "type": "library",
             "extra": {
@@ -1812,9 +1814,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/cakephp-adapter/issues",
-                "source": "https://github.com/php-http/cakephp-adapter/tree/0.3.2"
+                "source": "https://github.com/php-http/cakephp-adapter/tree/0.3.3"
             },
-            "time": "2021-06-23T23:41:59+00:00"
+            "time": "2023-01-04T18:05:36+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -5277,16 +5279,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.9.4",
+            "version": "1.9.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "d03bccee595e2146b7c9d174486b84f4dc61b0f2"
+                "reference": "0501435cd342eac7664bd62155b1ef907fc60b6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d03bccee595e2146b7c9d174486b84f4dc61b0f2",
-                "reference": "d03bccee595e2146b7c9d174486b84f4dc61b0f2",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/0501435cd342eac7664bd62155b1ef907fc60b6f",
+                "reference": "0501435cd342eac7664bd62155b1ef907fc60b6f",
                 "shasum": ""
             },
             "require": {
@@ -5316,7 +5318,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.9.4"
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.7"
             },
             "funding": [
                 {
@@ -5332,7 +5334,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-17T13:33:52+00:00"
+            "time": "2023-01-04T21:59:57+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
