@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2022-12-05 10:25+0100\n"
+"POT-Creation-Date: 2023-01-06 09:13+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -228,21 +228,21 @@ msgstr ""
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:115
-#: ./src/Controller/AccessPointsController.php:141
+#: ./src/Controller/AccessPointsController.php:119
+#: ./src/Controller/AccessPointsController.php:145
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:119
-#: ./src/Controller/AccessPointsController.php:145
+#: ./src/Controller/AccessPointsController.php:123
+#: ./src/Controller/AccessPointsController.php:149
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:166
+#: ./src/Controller/AccessPointsController.php:170
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:168
+#: ./src/Controller/AccessPointsController.php:172
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
