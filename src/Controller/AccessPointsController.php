@@ -87,11 +87,15 @@ class AccessPointsController extends AppController
         ) {
             $new =& $accessPoint->electricity_meter_readings[$i];
             $old =& $accessPoint->electricity_meter_readings[$i + 1];
+            $i++;
+
+            // don't handle differences between records from the same day
+            if ($new->reading_date == $old->reading_date) {
+                continue;
+            }
 
             $new['daily_consumption'] =
                 ($new->reading_value - $old->reading_value) / $new->reading_date->diffInDays($old->reading_date);
-
-            $i++;
 
             unset($new);
             unset($old);
