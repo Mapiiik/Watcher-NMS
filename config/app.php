@@ -434,6 +434,9 @@ return [
         'timeout' => 1440,
     ],
 
+    /*
+     * Google Maps
+     */
     'GoogleMap' => [
         'autoCenter' => true,
         'autoScript' => true,
@@ -448,5 +451,13 @@ return [
         'infoWindow' => [
             'maxWidth' => 500,
         ],
+    ],
+
+    /*
+     * Database Migrations
+     */
+    'Migrations' => [
+        'unsigned_primary_keys' => true,
+        'column_null_default' => true,
     ],
 ];
