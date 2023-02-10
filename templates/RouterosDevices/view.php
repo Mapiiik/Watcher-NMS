@@ -277,9 +277,11 @@
                             <td><?= h($routerosWirelessLink->name) ?></td>
                             <td><?= h($routerosWirelessLink->neighbouring_interface->name) ?></td>
                             <td><?=
-                                $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->has('routeros_device') ?
+                                isset(
+                                    $routerosWirelessLink
+                                        ->neighbouring_interface
+                                        ->routeros_device
+                                ) ?
                                 $this->Html->link(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
@@ -295,10 +297,12 @@
                                     ]
                                 ) : '' ?></td>
                             <td><?=
-                                $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->routeros_device
-                                    ->has('access_point') ?
+                                isset(
+                                    $routerosWirelessLink
+                                        ->neighbouring_interface
+                                        ->routeros_device
+                                        ->access_point
+                                ) ?
                                 $this->Html->link(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
@@ -316,10 +320,12 @@
                                     ]
                                 ) : '' ?></td>
                             <td><?=
-                                $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->routeros_device
-                                    ->has('customer_connection') ?
+                                    isset(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->customer_connection
+                                    ) ?
                                 $this->Html->link(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
@@ -359,9 +365,11 @@
                             <td><?= h($routerosIpLink->ip_address) ?></td>
                             <td><?= h($routerosIpLink->neighbouring_ip_address->ip_address) ?></td>
                             <td><?=
-                                $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->has('routeros_device') ?
+                                isset(
+                                    $routerosIpLink
+                                        ->neighbouring_ip_address
+                                        ->routeros_device
+                                ) ?
                                 $this->Html->link(
                                     $routerosIpLink->neighbouring_ip_address->routeros_device->name,
                                     [
@@ -371,10 +379,12 @@
                                     ]
                                 ) : '' ?></td>
                             <td><?=
-                                $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->routeros_device
-                                    ->has('access_point') ?
+                                isset(
+                                    $routerosIpLink
+                                        ->neighbouring_ip_address
+                                        ->routeros_device
+                                        ->access_point
+                                ) ?
                                 $this->Html->link(
                                     $routerosIpLink
                                         ->neighbouring_ip_address
@@ -392,10 +402,12 @@
                                     ]
                                 ) : '' ?></td>
                             <td><?=
-                                $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->routeros_device
-                                    ->has('customer_connection') ?
+                                isset(
+                                    $routerosIpLink
+                                        ->neighbouring_ip_address
+                                        ->routeros_device
+                                        ->customer_connection
+                                ) ?
                                 $this->Html->link(
                                     $routerosIpLink
                                         ->neighbouring_ip_address
