@@ -33,11 +33,11 @@
 
 <div class="routerosDeviceIps index content">
     <?= $this->Html->link(
-        __('New Routeros Device Ip'),
+        __('New RouterOS Device Ip'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
     ) ?>
-    <h3><?= __('Routeros Device Ips') ?></h3>
+    <h3><?= __('RouterOS Device Ips') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>

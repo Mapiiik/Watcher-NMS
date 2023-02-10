@@ -32,9 +32,9 @@
 <?= $this->Form->end() ?>
 
 <div class="routerosDevices index content">
-    <?= $this->Html->link(__('New Routeros Device'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->Html->link(__('New RouterOS Device'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <?= $this->Html->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Routeros Devices') ?></h3>
+    <h3><?= __('RouterOS Devices') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>

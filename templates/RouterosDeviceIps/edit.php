@@ -18,7 +18,7 @@
                 ]
             ) ?>
             <?= $this->Html->link(
-                __('List Routeros Device Ips'),
+                __('List RouterOS Device Ips'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
@@ -28,7 +28,7 @@
         <div class="routerosDeviceIps form content">
             <?= $this->Form->create($routerosDeviceIp) ?>
             <fieldset>
-                <legend><?= __('Edit Routeros Device Ip') ?></legend>
+                <legend><?= __('Edit RouterOS Device Ip') ?></legend>
                 <?php
                     echo $this->Form->control('routeros_device_id', ['options' => $routerosDevices, 'empty' => true]);
                     echo $this->Form->control('name');

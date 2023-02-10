@@ -19,14 +19,14 @@
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(__('List Routeros Devices'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List RouterOS Devices'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
         <div class="routerosDevices form content">
             <?= $this->Form->create($routerosDevice) ?>
             <fieldset>
-                <legend><?= __('Edit Routeros Device') ?></legend>
+                <legend><?= __('Edit RouterOS Device') ?></legend>
                 <?php
                 echo $this->Form->control('name');
                 if (!isset($access_point_id)) {

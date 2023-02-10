@@ -251,12 +251,12 @@ $request = $this->getRequest();
             ])
         ) : ?>
             <?= $this->AuthLink->link(
-                __('Routeros Devices'),
+                __('RouterOS Devices'),
                 ['controller' => 'RouterosDevices', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected(['RouterosDevices'])]
             ) ?>
             <?= $this->AuthLink->link(
-                __('Routeros Device Interfaces'),
+                __('RouterOS Device Interfaces'),
                 ['controller' => 'RouterosDeviceInterfaces', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected(['RouterosDeviceInterfaces'])]
             ) ?>

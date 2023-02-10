@@ -527,11 +527,11 @@
             </div>
             <div class="related">
                 <?= $this->Html->link(
-                    __('New Routeros Device'),
+                    __('New RouterOS Device'),
                     ['controller' => 'RouterosDevices', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
                 ) ?>
-                <h4><?= __('Related Routeros Devices') ?></h4>
+                <h4><?= __('Related RouterOS Devices') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -604,7 +604,8 @@
                         <?php foreach ($accessPoint->routeros_devices as $routerosDevice) : ?>
                             <?php foreach ($routerosDevice->routeros_wireless_links as $routerosWirelessLink) : ?>
                             <tr>
-                                <td><?= $this->Html->link(
+                                <td><?=
+                                    $this->Html->link(
                                         $routerosDevice->name,
                                         ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
                                     ) ?></td>
@@ -619,31 +620,64 @@
                                     ) : '' ?></td>
                                 <td><?= h($routerosWirelessLink->name) ?></td>
                                 <td><?= h($routerosWirelessLink->neighbouring_interface->name) ?></td>
-                                <td><?= $routerosWirelessLink->neighbouring_interface->has('routeros_device') ?
+                                <td><?=
+                                    $routerosWirelessLink
+                                        ->neighbouring_interface
+                                        ->has('routeros_device') ?
                                     $this->Html->link(
-                                        $routerosWirelessLink->neighbouring_interface->routeros_device->name,
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->name,
                                         [
                                             'controller' => 'RouterosDevices',
                                             'action' => 'view',
-                                            $routerosWirelessLink->neighbouring_interface->routeros_device->id,
+                                            $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->id,
                                         ]
                                     ) : '' ?></td>
-                                <td><?= $routerosWirelessLink->neighbouring_interface->routeros_device->has('access_point') ?
+                                <td><?=
+                                    $routerosWirelessLink
+                                        ->neighbouring_interface
+                                        ->routeros_device
+                                        ->has('access_point') ?
                                     $this->Html->link(
-                                        $routerosWirelessLink->neighbouring_interface->routeros_device->access_point->name,
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->access_point
+                                            ->name,
                                         [
                                             'controller' => 'AccessPoints',
                                             'action' => 'view',
-                                            $routerosWirelessLink->neighbouring_interface->routeros_device->access_point->id,
+                                            $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->access_point
+                                                ->id,
                                         ]
                                     ) : '' ?></td>
-                                <td><?= $routerosWirelessLink->neighbouring_interface->routeros_device->has('customer_connection') ?
+                                <td><?=
+                                    $routerosWirelessLink
+                                        ->neighbouring_interface
+                                        ->routeros_device
+                                        ->has('customer_connection') ?
                                     $this->Html->link(
-                                        $routerosWirelessLink->neighbouring_interface->routeros_device->customer_connection->name,
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->customer_connection
+                                            ->name,
                                         [
                                             'controller' => 'CustomerConnections',
                                             'action' => 'view',
-                                            $routerosWirelessLink->neighbouring_interface->routeros_device->customer_connection->id,
+                                            $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id,
                                         ]
                                     ) : '' ?></td>
                             </tr>
@@ -681,7 +715,8 @@
                                 }
                                 ?>
                             <tr>
-                                <td><?= $this->Html->link(
+                                <td><?=
+                                    $this->Html->link(
                                         $routerosDevice->name,
                                         ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
                                     ) ?></td>
@@ -696,7 +731,10 @@
                                     ) : '' ?></td>
                                 <td><?= h($routerosIpLink->ip_address) ?></td>
                                 <td><?= h($routerosIpLink->neighbouring_ip_address->ip_address) ?></td>
-                                <td><?= $routerosIpLink->neighbouring_ip_address->has('routeros_device') ?
+                                <td><?=
+                                    $routerosIpLink
+                                        ->neighbouring_ip_address
+                                        ->has('routeros_device') ?
                                     $this->Html->link(
                                         $routerosIpLink->neighbouring_ip_address->routeros_device->name,
                                         [
@@ -705,22 +743,46 @@
                                             $routerosIpLink->neighbouring_ip_address->routeros_device->id,
                                         ]
                                     ) : '' ?></td>
-                                <td><?= $routerosIpLink->neighbouring_ip_address->routeros_device->has('access_point') ?
+                                <td><?=
+                                    $routerosIpLink
+                                        ->neighbouring_ip_address
+                                        ->routeros_device
+                                        ->has('access_point') ?
                                     $this->Html->link(
-                                        $routerosIpLink->neighbouring_ip_address->routeros_device->access_point->name,
+                                        $routerosIpLink
+                                            ->neighbouring_ip_address
+                                            ->routeros_device
+                                            ->access_point
+                                            ->name,
                                         [
                                             'controller' => 'AccessPoints',
                                             'action' => 'view',
-                                            $routerosIpLink->neighbouring_ip_address->routeros_device->access_point->id,
+                                            $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->access_point
+                                                ->id,
                                         ]
                                     ) : '' ?></td>
-                                <td><?= $routerosIpLink->neighbouring_ip_address->routeros_device->has('customer_connection') ?
+                                <td><?=
+                                    $routerosIpLink
+                                        ->neighbouring_ip_address
+                                        ->routeros_device
+                                        ->has('customer_connection') ?
                                     $this->Html->link(
-                                        $routerosIpLink->neighbouring_ip_address->routeros_device->customer_connection->name,
+                                        $routerosIpLink
+                                            ->neighbouring_ip_address
+                                            ->routeros_device
+                                            ->customer_connection
+                                            ->name,
                                         [
                                             'controller' => 'CustomerConnections',
                                             'action' => 'view',
-                                            $routerosIpLink->neighbouring_ip_address->routeros_device->customer_connection->id,
+                                            $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id,
                                         ]
                                     ) : '' ?></td>
                             </tr>

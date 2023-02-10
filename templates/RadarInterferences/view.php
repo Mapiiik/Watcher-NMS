@@ -95,12 +95,12 @@
                 </tr>
             </table>
             <div class="related">
-                <h4><?= __('Related Routeros Device Interfaces') ?></h4>
+                <h4><?= __('Related RouterOS Device Interfaces') ?></h4>
                 <?php if (!empty($radarInterference->routeros_device_interfaces)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Routeros Device') ?></th>
+                            <th><?= __('RouterOS Device') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Comment') ?></th>
                             <th><?= __('Mac Address') ?></th>

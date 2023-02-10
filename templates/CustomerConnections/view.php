@@ -179,7 +179,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Routeros Devices') ?></h4>
+                <h4><?= __('Related RouterOS Devices') ?></h4>
                 <?php if (!empty($customerConnection->routeros_devices)) : ?>
                 <div class="table-responsive">
                     <table>

@@ -1590,13 +1590,13 @@ msgstr "IP adresa"
 
 #: templates/AccessPoints/view.php:530 templates/RouterosDevices/index.php:35
 #: templates/RouterosDevices/view.php:29
-msgid "New Routeros Device"
+msgid "New RouterOS Device"
 msgstr "Nové zařízení RouterOS"
 
 #: templates/AccessPoints/view.php:534
 #: templates/CustomerConnections/view.php:182
 #: templates/DeviceTypes/view.php:104
-msgid "Related Routeros Devices"
+msgid "Related RouterOS Devices"
 msgstr "Související zařízení RouterOS"
 
 #: templates/AccessPoints/view.php:540
@@ -2059,13 +2059,13 @@ msgstr "SSID"
 
 #: templates/RadarInterferences/view.php:98
 #: templates/RouterosDevices/view.php:150
-msgid "Related Routeros Device Interfaces"
+msgid "Related RouterOS Device Interfaces"
 msgstr "Související rozhraní zařízení RouterOS"
 
 #: templates/RadarInterferences/view.php:103
 #: templates/RouterosDeviceInterfaces/view.php:45
 #: templates/RouterosDeviceIps/view.php:45
-msgid "Routeros Device"
+msgid "RouterOS Device"
 msgstr "Zařízení RouterOS"
 
 #: templates/RadarInterferences/view.php:105
@@ -2270,16 +2270,16 @@ msgstr "Odstranit rádiovou jednotku"
 #: templates/RouterosDeviceInterfaces/add.php:13
 #: templates/RouterosDeviceInterfaces/edit.php:21
 #: templates/RouterosDeviceInterfaces/view.php:25
-msgid "List Routeros Device Interfaces"
+msgid "List RouterOS Device Interfaces"
 msgstr "Seznam rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/add.php:23
-msgid "Add Routeros Device Interface"
+msgid "Add RouterOS Device Interface"
 msgstr "Přidat rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/edit.php:31
 #: templates/RouterosDeviceInterfaces/view.php:12
-msgid "Edit Routeros Device Interface"
+msgid "Edit RouterOS Device Interface"
 msgstr "Upravit rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:18
@@ -2291,12 +2291,12 @@ msgstr "Maximální stáří"
 
 #: templates/RouterosDeviceInterfaces/index.php:36
 #: templates/RouterosDeviceInterfaces/view.php:30
-msgid "New Routeros Device Interface"
+msgid "New RouterOS Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:40
 #: templates/layout/default.php:259
-msgid "Routeros Device Interfaces"
+msgid "RouterOS Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:20
@@ -2330,57 +2330,57 @@ msgstr[1] "{0} dny"
 msgstr[2] "{0} dní"
 
 #: templates/RouterosDeviceInterfaces/view.php:17
-msgid "Delete Routeros Device Interface"
+msgid "Delete RouterOS Device Interface"
 msgstr "Odstranit rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceIps/add.php:13
 #: templates/RouterosDeviceIps/edit.php:21
 #: templates/RouterosDeviceIps/view.php:25
-msgid "List Routeros Device Ips"
+msgid "List RouterOS Device Ips"
 msgstr "Seznam IP zařízení RouterOS"
 
 #: templates/RouterosDeviceIps/add.php:23
-msgid "Add Routeros Device Ip"
+msgid "Add RouterOS Device Ip"
 msgstr "Přidat IP zařízení RouterOS"
 
 #: templates/RouterosDeviceIps/edit.php:31
 #: templates/RouterosDeviceIps/view.php:12
-msgid "Edit Routeros Device Ip"
+msgid "Edit RouterOS Device Ip"
 msgstr "Upravit IP zařízení RouterOS"
 
 #: templates/RouterosDeviceIps/index.php:36
 #: templates/RouterosDeviceIps/view.php:30
-msgid "New Routeros Device Ip"
+msgid "New RouterOS Device Ip"
 msgstr "Nová IP zařízení RouterOS"
 
 #: templates/RouterosDeviceIps/index.php:40
-msgid "Routeros Device Ips"
+msgid "RouterOS Device Ips"
 msgstr "IP zařízení RouterOS"
 
 #: templates/RouterosDeviceIps/view.php:17
-msgid "Delete Routeros Device Ip"
+msgid "Delete RouterOS Device Ip"
 msgstr "Odstranit IP zařízení RouterOS"
 
 #: templates/RouterosDevices/add.php:14 templates/RouterosDevices/edit.php:22
 #: templates/RouterosDevices/view.php:24
-msgid "List Routeros Devices"
+msgid "List RouterOS Devices"
 msgstr "Seznam zařízení RouterOS"
 
 #: templates/RouterosDevices/add.php:21
-msgid "Add Routeros Device"
+msgid "Add RouterOS Device"
 msgstr "Přidat zařízení RouterOS"
 
 #: templates/RouterosDevices/edit.php:29 templates/RouterosDevices/view.php:12
-msgid "Edit Routeros Device"
+msgid "Edit RouterOS Device"
 msgstr "Upravit zařízení RouterOS"
 
 #: templates/RouterosDevices/export.php:37
 #: templates/RouterosDevices/index.php:37 templates/layout/default.php:254
-msgid "Routeros Devices"
+msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
 
 #: templates/RouterosDevices/view.php:17
-msgid "Delete Routeros Device"
+msgid "Delete RouterOS Device"
 msgstr "Odstranit zařízení RouterOS"
 
 #: templates/RouterosDevices/view.php:88
@@ -2394,7 +2394,7 @@ msgid "Password"
 msgstr "Heslo"
 
 #: templates/RouterosDevices/view.php:225
-msgid "Related Routeros Device Ips"
+msgid "Related RouterOS Device Ips"
 msgstr "Související IP zařízení RouterOS"
 
 #: templates/Settings/index.php:7 templates/layout/default.php:134
@@ -2611,5 +2611,5 @@ msgstr "Data"
 #~ msgid "Manufacturer Id"
 #~ msgstr "ID výrobce"
 
-#~ msgid "Routeros Device Id"
+#~ msgid "RouterOS Device Id"
 #~ msgstr "ID zařízení RouterOS"

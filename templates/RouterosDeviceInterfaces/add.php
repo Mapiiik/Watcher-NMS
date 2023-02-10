@@ -10,7 +10,7 @@
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Html->link(
-                __('List Routeros Device Interfaces'),
+                __('List RouterOS Device Interfaces'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
@@ -20,7 +20,7 @@
         <div class="routerosDeviceInterfaces form content">
             <?= $this->Form->create($routerosDeviceInterface) ?>
             <fieldset>
-                <legend><?= __('Add Routeros Device Interface') ?></legend>
+                <legend><?= __('Add RouterOS Device Interface') ?></legend>
                 <?php
                     echo $this->Form->control('routeros_device_id', ['options' => $routerosDevices, 'empty' => true]);
                     echo $this->Form->control('name');

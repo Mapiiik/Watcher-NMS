@@ -9,12 +9,12 @@
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Html->link(
-                __('Edit Routeros Device Ip'),
+                __('Edit RouterOS Device Ip'),
                 ['action' => 'edit', $routerosDeviceIp->id],
                 ['class' => 'side-nav-item']
             ) ?>
             <?= $this->Form->postLink(
-                __('Delete Routeros Device Ip'),
+                __('Delete RouterOS Device Ip'),
                 ['action' => 'delete', $routerosDeviceIp->id],
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIp->id),
@@ -22,12 +22,12 @@
                 ]
             ) ?>
             <?= $this->Html->link(
-                __('List Routeros Device Ips'),
+                __('List RouterOS Device Ips'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
             <?= $this->Html->link(
-                __('New Routeros Device Ip'),
+                __('New RouterOS Device Ip'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']
             ) ?>
@@ -42,7 +42,7 @@
                     <td><?= h($routerosDeviceIp->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Routeros Device') ?></th>
+                    <th><?= __('RouterOS Device') ?></th>
                     <td>
                         <?= $routerosDeviceIp->has('routeros_device') ? $this->Html->link(
                             $routerosDeviceIp->routeros_device->name,

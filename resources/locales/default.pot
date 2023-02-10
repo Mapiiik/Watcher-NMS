@@ -1926,13 +1926,13 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:530
 #: ./templates/RouterosDevices/index.php:35
 #: ./templates/RouterosDevices/view.php:29
-msgid "New Routeros Device"
+msgid "New RouterOS Device"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:534
 #: ./templates/CustomerConnections/view.php:182
 #: ./templates/DeviceTypes/view.php:104
-msgid "Related Routeros Devices"
+msgid "Related RouterOS Devices"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:540
@@ -2439,13 +2439,13 @@ msgstr ""
 
 #: ./templates/RadarInterferences/view.php:98
 #: ./templates/RouterosDevices/view.php:150
-msgid "Related Routeros Device Interfaces"
+msgid "Related RouterOS Device Interfaces"
 msgstr ""
 
 #: ./templates/RadarInterferences/view.php:103
 #: ./templates/RouterosDeviceInterfaces/view.php:45
 #: ./templates/RouterosDeviceIps/view.php:45
-msgid "Routeros Device"
+msgid "RouterOS Device"
 msgstr ""
 
 #: ./templates/RadarInterferences/view.php:105
@@ -2673,16 +2673,16 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/add.php:13
 #: ./templates/RouterosDeviceInterfaces/edit.php:21
 #: ./templates/RouterosDeviceInterfaces/view.php:25
-msgid "List Routeros Device Interfaces"
+msgid "List RouterOS Device Interfaces"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/add.php:23
-msgid "Add Routeros Device Interface"
+msgid "Add RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/edit.php:31
 #: ./templates/RouterosDeviceInterfaces/view.php:12
-msgid "Edit Routeros Device Interface"
+msgid "Edit RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/index.php:18
@@ -2694,12 +2694,12 @@ msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/index.php:36
 #: ./templates/RouterosDeviceInterfaces/view.php:30
-msgid "New Routeros Device Interface"
+msgid "New RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/index.php:40
 #: ./templates/layout/default.php:259
-msgid "Routeros Device Interfaces"
+msgid "RouterOS Device Interfaces"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/index.php:20
@@ -2732,60 +2732,60 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ./templates/RouterosDeviceInterfaces/view.php:17
-msgid "Delete Routeros Device Interface"
+msgid "Delete RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/add.php:13
 #: ./templates/RouterosDeviceIps/edit.php:21
 #: ./templates/RouterosDeviceIps/view.php:25
-msgid "List Routeros Device Ips"
+msgid "List RouterOS Device Ips"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/add.php:23
-msgid "Add Routeros Device Ip"
+msgid "Add RouterOS Device Ip"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/edit.php:31
 #: ./templates/RouterosDeviceIps/view.php:12
-msgid "Edit Routeros Device Ip"
+msgid "Edit RouterOS Device Ip"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/index.php:36
 #: ./templates/RouterosDeviceIps/view.php:30
-msgid "New Routeros Device Ip"
+msgid "New RouterOS Device Ip"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/index.php:40
-msgid "Routeros Device Ips"
+msgid "RouterOS Device Ips"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/view.php:17
-msgid "Delete Routeros Device Ip"
+msgid "Delete RouterOS Device Ip"
 msgstr ""
 
 #: ./templates/RouterosDevices/add.php:14
 #: ./templates/RouterosDevices/edit.php:22
 #: ./templates/RouterosDevices/view.php:24
-msgid "List Routeros Devices"
+msgid "List RouterOS Devices"
 msgstr ""
 
 #: ./templates/RouterosDevices/add.php:21
-msgid "Add Routeros Device"
+msgid "Add RouterOS Device"
 msgstr ""
 
 #: ./templates/RouterosDevices/edit.php:29
 #: ./templates/RouterosDevices/view.php:12
-msgid "Edit Routeros Device"
+msgid "Edit RouterOS Device"
 msgstr ""
 
 #: ./templates/RouterosDevices/export.php:37
 #: ./templates/RouterosDevices/index.php:37
 #: ./templates/layout/default.php:254
-msgid "Routeros Devices"
+msgid "RouterOS Devices"
 msgstr ""
 
 #: ./templates/RouterosDevices/view.php:17
-msgid "Delete Routeros Device"
+msgid "Delete RouterOS Device"
 msgstr ""
 
 #: ./templates/RouterosDevices/view.php:88
@@ -2799,7 +2799,7 @@ msgid "Password"
 msgstr ""
 
 #: ./templates/RouterosDevices/view.php:225
-msgid "Related Routeros Device Ips"
+msgid "Related RouterOS Device Ips"
 msgstr ""
 
 #: ./templates/Settings/index.php:7
