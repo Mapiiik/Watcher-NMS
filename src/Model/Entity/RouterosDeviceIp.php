@@ -12,6 +12,7 @@ use Cake\ORM\Entity;
  * @property string|null $routeros_device_id
  * @property string|null $name
  * @property string|null $ip_address
+ * @property string|null $ip_network
  * @property int|null $interface_index
  * @property \Cake\I18n\FrozenTime|null $created
  * @property string|null $created_by
@@ -21,6 +22,7 @@ use Cake\ORM\Entity;
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
  * @property \App\Model\Entity\RouterosDevice $routeros_device
+ * @property \App\Model\Entity\RouterosDeviceIp $neighbouring_ip_address
  *
  * @property string $name_for_lists
  */

@@ -14,6 +14,8 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\CustomerConnectionsTable&\Cake\ORM\Association\BelongsTo $CustomerConnections
  * @property \App\Model\Table\RouterosDeviceInterfacesTable&\Cake\ORM\Association\HasMany $RouterosDeviceInterfaces
  * @property \App\Model\Table\RouterosDeviceIpsTable&\Cake\ORM\Association\HasMany $RouterosDeviceIps
+ * @property \App\Model\Table\RouterosDeviceIpsTable&\Cake\ORM\Association\HasMany $RouterosIpLinks
+ * @property \App\Model\Table\RouterosDeviceInterfacesTable&\Cake\ORM\Association\HasMany $RouterosWirelessLinks
  * @method \App\Model\Entity\RouterosDevice newEmptyEntity()
  * @method \App\Model\Entity\RouterosDevice newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDevice[] newEntities(array $data, array $options = [])
@@ -63,6 +65,20 @@ class RouterosDevicesTable extends AppTable
         ]);
         $this->hasMany('RouterosDeviceIps', [
             'foreignKey' => 'routeros_device_id',
+        ]);
+        $this->hasMany('RouterosIpLinks', [
+            'className' => 'RouterosDeviceIps',
+            'foreignKey' => 'routeros_device_id',
+        ]);
+        $this->hasMany('RouterosWirelessLinks', [
+            'className' => 'RouterosDeviceInterfaces',
+            'foreignKey' => 'routeros_device_id',
+            'conditions' => [
+                'OR' => [
+                    'NeighbouringStations.id IS NOT NULL',
+                    'NeighbouringAccessPoints.id IS NOT NULL',
+                ],
+            ],
         ]);
     }
 

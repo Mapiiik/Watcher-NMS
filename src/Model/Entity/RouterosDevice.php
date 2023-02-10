@@ -33,6 +33,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\CustomerConnection $customer_connection
  * @property \App\Model\Entity\RouterosDeviceInterface[] $routeros_device_interfaces
  * @property \App\Model\Entity\RouterosDeviceIp[] $routeros_device_ips
+ * @property \App\Model\Entity\RouterosDeviceIp[] $routeros_ip_links
+ * @property \App\Model\Entity\RouterosDeviceInterface[] $routeros_wireless_links
  *
  * @property string $name_for_lists
  */

@@ -10,6 +10,8 @@ use Cake\Validation\Validator;
  * RouterosDeviceInterfaces Model
  *
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\BelongsTo $RouterosDevices
+ * @property \App\Model\Table\RouterosDeviceInterfacesTable&\Cake\ORM\Association\BelongsTo $NeighbouringStations
+ * @property \App\Model\Table\RouterosDeviceInterfacesTable&\Cake\ORM\Association\BelongsTo $NeighbouringAccessPoints
  * @method \App\Model\Entity\RouterosDeviceInterface newEmptyEntity()
  * @method \App\Model\Entity\RouterosDeviceInterface newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface[] newEntities(array $data, array $options = [])
@@ -48,6 +50,33 @@ class RouterosDeviceInterfacesTable extends AppTable
         $this->belongsTo('RouterosDevices', [
             'foreignKey' => 'routeros_device_id',
         ]);
+
+        if ($this->getRegistryAlias() == 'RouterosWirelessLinks') {
+            $this->belongsTo('NeighbouringStations', [
+                'className' => 'RouterosDeviceInterfaces',
+                'foreignKey' => 'mac_address',
+                'bindingKey' => 'bssid',
+                'joinType' => 'LEFT',
+                'conditions' => [
+                    'RouterosWirelessLinks.interface_type = 71',
+                    'NeighbouringStations.interface_type = 71',
+                    'NeighbouringStations.id <> RouterosWirelessLinks.id',
+                    'NeighbouringStations.routeros_device_id <> RouterosWirelessLinks.routeros_device_id',
+                ],
+            ]);
+            $this->belongsTo('NeighbouringAccessPoints', [
+                'className' => 'RouterosDeviceInterfaces',
+                'foreignKey' => 'bssid',
+                'bindingKey' => 'mac_address',
+                'joinType' => 'LEFT',
+                'conditions' => [
+                    'RouterosWirelessLinks.interface_type = 71',
+                    'NeighbouringAccessPoints.interface_type = 71',
+                    'NeighbouringAccessPoints.id <> RouterosWirelessLinks.id',
+                    'NeighbouringAccessPoints.routeros_device_id <> RouterosWirelessLinks.routeros_device_id',
+                ],
+            ]);
+        }
     }
 
     /**

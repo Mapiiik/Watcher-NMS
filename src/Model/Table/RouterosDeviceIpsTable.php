@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * RouterosDeviceIps Model
  *
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\BelongsTo $RouterosDevices
+ * @property \App\Model\Table\RouterosDeviceIpsTable&\Cake\ORM\Association\BelongsTo $NeighbouringIpAddresses
  * @method \App\Model\Entity\RouterosDeviceIp newEmptyEntity()
  * @method \App\Model\Entity\RouterosDeviceIp newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceIp[] newEntities(array $data, array $options = [])
@@ -48,6 +49,19 @@ class RouterosDeviceIpsTable extends AppTable
         $this->belongsTo('RouterosDevices', [
             'foreignKey' => 'routeros_device_id',
         ]);
+
+        if ($this->getRegistryAlias() == 'RouterosIpLinks') {
+            $this->belongsTo('NeighbouringIpAddresses', [
+                'className' => 'RouterosDeviceIps',
+                'foreignKey' => 'ip_network',
+                'bindingKey' => 'ip_network',
+                'joinType' => 'INNER',
+                'conditions' => [
+                    'NeighbouringIpAddresses.id <> RouterosIpLinks.id',
+                    'NeighbouringIpAddresses.routeros_device_id <> RouterosIpLinks.routeros_device_id',
+                ],
+            ]);
+        }
     }
 
     /**

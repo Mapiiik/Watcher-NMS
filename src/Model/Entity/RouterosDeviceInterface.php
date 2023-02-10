@@ -32,6 +32,9 @@ use Cake\ORM\Entity;
  * @property string|null $bssid
  *
  * @property \App\Model\Entity\RouterosDevice $routeros_device
+ * @property \App\Model\Entity\RouterosDeviceInterface $neighbouring_station
+ * @property \App\Model\Entity\RouterosDeviceInterface $neighbouring_access_point
+ * @property \App\Model\Entity\RouterosDeviceInterface $neighbouring_interface
  *
  * @property string $name_for_lists
  */
@@ -79,5 +82,15 @@ class RouterosDeviceInterface extends Entity
         return $this->has('mac_address') ?
             strval($this->name) . ' (' . strval($this->mac_address) . ')' :
             strval($this->name);
+    }
+
+    /**
+     * getter for neighbouring interface
+     *
+     * @return \App\Model\Entity\RouterosDeviceInterface|null
+     */
+    protected function _getNeighbouringInterface(): ?RouterosDeviceInterface
+    {
+        return $this->neighbouring_access_point ?? $this->neighbouring_station ?? null;
     }
 }
