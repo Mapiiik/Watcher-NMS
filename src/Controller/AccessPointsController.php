@@ -409,7 +409,10 @@ class AccessPointsController extends AppController
                                     ->routeros_device
                                     ->access_point;
 
-                                if (is_numeric($neighbouringAccessPoint->gps_y) && is_numeric($neighbouringAccessPoint->gps_x)) {
+                                if (
+                                    is_numeric($neighbouringAccessPoint->gps_y)
+                                    && is_numeric($neighbouringAccessPoint->gps_x)
+                                ) {
                                     // add map polyline for IP link (to access point)
                                     $mapPolylines[$neighbouringAccessPoint->id] = [
                                         'from' => [
@@ -490,7 +493,10 @@ class AccessPointsController extends AppController
                                     ->customer_connection
                                     ->customer_point;
 
-                                if (is_numeric($neighbouringCustomerPoint->gps_y) && is_numeric($neighbouringCustomerPoint->gps_x)) {
+                                if (
+                                    is_numeric($neighbouringCustomerPoint->gps_y)
+                                    && is_numeric($neighbouringCustomerPoint->gps_x)
+                                ) {
                                     // add map polyline for IP link (to customer point)
                                     $mapPolylines[$neighbouringCustomerPoint->id] = [
                                         'from' => [
@@ -619,7 +625,10 @@ class AccessPointsController extends AppController
                                     ->routeros_device
                                     ->access_point;
 
-                                if (is_numeric($neighbouringAccessPoint->gps_y) && is_numeric($neighbouringAccessPoint->gps_x)) {
+                                if (
+                                    is_numeric($neighbouringAccessPoint->gps_y)
+                                    && is_numeric($neighbouringAccessPoint->gps_x)
+                                ) {
                                     // add map polyline for wireless link (to access point)
                                     $mapPolylines[$neighbouringAccessPoint->id] = [
                                         'from' => [
@@ -700,7 +709,10 @@ class AccessPointsController extends AppController
                                     ->customer_connection
                                     ->customer_point;
 
-                                if (is_numeric($neighbouringCustomerPoint->gps_y) && is_numeric($neighbouringCustomerPoint->gps_x)) {
+                                if (
+                                    is_numeric($neighbouringCustomerPoint->gps_y)
+                                    && is_numeric($neighbouringCustomerPoint->gps_x)
+                                ) {
                                     // add map polyline for wireless link (to customer point)
                                     $mapPolylines[$neighbouringCustomerPoint->id] = [
                                         'from' => [
