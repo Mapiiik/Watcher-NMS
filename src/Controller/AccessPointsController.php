@@ -231,6 +231,7 @@ class AccessPointsController extends AppController
                                 ],
                                 'AccessPoints' => [
                                     'strategy' => 'select',
+                                    'AccessPointTypes',
                                 ],
                                 'CustomerConnections' => [
                                     'strategy' => 'select',
@@ -271,6 +272,7 @@ class AccessPointsController extends AppController
                                 ],
                                 'AccessPoints' => [
                                     'strategy' => 'select',
+                                    'AccessPointTypes',
                                 ],
                                 'CustomerConnections' => [
                                     'strategy' => 'select',
@@ -296,6 +298,7 @@ class AccessPointsController extends AppController
                                 ],
                                 'AccessPoints' => [
                                     'strategy' => 'select',
+                                    'AccessPointTypes',
                                 ],
                                 'CustomerConnections' => [
                                     'strategy' => 'select',
