@@ -259,6 +259,105 @@
                 </div>
                 <?php endif; ?>
             </div>
+            <hr>
+            <div class="related">
+                <h4><?= __('Related RouterOS Wireless Links') ?></h4>
+                <?php if (!empty($routerosDevice->routeros_wireless_links)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Local Wireless Interface') ?></th>
+                            <th><?= __('Neighbouring Wireless Interface') ?></th>
+                            <th><?= __('Neighbouring RouterOS Device') ?></th>
+                            <th><?= __('Neighbouring Access Point') ?></th>
+                            <th><?= __('Neighbouring Customer Connection') ?></th>
+                        </tr>
+                        <?php foreach ($routerosDevice->routeros_wireless_links as $routerosWirelessLink) : ?>
+                        <tr>
+                            <td><?= h($routerosWirelessLink->name) ?></td>
+                            <td><?= h($routerosWirelessLink->neighbouring_interface->name) ?></td>
+                            <td><?= $routerosWirelessLink->neighbouring_interface->has('routeros_device') ?
+                                $this->Html->link(
+                                    $routerosWirelessLink->neighbouring_interface->routeros_device->name,
+                                    [
+                                        'controller' => 'RouterosDevices',
+                                        'action' => 'view',
+                                        $routerosWirelessLink->neighbouring_interface->routeros_device->id,
+                                    ]
+                                ) : '' ?></td>
+                            <td><?= $routerosWirelessLink->neighbouring_interface->routeros_device->has('access_point') ?
+                                $this->Html->link(
+                                    $routerosWirelessLink->neighbouring_interface->routeros_device->access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $routerosWirelessLink->neighbouring_interface->routeros_device->access_point->id,
+                                    ]
+                                ) : '' ?></td>
+                            <td><?= $routerosWirelessLink->neighbouring_interface->routeros_device->has('customer_connection') ?
+                                $this->Html->link(
+                                    $routerosWirelessLink->neighbouring_interface->routeros_device->customer_connection->name,
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'view',
+                                        $routerosWirelessLink->neighbouring_interface->routeros_device->customer_connection->id,
+                                    ]
+                                ) : '' ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="related">
+                <h4><?= __('Related RouterOS IP Links') ?></h4>
+                <?php if (!empty($routerosDevice->routeros_ip_links)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Local IP Address') ?></th>
+                            <th><?= __('Neighbouring IP address') ?></th>
+                            <th><?= __('Neighbouring RouterOS Device') ?></th>
+                            <th><?= __('Neighbouring Access Point') ?></th>
+                            <th><?= __('Neighbouring Customer Connection') ?></th>
+                        </tr>
+                        <?php foreach ($routerosDevice->routeros_ip_links as $routerosIpLink) : ?>
+                        <tr>
+                            <td><?= h($routerosIpLink->ip_address) ?></td>
+                            <td><?= h($routerosIpLink->neighbouring_ip_address->ip_address) ?></td>
+                            <td><?= $routerosIpLink->neighbouring_ip_address->has('routeros_device') ?
+                                $this->Html->link(
+                                    $routerosIpLink->neighbouring_ip_address->routeros_device->name,
+                                    [
+                                        'controller' => 'RouterosDevices',
+                                        'action' => 'view',
+                                        $routerosIpLink->neighbouring_ip_address->routeros_device->id,
+                                    ]
+                                ) : '' ?></td>
+                            <td><?= $routerosIpLink->neighbouring_ip_address->routeros_device->has('access_point') ?
+                                $this->Html->link(
+                                    $routerosIpLink->neighbouring_ip_address->routeros_device->access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $routerosIpLink->neighbouring_ip_address->routeros_device->access_point->id,
+                                    ]
+                                ) : '' ?></td>
+                            <td><?= $routerosIpLink->neighbouring_ip_address->routeros_device->has('customer_connection') ?
+                                $this->Html->link(
+                                    $routerosIpLink->neighbouring_ip_address->routeros_device->customer_connection->name,
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'view',
+                                        $routerosIpLink->neighbouring_ip_address->routeros_device->customer_connection->id,
+                                    ]
+                                ) : '' ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

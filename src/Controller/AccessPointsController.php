@@ -66,10 +66,62 @@ class AccessPointsController extends AppController
                 'AccessPointTypes',
                 'ParentAccessPoints',
                 'AccessPointContacts',
-                'ElectricityMeterReadings' => ['sort' => ['reading_date' => 'DESC']],
-                'PowerSupplies' => ['PowerSupplyTypes'],
-                'RadioUnits' => ['RadioUnitTypes', 'RadioLinks', 'AntennaTypes'],
-                'RouterosDevices' => ['DeviceTypes'],
+                'ElectricityMeterReadings' => [
+                    'sort' => [
+                        'reading_date' => 'DESC',
+                    ],
+                ],
+                'PowerSupplies' => [
+                    'PowerSupplyTypes',
+                ],
+                'RadioUnits' => [
+                    'RadioUnitTypes',
+                    'RadioLinks',
+                    'AntennaTypes',
+                ],
+                'RouterosDevices' => [
+                    'DeviceTypes',
+                    'RouterosIpLinks' => [
+                        'sort' => [
+                            'RouterosIpLinks.ip_address' => 'ASC',
+                        ],
+                        'NeighbouringIpAddresses' => [
+                            'RouterosDevices' => [
+                                'conditions' => [
+                                    'RouterosDevices.modified >' =>
+                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                ],
+                                'AccessPoints',
+                                'CustomerConnections',
+                            ],
+                        ],
+                    ],
+                    'RouterosWirelessLinks' => [
+                        'sort' => [
+                            'RouterosWirelessLinks.name' => 'ASC',
+                        ],
+                        'NeighbouringStations' => [
+                            'RouterosDevices' => [
+                                'conditions' => [
+                                    'RouterosDevices.modified >' =>
+                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                ],
+                                'AccessPoints',
+                                'CustomerConnections',
+                            ],
+                        ],
+                        'NeighbouringAccessPoints' => [
+                            'RouterosDevices' => [
+                                'conditions' => [
+                                    'RouterosDevices.modified >' =>
+                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                ],
+                                'AccessPoints',
+                                'CustomerConnections',
+                            ],
+                        ],
+                    ],
+                ],
                 'IpAddressRanges' => ['ParentIpAddressRanges'],
                 'Creators',
                 'Modifiers',

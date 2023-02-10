@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\Entity\RouterosDevice;
+use Cake\I18n\FrozenDate;
 use Cake\I18n\FrozenTime;
 use Cake\Log\Log;
 use Cake\Utility\Security;
@@ -97,6 +98,46 @@ class RouterosDevicesController extends AppController
                 'CustomerConnections',
                 'RouterosDeviceInterfaces',
                 'RouterosDeviceIps',
+                'RouterosIpLinks' => [
+                    'sort' => [
+                        'RouterosIpLinks.ip_address' => 'ASC',
+                    ],
+                    'NeighbouringIpAddresses' => [
+                        'RouterosDevices' => [
+                            'conditions' => [
+                                'RouterosDevices.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
+                            'AccessPoints',
+                            'CustomerConnections',
+                        ],
+                    ],
+                ],
+                'RouterosWirelessLinks' => [
+                    'sort' => [
+                        'RouterosWirelessLinks.name' => 'ASC',
+                    ],
+                    'NeighbouringStations' => [
+                        'RouterosDevices' => [
+                            'conditions' => [
+                                'RouterosDevices.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
+                            'AccessPoints',
+                            'CustomerConnections',
+                        ],
+                    ],
+                    'NeighbouringAccessPoints' => [
+                        'RouterosDevices' => [
+                            'conditions' => [
+                                'RouterosDevices.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
+                            'AccessPoints',
+                            'CustomerConnections',
+                        ],
+                    ],
+                ],
                 'Creators',
                 'Modifiers',
             ],
