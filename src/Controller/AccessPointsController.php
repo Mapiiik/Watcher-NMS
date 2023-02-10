@@ -492,6 +492,7 @@ class AccessPointsController extends AppController
                                             'lng' => $neighbouringAccessPoint->gps_x,
                                             'title' => $neighbouringAccessPoint->name,
                                             'color' => $neighbouringAccessPoint->access_point_type->color ?? '#FE7569',
+                                            'locked' => false,
                                             'content' =>
                                                 '<b>'
                                                 . $html->link(
@@ -508,7 +509,7 @@ class AccessPointsController extends AppController
                                     }
 
                                     // add informations to map marker about this IP link if not locked (to access point)
-                                    if (empty($mapMarkers[$neighbouringAccessPoint->id]['locked'])) {
+                                    if (!$mapMarkers[$neighbouringAccessPoint->id]['locked']) {
                                         $mapMarkers[$neighbouringAccessPoint->id]['content'] .=
                                             '<br />'
                                             . $html->link(
@@ -576,6 +577,7 @@ class AccessPointsController extends AppController
                                             'lng' => $neighbouringCustomerPoint->gps_x,
                                             'title' => $neighbouringCustomerPoint->name,
                                             'color' => '#65BA4A',
+                                            'locked' => false,
                                             'content' =>
                                                 '<b>'
                                                 . $html->link(
@@ -708,6 +710,7 @@ class AccessPointsController extends AppController
                                             'lng' => $neighbouringAccessPoint->gps_x,
                                             'title' => $neighbouringAccessPoint->name,
                                             'color' => $neighbouringAccessPoint->access_point_type->color ?? '#FE7569',
+                                            'locked' => false,
                                             'content' =>
                                                 '<b>'
                                                 . $html->link(
@@ -724,7 +727,7 @@ class AccessPointsController extends AppController
                                     }
 
                                     // add informations to map marker about this wireless link if not locked (to access point)
-                                    if (empty($mapMarkers[$neighbouringAccessPoint->id]['locked'])) {
+                                    if (!$mapMarkers[$neighbouringAccessPoint->id]['locked']) {
                                         $mapMarkers[$neighbouringAccessPoint->id]['content'] .=
                                             '<br />'
                                             . $html->link(
@@ -792,6 +795,7 @@ class AccessPointsController extends AppController
                                             'lng' => $neighbouringCustomerPoint->gps_x,
                                             'title' => $neighbouringCustomerPoint->name,
                                             'color' => '#65BA4A',
+                                            'locked' => false,
                                             'content' =>
                                                 '<b>'
                                                 . $html->link(
