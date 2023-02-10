@@ -43,7 +43,7 @@
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('customer_connection_id') ?></th>
                     <th><?= $this->Paginator->sort('device_type_id') ?></th>
-                    <th><?= $this->Paginator->sort('ip_address') ?></th>
+                    <th><?= $this->Paginator->sort('ip_address', __('IP Address')) ?></th>
                     <th><?= $this->Paginator->sort('system_description') ?></th>
                     <th><?= $this->Paginator->sort('board_name') ?></th>
                     <th><?= $this->Paginator->sort('serial_number') ?></th>

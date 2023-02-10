@@ -28,10 +28,10 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('ip_network') ?></th>
-                    <th><?= $this->Paginator->sort('ip_gateway') ?></th>
+                    <th><?= $this->Paginator->sort('ip_network', __('IP Network')) ?></th>
+                    <th><?= $this->Paginator->sort('ip_gateway', __('IP Gateway')) ?></th>
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
-                    <th><?= $this->Paginator->sort('parent_ip_address_range_id') ?></th>
+                    <th><?= $this->Paginator->sort('parent_ip_address_range_id', __('Parent IP Address Range')) ?></th>
                     <th><?= $this->Paginator->sort('for_subnets') ?></th>
                     <th><?= $this->Paginator->sort('for_customer_addresses_set_via_radius') ?></th>
                     <th><?= $this->Paginator->sort('for_customer_addresses_set_manually') ?></th>

@@ -27,7 +27,10 @@
                     <th><?= $this->Paginator->sort('identifier') ?></th>
                     <th><?= $this->Paginator->sort('snmp_community') ?></th>
                     <th><?= $this->Paginator->sort('assign_access_point_by_device_name') ?></th>
-                    <th><?= $this->Paginator->sort('assign_customer_connection_by_ip') ?></th>
+                    <th><?= $this->Paginator->sort(
+                        'assign_customer_connection_by_ip',
+                        __('Assign Customer Connection By IP')
+                    ) ?></th>
                     <th><?= $this->Paginator->sort('allow_technicians_access') ?></th>
                     <th><?= $this->Paginator->sort('automatically_set_a_unique_password') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>

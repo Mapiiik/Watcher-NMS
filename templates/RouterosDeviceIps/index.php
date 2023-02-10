@@ -43,8 +43,8 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('routeros_device_id') ?></th>
-                    <th><?= $this->Paginator->sort('ip_address') ?></th>
+                    <th><?= $this->Paginator->sort('routeros_device_id', __('RouterOS Device')) ?></th>
+                    <th><?= $this->Paginator->sort('ip_address', __('IP Address')) ?></th>
                     <th><?= $this->Paginator->sort('interface_index') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>

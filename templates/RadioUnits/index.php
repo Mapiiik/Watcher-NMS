@@ -48,7 +48,7 @@
                     <th><?= $this->Paginator->sort('serial_number') ?></th>
                     <th><?= $this->Paginator->sort('station_address') ?></th>
                     <th><?= $this->Paginator->sort('expiration_date') ?></th>
-                    <th><?= $this->Paginator->sort('ip_address') ?></th>
+                    <th><?= $this->Paginator->sort('ip_address', __('IP Address')) ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
