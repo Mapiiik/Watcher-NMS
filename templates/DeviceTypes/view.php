@@ -50,7 +50,7 @@
                     <td><?= $deviceType->assign_access_point_by_device_name ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Assign Customer Connection By Ip') ?></th>
+                    <th><?= __('Assign Customer Connection By IP') ?></th>
                     <td><?= $deviceType->assign_customer_connection_by_ip ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
@@ -109,7 +109,7 @@
                             <th><?= __('Name') ?></th>
                             <th><?= __('Access Point') ?></th>
                             <th><?= __('Customer Connection') ?></th>
-                            <th><?= __('Ip Address') ?></th>
+                            <th><?= __('IP Address') ?></th>
                             <th><?= __('System Description') ?></th>
                             <th><?= __('Board Name') ?></th>
                             <th><?= __('Serial Number') ?></th>

@@ -18,14 +18,14 @@
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(__('List Ip Address Ranges'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List IP Address Ranges'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
         <div class="ipAddressRanges form content">
             <?= $this->Form->create($ipAddressRange) ?>
             <fieldset>
-                <legend><?= __('Edit Ip Address Range') ?></legend>
+                <legend><?= __('Edit IP Address Range') ?></legend>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('ip_network');

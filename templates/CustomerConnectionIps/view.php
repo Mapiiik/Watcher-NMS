@@ -9,12 +9,12 @@
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Html->link(
-                __('Edit Customer Connection Ip'),
+                __('Edit Customer Connection IP'),
                 ['action' => 'edit', $customerConnectionIp->id],
                 ['class' => 'side-nav-item']
             ) ?>
             <?= $this->Form->postLink(
-                __('Delete Customer Connection Ip'),
+                __('Delete Customer Connection IP'),
                 ['action' => 'delete', $customerConnectionIp->id],
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $customerConnectionIp->id),
@@ -27,7 +27,7 @@
                 ['class' => 'side-nav-item']
             ) ?>
             <?= $this->Html->link(
-                __('New Customer Connection Ip'),
+                __('New Customer Connection IP'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']
             ) ?>
@@ -59,7 +59,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><?= __('Ip Address') ?></th>
+                    <th><?= __('IP Address') ?></th>
                     <td><?= h($customerConnectionIp->ip_address) ?></td>
                 </tr>
                 <tr>

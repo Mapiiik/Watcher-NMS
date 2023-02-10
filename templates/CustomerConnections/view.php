@@ -132,7 +132,7 @@
                     <table>
                         <tr>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Ip Address') ?></th>
+                            <th><?= __('IP Address') ?></th>
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -187,7 +187,7 @@
                             <th><?= __('Name') ?></th>
                             <th><?= __('Access Point') ?></th>
                             <th><?= __('Device Type') ?></th>
-                            <th><?= __('Ip Address') ?></th>
+                            <th><?= __('IP Address') ?></th>
                             <th><?= __('System Description') ?></th>
                             <th><?= __('Board Name') ?></th>
                             <th><?= __('Serial Number') ?></th>

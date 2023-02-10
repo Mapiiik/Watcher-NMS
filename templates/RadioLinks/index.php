@@ -45,7 +45,7 @@
                     <th><?= __('Maximal Speed') ?></th>
                     <th><?= __('Serial Number') ?></th>
                     <th><?= __('Station Address') ?></th>
-                    <th><?= __('Ip Address') ?></th>
+                    <th><?= __('IP Address') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>

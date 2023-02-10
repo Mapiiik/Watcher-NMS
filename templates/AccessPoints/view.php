@@ -298,11 +298,11 @@
             </div>
             <div class="related">
                 <?= $this->Html->link(
-                    __('New Ip Address Range'),
+                    __('New IP Address Range'),
                     ['controller' => 'IpAddressRanges', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
                 ) ?>
-                <h4><?= __('Related Ip Address Ranges') ?></h4>
+                <h4><?= __('Related IP Address Ranges') ?></h4>
                 <?php if (!empty($accessPoint->ip_address_ranges)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -460,7 +460,7 @@
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Station Address') ?></th>
                             <th><?= __('Expiration Date') ?></th>
-                            <th><?= __('Ip Address') ?></th>
+                            <th><?= __('IP Address') ?></th>
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -538,7 +538,7 @@
                         <tr>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Device Type') ?></th>
-                            <th><?= __('Ip Address') ?></th>
+                            <th><?= __('IP Address') ?></th>
                             <th><?= __('System Description') ?></th>
                             <th><?= __('Board Name') ?></th>
                             <th><?= __('Serial Number') ?></th>

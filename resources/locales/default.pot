@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-06 13:33+0100\n"
+"POT-Creation-Date: 2023-02-10 19:44+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -91,6 +91,8 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:383
 #: ./templates/AccessPoints/view.php:447
 #: ./templates/AccessPoints/view.php:539
+#: ./templates/AccessPoints/view.php:596
+#: ./templates/AccessPoints/view.php:696
 #: ./templates/AntennaTypes/view.php:37
 #: ./templates/AntennaTypes/view.php:110
 #: ./templates/CustomerConnectionIps/view.php:45
@@ -228,21 +230,21 @@ msgstr ""
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:119
-#: ./src/Controller/AccessPointsController.php:145
+#: ./src/Controller/AccessPointsController.php:170
+#: ./src/Controller/AccessPointsController.php:196
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:123
-#: ./src/Controller/AccessPointsController.php:149
+#: ./src/Controller/AccessPointsController.php:174
+#: ./src/Controller/AccessPointsController.php:200
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:170
+#: ./src/Controller/AccessPointsController.php:221
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:172
+#: ./src/Controller/AccessPointsController.php:223
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
@@ -275,20 +277,20 @@ msgstr ""
 
 #: ./src/Controller/CustomerConnectionIpsController.php:81
 #: ./src/Controller/CustomerConnectionIpsController.php:108
-msgid "The customer connection ip has been saved."
+msgid "The customer connection IP has been saved."
 msgstr ""
 
 #: ./src/Controller/CustomerConnectionIpsController.php:85
 #: ./src/Controller/CustomerConnectionIpsController.php:112
-msgid "The customer connection ip could not be saved. Please, try again."
+msgid "The customer connection IP could not be saved. Please, try again."
 msgstr ""
 
 #: ./src/Controller/CustomerConnectionIpsController.php:130
-msgid "The customer connection ip has been deleted."
+msgid "The customer connection IP has been deleted."
 msgstr ""
 
 #: ./src/Controller/CustomerConnectionIpsController.php:132
-msgid "The customer connection ip could not be deleted. Please, try again."
+msgid "The customer connection IP could not be deleted. Please, try again."
 msgstr ""
 
 #: ./src/Controller/CustomerConnectionsController.php:88
@@ -365,20 +367,20 @@ msgstr ""
 
 #: ./src/Controller/IpAddressRangesController.php:96
 #: ./src/Controller/IpAddressRangesController.php:129
-msgid "The ip address range has been saved."
+msgid "The IP address range has been saved."
 msgstr ""
 
 #: ./src/Controller/IpAddressRangesController.php:100
 #: ./src/Controller/IpAddressRangesController.php:133
-msgid "The ip address range could not be saved. Please, try again."
+msgid "The IP address range could not be saved. Please, try again."
 msgstr ""
 
 #: ./src/Controller/IpAddressRangesController.php:157
-msgid "The ip address range has been deleted."
+msgid "The IP address range has been deleted."
 msgstr ""
 
 #: ./src/Controller/IpAddressRangesController.php:159
-msgid "The ip address range could not be deleted. Please, try again."
+msgid "The IP address range could not be deleted. Please, try again."
 msgstr ""
 
 #: ./src/Controller/ManufacturersController.php:77
@@ -527,56 +529,56 @@ msgstr ""
 
 #: ./src/Controller/RouterosDeviceInterfacesController.php:97
 #: ./src/Controller/RouterosDeviceInterfacesController.php:124
-msgid "The routeros device interface has been saved."
+msgid "The RouterOS device interface has been saved."
 msgstr ""
 
 #: ./src/Controller/RouterosDeviceInterfacesController.php:101
 #: ./src/Controller/RouterosDeviceInterfacesController.php:128
-msgid "The routeros device interface could not be saved. Please, try again."
+msgid "The RouterOS device interface could not be saved. Please, try again."
 msgstr ""
 
 #: ./src/Controller/RouterosDeviceInterfacesController.php:146
-msgid "The routeros device interface has been deleted."
+msgid "The RouterOS device interface has been deleted."
 msgstr ""
 
 #: ./src/Controller/RouterosDeviceInterfacesController.php:148
-msgid "The routeros device interface could not be deleted. Please, try again."
+msgid "The RouterOS device interface could not be deleted. Please, try again."
 msgstr ""
 
 #: ./src/Controller/RouterosDeviceIpsController.php:92
 #: ./src/Controller/RouterosDeviceIpsController.php:119
-msgid "The routeros device ip has been saved."
+msgid "The RouterOS device IP has been saved."
 msgstr ""
 
 #: ./src/Controller/RouterosDeviceIpsController.php:96
 #: ./src/Controller/RouterosDeviceIpsController.php:123
-msgid "The routeros device ip could not be saved. Please, try again."
+msgid "The RouterOS device IP could not be saved. Please, try again."
 msgstr ""
 
 #: ./src/Controller/RouterosDeviceIpsController.php:141
-msgid "The routeros device ip has been deleted."
+msgid "The RouterOS device IP has been deleted."
 msgstr ""
 
 #: ./src/Controller/RouterosDeviceIpsController.php:143
-msgid "The routeros device ip could not be deleted. Please, try again."
+msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:142
-#: ./src/Controller/RouterosDevicesController.php:176
-msgid "The routeros device has been saved."
+#: ./src/Controller/RouterosDevicesController.php:183
+#: ./src/Controller/RouterosDevicesController.php:217
+msgid "The RouterOS device has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:150
-#: ./src/Controller/RouterosDevicesController.php:184
-msgid "The routeros device could not be saved. Please, try again."
+#: ./src/Controller/RouterosDevicesController.php:191
+#: ./src/Controller/RouterosDevicesController.php:225
+msgid "The RouterOS device could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:206
-msgid "The routeros device has been deleted."
+#: ./src/Controller/RouterosDevicesController.php:247
+msgid "The RouterOS device has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:208
-msgid "The routeros device could not be deleted. Please, try again."
+#: ./src/Controller/RouterosDevicesController.php:249
+msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr ""
 
 #: ./src/Model/Entity/AccessPoint.php:92
@@ -1602,11 +1604,11 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:301
 #: ./templates/IpAddressRanges/index.php:21
 #: ./templates/IpAddressRanges/view.php:25
-msgid "New Ip Address Range"
+msgid "New IP Address Range"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:305
-msgid "Related Ip Address Ranges"
+msgid "Related IP Address Ranges"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:337
@@ -1920,7 +1922,7 @@ msgstr ""
 #: ./templates/RouterosDevices/export.php:46
 #: ./templates/RouterosDevices/view.php:83
 #: ./templates/RouterosDevices/view.php:231
-msgid "Ip Address"
+msgid "IP Address"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:530
@@ -1936,6 +1938,8 @@ msgid "Related RouterOS Devices"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:540
+#: ./templates/AccessPoints/view.php:597
+#: ./templates/AccessPoints/view.php:697
 #: ./templates/CustomerConnections/view.php:189
 #: ./templates/RouterosDevices/export.php:45
 #: ./templates/RouterosDevices/view.php:70
@@ -1964,6 +1968,57 @@ msgstr ""
 #: ./templates/RouterosDevices/export.php:50
 #: ./templates/RouterosDevices/view.php:109
 msgid "Software Version"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:591
+#: ./templates/RouterosDevices/view.php:264
+msgid "Related RouterOS Wireless Links"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:598
+#: ./templates/RouterosDevices/view.php:269
+msgid "Local Wireless Interface"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:599
+#: ./templates/RouterosDevices/view.php:270
+msgid "Neighbouring Wireless Interface"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:600
+#: ./templates/AccessPoints/view.php:700
+#: ./templates/RouterosDevices/view.php:271
+#: ./templates/RouterosDevices/view.php:353
+msgid "Neighbouring RouterOS Device"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:601
+#: ./templates/AccessPoints/view.php:701
+#: ./templates/RouterosDevices/view.php:272
+#: ./templates/RouterosDevices/view.php:354
+msgid "Neighbouring Access Point"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:602
+#: ./templates/AccessPoints/view.php:702
+#: ./templates/RouterosDevices/view.php:273
+#: ./templates/RouterosDevices/view.php:355
+msgid "Neighbouring Customer Connection"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:691
+#: ./templates/RouterosDevices/view.php:346
+msgid "Related RouterOS IP Links"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:698
+#: ./templates/RouterosDevices/view.php:351
+msgid "Local IP Address"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:699
+#: ./templates/RouterosDevices/view.php:352
+msgid "Neighbouring IP address"
 msgstr ""
 
 #: ./templates/AntennaTypes/add.php:13
@@ -2035,17 +2090,17 @@ msgid "List Customer Connection Ips"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/add.php:23
-msgid "Add Customer Connection Ip"
+msgid "Add Customer Connection IP"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/edit.php:31
 #: ./templates/CustomerConnectionIps/view.php:12
-msgid "Edit Customer Connection Ip"
+msgid "Edit Customer Connection IP"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/index.php:21
 #: ./templates/CustomerConnectionIps/view.php:30
-msgid "New Customer Connection Ip"
+msgid "New Customer Connection IP"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/index.php:25
@@ -2054,7 +2109,7 @@ msgid "Customer Connection Ips"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/view.php:17
-msgid "Delete Customer Connection Ip"
+msgid "Delete Customer Connection IP"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/view.php:49
@@ -2177,7 +2232,7 @@ msgid "Assign Access Point By Device Name"
 msgstr ""
 
 #: ./templates/DeviceTypes/view.php:53
-msgid "Assign Customer Connection By Ip"
+msgid "Assign Customer Connection By IP"
 msgstr ""
 
 #: ./templates/DeviceTypes/view.php:57
@@ -2210,37 +2265,37 @@ msgstr ""
 #: ./templates/IpAddressRanges/add.php:13
 #: ./templates/IpAddressRanges/edit.php:21
 #: ./templates/IpAddressRanges/view.php:24
-msgid "List Ip Address Ranges"
+msgid "List IP Address Ranges"
 msgstr ""
 
 #: ./templates/IpAddressRanges/add.php:20
-msgid "Add Ip Address Range"
+msgid "Add IP Address Range"
 msgstr ""
 
 #: ./templates/IpAddressRanges/edit.php:28
 #: ./templates/IpAddressRanges/view.php:12
-msgid "Edit Ip Address Range"
+msgid "Edit IP Address Range"
 msgstr ""
 
 #: ./templates/IpAddressRanges/index.php:25
 #: ./templates/layout/default.php:100
-msgid "Ip Address Ranges"
+msgid "IP Address Ranges"
 msgstr ""
 
 #: ./templates/IpAddressRanges/view.php:17
-msgid "Delete Ip Address Range"
+msgid "Delete IP Address Range"
 msgstr ""
 
 #: ./templates/IpAddressRanges/view.php:41
-msgid "Ip Network"
+msgid "IP Network"
 msgstr ""
 
 #: ./templates/IpAddressRanges/view.php:45
-msgid "Ip Gateway"
+msgid "IP Gateway"
 msgstr ""
 
 #: ./templates/IpAddressRanges/view.php:57
-msgid "Parent Ip Address Range"
+msgid "Parent IP Address Range"
 msgstr ""
 
 #: ./templates/IpAddressRanges/view.php:69
@@ -2742,25 +2797,26 @@ msgid "List RouterOS Device Ips"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/add.php:23
-msgid "Add RouterOS Device Ip"
+msgid "Add RouterOS Device IP"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/edit.php:31
 #: ./templates/RouterosDeviceIps/view.php:12
-msgid "Edit RouterOS Device Ip"
+msgid "Edit RouterOS Device IP"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/index.php:36
 #: ./templates/RouterosDeviceIps/view.php:30
-msgid "New RouterOS Device Ip"
+msgid "New RouterOS Device IP"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/index.php:40
+#: ./templates/layout/default.php:264
 msgid "RouterOS Device Ips"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/view.php:17
-msgid "Delete RouterOS Device Ip"
+msgid "Delete RouterOS Device IP"
 msgstr ""
 
 #: ./templates/RouterosDevices/add.php:14
@@ -2780,6 +2836,7 @@ msgstr ""
 
 #: ./templates/RouterosDevices/export.php:37
 #: ./templates/RouterosDevices/index.php:37
+#: ./templates/layout/default.php:107
 #: ./templates/layout/default.php:254
 msgid "RouterOS Devices"
 msgstr ""
@@ -2827,20 +2884,12 @@ msgstr ""
 msgid "List Users"
 msgstr ""
 
-#: ./templates/layout/default.php:107
-msgid "RouterOS Devices"
-msgstr ""
-
 #: ./templates/layout/default.php:144
 msgid "Customer Relationship Management"
 msgstr ""
 
 #: ./templates/layout/default.php:179
 msgid "Logout"
-msgstr ""
-
-#: ./templates/layout/default.php:264
-msgid "RouterOS Device Ips"
 msgstr ""
 
 #: ./templates/layout/default.php:351

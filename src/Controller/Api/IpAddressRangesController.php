@@ -93,7 +93,7 @@ class IpAddressRangesController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Ip Address Range id.
+     * @param string|null $id IP Address Range id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -131,7 +131,7 @@ class IpAddressRangesController extends AppController
     /**
      * Edit method
      *
-     * @param string|null $id Ip Address Range id.
+     * @param string|null $id IP Address Range id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -155,7 +155,7 @@ class IpAddressRangesController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Ip Address Range id.
+     * @param string|null $id IP Address Range id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */

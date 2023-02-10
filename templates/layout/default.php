@@ -97,7 +97,7 @@ $request = $this->getRequest();
                 ])]
             ) ?>
             <?= $this->AuthLink->link(
-                __('Ip Address Ranges'),
+                __('IP Address Ranges'),
                 ['controller' => 'IpAddressRanges', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([
                     'IpAddressRanges',

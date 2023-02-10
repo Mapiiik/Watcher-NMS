@@ -180,7 +180,7 @@ class RouterosDevicesController extends AppController
         if ($this->getRequest()->is('post')) {
             $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
             if ($this->RouterosDevices->save($routerosDevice)) {
-                $this->Flash->success(__('The routeros device has been saved.'));
+                $this->Flash->success(__('The RouterOS device has been saved.'));
 
                 if (isset($access_point_id)) {
                     return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
@@ -188,7 +188,7 @@ class RouterosDevicesController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The routeros device could not be saved. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device could not be saved. Please, try again.'));
         }
         $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['order' => 'name']);
         $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['order' => 'name']);
@@ -214,7 +214,7 @@ class RouterosDevicesController extends AppController
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
             if ($this->RouterosDevices->save($routerosDevice)) {
-                $this->Flash->success(__('The routeros device has been saved.'));
+                $this->Flash->success(__('The RouterOS device has been saved.'));
 
                 if (isset($access_point_id)) {
                     return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
@@ -222,7 +222,7 @@ class RouterosDevicesController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The routeros device could not be saved. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device could not be saved. Please, try again.'));
         }
         $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['order' => 'name']);
         $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['order' => 'name']);
@@ -244,9 +244,9 @@ class RouterosDevicesController extends AppController
         $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDevice = $this->RouterosDevices->get($id);
         if ($this->RouterosDevices->delete($routerosDevice)) {
-            $this->Flash->success(__('The routeros device has been deleted.'));
+            $this->Flash->success(__('The RouterOS device has been deleted.'));
         } else {
-            $this->Flash->error(__('The routeros device could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device could not be deleted. Please, try again.'));
         }
 
         if (isset($access_point_id)) {

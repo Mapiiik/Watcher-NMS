@@ -94,11 +94,11 @@ class RouterosDeviceInterfacesController extends AppController
                 ->patchEntity($routerosDeviceInterface, $this->getRequest()->getData());
 
             if ($this->RouterosDeviceInterfaces->save($routerosDeviceInterface)) {
-                $this->Flash->success(__('The routeros device interface has been saved.'));
+                $this->Flash->success(__('The RouterOS device interface has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The routeros device interface could not be saved. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device interface could not be saved. Please, try again.'));
         }
         $routerosDevices = $this->RouterosDeviceInterfaces->RouterosDevices->find('list', ['order' => 'name']);
         $this->set(compact('routerosDeviceInterface', 'routerosDevices'));
@@ -121,11 +121,11 @@ class RouterosDeviceInterfacesController extends AppController
                 ->patchEntity($routerosDeviceInterface, $this->getRequest()->getData());
 
             if ($this->RouterosDeviceInterfaces->save($routerosDeviceInterface)) {
-                $this->Flash->success(__('The routeros device interface has been saved.'));
+                $this->Flash->success(__('The RouterOS device interface has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The routeros device interface could not be saved. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device interface could not be saved. Please, try again.'));
         }
         $routerosDevices = $this->RouterosDeviceInterfaces->RouterosDevices->find('list', ['order' => 'name']);
         $this->set(compact('routerosDeviceInterface', 'routerosDevices'));
@@ -143,9 +143,9 @@ class RouterosDeviceInterfacesController extends AppController
         $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDeviceInterface = $this->RouterosDeviceInterfaces->get($id);
         if ($this->RouterosDeviceInterfaces->delete($routerosDeviceInterface)) {
-            $this->Flash->success(__('The routeros device interface has been deleted.'));
+            $this->Flash->success(__('The RouterOS device interface has been deleted.'));
         } else {
-            $this->Flash->error(__('The routeros device interface could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device interface could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

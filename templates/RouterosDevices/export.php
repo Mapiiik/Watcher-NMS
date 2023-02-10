@@ -43,7 +43,7 @@ $this->setLayout('clean');
                     <th><?= __('Customer Connection') ?></th>
                     <th><?= __('Name') ?></th>
                     <th><?= __('Device Type') ?></th>
-                    <th><?= __('Ip Address') ?></th>
+                    <th><?= __('IP Address') ?></th>
                     <th><?= __('System Description') ?></th>
                     <th><?= __('Board Name') ?></th>
                     <th><?= __('Serial Number') ?></th>

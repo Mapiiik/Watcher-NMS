@@ -48,7 +48,7 @@ class CustomerConnectionIpsController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Customer Connection Ip id.
+     * @param string|null $id Customer Connection IP id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -78,11 +78,11 @@ class CustomerConnectionIpsController extends AppController
                 ->patchEntity($customerConnectionIp, $this->getRequest()->getData());
 
             if ($this->CustomerConnectionIps->save($customerConnectionIp)) {
-                $this->Flash->success(__('The customer connection ip has been saved.'));
+                $this->Flash->success(__('The customer connection IP has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The customer connection ip could not be saved. Please, try again.'));
+            $this->Flash->error(__('The customer connection IP could not be saved. Please, try again.'));
         }
         $customerConnections = $this->CustomerConnectionIps->CustomerConnections->find('list', ['order' => 'name']);
         $this->set(compact('customerConnectionIp', 'customerConnections'));
@@ -91,7 +91,7 @@ class CustomerConnectionIpsController extends AppController
     /**
      * Edit method
      *
-     * @param string|null $id Customer Connection Ip id.
+     * @param string|null $id Customer Connection IP id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -105,11 +105,11 @@ class CustomerConnectionIpsController extends AppController
                 ->patchEntity($customerConnectionIp, $this->getRequest()->getData());
 
             if ($this->CustomerConnectionIps->save($customerConnectionIp)) {
-                $this->Flash->success(__('The customer connection ip has been saved.'));
+                $this->Flash->success(__('The customer connection IP has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The customer connection ip could not be saved. Please, try again.'));
+            $this->Flash->error(__('The customer connection IP could not be saved. Please, try again.'));
         }
         $customerConnections = $this->CustomerConnectionIps->CustomerConnections->find('list', ['order' => 'name']);
         $this->set(compact('customerConnectionIp', 'customerConnections'));
@@ -118,7 +118,7 @@ class CustomerConnectionIpsController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Customer Connection Ip id.
+     * @param string|null $id Customer Connection IP id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -127,9 +127,9 @@ class CustomerConnectionIpsController extends AppController
         $this->getRequest()->allowMethod(['post', 'delete']);
         $customerConnectionIp = $this->CustomerConnectionIps->get($id);
         if ($this->CustomerConnectionIps->delete($customerConnectionIp)) {
-            $this->Flash->success(__('The customer connection ip has been deleted.'));
+            $this->Flash->success(__('The customer connection IP has been deleted.'));
         } else {
-            $this->Flash->error(__('The customer connection ip could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The customer connection IP could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

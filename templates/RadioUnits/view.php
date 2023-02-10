@@ -95,7 +95,7 @@
                     <td><?= h($radioUnit->station_address) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ip Address') ?></th>
+                    <th><?= __('IP Address') ?></th>
                     <td><?= h($radioUnit->ip_address) ?></td>
                 </tr>
                 <tr>

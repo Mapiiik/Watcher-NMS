@@ -56,7 +56,7 @@ class IpAddressRangesController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Ip Address Range id.
+     * @param string|null $id IP Address Range id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -93,11 +93,11 @@ class IpAddressRangesController extends AppController
         if ($this->getRequest()->is('post')) {
             $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->getRequest()->getData());
             if ($this->IpAddressRanges->save($ipAddressRange)) {
-                $this->Flash->success(__('The ip address range has been saved.'));
+                $this->Flash->success(__('The IP address range has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ip address range could not be saved. Please, try again.'));
+            $this->Flash->error(__('The IP address range could not be saved. Please, try again.'));
         }
         $accessPoints = $this->IpAddressRanges->AccessPoints
             ->find('list', ['order' => 'name'])
@@ -111,7 +111,7 @@ class IpAddressRangesController extends AppController
     /**
      * Edit method
      *
-     * @param string|null $id Ip Address Range id.
+     * @param string|null $id IP Address Range id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -126,11 +126,11 @@ class IpAddressRangesController extends AppController
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->getRequest()->getData());
             if ($this->IpAddressRanges->save($ipAddressRange)) {
-                $this->Flash->success(__('The ip address range has been saved.'));
+                $this->Flash->success(__('The IP address range has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ip address range could not be saved. Please, try again.'));
+            $this->Flash->error(__('The IP address range could not be saved. Please, try again.'));
         }
         $accessPoints = $this->IpAddressRanges->AccessPoints
             ->find('list', ['order' => 'name'])
@@ -145,7 +145,7 @@ class IpAddressRangesController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Ip Address Range id.
+     * @param string|null $id IP Address Range id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -154,9 +154,9 @@ class IpAddressRangesController extends AppController
         $this->getRequest()->allowMethod(['post', 'delete']);
         $ipAddressRange = $this->IpAddressRanges->get($id);
         if ($this->IpAddressRanges->delete($ipAddressRange)) {
-            $this->Flash->success(__('The ip address range has been deleted.'));
+            $this->Flash->success(__('The IP address range has been deleted.'));
         } else {
-            $this->Flash->error(__('The ip address range could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The IP address range could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

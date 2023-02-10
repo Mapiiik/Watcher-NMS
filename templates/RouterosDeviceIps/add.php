@@ -20,7 +20,7 @@
         <div class="routerosDeviceIps form content">
             <?= $this->Form->create($routerosDeviceIp) ?>
             <fieldset>
-                <legend><?= __('Add RouterOS Device Ip') ?></legend>
+                <legend><?= __('Add RouterOS Device IP') ?></legend>
                 <?php
                     echo $this->Form->control('routeros_device_id', ['options' => $routerosDevices, 'empty' => true]);
                     echo $this->Form->control('name');

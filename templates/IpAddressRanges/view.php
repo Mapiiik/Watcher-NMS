@@ -9,20 +9,20 @@
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Html->link(
-                __('Edit Ip Address Range'),
+                __('Edit IP Address Range'),
                 ['action' => 'edit', $ipAddressRange->id],
                 ['class' => 'side-nav-item']
             ) ?>
             <?= $this->Form->postLink(
-                __('Delete Ip Address Range'),
+                __('Delete IP Address Range'),
                 ['action' => 'delete', $ipAddressRange->id],
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id),
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(__('List Ip Address Ranges'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Ip Address Range'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List IP Address Ranges'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('New IP Address Range'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-90">
@@ -38,11 +38,11 @@
                     <td><?= h($ipAddressRange->name) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ip Network') ?></th>
+                    <th><?= __('IP Network') ?></th>
                     <td><?= h($ipAddressRange->ip_network) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ip Gateway') ?></th>
+                    <th><?= __('IP Gateway') ?></th>
                     <td><?= h($ipAddressRange->ip_gateway) ?></td>
                 </tr>
                 <tr>
@@ -54,7 +54,7 @@
                         ) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Parent Ip Address Range') ?></th>
+                    <th><?= __('Parent IP Address Range') ?></th>
                     <td><?= $ipAddressRange->has('parent_ip_address_range') ?
                         $this->Html->link(
                             $ipAddressRange->parent_ip_address_range->name,

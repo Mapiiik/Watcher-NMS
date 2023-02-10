@@ -33,7 +33,7 @@ $this->setLayout('clean');
                     <th><?= __('Serial Number') ?></th>
                     <th><?= __('Station Address') ?></th>
                     <th><?= __('Expiration Date') ?></th>
-                    <th><?= __('Ip Address') ?></th>
+                    <th><?= __('IP Address') ?></th>
                     <th><?= __('Device Login') ?></th>
                     <th><?= __('Device Password') ?></th>
                     <th><?= __('Gps Y') ?></th>

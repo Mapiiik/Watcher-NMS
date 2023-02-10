@@ -80,7 +80,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><?= __('Ip Address') ?></th>
+                    <th><?= __('IP Address') ?></th>
                     <td><?= h($routerosDevice->ip_address) ?></td>
                 </tr>
                 <?php if (isset($routerosDevice->username) && isset($routerosDevice->password)) : ?>
@@ -228,7 +228,7 @@
                     <table>
                         <tr>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Ip Address') ?></th>
+                            <th><?= __('IP Address') ?></th>
                             <th><?= __('Interface Index') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>

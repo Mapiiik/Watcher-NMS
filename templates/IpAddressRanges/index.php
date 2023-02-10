@@ -18,11 +18,11 @@
 
 <div class="ipAddressRanges index content">
     <?= $this->Html->link(
-        __('New Ip Address Range'),
+        __('New IP Address Range'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
     ) ?>
-    <h3><?= __('Ip Address Ranges') ?></h3>
+    <h3><?= __('IP Address Ranges') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>

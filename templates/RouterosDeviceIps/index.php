@@ -33,7 +33,7 @@
 
 <div class="routerosDeviceIps index content">
     <?= $this->Html->link(
-        __('New RouterOS Device Ip'),
+        __('New RouterOS Device IP'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
     ) ?>

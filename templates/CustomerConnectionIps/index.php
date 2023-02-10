@@ -18,7 +18,7 @@
 
 <div class="customerConnectionIps index content">
     <?= $this->Html->link(
-        __('New Customer Connection Ip'),
+        __('New Customer Connection IP'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
     ) ?>

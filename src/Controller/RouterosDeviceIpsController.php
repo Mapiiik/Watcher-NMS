@@ -59,7 +59,7 @@ class RouterosDeviceIpsController extends AppController
     /**
      * View method
      *
-     * @param string|null $id RouterOS Device Ip id.
+     * @param string|null $id RouterOS Device IP id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -89,11 +89,11 @@ class RouterosDeviceIpsController extends AppController
                 ->patchEntity($routerosDeviceIp, $this->getRequest()->getData());
 
             if ($this->RouterosDeviceIps->save($routerosDeviceIp)) {
-                $this->Flash->success(__('The routeros device ip has been saved.'));
+                $this->Flash->success(__('The RouterOS device IP has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The routeros device ip could not be saved. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device IP could not be saved. Please, try again.'));
         }
         $routerosDevices = $this->RouterosDeviceIps->RouterosDevices->find('list', ['order' => 'name']);
         $this->set(compact('routerosDeviceIp', 'routerosDevices'));
@@ -102,7 +102,7 @@ class RouterosDeviceIpsController extends AppController
     /**
      * Edit method
      *
-     * @param string|null $id RouterOS Device Ip id.
+     * @param string|null $id RouterOS Device IP id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -116,11 +116,11 @@ class RouterosDeviceIpsController extends AppController
                 ->patchEntity($routerosDeviceIp, $this->getRequest()->getData());
 
             if ($this->RouterosDeviceIps->save($routerosDeviceIp)) {
-                $this->Flash->success(__('The routeros device ip has been saved.'));
+                $this->Flash->success(__('The RouterOS device IP has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The routeros device ip could not be saved. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device IP could not be saved. Please, try again.'));
         }
         $routerosDevices = $this->RouterosDeviceIps->RouterosDevices->find('list', ['order' => 'name']);
         $this->set(compact('routerosDeviceIp', 'routerosDevices'));
@@ -129,7 +129,7 @@ class RouterosDeviceIpsController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id RouterOS Device Ip id.
+     * @param string|null $id RouterOS Device IP id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -138,9 +138,9 @@ class RouterosDeviceIpsController extends AppController
         $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id);
         if ($this->RouterosDeviceIps->delete($routerosDeviceIp)) {
-            $this->Flash->success(__('The routeros device ip has been deleted.'));
+            $this->Flash->success(__('The RouterOS device IP has been deleted.'));
         } else {
-            $this->Flash->error(__('The routeros device ip could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The RouterOS device IP could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
