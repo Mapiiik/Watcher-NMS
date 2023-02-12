@@ -578,7 +578,7 @@ class RouterosDevicesController extends AppController
                         $routerosDeviceInterfaceData = array_merge($routerosDeviceInterfaceData, [
                             'ssid' => $mtxrWl60GTable['3.' . $ifIndex]->text ?? null,
                             'bssid' =>
-                                $mtxrWl60GTable['2.' . $ifIndex]->value === 1 // BSSID only for stations
+                                intval($mtxrWl60GTable['2.' . $ifIndex]->value) === 1 // BSSID only for stations
                                 ?
                                 $this->nullIfEmptyString(
                                     $this->strToHex(
