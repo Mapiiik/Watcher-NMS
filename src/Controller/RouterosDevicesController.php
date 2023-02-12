@@ -522,6 +522,7 @@ class RouterosDevicesController extends AppController
             $ifTable = $this->snmpWalk('.1.3.6.1.2.1.2.2.1', true);
             $mtxrWlApTable = $this->snmpWalk('.1.3.6.1.4.1.14988.1.1.1.3.1', true);
             $mtxrWlStatTable = $this->snmpWalk('.1.3.6.1.4.1.14988.1.1.1.1.1', true);
+            $mtxrWl60GTable = $this->snmpWalk('.1.3.6.1.4.1.14988.1.1.1.8.1', true);
 
             if (is_array($ifTableIndexes)) {
                 foreach ($ifTableIndexes as $ifTableIndex) {
@@ -567,6 +568,22 @@ class RouterosDevicesController extends AppController
                             ),
                             'band' => $mtxrWlStatTable['8.' . $ifIndex]->text ?? null,
                             'frequency' => $mtxrWlStatTable['7.' . $ifIndex]->value ?? null,
+                            'noise_floor' => null,
+                            'client_count' => null,
+                            'overall_tx_ccq' => null,
+                        ]);
+
+                    // wireless 60 GHz
+                    } elseif (isset($mtxrWl60GTable['3.' . $ifIndex])) {
+                        $routerosDeviceInterfaceData = array_merge($routerosDeviceInterfaceData, [
+                            'ssid' => $mtxrWl60GTable['3.' . $ifIndex]->text ?? null,
+                            'bssid' => $this->nullIfEmptyString(
+                                $this->strToHex(
+                                    $mtxrWl60GTable['5.' . $ifIndex]->value ?? ''
+                                )
+                            ),
+                            'band' => null,
+                            'frequency' => $mtxrWl60GTable['6.' . $ifIndex]->value ?? null,
                             'noise_floor' => null,
                             'client_count' => null,
                             'overall_tx_ccq' => null,
