@@ -86,11 +86,11 @@ class AccessPointsController extends AppController
                             'RouterosIpLinks.ip_address' => 'ASC',
                         ],
                         'NeighbouringIpAddresses' => [
+                            'conditions' => [
+                                'NeighbouringIpAddresses.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
                             'RouterosDevices' => [
-                                'conditions' => [
-                                    'RouterosDevices.modified >' =>
-                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
-                                ],
                                 'AccessPoints',
                                 'CustomerConnections',
                             ],
@@ -101,21 +101,21 @@ class AccessPointsController extends AppController
                             'RouterosWirelessLinks.name' => 'ASC',
                         ],
                         'NeighbouringStations' => [
+                            'conditions' => [
+                                'NeighbouringStations.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
                             'RouterosDevices' => [
-                                'conditions' => [
-                                    'RouterosDevices.modified >' =>
-                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
-                                ],
                                 'AccessPoints',
                                 'CustomerConnections',
                             ],
                         ],
                         'NeighbouringAccessPoints' => [
+                            'conditions' => [
+                                'NeighbouringAccessPoints.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
                             'RouterosDevices' => [
-                                'conditions' => [
-                                    'RouterosDevices.modified >' =>
-                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
-                                ],
                                 'AccessPoints',
                                 'CustomerConnections',
                             ],
@@ -270,16 +270,16 @@ class AccessPointsController extends AppController
                                 'NeighbouringIpAddresses.routeros_device_id',
                                 'NeighbouringIpAddresses.ip_address',
                             ],
+                            'conditions' => [
+                                'NeighbouringIpAddresses.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
                             'RouterosDevices' => [
                                 'fields' => [
                                     'RouterosDevices.id',
                                     'RouterosDevices.name',
                                     'RouterosDevices.access_point_id',
                                     'RouterosDevices.customer_connection_id',
-                                ],
-                                'conditions' => [
-                                    'RouterosDevices.modified >' =>
-                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
                                 ],
                                 'AccessPoints' => [
                                     'strategy' => 'select',
@@ -311,16 +311,16 @@ class AccessPointsController extends AppController
                                 'NeighbouringStations.routeros_device_id',
                                 'NeighbouringStations.name',
                             ],
+                            'conditions' => [
+                                'NeighbouringStations.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
                             'RouterosDevices' => [
                                 'fields' => [
                                     'RouterosDevices.id',
                                     'RouterosDevices.name',
                                     'RouterosDevices.access_point_id',
                                     'RouterosDevices.customer_connection_id',
-                                ],
-                                'conditions' => [
-                                    'RouterosDevices.modified >' =>
-                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
                                 ],
                                 'AccessPoints' => [
                                     'strategy' => 'select',
@@ -337,16 +337,16 @@ class AccessPointsController extends AppController
                                 'NeighbouringAccessPoints.routeros_device_id',
                                 'NeighbouringAccessPoints.name',
                             ],
+                            'conditions' => [
+                                'NeighbouringAccessPoints.modified >' =>
+                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                            ],
                             'RouterosDevices' => [
                                 'fields' => [
                                     'RouterosDevices.id',
                                     'RouterosDevices.name',
                                     'RouterosDevices.access_point_id',
                                     'RouterosDevices.customer_connection_id',
-                                ],
-                                'conditions' => [
-                                    'RouterosDevices.modified >' =>
-                                        (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
                                 ],
                                 'AccessPoints' => [
                                     'strategy' => 'select',
