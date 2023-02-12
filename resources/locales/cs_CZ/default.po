@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-12 14:01+0100\n"
-"PO-Revision-Date: 2023-02-12 14:01+0100\n"
+"POT-Creation-Date: 2023-02-12 14:14+0100\n"
+"PO-Revision-Date: 2023-02-12 14:14+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -83,10 +83,10 @@ msgstr "Tento měsíc není třeba provádět žádné odečty elektroměrů."
 #: templates/AccessPointTypes/view.php:45
 #: templates/AccessPointTypes/view.php:97 templates/AccessPoints/view.php:37
 #: templates/AccessPoints/view.php:166 templates/AccessPoints/view.php:238
-#: templates/AccessPoints/view.php:383 templates/AccessPoints/view.php:447
-#: templates/AccessPoints/view.php:539 templates/AccessPoints/view.php:596
-#: templates/AccessPoints/view.php:702 templates/AntennaTypes/view.php:37
-#: templates/AntennaTypes/view.php:110
+#: templates/AccessPoints/view.php:310 templates/AccessPoints/view.php:383
+#: templates/AccessPoints/view.php:447 templates/AccessPoints/view.php:539
+#: templates/AccessPoints/view.php:596 templates/AccessPoints/view.php:702
+#: templates/AntennaTypes/view.php:37 templates/AntennaTypes/view.php:110
 #: templates/CustomerConnectionIps/view.php:45
 #: templates/CustomerConnections/view.php:45
 #: templates/CustomerConnections/view.php:134
@@ -1412,6 +1412,51 @@ msgstr "Nový rozsah IP adres"
 msgid "Related IP Address Ranges"
 msgstr "Související rozsahy IP adres"
 
+#: templates/AccessPoints/view.php:311 templates/IpAddressRanges/add.php:24
+#: templates/IpAddressRanges/edit.php:32 templates/IpAddressRanges/index.php:31
+#: templates/IpAddressRanges/view.php:41
+msgid "IP Network"
+msgstr "IP síť"
+
+#: templates/AccessPoints/view.php:312 templates/IpAddressRanges/add.php:27
+#: templates/IpAddressRanges/edit.php:35 templates/IpAddressRanges/index.php:32
+#: templates/IpAddressRanges/view.php:45
+msgid "IP Gateway"
+msgstr "IP brána"
+
+#: templates/AccessPoints/view.php:313 templates/IpAddressRanges/index.php:34
+#: templates/IpAddressRanges/view.php:57
+msgid "Parent IP Address Range"
+msgstr "Nadřazený rozsah IP adres"
+
+#: templates/AccessPoints/view.php:314 templates/IpAddressRanges/view.php:69
+msgid "For Subnets"
+msgstr "Pro podsítě"
+
+#: templates/AccessPoints/view.php:315 templates/IpAddressRanges/view.php:73
+msgid "For Customer Addresses Set Via Radius"
+msgstr "Pro adresy zákazníků nastavené přes RADIUS"
+
+#: templates/AccessPoints/view.php:316 templates/IpAddressRanges/view.php:77
+msgid "For Customer Addresses Set Manually"
+msgstr "Pro adresy zákazníků nastavené ručně"
+
+#: templates/AccessPoints/view.php:317 templates/IpAddressRanges/view.php:81
+msgid "For Technology Addresses Set Manually"
+msgstr "Pro adresy technologií nastavené ručně"
+
+#: templates/AccessPoints/view.php:318 templates/IpAddressRanges/view.php:85
+msgid "For Customer Networks Set Via Radius"
+msgstr "Pro sítě zákazníků nastavené přes RADIUS"
+
+#: templates/AccessPoints/view.php:319 templates/IpAddressRanges/view.php:89
+msgid "For Customer Networks Set Manually"
+msgstr "Pro sítě zákazníků nastavené ručně"
+
+#: templates/AccessPoints/view.php:320 templates/IpAddressRanges/view.php:93
+msgid "For Technology Networks Set Manually"
+msgstr "Pro sítě technologií nastavené ručně"
+
 #: templates/AccessPoints/view.php:337 templates/AccessPoints/view.php:339
 #: templates/AccessPoints/view.php:341 templates/AccessPoints/view.php:343
 #: templates/AccessPoints/view.php:345 templates/AccessPoints/view.php:347
@@ -1952,16 +1997,6 @@ msgstr "Seznam rozsahů IP adres"
 msgid "Add IP Address Range"
 msgstr "Přidat rozsah IP adres"
 
-#: templates/IpAddressRanges/add.php:24 templates/IpAddressRanges/edit.php:32
-#: templates/IpAddressRanges/index.php:31 templates/IpAddressRanges/view.php:41
-msgid "IP Network"
-msgstr "IP síť"
-
-#: templates/IpAddressRanges/add.php:27 templates/IpAddressRanges/edit.php:35
-#: templates/IpAddressRanges/index.php:32 templates/IpAddressRanges/view.php:45
-msgid "IP Gateway"
-msgstr "IP brána"
-
 #: templates/IpAddressRanges/edit.php:28 templates/IpAddressRanges/view.php:12
 msgid "Edit IP Address Range"
 msgstr "Upravit rozsah IP adres"
@@ -1970,41 +2005,9 @@ msgstr "Upravit rozsah IP adres"
 msgid "IP Address Ranges"
 msgstr "Rozsahy IP adres"
 
-#: templates/IpAddressRanges/index.php:34 templates/IpAddressRanges/view.php:57
-msgid "Parent IP Address Range"
-msgstr "Nadřazený rozsah IP adres"
-
 #: templates/IpAddressRanges/view.php:17
 msgid "Delete IP Address Range"
 msgstr "Odstranit rozsah IP adres"
-
-#: templates/IpAddressRanges/view.php:69
-msgid "For Subnets"
-msgstr "Pro podsítě"
-
-#: templates/IpAddressRanges/view.php:73
-msgid "For Customer Addresses Set Via Radius"
-msgstr "Pro adresy zákazníků nastavené přes RADIUS"
-
-#: templates/IpAddressRanges/view.php:77
-msgid "For Customer Addresses Set Manually"
-msgstr "Pro adresy zákazníků nastavené ručně"
-
-#: templates/IpAddressRanges/view.php:81
-msgid "For Technology Addresses Set Manually"
-msgstr "Pro adresy technologií nastavené ručně"
-
-#: templates/IpAddressRanges/view.php:85
-msgid "For Customer Networks Set Via Radius"
-msgstr "Pro sítě zákazníků nastavené přes RADIUS"
-
-#: templates/IpAddressRanges/view.php:89
-msgid "For Customer Networks Set Manually"
-msgstr "Pro sítě zákazníků nastavené ručně"
-
-#: templates/IpAddressRanges/view.php:93
-msgid "For Technology Networks Set Manually"
-msgstr "Pro sítě technologií nastavené ručně"
 
 #: templates/Manufacturers/add.php:11 templates/Manufacturers/edit.php:19
 #: templates/Manufacturers/view.php:25

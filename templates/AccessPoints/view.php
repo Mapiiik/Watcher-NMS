@@ -307,17 +307,17 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= $this->Paginator->sort('name') ?></th>
-                            <th><?= $this->Paginator->sort('ip_network') ?></th>
-                            <th><?= $this->Paginator->sort('ip_gateway') ?></th>
-                            <th><?= $this->Paginator->sort('parent_ip_address_range_id') ?></th>
-                            <th><?= $this->Paginator->sort('for_subnets') ?></th>
-                            <th><?= $this->Paginator->sort('for_customer_addresses_set_via_radius') ?></th>
-                            <th><?= $this->Paginator->sort('for_customer_addresses_set_manually') ?></th>
-                            <th><?= $this->Paginator->sort('for_technology_addresses_set_manually') ?></th>
-                            <th><?= $this->Paginator->sort('for_customer_networks_set_via_radius') ?></th>
-                            <th><?= $this->Paginator->sort('for_customer_networks_set_manually') ?></th>
-                            <th><?= $this->Paginator->sort('for_technology_networks_set_manually') ?></th>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('IP Network') ?></th>
+                            <th><?= __('IP Gateway') ?></th>
+                            <th><?= __('Parent IP Address Range') ?></th>
+                            <th><?= __('For Subnets') ?></th>
+                            <th><?= __('For Customer Addresses Set Via Radius') ?></th>
+                            <th><?= __('For Customer Addresses Set Manually') ?></th>
+                            <th><?= __('For Technology Addresses Set Manually') ?></th>
+                            <th><?= __('For Customer Networks Set Via Radius') ?></th>
+                            <th><?= __('For Customer Networks Set Manually') ?></th>
+                            <th><?= __('For Technology Networks Set Manually') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($accessPoint->ip_address_ranges as $ipAddressRange) : ?>
