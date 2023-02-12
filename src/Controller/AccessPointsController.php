@@ -80,6 +80,7 @@ class AccessPointsController extends AppController
                     'AntennaTypes',
                 ],
                 'RouterosDevices' => [
+                    'sort' => ['RouterosDevices.name' => 'ASC'],
                     'DeviceTypes',
                     'RouterosIpLinks' => [
                         'sort' => [
