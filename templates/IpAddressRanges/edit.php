@@ -28,8 +28,12 @@
                 <legend><?= __('Edit IP Address Range') ?></legend>
                 <?php
                 echo $this->Form->control('name');
-                echo $this->Form->control('ip_network');
-                echo $this->Form->control('ip_gateway');
+                echo $this->Form->control('ip_network', [
+                    'label' => __('IP Network'),
+                ]);
+                echo $this->Form->control('ip_gateway', [
+                    'label' => __('IP Gateway'),
+                ]);
                 if (!isset($access_point_id)) {
                     echo $this->Form->control('access_point_id', [
                         'options' => $accessPoints,

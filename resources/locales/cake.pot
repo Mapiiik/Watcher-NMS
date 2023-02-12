@@ -4,8 +4,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: CakePHP 4.4.10\n"
-"POT-Creation-Date: 2023-01-06 09:14+0100\n"
+"Project-Id-Version: CakePHP 4.4.11\n"
+"POT-Creation-Date: 2023-02-12 13:40+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,17 +14,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ./templates/Error/error400.php:36
-#: ./templates/Error/error500.php:40
+#: ./templates/Error/error400.php:40
+#: ./templates/Error/error500.php:44
 msgid "Error"
 msgstr ""
 
-#: ./templates/Error/error400.php:37
+#: ./templates/Error/error400.php:41
 msgid "The requested address {0} was not found on this server."
 msgstr ""
 
-#: ./templates/Error/error500.php:38
-msgid "An Internal Error Has Occurred"
+#: ./templates/Error/error500.php:42
+#: ./vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php:369
+msgid "An Internal Error Has Occurred."
 msgstr ""
 
 #: ./vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:462
@@ -33,10 +34,6 @@ msgstr ""
 
 #: ./vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php:367
 msgid "Not Found"
-msgstr ""
-
-#: ./vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php:369
-msgid "An Internal Error Has Occurred."
 msgstr ""
 
 #: ./vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:390
@@ -251,7 +248,7 @@ msgstr ""
 msgid "The count does not match {0}{1}"
 msgstr ""
 
-#: ./vendor/cakephp/cakephp/src/Utility/Text.php:924
+#: ./vendor/cakephp/cakephp/src/Utility/Text.php:916
 msgid "and"
 msgstr ""
 

@@ -29,11 +29,15 @@
             <fieldset>
                 <legend><?= __('Edit Radar Interference') ?></legend>
                 <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('mac_address');
-                    echo $this->Form->control('ssid');
-                    echo $this->Form->control('signal');
-                    echo $this->Form->control('radio_name');
+                echo $this->Form->control('name');
+                echo $this->Form->control('mac_address', [
+                    'label' => __('MAC Address'),
+                ]);
+                echo $this->Form->control('ssid', [
+                    'label' => __('SSID'),
+                ]);
+                echo $this->Form->control('signal');
+                echo $this->Form->control('radio_name');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

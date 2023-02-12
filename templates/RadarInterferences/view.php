@@ -46,11 +46,11 @@
                     <td><?= h($radarInterference->name) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Mac Address') ?></th>
+                    <th><?= __('MAC Address') ?></th>
                     <td><?= h($radarInterference->mac_address) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ssid') ?></th>
+                    <th><?= __('SSID') ?></th>
                     <td><?= h($radarInterference->ssid) ?></td>
                 </tr>
                 <tr>
@@ -103,9 +103,9 @@
                             <th><?= __('RouterOS Device') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Comment') ?></th>
-                            <th><?= __('Mac Address') ?></th>
-                            <th><?= __('Ssid') ?></th>
-                            <th><?= __('Bssid') ?></th>
+                            <th><?= __('MAC Address') ?></th>
+                            <th><?= __('SSID') ?></th>
+                            <th><?= __('BSSID') ?></th>
                             <th><?= __('Band') ?></th>
                             <th><?= __('Frequency') ?></th>
                             <th><?= __('Noise Floor') ?></th>

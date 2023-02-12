@@ -28,7 +28,7 @@ $this->setLayout('clean');
                     <th><?= __('Operating Speed') ?></th>
                     <th><?= __('Maximal Speed') ?></th>
                     <th><?= __('Acm') ?></th>
-                    <th><?= __('Atpc') ?></th>
+                    <th><?= __('ATPC') ?></th>
                     <th><?= __('Firmware Version') ?></th>
                     <th><?= __('Serial Number') ?></th>
                     <th><?= __('Station Address') ?></th>

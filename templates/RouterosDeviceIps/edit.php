@@ -30,10 +30,16 @@
             <fieldset>
                 <legend><?= __('Edit RouterOS Device IP') ?></legend>
                 <?php
-                    echo $this->Form->control('routeros_device_id', ['options' => $routerosDevices, 'empty' => true]);
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('ip_address');
-                    echo $this->Form->control('interface_index');
+                echo $this->Form->control('routeros_device_id', [
+                    'label' => __('RouterOS Device'),
+                    'options' => $routerosDevices,
+                    'empty' => true,
+                ]);
+                echo $this->Form->control('name');
+                echo $this->Form->control('ip_address', [
+                    'label' => __('IP Address'),
+                ]);
+                echo $this->Form->control('interface_index');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

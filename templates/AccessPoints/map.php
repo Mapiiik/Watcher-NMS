@@ -62,11 +62,22 @@ $this->GoogleMap->finalize();
             <fieldset>
                 <legend><?= __('Map Options') ?></legend>
                 <?php
-                echo $this->Form->control('routeros_ip_links');
-                echo $this->Form->control('routeros_wireless_links');
+                echo $this->Form->control('routeros_ip_links', [
+                    'label' => __('RouterOS IP Links'),
+                ]);
+                echo $this->Form->control('routeros_wireless_links', [
+                    'label' => __('RouterOS Wireless Links'),
+                ]);
                 echo $this->Form->control('linked_customers');
-                echo $this->Form->control('access_point_id', ['options' => $accessPointsFilter, 'empty' => true]);
-                echo $this->Form->control('routeros_device_id', ['options' => $routerosDevicesFilter, 'empty' => true]);
+                echo $this->Form->control('access_point_id', [
+                    'options' => $accessPointsFilter,
+                    'empty' => true,
+                ]);
+                echo $this->Form->control('routeros_device_id', [
+                    'label' => __('RouterOS Device'),
+                    'options' => $routerosDevicesFilter,
+                    'empty' => true,
+                ]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -27,7 +27,9 @@
                     'options' => $customerConnections,
                     'empty' => true,
                 ]);
-                echo $this->Form->control('ip_address');
+                echo $this->Form->control('ip_address', [
+                    'label' => __('IP Address'),
+                ]);
                 echo $this->Form->control('note');
                 ?>
             </fieldset>

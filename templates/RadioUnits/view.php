@@ -143,7 +143,7 @@
                     <td><?= $radioUnit->acm ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Atpc') ?></th>
+                    <th><?= __('ATPC') ?></th>
                     <td><?= $radioUnit->atpc ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>

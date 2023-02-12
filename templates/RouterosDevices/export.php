@@ -49,9 +49,9 @@ $this->setLayout('clean');
                     <th><?= __('Serial Number') ?></th>
                     <th><?= __('Software Version') ?></th>
                     <th><?= __('Firmware Version') ?></th>
-                    <th><?= __('Mac Address') ?></th>
+                    <th><?= __('MAC Address') ?></th>
                     <th><?= __('Band') ?></th>
-                    <th><?= __('Ssid') ?></th>
+                    <th><?= __('SSID') ?></th>
                     <th><?= __('Gps Y') ?></th>
                     <th><?= __('Gps X') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>

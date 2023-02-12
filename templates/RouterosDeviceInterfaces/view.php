@@ -63,15 +63,15 @@
                     <td><?= h($routerosDeviceInterface->comment) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Mac Address') ?></th>
+                    <th><?= __('MAC Address') ?></th>
                     <td><?= h($routerosDeviceInterface->mac_address) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ssid') ?></th>
+                    <th><?= __('SSID') ?></th>
                     <td><?= h($routerosDeviceInterface->ssid) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Bssid') ?></th>
+                    <th><?= __('BSSID') ?></th>
                     <td><?= h($routerosDeviceInterface->bssid) ?></td>
                 </tr>
                 <tr>

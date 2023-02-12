@@ -38,8 +38,8 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('mac_address') ?></th>
-                    <th><?= $this->Paginator->sort('ssid') ?></th>
+                    <th><?= $this->Paginator->sort('mac_address', __('MAC Address')) ?></th>
+                    <th><?= $this->Paginator->sort('ssid', __('SSID')) ?></th>
                     <th><?= $this->Paginator->sort('signal') ?></th>
                     <th><?= $this->Paginator->sort('radio_name') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>

@@ -51,12 +51,16 @@
                 echo $this->Form->control('operating_speed');
                 echo $this->Form->control('maximal_speed');
                 echo $this->Form->control('acm');
-                echo $this->Form->control('atpc');
+                echo $this->Form->control('atpc', [
+                    'label' => __('ATPC'),
+                ]);
                 echo $this->Form->control('firmware_version');
                 echo $this->Form->control('serial_number');
                 echo $this->Form->control('station_address');
                 echo $this->Form->control('expiration_date', ['empty' => true]);
-                echo $this->Form->control('ip_address');
+                echo $this->Form->control('ip_address', [
+                    'label' => __('IP Address'),
+                ]);
                 echo $this->Form->control('device_login');
                 echo $this->Form->control('device_password');
                 echo $this->Form->control('note');

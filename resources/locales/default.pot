@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-10 20:26+0100\n"
+"POT-Creation-Date: 2023-02-12 13:51+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: ./src/Command/ElectricityMeterReadingsReportCommand.php:93
 #: ./templates/ElectricityMeterReadings/index.php:25
-#: ./templates/layout/default.php:214
+#: ./templates/layout/default.php:215
 msgid "Electricity Meter Readings"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:447
 #: ./templates/AccessPoints/view.php:539
 #: ./templates/AccessPoints/view.php:596
-#: ./templates/AccessPoints/view.php:696
+#: ./templates/AccessPoints/view.php:702
 #: ./templates/AntennaTypes/view.php:37
 #: ./templates/AntennaTypes/view.php:110
 #: ./templates/CustomerConnectionIps/view.php:45
@@ -133,10 +133,32 @@ msgid "Name"
 msgstr ""
 
 #: ./src/Command/RadarInterferencesReportCommand.php:87
+#: ./templates/RadarInterferences/add.php:26
+#: ./templates/RadarInterferences/edit.php:34
+#: ./templates/RadarInterferences/index.php:41
+#: ./templates/RadarInterferences/view.php:49
+#: ./templates/RadarInterferences/view.php:106
+#: ./templates/RouterosDeviceInterfaces/add.php:33
+#: ./templates/RouterosDeviceInterfaces/edit.php:41
+#: ./templates/RouterosDeviceInterfaces/index.php:48
+#: ./templates/RouterosDeviceInterfaces/view.php:66
+#: ./templates/RouterosDevices/export.php:52
+#: ./templates/RouterosDevices/view.php:157
 msgid "MAC Address"
 msgstr ""
 
 #: ./src/Command/RadarInterferencesReportCommand.php:88
+#: ./templates/RadarInterferences/add.php:29
+#: ./templates/RadarInterferences/edit.php:37
+#: ./templates/RadarInterferences/index.php:42
+#: ./templates/RadarInterferences/view.php:53
+#: ./templates/RadarInterferences/view.php:107
+#: ./templates/RouterosDeviceInterfaces/add.php:36
+#: ./templates/RouterosDeviceInterfaces/edit.php:44
+#: ./templates/RouterosDeviceInterfaces/index.php:49
+#: ./templates/RouterosDeviceInterfaces/view.php:70
+#: ./templates/RouterosDevices/export.php:54
+#: ./templates/RouterosDevices/view.php:158
 msgid "SSID"
 msgstr ""
 
@@ -230,21 +252,21 @@ msgstr ""
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:170
-#: ./src/Controller/AccessPointsController.php:196
+#: ./src/Controller/AccessPointsController.php:171
+#: ./src/Controller/AccessPointsController.php:197
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:174
-#: ./src/Controller/AccessPointsController.php:200
+#: ./src/Controller/AccessPointsController.php:175
+#: ./src/Controller/AccessPointsController.php:201
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:221
+#: ./src/Controller/AccessPointsController.php:222
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:223
+#: ./src/Controller/AccessPointsController.php:224
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
@@ -630,8 +652,8 @@ msgstr ""
 #: ./templates/AccessPointTypes/index.php:32
 #: ./templates/AccessPointTypes/view.php:10
 #: ./templates/AccessPointTypes/view.php:104
-#: ./templates/AccessPoints/add.php:11
-#: ./templates/AccessPoints/edit.php:11
+#: ./templates/AccessPoints/add.php:12
+#: ./templates/AccessPoints/edit.php:12
 #: ./templates/AccessPoints/index.php:35
 #: ./templates/AccessPoints/view.php:10
 #: ./templates/AccessPoints/view.php:172
@@ -753,13 +775,13 @@ msgstr ""
 #: ./templates/AccessPointContacts/edit.php:44
 #: ./templates/AccessPointTypes/add.php:27
 #: ./templates/AccessPointTypes/edit.php:35
-#: ./templates/AccessPoints/add.php:42
-#: ./templates/AccessPoints/edit.php:50
-#: ./templates/AccessPoints/map.php:67
+#: ./templates/AccessPoints/add.php:43
+#: ./templates/AccessPoints/edit.php:51
+#: ./templates/AccessPoints/map.php:83
 #: ./templates/AntennaTypes/add.php:30
 #: ./templates/AntennaTypes/edit.php:38
-#: ./templates/CustomerConnectionIps/add.php:34
-#: ./templates/CustomerConnectionIps/edit.php:42
+#: ./templates/CustomerConnectionIps/add.php:36
+#: ./templates/CustomerConnectionIps/edit.php:44
 #: ./templates/CustomerConnections/add.php:34
 #: ./templates/CustomerConnections/edit.php:42
 #: ./templates/CustomerPoints/add.php:26
@@ -768,30 +790,30 @@ msgstr ""
 #: ./templates/DeviceTypes/edit.php:35
 #: ./templates/ElectricityMeterReadings/add.php:34
 #: ./templates/ElectricityMeterReadings/edit.php:42
-#: ./templates/IpAddressRanges/add.php:55
-#: ./templates/IpAddressRanges/edit.php:63
+#: ./templates/IpAddressRanges/add.php:59
+#: ./templates/IpAddressRanges/edit.php:67
 #: ./templates/Manufacturers/add.php:24
 #: ./templates/Manufacturers/edit.php:32
 #: ./templates/PowerSupplies/add.php:36
 #: ./templates/PowerSupplies/edit.php:44
 #: ./templates/PowerSupplyTypes/add.php:29
 #: ./templates/PowerSupplyTypes/edit.php:37
-#: ./templates/RadarInterferences/add.php:31
-#: ./templates/RadarInterferences/edit.php:39
+#: ./templates/RadarInterferences/add.php:35
+#: ./templates/RadarInterferences/edit.php:43
 #: ./templates/RadioLinks/add.php:26
 #: ./templates/RadioLinks/edit.php:31
 #: ./templates/RadioUnitBands/add.php:25
 #: ./templates/RadioUnitBands/edit.php:33
 #: ./templates/RadioUnitTypes/add.php:29
 #: ./templates/RadioUnitTypes/edit.php:37
-#: ./templates/RadioUnits/add.php:65
-#: ./templates/RadioUnits/edit.php:70
-#: ./templates/RouterosDeviceInterfaces/add.php:42
-#: ./templates/RouterosDeviceInterfaces/edit.php:50
-#: ./templates/RouterosDeviceIps/add.php:31
-#: ./templates/RouterosDeviceIps/edit.php:39
-#: ./templates/RouterosDevices/add.php:46
-#: ./templates/RouterosDevices/edit.php:54
+#: ./templates/RadioUnits/add.php:69
+#: ./templates/RadioUnits/edit.php:74
+#: ./templates/RouterosDeviceInterfaces/add.php:52
+#: ./templates/RouterosDeviceInterfaces/edit.php:60
+#: ./templates/RouterosDeviceIps/add.php:37
+#: ./templates/RouterosDeviceIps/edit.php:45
+#: ./templates/RouterosDevices/add.php:48
+#: ./templates/RouterosDevices/edit.php:56
 #: ./templates/plugin/CakeDC/Users/Users/add.php:32
 #: ./templates/plugin/CakeDC/Users/Users/edit.php:52
 msgid "Submit"
@@ -802,7 +824,7 @@ msgstr ""
 #: ./templates/AccessPointTypes/edit.php:14
 #: ./templates/AccessPointTypes/index.php:53
 #: ./templates/AccessPointTypes/view.php:155
-#: ./templates/AccessPoints/edit.php:13
+#: ./templates/AccessPoints/edit.php:14
 #: ./templates/AccessPoints/index.php:94
 #: ./templates/AccessPoints/view.php:209
 #: ./templates/AccessPoints/view.php:281
@@ -878,7 +900,7 @@ msgstr ""
 #: ./templates/AccessPointTypes/index.php:55
 #: ./templates/AccessPointTypes/view.php:20
 #: ./templates/AccessPointTypes/view.php:157
-#: ./templates/AccessPoints/edit.php:16
+#: ./templates/AccessPoints/edit.php:17
 #: ./templates/AccessPoints/index.php:96
 #: ./templates/AccessPoints/view.php:20
 #: ./templates/AccessPoints/view.php:215
@@ -1004,7 +1026,7 @@ msgid "New Access Point Contact"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:25
-#: ./templates/layout/default.php:209
+#: ./templates/layout/default.php:210
 msgid "Access Point Contacts"
 msgstr ""
 
@@ -1453,7 +1475,7 @@ msgid "New Access Point Type"
 msgstr ""
 
 #: ./templates/AccessPointTypes/index.php:25
-#: ./templates/layout/default.php:204
+#: ./templates/layout/default.php:205
 msgid "Access Point Types"
 msgstr ""
 
@@ -1520,24 +1542,24 @@ msgstr ""
 msgid "Mapy.cz"
 msgstr ""
 
-#: ./templates/AccessPoints/add.php:12
-#: ./templates/AccessPoints/edit.php:20
-#: ./templates/AccessPoints/map.php:9
+#: ./templates/AccessPoints/add.php:13
+#: ./templates/AccessPoints/edit.php:21
+#: ./templates/AccessPoints/map.php:14
 #: ./templates/AccessPoints/view.php:24
 msgid "List Access Points"
 msgstr ""
 
-#: ./templates/AccessPoints/add.php:19
+#: ./templates/AccessPoints/add.php:20
 msgid "Add Access Point"
 msgstr ""
 
-#: ./templates/AccessPoints/edit.php:27
+#: ./templates/AccessPoints/edit.php:28
 #: ./templates/AccessPoints/view.php:12
 msgid "Edit Access Point"
 msgstr ""
 
 #: ./templates/AccessPoints/index.php:20
-#: ./templates/AccessPoints/map.php:8
+#: ./templates/AccessPoints/map.php:13
 #: ./templates/AccessPoints/view.php:25
 msgid "New Access Point"
 msgstr ""
@@ -1547,14 +1569,35 @@ msgid "Map"
 msgstr ""
 
 #: ./templates/AccessPoints/index.php:22
-#: ./templates/AccessPoints/map.php:10
-#: ./templates/layout/default.php:81
-#: ./templates/layout/default.php:199
+#: ./templates/AccessPoints/map.php:15
+#: ./templates/layout/default.php:82
+#: ./templates/layout/default.php:200
 msgid "Access Points"
 msgstr ""
 
-#: ./templates/AccessPoints/map.php:58
+#: ./templates/AccessPoints/map.php:63
 msgid "Map Options"
+msgstr ""
+
+#: ./templates/AccessPoints/map.php:66
+msgid "RouterOS IP Links"
+msgstr ""
+
+#: ./templates/AccessPoints/map.php:69
+msgid "RouterOS Wireless Links"
+msgstr ""
+
+#: ./templates/AccessPoints/map.php:77
+#: ./templates/RadarInterferences/view.php:103
+#: ./templates/RouterosDeviceInterfaces/add.php:26
+#: ./templates/RouterosDeviceInterfaces/edit.php:34
+#: ./templates/RouterosDeviceInterfaces/index.php:46
+#: ./templates/RouterosDeviceInterfaces/view.php:45
+#: ./templates/RouterosDeviceIps/add.php:26
+#: ./templates/RouterosDeviceIps/edit.php:34
+#: ./templates/RouterosDeviceIps/index.php:46
+#: ./templates/RouterosDeviceIps/view.php:45
+msgid "RouterOS Device"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:17
@@ -1909,6 +1952,8 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:463
 #: ./templates/AccessPoints/view.php:541
 #: ./templates/AntennaTypes/view.php:126
+#: ./templates/CustomerConnectionIps/add.php:31
+#: ./templates/CustomerConnectionIps/edit.php:39
 #: ./templates/CustomerConnectionIps/index.php:32
 #: ./templates/CustomerConnectionIps/view.php:62
 #: ./templates/CustomerConnections/view.php:135
@@ -1917,11 +1962,17 @@ msgstr ""
 #: ./templates/RadioLinks/index.php:48
 #: ./templates/RadioLinks/view.php:119
 #: ./templates/RadioUnitTypes/view.php:131
+#: ./templates/RadioUnits/add.php:62
+#: ./templates/RadioUnits/edit.php:67
 #: ./templates/RadioUnits/export.php:36
 #: ./templates/RadioUnits/index.php:51
 #: ./templates/RadioUnits/view.php:98
+#: ./templates/RouterosDeviceIps/add.php:32
+#: ./templates/RouterosDeviceIps/edit.php:40
 #: ./templates/RouterosDeviceIps/index.php:47
 #: ./templates/RouterosDeviceIps/view.php:62
+#: ./templates/RouterosDevices/add.php:39
+#: ./templates/RouterosDevices/edit.php:47
 #: ./templates/RouterosDevices/export.php:46
 #: ./templates/RouterosDevices/index.php:46
 #: ./templates/RouterosDevices/view.php:83
@@ -1943,7 +1994,7 @@ msgstr ""
 
 #: ./templates/AccessPoints/view.php:540
 #: ./templates/AccessPoints/view.php:597
-#: ./templates/AccessPoints/view.php:697
+#: ./templates/AccessPoints/view.php:703
 #: ./templates/CustomerConnections/view.php:189
 #: ./templates/RouterosDevices/export.php:45
 #: ./templates/RouterosDevices/view.php:70
@@ -1990,38 +2041,38 @@ msgid "Neighbouring Wireless Interface"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:600
-#: ./templates/AccessPoints/view.php:700
+#: ./templates/AccessPoints/view.php:706
 #: ./templates/RouterosDevices/view.php:271
-#: ./templates/RouterosDevices/view.php:353
+#: ./templates/RouterosDevices/view.php:359
 msgid "Neighbouring RouterOS Device"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:601
-#: ./templates/AccessPoints/view.php:701
+#: ./templates/AccessPoints/view.php:707
 #: ./templates/RouterosDevices/view.php:272
-#: ./templates/RouterosDevices/view.php:354
+#: ./templates/RouterosDevices/view.php:360
 msgid "Neighbouring Access Point"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:602
-#: ./templates/AccessPoints/view.php:702
+#: ./templates/AccessPoints/view.php:708
 #: ./templates/RouterosDevices/view.php:273
-#: ./templates/RouterosDevices/view.php:355
+#: ./templates/RouterosDevices/view.php:361
 msgid "Neighbouring Customer Connection"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:691
-#: ./templates/RouterosDevices/view.php:346
+#: ./templates/AccessPoints/view.php:697
+#: ./templates/RouterosDevices/view.php:352
 msgid "Related RouterOS IP Links"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:698
-#: ./templates/RouterosDevices/view.php:351
+#: ./templates/AccessPoints/view.php:704
+#: ./templates/RouterosDevices/view.php:357
 msgid "Local IP Address"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:699
-#: ./templates/RouterosDevices/view.php:352
+#: ./templates/AccessPoints/view.php:705
+#: ./templates/RouterosDevices/view.php:358
 msgid "Neighbouring IP address"
 msgstr ""
 
@@ -2046,7 +2097,7 @@ msgid "New Antenna Type"
 msgstr ""
 
 #: ./templates/AntennaTypes/index.php:21
-#: ./templates/layout/default.php:310
+#: ./templates/layout/default.php:311
 msgid "Antenna Types"
 msgstr ""
 
@@ -2108,7 +2159,7 @@ msgid "New Customer Connection IP"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/index.php:25
-#: ./templates/layout/default.php:238
+#: ./templates/layout/default.php:239
 msgid "Customer Connection Ips"
 msgstr ""
 
@@ -2144,7 +2195,7 @@ msgid "New Customer Connection"
 msgstr ""
 
 #: ./templates/CustomerConnections/index.php:25
-#: ./templates/layout/default.php:233
+#: ./templates/layout/default.php:234
 msgid "Customer Connections"
 msgstr ""
 
@@ -2181,8 +2232,8 @@ msgid "New Customer Point"
 msgstr ""
 
 #: ./templates/CustomerPoints/index.php:21
-#: ./templates/layout/default.php:91
-#: ./templates/layout/default.php:228
+#: ./templates/layout/default.php:92
+#: ./templates/layout/default.php:229
 msgid "Customer Points"
 msgstr ""
 
@@ -2215,7 +2266,7 @@ msgid "New Device Type"
 msgstr ""
 
 #: ./templates/DeviceTypes/index.php:21
-#: ./templates/layout/default.php:269
+#: ./templates/layout/default.php:270
 msgid "Device Types"
 msgstr ""
 
@@ -2277,24 +2328,28 @@ msgstr ""
 msgid "Add IP Address Range"
 msgstr ""
 
+#: ./templates/IpAddressRanges/add.php:24
+#: ./templates/IpAddressRanges/edit.php:32
+#: ./templates/IpAddressRanges/index.php:31
+#: ./templates/IpAddressRanges/view.php:41
+msgid "IP Network"
+msgstr ""
+
+#: ./templates/IpAddressRanges/add.php:27
+#: ./templates/IpAddressRanges/edit.php:35
+#: ./templates/IpAddressRanges/index.php:32
+#: ./templates/IpAddressRanges/view.php:45
+msgid "IP Gateway"
+msgstr ""
+
 #: ./templates/IpAddressRanges/edit.php:28
 #: ./templates/IpAddressRanges/view.php:12
 msgid "Edit IP Address Range"
 msgstr ""
 
 #: ./templates/IpAddressRanges/index.php:25
-#: ./templates/layout/default.php:100
+#: ./templates/layout/default.php:101
 msgid "IP Address Ranges"
-msgstr ""
-
-#: ./templates/IpAddressRanges/index.php:31
-#: ./templates/IpAddressRanges/view.php:41
-msgid "IP Network"
-msgstr ""
-
-#: ./templates/IpAddressRanges/index.php:32
-#: ./templates/IpAddressRanges/view.php:45
-msgid "IP Gateway"
 msgstr ""
 
 #: ./templates/IpAddressRanges/index.php:34
@@ -2355,8 +2410,8 @@ msgid "New Manufacturer"
 msgstr ""
 
 #: ./templates/Manufacturers/index.php:21
-#: ./templates/layout/default.php:315
-#: ./templates/layout/default.php:332
+#: ./templates/layout/default.php:316
+#: ./templates/layout/default.php:333
 msgid "Manufacturers"
 msgstr ""
 
@@ -2404,8 +2459,8 @@ msgid "Edit Power Supply"
 msgstr ""
 
 #: ./templates/PowerSupplies/index.php:21
-#: ./templates/layout/default.php:129
-#: ./templates/layout/default.php:322
+#: ./templates/layout/default.php:130
+#: ./templates/layout/default.php:323
 msgid "Power Supplies"
 msgstr ""
 
@@ -2434,7 +2489,7 @@ msgid "New Power Supply Type"
 msgstr ""
 
 #: ./templates/PowerSupplyTypes/index.php:25
-#: ./templates/layout/default.php:327
+#: ./templates/layout/default.php:328
 msgid "Power Supply Types"
 msgstr ""
 
@@ -2476,7 +2531,7 @@ msgid "Devices That Interfere"
 msgstr ""
 
 #: ./templates/RadarInterferences/index.php:35
-#: ./templates/layout/default.php:274
+#: ./templates/layout/default.php:275
 msgid "Radar Interferences"
 msgstr ""
 
@@ -2484,33 +2539,9 @@ msgstr ""
 msgid "Delete Radar Interference"
 msgstr ""
 
-#: ./templates/RadarInterferences/view.php:49
-#: ./templates/RadarInterferences/view.php:106
-#: ./templates/RouterosDeviceInterfaces/view.php:66
-#: ./templates/RouterosDevices/export.php:52
-#: ./templates/RouterosDevices/view.php:157
-msgid "Mac Address"
-msgstr ""
-
-#: ./templates/RadarInterferences/view.php:53
-#: ./templates/RadarInterferences/view.php:107
-#: ./templates/RouterosDeviceInterfaces/view.php:70
-#: ./templates/RouterosDevices/export.php:54
-#: ./templates/RouterosDevices/view.php:158
-msgid "Ssid"
-msgstr ""
-
 #: ./templates/RadarInterferences/view.php:98
 #: ./templates/RouterosDevices/view.php:150
 msgid "Related RouterOS Device Interfaces"
-msgstr ""
-
-#: ./templates/RadarInterferences/view.php:103
-#: ./templates/RouterosDeviceInterfaces/index.php:46
-#: ./templates/RouterosDeviceInterfaces/view.php:45
-#: ./templates/RouterosDeviceIps/index.php:46
-#: ./templates/RouterosDeviceIps/view.php:45
-msgid "RouterOS Device"
 msgstr ""
 
 #: ./templates/RadarInterferences/view.php:105
@@ -2520,9 +2551,12 @@ msgid "Comment"
 msgstr ""
 
 #: ./templates/RadarInterferences/view.php:108
+#: ./templates/RouterosDeviceInterfaces/add.php:39
+#: ./templates/RouterosDeviceInterfaces/edit.php:47
+#: ./templates/RouterosDeviceInterfaces/index.php:50
 #: ./templates/RouterosDeviceInterfaces/view.php:74
 #: ./templates/RouterosDevices/view.php:159
-msgid "Bssid"
+msgid "BSSID"
 msgstr ""
 
 #: ./templates/RadarInterferences/view.php:109
@@ -2604,15 +2638,15 @@ msgid "New Radio Link"
 msgstr ""
 
 #: ./templates/RadioLinks/index.php:27
-#: ./templates/layout/default.php:118
-#: ./templates/layout/default.php:290
+#: ./templates/layout/default.php:119
+#: ./templates/layout/default.php:291
 msgid "Radio Links"
 msgstr ""
 
 #: ./templates/RadioLinks/index.php:35
 #: ./templates/RadioUnits/export.php:10
 #: ./templates/RadioUnits/index.php:29
-#: ./templates/layout/default.php:295
+#: ./templates/layout/default.php:296
 msgid "Radio Units"
 msgstr ""
 
@@ -2649,7 +2683,7 @@ msgid "New Radio Unit Band"
 msgstr ""
 
 #: ./templates/RadioUnitBands/index.php:21
-#: ./templates/layout/default.php:305
+#: ./templates/layout/default.php:306
 msgid "Radio Unit Bands"
 msgstr ""
 
@@ -2678,7 +2712,7 @@ msgid "New Radio Unit Type"
 msgstr ""
 
 #: ./templates/RadioUnitTypes/index.php:21
-#: ./templates/layout/default.php:300
+#: ./templates/layout/default.php:301
 msgid "Radio Unit Types"
 msgstr ""
 
@@ -2696,6 +2730,13 @@ msgstr ""
 msgid "Add Radio Unit"
 msgstr ""
 
+#: ./templates/RadioUnits/add.php:55
+#: ./templates/RadioUnits/edit.php:60
+#: ./templates/RadioUnits/export.php:31
+#: ./templates/RadioUnits/view.php:146
+msgid "ATPC"
+msgstr ""
+
 #: ./templates/RadioUnits/edit.php:27
 #: ./templates/RadioUnits/view.php:12
 msgid "Edit Radio Unit"
@@ -2709,11 +2750,6 @@ msgstr ""
 #: ./templates/RadioUnits/export.php:30
 #: ./templates/RadioUnits/view.php:142
 msgid "Acm"
-msgstr ""
-
-#: ./templates/RadioUnits/export.php:31
-#: ./templates/RadioUnits/view.php:146
-msgid "Atpc"
 msgstr ""
 
 #: ./templates/RadioUnits/export.php:37
@@ -2763,7 +2799,7 @@ msgid "New RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/index.php:40
-#: ./templates/layout/default.php:259
+#: ./templates/layout/default.php:260
 msgid "RouterOS Device Interfaces"
 msgstr ""
 
@@ -2821,7 +2857,7 @@ msgid "New RouterOS Device IP"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/index.php:40
-#: ./templates/layout/default.php:264
+#: ./templates/layout/default.php:265
 msgid "RouterOS Device Ips"
 msgstr ""
 
@@ -2846,8 +2882,8 @@ msgstr ""
 
 #: ./templates/RouterosDevices/export.php:37
 #: ./templates/RouterosDevices/index.php:37
-#: ./templates/layout/default.php:107
-#: ./templates/layout/default.php:254
+#: ./templates/layout/default.php:108
+#: ./templates/layout/default.php:255
 msgid "RouterOS Devices"
 msgstr ""
 
@@ -2870,7 +2906,7 @@ msgid "Related RouterOS Device Ips"
 msgstr ""
 
 #: ./templates/Settings/index.php:7
-#: ./templates/layout/default.php:134
+#: ./templates/layout/default.php:135
 msgid "Settings"
 msgstr ""
 
@@ -2894,23 +2930,23 @@ msgstr ""
 msgid "List Users"
 msgstr ""
 
-#: ./templates/layout/default.php:144
+#: ./templates/layout/default.php:145
 msgid "Customer Relationship Management"
 msgstr ""
 
-#: ./templates/layout/default.php:179
+#: ./templates/layout/default.php:180
 msgid "Logout"
 msgstr ""
 
-#: ./templates/layout/default.php:351
+#: ./templates/layout/default.php:352
 msgid "Changelog"
 msgstr ""
 
-#: ./templates/layout/default.php:352
+#: ./templates/layout/default.php:353
 msgid "Version"
 msgstr ""
 
-#: ./templates/layout/default.php:358
+#: ./templates/layout/default.php:359
 msgid "High Contrast"
 msgstr ""
 

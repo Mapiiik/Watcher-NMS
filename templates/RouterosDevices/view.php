@@ -154,9 +154,9 @@
                         <tr>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Comment') ?></th>
-                            <th><?= __('Mac Address') ?></th>
-                            <th><?= __('Ssid') ?></th>
-                            <th><?= __('Bssid') ?></th>
+                            <th><?= __('MAC Address') ?></th>
+                            <th><?= __('SSID') ?></th>
+                            <th><?= __('BSSID') ?></th>
                             <th><?= __('Band') ?></th>
                             <th><?= __('Frequency') ?></th>
                             <th><?= __('Noise Floor') ?></th>

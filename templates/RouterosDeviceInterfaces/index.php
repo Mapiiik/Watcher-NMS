@@ -45,9 +45,9 @@
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('routeros_device_id', __('RouterOS Device')) ?></th>
                     <th><?= $this->Paginator->sort('comment') ?></th>
-                    <th><?= $this->Paginator->sort('mac_address') ?></th>
-                    <th><?= $this->Paginator->sort('ssid') ?></th>
-                    <th><?= $this->Paginator->sort('bssid') ?></th>
+                    <th><?= $this->Paginator->sort('mac_address', __('MAC Address')) ?></th>
+                    <th><?= $this->Paginator->sort('ssid', __('SSID')) ?></th>
+                    <th><?= $this->Paginator->sort('bssid', __('BSSID')) ?></th>
                     <th><?= $this->Paginator->sort('band') ?></th>
                     <th><?= $this->Paginator->sort('frequency') ?></th>
                     <th><?= $this->Paginator->sort('noise_floor') ?></th>
