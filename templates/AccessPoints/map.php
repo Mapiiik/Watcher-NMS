@@ -68,7 +68,9 @@ $this->GoogleMap->finalize();
                 echo $this->Form->control('routeros_wireless_links', [
                     'label' => __('RouterOS Wireless Links'),
                 ]);
-                echo $this->Form->control('linked_customers');
+                echo $this->Form->control('linked_customers', [
+                    'label' => __('Linked Customers'),
+                ]);
                 echo $this->Form->control('access_point_id', [
                     'options' => $accessPointsFilter,
                     'empty' => true,

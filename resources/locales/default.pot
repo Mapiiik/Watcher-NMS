@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-12 13:51+0100\n"
+"POT-Creation-Date: 2023-02-12 14:01+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -777,7 +777,7 @@ msgstr ""
 #: ./templates/AccessPointTypes/edit.php:35
 #: ./templates/AccessPoints/add.php:43
 #: ./templates/AccessPoints/edit.php:51
-#: ./templates/AccessPoints/map.php:83
+#: ./templates/AccessPoints/map.php:85
 #: ./templates/AntennaTypes/add.php:30
 #: ./templates/AntennaTypes/edit.php:38
 #: ./templates/CustomerConnectionIps/add.php:36
@@ -1587,7 +1587,11 @@ msgstr ""
 msgid "RouterOS Wireless Links"
 msgstr ""
 
-#: ./templates/AccessPoints/map.php:77
+#: ./templates/AccessPoints/map.php:72
+msgid "Linked Customers"
+msgstr ""
+
+#: ./templates/AccessPoints/map.php:79
 #: ./templates/RadarInterferences/view.php:103
 #: ./templates/RouterosDeviceInterfaces/add.php:26
 #: ./templates/RouterosDeviceInterfaces/edit.php:34

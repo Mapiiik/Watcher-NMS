@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-12 13:51+0100\n"
-"PO-Revision-Date: 2023-02-12 13:52+0100\n"
+"POT-Creation-Date: 2023-02-12 14:01+0100\n"
+"PO-Revision-Date: 2023-02-12 14:01+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -719,7 +719,7 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/AccessPointContacts/edit.php:44
 #: templates/AccessPointTypes/add.php:27 templates/AccessPointTypes/edit.php:35
 #: templates/AccessPoints/add.php:43 templates/AccessPoints/edit.php:51
-#: templates/AccessPoints/map.php:83 templates/AntennaTypes/add.php:30
+#: templates/AccessPoints/map.php:85 templates/AntennaTypes/add.php:30
 #: templates/AntennaTypes/edit.php:38
 #: templates/CustomerConnectionIps/add.php:36
 #: templates/CustomerConnectionIps/edit.php:44
@@ -1343,7 +1343,11 @@ msgstr "IP propoje RouterOS"
 msgid "RouterOS Wireless Links"
 msgstr "Bezdrátové propoje RouterOS"
 
-#: templates/AccessPoints/map.php:77 templates/RadarInterferences/view.php:103
+#: templates/AccessPoints/map.php:72
+msgid "Linked Customers"
+msgstr "Propojení zákazníci"
+
+#: templates/AccessPoints/map.php:79 templates/RadarInterferences/view.php:103
 #: templates/RouterosDeviceInterfaces/add.php:26
 #: templates/RouterosDeviceInterfaces/edit.php:34
 #: templates/RouterosDeviceInterfaces/index.php:46
