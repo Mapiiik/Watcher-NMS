@@ -24,18 +24,23 @@ class AccessPointsController extends AppController
      */
     public function index()
     {
-        // filter
-        $conditions = [];
+        // access points query
+        $accessPointsQuery = $this->AccessPoints->find();
 
         // search
         $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
-            $conditions[] = [
+            $accessPointsQuery->where([
                 'OR' => [
                     'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
                     'AccessPoints.device_name ILIKE' => '%' . trim($search) . '%',
+                    'to_tsvector('
+                        . "COALESCE(AccessPoints.name, '') || ' ' || "
+                        . "COALESCE(AccessPoints.device_name, '')"
+                    . ') @@ websearch_to_tsquery(:search)',
                 ],
-            ];
+            ]);
+            $accessPointsQuery->bind(':search', trim($search), 'string');
         }
 
         $this->paginate = [
@@ -44,10 +49,9 @@ class AccessPointsController extends AppController
                 'ParentAccessPoints',
             ],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $accessPoints = $this->paginate($this->AccessPoints);
+        $accessPoints = $this->paginate($accessPointsQuery);
 
         $this->set(compact('accessPoints'));
     }
