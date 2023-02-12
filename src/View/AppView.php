@@ -24,6 +24,7 @@ use Cake\View\View;
  *
  * @link https://book.cakephp.org/4/en/views.html#the-app-view
  * @property \CakeDC\Users\View\Helper\AuthLinkHelper $AuthLink
+ * @property \Geo\View\Helper\GoogleMapHelper $GoogleMap
  */
 class AppView extends View
 {

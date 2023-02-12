@@ -15,6 +15,8 @@
  */
 
 $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
+/** @psalm-scope-this App\View\AppView */
+$request = $this->getRequest();
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,9 +47,6 @@ $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
             <a href="/"><span>Watcher</span> NMS</a>
         </div>
         <div class="top-nav-links">
-            <?php
-            $controller = $this->name;
-            ?>
         </div>
     </nav>
     <main class="main">

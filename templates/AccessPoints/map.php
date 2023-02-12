@@ -2,6 +2,11 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\AccessPoint[]|\Cake\Collection\CollectionInterface $accessPoints
+ * @var \App\Form\MapOptionsForm $mapOptions
+ * @var string[]|\Cake\Collection\CollectionInterface $accessPointsFilter
+ * @var string[]|\Cake\Collection\CollectionInterface $routerosDevicesFilter
+ * @var array $mapMarkers
+ * @var array $mapPolylines
  */
 ?>
 <div class="accessPoints map content">

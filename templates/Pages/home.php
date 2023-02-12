@@ -20,6 +20,7 @@ use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
 
+/** @psalm-scope-this App\View\AppView */
 $this->disableAutoLayout();
 
 if (!Configure::read('debug')) :

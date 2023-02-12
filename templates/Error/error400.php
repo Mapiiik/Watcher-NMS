@@ -1,11 +1,15 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \Cake\Database\StatementInterface $error
+ * @var string $message
+ * @var string $url
  */
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
-$this->layout = 'error';
+/** @psalm-scope-this App\View\AppView */
+$this->setLayout('error');
 
 if (Configure::read('debug')) :
     $this->layout = 'dev_error';
