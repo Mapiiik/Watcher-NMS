@@ -711,7 +711,7 @@
                             <?php foreach ($routerosDevice->routeros_ip_links as $routerosIpLink) : ?>
                                 <?php
                                 if (
-                                    $routerosIpLink->neighbouring_ip_address->routeros_device->has('access_point')
+                                    isset($routerosIpLink->neighbouring_ip_address->routeros_device->access_point)
                                     &&
                                     $routerosIpLink->neighbouring_ip_address->routeros_device->access_point->id
                                     ==

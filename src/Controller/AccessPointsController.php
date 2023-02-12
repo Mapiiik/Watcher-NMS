@@ -425,7 +425,11 @@ class AccessPointsController extends AppController
                             $content .=
                                 '<li>'
                                 . ' (' . $routerosIpLink->ip_address . ') - '
-                                . $html->link(
+                                . isset(
+                                    $routerosIpLink
+                                        ->neighbouring_ip_address
+                                        ->routeros_device
+                                ) ? $html->link(
                                     $routerosIpLink
                                         ->neighbouring_ip_address
                                         ->routeros_device
@@ -438,7 +442,7 @@ class AccessPointsController extends AppController
                                             ->routeros_device
                                             ->id,
                                     ]
-                                )
+                                ) : ''
                                 . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ')' . '</li>';
 
                             // add map polyline and marker for IP link (to access point)
@@ -642,7 +646,11 @@ class AccessPointsController extends AppController
                             $content .=
                                 '<li>'
                                 . ' (' . $routerosWirelessLink->name . ') - '
-                                . $html->link(
+                                . isset(
+                                    $routerosWirelessLink
+                                        ->neighbouring_interface
+                                        ->routeros_device
+                                ) ? $html->link(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
                                         ->routeros_device
@@ -655,7 +663,7 @@ class AccessPointsController extends AppController
                                             ->routeros_device
                                             ->id,
                                     ]
-                                )
+                                ) : ''
                                 . ' (' . $routerosWirelessLink->neighbouring_interface->name . ')'
                                 . '</li>';
 
