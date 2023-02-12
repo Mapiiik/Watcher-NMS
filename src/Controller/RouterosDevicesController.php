@@ -577,11 +577,17 @@ class RouterosDevicesController extends AppController
                     } elseif (isset($mtxrWl60GTable['3.' . $ifIndex])) {
                         $routerosDeviceInterfaceData = array_merge($routerosDeviceInterfaceData, [
                             'ssid' => $mtxrWl60GTable['3.' . $ifIndex]->text ?? null,
-                            'bssid' => $this->nullIfEmptyString(
-                                $this->strToHex(
-                                    $mtxrWl60GTable['5.' . $ifIndex]->value ?? ''
+                            'bssid' =>
+                                $mtxrWl60GTable['2.' . $ifIndex]->value === 1 // BSSID only for stations
+                                ?
+                                $this->nullIfEmptyString(
+                                    $this->strToHex(
+                                        $mtxrWl60GTable['5.' . $ifIndex]->value ?? ''
+                                    )
                                 )
-                            ),
+                                :
+                                null
+                            ,
                             'band' => null,
                             'frequency' => $mtxrWl60GTable['6.' . $ifIndex]->value ?? null,
                             'noise_floor' => null,
