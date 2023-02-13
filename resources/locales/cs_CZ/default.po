@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-12 14:14+0100\n"
-"PO-Revision-Date: 2023-02-12 14:14+0100\n"
+"POT-Creation-Date: 2023-02-13 13:29+0100\n"
+"PO-Revision-Date: 2023-02-13 13:42+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -232,21 +232,21 @@ msgstr "Typ přístupového bodu byl odstraněn."
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:171
-#: src/Controller/AccessPointsController.php:197
+#: src/Controller/AccessPointsController.php:175
+#: src/Controller/AccessPointsController.php:201
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:175
-#: src/Controller/AccessPointsController.php:201
+#: src/Controller/AccessPointsController.php:179
+#: src/Controller/AccessPointsController.php:205
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:222
+#: src/Controller/AccessPointsController.php:226
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:224
+#: src/Controller/AccessPointsController.php:228
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
