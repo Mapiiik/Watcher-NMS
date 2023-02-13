@@ -60,6 +60,7 @@ class RouterosDeviceInterfacesTable extends AppTable
                 'conditions' => [
                     'RouterosWirelessLinks.interface_type = 71',
                     'NeighbouringStations.interface_type = 71',
+                    'NeighbouringStations.ssid = RouterosWirelessLinks.ssid',
                     'NeighbouringStations.id <> RouterosWirelessLinks.id',
                     'NeighbouringStations.routeros_device_id <> RouterosWirelessLinks.routeros_device_id',
                 ],
@@ -72,6 +73,7 @@ class RouterosDeviceInterfacesTable extends AppTable
                 'conditions' => [
                     'RouterosWirelessLinks.interface_type = 71',
                     'NeighbouringAccessPoints.interface_type = 71',
+                    'NeighbouringAccessPoints.ssid = RouterosWirelessLinks.ssid',
                     'NeighbouringAccessPoints.id <> RouterosWirelessLinks.id',
                     'NeighbouringAccessPoints.routeros_device_id <> RouterosWirelessLinks.routeros_device_id',
                 ],
