@@ -451,6 +451,7 @@ return [
         'infoWindow' => [
             'maxWidth' => 500,
         ],
+        'https' => true,
     ],
 
     /*

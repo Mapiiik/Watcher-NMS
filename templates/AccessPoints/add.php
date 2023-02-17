@@ -34,14 +34,27 @@
                     'type' => 'select',
                     'options' => $this->months(),
                 ]);
-                echo $this->Form->control('gps_y');
-                echo $this->Form->control('gps_x');
                 echo $this->Form->control('contract_conditions');
                 echo $this->Form->control('note');
                 ?>
+                <div class="row">
+                    <div class="column-responsive">
+                        <?php
+                            echo $this->Form->control('gps_y');
+                        ?>
+                    </div>
+                    <div class="column-responsive">
+                        <?php
+                            echo $this->Form->control('gps_x');
+                        ?>
+                    </div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
+            <?= $this->element('GoogleMaps/map-with-search', [
+                'mapPoint' => $accessPoint,
+            ]) ?>
         </div>
     </div>
 </div>
