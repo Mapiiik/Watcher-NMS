@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-13 13:29+0100\n"
+"POT-Creation-Date: 2023-02-17 17:22+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -776,8 +776,8 @@ msgstr ""
 #: ./templates/AccessPointContacts/edit.php:44
 #: ./templates/AccessPointTypes/add.php:27
 #: ./templates/AccessPointTypes/edit.php:35
-#: ./templates/AccessPoints/add.php:43
-#: ./templates/AccessPoints/edit.php:51
+#: ./templates/AccessPoints/add.php:53
+#: ./templates/AccessPoints/edit.php:61
 #: ./templates/AccessPoints/map.php:85
 #: ./templates/AntennaTypes/add.php:30
 #: ./templates/AntennaTypes/edit.php:38
@@ -785,8 +785,8 @@ msgstr ""
 #: ./templates/CustomerConnectionIps/edit.php:44
 #: ./templates/CustomerConnections/add.php:34
 #: ./templates/CustomerConnections/edit.php:42
-#: ./templates/CustomerPoints/add.php:26
-#: ./templates/CustomerPoints/edit.php:34
+#: ./templates/CustomerPoints/add.php:36
+#: ./templates/CustomerPoints/edit.php:44
 #: ./templates/DeviceTypes/add.php:30
 #: ./templates/DeviceTypes/edit.php:35
 #: ./templates/ElectricityMeterReadings/add.php:34
@@ -2943,6 +2943,10 @@ msgstr ""
 #: ./templates/plugin/CakeDC/Users/Users/edit.php:19
 #: ./templates/plugin/CakeDC/Users/Users/view.php:25
 msgid "List Users"
+msgstr ""
+
+#: ./templates/element/GoogleMaps/map-with-search.php:117
+msgid "Search on the Map"
 msgstr ""
 
 #: ./templates/layout/default.php:145
