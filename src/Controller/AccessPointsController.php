@@ -480,7 +480,7 @@ class AccessPointsController extends AppController
                                     && is_numeric($neighbouringAccessPoint->gps_x)
                                 ) {
                                     // add map polyline for IP link (to access point)
-                                    $mapPolylines[$neighbouringAccessPoint->id] = [
+                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] = [
                                         'from' => [
                                             'lat' => $accessPoint->gps_y,
                                             'lng' => $accessPoint->gps_x,
@@ -565,7 +565,7 @@ class AccessPointsController extends AppController
                                     && is_numeric($neighbouringCustomerPoint->gps_x)
                                 ) {
                                     // add map polyline for IP link (to customer point)
-                                    $mapPolylines[$neighbouringCustomerPoint->id] = [
+                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] = [
                                         'from' => [
                                             'lat' => $accessPoint->gps_y,
                                             'lng' => $accessPoint->gps_x,
@@ -704,7 +704,7 @@ class AccessPointsController extends AppController
                                     && is_numeric($neighbouringAccessPoint->gps_x)
                                 ) {
                                     // add map polyline for wireless link (to access point)
-                                    $mapPolylines[$neighbouringAccessPoint->id] = [
+                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] = [
                                         'from' => [
                                             'lat' => $accessPoint->gps_y,
                                             'lng' => $accessPoint->gps_x,
@@ -789,7 +789,7 @@ class AccessPointsController extends AppController
                                     && is_numeric($neighbouringCustomerPoint->gps_x)
                                 ) {
                                     // add map polyline for wireless link (to customer point)
-                                    $mapPolylines[$neighbouringCustomerPoint->id] = [
+                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] = [
                                         'from' => [
                                             'lat' => $accessPoint->gps_y,
                                             'lng' => $accessPoint->gps_x,
