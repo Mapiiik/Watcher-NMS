@@ -36,6 +36,7 @@ $this->setLayout('clean');
                     <th><?= __('IP Address') ?></th>
                     <th><?= __('Device Login') ?></th>
                     <th><?= __('Device Password') ?></th>
+                    <th><?= __('Authorization Number') ?></th>
                     <th><?= __('Gps Y') ?></th>
                     <th><?= __('Gps X') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -107,6 +108,7 @@ $this->setLayout('clean');
                     <td><?= h($radioUnit->ip_address) ?></td>
                     <td><?= h($radioUnit->device_login) ?></td>
                     <td><?= h($radioUnit->device_password) ?></td>
+                    <td><?= h($radioUnit->authorization_number) ?></td>
                     <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_y ?? '') : '' ?></td>
                     <td><?= $radioUnit->has('access_point') ? h($radioUnit->access_point->gps_x ?? '') : '' ?></td>
                     <td>

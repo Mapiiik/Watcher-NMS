@@ -147,6 +147,10 @@
                     <td><?= $radioUnit->atpc ? __('Yes') : __('No'); ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Authorization Number') ?></th>
+                    <td><?= h($radioUnit->authorization_number) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Created') ?></th>
                     <td><?= h($radioUnit->created) ?></td>
                 </tr>

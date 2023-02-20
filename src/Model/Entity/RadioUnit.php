@@ -31,6 +31,7 @@ use Cake\ORM\Entity;
  * @property string|null $ip_address
  * @property string|null $device_login
  * @property string|null $device_password
+ * @property string|null $authorization_number
  * @property string|null $note
  * @property \Cake\I18n\FrozenTime|null $created
  * @property string|null $created_by
@@ -81,6 +82,7 @@ class RadioUnit extends Entity
         'ip_address' => true,
         'device_login' => true,
         'device_password' => true,
+        'authorization_number' => true,
         'note' => true,
         'created' => true,
         'created_by' => true,

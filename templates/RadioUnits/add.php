@@ -63,6 +63,7 @@
                 ]);
                 echo $this->Form->control('device_login');
                 echo $this->Form->control('device_password');
+                echo $this->Form->control('authorization_number');
                 echo $this->Form->control('note');
                 ?>
             </fieldset>

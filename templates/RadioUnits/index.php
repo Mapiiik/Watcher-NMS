@@ -49,6 +49,7 @@
                     <th><?= $this->Paginator->sort('station_address') ?></th>
                     <th><?= $this->Paginator->sort('expiration_date') ?></th>
                     <th><?= $this->Paginator->sort('ip_address', __('IP Address')) ?></th>
+                    <th><?= $this->Paginator->sort('authorization_number') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -93,6 +94,7 @@
                     <td><?= h($radioUnit->station_address) ?></td>
                     <td><?= h($radioUnit->expiration_date) ?></td>
                     <td><?= h($radioUnit->ip_address) ?></td>
+                    <td><?= h($radioUnit->authorization_number) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
                             __('View'),
