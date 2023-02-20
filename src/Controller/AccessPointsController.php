@@ -537,7 +537,16 @@ class AccessPointsController extends AppController
                                                         ->id,
                                                 ]
                                             )
-                                            . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ')'
+                                            . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
+                                            . $html->link(
+                                                $routerosDevice->name,
+                                                [
+                                                    'controller' => 'RouterosDevices',
+                                                    'action' => 'view',
+                                                    $routerosDevice->id,
+                                                ]
+                                            )
+                                            . ' (' . $routerosIpLink->ip_address . ')'
                                             . '<br />';
                                     }
                                 }
@@ -640,7 +649,16 @@ class AccessPointsController extends AppController
                                                     ->id,
                                             ]
                                         )
-                                        . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ')'
+                                        . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
+                                        . $html->link(
+                                            $routerosDevice->name,
+                                            [
+                                                'controller' => 'RouterosDevices',
+                                                'action' => 'view',
+                                                $routerosDevice->id,
+                                            ]
+                                        )
+                                        . ' (' . $routerosIpLink->ip_address . ')'
                                         . '<br />';
                                 }
                             }
@@ -761,7 +779,16 @@ class AccessPointsController extends AppController
                                                         ->id,
                                                 ]
                                             )
-                                            . ' (' . $routerosWirelessLink->neighbouring_interface->name . ')'
+                                            . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
+                                            . $html->link(
+                                                $routerosDevice->name,
+                                                [
+                                                    'controller' => 'RouterosDevices',
+                                                    'action' => 'view',
+                                                    $routerosDevice->id,
+                                                ]
+                                            )
+                                            . ' (' . $routerosWirelessLink->name . ')'
                                             . '<br />';
                                     }
                                 }
@@ -864,7 +891,16 @@ class AccessPointsController extends AppController
                                                     ->id,
                                             ]
                                         )
-                                        . ' (' . $routerosWirelessLink->neighbouring_interface->name . ')'
+                                        . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
+                                        . $html->link(
+                                            $routerosDevice->name,
+                                            [
+                                                'controller' => 'RouterosDevices',
+                                                'action' => 'view',
+                                                $routerosDevice->id,
+                                            ]
+                                        )
+                                        . ' (' . $routerosWirelessLink->name . ')'
                                         . '<br />';
                                 }
                             }
