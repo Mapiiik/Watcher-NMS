@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-21 13:09+0100\n"
+"POT-Creation-Date: 2023-02-21 18:46+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -791,8 +791,8 @@ msgstr ""
 #: ./templates/DeviceTypes/edit.php:37
 #: ./templates/ElectricityMeterReadings/add.php:34
 #: ./templates/ElectricityMeterReadings/edit.php:42
-#: ./templates/IpAddressRanges/add.php:59
-#: ./templates/IpAddressRanges/edit.php:67
+#: ./templates/IpAddressRanges/add.php:60
+#: ./templates/IpAddressRanges/edit.php:68
 #: ./templates/Manufacturers/add.php:24
 #: ./templates/Manufacturers/edit.php:32
 #: ./templates/PowerSupplies/add.php:36
@@ -1676,6 +1676,8 @@ msgid "IP Gateway"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:324
+#: ./templates/IpAddressRanges/add.php:36
+#: ./templates/IpAddressRanges/edit.php:44
 #: ./templates/IpAddressRanges/index.php:34
 #: ./templates/IpAddressRanges/view.php:59
 msgid "Parent IP Address Range"

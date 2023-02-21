@@ -41,6 +41,7 @@
                     ]);
                 }
                 echo $this->Form->control('parent_ip_address_range_id', [
+                    'label' => __('Parent IP Address Range'),
                     'options' => $parentIpAddressRanges,
                     'empty' => true,
                 ]);
