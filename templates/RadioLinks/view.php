@@ -33,56 +33,64 @@
     <div class="column-responsive column-90">
         <div class="radioLinks view content">
             <h3><?= h($radioLink->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($radioLink->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($radioLink->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Authorization Number') ?></th>
-                    <td><?= h($radioLink->authorization_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Distance') ?></th>
-                    <td><?= $this->Number->format($radioLink->distance) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($radioLink->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $radioLink->has('creator') ? $this->Html->link(
-                        $radioLink->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $radioLink->creator->id,
-                        ]
-                    ) : h($radioLink->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($radioLink->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $radioLink->has('modifier') ? $this->Html->link(
-                        $radioLink->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $radioLink->modifier->id,
-                        ]
-                    ) : h($radioLink->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($radioLink->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Authorization Number') ?></th>
+                            <td><?= h($radioLink->authorization_number) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Distance') ?></th>
+                            <td><?= $this->Number->format($radioLink->distance) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($radioLink->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($radioLink->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $radioLink->has('creator') ? $this->Html->link(
+                                $radioLink->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $radioLink->creator->id,
+                                ]
+                            ) : h($radioLink->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($radioLink->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $radioLink->has('modifier') ? $this->Html->link(
+                                $radioLink->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $radioLink->modifier->id,
+                                ]
+                            ) : h($radioLink->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>
@@ -117,6 +125,7 @@
                             <th><?= __('Station Address') ?></th>
                             <th><?= __('Expiration Date') ?></th>
                             <th><?= __('IP Address') ?></th>
+                            <th><?= __('Authorization Number') ?></th>
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -158,6 +167,7 @@
                             <td><?= h($radioUnits->station_address) ?></td>
                             <td><?= h($radioUnits->expiration_date) ?></td>
                             <td><?= h($radioUnits->ip_address) ?></td>
+                            <td><?= h($radioUnits->authorization_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(

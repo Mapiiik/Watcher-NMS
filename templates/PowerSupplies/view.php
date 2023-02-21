@@ -36,94 +36,105 @@
     <div class="column-responsive column-90">
         <div class="powerSupplies view content">
             <h3><?= h($powerSupply->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($powerSupply->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($powerSupply->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Power Supply Type') ?></th>
-                    <td>
-                        <?= $powerSupply->has('power_supply_type') ? $this->Html->link(
-                            $powerSupply->power_supply_type->name,
-                            [
-                                'controller' => 'PowerSupplyTypes',
-                                'action' => 'view',
-                                $powerSupply->power_supply_type->id,
-                            ]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Access Point') ?></th>
-                    <td>
-                        <?= $powerSupply->has('access_point') ? $this->Html->link(
-                            $powerSupply->access_point->name,
-                            ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Serial Number') ?></th>
-                    <td><?= h($powerSupply->serial_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Battery Duration') ?></th>
-                    <td><?= h($powerSupply->battery_duration) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Battery Count') ?></th>
-                    <td><?= $this->Number->format($powerSupply->battery_count) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Battery Voltage') ?></th>
-                    <td><?= $this->Number->format($powerSupply->battery_voltage) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Battery Capacity') ?></th>
-                    <td><?= $this->Number->format($powerSupply->battery_capacity) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Battery Replacement') ?></th>
-                    <td><?= h($powerSupply->battery_replacement) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($powerSupply->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $powerSupply->has('creator') ? $this->Html->link(
-                        $powerSupply->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $powerSupply->creator->id,
-                        ]
-                    ) : h($powerSupply->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($powerSupply->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $powerSupply->has('modifier') ? $this->Html->link(
-                        $powerSupply->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $powerSupply->modifier->id,
-                        ]
-                    ) : h($powerSupply->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($powerSupply->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Power Supply Type') ?></th>
+                            <td>
+                                <?= $powerSupply->has('power_supply_type') ? $this->Html->link(
+                                    $powerSupply->power_supply_type->name,
+                                    [
+                                        'controller' => 'PowerSupplyTypes',
+                                        'action' => 'view',
+                                        $powerSupply->power_supply_type->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Access Point') ?></th>
+                            <td>
+                                <?= $powerSupply->has('access_point') ? $this->Html->link(
+                                    $powerSupply->access_point->name,
+                                    ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Serial Number') ?></th>
+                            <td><?= h($powerSupply->serial_number) ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Battery Count') ?></th>
+                            <td><?= $this->Number->format($powerSupply->battery_count) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Battery Voltage') ?></th>
+                            <td><?= $this->Number->format($powerSupply->battery_voltage) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Battery Capacity') ?></th>
+                            <td><?= $this->Number->format($powerSupply->battery_capacity) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Battery Replacement') ?></th>
+                            <td><?= h($powerSupply->battery_replacement) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Battery Duration') ?></th>
+                            <td><?= h($powerSupply->battery_duration) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($powerSupply->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($powerSupply->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $powerSupply->has('creator') ? $this->Html->link(
+                                $powerSupply->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $powerSupply->creator->id,
+                                ]
+                            ) : h($powerSupply->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($powerSupply->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $powerSupply->has('modifier') ? $this->Html->link(
+                                $powerSupply->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $powerSupply->modifier->id,
+                                ]
+                            ) : h($powerSupply->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

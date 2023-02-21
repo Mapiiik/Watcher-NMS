@@ -36,89 +36,97 @@
     <div class="column-responsive column-90">
         <div class="customerConnections view content">
             <h3><?= h($customerConnection->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($customerConnection->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($customerConnection->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Customer Point') ?></th>
-                    <td>
-                        <?= $customerConnection->has('customer_point') ? $this->Html->link(
-                            $customerConnection->customer_point->name,
-                            [
-                                'controller' => 'CustomerPoints',
-                                'action' => 'view',
-                                $customerConnection->customer_point->id,
-                            ]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Access Point') ?></th>
-                    <td>
-                        <?= $customerConnection->has('access_point') ? $this->Html->link(
-                            $customerConnection->access_point->name,
-                            [
-                                'controller' => 'AccessPoints',
-                                'action' => 'view',
-                                $customerConnection->access_point->id,
-                            ]
-                        ) : '' ?>
-                    </td>
-                <tr>
-                    <th><?= __('Customer Number') ?></th>
-                    <td>
-                        <?= $customerConnection->has('customer_number') ? $this->Html->link(
-                            $customerConnection->customer_number,
-                            env('WATCHER_CRM_URL') . '/admin/customers/' . (
-                                (int)$customerConnection->customer_number - (int)env('CUSTOMER_SERIES', '0')
-                            ),
-                            ['target' => '_blank']
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Contract Number') ?></th>
-                    <td><?= h($customerConnection->contract_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($customerConnection->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $customerConnection->has('creator') ? $this->Html->link(
-                        $customerConnection->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $customerConnection->creator->id,
-                        ]
-                    ) : h($customerConnection->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($customerConnection->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $customerConnection->has('modifier') ? $this->Html->link(
-                        $customerConnection->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $customerConnection->modifier->id,
-                        ]
-                    ) : h($customerConnection->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($customerConnection->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Customer Point') ?></th>
+                            <td>
+                                <?= $customerConnection->has('customer_point') ? $this->Html->link(
+                                    $customerConnection->customer_point->name,
+                                    [
+                                        'controller' => 'CustomerPoints',
+                                        'action' => 'view',
+                                        $customerConnection->customer_point->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Access Point') ?></th>
+                            <td>
+                                <?= $customerConnection->has('access_point') ? $this->Html->link(
+                                    $customerConnection->access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $customerConnection->access_point->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        <tr>
+                            <th><?= __('Customer Number') ?></th>
+                            <td>
+                                <?= $customerConnection->has('customer_number') ? $this->Html->link(
+                                    $customerConnection->customer_number,
+                                    env('WATCHER_CRM_URL') . '/admin/customers/' . (
+                                        (int)$customerConnection->customer_number - (int)env('CUSTOMER_SERIES', '0')
+                                    ),
+                                    ['target' => '_blank']
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Contract Number') ?></th>
+                            <td><?= h($customerConnection->contract_number) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($customerConnection->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($customerConnection->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $customerConnection->has('creator') ? $this->Html->link(
+                                $customerConnection->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $customerConnection->creator->id,
+                                ]
+                            ) : h($customerConnection->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($customerConnection->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $customerConnection->has('modifier') ? $this->Html->link(
+                                $customerConnection->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $customerConnection->modifier->id,
+                                ]
+                            ) : h($customerConnection->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

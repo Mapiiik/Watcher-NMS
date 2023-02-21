@@ -28,118 +28,129 @@
     <div class="column-responsive column-90">
         <div class="accessPoints view content">
             <h3><?= h($accessPoint->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($accessPoint->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($accessPoint->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Device Name') ?></th>
-                    <td><?= h($accessPoint->device_name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Access Point Type') ?></th>
-                    <td><?= $accessPoint->has('access_point_type') ?
-                        $this->Html->link(
-                            $accessPoint->access_point_type->name,
-                            [
-                                'controller' => 'AccessPointTypes',
-                                'action' => 'view',
-                                $accessPoint->access_point_type->id,
-                            ]
-                        ) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Parent Access Point') ?></th>
-                    <td><?= $accessPoint->has('parent_access_point') ?
-                        $this->Html->link(
-                            $accessPoint->parent_access_point->name,
-                            [
-                                'controller' => 'AccessPoints',
-                                'action' => 'view',
-                                $accessPoint->parent_access_point->id,
-                            ]
-                        ) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Month Of Electricity Meter Reading') ?></th>
-                    <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Gps Y') ?></th>
-                    <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Gps X') ?></th>
-                    <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Maps') ?></th>
-                    <td>
-                        <?= $this->Html->link(
-                            __('Google Maps'),
-                            [
-                                'controller' => 'https:////maps.google.com',
-                                'action' => 'maps?q=' . htmlspecialchars(
-                                    "{$accessPoint->gps_y},{$accessPoint->gps_x}"
-                                ),
-                            ],
-                            ['target' => '_blank']
-                        ) ?>
-                        ,
-                        <?= $this->Html->link(
-                            __('Mapy.cz'),
-                            [
-                                'controller' => 'https:////mapy.cz',
-                                'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                    "{$accessPoint->gps_x},{$accessPoint->gps_y}"
-                                ),
-                            ],
-                            ['target' => '_blank']
-                        ) ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Nearest Found Address') ?></th>
-                    <td><?= h($accessPoint->nearest_found_address) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($accessPoint->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $accessPoint->has('creator') ? $this->Html->link(
-                        $accessPoint->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $accessPoint->creator->id,
-                        ]
-                    ) : h($accessPoint->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($accessPoint->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $accessPoint->has('modifier') ? $this->Html->link(
-                        $accessPoint->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $accessPoint->modifier->id,
-                        ]
-                    ) : h($accessPoint->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($accessPoint->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Device Name') ?></th>
+                            <td><?= h($accessPoint->device_name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Access Point Type') ?></th>
+                            <td><?= $accessPoint->has('access_point_type') ?
+                                $this->Html->link(
+                                    $accessPoint->access_point_type->name,
+                                    [
+                                        'controller' => 'AccessPointTypes',
+                                        'action' => 'view',
+                                        $accessPoint->access_point_type->id,
+                                    ]
+                                ) : '' ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Parent Access Point') ?></th>
+                            <td><?= $accessPoint->has('parent_access_point') ?
+                                $this->Html->link(
+                                    $accessPoint->parent_access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $accessPoint->parent_access_point->id,
+                                    ]
+                                ) : '' ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Month Of Electricity Meter Reading') ?></th>
+                            <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Gps Y') ?></th>
+                            <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Gps X') ?></th>
+                            <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Maps') ?></th>
+                            <td>
+                                <?= $this->Html->link(
+                                    __('Google Maps'),
+                                    [
+                                        'controller' => 'https:////maps.google.com',
+                                        'action' => 'maps?q=' . htmlspecialchars(
+                                            "{$accessPoint->gps_y},{$accessPoint->gps_x}"
+                                        ),
+                                    ],
+                                    ['target' => '_blank']
+                                ) ?>
+                                ,
+                                <?= $this->Html->link(
+                                    __('Mapy.cz'),
+                                    [
+                                        'controller' => 'https:////mapy.cz',
+                                        'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
+                                            "{$accessPoint->gps_x},{$accessPoint->gps_y}"
+                                        ),
+                                    ],
+                                    ['target' => '_blank']
+                                ) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Nearest Found Address') ?></th>
+                            <td><?= h($accessPoint->nearest_found_address) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($accessPoint->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($accessPoint->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $accessPoint->has('creator') ? $this->Html->link(
+                                $accessPoint->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $accessPoint->creator->id,
+                                ]
+                            ) : h($accessPoint->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($accessPoint->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $accessPoint->has('modifier') ? $this->Html->link(
+                                $accessPoint->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $accessPoint->modifier->id,
+                                ]
+                            ) : h($accessPoint->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Contract Conditions') ?></strong>
                 <blockquote>

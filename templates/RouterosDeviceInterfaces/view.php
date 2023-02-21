@@ -36,113 +36,126 @@
     <div class="column-responsive column-90">
         <div class="routerosDeviceInterfaces view content">
             <h3><?= h($routerosDeviceInterface->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($routerosDeviceInterface->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('RouterOS Device') ?></th>
-                    <td>
-                        <?= $routerosDeviceInterface->has('routeros_device') ? $this->Html->link(
-                            $routerosDeviceInterface->routeros_device->name,
-                            [
-                                'controller' => 'RouterosDevices',
-                                'action' => 'view',
-                                $routerosDeviceInterface->routeros_device->id,
-                            ]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($routerosDeviceInterface->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Comment') ?></th>
-                    <td><?= h($routerosDeviceInterface->comment) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('MAC Address') ?></th>
-                    <td><?= h($routerosDeviceInterface->mac_address) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('SSID') ?></th>
-                    <td><?= h($routerosDeviceInterface->ssid) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('BSSID') ?></th>
-                    <td><?= h($routerosDeviceInterface->bssid) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Band') ?></th>
-                    <td><?= h($routerosDeviceInterface->band) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Frequency') ?></th>
-                    <td><?= $this->Number->format($routerosDeviceInterface->frequency) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Noise Floor') ?></th>
-                    <td><?= $this->Number->format($routerosDeviceInterface->noise_floor) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Client Count') ?></th>
-                    <td><?= $this->Number->format($routerosDeviceInterface->client_count) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Overall Tx Ccq') ?></th>
-                    <td><?= $this->Number->format($routerosDeviceInterface->overall_tx_ccq) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Interface Index') ?></th>
-                    <td><?= $this->Number->format($routerosDeviceInterface->interface_index) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Interface Type') ?></th>
-                    <td><?= $this->Number->format($routerosDeviceInterface->interface_type) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Interface Admin Status') ?></th>
-                    <td><?= $this->Number->format($routerosDeviceInterface->interface_admin_status) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Interface Oper Status') ?></th>
-                    <td><?= $this->Number->format($routerosDeviceInterface->interface_oper_status) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($routerosDeviceInterface->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $routerosDeviceInterface->has('creator') ? $this->Html->link(
-                        $routerosDeviceInterface->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $routerosDeviceInterface->creator->id,
-                        ]
-                    ) : h($routerosDeviceInterface->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($routerosDeviceInterface->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $routerosDeviceInterface->has('modifier') ? $this->Html->link(
-                        $routerosDeviceInterface->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $routerosDeviceInterface->modifier->id,
-                        ]
-                    ) : h($routerosDeviceInterface->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('RouterOS Device') ?></th>
+                            <td>
+                                <?= $routerosDeviceInterface->has('routeros_device') ? $this->Html->link(
+                                    $routerosDeviceInterface->routeros_device->name,
+                                    [
+                                        'controller' => 'RouterosDevices',
+                                        'action' => 'view',
+                                        $routerosDeviceInterface->routeros_device->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($routerosDeviceInterface->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Comment') ?></th>
+                            <td><?= h($routerosDeviceInterface->comment) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('MAC Address') ?></th>
+                            <td><?= h($routerosDeviceInterface->mac_address) ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('SSID') ?></th>
+                            <td><?= h($routerosDeviceInterface->ssid) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('BSSID') ?></th>
+                            <td><?= h($routerosDeviceInterface->bssid) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Band') ?></th>
+                            <td><?= h($routerosDeviceInterface->band) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Frequency') ?></th>
+                            <td><?= $this->Number->format($routerosDeviceInterface->frequency) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Noise Floor') ?></th>
+                            <td><?= $this->Number->format($routerosDeviceInterface->noise_floor) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Client Count') ?></th>
+                            <td><?= $this->Number->format($routerosDeviceInterface->client_count) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Overall Tx Ccq') ?></th>
+                            <td><?= $this->Number->format($routerosDeviceInterface->overall_tx_ccq) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Interface Index') ?></th>
+                            <td><?= $this->Number->format($routerosDeviceInterface->interface_index) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Interface Type') ?></th>
+                            <td><?= $this->Number->format($routerosDeviceInterface->interface_type) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Interface Admin Status') ?></th>
+                            <td><?= $this->Number->format($routerosDeviceInterface->interface_admin_status) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Interface Oper Status') ?></th>
+                            <td><?= $this->Number->format($routerosDeviceInterface->interface_oper_status) ?></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($routerosDeviceInterface->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($routerosDeviceInterface->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $routerosDeviceInterface->has('creator') ? $this->Html->link(
+                                $routerosDeviceInterface->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $routerosDeviceInterface->creator->id,
+                                ]
+                            ) : h($routerosDeviceInterface->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($routerosDeviceInterface->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $routerosDeviceInterface->has('modifier') ? $this->Html->link(
+                                $routerosDeviceInterface->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $routerosDeviceInterface->modifier->id,
+                                ]
+                            ) : h($routerosDeviceInterface->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

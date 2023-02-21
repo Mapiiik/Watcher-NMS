@@ -28,72 +28,83 @@
     <div class="column-responsive column-90">
         <div class="deviceTypes view content">
             <h3><?= h($deviceType->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($deviceType->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($deviceType->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Identifier') ?></th>
-                    <td><?= h($deviceType->identifier) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Snmp Community') ?></th>
-                    <td><?= h($deviceType->snmp_community) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Assign Access Point By Device Name') ?></th>
-                    <td><?= $deviceType->assign_access_point_by_device_name ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Assign Customer Connection By IP') ?></th>
-                    <td><?= $deviceType->assign_customer_connection_by_ip ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Allow Technicians Access') ?></th>
-                    <td><?= $deviceType->allow_technicians_access ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Automatically Set A Unique Password') ?></th>
-                    <td><?= $deviceType->automatically_set_a_unique_password ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($deviceType->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $deviceType->has('creator') ? $this->Html->link(
-                        $deviceType->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $deviceType->creator->id,
-                        ]
-                    ) : h($deviceType->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($deviceType->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $deviceType->has('modifier') ? $this->Html->link(
-                        $deviceType->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $deviceType->modifier->id,
-                        ]
-                    ) : h($deviceType->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($deviceType->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Identifier') ?></th>
+                            <td><?= h($deviceType->identifier) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Snmp Community') ?></th>
+                            <td><?= h($deviceType->snmp_community) ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Assign Access Point By Device Name') ?></th>
+                            <td><?= $deviceType->assign_access_point_by_device_name ? __('Yes') : __('No'); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Assign Customer Connection By IP') ?></th>
+                            <td><?= $deviceType->assign_customer_connection_by_ip ? __('Yes') : __('No'); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Allow Technicians Access') ?></th>
+                            <td><?= $deviceType->allow_technicians_access ? __('Yes') : __('No'); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Automatically Set A Unique Password') ?></th>
+                            <td><?= $deviceType->automatically_set_a_unique_password ? __('Yes') : __('No'); ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($deviceType->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($deviceType->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $deviceType->has('creator') ? $this->Html->link(
+                                $deviceType->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $deviceType->creator->id,
+                                ]
+                            ) : h($deviceType->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($deviceType->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $deviceType->has('modifier') ? $this->Html->link(
+                                $deviceType->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $deviceType->modifier->id,
+                                ]
+                            ) : h($deviceType->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

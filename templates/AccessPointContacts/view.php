@@ -36,77 +36,89 @@
     <div class="column-responsive column-90">
         <div class="accessPointContacts view content">
             <h3><?= h($accessPointContact->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($accessPointContact->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($accessPointContact->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Access Point') ?></th>
-                    <td><?= $accessPointContact->has('access_point') ? $this->Html->link(
-                        $accessPointContact->access_point->name,
-                        ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]
-                    ) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Phone') ?></th>
-                    <td><?= h($accessPointContact->phone) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Email') ?></th>
-                    <td><?= h($accessPointContact->email) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Customer Number') ?></th>
-                    <td><?= $accessPointContact->has('customer_number') ? $this->Html->link(
-                        $accessPointContact->customer_number,
-                        env('WATCHER_CRM_URL') . '/admin/customers/' . (
-                            (int)$accessPointContact->customer_number - (int)env('CUSTOMER_SERIES', '0')
-                        ),
-                        ['target' => '_blank']
-                    ) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Contract Number') ?></th>
-                    <td><?= h($accessPointContact->contract_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($accessPointContact->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $accessPointContact->has('creator') ? $this->Html->link(
-                        $accessPointContact->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $accessPointContact->creator->id,
-                        ]
-                    ) : h($accessPointContact->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($accessPointContact->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $accessPointContact->has('modifier') ? $this->Html->link(
-                        $accessPointContact->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $accessPointContact->modifier->id,
-                        ]
-                    ) : h($accessPointContact->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($accessPointContact->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Access Point') ?></th>
+                            <td><?= $accessPointContact->has('access_point') ? $this->Html->link(
+                                $accessPointContact->access_point->name,
+                                [
+                                    'controller' => 'AccessPoints',
+                                    'action' => 'view',
+                                    $accessPointContact->access_point->id,
+                                ]
+                            ) : '' ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Phone') ?></th>
+                            <td><?= h($accessPointContact->phone) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Email') ?></th>
+                            <td><?= h($accessPointContact->email) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Customer Number') ?></th>
+                            <td><?= $accessPointContact->has('customer_number') ? $this->Html->link(
+                                $accessPointContact->customer_number,
+                                env('WATCHER_CRM_URL') . '/admin/customers/' . (
+                                    (int)$accessPointContact->customer_number - (int)env('CUSTOMER_SERIES', '0')
+                                ),
+                                ['target' => '_blank']
+                            ) : '' ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Contract Number') ?></th>
+                            <td><?= h($accessPointContact->contract_number) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($accessPointContact->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($accessPointContact->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $accessPointContact->has('creator') ? $this->Html->link(
+                                $accessPointContact->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $accessPointContact->creator->id,
+                                ]
+                            ) : h($accessPointContact->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($accessPointContact->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $accessPointContact->has('modifier') ? $this->Html->link(
+                                $accessPointContact->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $accessPointContact->modifier->id,
+                                ]
+                            ) : h($accessPointContact->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

@@ -29,33 +29,41 @@
             <?= $this->Form->create($routerosDeviceInterface) ?>
             <fieldset>
                 <legend><?= __('Edit RouterOS Device Interface') ?></legend>
-                <?php
-                echo $this->Form->control('routeros_device_id', [
-                    'label' => __('RouterOS Device'),
-                    'options' => $routerosDevices,
-                    'empty' => true,
-                ]);
-                echo $this->Form->control('name');
-                echo $this->Form->control('comment');
-                echo $this->Form->control('mac_address', [
-                    'label' => __('MAC Address'),
-                ]);
-                echo $this->Form->control('ssid', [
-                    'label' => __('SSID'),
-                ]);
-                echo $this->Form->control('bssid', [
-                    'label' => __('BSSID'),
-                ]);
-                echo $this->Form->control('band');
-                echo $this->Form->control('frequency');
-                echo $this->Form->control('noise_floor');
-                echo $this->Form->control('client_count');
-                echo $this->Form->control('overall_tx_ccq');
-                echo $this->Form->control('interface_index');
-                echo $this->Form->control('interface_type');
-                echo $this->Form->control('interface_admin_status');
-                echo $this->Form->control('interface_oper_status');
-                ?>
+                <div class="row">
+                    <div class="column-responsive">
+                        <?php
+                        echo $this->Form->control('routeros_device_id', [
+                            'label' => __('RouterOS Device'),
+                            'options' => $routerosDevices,
+                            'empty' => true,
+                        ]);
+                        echo $this->Form->control('name');
+                        echo $this->Form->control('comment');
+                        echo $this->Form->control('mac_address', [
+                            'label' => __('MAC Address'),
+                        ]);
+                        echo $this->Form->control('ssid', [
+                            'label' => __('SSID'),
+                        ]);
+                        echo $this->Form->control('bssid', [
+                            'label' => __('BSSID'),
+                        ]);
+                        echo $this->Form->control('band');
+                        echo $this->Form->control('frequency');
+                        echo $this->Form->control('noise_floor');
+                        echo $this->Form->control('client_count');
+                        echo $this->Form->control('overall_tx_ccq');
+                        ?>
+                    </div>
+                    <div class="column-responsive">
+                        <?php
+                        echo $this->Form->control('interface_index');
+                        echo $this->Form->control('interface_type');
+                        echo $this->Form->control('interface_admin_status');
+                        echo $this->Form->control('interface_oper_status');
+                        ?>
+                    </div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

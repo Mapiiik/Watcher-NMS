@@ -36,64 +36,72 @@
     <div class="column-responsive column-90">
         <div class="radarInterferences view content">
             <h3><?= h($radarInterference->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($radarInterference->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($radarInterference->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('MAC Address') ?></th>
-                    <td><?= h($radarInterference->mac_address) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('SSID') ?></th>
-                    <td><?= h($radarInterference->ssid) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Radio Name') ?></th>
-                    <td><?= h($radarInterference->radio_name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Signal') ?></th>
-                    <td><?= $this->Number->format($radarInterference->signal) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($radarInterference->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $radarInterference->has('creator') ? $this->Html->link(
-                        $radarInterference->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $radarInterference->creator->id,
-                        ]
-                    ) : h($radarInterference->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($radarInterference->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $radarInterference->has('modifier') ? $this->Html->link(
-                        $radarInterference->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $radarInterference->modifier->id,
-                        ]
-                    ) : h($radarInterference->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($radarInterference->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('MAC Address') ?></th>
+                            <td><?= h($radarInterference->mac_address) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('SSID') ?></th>
+                            <td><?= h($radarInterference->ssid) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Radio Name') ?></th>
+                            <td><?= h($radarInterference->radio_name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Signal') ?></th>
+                            <td><?= $this->Number->format($radarInterference->signal) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($radarInterference->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($radarInterference->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $radarInterference->has('creator') ? $this->Html->link(
+                                $radarInterference->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $radarInterference->creator->id,
+                                ]
+                            ) : h($radarInterference->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($radarInterference->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $radarInterference->has('modifier') ? $this->Html->link(
+                                $radarInterference->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $radarInterference->modifier->id,
+                                ]
+                            ) : h($radarInterference->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="related">
                 <h4><?= __('Related RouterOS Device Interfaces') ?></h4>
                 <?php if (!empty($radarInterference->routeros_device_interfaces)) : ?>

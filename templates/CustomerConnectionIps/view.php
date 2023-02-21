@@ -36,65 +36,73 @@
     <div class="column-responsive column-90">
         <div class="customerConnectionIps view content">
             <h3><?= h($customerConnectionIp->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($customerConnectionIp->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($customerConnectionIp->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Customer Connection') ?></th>
-                    <td>
-                        <?= $customerConnectionIp->has('customer_connection') ? $this->Html->link(
-                            $customerConnectionIp->customer_connection->name,
-                            [
-                                'controller' => 'CustomerConnections',
-                                'action' => 'view',
-                                $customerConnectionIp->customer_connection->id,
-                            ]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('IP Address') ?></th>
-                    <td><?= h($customerConnectionIp->ip_address) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($customerConnectionIp->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $customerConnectionIp->has('creator') ? $this->Html->link(
-                        $customerConnectionIp->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $customerConnectionIp->creator->id,
-                        ]
-                    ) : h($customerConnectionIp->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($customerConnectionIp->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $customerConnectionIp->has('modifier') ? $this->Html->link(
-                        $customerConnectionIp->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $customerConnectionIp->modifier->id,
-                        ]
-                    ) : h($customerConnectionIp->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($customerConnectionIp->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Customer Connection') ?></th>
+                            <td>
+                                <?= $customerConnectionIp->has('customer_connection') ? $this->Html->link(
+                                    $customerConnectionIp->customer_connection->name,
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'view',
+                                        $customerConnectionIp->customer_connection->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('IP Address') ?></th>
+                            <td><?= h($customerConnectionIp->ip_address) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($customerConnectionIp->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($customerConnectionIp->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $customerConnectionIp->has('creator') ? $this->Html->link(
+                                $customerConnectionIp->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $customerConnectionIp->creator->id,
+                                ]
+                            ) : h($customerConnectionIp->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($customerConnectionIp->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $customerConnectionIp->has('modifier') ? $this->Html->link(
+                                $customerConnectionIp->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $customerConnectionIp->modifier->id,
+                                ]
+                            ) : h($customerConnectionIp->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

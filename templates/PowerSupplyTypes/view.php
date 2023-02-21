@@ -36,69 +36,81 @@
     <div class="column-responsive column-90">
         <div class="powerSupplyTypes view content">
             <h3><?= h($powerSupplyType->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($powerSupplyType->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($powerSupplyType->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Manufacturer') ?></th>
-                    <td>
-                        <?= $powerSupplyType->has('manufacturer') ? $this->Html->link(
-                            $powerSupplyType->manufacturer->name,
-                            ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Part Number') ?></th>
-                    <td><?= h($powerSupplyType->part_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Voltage') ?></th>
-                    <td><?= $this->Number->format($powerSupplyType->voltage) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Current') ?></th>
-                    <td><?= $this->Number->format($powerSupplyType->current) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($powerSupplyType->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $powerSupplyType->has('creator') ? $this->Html->link(
-                        $powerSupplyType->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $powerSupplyType->creator->id,
-                        ]
-                    ) : h($powerSupplyType->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($powerSupplyType->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $powerSupplyType->has('modifier') ? $this->Html->link(
-                        $powerSupplyType->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $powerSupplyType->modifier->id,
-                        ]
-                    ) : h($powerSupplyType->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($powerSupplyType->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Manufacturer') ?></th>
+                            <td>
+                                <?= $powerSupplyType->has('manufacturer') ? $this->Html->link(
+                                    $powerSupplyType->manufacturer->name,
+                                    [
+                                        'controller' => 'Manufacturers',
+                                        'action' => 'view',
+                                        $powerSupplyType->manufacturer->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Part Number') ?></th>
+                            <td><?= h($powerSupplyType->part_number) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Voltage') ?></th>
+                            <td><?= $this->Number->format($powerSupplyType->voltage) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Current') ?></th>
+                            <td><?= $this->Number->format($powerSupplyType->current) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($powerSupplyType->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($powerSupplyType->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $powerSupplyType->has('creator') ? $this->Html->link(
+                                $powerSupplyType->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $powerSupplyType->creator->id,
+                                ]
+                            ) : h($powerSupplyType->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($powerSupplyType->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $powerSupplyType->has('modifier') ? $this->Html->link(
+                                $powerSupplyType->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $powerSupplyType->modifier->id,
+                                ]
+                            ) : h($powerSupplyType->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

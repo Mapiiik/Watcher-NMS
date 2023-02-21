@@ -35,117 +35,134 @@
     <div class="column-responsive column-90">
         <div class="routerosDevices view content">
             <h3><?= h($routerosDevice->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($routerosDevice->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($routerosDevice->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Access Point') ?></th>
-                    <td>
-                        <?= $routerosDevice->has('access_point') ? $this->Html->link(
-                            $routerosDevice->access_point->name,
-                            ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Customer Connection') ?></th>
-                    <td>
-                        <?= $routerosDevice->has('customer_connection') ? $this->Html->link(
-                            $routerosDevice->customer_connection->name,
-                            [
-                                'controller' => 'CustomerConnections',
-                                'action' => 'view',
-                                $routerosDevice->customer_connection->id,
-                            ]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Device Type') ?></th>
-                    <td>
-                        <?= $routerosDevice->has('device_type') ? $this->Html->link(
-                            $routerosDevice->device_type->name,
-                            [
-                                'controller' => 'DeviceTypes',
-                                'action' => 'view',
-                                $routerosDevice->device_type->id,
-                            ]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('IP Address') ?></th>
-                    <td><?= h($routerosDevice->ip_address) ?></td>
-                </tr>
-                <?php if (isset($routerosDevice->username) && isset($routerosDevice->password)) : ?>
-                <tr>
-                    <th><?= __('Username') ?></th>
-                    <td><?= h($routerosDevice->username) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Password') ?></th>
-                    <td><?= h($routerosDevice->password) ?></td>
-                </tr>
-                <?php endif; ?>
-                <tr>
-                    <th><?= __('System Description') ?></th>
-                    <td><?= h($routerosDevice->system_description) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Board Name') ?></th>
-                    <td><?= h($routerosDevice->board_name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Serial Number') ?></th>
-                    <td><?= h($routerosDevice->serial_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Software Version') ?></th>
-                    <td><?= h($routerosDevice->software_version) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Firmware Version') ?></th>
-                    <td><?= h($routerosDevice->firmware_version) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($routerosDevice->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $routerosDevice->has('creator') ? $this->Html->link(
-                        $routerosDevice->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $routerosDevice->creator->id,
-                        ]
-                    ) : h($routerosDevice->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($routerosDevice->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $routerosDevice->has('modifier') ? $this->Html->link(
-                        $routerosDevice->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $routerosDevice->modifier->id,
-                        ]
-                    ) : h($routerosDevice->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($routerosDevice->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Access Point') ?></th>
+                            <td>
+                                <?= $routerosDevice->has('access_point') ? $this->Html->link(
+                                    $routerosDevice->access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $routerosDevice->access_point->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Customer Connection') ?></th>
+                            <td>
+                                <?= $routerosDevice->has('customer_connection') ? $this->Html->link(
+                                    $routerosDevice->customer_connection->name,
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'view',
+                                        $routerosDevice->customer_connection->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Device Type') ?></th>
+                            <td>
+                                <?= $routerosDevice->has('device_type') ? $this->Html->link(
+                                    $routerosDevice->device_type->name,
+                                    [
+                                        'controller' => 'DeviceTypes',
+                                        'action' => 'view',
+                                        $routerosDevice->device_type->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('IP Address') ?></th>
+                            <td><?= h($routerosDevice->ip_address) ?></td>
+                        </tr>
+                        <?php if (isset($routerosDevice->username) && isset($routerosDevice->password)) : ?>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Username') ?></th>
+                            <td><?= h($routerosDevice->username) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Password') ?></th>
+                            <td><?= h($routerosDevice->password) ?></td>
+                        </tr>
+                        <?php endif; ?>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('System Description') ?></th>
+                            <td><?= h($routerosDevice->system_description) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Board Name') ?></th>
+                            <td><?= h($routerosDevice->board_name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Serial Number') ?></th>
+                            <td><?= h($routerosDevice->serial_number) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Software Version') ?></th>
+                            <td><?= h($routerosDevice->software_version) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Firmware Version') ?></th>
+                            <td><?= h($routerosDevice->firmware_version) ?></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($routerosDevice->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($routerosDevice->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $routerosDevice->has('creator') ? $this->Html->link(
+                                $routerosDevice->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $routerosDevice->creator->id,
+                                ]
+                            ) : h($routerosDevice->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($routerosDevice->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $routerosDevice->has('modifier') ? $this->Html->link(
+                                $routerosDevice->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $routerosDevice->modifier->id,
+                                ]
+                            ) : h($routerosDevice->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="related">
                 <h4><?= __('Related RouterOS Device Interfaces') ?></h4>
                 <?php if (!empty($routerosDevice->routeros_device_interfaces)) : ?>

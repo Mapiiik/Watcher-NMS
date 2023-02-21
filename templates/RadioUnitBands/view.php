@@ -28,52 +28,62 @@
     <div class="column-responsive column-90">
         <div class="radioUnitBands view content">
             <h3><?= h($radioUnitBand->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($radioUnitBand->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($radioUnitBand->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Color') ?></th>
-                    <td style="background-color: <?= h($radioUnitBand->color) ?>;"><?= h($radioUnitBand->color) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($radioUnitBand->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $radioUnitBand->has('creator') ? $this->Html->link(
-                        $radioUnitBand->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $radioUnitBand->creator->id,
-                        ]
-                    ) : h($radioUnitBand->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($radioUnitBand->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $radioUnitBand->has('modifier') ? $this->Html->link(
-                        $radioUnitBand->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $radioUnitBand->modifier->id,
-                        ]
-                    ) : h($radioUnitBand->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($radioUnitBand->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Color') ?></th>
+                            <td style="background-color: <?= h($radioUnitBand->color) ?>;"><?=
+                                h($radioUnitBand->color)
+                            ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($radioUnitBand->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($radioUnitBand->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $radioUnitBand->has('creator') ? $this->Html->link(
+                                $radioUnitBand->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $radioUnitBand->creator->id,
+                                ]
+                            ) : h($radioUnitBand->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($radioUnitBand->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $radioUnitBand->has('modifier') ? $this->Html->link(
+                                $radioUnitBand->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $radioUnitBand->modifier->id,
+                                ]
+                            ) : h($radioUnitBand->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

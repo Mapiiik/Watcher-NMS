@@ -36,69 +36,80 @@
     <div class="column-responsive column-90">
         <div class="electricityMeterReadings view content">
             <h3><?= h($electricityMeterReading->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($electricityMeterReading->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($electricityMeterReading->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Access Point') ?></th>
-                    <td>
-                        <?= $electricityMeterReading->has('access_point') ? $this->Html->link(
-                            $electricityMeterReading->access_point->name,
-                            [
-                                'controller' => 'AccessPoints',
-                                'action' => 'view',
-                                $electricityMeterReading->access_point->id,
-                            ]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Reading Date') ?></th>
-                    <td><?= h($electricityMeterReading->reading_date) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Reading Value') ?></th>
-                    <td><?= $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($electricityMeterReading->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $electricityMeterReading->has('creator') ? $this->Html->link(
-                        $electricityMeterReading->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $electricityMeterReading->creator->id,
-                        ]
-                    ) : h($electricityMeterReading->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($electricityMeterReading->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $electricityMeterReading->has('modifier') ? $this->Html->link(
-                        $electricityMeterReading->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $electricityMeterReading->modifier->id,
-                        ]
-                    ) : h($electricityMeterReading->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($electricityMeterReading->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Access Point') ?></th>
+                            <td>
+                                <?= $electricityMeterReading->has('access_point') ? $this->Html->link(
+                                    $electricityMeterReading->access_point->name,
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $electricityMeterReading->access_point->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Reading Date') ?></th>
+                            <td><?= h($electricityMeterReading->reading_date) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Reading Value') ?></th>
+                            <td><?= $this->Number->format(
+                                $electricityMeterReading->reading_value,
+                                ['after' => ' kWh']
+                            ) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($electricityMeterReading->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($electricityMeterReading->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $electricityMeterReading->has('creator') ? $this->Html->link(
+                                $electricityMeterReading->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $electricityMeterReading->creator->id,
+                                ]
+                            ) : h($electricityMeterReading->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($electricityMeterReading->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $electricityMeterReading->has('modifier') ? $this->Html->link(
+                                $electricityMeterReading->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $electricityMeterReading->modifier->id,
+                                ]
+                            ) : h($electricityMeterReading->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

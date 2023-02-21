@@ -28,73 +28,89 @@
     <div class="column-responsive column-90">
         <div class="antennaTypes view content">
             <h3><?= h($antennaType->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($antennaType->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($antennaType->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Radio Unit Band') ?></th>
-                    <td>
-                        <?= $antennaType->has('radio_unit_band') ? $this->Html->link(
-                            $antennaType->radio_unit_band->name,
-                            ['controller' => 'RadioUnitBands', 'action' => 'view', $antennaType->radio_unit_band->id]
-                        ) : '' ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Manufacturer') ?></th>
-                    <td>
-                        <?= $antennaType->has('manufacturer') ? $this->Html->link(
-                            $antennaType->manufacturer->name,
-                            ['controller' => 'Manufacturers', 'action' => 'view', $antennaType->manufacturer->id]
-                        ) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Part Number') ?></th>
-                    <td><?= h($antennaType->part_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Antenna Gain') ?></th>
-                    <td><?= $this->Number->format($antennaType->antenna_gain) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($antennaType->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $antennaType->has('creator') ? $this->Html->link(
-                        $antennaType->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $antennaType->creator->id,
-                        ]
-                    ) : h($antennaType->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($antennaType->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $antennaType->has('modifier') ? $this->Html->link(
-                        $antennaType->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $antennaType->modifier->id,
-                        ]
-                    ) : h($antennaType->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($antennaType->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Radio Unit Band') ?></th>
+                            <td>
+                                <?= $antennaType->has('radio_unit_band') ? $this->Html->link(
+                                    $antennaType->radio_unit_band->name,
+                                    [
+                                        'controller' => 'RadioUnitBands',
+                                        'action' => 'view',
+                                        $antennaType->radio_unit_band->id,
+                                    ]
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Manufacturer') ?></th>
+                            <td>
+                                <?= $antennaType->has('manufacturer') ? $this->Html->link(
+                                    $antennaType->manufacturer->name,
+                                    [
+                                        'controller' => 'Manufacturers',
+                                        'action' => 'view',
+                                        $antennaType->manufacturer->id,
+                                    ]
+                                ) : '' ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Part Number') ?></th>
+                            <td><?= h($antennaType->part_number) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Antenna Gain') ?></th>
+                            <td><?= $this->Number->format($antennaType->antenna_gain) ?></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($antennaType->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($antennaType->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $antennaType->has('creator') ? $this->Html->link(
+                                $antennaType->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $antennaType->creator->id,
+                                ]
+                            ) : h($antennaType->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($antennaType->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $antennaType->has('modifier') ? $this->Html->link(
+                                $antennaType->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $antennaType->modifier->id,
+                                ]
+                            ) : h($antennaType->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

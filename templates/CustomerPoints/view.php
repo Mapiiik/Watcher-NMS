@@ -28,82 +28,90 @@
     <div class="column-responsive column-90">
         <div class="customerPoints view content">
             <h3><?= h($customerPoint->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= h($customerPoint->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($customerPoint->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Gps Y') ?></th>
-                    <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Gps X') ?></th>
-                    <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Maps') ?></th>
-                    <td>
-                        <?= $this->Html->link(
-                            __('Google Maps'),
-                            [
-                                'controller' => 'https:////maps.google.com',
-                                'action' => 'maps?q=' . htmlspecialchars(
-                                    "{$customerPoint->gps_y},{$customerPoint->gps_x}"
-                                ),
-                            ],
-                            ['target' => '_blank']
-                        ) ?>
-                        ,
-                        <?= $this->Html->link(
-                            __('Mapy.cz'),
-                            [
-                                'controller' => 'https:////mapy.cz',
-                                'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                    "{$customerPoint->gps_x},{$customerPoint->gps_y}"
-                                ),
-                            ],
-                            ['target' => '_blank']
-                        ) ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($customerPoint->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $customerPoint->has('creator') ? $this->Html->link(
-                        $customerPoint->creator->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $customerPoint->creator->id,
-                        ]
-                    ) : h($customerPoint->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($customerPoint->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $customerPoint->has('modifier') ? $this->Html->link(
-                        $customerPoint->modifier->username,
-                        [
-                            'plugin' => 'CakeDC/Users',
-                            'controller' => 'Users',
-                            'action' => 'view',
-                            $customerPoint->modifier->id,
-                        ]
-                    ) : h($customerPoint->modified_by) ?></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <td><?= h($customerPoint->name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Gps Y') ?></th>
+                            <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Gps X') ?></th>
+                            <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Maps') ?></th>
+                            <td>
+                                <?= $this->Html->link(
+                                    __('Google Maps'),
+                                    [
+                                        'controller' => 'https:////maps.google.com',
+                                        'action' => 'maps?q=' . htmlspecialchars(
+                                            "{$customerPoint->gps_y},{$customerPoint->gps_x}"
+                                        ),
+                                    ],
+                                    ['target' => '_blank']
+                                ) ?>
+                                ,
+                                <?= $this->Html->link(
+                                    __('Mapy.cz'),
+                                    [
+                                        'controller' => 'https:////mapy.cz',
+                                        'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
+                                            "{$customerPoint->gps_x},{$customerPoint->gps_y}"
+                                        ),
+                                    ],
+                                    ['target' => '_blank']
+                                ) ?>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <td><?= h($customerPoint->id) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created') ?></th>
+                            <td><?= h($customerPoint->created) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Created By') ?></th>
+                            <td><?= $customerPoint->has('creator') ? $this->Html->link(
+                                $customerPoint->creator->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $customerPoint->creator->id,
+                                ]
+                            ) : h($customerPoint->created_by) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified') ?></th>
+                            <td><?= h($customerPoint->modified) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Modified By') ?></th>
+                            <td><?= $customerPoint->has('modifier') ? $this->Html->link(
+                                $customerPoint->modifier->username,
+                                [
+                                    'plugin' => 'CakeDC/Users',
+                                    'controller' => 'Users',
+                                    'action' => 'view',
+                                    $customerPoint->modifier->id,
+                                ]
+                            ) : h($customerPoint->modified_by) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>
