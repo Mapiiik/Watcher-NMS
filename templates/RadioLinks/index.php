@@ -6,14 +6,14 @@
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
 <div class="row">
-    <div class="column-responsive">
+    <div class="column">
         <?= $this->Form->control('search', [
             'label' => __('Search'),
             'type' => 'search',
             'onchange' => 'this.form.submit();',
         ]) ?>
     </div>
-    <div class="column-responsive">
+    <div class="column">
         <?= $this->Form->control('radio_unit_band_id', [
             'empty' => true,
             'onchange' => 'this.form.submit();',

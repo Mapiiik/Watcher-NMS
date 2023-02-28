@@ -22,13 +22,13 @@
             <?= $this->Html->link(__('List RouterOS Devices'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="routerosDevices form content">
             <?= $this->Form->create($routerosDevice) ?>
             <fieldset>
                 <legend><?= __('Edit RouterOS Device') ?></legend>
                 <div class="row">
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                         echo $this->Form->control('name');
                         if (!isset($access_point_id)) {
@@ -50,7 +50,7 @@
                         ]);
                         ?>
                     </div>
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                         echo $this->Form->control('system_description');
                         echo $this->Form->control('board_name');

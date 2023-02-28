@@ -13,7 +13,7 @@
             <?= $this->Html->link(__('List IP Address Ranges'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="ipAddressRanges form content">
             <?= $this->Form->create($ipAddressRange) ?>
             <fieldset>
@@ -41,14 +41,14 @@
                 echo $this->Form->control('for_subnets');
                 ?>
                 <div class="row">
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                         echo $this->Form->control('for_customer_addresses_set_via_radius');
                         echo $this->Form->control('for_customer_addresses_set_manually');
                         echo $this->Form->control('for_technology_addresses_set_manually');
                         ?>
                     </div>
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                         echo $this->Form->control('for_customer_networks_set_via_radius');
                         echo $this->Form->control('for_customer_networks_set_manually');

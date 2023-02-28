@@ -21,7 +21,7 @@
             <?= $this->Html->link(__('List Antenna Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="antennaTypes form content">
             <?= $this->Form->create($antennaType) ?>
             <fieldset>

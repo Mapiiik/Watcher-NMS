@@ -21,7 +21,7 @@
             <?= $this->Html->link(__('List Radio Unit Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="radioUnitTypes form content">
             <?= $this->Form->create($radioUnitType) ?>
             <fieldset>

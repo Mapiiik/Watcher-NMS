@@ -13,7 +13,7 @@
             <?= $this->Html->link(__('List Power Supplies'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="powerSupplies form content">
             <?= $this->Form->create($powerSupply) ?>
             <fieldset>

@@ -13,7 +13,7 @@
             <?= $this->Html->link(__('List Access Point Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="accessPointTypes form content">
             <?= $this->Form->create($accessPointType) ?>
             <fieldset>

@@ -15,13 +15,13 @@
             <?= $this->Html->link(__('List Radio Units'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="radioUnits form content">
             <?= $this->Form->create($radioUnit, ['valueSources' => ['data', 'context', 'query']]) ?>
             <fieldset>
                 <legend><?= __('Add Radio Unit') ?></legend>
                 <div class="row">
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                         echo $this->Form->control('name');
 
@@ -58,7 +58,7 @@
                         ]);
                         ?>
                     </div>
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                         echo $this->Form->control('firmware_version');
                         echo $this->Form->control('serial_number');

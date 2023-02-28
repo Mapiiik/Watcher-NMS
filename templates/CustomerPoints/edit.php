@@ -19,7 +19,7 @@
             <?= $this->Html->link(__('List Customer Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="customerPoints form content">
             <?= $this->Form->create($customerPoint) ?>
             <fieldset>
@@ -29,12 +29,12 @@
                 echo $this->Form->control('note');
                 ?>
                 <div class="row">
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                             echo $this->Form->control('gps_y');
                         ?>
                     </div>
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                             echo $this->Form->control('gps_x');
                         ?>

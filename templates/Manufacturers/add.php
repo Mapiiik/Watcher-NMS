@@ -11,7 +11,7 @@
             <?= $this->Html->link(__('List Manufacturers'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="manufacturers form content">
             <?= $this->Form->create($manufacturer) ?>
             <fieldset>

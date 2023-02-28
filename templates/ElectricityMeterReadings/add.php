@@ -16,7 +16,7 @@
             ) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="electricityMeterReadings form content">
             <?= $this->Form->create($electricityMeterReading) ?>
             <fieldset>

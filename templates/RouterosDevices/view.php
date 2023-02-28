@@ -32,11 +32,11 @@
             ) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="routerosDevices view content">
             <h3><?= h($routerosDevice->name) ?></h3>
             <div class="row">
-                <div class="column-responsive">
+                <div class="column">
                     <table>
                         <tr>
                             <th><?= __('Name') ?></th>
@@ -100,7 +100,7 @@
                         <?php endif; ?>
                     </table>
                 </div>
-                <div class="column-responsive">
+                <div class="column">
                     <table>
                         <tr>
                             <th><?= __('System Description') ?></th>

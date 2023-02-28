@@ -56,7 +56,7 @@ foreach ($mapPolylines as $mapPolyline) {
 // Store the final JS in a HtmlHelper script block
 $this->GoogleMap->finalize();
 ?>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="accessPoints form content">
             <?= $this->Form->create($mapOptions) ?>
             <fieldset>

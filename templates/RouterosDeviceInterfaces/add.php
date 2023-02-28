@@ -16,13 +16,13 @@
             ) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="routerosDeviceInterfaces form content">
             <?= $this->Form->create($routerosDeviceInterface) ?>
             <fieldset>
                 <legend><?= __('Add RouterOS Device Interface') ?></legend>
                 <div class="row">
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                         echo $this->Form->control('routeros_device_id', [
                             'label' => __('RouterOS Device'),
@@ -47,7 +47,7 @@
                         echo $this->Form->control('overall_tx_ccq');
                         ?>
                     </div>
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                         echo $this->Form->control('interface_index');
                         echo $this->Form->control('interface_type');

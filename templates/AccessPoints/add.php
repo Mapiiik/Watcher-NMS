@@ -13,7 +13,7 @@
             <?= $this->Html->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-90">
+    <div class="column column-90">
         <div class="accessPoints form content">
             <?= $this->Form->create($accessPoint) ?>
             <fieldset>
@@ -38,12 +38,12 @@
                 echo $this->Form->control('note');
                 ?>
                 <div class="row">
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                             echo $this->Form->control('gps_y');
                         ?>
                     </div>
-                    <div class="column-responsive">
+                    <div class="column">
                         <?php
                             echo $this->Form->control('gps_x');
                         ?>
