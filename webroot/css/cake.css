@@ -193,11 +193,6 @@ fieldset, input, select, textarea {
     -webkit-overflow-scrolling: touch;
 }
 
-/* Flex */
-.flex {
-    display: flex;
-}
-
 /* Main */
 body {
     background: #f0f2f5;
@@ -302,10 +297,6 @@ nav.top-nav {
     background: #fcebea;
     color: #cc1f1a;
     border-color: #ef5753;
-}
-
-.error-message {
-    color: #cc1f1a;
 }
 
 /* Forms */
