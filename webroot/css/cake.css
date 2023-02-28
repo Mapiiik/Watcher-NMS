@@ -375,6 +375,12 @@ nav.top-nav {
     justify-content: center;
 }
 
+@media screen and (min-height: 800px) {
+    .top-nav {
+        position: sticky;
+    }
+}
+
 @media screen and (max-width: 640px) {
     .top-nav {
         margin: 0 auto;
