@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Model\Entity\ElectricityMeterReading;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -10,7 +11,6 @@ use Cake\Console\ConsoleOptionParser;
 use Cake\I18n\FrozenDate;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
-use Cake\ORM\Entity;
 
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
@@ -52,7 +52,7 @@ class ElectricityMeterReadingsReportCommand extends Command
 
         $now = new FrozenDate();
 
-        $access_points = $this->fetchTable()
+        $accessPoints = $this->fetchTable()
             ->find('all', [
                 'conditions' => ['month_of_electricity_meter_reading' => (int)$now->i18nFormat('L')],
             ])
@@ -60,7 +60,8 @@ class ElectricityMeterReadingsReportCommand extends Command
                 return $q->order(['reading_date' => 'DESC']);
             });
 
-        if ($access_points->count() > 0) {
+        if ($accessPoints->count() > 0) {
+            // display the table on the console
             $table[] = [
                 __('Access Point'),
                 __('Contract Conditions'),
@@ -68,57 +69,48 @@ class ElectricityMeterReadingsReportCommand extends Command
                 __('Last Reading Value'),
                 __('Number of days since last'),
             ];
-            foreach ($access_points as $access_point) {
-                if (isset($access_point->electricity_meter_readings[0])) {
-                    $last_reading = $access_point->electricity_meter_readings[0];
+            foreach ($accessPoints as $accessPoint) {
+                if (isset($accessPoint->electricity_meter_readings[0])) {
+                    $lastReading = $accessPoint->electricity_meter_readings[0];
                 } else {
-                    $last_reading = new Entity(['reading_date' => null, 'reading_value' => null]);
+                    $lastReading = new ElectricityMeterReading(['reading_date' => null, 'reading_value' => null]);
                 }
 
                 $table[] = [
-                    $access_point->name,
-                    $access_point->contract_conditions,
-                    $last_reading->reading_date,
-                    $last_reading->reading_value,
-                    $last_reading->has('reading_date') ? $last_reading->reading_date->diffInDays($now, false) : 'Never',
+                    $accessPoint->name,
+                    $accessPoint->contract_conditions,
+                    $lastReading->reading_date,
+                    $lastReading->reading_value,
+                    $lastReading->has('reading_date') ?
+                        $lastReading->reading_date->diffInDays($now, false) : __('Never'),
                 ];
             }
             $io->helper('Table')->output($table);
 
+            // send table to mail
             $mailer = new Mailer('default');
 
             foreach (explode(' ', $emails) as $email) {
                 $mailer->addTo($email);
             }
+
             $mailer->setSubject(__('Electricity Meter Readings') . ' - ' . $now->i18nFormat('LLLL YYYY'));
             $mailer->setEmailFormat('html');
 
-            $body = '<h2>'
-                . __(
+            $mailer->viewBuilder()
+                ->setLayout('default')
+                ->setTemplate('electricity-meter-readings-report');
+
+            $mailer->setViewVars([
+                'title' => __(
                     'These electricity meter readings should take place in {month}.',
                     ['month' => $now->i18nFormat('LLLL YYYY')]
-                )
-                . '</h2>' . PHP_EOL;
-
-            $body .= '<style>' . PHP_EOL
-                . 'table, th, td { border: 1px solid; }' . PHP_EOL
-                . 'table { width: 100%; border-collapse: collapse; }' . PHP_EOL
-                . '</style>' . PHP_EOL;
-
-            $body .= '<table>' . PHP_EOL;
-            foreach ($table as $row) {
-                $body .= '<tr>';
-                foreach ($row as $column) {
-                    $body .= '<td>';
-                    $body .= $column;
-                    $body .= '</td>';
-                }
-                $body .= '</tr>' . PHP_EOL;
-            }
-            $body .= '</table>' . PHP_EOL;
+                ),
+                'accessPoints' => $accessPoints,
+            ]);
 
             try {
-                $mailer->deliver($body);
+                $mailer->deliver();
                 Log::write('debug', 'The electricity meter readings to be made have been reported.');
                 $io->info(__('The electricity meter readings to be made have been reported.'));
             } catch (\Exception $e) {
