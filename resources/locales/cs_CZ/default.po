@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-02-21 18:46+0100\n"
-"PO-Revision-Date: 2023-02-21 18:46+0100\n"
+"POT-Creation-Date: 2023-03-13 13:49+0100\n"
+"PO-Revision-Date: 2023-03-13 13:57+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -23,7 +23,7 @@ msgstr "Data zákaznických bodů byla aktualizována."
 msgid "The customer points data could not be updated. Please, try again."
 msgstr "Data zákaznických bodů nelze aktualizovat. Zkuste to prosím znovu."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:65
+#: src/Command/ElectricityMeterReadingsReportCommand.php:66
 #: templates/AccessPointContacts/view.php:47
 #: templates/AntennaTypes/view.php:127
 #: templates/CustomerConnections/view.php:60
@@ -36,45 +36,55 @@ msgstr "Data zákaznických bodů nelze aktualizovat. Zkuste to prosím znovu."
 #: templates/RadioUnits/view.php:57 templates/RouterosDevices/export.php:42
 #: templates/RouterosDevices/view.php:46
 #: templates/cell/AccessPoint/display.php:12
+#: templates/email/html/electricity_meter_readings_report.php:37
 msgid "Access Point"
 msgstr "Přístupový bod"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:66
+#: src/Command/ElectricityMeterReadingsReportCommand.php:67
 #: templates/AccessPoints/view.php:155
+#: templates/email/html/electricity_meter_readings_report.php:38
 msgid "Contract Conditions"
 msgstr "Podmínky smlouvy"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:67
+#: src/Command/ElectricityMeterReadingsReportCommand.php:68
+#: templates/email/html/electricity_meter_readings_report.php:39
 msgid "Last Reading Date"
 msgstr "Datum posledního čtení"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:68
+#: src/Command/ElectricityMeterReadingsReportCommand.php:69
+#: templates/email/html/electricity_meter_readings_report.php:40
 msgid "Last Reading Value"
 msgstr "Hodnota posledního čtení"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:69
+#: src/Command/ElectricityMeterReadingsReportCommand.php:70
+#: templates/email/html/electricity_meter_readings_report.php:41
 msgid "Number of days since last"
 msgstr "Počet dní od posledního"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:93
+#: src/Command/ElectricityMeterReadingsReportCommand.php:85
+#: templates/email/html/electricity_meter_readings_report.php:59
+msgid "Never"
+msgstr "Nikdy"
+
+#: src/Command/ElectricityMeterReadingsReportCommand.php:97
 #: templates/ElectricityMeterReadings/index.php:25
 #: templates/layout/default.php:213
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:97
+#: src/Command/ElectricityMeterReadingsReportCommand.php:105
 msgid "These electricity meter readings should take place in {month}."
 msgstr "Tyto odečty elektroměrů by měly probíhat v {month}."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:123
+#: src/Command/ElectricityMeterReadingsReportCommand.php:115
 msgid "The electricity meter readings to be made have been reported."
 msgstr "Byly nahlášeny odečty elektroměrů, které mají být provedeny."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:129
+#: src/Command/ElectricityMeterReadingsReportCommand.php:121
 msgid "The electricity meter readings to be made cannot be reported."
 msgstr "Odečty elektroměrů, které mají být provedeny, nelze nahlásit."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:133
+#: src/Command/ElectricityMeterReadingsReportCommand.php:125
 msgid "There is no need to take any electricity meter readings this month."
 msgstr "Tento měsíc není třeba provádět žádné odečty elektroměrů."
 
@@ -697,6 +707,7 @@ msgstr "API"
 #: templates/RouterosDevices/index.php:52 templates/RouterosDevices/view.php:10
 #: templates/RouterosDevices/view.php:186
 #: templates/RouterosDevices/view.php:250
+#: templates/email/html/electricity_meter_readings_report.php:42
 #: templates/plugin/CakeDC/Users/Users/add.php:13
 #: templates/plugin/CakeDC/Users/Users/edit.php:13
 #: templates/plugin/CakeDC/Users/Users/index.php:27
@@ -937,6 +948,7 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/index.php:89
 #: templates/RouterosDevices/view.php:206
 #: templates/RouterosDevices/view.php:259
+#: templates/email/html/electricity_meter_readings_report.php:62
 #: templates/plugin/CakeDC/Users/Users/index.php:45
 #: templates/plugin/CakeDC/Users/Users/view.php:161
 #: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1260
