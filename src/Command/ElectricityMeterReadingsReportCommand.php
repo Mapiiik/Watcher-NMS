@@ -82,7 +82,7 @@ class ElectricityMeterReadingsReportCommand extends Command
                     $lastReading->reading_date,
                     $lastReading->reading_value,
                     $lastReading->has('reading_date') ?
-                        $lastReading->reading_date->diffInDays($now, false) : __('Never'),
+                        $lastReading->reading_date->diffInDays(null, false) : __('Never'),
                 ];
             }
             $io->helper('Table')->output($table);

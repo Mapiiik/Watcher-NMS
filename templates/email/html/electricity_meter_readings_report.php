@@ -56,7 +56,7 @@ table {
             <td><?= h($lastReading->reading_date) ?></td>
             <td><?= h($lastReading->reading_value) ?></td>
             <td><?= h($lastReading->has('reading_date') ?
-                $lastReading->reading_date->diffInDays($now, false) : __('Never')) ?></td>
+                $lastReading->reading_date->diffInDays(null, false) : __('Never')) ?></td>
             <td class="actions">
                 <?= $this->Html->link(
                     __('View'),
