@@ -57,14 +57,39 @@ $routes->scope('/', function (RouteBuilder $builder) {
     /*
      * Access Points - nested routes
      */
-    $builder->connect('/access-points/{access_point_id}', ['controller' => 'AccessPoints', 'action' => 'view'])
-        ->setPatterns(['access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}'])->setPass(['access_point_id']);
-    $builder->connect('/access-points/{access_point_id}/edit', ['controller' => 'AccessPoints', 'action' => 'edit'])
-        ->setPatterns(['access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}'])->setPass(['access_point_id']);
-    $builder->connect('/access-points/{access_point_id}/{controller}', ['action' => 'index'])
-        ->setPatterns(['access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}']);
-    $builder->connect('/access-points/{access_point_id}/{controller}/{action}/*', [])
-        ->setPatterns(['access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}']);
+    $builder
+        ->connect('/access-points/{access_point_id}', [
+            'controller' => 'AccessPoints',
+            'action' => 'view',
+        ])
+        ->setPatterns([
+            'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
+        ])
+        ->setPass(['access_point_id']);
+
+    $builder
+        ->connect('/access-points/{access_point_id}/edit', [
+            'controller' => 'AccessPoints',
+            'action' => 'edit',
+        ])
+        ->setPatterns([
+            'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
+        ])
+        ->setPass(['access_point_id']);
+
+    $builder
+        ->connect('/access-points/{access_point_id}/{controller}', [
+            'action' => 'index',
+        ])
+        ->setPatterns([
+            'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
+        ]);
+
+    $builder
+        ->connect('/access-points/{access_point_id}/{controller}/{action}/*', [])
+        ->setPatterns([
+            'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
+        ]);
 
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
