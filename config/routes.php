@@ -154,32 +154,26 @@ $routes->prefix('Api', function (RouteBuilder $builder) {
 if (!(php_sapi_name() == 'cli')) {
     Router::addUrlFilter(function (array $params, ServerRequest $request) {
         //persistent win-link parameter
-        if ($request->getQuery('win-link') == 'true') {
+        $winLink = $request->getQuery('win-link') == 'true';
+        if ($winLink) {
             $params['?']['win-link'] = 'true';
         }
 
         //controllers related to access points
-        if (
-            (isset($params['controller']) && in_array($params['controller'], [
-                'AccessPointContacts',
-                'ElectricityMeterReadings',
-                'IpAddressRanges',
-                'PowerSupplies',
-                'RadioUnits',
-                'RouterosDevices',
-            ]))
-            || (!isset($params['controller']) && in_array($request->getParam('controller'), [
-                'AccessPointContacts',
-                'ElectricityMeterReadings',
-                'IpAddressRanges',
-                'PowerSupplies',
-                'RadioUnits',
-                'RouterosDevices',
-            ]))
-        ) {
+        $accessPointControllers = [
+            'AccessPointContacts',
+            'ElectricityMeterReadings',
+            'IpAddressRanges',
+            'PowerSupplies',
+            'RadioUnits',
+            'RouterosDevices',
+        ];
+        $controller = $params['controller'] ?? $request->getParam('controller');
+        if (in_array($controller, $accessPointControllers)) {
             //inject access_point_id
-            if ($request->getParam('access_point_id') && !isset($params['access_point_id'])) {
-                $params['access_point_id'] = $request->getParam('access_point_id');
+            $accessPointId = $request->getParam('access_point_id');
+            if ($accessPointId && !isset($params['access_point_id'])) {
+                $params['access_point_id'] = $accessPointId;
             }
         }
 
