@@ -8,8 +8,12 @@
 $users = ${$tableAlias};
 ?>
 <div class="users index content">
-    <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Users') ?></h3>
+    <?= $this->Html->link(
+        __d('app_users', 'New User'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link']
+    ) ?>
+    <h3><?= __d('app_users', 'Users') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
@@ -24,7 +28,7 @@ $users = ${$tableAlias};
                     <th><?= $this->Paginator->sort('last_login') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th class="actions"><?= __d('app_users', 'Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,31 +38,36 @@ $users = ${$tableAlias};
                     <td><?= h($user->email) ?></td>
                     <td><?= h($user->first_name) ?></td>
                     <td><?= h($user->last_name) ?></td>
-                    <td><?= $user->active ? __('Yes') : __('No'); ?></td>
-                    <td><?= $user->is_superuser ? __('Yes') : __('No'); ?></td>
+                    <td><?= $user->active ? __d('app_users', 'Yes') : __d('app_users', 'No'); ?></td>
+                    <td><?= $user->is_superuser ? __d('app_users', 'Yes') : __d('app_users', 'No'); ?></td>
                     <td><?= h($user->getRoleName()) ?></td>
                     <td><?= h($user->last_login) ?></td>
                     <td><?= h($user->created) ?></td>
                     <td><?= h($user->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
-                            __('View'),
+                            __d('app_users', 'View'),
                             ['action' => 'view', $user->id]
                         ) ?>
                         <?= $this->Html->link(
-                            __('Change Password'),
-                            ['action' => 'changePassword', $user->id],
-                            ['class' => 'win-link']
-                        ) ?>
-                        <?= $this->Html->link(
-                            __('Edit'),
+                            __d('app_users', 'Edit'),
                             ['action' => 'edit', $user->id],
                             ['class' => 'win-link']
                         ) ?>
                         <?= $this->Form->postLink(
-                            __('Delete'),
+                            __d('app_users', 'Delete'),
                             ['action' => 'delete', $user->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
+                            ['confirm' => __d('app_users', 'Are you sure you want to delete # {0}?', $user->id)]
+                        ) ?>
+                        <?= $this->Html->link(
+                            __d('app_users', 'Change Password'),
+                            ['action' => 'changePassword', $user->id],
+                            ['class' => 'win-link']
+                        ) ?>
+                        <?= $this->Html->link(
+                            __d('app_users', 'User Settings'),
+                            ['action' => 'userSettings', $user->id],
+                            ['class' => 'win-link']
                         ) ?>
                     </td>
                 </tr>
@@ -68,14 +77,14 @@ $users = ${$tableAlias};
     </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __d('app_users', 'first')) ?>
+            <?= $this->Paginator->prev('< ' . __d('app_users', 'previous')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__d('app_users', 'next') . ' >') ?>
+            <?= $this->Paginator->last(__d('app_users', 'last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __d('app_users', 'Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
         ) ?></p>
     </div>
 </div>
