@@ -4,6 +4,7 @@
  * @var bool $isRegister
  * @var string $username
  */
+
 $this->Html->script('CakeDC/Users.webauthn.js', ['block' => true]);
 $this->assign('title', __d('app_users', 'Two-factor authentication'));
 ?>

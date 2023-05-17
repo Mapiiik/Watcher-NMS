@@ -1,17 +1,9 @@
 <?php
 /**
- * Copyright 2010 - 2020, Cake Development Corporation (https://www.cakedc.com)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright Copyright 2010 - 2020, Cake Development Corporation (https://www.cakedc.com)
- * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\AppUser $user
  */
 
-/**
- * @var \CakeDC\Users\Model\Entity\User $user
- */
 ?>
 <div class="users form content">
     <?= $this->Flash->render('auth') ?>

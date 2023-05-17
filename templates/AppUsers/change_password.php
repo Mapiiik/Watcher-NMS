@@ -2,7 +2,9 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\AppUser $user
+ * @var bool $validatePassword
  */
+
 ?>
 <div class="row">
     <aside class="column">
