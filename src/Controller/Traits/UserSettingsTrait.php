@@ -41,6 +41,7 @@ trait UserSettingsTrait
             return;
         }
 
+        /** @var \App\Model\Table\AppUsersTable $usersTable */
         $usersTable = $this->fetchTable(Configure::read('Users.table'));
 
         $user = $usersTable->get($id, [
