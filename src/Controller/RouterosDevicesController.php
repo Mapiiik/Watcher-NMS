@@ -478,7 +478,7 @@ class RouterosDevicesController extends AppController
                 $accessPoint = $accessPoints->first();
 
                 if ($accessPoint) {
-                    $routerosDeviceData['access_point_id'] = $accessPoint->id;
+                    $routerosDeviceData['access_point_id'] = $accessPoint['id'];
                 }
             }
 
@@ -495,7 +495,7 @@ class RouterosDevicesController extends AppController
                 $customerConnectionIp = $customerConnectionIps->first();
 
                 if ($customerConnectionIp) {
-                    $routerosDeviceData['customer_connection_id'] = $customerConnectionIp->customer_connection_id;
+                    $routerosDeviceData['customer_connection_id'] = $customerConnectionIp['customer_connection_id'];
                 }
             }
 
