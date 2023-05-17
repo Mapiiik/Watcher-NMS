@@ -76,8 +76,7 @@
                             <td><?= $radarInterference->has('creator') ? $this->Html->link(
                                 $radarInterference->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $radarInterference->creator->id,
                                 ]
@@ -92,8 +91,7 @@
                             <td><?= $radarInterference->has('modifier') ? $this->Html->link(
                                 $radarInterference->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $radarInterference->modifier->id,
                                 ]

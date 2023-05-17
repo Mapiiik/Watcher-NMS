@@ -192,8 +192,7 @@
                             <td><?= $radioUnit->has('creator') ? $this->Html->link(
                                 $radioUnit->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $radioUnit->creator->id,
                                 ]
@@ -208,8 +207,7 @@
                             <td><?= $radioUnit->has('modifier') ? $this->Html->link(
                                 $radioUnit->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $radioUnit->modifier->id,
                                 ]

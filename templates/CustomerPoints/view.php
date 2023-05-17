@@ -86,8 +86,7 @@
                             <td><?= $customerPoint->has('creator') ? $this->Html->link(
                                 $customerPoint->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerPoint->creator->id,
                                 ]
@@ -102,8 +101,7 @@
                             <td><?= $customerPoint->has('modifier') ? $this->Html->link(
                                 $customerPoint->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerPoint->modifier->id,
                                 ]

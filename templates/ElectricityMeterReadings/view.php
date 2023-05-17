@@ -84,8 +84,7 @@
                             <td><?= $electricityMeterReading->has('creator') ? $this->Html->link(
                                 $electricityMeterReading->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $electricityMeterReading->creator->id,
                                 ]
@@ -100,8 +99,7 @@
                             <td><?= $electricityMeterReading->has('modifier') ? $this->Html->link(
                                 $electricityMeterReading->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $electricityMeterReading->modifier->id,
                                 ]

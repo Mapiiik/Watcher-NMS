@@ -130,8 +130,7 @@
                             <td><?= $ipAddressRange->has('creator') ? $this->Html->link(
                                 $ipAddressRange->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $ipAddressRange->creator->id,
                                 ]
@@ -146,8 +145,7 @@
                             <td><?= $ipAddressRange->has('modifier') ? $this->Html->link(
                                 $ipAddressRange->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $ipAddressRange->modifier->id,
                                 ]

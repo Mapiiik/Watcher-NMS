@@ -77,8 +77,7 @@
                             <td><?= $customerConnectionIp->has('creator') ? $this->Html->link(
                                 $customerConnectionIp->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerConnectionIp->creator->id,
                                 ]
@@ -93,8 +92,7 @@
                             <td><?= $customerConnectionIp->has('modifier') ? $this->Html->link(
                                 $customerConnectionIp->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerConnectionIp->modifier->id,
                                 ]

@@ -85,8 +85,7 @@
                             <td><?= $antennaType->has('creator') ? $this->Html->link(
                                 $antennaType->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $antennaType->creator->id,
                                 ]
@@ -101,8 +100,7 @@
                             <td><?= $antennaType->has('modifier') ? $this->Html->link(
                                 $antennaType->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $antennaType->modifier->id,
                                 ]

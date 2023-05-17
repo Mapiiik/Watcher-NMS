@@ -93,8 +93,7 @@
                             <td><?= $accessPointContact->has('creator') ? $this->Html->link(
                                 $accessPointContact->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPointContact->creator->id,
                                 ]
@@ -109,8 +108,7 @@
                             <td><?= $accessPointContact->has('modifier') ? $this->Html->link(
                                 $accessPointContact->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPointContact->modifier->id,
                                 ]

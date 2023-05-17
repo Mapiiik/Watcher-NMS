@@ -130,8 +130,7 @@
                             <td><?= $routerosDeviceInterface->has('creator') ? $this->Html->link(
                                 $routerosDeviceInterface->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $routerosDeviceInterface->creator->id,
                                 ]
@@ -146,8 +145,7 @@
                             <td><?= $routerosDeviceInterface->has('modifier') ? $this->Html->link(
                                 $routerosDeviceInterface->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $routerosDeviceInterface->modifier->id,
                                 ]

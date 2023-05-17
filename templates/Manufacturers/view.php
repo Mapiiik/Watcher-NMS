@@ -60,8 +60,7 @@
                             <td><?= $manufacturer->has('creator') ? $this->Html->link(
                                 $manufacturer->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $manufacturer->creator->id,
                                 ]
@@ -76,8 +75,7 @@
                             <td><?= $manufacturer->has('modifier') ? $this->Html->link(
                                 $manufacturer->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $manufacturer->modifier->id,
                                 ]

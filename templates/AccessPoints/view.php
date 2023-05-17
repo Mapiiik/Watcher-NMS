@@ -125,8 +125,7 @@
                             <td><?= $accessPoint->has('creator') ? $this->Html->link(
                                 $accessPoint->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPoint->creator->id,
                                 ]
@@ -141,8 +140,7 @@
                             <td><?= $accessPoint->has('modifier') ? $this->Html->link(
                                 $accessPoint->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPoint->modifier->id,
                                 ]

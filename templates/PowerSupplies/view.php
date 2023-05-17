@@ -109,8 +109,7 @@
                             <td><?= $powerSupply->has('creator') ? $this->Html->link(
                                 $powerSupply->creator->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $powerSupply->creator->id,
                                 ]
@@ -125,8 +124,7 @@
                             <td><?= $powerSupply->has('modifier') ? $this->Html->link(
                                 $powerSupply->modifier->username,
                                 [
-                                    'plugin' => 'CakeDC/Users',
-                                    'controller' => 'Users',
+                                    'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $powerSupply->modifier->id,
                                 ]
