@@ -19,7 +19,10 @@ $user = ${$tableAlias};
             <?= $this->Form->postLink(
                 __d('app_users', 'Delete User'),
                 ['action' => 'delete', $user->id],
-                ['confirm' => __d('app_users', 'Are you sure you want to delete # {0}?', $user->id), 'class' => 'side-nav-item']
+                [
+                    'confirm' => __d('app_users', 'Are you sure you want to delete # {0}?', $user->id),
+                    'class' => 'side-nav-item',
+                ]
             ) ?>
             <?= $this->Html->link(
                 __d('app_users', 'List Users'),
@@ -168,7 +171,13 @@ $user = ${$tableAlias};
                                 <?= $this->Form->postLink(
                                     __d('app_users', 'Delete'),
                                     ['controller' => 'SocialAccounts', 'action' => 'delete', $socialAccounts->id],
-                                    ['confirm' => __d('app_users', 'Are you sure you want to delete # {0}?', $socialAccounts->id)]
+                                    [
+                                        'confirm' => __d(
+                                            'app_users',
+                                            'Are you sure you want to delete # {0}?',
+                                            $socialAccounts->id
+                                        ),
+                                    ]
                                 ) ?>
                             </td>
                         </tr>
