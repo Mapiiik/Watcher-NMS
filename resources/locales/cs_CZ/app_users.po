@@ -1,0 +1,409 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakeDC Users\n"
+"POT-Creation-Date: 2023-05-17 11:32+0200\n"
+"PO-Revision-Date: 2023-05-17 11:34+0200\n"
+"Last-Translator: Martin Patočka <mapik@mapik.net>\n"
+"Language-Team: Martin Patočka <mapik@mapik.net>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: src/Controller/Traits/UserSettingsTrait.php:37
+msgid "You are not allowed to edit another user's settings."
+msgstr "Nejste oprávněni upravovat nastavení jiného uživatele."
+
+#: src/Controller/Traits/UserSettingsTrait.php:60
+msgid "The user settings have been saved."
+msgstr "Nastavení uživatele bylo uloženo."
+
+#: src/Controller/Traits/UserSettingsTrait.php:64
+msgid "The user settings could not be saved. Please, try again."
+msgstr "Nastavení uživatele se nepodařilo uložit. Zkuste to prosím znovu."
+
+#: templates/AppUsers/add.php:13 templates/AppUsers/change_password.php:10
+#: templates/AppUsers/edit.php:13 templates/AppUsers/index.php:31
+#: templates/AppUsers/profile.php:15 templates/AppUsers/user_settings.php:10
+#: templates/AppUsers/view.php:13 templates/AppUsers/view.php:141
+msgid "Actions"
+msgstr "Akce"
+
+#: templates/AppUsers/add.php:15 templates/AppUsers/change_password.php:12
+#: templates/AppUsers/edit.php:23 templates/AppUsers/user_settings.php:12
+#: templates/AppUsers/view.php:25
+msgid "List Users"
+msgstr "Seznam uživatelů"
+
+#: templates/AppUsers/add.php:25 templates/AppUsers/register.php:18
+msgid "Add User"
+msgstr "Přidat uživatele"
+
+#: templates/AppUsers/add.php:36 templates/AppUsers/change_password.php:48
+#: templates/AppUsers/edit.php:59 templates/AppUsers/register.php:42
+#: templates/AppUsers/request_reset_password.php:23
+#: templates/AppUsers/resend_token_validation.php:20
+#: templates/AppUsers/social_email.php:19
+#: templates/AppUsers/user_settings.php:54
+msgid "Submit"
+msgstr "Odeslat"
+
+#: templates/AppUsers/change_password.php:17
+#: templates/AppUsers/user_settings.php:17
+msgid "User Profile"
+msgstr "Uživatelský profil"
+
+#: templates/AppUsers/change_password.php:28
+msgid "Please enter the new password"
+msgstr "Zadejte prosím nové heslo"
+
+#: templates/AppUsers/change_password.php:33
+msgid "Current password"
+msgstr "Současné heslo"
+
+#: templates/AppUsers/change_password.php:39
+msgid "New password"
+msgstr "Nové heslo"
+
+#: templates/AppUsers/change_password.php:44 templates/AppUsers/register.php:26
+msgid "Confirm password"
+msgstr "Potvrďte heslo"
+
+#: templates/AppUsers/edit.php:15 templates/AppUsers/index.php:58
+#: templates/AppUsers/view.php:169
+msgid "Delete"
+msgstr "Odstranit"
+
+#: templates/AppUsers/edit.php:18 templates/AppUsers/index.php:60
+#: templates/AppUsers/view.php:22 templates/AppUsers/view.php:171
+msgid "Are you sure you want to delete # {0}?"
+msgstr "Opravdu chcete odstranit # {0}?"
+
+#: templates/AppUsers/edit.php:33 templates/AppUsers/view.php:15
+msgid "Edit User"
+msgstr "Upravit uživatele"
+
+#: templates/AppUsers/index.php:12 templates/AppUsers/view.php:30
+msgid "New User"
+msgstr "Nový uživatel"
+
+#: templates/AppUsers/index.php:16
+msgid "Users"
+msgstr "Uživatelé"
+
+#: templates/AppUsers/index.php:41 templates/AppUsers/index.php:42
+#: templates/AppUsers/view.php:64 templates/AppUsers/view.php:68
+#: templates/AppUsers/view.php:100
+msgid "Yes"
+msgstr "Ano"
+
+#: templates/AppUsers/index.php:41 templates/AppUsers/index.php:42
+#: templates/AppUsers/view.php:64 templates/AppUsers/view.php:68
+#: templates/AppUsers/view.php:100
+msgid "No"
+msgstr "Ne"
+
+#: templates/AppUsers/index.php:49 templates/AppUsers/view.php:161
+msgid "View"
+msgstr "Zobrazit"
+
+#: templates/AppUsers/index.php:53 templates/AppUsers/view.php:165
+msgid "Edit"
+msgstr "Upravit"
+
+#: templates/AppUsers/index.php:63 templates/AppUsers/profile.php:17
+msgid "Change Password"
+msgstr "Změnit heslo"
+
+#: templates/AppUsers/index.php:68 templates/AppUsers/profile.php:22
+msgid "User Settings"
+msgstr "Uživatelské nastavení"
+
+#: templates/AppUsers/index.php:80
+msgid "first"
+msgstr "první"
+
+#: templates/AppUsers/index.php:81
+msgid "previous"
+msgstr "předchozí"
+
+#: templates/AppUsers/index.php:83
+msgid "next"
+msgstr "další"
+
+#: templates/AppUsers/index.php:84
+msgid "last"
+msgstr "poslední"
+
+#: templates/AppUsers/index.php:87
+msgid ""
+"Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
+"total"
+msgstr ""
+"Stránka {{page}} z {{pages}}, zobrazující {{current}} záznamů z celkového "
+"počtu {{count}}"
+
+#: templates/AppUsers/login.php:19
+msgid "Please enter your username and password"
+msgstr "Zadejte prosím své uživatelské jméno a heslo"
+
+#: templates/AppUsers/login.php:20 templates/AppUsers/profile.php:45
+#: templates/AppUsers/register.php:20 templates/AppUsers/view.php:43
+#: templates/AppUsers/view.php:129
+msgid "Username"
+msgstr "Uživatelské jméno"
+
+#: templates/AppUsers/login.php:21 templates/AppUsers/register.php:22
+msgid "Password"
+msgstr "Heslo"
+
+#: templates/AppUsers/login.php:29
+msgid "Remember me"
+msgstr "Pamatuj si mě"
+
+#: templates/AppUsers/login.php:37
+msgid "Register"
+msgstr "Registrovat"
+
+#: templates/AppUsers/login.php:43
+msgid "Reset Password"
+msgstr "Obnovit heslo"
+
+#: templates/AppUsers/login.php:48
+msgid "Login"
+msgstr "Přihlášení"
+
+#: templates/AppUsers/profile.php:38
+msgid "{0} {1}"
+msgstr "{0} {1}"
+
+#: templates/AppUsers/profile.php:47 templates/AppUsers/register.php:21
+#: templates/AppUsers/view.php:47
+msgid "Email"
+msgstr "E-mail"
+
+#: templates/AppUsers/profile.php:49 templates/AppUsers/view.php:59
+msgid "Role"
+msgstr "Role"
+
+#: templates/AppUsers/profile.php:55
+msgid "Social Accounts"
+msgstr "Sociální účty"
+
+#: templates/AppUsers/profile.php:59 templates/AppUsers/view.php:132
+msgid "Avatar"
+msgstr "Profilový obrázek"
+
+#: templates/AppUsers/profile.php:60 templates/AppUsers/view.php:128
+msgid "Provider"
+msgstr "Poskytovatel"
+
+#: templates/AppUsers/profile.php:61 templates/AppUsers/view.php:134
+msgid "Link"
+msgstr "Odkaz"
+
+#: templates/AppUsers/profile.php:69
+msgid "Link to {0}"
+msgstr "Odkaz na {0}"
+
+#: templates/AppUsers/register.php:28
+msgid "First name"
+msgstr "Jméno"
+
+#: templates/AppUsers/register.php:29
+msgid "Last name"
+msgstr "Příjmení"
+
+#: templates/AppUsers/register.php:33
+msgid "Accept TOS conditions?"
+msgstr "Přijmout podmínky TOS?"
+
+#: templates/AppUsers/request_reset_password.php:20
+msgid "Please enter your email or username to reset your password"
+msgstr "Pro obnovení hesla zadejte svůj e-mail nebo uživatelské jméno"
+
+#: templates/AppUsers/resend_token_validation.php:15
+msgid "Resend Validation email"
+msgstr "Znovu odeslat ověřovací e-mail"
+
+#: templates/AppUsers/resend_token_validation.php:17
+msgid "Email or username"
+msgstr "E-mail nebo uživatelské jméno"
+
+#: templates/AppUsers/social_email.php:16
+msgid "Please enter your email"
+msgstr "Zadejte prosím svůj e-mail"
+
+#: templates/AppUsers/u2f_authenticate.php:23
+#: templates/AppUsers/webauthn2fa.php:33
+msgid "Verify your registered yubico key"
+msgstr "Ověření vašeho registrovaného klíče yubico"
+
+#: templates/AppUsers/u2f_authenticate.php:24
+#: templates/AppUsers/u2f_register.php:24 templates/AppUsers/webauthn2fa.php:20
+#: templates/AppUsers/webauthn2fa.php:34
+msgid "Please insert and tap your yubico key"
+msgstr "Vložte prosím klíč yubico a klepněte na něj"
+
+#: templates/AppUsers/u2f_authenticate.php:25
+#: templates/AppUsers/webauthn2fa.php:35
+msgid ""
+"You can now finish the authentication process using the registered device."
+msgstr "Nyní můžete dokončit proces ověření pomocí registrovaného zařízení."
+
+#: templates/AppUsers/u2f_authenticate.php:29
+#: templates/AppUsers/u2f_register.php:29 templates/AppUsers/webauthn2fa.php:25
+#: templates/AppUsers/webauthn2fa.php:39
+msgid ""
+"When the YubiKey starts blinking, press the golden disc to activate it. "
+"Depending on the web browser you might need to confirm the use of extended "
+"information from the YubiKey."
+msgstr ""
+"Jakmile začne klíč YubiKey blikat, aktivujte jej stisknutím zlatého disku. V "
+"závislosti na webovém prohlížeči může být nutné potvrdit použití rozšířených "
+"informací z klíče YubiKey."
+
+#: templates/AppUsers/u2f_authenticate.php:36
+#: templates/AppUsers/u2f_register.php:36 templates/AppUsers/webauthn2fa.php:47
+msgid "Reload"
+msgstr "Znovu načíst"
+
+#: templates/AppUsers/u2f_authenticate.php:60
+#: templates/AppUsers/u2f_register.php:65
+msgid "Yubico key check has failed, please try again"
+msgstr "Kontrola klíče Yubico selhala, zkuste to prosím znovu"
+
+#: templates/AppUsers/u2f_register.php:23 templates/AppUsers/webauthn2fa.php:19
+msgid "Registering your yubico key"
+msgstr "Registrace klíče Yubico"
+
+#: templates/AppUsers/u2f_register.php:25 templates/AppUsers/webauthn2fa.php:21
+msgid ""
+"In order to enable your YubiKey the first step is to perform a registration."
+msgstr ""
+"Chcete-li aktivovat svůj YubiKey, prvním krokem je provedení registrace."
+
+#: templates/AppUsers/user_settings.php:27
+msgid "Edit User Settings"
+msgstr "Upravit uživatelské nastavení"
+
+#: templates/AppUsers/user_settings.php:30
+msgid "Language"
+msgstr "Jazyk"
+
+#: templates/AppUsers/user_settings.php:37
+msgid "Number of Rows per Page"
+msgstr "Počet řádků na stránku"
+
+#: templates/AppUsers/user_settings.php:49
+msgid "High Contrast"
+msgstr "Vysoký kontrast"
+
+#: templates/AppUsers/verify.php:15
+msgid "Verification Code"
+msgstr "Ověřovací kód"
+
+#: templates/AppUsers/verify.php:19
+msgid ""
+"<span class=\"glyphicon glyphicon-log-in\" aria-hidden=\"true\"></span> "
+"Verify"
+msgstr ""
+"<span class=\"glyphicon glyphicon-log-in\" aria-hidden=\"true\"></span> "
+"Ověřit"
+
+#: templates/AppUsers/view.php:20
+msgid "Delete User"
+msgstr "Odstranit uživatele"
+
+#: templates/AppUsers/view.php:51
+msgid "First Name"
+msgstr "Jméno"
+
+#: templates/AppUsers/view.php:55
+msgid "Last Name"
+msgstr "Příjmení"
+
+#: templates/AppUsers/view.php:63
+msgid "Is Superuser"
+msgstr "Je superuživatel"
+
+#: templates/AppUsers/view.php:67 templates/AppUsers/view.php:130
+msgid "Active"
+msgstr "Aktivní"
+
+#: templates/AppUsers/view.php:75
+msgid "Api Token"
+msgstr "Token rozhraní API"
+
+#: templates/AppUsers/view.php:79 templates/AppUsers/view.php:135
+msgid "Token"
+msgstr "Token"
+
+#: templates/AppUsers/view.php:83 templates/AppUsers/view.php:137
+msgid "Token Expires"
+msgstr "Platnost tokenu vyprší"
+
+#: templates/AppUsers/view.php:87
+msgid "Activation Date"
+msgstr "Datum aktivace"
+
+#: templates/AppUsers/view.php:91
+msgid "Tos Date"
+msgstr "Datum TOS"
+
+#: templates/AppUsers/view.php:95
+msgid "Secret"
+msgstr "Tajemství"
+
+#: templates/AppUsers/view.php:99
+msgid "Secret Verified"
+msgstr "Tajemství ověřeno"
+
+#: templates/AppUsers/view.php:103
+msgid "Additional Data"
+msgstr "Doplňující údaje"
+
+#: templates/AppUsers/view.php:107
+msgid "Last Login"
+msgstr "Poslední přihlášení"
+
+#: templates/AppUsers/view.php:111 templates/AppUsers/view.php:139
+msgid "Created"
+msgstr "Vytvořeno"
+
+#: templates/AppUsers/view.php:115 templates/AppUsers/view.php:140
+msgid "Modified"
+msgstr "Upraveno"
+
+#: templates/AppUsers/view.php:122
+msgid "Related Social Accounts"
+msgstr "Související sociální účty"
+
+#: templates/AppUsers/view.php:127
+msgid "Id"
+msgstr "ID"
+
+#: templates/AppUsers/view.php:131
+msgid "Reference"
+msgstr "Reference"
+
+#: templates/AppUsers/view.php:133
+msgid "Description"
+msgstr "Popis"
+
+#: templates/AppUsers/view.php:136
+msgid "Token Secret"
+msgstr "Tajemství tokenu"
+
+#: templates/AppUsers/view.php:138
+msgid "Data"
+msgstr "Data"
+
+#: templates/AppUsers/webauthn2fa.php:8
+msgid "Two-factor authentication"
+msgstr "Dvoufaktorové ověření"
