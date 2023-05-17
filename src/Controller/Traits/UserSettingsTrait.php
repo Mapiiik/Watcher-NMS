@@ -57,6 +57,13 @@ trait UserSettingsTrait
                 'user_settings' => $this->getRequest()->getData('user_settings'),
             ]);
             if ($usersTable->save($user)) {
+                // update current identity data if it is a logged-in user
+                if ($user->id === $userId) {
+                    $this->getRequest()->getAttribute('identity')
+                        ->getOriginalData()
+                        ->set('user_settings', $user->user_settings);
+                }
+
                 $this->Flash->success(__d('app_users', 'The user settings have been saved.'));
 
                 return $this->redirect($redirect);
