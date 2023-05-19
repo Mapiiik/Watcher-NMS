@@ -115,7 +115,13 @@ return [
             'role' => '*',
             'plugin' => null,
             'controller' => 'AppUsers',
-            'action' => ['profile', 'logout', 'linkSocial', 'callbackLinkSocial'],
+            'action' => [
+                'profile',
+                'logout',
+                'linkSocial',
+                'callbackLinkSocial',
+                'userSettings',
+            ],
         ],
         [
             'role' => '*',
@@ -225,14 +231,54 @@ return [
                 'view',
             ],
         ],
+        //allow all indexes and views for sales-managers and network-managers
+        [
+            'role' => [
+                'network-manager',
+                'sales-manager',
+            ],
+            'plugin' => null,
+            'controller' => '*',
+            'action' => [
+                'index',
+                'view',
+            ],
+        ],
         // specific roles access
         [
             'role' => [
                 'network-technician',
+                'network-manager',
             ],
             'plugin' => null,
             'controller' => [
                 'PowerSupplies',
+            ],
+            'action' => [
+                'index',
+                'view',
+                'add',
+                'edit',
+            ],
+        ],
+        [
+            'role' => [
+                'network-manager',
+            ],
+            'plugin' => null,
+            'controller' => [
+                'AntennaTypes',
+                'AccessPoints',
+                'AccessPointContacts',
+                'AccessPointTypes',
+                'ElectricityMeterReadings',
+                'IpAddressRanges',
+                'Manufacturers',
+                'PowerSupplyTypes',
+                'RadioLinks',
+                'RadioUnits',
+                'RadioUnitBands',
+                'RadioUnitTypes',
             ],
             'action' => [
                 'index',

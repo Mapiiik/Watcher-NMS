@@ -45,6 +45,7 @@ class AppUser extends User
             'user' => __('User'),
             'customer-service-technician' => __('Customer Service Technician'),
             'network-technician' => __('Network Technician'),
+            'network-manager' => __('Network Manager'),
             'sales-representative' => __('Sales Representative'),
             'sales-manager' => __('Sales Manager'),
             'bookkeeper' => __('Bookkeeper'),
