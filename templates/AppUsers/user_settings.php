@@ -46,9 +46,14 @@
                         10000 => 10000,
                     ],
                 ]);
-                echo $this->Form->control('user_settings.high_contrast', [
-                    'label' => __d('app_users', 'High Contrast'),
-                    'type' => 'checkbox',
+                echo $this->Form->control('user_settings.theme', [
+                    'label' => __d('app_users', 'Theme'),
+                    'options' => [
+                        'default' => __('Default'),
+                        'contrast' => __('Contrast'),
+                        'legacy' => __('Legacy'),
+                        'dark' => __('Dark') . ' (dev)',
+                    ],
                 ]);
                 ?>
             </fieldset>

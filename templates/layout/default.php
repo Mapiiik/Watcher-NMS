@@ -42,9 +42,21 @@ $request = $this->getRequest();
         ]) ?>
     <?php endif ?>
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
-    <?= Configure::read('UI.high_contrast') ? $this->Html->css(['high_contrast']) : '' ?>
-    
+    <?php
+    switch (Configure::read('UI.theme')) {
+        case 'legacy':
+            echo $this->Html->css(['normalize.min', 'legacy']);
+            break;
+        case 'dark':
+            echo $this->Html->css(['normalize.min', 'milligram.min', 'cake', 'dark']);
+            break;
+        case 'contrast':
+            echo $this->Html->css(['normalize.min', 'milligram.min', 'cake', 'high_contrast']);
+            break;
+        default:
+            echo $this->Html->css(['normalize.min', 'milligram.min', 'cake']);
+    }
+    ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -164,6 +176,22 @@ $request = $this->getRequest();
                     'class' => 'button button-small button-outline',
                 ]
             ) : '' ?>
+
+            <?= $this->Form->select(
+                'theme',
+                [
+                    $urlWithQuery(['theme' => 'default']) => __('Default'),
+                    $urlWithQuery(['theme' => 'contrast']) => __('Contrast'),
+                    $urlWithQuery(['theme' => 'legacy']) => __('Legacy'),
+                    $urlWithQuery(['theme' => 'dark']) => __('Dark') . ' (dev)',
+                ],
+                [
+                    'value' => $urlWithQuery(['theme' => Configure::read('UI.theme')]),
+                    'escape' => false,
+                    'onchange' => 'location = this.value;',
+                    'class' => 'button button-small button-outline',
+                ]
+            ) ?>
 
             <?= $this->Form->select(
                 'language',
@@ -356,16 +384,6 @@ $request = $this->getRequest();
                 <?= __('Version') . ': ' . h(AppController::getVersion()) ?>
             </div>
             <br><br>
-            <div class="float-right">
-            <?= $this->Form->create(null, ['type' => 'get']) ?>
-                <?= $this->Form->control('high_contrast', [
-                    'label' => __('High Contrast'),
-                    'type' => 'checkbox',
-                    'checked' => Configure::read('UI.high_contrast'),
-                    'onchange' => 'this.form.submit();',
-                ]) ?>
-            <?= $this->Form->end() ?>
-            </div>
         </div>
     </footer>
 </body>

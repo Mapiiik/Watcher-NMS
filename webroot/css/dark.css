@@ -1,4 +1,3 @@
-/* High Contrast */
 :root {
     /* The following are official CakePHP colors */
     --color-cakephp-red: #d33c43;
@@ -10,32 +9,28 @@
     --color-lightgray: #606c76;
     --color-white: #ffffff;
 
-    --color-main: #000000;
-    --color-main-bg: #f0f2f5;
-    --color-links: #000099;
-    --color-links-active: #ffffff;
-    --color-links-active-bg: #40a0f0;
-    --color-nav-links: var(--color-links);
+    --color-main: #ffffff;
+    --color-main-bg: #1b252d;
+    --color-links: var(--color-cakephp-blue);
+    --color-links-active: #2a6496;
+    --color-links-active-bg: transparent;
+    --color-nav-links: #dddddd;
     --color-nav-links-active: var(--color-links-active);
-    --color-nav-links-active-bg: var(--color-links-active-bg);
-    --color-headings: #000000;
-    --color-content-bg: #fbfcff;
-    --color-table-bg: #ffffff;
-    --color-table-borders: #000000;
-    --color-table-headings-bg: #d0d2d5;
-
+    --color-nav-links-active-bg: transparent;
+    --color-headings: #dddddd;
+    --color-content-bg: #000000;
+    --color-table-bg: var(--color-main-bg);
+    --color-table-borders: #aaaaaa;
+    --color-table-headings-bg: #395167;
     --color-message-success-bg: #e3fcec;
     --color-message-success-text: #1f9d55;
     --color-message-success-border: #51d88a;
-
     --color-message-warning-bg: #fffabc;
     --color-message-warning-text: #8d7b00;
     --color-message-warning-border: #d3b800;
-
     --color-message-error-bg: #fcebea;
     --color-message-error-text: #cc1f1a;
     --color-message-error-border: #ef5753;
-
     --color-message-info-bg: #eff8ff;
     --color-message-info-text: #2779bd;
     --color-message-info-border: #6cb2eb;
