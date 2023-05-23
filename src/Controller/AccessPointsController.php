@@ -133,19 +133,13 @@ class AccessPointsController extends AppController
             ],
         ]);
 
-        // calculation of daily consumption
-        $i = 0;
-        while (
-            isset($accessPoint->electricity_meter_readings[$i])
-            && isset($accessPoint->electricity_meter_readings[$i]->reading_date)
-            && isset($accessPoint->electricity_meter_readings[$i + 1])
-            && isset($accessPoint->electricity_meter_readings[$i + 1]->reading_date)
-        ) {
-            $new =& $accessPoint->electricity_meter_readings[$i];
-            $old =& $accessPoint->electricity_meter_readings[$i + 1];
-            $i++;
+        // Calculation of daily consumption
+        $readingsCount = count($accessPoint->electricity_meter_readings);
+        for ($i = 0; $i < $readingsCount - 1; $i++) {
+            $new = $accessPoint->electricity_meter_readings[$i];
+            $old = $accessPoint->electricity_meter_readings[$i + 1];
 
-            // don't handle differences between records from the same day
+            // Don't handle differences between records from the same day
             if ($new->reading_date == $old->reading_date) {
                 continue;
             }
@@ -153,10 +147,12 @@ class AccessPointsController extends AppController
             $new['daily_consumption'] =
                 ($new->reading_value - $old->reading_value) / $new->reading_date->diffInDays($old->reading_date);
 
+            $accessPoint->electricity_meter_readings[$i] = $new;
+
             unset($new);
             unset($old);
         }
-        unset($i);
+        unset($readingsCount);
 
         $this->set('accessPoint', $accessPoint);
     }
@@ -470,7 +466,7 @@ class AccessPointsController extends AppController
                                     $accessPoint->id
                                 )
                             ) {
-                                $neighbouringAccessPoint = &$routerosIpLink
+                                $neighbouringAccessPoint = $routerosIpLink
                                     ->neighbouring_ip_address
                                     ->routeros_device
                                     ->access_point;
@@ -563,7 +559,7 @@ class AccessPointsController extends AppController
                                         ->customer_point
                                 )
                             ) {
-                                $neighbouringCustomerPoint = &$routerosIpLink
+                                $neighbouringCustomerPoint = $routerosIpLink
                                     ->neighbouring_ip_address
                                     ->routeros_device
                                     ->customer_connection
@@ -712,7 +708,7 @@ class AccessPointsController extends AppController
                                     $accessPoint->id
                                 )
                             ) {
-                                $neighbouringAccessPoint = &$routerosWirelessLink
+                                $neighbouringAccessPoint = $routerosWirelessLink
                                     ->neighbouring_interface
                                     ->routeros_device
                                     ->access_point;
@@ -805,7 +801,7 @@ class AccessPointsController extends AppController
                                         ->customer_point
                                 )
                             ) {
-                                $neighbouringCustomerPoint = &$routerosWirelessLink
+                                $neighbouringCustomerPoint = $routerosWirelessLink
                                     ->neighbouring_interface
                                     ->routeros_device
                                     ->customer_connection
