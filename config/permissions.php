@@ -274,6 +274,7 @@ return [
                 'ElectricityMeterReadings',
                 'IpAddressRanges',
                 'Manufacturers',
+                'PaymentPurposes',
                 'PowerSupplyTypes',
                 'RadioLinks',
                 'RadioUnits',
