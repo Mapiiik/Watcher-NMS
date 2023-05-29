@@ -28,7 +28,7 @@ use Geo\Geocoder\Geocoder;
  * @property \App\Model\Entity\AppUser $creator
  * @property \App\Model\Entity\AppUser $modifier
  * @property \App\Model\Entity\AccessPointType $access_point_type
- * @property \App\Model\Entity\ParentAccessPoint $parent_access_point
+ * @property \App\Model\Entity\AccessPoint $parent_access_point
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
  * @property \App\Model\Entity\CustomerConnection[] $customer_connections
  * @property \App\Model\Entity\ElectricityMeterReading[] $electricity_meter_readings
