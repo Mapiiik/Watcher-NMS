@@ -164,6 +164,7 @@ if (!(php_sapi_name() == 'cli')) {
             'AccessPointContacts',
             'ElectricityMeterReadings',
             'IpAddressRanges',
+            'LandlordPayments',
             'PowerSupplies',
             'RadioUnits',
             'RouterosDevices',

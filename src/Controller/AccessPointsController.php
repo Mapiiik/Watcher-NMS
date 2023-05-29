@@ -75,6 +75,9 @@ class AccessPointsController extends AppController
                         'reading_date' => 'DESC',
                     ],
                 ],
+                'LandlordPayments' => [
+                    'PaymentPurposes',
+                ],
                 'PowerSupplies' => [
                     'PowerSupplyTypes',
                 ],

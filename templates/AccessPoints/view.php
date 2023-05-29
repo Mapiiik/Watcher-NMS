@@ -597,6 +597,70 @@
             </div>
             <hr>
             <div class="related">
+                <?= $this->Html->link(
+                    __('New Payment To Landlord'),
+                    ['controller' => 'LandlordPayments', 'action' => 'add'],
+                    ['class' => 'button button-small float-right win-link']
+                ) ?>
+                <h4><?= __('Related Landlord Payments') ?></h4>
+                <?php if (!empty($accessPoint->landlord_payments)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Payment Purpose') ?></th>
+                            <th><?= __('Payment Date') ?></th>
+                            <th><?= __('Amount Paid') ?></th>
+                            <th><?= __('Note') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($accessPoint->landlord_payments as $landlordPayment) : ?>
+                        <tr>
+                            <td><?= $landlordPayment->has('payment_purpose') ?
+                                $this->Html->link(
+                                    $landlordPayment->payment_purpose->name,
+                                    [
+                                        'controller' => 'PaymentPurposes',
+                                        'action' => 'view',
+                                        $landlordPayment->payment_purpose->id,
+                                    ]
+                                ) : '' ?></td>
+                            <td><?= h($landlordPayment->payment_date) ?></td>
+                            <td><?= $landlordPayment->amount_paid === null ?
+                                '' : $this->Number->currency($landlordPayment->amount_paid)
+                            ?></td>
+                            <td><?= $this->Text->autoParagraph(h($landlordPayment->note)) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(
+                                    __('View'),
+                                    ['controller' => 'LandlordPayments', 'action' => 'view', $landlordPayment->id]
+                                ) ?>
+                                <?= $this->Html->link(
+                                    __('Edit'),
+                                    [
+                                        'controller' => 'LandlordPayments',
+                                        'action' => 'edit',
+                                        $landlordPayment->id,
+                                    ],
+                                    ['class' => 'win-link']
+                                ) ?>
+                                <?= $this->Form->postLink(
+                                    __('Delete'),
+                                    [
+                                        'controller' => 'LandlordPayments',
+                                        'action' => 'delete',
+                                        $landlordPayment->id,
+                                    ],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id)]
+                                ) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
+            <hr>
+            <div class="related">
                 <h4><?= __('Related RouterOS Wireless Links') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
                 <div class="table-responsive">
