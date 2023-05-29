@@ -30,6 +30,7 @@ class AccessPointsTableTest extends TestCase
         'app.CustomerConnections',
         'app.ElectricityMeterReadings',
         'app.IpAddressRanges',
+        'app.PaymentPurposes',
         'app.LandlordPayments',
         'app.PowerSupplies',
         'app.RadioUnits',

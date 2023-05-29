@@ -21,9 +21,9 @@ class LandlordPaymentsControllerTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.LandlordPayments',
         'app.AccessPoints',
         'app.PaymentPurposes',
+        'app.LandlordPayments',
     ];
 
     /**

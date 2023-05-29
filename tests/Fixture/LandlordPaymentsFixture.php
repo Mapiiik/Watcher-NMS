@@ -20,8 +20,8 @@ class LandlordPaymentsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 'd6382ef3-3477-487e-82ff-f47f5a93bae9',
-                'access_point_id' => '623e7681-c1b6-4ff7-9dbe-6625c475a876',
-                'payment_purpose_id' => 'fb4d0055-9e3f-46ec-b008-70882873fda9',
+                'access_point_id' => '1ec58677-1213-4950-80c4-bc1de41ea133',
+                'payment_purpose_id' => '90db6a00-0bd8-4025-aa03-c8f1551ac279',
                 'payment_date' => '2023-05-29',
                 'amount_paid' => 1.5,
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
