@@ -598,7 +598,7 @@
             <hr>
             <div class="related">
                 <?= $this->Html->link(
-                    __('New Payment To Landlord'),
+                    __('New Landlord Payment'),
                     ['controller' => 'LandlordPayments', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
                 ) ?>

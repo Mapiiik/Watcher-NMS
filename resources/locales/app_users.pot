@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-05-17 16:01+0200\n"
+"POT-Creation-Date: 2023-05-29 18:33+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -18,81 +18,81 @@ msgstr ""
 msgid "You are not allowed to edit another user's settings."
 msgstr ""
 
-#: ./src/Controller/Traits/UserSettingsTrait.php:67
+#: ./src/Controller/Traits/UserSettingsTrait.php:68
 msgid "The user settings have been saved."
 msgstr ""
 
-#: ./src/Controller/Traits/UserSettingsTrait.php:71
+#: ./src/Controller/Traits/UserSettingsTrait.php:72
 msgid "The user settings could not be saved. Please, try again."
 msgstr ""
 
 #: ./templates/AppUsers/add.php:13
-#: ./templates/AppUsers/change_password.php:10
+#: ./templates/AppUsers/change_password.php:12
 #: ./templates/AppUsers/edit.php:13
 #: ./templates/AppUsers/index.php:31
-#: ./templates/AppUsers/profile.php:15
-#: ./templates/AppUsers/user_settings.php:10
+#: ./templates/AppUsers/profile.php:11
+#: ./templates/AppUsers/user_settings.php:11
 #: ./templates/AppUsers/view.php:13
-#: ./templates/AppUsers/view.php:141
+#: ./templates/AppUsers/view.php:144
 msgid "Actions"
 msgstr ""
 
 #: ./templates/AppUsers/add.php:15
-#: ./templates/AppUsers/change_password.php:12
+#: ./templates/AppUsers/change_password.php:14
 #: ./templates/AppUsers/edit.php:23
-#: ./templates/AppUsers/user_settings.php:12
-#: ./templates/AppUsers/view.php:25
+#: ./templates/AppUsers/user_settings.php:13
+#: ./templates/AppUsers/view.php:28
 msgid "List Users"
 msgstr ""
 
 #: ./templates/AppUsers/add.php:25
-#: ./templates/AppUsers/register.php:18
+#: ./templates/AppUsers/register.php:11
 msgid "Add User"
 msgstr ""
 
 #: ./templates/AppUsers/add.php:36
-#: ./templates/AppUsers/change_password.php:48
+#: ./templates/AppUsers/change_password.php:50
 #: ./templates/AppUsers/edit.php:59
-#: ./templates/AppUsers/register.php:42
-#: ./templates/AppUsers/request_reset_password.php:23
-#: ./templates/AppUsers/resend_token_validation.php:20
-#: ./templates/AppUsers/social_email.php:19
-#: ./templates/AppUsers/user_settings.php:54
+#: ./templates/AppUsers/register.php:35
+#: ./templates/AppUsers/request_reset_password.php:15
+#: ./templates/AppUsers/resend_token_validation.php:16
+#: ./templates/AppUsers/social_email.php:14
+#: ./templates/AppUsers/user_settings.php:60
 msgid "Submit"
 msgstr ""
 
-#: ./templates/AppUsers/change_password.php:17
-#: ./templates/AppUsers/user_settings.php:17
+#: ./templates/AppUsers/change_password.php:19
+#: ./templates/AppUsers/user_settings.php:18
 msgid "User Profile"
 msgstr ""
 
-#: ./templates/AppUsers/change_password.php:28
+#: ./templates/AppUsers/change_password.php:30
 msgid "Please enter the new password"
 msgstr ""
 
-#: ./templates/AppUsers/change_password.php:33
+#: ./templates/AppUsers/change_password.php:35
 msgid "Current password"
 msgstr ""
 
-#: ./templates/AppUsers/change_password.php:39
+#: ./templates/AppUsers/change_password.php:41
 msgid "New password"
 msgstr ""
 
-#: ./templates/AppUsers/change_password.php:44
-#: ./templates/AppUsers/register.php:26
+#: ./templates/AppUsers/change_password.php:46
+#: ./templates/AppUsers/register.php:19
 msgid "Confirm password"
 msgstr ""
 
 #: ./templates/AppUsers/edit.php:15
 #: ./templates/AppUsers/index.php:58
-#: ./templates/AppUsers/view.php:169
+#: ./templates/AppUsers/view.php:172
 msgid "Delete"
 msgstr ""
 
 #: ./templates/AppUsers/edit.php:18
 #: ./templates/AppUsers/index.php:60
-#: ./templates/AppUsers/view.php:22
-#: ./templates/AppUsers/view.php:171
+#: ./templates/AppUsers/view.php:23
+#: ./templates/AppUsers/view.php:175
 msgid "Are you sure you want to delete # {0}?"
 msgstr ""
 
@@ -102,7 +102,7 @@ msgid "Edit User"
 msgstr ""
 
 #: ./templates/AppUsers/index.php:12
-#: ./templates/AppUsers/view.php:30
+#: ./templates/AppUsers/view.php:33
 msgid "New User"
 msgstr ""
 
@@ -112,37 +112,37 @@ msgstr ""
 
 #: ./templates/AppUsers/index.php:41
 #: ./templates/AppUsers/index.php:42
-#: ./templates/AppUsers/view.php:64
-#: ./templates/AppUsers/view.php:68
-#: ./templates/AppUsers/view.php:100
+#: ./templates/AppUsers/view.php:67
+#: ./templates/AppUsers/view.php:71
+#: ./templates/AppUsers/view.php:103
 msgid "Yes"
 msgstr ""
 
 #: ./templates/AppUsers/index.php:41
 #: ./templates/AppUsers/index.php:42
-#: ./templates/AppUsers/view.php:64
-#: ./templates/AppUsers/view.php:68
-#: ./templates/AppUsers/view.php:100
+#: ./templates/AppUsers/view.php:67
+#: ./templates/AppUsers/view.php:71
+#: ./templates/AppUsers/view.php:103
 msgid "No"
 msgstr ""
 
 #: ./templates/AppUsers/index.php:49
-#: ./templates/AppUsers/view.php:161
+#: ./templates/AppUsers/view.php:164
 msgid "View"
 msgstr ""
 
 #: ./templates/AppUsers/index.php:53
-#: ./templates/AppUsers/view.php:165
+#: ./templates/AppUsers/view.php:168
 msgid "Edit"
 msgstr ""
 
 #: ./templates/AppUsers/index.php:63
-#: ./templates/AppUsers/profile.php:17
+#: ./templates/AppUsers/profile.php:13
 msgid "Change Password"
 msgstr ""
 
 #: ./templates/AppUsers/index.php:68
-#: ./templates/AppUsers/profile.php:22
+#: ./templates/AppUsers/profile.php:18
 msgid "User Settings"
 msgstr ""
 
@@ -166,132 +166,132 @@ msgstr ""
 msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
 
-#: ./templates/AppUsers/login.php:19
+#: ./templates/AppUsers/login.php:12
 msgid "Please enter your username and password"
 msgstr ""
 
-#: ./templates/AppUsers/login.php:20
-#: ./templates/AppUsers/profile.php:45
-#: ./templates/AppUsers/register.php:20
-#: ./templates/AppUsers/view.php:43
-#: ./templates/AppUsers/view.php:129
+#: ./templates/AppUsers/login.php:13
+#: ./templates/AppUsers/profile.php:41
+#: ./templates/AppUsers/register.php:13
+#: ./templates/AppUsers/view.php:46
+#: ./templates/AppUsers/view.php:132
 msgid "Username"
 msgstr ""
 
-#: ./templates/AppUsers/login.php:21
-#: ./templates/AppUsers/register.php:22
+#: ./templates/AppUsers/login.php:14
+#: ./templates/AppUsers/register.php:15
 msgid "Password"
 msgstr ""
 
-#: ./templates/AppUsers/login.php:29
+#: ./templates/AppUsers/login.php:22
 msgid "Remember me"
 msgstr ""
 
-#: ./templates/AppUsers/login.php:37
+#: ./templates/AppUsers/login.php:30
 msgid "Register"
 msgstr ""
 
-#: ./templates/AppUsers/login.php:43
+#: ./templates/AppUsers/login.php:36
 msgid "Reset Password"
 msgstr ""
 
-#: ./templates/AppUsers/login.php:48
+#: ./templates/AppUsers/login.php:41
 msgid "Login"
 msgstr ""
 
-#: ./templates/AppUsers/profile.php:38
+#: ./templates/AppUsers/profile.php:34
 msgid "{0} {1}"
 msgstr ""
 
-#: ./templates/AppUsers/profile.php:47
-#: ./templates/AppUsers/register.php:21
-#: ./templates/AppUsers/view.php:47
+#: ./templates/AppUsers/profile.php:43
+#: ./templates/AppUsers/register.php:14
+#: ./templates/AppUsers/view.php:50
 msgid "Email"
 msgstr ""
 
-#: ./templates/AppUsers/profile.php:49
-#: ./templates/AppUsers/view.php:59
+#: ./templates/AppUsers/profile.php:45
+#: ./templates/AppUsers/view.php:62
 msgid "Role"
 msgstr ""
 
-#: ./templates/AppUsers/profile.php:55
+#: ./templates/AppUsers/profile.php:51
 msgid "Social Accounts"
 msgstr ""
 
-#: ./templates/AppUsers/profile.php:59
-#: ./templates/AppUsers/view.php:132
+#: ./templates/AppUsers/profile.php:55
+#: ./templates/AppUsers/view.php:135
 msgid "Avatar"
 msgstr ""
 
-#: ./templates/AppUsers/profile.php:60
-#: ./templates/AppUsers/view.php:128
+#: ./templates/AppUsers/profile.php:56
+#: ./templates/AppUsers/view.php:131
 msgid "Provider"
 msgstr ""
 
-#: ./templates/AppUsers/profile.php:61
-#: ./templates/AppUsers/view.php:134
+#: ./templates/AppUsers/profile.php:57
+#: ./templates/AppUsers/view.php:137
 msgid "Link"
 msgstr ""
 
-#: ./templates/AppUsers/profile.php:69
+#: ./templates/AppUsers/profile.php:65
 msgid "Link to {0}"
 msgstr ""
 
-#: ./templates/AppUsers/register.php:28
+#: ./templates/AppUsers/register.php:21
 msgid "First name"
 msgstr ""
 
-#: ./templates/AppUsers/register.php:29
+#: ./templates/AppUsers/register.php:22
 msgid "Last name"
 msgstr ""
 
-#: ./templates/AppUsers/register.php:33
+#: ./templates/AppUsers/register.php:26
 msgid "Accept TOS conditions?"
 msgstr ""
 
-#: ./templates/AppUsers/request_reset_password.php:20
+#: ./templates/AppUsers/request_reset_password.php:12
 msgid "Please enter your email or username to reset your password"
 msgstr ""
 
-#: ./templates/AppUsers/resend_token_validation.php:15
+#: ./templates/AppUsers/resend_token_validation.php:11
 msgid "Resend Validation email"
 msgstr ""
 
-#: ./templates/AppUsers/resend_token_validation.php:17
+#: ./templates/AppUsers/resend_token_validation.php:13
 msgid "Email or username"
 msgstr ""
 
-#: ./templates/AppUsers/social_email.php:16
+#: ./templates/AppUsers/social_email.php:11
 msgid "Please enter your email"
 msgstr ""
 
 #: ./templates/AppUsers/u2f_authenticate.php:23
-#: ./templates/AppUsers/webauthn2fa.php:33
+#: ./templates/AppUsers/webauthn2fa.php:34
 msgid "Verify your registered yubico key"
 msgstr ""
 
 #: ./templates/AppUsers/u2f_authenticate.php:24
 #: ./templates/AppUsers/u2f_register.php:24
-#: ./templates/AppUsers/webauthn2fa.php:20
-#: ./templates/AppUsers/webauthn2fa.php:34
+#: ./templates/AppUsers/webauthn2fa.php:21
+#: ./templates/AppUsers/webauthn2fa.php:35
 msgid "Please insert and tap your yubico key"
 msgstr ""
 
 #: ./templates/AppUsers/u2f_authenticate.php:25
-#: ./templates/AppUsers/webauthn2fa.php:35
+#: ./templates/AppUsers/webauthn2fa.php:36
 msgid "You can now finish the authentication process using the registered device."
 msgstr ""
 
 #: ./templates/AppUsers/u2f_authenticate.php:29
 #: ./templates/AppUsers/u2f_register.php:29
-#: ./templates/AppUsers/webauthn2fa.php:25
-#: ./templates/AppUsers/webauthn2fa.php:39
+#: ./templates/AppUsers/webauthn2fa.php:26
+#: ./templates/AppUsers/webauthn2fa.php:40
 msgid "When the YubiKey starts blinking, press the golden disc to activate it. Depending on the web browser you might need to confirm the use of extended information from the YubiKey."
 msgstr ""
 
 #: ./templates/AppUsers/u2f_authenticate.php:36
 #: ./templates/AppUsers/u2f_register.php:36
-#: ./templates/AppUsers/webauthn2fa.php:47
+#: ./templates/AppUsers/webauthn2fa.php:48
 msgid "Reload"
 msgstr ""
 
@@ -301,36 +301,36 @@ msgid "Yubico key check has failed, please try again"
 msgstr ""
 
 #: ./templates/AppUsers/u2f_register.php:23
-#: ./templates/AppUsers/webauthn2fa.php:19
+#: ./templates/AppUsers/webauthn2fa.php:20
 msgid "Registering your yubico key"
 msgstr ""
 
 #: ./templates/AppUsers/u2f_register.php:25
-#: ./templates/AppUsers/webauthn2fa.php:21
+#: ./templates/AppUsers/webauthn2fa.php:22
 msgid "In order to enable your YubiKey the first step is to perform a registration."
 msgstr ""
 
-#: ./templates/AppUsers/user_settings.php:27
+#: ./templates/AppUsers/user_settings.php:28
 msgid "Edit User Settings"
 msgstr ""
 
-#: ./templates/AppUsers/user_settings.php:30
+#: ./templates/AppUsers/user_settings.php:31
 msgid "Language"
 msgstr ""
 
-#: ./templates/AppUsers/user_settings.php:37
+#: ./templates/AppUsers/user_settings.php:38
 msgid "Number of Rows per Page"
 msgstr ""
 
-#: ./templates/AppUsers/user_settings.php:49
-msgid "High Contrast"
+#: ./templates/AppUsers/user_settings.php:50
+msgid "Theme"
 msgstr ""
 
-#: ./templates/AppUsers/verify.php:15
+#: ./templates/AppUsers/verify.php:21
 msgid "Verification Code"
 msgstr ""
 
-#: ./templates/AppUsers/verify.php:19
+#: ./templates/AppUsers/verify.php:25
 msgid "<span class=\"glyphicon glyphicon-log-in\" aria-hidden=\"true\"></span> Verify"
 msgstr ""
 
@@ -338,96 +338,96 @@ msgstr ""
 msgid "Delete User"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:51
+#: ./templates/AppUsers/view.php:54
 msgid "First Name"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:55
+#: ./templates/AppUsers/view.php:58
 msgid "Last Name"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:63
+#: ./templates/AppUsers/view.php:66
 msgid "Is Superuser"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:67
-#: ./templates/AppUsers/view.php:130
+#: ./templates/AppUsers/view.php:70
+#: ./templates/AppUsers/view.php:133
 msgid "Active"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:75
+#: ./templates/AppUsers/view.php:78
 msgid "Api Token"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:79
-#: ./templates/AppUsers/view.php:135
+#: ./templates/AppUsers/view.php:82
+#: ./templates/AppUsers/view.php:138
 msgid "Token"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:83
-#: ./templates/AppUsers/view.php:137
+#: ./templates/AppUsers/view.php:86
+#: ./templates/AppUsers/view.php:140
 msgid "Token Expires"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:87
+#: ./templates/AppUsers/view.php:90
 msgid "Activation Date"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:91
+#: ./templates/AppUsers/view.php:94
 msgid "Tos Date"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:95
+#: ./templates/AppUsers/view.php:98
 msgid "Secret"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:99
+#: ./templates/AppUsers/view.php:102
 msgid "Secret Verified"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:103
+#: ./templates/AppUsers/view.php:106
 msgid "Additional Data"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:107
+#: ./templates/AppUsers/view.php:110
 msgid "Last Login"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:111
-#: ./templates/AppUsers/view.php:139
+#: ./templates/AppUsers/view.php:114
+#: ./templates/AppUsers/view.php:142
 msgid "Created"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:115
-#: ./templates/AppUsers/view.php:140
+#: ./templates/AppUsers/view.php:118
+#: ./templates/AppUsers/view.php:143
 msgid "Modified"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:122
+#: ./templates/AppUsers/view.php:125
 msgid "Related Social Accounts"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:127
+#: ./templates/AppUsers/view.php:130
 msgid "Id"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:131
+#: ./templates/AppUsers/view.php:134
 msgid "Reference"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:133
+#: ./templates/AppUsers/view.php:136
 msgid "Description"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:136
+#: ./templates/AppUsers/view.php:139
 msgid "Token Secret"
 msgstr ""
 
-#: ./templates/AppUsers/view.php:138
+#: ./templates/AppUsers/view.php:141
 msgid "Data"
 msgstr ""
 
-#: ./templates/AppUsers/webauthn2fa.php:8
+#: ./templates/AppUsers/webauthn2fa.php:9
 msgid "Two-factor authentication"
 msgstr ""
 
