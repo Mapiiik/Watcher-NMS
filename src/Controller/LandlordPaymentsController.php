@@ -6,7 +6,7 @@ namespace App\Controller;
 /**
  * LandlordPayments Controller
  *
- * @property \App\Model\Table\LandlordPaymentsTable $landlordPayments
+ * @property \App\Model\Table\LandlordPaymentsTable $LandlordPayments
  * @method \App\Model\Entity\LandlordPayment[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class LandlordPaymentsController extends AppController
@@ -18,6 +18,9 @@ class LandlordPaymentsController extends AppController
      */
     public function index()
     {
+        $access_point_id = $this->getRequest()->getParam('access_point_id');
+        $this->set('access_point_id', $access_point_id);
+
         // filter
         $conditions = [];
         if (isset($access_point_id)) {
