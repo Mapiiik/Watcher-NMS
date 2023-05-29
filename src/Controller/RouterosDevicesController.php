@@ -143,10 +143,17 @@ class RouterosDevicesController extends AppController
             ],
         ]);
 
-        if (in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, ['superuser', 'admin'])) {
+        if (
+            in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, [
+                'superuser',
+                'admin',
+                'network-manager',
+            ])
+        ) {
             $routerosDevice->username = $this->getUsername($routerosDevice);
             $routerosDevice->password = $this->getPassword($routerosDevice);
         }
+
         if (
             in_array($this->getRequest()->getAttribute('identity')['role'] ?? null, [
                 'customer-service-technician',
