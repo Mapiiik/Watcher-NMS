@@ -12,29 +12,31 @@ use Geo\Geocoder\Geocoder;
  *
  * @property string $id
  * @property string|null $name
- * @property string|null $access_point_type_id
- * @property string|null $parent_access_point_id
  * @property string|null $device_name
  * @property float|null $gps_x
  * @property float|null $gps_y
  * @property string|null $note
- * @property string|null $contract_conditions
  * @property \Cake\I18n\FrozenTime|null $created
- * @property string|null $created_by
- * @property \CakeDC\Users\Model\Entity\User|null $creator
  * @property \Cake\I18n\FrozenTime|null $modified
- * @property string|null $modified_by
- * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property int|null $month_of_electricity_meter_reading
+ * @property string|null $parent_access_point_id
+ * @property string|null $contract_conditions
+ * @property string|null $created_by
+ * @property string|null $modified_by
+ * @property string|null $access_point_type_id
  *
+ * @property \App\Model\Entity\AppUser $creator
+ * @property \App\Model\Entity\AppUser $modifier
  * @property \App\Model\Entity\AccessPointType $access_point_type
- * @property \App\Model\Entity\AccessPoint $parent_access_point
+ * @property \App\Model\Entity\ParentAccessPoint $parent_access_point
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
+ * @property \App\Model\Entity\CustomerConnection[] $customer_connections
  * @property \App\Model\Entity\ElectricityMeterReading[] $electricity_meter_readings
+ * @property \App\Model\Entity\IpAddressRange[] $ip_address_ranges
+ * @property \App\Model\Entity\LandlordPayment[] $landlord_payments
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
  * @property \App\Model\Entity\RadioUnit[] $radio_units
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
- * @property \App\Model\Entity\IpAddressRange[] $ip_address_ranges
  *
  * @property string $name_for_lists
  * @property string|null $nearest_found_address
@@ -52,23 +54,30 @@ class AccessPoint extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'access_point_type_id' => true,
-        'parent_access_point_id' => true,
         'device_name' => true,
         'gps_x' => true,
         'gps_y' => true,
         'note' => true,
-        'contract_conditions' => true,
         'created' => true,
-        'created_by' => true,
         'modified' => true,
-        'modified_by' => true,
         'month_of_electricity_meter_reading' => true,
+        'parent_access_point_id' => true,
+        'contract_conditions' => true,
+        'created_by' => true,
+        'modified_by' => true,
+        'access_point_type_id' => true,
+        'creator' => true,
+        'modifier' => true,
+        'access_point_type' => true,
+        'parent_access_point' => true,
         'access_point_contacts' => true,
+        'customer_connections' => true,
+        'electricity_meter_readings' => true,
+        'ip_address_ranges' => true,
+        'landlord_payments' => true,
         'power_supplies' => true,
         'radio_units' => true,
         'routeros_devices' => true,
-        'ip_address_ranges' => true,
     ];
 
     /**

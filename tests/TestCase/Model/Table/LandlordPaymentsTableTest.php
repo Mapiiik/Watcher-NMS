@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\AccessPointsTable;
+use App\Model\Table\LandlordPaymentsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\AccessPointsTable Test Case
+ * App\Model\Table\LandlordPaymentsTable Test Case
  */
-class AccessPointsTableTest extends TestCase
+class LandlordPaymentsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\AccessPointsTable
+     * @var \App\Model\Table\LandlordPaymentsTable
      */
-    protected $AccessPoints;
+    protected $LandlordPayments;
 
     /**
      * Fixtures
@@ -24,16 +24,9 @@ class AccessPointsTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.AccessPoints',
-        'app.AccessPointTypes',
-        'app.AccessPointContacts',
-        'app.CustomerConnections',
-        'app.ElectricityMeterReadings',
-        'app.IpAddressRanges',
         'app.LandlordPayments',
-        'app.PowerSupplies',
-        'app.RadioUnits',
-        'app.RouterosDevices',
+        'app.AccessPoints',
+        'app.PaymentPurposes',
     ];
 
     /**
@@ -44,8 +37,8 @@ class AccessPointsTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('AccessPoints') ? [] : ['className' => AccessPointsTable::class];
-        $this->AccessPoints = $this->fetchTable('AccessPoints', $config);
+        $config = $this->getTableLocator()->exists('LandlordPayments') ? [] : ['className' => LandlordPaymentsTable::class];
+        $this->LandlordPayments = $this->fetchTable('LandlordPayments', $config);
     }
 
     /**
@@ -55,7 +48,7 @@ class AccessPointsTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->AccessPoints);
+        unset($this->LandlordPayments);
 
         parent::tearDown();
     }
@@ -64,7 +57,7 @@ class AccessPointsTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\AccessPointsTable::validationDefault()
+     * @uses \App\Model\Table\LandlordPaymentsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -75,7 +68,7 @@ class AccessPointsTableTest extends TestCase
      * Test buildRules method
      *
      * @return void
-     * @uses \App\Model\Table\AccessPointsTable::buildRules()
+     * @uses \App\Model\Table\LandlordPaymentsTable::buildRules()
      */
     public function testBuildRules(): void
     {
