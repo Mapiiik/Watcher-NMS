@@ -94,9 +94,9 @@ $request = $this->getRequest();
                 ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([
                     'AccessPoints',
-                    'AccessPointTypes',
                     'AccessPointContacts',
                     'ElectricityMeterReadings',
+                    'LandlordPayments',
                 ])]
             ) ?>
             <?= $this->AuthLink->link(
@@ -122,7 +122,6 @@ $request = $this->getRequest();
                     'RouterosDevices',
                     'RouterosDeviceIps',
                     'RouterosDeviceInterfaces',
-                    'DeviceTypes',
                     'RadarInterferences',
                 ])]
             ) ?>
@@ -132,20 +131,27 @@ $request = $this->getRequest();
                 ['class' => 'button button-small' . $buttonSelected([
                     'RadioLinks',
                     'RadioUnits',
-                    'RadioUnitTypes',
-                    'RadioUnitBands',
-                    'AntennaTypes',
                 ])]
             ) ?>
             <?= $this->AuthLink->link(
                 __('Power Supplies'),
                 ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['PowerSupplies', 'PowerSupplyTypes'])]
+                ['class' => 'button button-small' . $buttonSelected([
+                    'PowerSupplies',
+                ])]
             ) ?>
             <?= $this->AuthLink->link(
                 __('Settings'),
                 ['controller' => 'Settings', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([
+                    'AccessPointTypes',
+                    'AntennaTypes',
+                    'DeviceTypes',
+                    'Manufacturers',
+                    'PaymentPurposes',
+                    'PowerSupplyTypes',
+                    'RadioUnitTypes',
+                    'RadioUnitBands',
                     'Settings',
                     'Users',
                 ])]
@@ -222,20 +228,15 @@ $request = $this->getRequest();
         if (
             in_array($this->getName(), [
                 'AccessPoints',
-                'AccessPointTypes',
                 'AccessPointContacts',
                 'ElectricityMeterReadings',
-            ])
+                'LandlordPayments',
+                ])
         ) : ?>
             <?= $this->AuthLink->link(
                 __('Access Points'),
                 ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected(['AccessPoints'])]
-            ) ?>
-            <?= $this->AuthLink->link(
-                __('Access Point Types'),
-                ['controller' => 'AccessPointTypes', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['AccessPointTypes'])]
             ) ?>
             <?= $this->AuthLink->link(
                 __('Access Point Contacts'),
@@ -246,6 +247,11 @@ $request = $this->getRequest();
                 __('Electricity Meter Readings'),
                 ['controller' => 'ElectricityMeterReadings', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected(['ElectricityMeterReadings'])]
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Landlord Payments'),
+                ['controller' => 'LandlordPayments', 'action' => 'index', 'plugin' => null],
+                ['class' => 'button button-small' . $buttonSelected(['LandlordPayments'])]
             ) ?>
         <?php endif; ?>
         <?php
@@ -278,7 +284,6 @@ $request = $this->getRequest();
                 'RouterosDevices',
                 'RouterosDeviceIps',
                 'RouterosDeviceInterfaces',
-                'DeviceTypes',
                 'RadarInterferences',
             ])
         ) : ?>
@@ -298,11 +303,6 @@ $request = $this->getRequest();
                 ['class' => 'button button-small' . $buttonSelected(['RouterosDeviceIps'])]
             ) ?>
             <?= $this->AuthLink->link(
-                __('Device Types'),
-                ['controller' => 'DeviceTypes', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['DeviceTypes'])]
-            ) ?>
-            <?= $this->AuthLink->link(
                 __('Radar Interferences'),
                 ['controller' => 'RadarInterferences', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected(['RadarInterferences'])]
@@ -313,9 +313,6 @@ $request = $this->getRequest();
             in_array($this->getName(), [
                 'RadioLinks',
                 'RadioUnits',
-                'RadioUnitTypes',
-                'RadioUnitBands',
-                'AntennaTypes',
             ])
         ) : ?>
             <?= $this->AuthLink->link(
@@ -327,43 +324,6 @@ $request = $this->getRequest();
                 __('Radio Units'),
                 ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected(['RadioUnits'])]
-            ) ?>
-            <?= $this->AuthLink->link(
-                __('Radio Unit Types'),
-                ['controller' => 'RadioUnitTypes', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['RadioUnitTypes'])]
-            ) ?>
-            <?= $this->AuthLink->link(
-                __('Radio Unit Bands'),
-                ['controller' => 'RadioUnitBands', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['RadioUnitBands'])]
-            ) ?>
-            <?= $this->AuthLink->link(
-                __('Antenna Types'),
-                ['controller' => 'AntennaTypes', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['AntennaTypes'])]
-            ) ?>
-            <?= $this->AuthLink->link(
-                __('Manufacturers'),
-                ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['Manufacturers'])]
-            ) ?>
-        <?php endif; ?>
-        <?php if (in_array($this->getName(), ['PowerSupplies', 'PowerSupplyTypes'])) : ?>
-            <?= $this->AuthLink->link(
-                __('Power Supplies'),
-                ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['PowerSupplies'])]
-            ) ?>
-            <?= $this->AuthLink->link(
-                __('Power Supply Types'),
-                ['controller' => 'PowerSupplyTypes', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['PowerSupplyTypes'])]
-            ) ?>
-            <?= $this->AuthLink->link(
-                __('Manufacturers'),
-                ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['Manufacturers'])]
             ) ?>
         <?php endif; ?>
     </div>
