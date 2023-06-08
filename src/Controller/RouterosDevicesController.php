@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\Entity\RouterosDevice;
-use Cake\I18n\FrozenDate;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\Date;
+use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\Utility\Security;
 use SNMP;
@@ -46,11 +46,11 @@ class RouterosDevicesController extends AppController
         $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
-                'RouterosDevices.modified >' => FrozenTime::create()->subDays((int)$maximum_age),
+                'RouterosDevices.modified >' => DateTime::create()->subDays((int)$maximum_age),
             ];
         } else {
             $conditions[] = [
-                'RouterosDevices.modified >' => FrozenTime::create()->subDays(14),
+                'RouterosDevices.modified >' => DateTime::create()->subDays(14),
             ];
         }
 
@@ -106,7 +106,7 @@ class RouterosDevicesController extends AppController
                         'RouterosDevices' => [
                             'conditions' => [
                                 'RouterosDevices.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'AccessPoints',
                             'CustomerConnections',
@@ -121,7 +121,7 @@ class RouterosDevicesController extends AppController
                         'RouterosDevices' => [
                             'conditions' => [
                                 'RouterosDevices.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'AccessPoints',
                             'CustomerConnections',
@@ -131,7 +131,7 @@ class RouterosDevicesController extends AppController
                         'RouterosDevices' => [
                             'conditions' => [
                                 'RouterosDevices.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'AccessPoints',
                             'CustomerConnections',
@@ -460,7 +460,7 @@ class RouterosDevicesController extends AppController
         $serialNumber = $this->snmpGet('.1.3.6.1.4.1.14988.1.1.7.3.0')->text ?? null;
 
         if ($serialNumber) {
-            $start_time = new FrozenTime();
+            $start_time = new DateTime();
             $routerosDeviceData = [
                 'device_type_id' => $device_type_id,
                 'ip_address' => $host,
@@ -520,7 +520,7 @@ class RouterosDevicesController extends AppController
             $routerosDevice = $this->RouterosDevices
                 ->patchEntity($routerosDevice, $routerosDeviceData);
 
-            $routerosDevice->modified = FrozenTime::now();
+            $routerosDevice->modified = DateTime::now();
 
             $this->RouterosDevices->save($routerosDevice);
 
@@ -631,7 +631,7 @@ class RouterosDevicesController extends AppController
                     $routerosDeviceInterface = $this->RouterosDevices->RouterosDeviceInterfaces
                         ->patchEntity($routerosDeviceInterface, $routerosDeviceInterfaceData);
 
-                    $routerosDeviceInterface->modified = FrozenTime::now();
+                    $routerosDeviceInterface->modified = DateTime::now();
 
                     $this->RouterosDevices->RouterosDeviceInterfaces->save($routerosDeviceInterface);
                 }
@@ -692,7 +692,7 @@ class RouterosDevicesController extends AppController
                     $routerosDeviceIp = $this->RouterosDevices->RouterosDeviceIps
                         ->patchEntity($routerosDeviceIp, $routerosDeviceIpData);
 
-                    $routerosDeviceIp->modified = FrozenTime::now();
+                    $routerosDeviceIp->modified = DateTime::now();
 
                     $this->RouterosDevices->RouterosDeviceIps->save($routerosDeviceIp);
                 }
@@ -709,17 +709,17 @@ class RouterosDevicesController extends AppController
             // REMOVE OLD DATA FROM DATABASE
             $this->RouterosDevices->deleteMany(
                 $this->RouterosDevices->find()->where([
-                    'modified <' => new FrozenTime('-365 days'),
+                    'modified <' => new DateTime('-365 days'),
                 ])->all()
             );
             $this->RouterosDevices->RouterosDeviceInterfaces->deleteMany(
                 $this->RouterosDevices->RouterosDeviceInterfaces->find()->where([
-                    'modified <' => new FrozenTime('-365 days'),
+                    'modified <' => new DateTime('-365 days'),
                 ])->all()
             );
             $this->RouterosDevices->RouterosDeviceIps->deleteMany(
                 $this->RouterosDevices->RouterosDeviceIps->find()->where([
-                    'modified <' => new FrozenTime('-365 days'),
+                    'modified <' => new DateTime('-365 days'),
                 ])->all()
             );
 
@@ -886,11 +886,11 @@ class RouterosDevicesController extends AppController
         $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
-                'RouterosDevices.modified >' => FrozenTime::create()->subDays((int)$maximum_age),
+                'RouterosDevices.modified >' => DateTime::create()->subDays((int)$maximum_age),
             ];
         } else {
             $conditions[] = [
-                'RouterosDevices.modified >' => FrozenTime::create()->subDays(14),
+                'RouterosDevices.modified >' => DateTime::create()->subDays(14),
             ];
         }
 

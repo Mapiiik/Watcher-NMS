@@ -7,7 +7,7 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\Log\Log;
 
 /**
@@ -51,7 +51,7 @@ class CustomerPointsUpdateCommand extends Command
         $json = file_get_contents($url);
 
         if ($json) {
-            $start_time = new FrozenTime();
+            $start_time = new DateTime();
             $importCustomerPoints = json_decode($json);
 
             foreach ($importCustomerPoints as $importCustomerPoint) {
@@ -74,7 +74,7 @@ class CustomerPointsUpdateCommand extends Command
                         'name' => $importCustomerPoint->name ?? null,
                         'note' => $importCustomerPoint->note ?? null,
                     ]);
-                    $customerPoint->modified = FrozenTime::now();
+                    $customerPoint->modified = DateTime::now();
 
                     if (!$this->fetchTable()->save($customerPoint)) {
                         Log::warning('The customer point could not be saved.');
@@ -105,7 +105,7 @@ class CustomerPointsUpdateCommand extends Command
                         'name' => $importCustomerConnection->name ?? null,
                         'note' => $importCustomerConnection->note ?? null,
                     ]);
-                    $customerConnection->modified = FrozenTime::now();
+                    $customerConnection->modified = DateTime::now();
 
                     if (!$this->fetchTable('CustomerConnections')->save($customerConnection)) {
                         Log::warning(
@@ -134,7 +134,7 @@ class CustomerPointsUpdateCommand extends Command
                                     'name' => $importCustomerConnectionIp->name ?? null,
                                     'note' => $importCustomerConnectionIp->note ?? null,
                                 ]);
-                            $customerConnectionIp->modified = FrozenTime::now();
+                            $customerConnectionIp->modified = DateTime::now();
 
                             if (!$this->fetchTable('CustomerConnectionIps')->save($customerConnectionIp)) {
                                 Log::warning(

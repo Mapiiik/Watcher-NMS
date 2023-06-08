@@ -32,7 +32,6 @@ class ErrorController extends AppController
      */
     public function initialize(): void
     {
-        $this->loadComponent('RequestHandler');
     }
 
     /**

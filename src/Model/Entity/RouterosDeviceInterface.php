@@ -23,10 +23,10 @@ use Cake\ORM\Entity;
  * @property int|null $interface_type
  * @property int|null $interface_admin_status
  * @property int|null $interface_oper_status
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
  * @property \CakeDC\Users\Model\Entity\User|null $creator
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  * @property string|null $bssid
@@ -49,7 +49,7 @@ class RouterosDeviceInterface extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'routeros_device_id' => true,
         'name' => true,
         'comment' => true,

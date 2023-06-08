@@ -11,12 +11,12 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property string|null $access_point_id
  * @property string|null $payment_purpose_id
- * @property \Cake\I18n\FrozenDate|null $payment_date
+ * @property \Cake\I18n\Date|null $payment_date
  * @property string|null $amount_paid
  * @property string|null $note
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
  *
  * @property \App\Model\Entity\AppUser $creator
@@ -37,7 +37,7 @@ class LandlordPayment extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'access_point_id' => true,
         'payment_purpose_id' => true,
         'payment_date' => true,

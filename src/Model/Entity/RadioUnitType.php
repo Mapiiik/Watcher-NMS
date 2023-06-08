@@ -14,10 +14,10 @@ use Cake\ORM\Entity;
  * @property string|null $manufacturer_id
  * @property string|null $part_number
  * @property string|null $note
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
  * @property \CakeDC\Users\Model\Entity\User|null $creator
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
@@ -39,7 +39,7 @@ class RadioUnitType extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'radio_unit_band_id' => true,
         'manufacturer_id' => true,

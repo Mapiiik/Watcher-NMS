@@ -31,8 +31,6 @@ class AppUsersController extends AppController
     use RegisterTrait;
     use SimpleCrudTrait;
     use SocialTrait;
-    use U2fTrait;
-    use UserSettingsTrait;
     use Webauthn2faTrait;
 
     /**
@@ -46,15 +44,11 @@ class AppUsersController extends AppController
 
         $this->loadComponent('CakeDC/Users.Setup');
 
-        if ($this->components()->has('Security')) {
-            $this->Security->setConfig(
+        if ($this->components()->has('FormProtection')) {
+            $this->FormProtection->setConfig(
                 'unlockedActions',
                 [
                     'login',
-                    'u2fRegister',
-                    'u2fRegisterFinish',
-                    'u2fAuthenticate',
-                    'u2fAuthenticateFinish',
                     'webauthn2faRegister',
                     'webauthn2faRegisterOptions',
                     'webauthn2faAuthenticate',

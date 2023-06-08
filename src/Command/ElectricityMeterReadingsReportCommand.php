@@ -8,7 +8,7 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Cake\I18n\FrozenDate;
+use Cake\I18n\Date;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 
@@ -50,7 +50,7 @@ class ElectricityMeterReadingsReportCommand extends Command
             $emails = (string)env('REPORT_EMAILS');
         }
 
-        $now = new FrozenDate();
+        $now = new Date();
 
         $accessPoints = $this->fetchTable()
             ->find('all', [

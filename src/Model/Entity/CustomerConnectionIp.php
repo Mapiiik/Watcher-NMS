@@ -13,10 +13,10 @@ use Cake\ORM\Entity;
  * @property string|null $customer_connection_id
  * @property string|null $ip_address
  * @property string|null $note
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
  * @property \CakeDC\Users\Model\Entity\User|null $creator
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
@@ -35,7 +35,7 @@ class CustomerConnectionIp extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'customer_connection_id' => true,
         'ip_address' => true,

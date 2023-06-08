@@ -12,9 +12,9 @@ use Cake\ORM\Entity;
  * @property string|null $name
  * @property string $color
  * @property string|null $note
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
  *
  * @property \App\Model\Entity\AppUser $creator
@@ -35,7 +35,7 @@ class AccessPointType extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'color' => true,
         'note' => true,

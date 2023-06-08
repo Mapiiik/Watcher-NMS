@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Cake\I18n\FrozenDate;
+use Cake\I18n\Date;
 
 /**
  * RouterosDeviceInterfaces Controller
@@ -25,11 +25,11 @@ class RouterosDeviceInterfacesController extends AppController
         $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
-                'RouterosDeviceInterfaces.modified >' => FrozenDate::create()->subDays((int)$maximum_age),
+                'RouterosDeviceInterfaces.modified >' => Date::create()->subDays((int)$maximum_age),
             ];
         } else {
             $conditions[] = [
-                'RouterosDeviceInterfaces.modified >' => FrozenDate::create()->subDays(14),
+                'RouterosDeviceInterfaces.modified >' => Date::create()->subDays(14),
             ];
         }
 

@@ -27,16 +27,16 @@ use Cake\ORM\Entity;
  * @property string|null $firmware_version
  * @property string|null $serial_number
  * @property string|null $station_address
- * @property \Cake\I18n\FrozenDate|null $expiration_date
+ * @property \Cake\I18n\Date|null $expiration_date
  * @property string|null $ip_address
  * @property string|null $device_login
  * @property string|null $device_password
  * @property string|null $authorization_number
  * @property string|null $note
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
  * @property \CakeDC\Users\Model\Entity\User|null $creator
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
@@ -59,7 +59,7 @@ class RadioUnit extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'radio_unit_type_id' => true,
         'access_point_id' => true,

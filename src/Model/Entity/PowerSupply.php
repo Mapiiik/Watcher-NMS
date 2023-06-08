@@ -16,13 +16,13 @@ use Cake\ORM\Entity;
  * @property float|null $battery_count
  * @property float|null $battery_voltage
  * @property float|null $battery_capacity
- * @property \Cake\I18n\FrozenDate|null $battery_replacement
+ * @property \Cake\I18n\Date|null $battery_replacement
  * @property float|null $battery_duration
  * @property string|null $note
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
  * @property \CakeDC\Users\Model\Entity\User|null $creator
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
  * @property \CakeDC\Users\Model\Entity\User|null $modifier
  *
@@ -42,7 +42,7 @@ class PowerSupply extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'power_supply_type_id' => true,
         'access_point_id' => true,

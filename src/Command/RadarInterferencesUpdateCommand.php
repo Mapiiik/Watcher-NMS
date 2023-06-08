@@ -7,7 +7,7 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\Utility\Text;
 use SplObjectStorage;
@@ -53,7 +53,7 @@ class RadarInterferencesUpdateCommand extends Command
         $csv = file($url);
 
         if ($csv) {
-            $start_time = new FrozenTime();
+            $start_time = new DateTime();
             foreach ($csv as $line) {
                 $data = str_getcsv($line, ';');
 
@@ -73,7 +73,7 @@ class RadarInterferencesUpdateCommand extends Command
                     ]
                 );
 
-                $radarInterference->modified = new FrozenTime();
+                $radarInterference->modified = new DateTime();
 
                 $this->fetchTable()->save($radarInterference);
             }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Form\MapOptionsForm;
-use Cake\I18n\FrozenDate;
+use Cake\I18n\Date;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
 
@@ -100,7 +100,7 @@ class AccessPointsController extends AppController
                         'NeighbouringIpAddresses' => [
                             'conditions' => [
                                 'NeighbouringIpAddresses.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'RouterosDevices' => [
                                 'AccessPoints',
@@ -115,7 +115,7 @@ class AccessPointsController extends AppController
                         'NeighbouringStations' => [
                             'conditions' => [
                                 'NeighbouringStations.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'RouterosDevices' => [
                                 'AccessPoints',
@@ -125,7 +125,7 @@ class AccessPointsController extends AppController
                         'NeighbouringAccessPoints' => [
                             'conditions' => [
                                 'NeighbouringAccessPoints.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'RouterosDevices' => [
                                 'AccessPoints',
@@ -258,7 +258,7 @@ class AccessPointsController extends AppController
             'RouterosDevices' => [
                 'sort' => ['RouterosDevices.name' => 'ASC'],
                 'conditions' => [
-                    'RouterosDevices.modified >' => (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                    'RouterosDevices.modified >' => (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                 ],
             ],
         ]);
@@ -280,7 +280,7 @@ class AccessPointsController extends AppController
                             ],
                             'conditions' => [
                                 'NeighbouringIpAddresses.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'RouterosDevices' => [
                                 'fields' => [
@@ -321,7 +321,7 @@ class AccessPointsController extends AppController
                             ],
                             'conditions' => [
                                 'NeighbouringStations.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'RouterosDevices' => [
                                 'fields' => [
@@ -347,7 +347,7 @@ class AccessPointsController extends AppController
                             ],
                             'conditions' => [
                                 'NeighbouringAccessPoints.modified >' =>
-                                    (new FrozenDate())->subDays(14)->format('Y-m-d H:i:s'),
+                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                             ],
                             'RouterosDevices' => [
                                 'fields' => [

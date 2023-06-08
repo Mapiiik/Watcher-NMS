@@ -16,8 +16,8 @@ use Geo\Geocoder\Geocoder;
  * @property float|null $gps_x
  * @property float|null $gps_y
  * @property string|null $note
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
  * @property int|null $month_of_electricity_meter_reading
  * @property string|null $parent_access_point_id
  * @property string|null $contract_conditions
@@ -52,7 +52,7 @@ class AccessPoint extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'device_name' => true,
         'gps_x' => true,
