@@ -56,12 +56,10 @@ class RadarInterferencesController extends AppController
      */
     public function view($id = null)
     {
-        $radarInterference = $this->RadarInterferences->get($id, [
-            'contain' => [
-                'RouterosDeviceInterfaces' => ['RouterosDevices'],
-                'Creators',
-                'Modifiers',
-            ],
+        $radarInterference = $this->RadarInterferences->get($id, contain: [
+            'RouterosDeviceInterfaces' => ['RouterosDevices'],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('radarInterference', $radarInterference);
@@ -98,9 +96,7 @@ class RadarInterferencesController extends AppController
      */
     public function edit($id = null)
     {
-        $radarInterference = $this->RadarInterferences->get($id, [
-            'contain' => [],
-        ]);
+        $radarInterference = $this->RadarInterferences->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $radarInterference = $this->RadarInterferences
                 ->patchEntity($radarInterference, $this->getRequest()->getData());

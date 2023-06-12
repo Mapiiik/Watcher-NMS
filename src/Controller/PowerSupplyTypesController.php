@@ -52,13 +52,11 @@ class PowerSupplyTypesController extends AppController
      */
     public function view($id = null)
     {
-        $powerSupplyType = $this->PowerSupplyTypes->get($id, [
-            'contain' => [
-                'Manufacturers',
-                'PowerSupplies' => ['AccessPoints'],
-                'Creators',
-                'Modifiers',
-            ],
+        $powerSupplyType = $this->PowerSupplyTypes->get($id, contain: [
+            'Manufacturers',
+            'PowerSupplies' => ['AccessPoints'],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('powerSupplyType', $powerSupplyType);
@@ -94,9 +92,7 @@ class PowerSupplyTypesController extends AppController
      */
     public function edit($id = null)
     {
-        $powerSupplyType = $this->PowerSupplyTypes->get($id, [
-            'contain' => [],
-        ]);
+        $powerSupplyType = $this->PowerSupplyTypes->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $powerSupplyType = $this->PowerSupplyTypes->patchEntity($powerSupplyType, $this->getRequest()->getData());
             if ($this->PowerSupplyTypes->save($powerSupplyType)) {

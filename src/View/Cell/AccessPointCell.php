@@ -16,7 +16,7 @@ class AccessPointCell extends Cell
      *
      * @var array<string>
      */
-    protected $_validCellOptions = [];
+    protected array $_validCellOptions = [];
 
     /**
      * Initialization logic run at the end of object construction.
@@ -32,7 +32,7 @@ class AccessPointCell extends Cell
      *
      * @return void
      */
-    public function display()
+    public function display(): void
     {
         $access_point_id = $this->request->getParam('access_point_id');
 

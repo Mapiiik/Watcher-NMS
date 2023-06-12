@@ -50,12 +50,10 @@ class DeviceTypesController extends AppController
      */
     public function view($id = null)
     {
-        $deviceType = $this->DeviceTypes->get($id, [
-            'contain' => [
-                'RouterosDevices' => ['AccessPoints', 'CustomerConnections'],
-                'Creators',
-                'Modifiers',
-            ],
+        $deviceType = $this->DeviceTypes->get($id, contain: [
+            'RouterosDevices' => ['AccessPoints', 'CustomerConnections'],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set(compact('deviceType'));
@@ -90,9 +88,7 @@ class DeviceTypesController extends AppController
      */
     public function edit($id = null)
     {
-        $deviceType = $this->DeviceTypes->get($id, [
-            'contain' => [],
-        ]);
+        $deviceType = $this->DeviceTypes->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $deviceType = $this->DeviceTypes->patchEntity($deviceType, $this->getRequest()->getData());
             if ($this->DeviceTypes->save($deviceType)) {

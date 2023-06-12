@@ -91,56 +91,54 @@ class RouterosDevicesController extends AppController
      */
     public function view($id = null)
     {
-        $routerosDevice = $this->RouterosDevices->get($id, [
-            'contain' => [
-                'AccessPoints',
-                'DeviceTypes',
-                'CustomerConnections',
-                'RouterosDeviceInterfaces',
-                'RouterosDeviceIps',
-                'RouterosIpLinks' => [
-                    'sort' => [
-                        'RouterosIpLinks.ip_address' => 'ASC',
-                    ],
-                    'NeighbouringIpAddresses' => [
-                        'RouterosDevices' => [
-                            'conditions' => [
-                                'RouterosDevices.modified >' =>
-                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
-                            ],
-                            'AccessPoints',
-                            'CustomerConnections',
+        $routerosDevice = $this->RouterosDevices->get($id, contain: [
+            'AccessPoints',
+            'DeviceTypes',
+            'CustomerConnections',
+            'RouterosDeviceInterfaces',
+            'RouterosDeviceIps',
+            'RouterosIpLinks' => [
+                'sort' => [
+                    'RouterosIpLinks.ip_address' => 'ASC',
+                ],
+                'NeighbouringIpAddresses' => [
+                    'RouterosDevices' => [
+                        'conditions' => [
+                            'RouterosDevices.modified >' =>
+                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
                         ],
+                        'AccessPoints',
+                        'CustomerConnections',
                     ],
                 ],
-                'RouterosWirelessLinks' => [
-                    'sort' => [
-                        'RouterosWirelessLinks.name' => 'ASC',
-                    ],
-                    'NeighbouringStations' => [
-                        'RouterosDevices' => [
-                            'conditions' => [
-                                'RouterosDevices.modified >' =>
-                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
-                            ],
-                            'AccessPoints',
-                            'CustomerConnections',
-                        ],
-                    ],
-                    'NeighbouringAccessPoints' => [
-                        'RouterosDevices' => [
-                            'conditions' => [
-                                'RouterosDevices.modified >' =>
-                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
-                            ],
-                            'AccessPoints',
-                            'CustomerConnections',
-                        ],
-                    ],
-                ],
-                'Creators',
-                'Modifiers',
             ],
+            'RouterosWirelessLinks' => [
+                'sort' => [
+                    'RouterosWirelessLinks.name' => 'ASC',
+                ],
+                'NeighbouringStations' => [
+                    'RouterosDevices' => [
+                        'conditions' => [
+                            'RouterosDevices.modified >' =>
+                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
+                        ],
+                        'AccessPoints',
+                        'CustomerConnections',
+                    ],
+                ],
+                'NeighbouringAccessPoints' => [
+                    'RouterosDevices' => [
+                        'conditions' => [
+                            'RouterosDevices.modified >' =>
+                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
+                        ],
+                        'AccessPoints',
+                        'CustomerConnections',
+                    ],
+                ],
+            ],
+            'Creators',
+            'Modifiers',
         ]);
 
         if (
@@ -215,9 +213,7 @@ class RouterosDevicesController extends AppController
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
-        $routerosDevice = $this->RouterosDevices->get($id, [
-            'contain' => [],
-        ]);
+        $routerosDevice = $this->RouterosDevices->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
             if ($this->RouterosDevices->save($routerosDevice)) {
@@ -911,16 +907,15 @@ class RouterosDevicesController extends AppController
             ];
         }
 
-        $routerosDevices = $this->RouterosDevices->find('all', [
-            'contain' => [
-                'AccessPoints',
-                'DeviceTypes',
-                'CustomerConnections' => ['CustomerPoints'],
-                'RouterosDeviceInterfaces',
-            ],
-            'order' => ['AccessPoints.name' => 'ASC', 'RouterosDevices.name' => 'ASC'],
-            'conditions' => $conditions,
-        ]);
+        $routerosDevices = $this->RouterosDevices->find('all',
+        contain: [
+            'AccessPoints',
+            'DeviceTypes',
+            'CustomerConnections' => ['CustomerPoints'],
+            'RouterosDeviceInterfaces',
+        ],
+        order: ['AccessPoints.name' => 'ASC', 'RouterosDevices.name' => 'ASC'],
+        conditions: $conditions);
 
         $this->set(compact('routerosDevices'));
     }

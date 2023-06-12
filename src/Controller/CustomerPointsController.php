@@ -50,12 +50,10 @@ class CustomerPointsController extends AppController
      */
     public function view($id = null)
     {
-        $customerPoint = $this->CustomerPoints->get($id, [
-            'contain' => [
-                'CustomerConnections',
-                'Creators',
-                'Modifiers',
-            ],
+        $customerPoint = $this->CustomerPoints->get($id, contain: [
+            'CustomerConnections',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('customerPoint', $customerPoint);
@@ -90,9 +88,7 @@ class CustomerPointsController extends AppController
      */
     public function edit($id = null)
     {
-        $customerPoint = $this->CustomerPoints->get($id, [
-            'contain' => [],
-        ]);
+        $customerPoint = $this->CustomerPoints->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $customerPoint = $this->CustomerPoints->patchEntity($customerPoint, $this->getRequest()->getData());
             if ($this->CustomerPoints->save($customerPoint)) {

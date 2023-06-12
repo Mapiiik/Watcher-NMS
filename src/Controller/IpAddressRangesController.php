@@ -62,13 +62,11 @@ class IpAddressRangesController extends AppController
      */
     public function view($id = null)
     {
-        $ipAddressRange = $this->IpAddressRanges->get($id, [
-            'contain' => [
-                'AccessPoints',
-                'ParentIpAddressRanges',
-                'Creators',
-                'Modifiers',
-            ],
+        $ipAddressRange = $this->IpAddressRanges->get($id, contain: [
+            'AccessPoints',
+            'ParentIpAddressRanges',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set(compact('ipAddressRange'));
@@ -120,9 +118,7 @@ class IpAddressRangesController extends AppController
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
-        $ipAddressRange = $this->IpAddressRanges->get($id, [
-            'contain' => [],
-        ]);
+        $ipAddressRange = $this->IpAddressRanges->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->getRequest()->getData());
             if ($this->IpAddressRanges->save($ipAddressRange)) {

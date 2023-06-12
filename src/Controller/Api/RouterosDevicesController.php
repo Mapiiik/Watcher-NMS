@@ -62,14 +62,12 @@ class RouterosDevicesController extends AppController
      */
     public function view($id = null)
     {
-        $routerosDevice = $this->RouterosDevices->get($id, [
-            'contain' => [
-                'AccessPoints',
-                'DeviceTypes',
-                'CustomerConnections',
-                'RouterosDeviceInterfaces',
-                'RouterosDeviceIps',
-            ],
+        $routerosDevice = $this->RouterosDevices->get($id, contain: [
+            'AccessPoints',
+            'DeviceTypes',
+            'CustomerConnections',
+            'RouterosDeviceInterfaces',
+            'RouterosDeviceIps',
         ]);
 
         $this->set('routerosDevice', $routerosDevice);

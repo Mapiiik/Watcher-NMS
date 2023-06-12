@@ -73,15 +73,13 @@ class RadioUnitsController extends AppController
      */
     public function view($id = null)
     {
-        $radioUnit = $this->RadioUnits->get($id, [
-            'contain' => [
-                'RadioUnitTypes',
-                'AccessPoints',
-                'RadioLinks',
-                'AntennaTypes',
-                'Creators',
-                'Modifiers',
-            ],
+        $radioUnit = $this->RadioUnits->get($id, contain: [
+            'RadioUnitTypes',
+            'AccessPoints',
+            'RadioLinks',
+            'AntennaTypes',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('radioUnit', $radioUnit);
@@ -149,9 +147,7 @@ class RadioUnitsController extends AppController
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
-        $radioUnit = $this->RadioUnits->get($id, [
-            'contain' => [],
-        ]);
+        $radioUnit = $this->RadioUnits->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             if ($this->getRequest()->getData('refresh') == 'refresh') {
                 // only refresh
@@ -218,18 +214,17 @@ class RadioUnitsController extends AppController
      */
     public function export()
     {
-        $radioUnits = $this->RadioUnits->find('all', [
-            'contain' => [
-                'RadioUnitTypes' => [
-                    'RadioUnitBands',
-                    'Manufacturers',
-                ],
-                'AccessPoints',
-                'RadioLinks',
-                'AntennaTypes',
+        $radioUnits = $this->RadioUnits->find('all',
+        contain: [
+            'RadioUnitTypes' => [
+                'RadioUnitBands',
+                'Manufacturers',
             ],
-            'order' => ['RadioLinks.name' => 'ASC', 'RadioUnits.name' => 'ASC'],
-        ]);
+            'AccessPoints',
+            'RadioLinks',
+            'AntennaTypes',
+        ],
+        order: ['RadioLinks.name' => 'ASC', 'RadioUnits.name' => 'ASC']);
 
         $this->set(compact('radioUnits'));
     }

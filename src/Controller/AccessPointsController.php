@@ -65,79 +65,77 @@ class AccessPointsController extends AppController
      */
     public function view($id = null)
     {
-        $accessPoint = $this->AccessPoints->get($id, [
-            'contain' => [
-                'AccessPointTypes',
-                'ParentAccessPoints',
-                'AccessPointContacts',
-                'ElectricityMeterReadings' => [
-                    'sort' => [
-                        'reading_date' => 'DESC',
-                    ],
+        $accessPoint = $this->AccessPoints->get($id, contain: [
+            'AccessPointTypes',
+            'ParentAccessPoints',
+            'AccessPointContacts',
+            'ElectricityMeterReadings' => [
+                'sort' => [
+                    'reading_date' => 'DESC',
                 ],
-                'LandlordPayments' => [
-                    'sort' => [
-                        'payment_date' => 'DESC',
-                        'PaymentPurposes.name' => 'ASC',
-                    ],
-                    'PaymentPurposes',
-                ],
-                'PowerSupplies' => [
-                    'PowerSupplyTypes',
-                ],
-                'RadioUnits' => [
-                    'RadioUnitTypes',
-                    'RadioLinks',
-                    'AntennaTypes',
-                ],
-                'RouterosDevices' => [
-                    'sort' => ['RouterosDevices.name' => 'ASC'],
-                    'DeviceTypes',
-                    'RouterosIpLinks' => [
-                        'sort' => [
-                            'RouterosIpLinks.ip_address' => 'ASC',
-                        ],
-                        'NeighbouringIpAddresses' => [
-                            'conditions' => [
-                                'NeighbouringIpAddresses.modified >' =>
-                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
-                            ],
-                            'RouterosDevices' => [
-                                'AccessPoints',
-                                'CustomerConnections',
-                            ],
-                        ],
-                    ],
-                    'RouterosWirelessLinks' => [
-                        'sort' => [
-                            'RouterosWirelessLinks.name' => 'ASC',
-                        ],
-                        'NeighbouringStations' => [
-                            'conditions' => [
-                                'NeighbouringStations.modified >' =>
-                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
-                            ],
-                            'RouterosDevices' => [
-                                'AccessPoints',
-                                'CustomerConnections',
-                            ],
-                        ],
-                        'NeighbouringAccessPoints' => [
-                            'conditions' => [
-                                'NeighbouringAccessPoints.modified >' =>
-                                    (new Date())->subDays(14)->format('Y-m-d H:i:s'),
-                            ],
-                            'RouterosDevices' => [
-                                'AccessPoints',
-                                'CustomerConnections',
-                            ],
-                        ],
-                    ],
-                ],
-                'IpAddressRanges' => ['ParentIpAddressRanges'],
-                'Creators',
-                'Modifiers',
             ],
+            'LandlordPayments' => [
+                'sort' => [
+                    'payment_date' => 'DESC',
+                    'PaymentPurposes.name' => 'ASC',
+                ],
+                'PaymentPurposes',
+            ],
+            'PowerSupplies' => [
+                'PowerSupplyTypes',
+            ],
+            'RadioUnits' => [
+                'RadioUnitTypes',
+                'RadioLinks',
+                'AntennaTypes',
+            ],
+            'RouterosDevices' => [
+                'sort' => ['RouterosDevices.name' => 'ASC'],
+                'DeviceTypes',
+                'RouterosIpLinks' => [
+                    'sort' => [
+                        'RouterosIpLinks.ip_address' => 'ASC',
+                    ],
+                    'NeighbouringIpAddresses' => [
+                        'conditions' => [
+                            'NeighbouringIpAddresses.modified >' =>
+                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
+                        ],
+                        'RouterosDevices' => [
+                            'AccessPoints',
+                            'CustomerConnections',
+                        ],
+                    ],
+                ],
+                'RouterosWirelessLinks' => [
+                    'sort' => [
+                        'RouterosWirelessLinks.name' => 'ASC',
+                    ],
+                    'NeighbouringStations' => [
+                        'conditions' => [
+                            'NeighbouringStations.modified >' =>
+                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
+                        ],
+                        'RouterosDevices' => [
+                            'AccessPoints',
+                            'CustomerConnections',
+                        ],
+                    ],
+                    'NeighbouringAccessPoints' => [
+                        'conditions' => [
+                            'NeighbouringAccessPoints.modified >' =>
+                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
+                        ],
+                        'RouterosDevices' => [
+                            'AccessPoints',
+                            'CustomerConnections',
+                        ],
+                    ],
+                ],
+            ],
+            'IpAddressRanges' => ['ParentIpAddressRanges'],
+            'Creators',
+            'Modifiers',
         ]);
 
         // Calculation of daily consumption
@@ -195,9 +193,7 @@ class AccessPointsController extends AppController
      */
     public function edit($id = null)
     {
-        $accessPoint = $this->AccessPoints->get($id, [
-            'contain' => [],
-        ]);
+        $accessPoint = $this->AccessPoints->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->getRequest()->getData());
             if ($this->AccessPoints->save($accessPoint)) {
@@ -371,7 +367,7 @@ class AccessPointsController extends AppController
             ]);
         }
 
-        $accessPointsFilter = $this->AccessPoints->find('list', ['order' => 'name']);
+        $accessPointsFilter = $this->AccessPoints->find('list', order: 'name');
         $routerosDevicesFilter = $this->AccessPoints->RouterosDevices->find('list', ['order' => 'name']);
 
         if ($mapOptions->getData('access_point_id') <> '') {

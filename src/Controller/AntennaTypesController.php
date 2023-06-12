@@ -52,18 +52,16 @@ class AntennaTypesController extends AppController
      */
     public function view($id = null)
     {
-        $antennaType = $this->AntennaTypes->get($id, [
-            'contain' => [
-                'RadioUnitBands',
-                'Manufacturers',
-                'RadioUnits' => [
-                    'RadioUnitTypes',
-                    'AccessPoints',
-                    'RadioLinks',
-                ],
-                'Creators',
-                'Modifiers',
+        $antennaType = $this->AntennaTypes->get($id, contain: [
+            'RadioUnitBands',
+            'Manufacturers',
+            'RadioUnits' => [
+                'RadioUnitTypes',
+                'AccessPoints',
+                'RadioLinks',
             ],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('antennaType', $antennaType);
@@ -100,9 +98,7 @@ class AntennaTypesController extends AppController
      */
     public function edit($id = null)
     {
-        $antennaType = $this->AntennaTypes->get($id, [
-            'contain' => [],
-        ]);
+        $antennaType = $this->AntennaTypes->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $antennaType = $this->AntennaTypes->patchEntity($antennaType, $this->getRequest()->getData());
             if ($this->AntennaTypes->save($antennaType)) {

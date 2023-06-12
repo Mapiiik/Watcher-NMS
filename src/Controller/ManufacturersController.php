@@ -50,14 +50,12 @@ class ManufacturersController extends AppController
      */
     public function view($id = null)
     {
-        $manufacturer = $this->Manufacturers->get($id, [
-            'contain' => [
-                'AntennaTypes' => ['RadioUnitBands'],
-                'PowerSupplyTypes',
-                'RadioUnitTypes' => ['RadioUnitBands'],
-                'Creators',
-                'Modifiers',
-            ],
+        $manufacturer = $this->Manufacturers->get($id, contain: [
+            'AntennaTypes' => ['RadioUnitBands'],
+            'PowerSupplyTypes',
+            'RadioUnitTypes' => ['RadioUnitBands'],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('manufacturer', $manufacturer);
@@ -92,9 +90,7 @@ class ManufacturersController extends AppController
      */
     public function edit($id = null)
     {
-        $manufacturer = $this->Manufacturers->get($id, [
-            'contain' => [],
-        ]);
+        $manufacturer = $this->Manufacturers->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $manufacturer = $this->Manufacturers->patchEntity($manufacturer, $this->getRequest()->getData());
             if ($this->Manufacturers->save($manufacturer)) {

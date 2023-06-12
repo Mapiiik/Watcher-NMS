@@ -50,13 +50,11 @@ class PaymentPurposesController extends AppController
      */
     public function view($id = null)
     {
-        $paymentPurpose = $this->PaymentPurposes->get($id, [
-            'contain' => [
-                'Creators',
-                'Modifiers',
-                'LandlordPayments' => [
-                    'AccessPoints',
-                ],
+        $paymentPurpose = $this->PaymentPurposes->get($id, contain: [
+            'Creators',
+            'Modifiers',
+            'LandlordPayments' => [
+                'AccessPoints',
             ],
         ]);
 
@@ -93,9 +91,7 @@ class PaymentPurposesController extends AppController
      */
     public function edit($id = null)
     {
-        $paymentPurpose = $this->PaymentPurposes->get($id, [
-            'contain' => [],
-        ]);
+        $paymentPurpose = $this->PaymentPurposes->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $paymentPurpose = $this->PaymentPurposes->patchEntity($paymentPurpose, $this->request->getData());
             if ($this->PaymentPurposes->save($paymentPurpose)) {

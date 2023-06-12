@@ -43,7 +43,7 @@ class RadarInterferencesUpdateCommand extends Command
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
      */
-    public function execute(Arguments $args, ConsoleIo $io)
+    public function execute(Arguments $args, ConsoleIo $io): ?int
     {
         $url = $args->getArgument('url');
         if (!isset($url)) {

@@ -52,18 +52,16 @@ class RadioUnitTypesController extends AppController
      */
     public function view($id = null)
     {
-        $radioUnitType = $this->RadioUnitTypes->get($id, [
-            'contain' => [
-                'RadioUnitBands',
-                'Manufacturers',
-                'RadioUnits' => [
-                    'AccessPoints',
-                    'RadioLinks',
-                    'AntennaTypes',
-                ],
-                'Creators',
-                'Modifiers',
+        $radioUnitType = $this->RadioUnitTypes->get($id, contain: [
+            'RadioUnitBands',
+            'Manufacturers',
+            'RadioUnits' => [
+                'AccessPoints',
+                'RadioLinks',
+                'AntennaTypes',
             ],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('radioUnitType', $radioUnitType);
@@ -100,9 +98,7 @@ class RadioUnitTypesController extends AppController
      */
     public function edit($id = null)
     {
-        $radioUnitType = $this->RadioUnitTypes->get($id, [
-            'contain' => [],
-        ]);
+        $radioUnitType = $this->RadioUnitTypes->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $radioUnitType = $this->RadioUnitTypes->patchEntity($radioUnitType, $this->getRequest()->getData());
             if ($this->RadioUnitTypes->save($radioUnitType)) {

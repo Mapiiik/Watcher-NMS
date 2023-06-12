@@ -55,18 +55,16 @@ class CustomerConnectionsController extends AppController
      */
     public function view($id = null)
     {
-        $customerConnection = $this->CustomerConnections->get($id, [
-            'contain' => [
-                'CustomerPoints',
+        $customerConnection = $this->CustomerConnections->get($id, contain: [
+            'CustomerPoints',
+            'AccessPoints',
+            'CustomerConnectionIps',
+            'RouterosDevices' => [
                 'AccessPoints',
-                'CustomerConnectionIps',
-                'RouterosDevices' => [
-                    'AccessPoints',
-                    'DeviceTypes',
-                ],
-                'Creators',
-                'Modifiers',
+                'DeviceTypes',
             ],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('customerConnection', $customerConnection);
@@ -105,9 +103,7 @@ class CustomerConnectionsController extends AppController
      */
     public function edit($id = null)
     {
-        $customerConnection = $this->CustomerConnections->get($id, [
-            'contain' => [],
-        ]);
+        $customerConnection = $this->CustomerConnections->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $customerConnection = $this->CustomerConnections
                 ->patchEntity($customerConnection, $this->getRequest()->getData());

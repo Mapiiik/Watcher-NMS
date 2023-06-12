@@ -64,12 +64,10 @@ class AccessPointContactsController extends AppController
      */
     public function view($id = null)
     {
-        $accessPointContact = $this->AccessPointContacts->get($id, [
-            'contain' => [
-                'AccessPoints',
-                'Creators',
-                'Modifiers',
-            ],
+        $accessPointContact = $this->AccessPointContacts->get($id, contain: [
+            'AccessPoints',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set(compact('accessPointContact'));
@@ -122,9 +120,7 @@ class AccessPointContactsController extends AppController
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
-        $accessPointContact = $this->AccessPointContacts->get($id, [
-            'contain' => [],
-        ]);
+        $accessPointContact = $this->AccessPointContacts->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $accessPointContact = $this->AccessPointContacts
                 ->patchEntity($accessPointContact, $this->getRequest()->getData());

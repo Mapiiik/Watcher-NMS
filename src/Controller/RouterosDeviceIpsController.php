@@ -65,12 +65,10 @@ class RouterosDeviceIpsController extends AppController
      */
     public function view($id = null)
     {
-        $routerosDeviceIp = $this->RouterosDeviceIps->get($id, [
-            'contain' => [
-                'RouterosDevices',
-                'Creators',
-                'Modifiers',
-            ],
+        $routerosDeviceIp = $this->RouterosDeviceIps->get($id, contain: [
+            'RouterosDevices',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('routerosDeviceIp', $routerosDeviceIp);
@@ -108,9 +106,7 @@ class RouterosDeviceIpsController extends AppController
      */
     public function edit($id = null)
     {
-        $routerosDeviceIp = $this->RouterosDeviceIps->get($id, [
-            'contain' => [],
-        ]);
+        $routerosDeviceIp = $this->RouterosDeviceIps->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $routerosDeviceIp = $this->RouterosDeviceIps
                 ->patchEntity($routerosDeviceIp, $this->getRequest()->getData());

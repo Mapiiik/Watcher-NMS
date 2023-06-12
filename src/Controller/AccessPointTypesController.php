@@ -49,14 +49,12 @@ class AccessPointTypesController extends AppController
      */
     public function view($id = null)
     {
-        $accessPointType = $this->AccessPointTypes->get($id, [
-            'contain' => [
-                'AccessPoints' => [
-                    'ParentAccessPoints',
-                ],
-                'Creators',
-                'Modifiers',
+        $accessPointType = $this->AccessPointTypes->get($id, contain: [
+            'AccessPoints' => [
+                'ParentAccessPoints',
             ],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set(compact('accessPointType'));
@@ -91,9 +89,7 @@ class AccessPointTypesController extends AppController
      */
     public function edit($id = null)
     {
-        $accessPointType = $this->AccessPointTypes->get($id, [
-            'contain' => [],
-        ]);
+        $accessPointType = $this->AccessPointTypes->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $accessPointType = $this->AccessPointTypes->patchEntity($accessPointType, $this->request->getData());
             if ($this->AccessPointTypes->save($accessPointType)) {

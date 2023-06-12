@@ -20,11 +20,9 @@ class IpAddressRangesController extends AppController
      */
     public function index()
     {
-        $ipAddressRanges = $this->IpAddressRanges->find('all', [
-            'contain' => [
-                'AccessPoints',
-                'ParentIpAddressRanges',
-            ],
+        $ipAddressRanges = $this->IpAddressRanges->find('all', contain: [
+            'AccessPoints',
+            'ParentIpAddressRanges',
         ])->all();
 
         $this->set(compact('ipAddressRanges'));
@@ -99,9 +97,7 @@ class IpAddressRangesController extends AppController
      */
     public function view($id = null)
     {
-        $ipAddressRange = $this->IpAddressRanges->get($id, [
-            'contain' => ['AccessPoints', 'ParentIpAddressRanges'],
-        ]);
+        $ipAddressRange = $this->IpAddressRanges->get($id, contain: ['AccessPoints', 'ParentIpAddressRanges']);
 
         $this->set(compact('ipAddressRange'));
         $this->viewBuilder()->setOption('serialize', ['ipAddressRange']);

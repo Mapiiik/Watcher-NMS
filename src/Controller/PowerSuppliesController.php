@@ -62,13 +62,11 @@ class PowerSuppliesController extends AppController
      */
     public function view($id = null)
     {
-        $powerSupply = $this->PowerSupplies->get($id, [
-            'contain' => [
-                'PowerSupplyTypes',
-                'AccessPoints',
-                'Creators',
-                'Modifiers',
-            ],
+        $powerSupply = $this->PowerSupplies->get($id, contain: [
+            'PowerSupplyTypes',
+            'AccessPoints',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('powerSupply', $powerSupply);
@@ -120,9 +118,7 @@ class PowerSuppliesController extends AppController
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
-        $powerSupply = $this->PowerSupplies->get($id, [
-            'contain' => [],
-        ]);
+        $powerSupply = $this->PowerSupplies->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $powerSupply = $this->PowerSupplies->patchEntity($powerSupply, $this->getRequest()->getData());
             if ($this->PowerSupplies->save($powerSupply)) {

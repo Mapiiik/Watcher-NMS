@@ -50,13 +50,11 @@ class RadioUnitBandsController extends AppController
      */
     public function view($id = null)
     {
-        $radioUnitBand = $this->RadioUnitBands->get($id, [
-            'contain' => [
-                'AntennaTypes' => ['Manufacturers'],
-                'RadioUnitTypes' => ['Manufacturers'],
-                'Creators',
-                'Modifiers',
-            ],
+        $radioUnitBand = $this->RadioUnitBands->get($id, contain: [
+            'AntennaTypes' => ['Manufacturers'],
+            'RadioUnitTypes' => ['Manufacturers'],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('radioUnitBand', $radioUnitBand);
@@ -91,9 +89,7 @@ class RadioUnitBandsController extends AppController
      */
     public function edit($id = null)
     {
-        $radioUnitBand = $this->RadioUnitBands->get($id, [
-            'contain' => [],
-        ]);
+        $radioUnitBand = $this->RadioUnitBands->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $radioUnitBand = $this->RadioUnitBands->patchEntity($radioUnitBand, $this->getRequest()->getData());
             if ($this->RadioUnitBands->save($radioUnitBand)) {

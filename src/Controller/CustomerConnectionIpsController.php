@@ -54,12 +54,10 @@ class CustomerConnectionIpsController extends AppController
      */
     public function view($id = null)
     {
-        $customerConnectionIp = $this->CustomerConnectionIps->get($id, [
-            'contain' => [
-                'CustomerConnections',
-                'Creators',
-                'Modifiers',
-            ],
+        $customerConnectionIp = $this->CustomerConnectionIps->get($id, contain: [
+            'CustomerConnections',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('customerConnectionIp', $customerConnectionIp);
@@ -97,9 +95,7 @@ class CustomerConnectionIpsController extends AppController
      */
     public function edit($id = null)
     {
-        $customerConnectionIp = $this->CustomerConnectionIps->get($id, [
-            'contain' => [],
-        ]);
+        $customerConnectionIp = $this->CustomerConnectionIps->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $customerConnectionIp = $this->CustomerConnectionIps
                 ->patchEntity($customerConnectionIp, $this->getRequest()->getData());

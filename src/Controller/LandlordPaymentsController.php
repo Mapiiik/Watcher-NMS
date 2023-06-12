@@ -63,9 +63,7 @@ class LandlordPaymentsController extends AppController
      */
     public function view($id = null)
     {
-        $landlordPayment = $this->LandlordPayments->get($id, [
-            'contain' => ['Creators', 'Modifiers', 'AccessPoints', 'PaymentPurposes'],
-        ]);
+        $landlordPayment = $this->LandlordPayments->get($id, contain: ['Creators', 'Modifiers', 'AccessPoints', 'PaymentPurposes']);
 
         $this->set(compact('landlordPayment'));
     }
@@ -114,9 +112,7 @@ class LandlordPaymentsController extends AppController
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
-        $landlordPayment = $this->LandlordPayments->get($id, [
-            'contain' => [],
-        ]);
+        $landlordPayment = $this->LandlordPayments->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $landlordPayment = $this->LandlordPayments
                 ->patchEntity($landlordPayment, $this->request->getData());

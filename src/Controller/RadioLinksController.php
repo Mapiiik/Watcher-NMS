@@ -67,12 +67,10 @@ class RadioLinksController extends AppController
      */
     public function view($id = null)
     {
-        $radioLink = $this->RadioLinks->get($id, [
-            'contain' => [
-                'RadioUnits' => ['RadioUnitTypes', 'AccessPoints', 'AntennaTypes'],
-                'Creators',
-                'Modifiers',
-            ],
+        $radioLink = $this->RadioLinks->get($id, contain: [
+            'RadioUnits' => ['RadioUnitTypes', 'AccessPoints', 'AntennaTypes'],
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('radioLink', $radioLink);
@@ -107,9 +105,7 @@ class RadioLinksController extends AppController
      */
     public function edit($id = null)
     {
-        $radioLink = $this->RadioLinks->get($id, [
-            'contain' => [],
-        ]);
+        $radioLink = $this->RadioLinks->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $radioLink = $this->RadioLinks->patchEntity($radioLink, $this->getRequest()->getData());
             if ($this->RadioLinks->save($radioLink)) {

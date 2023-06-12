@@ -70,12 +70,10 @@ class RouterosDeviceInterfacesController extends AppController
      */
     public function view($id = null)
     {
-        $routerosDeviceInterface = $this->RouterosDeviceInterfaces->get($id, [
-            'contain' => [
-                'RouterosDevices',
-                'Creators',
-                'Modifiers',
-            ],
+        $routerosDeviceInterface = $this->RouterosDeviceInterfaces->get($id, contain: [
+            'RouterosDevices',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set('routerosDeviceInterface', $routerosDeviceInterface);
@@ -113,9 +111,7 @@ class RouterosDeviceInterfacesController extends AppController
      */
     public function edit($id = null)
     {
-        $routerosDeviceInterface = $this->RouterosDeviceInterfaces->get($id, [
-            'contain' => [],
-        ]);
+        $routerosDeviceInterface = $this->RouterosDeviceInterfaces->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $routerosDeviceInterface = $this->RouterosDeviceInterfaces
                 ->patchEntity($routerosDeviceInterface, $this->getRequest()->getData());

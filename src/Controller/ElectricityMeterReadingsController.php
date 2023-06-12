@@ -60,12 +60,10 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function view($id = null)
     {
-        $electricityMeterReading = $this->ElectricityMeterReadings->get($id, [
-            'contain' => [
-                'AccessPoints',
-                'Creators',
-                'Modifiers',
-            ],
+        $electricityMeterReading = $this->ElectricityMeterReadings->get($id, contain: [
+            'AccessPoints',
+            'Creators',
+            'Modifiers',
         ]);
 
         $this->set(compact('electricityMeterReading'));
@@ -118,9 +116,7 @@ class ElectricityMeterReadingsController extends AppController
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
 
-        $electricityMeterReading = $this->ElectricityMeterReadings->get($id, [
-            'contain' => [],
-        ]);
+        $electricityMeterReading = $this->ElectricityMeterReadings->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $electricityMeterReading = $this->ElectricityMeterReadings
                 ->patchEntity($electricityMeterReading, $this->getRequest()->getData());
