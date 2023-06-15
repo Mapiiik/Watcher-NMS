@@ -18,7 +18,7 @@ use Cake\Mailer\Mailer;
 class ElectricityMeterReadingsReportCommand extends Command
 {
     // Define the default table. This allows you to use `fetchTable()` without any argument.
-    protected $defaultTable = 'AccessPoints';
+    protected ?string $defaultTable = 'AccessPoints';
 
     /**
      * Set available arguments
@@ -43,7 +43,7 @@ class ElectricityMeterReadingsReportCommand extends Command
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
      */
-    public function execute(Arguments $args, ConsoleIo $io)
+    public function execute(Arguments $args, ConsoleIo $io): ?int
     {
         $emails = $args->getArgument('emails');
         if (!isset($emails)) {

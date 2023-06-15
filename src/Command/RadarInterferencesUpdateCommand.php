@@ -18,7 +18,7 @@ use SplObjectStorage;
 class RadarInterferencesUpdateCommand extends Command
 {
     // Define the default table. This allows you to use `fetchTable()` without any argument.
-    protected $defaultTable = 'RadarInterferences';
+    protected ?string $defaultTable = 'RadarInterferences';
 
     /**
      * Set available arguments

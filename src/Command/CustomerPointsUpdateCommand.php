@@ -16,7 +16,7 @@ use Cake\Log\Log;
 class CustomerPointsUpdateCommand extends Command
 {
     // Define the default table. This allows you to use `fetchTable()` without any argument.
-    protected $defaultTable = 'CustomerPoints';
+    protected ?string $defaultTable = 'CustomerPoints';
 
     /**
      * Set available arguments
@@ -41,7 +41,7 @@ class CustomerPointsUpdateCommand extends Command
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
      */
-    public function execute(Arguments $args, ConsoleIo $io)
+    public function execute(Arguments $args, ConsoleIo $io): ?int
     {
         $url = $args->getArgument('url');
         if (!isset($url)) {

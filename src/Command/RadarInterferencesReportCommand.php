@@ -17,7 +17,7 @@ use Cake\Routing\Router;
 class RadarInterferencesReportCommand extends Command
 {
     // Define the default table. This allows you to use `fetchTable()` without any argument.
-    protected $defaultTable = 'RadarInterferences';
+    protected ?string $defaultTable = 'RadarInterferences';
 
     /**
      * Set available arguments
@@ -46,7 +46,7 @@ class RadarInterferencesReportCommand extends Command
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
      */
-    public function execute(Arguments $args, ConsoleIo $io)
+    public function execute(Arguments $args, ConsoleIo $io): ?int
     {
         $names = $args->getArgument('names');
         if (!isset($names)) {
