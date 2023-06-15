@@ -20,7 +20,7 @@ class AccessPointContactsControllerTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.AccessPointContacts',
         'app.AccessPoints',
     ];

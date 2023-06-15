@@ -20,7 +20,7 @@ class RadioLinksControllerTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.RadioLinks',
         'app.RadioUnits',
     ];

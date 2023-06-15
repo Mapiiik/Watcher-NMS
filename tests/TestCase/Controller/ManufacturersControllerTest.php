@@ -20,7 +20,7 @@ class ManufacturersControllerTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.Manufacturers',
         'app.AntennaTypes',
         'app.PowerSupplyTypes',

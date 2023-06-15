@@ -24,7 +24,7 @@ class RouterosDeviceInterfacesTableTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.RouterosDeviceInterfaces',
         'app.RouterosDevices',
     ];

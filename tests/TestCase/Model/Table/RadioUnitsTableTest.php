@@ -24,7 +24,7 @@ class RadioUnitsTableTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.RadioUnits',
         'app.RadioUnitTypes',
         'app.AccessPoints',

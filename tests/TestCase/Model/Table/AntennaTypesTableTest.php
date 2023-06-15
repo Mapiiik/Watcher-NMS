@@ -24,7 +24,7 @@ class AntennaTypesTableTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.AntennaTypes',
         'app.RadioUnitBands',
         'app.Manufacturers',

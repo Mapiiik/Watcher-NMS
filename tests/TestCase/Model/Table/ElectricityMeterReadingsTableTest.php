@@ -23,7 +23,7 @@ class ElectricityMeterReadingsTableTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.ElectricityMeterReadings',
         'app.AccessPoints',
     ];

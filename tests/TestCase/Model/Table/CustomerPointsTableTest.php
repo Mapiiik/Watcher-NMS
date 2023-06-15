@@ -24,7 +24,7 @@ class CustomerPointsTableTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.CustomerPoints',
         'app.CustomerConnections',
     ];

@@ -20,7 +20,7 @@ class RouterosDevicesControllerTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.RouterosDevices',
         'app.AccessPoints',
         'app.DeviceTypes',

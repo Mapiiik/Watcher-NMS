@@ -20,7 +20,7 @@ class CustomerConnectionsControllerTest extends TestCase
      *
      * @var array
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.CustomerConnections',
         'app.CustomerPoints',
         'app.CustomerConnectionIps',

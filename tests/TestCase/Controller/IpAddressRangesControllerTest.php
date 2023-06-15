@@ -20,7 +20,7 @@ class IpAddressRangesControllerTest extends TestCase
      *
      * @var array<string>
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.IpAddressRanges',
         'app.AccessPoints',
     ];
