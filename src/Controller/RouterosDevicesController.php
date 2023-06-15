@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\Entity\RouterosDevice;
-use Cake\I18n\Date;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\Utility\Security;
@@ -46,11 +45,11 @@ class RouterosDevicesController extends AppController
         $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
-                'RouterosDevices.modified >' => DateTime::create()->subDays((int)$maximum_age),
+                'RouterosDevices.modified >' => DateTime::now()->subDays((int)$maximum_age),
             ];
         } else {
             $conditions[] = [
-                'RouterosDevices.modified >' => DateTime::create()->subDays(14),
+                'RouterosDevices.modified >' => DateTime::now()->subDays(14),
             ];
         }
 
@@ -105,7 +104,7 @@ class RouterosDevicesController extends AppController
                     'RouterosDevices' => [
                         'conditions' => [
                             'RouterosDevices.modified >' =>
-                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
+                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
                         ],
                         'AccessPoints',
                         'CustomerConnections',
@@ -120,7 +119,7 @@ class RouterosDevicesController extends AppController
                     'RouterosDevices' => [
                         'conditions' => [
                             'RouterosDevices.modified >' =>
-                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
+                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
                         ],
                         'AccessPoints',
                         'CustomerConnections',
@@ -130,7 +129,7 @@ class RouterosDevicesController extends AppController
                     'RouterosDevices' => [
                         'conditions' => [
                             'RouterosDevices.modified >' =>
-                                (new Date())->subDays(14)->format('Y-m-d H:i:s'),
+                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
                         ],
                         'AccessPoints',
                         'CustomerConnections',
@@ -882,11 +881,11 @@ class RouterosDevicesController extends AppController
         $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
-                'RouterosDevices.modified >' => DateTime::create()->subDays((int)$maximum_age),
+                'RouterosDevices.modified >' => DateTime::now()->subDays((int)$maximum_age),
             ];
         } else {
             $conditions[] = [
-                'RouterosDevices.modified >' => DateTime::create()->subDays(14),
+                'RouterosDevices.modified >' => DateTime::now()->subDays(14),
             ];
         }
 

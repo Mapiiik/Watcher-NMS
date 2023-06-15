@@ -43,7 +43,7 @@ class ElectricityMeterReadingsReportCommand extends Command
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
      */
-    public function execute(Arguments $args, ConsoleIo $io): ?int
+    public function execute(Arguments $args, ConsoleIo $io)
     {
         $emails = $args->getArgument('emails');
         if (!isset($emails)) {
@@ -53,12 +53,13 @@ class ElectricityMeterReadingsReportCommand extends Command
         $now = new Date();
 
         $accessPoints = $this->fetchTable()
-            ->find('all', [
-                'conditions' => ['month_of_electricity_meter_reading' => (int)$now->i18nFormat('L')],
+            ->find('all', conditions: [
+                'month_of_electricity_meter_reading' => (int)$now->i18nFormat('L'),
             ])
             ->contain('ElectricityMeterReadings', function ($q) {
                 return $q->order(['reading_date' => 'DESC']);
-            });
+            })
+            ->all();
 
         if ($accessPoints->count() > 0) {
             // display the table on the console
@@ -70,6 +71,7 @@ class ElectricityMeterReadingsReportCommand extends Command
                 __('Number of days since last'),
             ];
             foreach ($accessPoints as $accessPoint) {
+                debug($accessPoint);
                 if (isset($accessPoint->electricity_meter_readings[0])) {
                     $lastReading = $accessPoint->electricity_meter_readings[0];
                 } else {
@@ -110,7 +112,7 @@ class ElectricityMeterReadingsReportCommand extends Command
             ]);
 
             try {
-                $mailer->deliver();
+                //$mailer->deliver();
                 Log::write('debug', 'The electricity meter readings to be made have been reported.');
                 $io->info(__('The electricity meter readings to be made have been reported.'));
             } catch (\Exception $e) {

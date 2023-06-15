@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Cake\I18n\Date;
+use Cake\I18n\DateTime;
 
 /**
  * RouterosDeviceIps Controller
@@ -25,11 +25,11 @@ class RouterosDeviceIpsController extends AppController
         $maximum_age = $this->getRequest()->getQuery('maximum_age');
         if (!empty($maximum_age)) {
             $conditions[] = [
-                'RouterosDeviceIps.modified >' => Date::create()->subDays((int)$maximum_age),
+                'RouterosDeviceIps.modified >' => DateTime::now()->subDays((int)$maximum_age),
             ];
         } else {
             $conditions[] = [
-                'RouterosDeviceIps.modified >' => Date::create()->subDays(14),
+                'RouterosDeviceIps.modified >' => DateTime::now()->subDays(14),
             ];
         }
 

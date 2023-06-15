@@ -65,14 +65,7 @@ class AppController extends Controller
     }
 
     /**
-     * Customize pagination
-     *
-     * @param \Cake\Datasource\RepositoryInterface|\Cake\Datasource\QueryInterface|string|null $object Table to paginate
-     * (e.g: Table instance, 'TableName' or a Query object)
-     * @param array<string, mixed> $settings The settings/configuration used for pagination. See {@link \Cake\Controller\Controller::$paginate}.
-     * @return \Cake\Datasource\Paging\PaginatedInterface
-     * @link https://book.cakephp.org/4/en/controllers.html#paginating-a-model
-     * @throws \Cake\Http\Exception\NotFoundException When a page out of bounds is requested.
+     * @inheritDoc
      */
     public function paginate(
         RepositoryInterface|QueryInterface|string|null $object = null,
@@ -84,8 +77,6 @@ class AppController extends Controller
 
             // load limit from configurations
             $this->paginate['limit'] = Configure::read('UI.number_of_rows_per_page');
-
-            return parent::paginate($object, $settings);
         } catch (NotFoundException $e) {
             $this->Flash->error(__(
                 'Unable to find results on page {0}. Redirect to page 1.',
@@ -95,9 +86,9 @@ class AppController extends Controller
                 ['?' => ['page' => '1'] + $this->getRequest()->getQueryParams()]
                 + $this->getRequest()->getParam('pass')
             );
-
-            return null;
         }
+        
+        return parent::paginate($object, $settings);
     }
 
     /**

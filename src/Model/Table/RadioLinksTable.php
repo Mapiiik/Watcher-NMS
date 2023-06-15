@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Validation\Validator;
 
 /**
@@ -13,16 +13,16 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RadioLink newEmptyEntity()
  * @method \App\Model\Entity\RadioLink newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RadioLink[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\RadioLink get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RadioLink get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
  * @method \App\Model\Entity\RadioLink findOrCreate($search, ?callable $callback = null, $options = [])
  * @method \App\Model\Entity\RadioLink patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RadioLink[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadioLink|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RadioLink saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\RadioLink[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioLink[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioLink[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioLink[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioLink[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RadioLinksTable extends AppTable
@@ -84,21 +84,21 @@ class RadioLinksTable extends AppTable
     /**
      * Default validation rules.
      *
-     * @param \Cake\ORM\Query $query Query instance.
-     * @param array $options Options for search.
-     * @return \Cake\ORM\Query
+     * @param \Cake\ORM\Query\SelectQuery $query Query instance.
+     * @param ?string $radioUnitBandId Radio Unit Band Id.
+     * @return \Cake\ORM\Query\SelectQuery
      */
-    public function findBand(Query $query, array $options)
+    public function findBand(SelectQuery $query, ?string $radioUnitBandId = null)
     {
         $query
-            ->innerJoinWith('RadioUnits', function (Query $q) use ($options) {
-                return $q->innerJoinWith('RadioUnitTypes', function (Query $q) use ($options) {
+            ->innerJoinWith('RadioUnits', function (SelectQuery $q) use ($radioUnitBandId) {
+                return $q->innerJoinWith('RadioUnitTypes', function (SelectQuery $q) use ($radioUnitBandId) {
                     return $q->where([
-                        'RadioUnitTypes.radio_unit_band_id' => $options['radio_unit_band_id'],
+                        'RadioUnitTypes.radio_unit_band_id' => $radioUnitBandId,
                     ]);
                 });
             })
-            ->group(['RadioLinks.id']);
+            ->groupBy(['RadioLinks.id']);
 
         return $query;
     }

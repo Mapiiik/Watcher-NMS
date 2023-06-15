@@ -16,16 +16,16 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RadioUnit newEmptyEntity()
  * @method \App\Model\Entity\RadioUnit newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnit[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\RadioUnit get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RadioUnit get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
  * @method \App\Model\Entity\RadioUnit findOrCreate($search, ?callable $callback = null, $options = [])
  * @method \App\Model\Entity\RadioUnit patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnit[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnit|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RadioUnit saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\RadioUnit[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnit[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnit[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnit[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RadioUnit[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RadioUnitsTable extends AppTable

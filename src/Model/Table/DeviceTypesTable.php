@@ -12,16 +12,16 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\DeviceType newEmptyEntity()
  * @method \App\Model\Entity\DeviceType newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\DeviceType[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\DeviceType get($primaryKey, $options = [])
+ * @method \App\Model\Entity\DeviceType get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
  * @method \App\Model\Entity\DeviceType findOrCreate($search, ?callable $callback = null, $options = [])
  * @method \App\Model\Entity\DeviceType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\DeviceType[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\DeviceType|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\DeviceType saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\DeviceType[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\DeviceType[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\DeviceType[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\DeviceType[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\DeviceType[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\DeviceType[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\DeviceType[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\DeviceType[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class DeviceTypesTable extends AppTable

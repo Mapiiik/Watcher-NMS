@@ -24,7 +24,7 @@ class RadioLinksController extends AppController
         $radio_unit_band_id = $this->getRequest()->getQuery('radio_unit_band_id');
         if (!empty($radio_unit_band_id)) {
             $finder['band'] = [
-                'radio_unit_band_id' => $radio_unit_band_id,
+                'radioUnitBandId' => $radio_unit_band_id,
             ];
         }
 

@@ -3,7 +3,7 @@ parameters:
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
     treatPhpDocTypesAsCertain: false
+    bootstrapFiles:
+       - config/bootstrap.php
     paths:
-        - src
-    excludePaths:
-        - src/Console/Installer.php
+       - src/

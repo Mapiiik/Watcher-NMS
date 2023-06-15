@@ -15,16 +15,16 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RouterosDeviceInterface newEmptyEntity()
  * @method \App\Model\Entity\RouterosDeviceInterface newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface get($primaryKey, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
  * @method \App\Model\Entity\RouterosDeviceInterface findOrCreate($search, ?callable $callback = null, $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\RouterosDeviceInterface[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RouterosDeviceInterfacesTable extends AppTable
