@@ -41,13 +41,13 @@
                 <tr>
                     <td><?= h($powerSupply->name) ?></td>
                     <td>
-                        <?= $powerSupply->has('access_point') ? $this->Html->link(
+                        <?= $powerSupply->__isset('access_point') ? $this->Html->link(
                             $powerSupply->access_point->name,
                             ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $powerSupply->has('power_supply_type') ? $this->Html->link(
+                        <?= $powerSupply->__isset('power_supply_type') ? $this->Html->link(
                             $powerSupply->power_supply_type->name,
                             [
                                 'controller' => 'PowerSupplyTypes',

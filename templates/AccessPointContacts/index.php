@@ -41,7 +41,7 @@
                 <tr>
                     <td><?= h($accessPointContact->name) ?></td>
                     <td>
-                        <?= $accessPointContact->has('access_point') ? $this->Html->link(
+                        <?= $accessPointContact->__isset('access_point') ? $this->Html->link(
                             $accessPointContact->access_point->name,
                             ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]
                         ) : '' ?>

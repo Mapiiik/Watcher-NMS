@@ -53,7 +53,7 @@ class RadarInterference extends Entity
      */
     protected function _getNameForLists(): string
     {
-        return $this->has('mac_address') ?
+        return $this->__isset('mac_address') ?
             strval($this->name) . ' (' . strval($this->mac_address) . ')' :
             strval($this->name);
     }

@@ -78,7 +78,7 @@ class RouterosDevice extends Entity
      */
     protected function _getNameForLists(): string
     {
-        return $this->has('serial_number') ?
+        return $this->__isset('serial_number') ?
             strval($this->name) . ' (' . strval($this->serial_number) . ')' :
             strval($this->name);
     }

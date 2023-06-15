@@ -41,7 +41,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Access Point Type') ?></th>
-                            <td><?= $accessPoint->has('access_point_type') ?
+                            <td><?= $accessPoint->__isset('access_point_type') ?
                                 $this->Html->link(
                                     $accessPoint->access_point_type->name,
                                     [
@@ -53,7 +53,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Parent Access Point') ?></th>
-                            <td><?= $accessPoint->has('parent_access_point') ?
+                            <td><?= $accessPoint->__isset('parent_access_point') ?
                                 $this->Html->link(
                                     $accessPoint->parent_access_point->name,
                                     [
@@ -122,7 +122,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $accessPoint->has('creator') ? $this->Html->link(
+                            <td><?= $accessPoint->__isset('creator') ? $this->Html->link(
                                 $accessPoint->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -137,7 +137,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $accessPoint->has('modifier') ? $this->Html->link(
+                            <td><?= $accessPoint->__isset('modifier') ? $this->Html->link(
                                 $accessPoint->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -186,7 +186,7 @@
                             <td><?= h($accessPointContacts->phone) ?></td>
                             <td><?= h($accessPointContacts->email) ?></td>
                             <td>
-                                <?= $accessPointContacts->has('customer_number') ? $this->Html->link(
+                                <?= $accessPointContacts->__isset('customer_number') ? $this->Html->link(
                                     $accessPointContacts->customer_number,
                                     env('WATCHER_CRM_URL') . '/admin/customers/' . (
                                         (int)$accessPointContacts->customer_number - (int)env('CUSTOMER_SERIES', '0')
@@ -325,7 +325,7 @@
                         </tr>
                         <?php foreach ($accessPoint->landlord_payments as $landlordPayment) : ?>
                         <tr>
-                            <td><?= $landlordPayment->has('payment_purpose') ?
+                            <td><?= $landlordPayment->__isset('payment_purpose') ?
                                 $this->Html->link(
                                     $landlordPayment->payment_purpose->name,
                                     [
@@ -399,7 +399,7 @@
                             <td><?= h($ipAddressRange->name) ?></td>
                             <td><?= h($ipAddressRange->ip_network) ?></td>
                             <td><?= h($ipAddressRange->ip_gateway) ?></td>
-                            <td><?= $ipAddressRange->has('parent_ip_address_range') ?
+                            <td><?= $ipAddressRange->__isset('parent_ip_address_range') ?
                                 $this->Html->link(
                                     $ipAddressRange->parent_ip_address_range->name,
                                     [
@@ -469,7 +469,7 @@
                         <tr>
                             <td><?= h($powerSupplies->name) ?></td>
                             <td>
-                                <?= $powerSupplies->has('power_supply_type') ? $this->Html->link(
+                                <?= $powerSupplies->__isset('power_supply_type') ? $this->Html->link(
                                     $powerSupplies->power_supply_type->name,
                                     [
                                         'controller' => 'PowerSupplyTypes',
@@ -542,7 +542,7 @@
                         <tr>
                             <td><?= h($radioUnits->name) ?></td>
                             <td>
-                                <?= $radioUnits->has('radio_unit_type') ? $this->Html->link(
+                                <?= $radioUnits->__isset('radio_unit_type') ? $this->Html->link(
                                     $radioUnits->radio_unit_type->name,
                                     [
                                         'controller' => 'RadioUnitTypes',
@@ -552,13 +552,13 @@
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $radioUnits->has('radio_link') ? $this->Html->link(
+                                <?= $radioUnits->__isset('radio_link') ? $this->Html->link(
                                     $radioUnits->radio_link->name,
                                     ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id]
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $radioUnits->has('antenna_type') ? $this->Html->link(
+                                <?= $radioUnits->__isset('antenna_type') ? $this->Html->link(
                                     $radioUnits->antenna_type->name,
                                     ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id]
                                 ) : '' ?>
@@ -624,7 +624,7 @@
                         <tr>
                             <td><?= h($routerosDevices->name) ?></td>
                             <td>
-                                <?= $routerosDevices->has('device_type') ? $this->Html->link(
+                                <?= $routerosDevices->__isset('device_type') ? $this->Html->link(
                                     $routerosDevices->device_type->name,
                                     [
                                         'controller' => 'DeviceTypes',
@@ -684,7 +684,7 @@
                                         ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
                                     ) ?></td>
                                 <td>
-                                    <?= $routerosDevice->has('device_type') ? $this->Html->link(
+                                    <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
                                         $routerosDevice->device_type->name,
                                         [
                                             'controller' => 'DeviceTypes',
@@ -801,7 +801,7 @@
                                         ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
                                     ) ?></td>
                                 <td>
-                                    <?= $routerosDevice->has('device_type') ? $this->Html->link(
+                                    <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
                                         $routerosDevice->device_type->name,
                                         [
                                             'controller' => 'DeviceTypes',

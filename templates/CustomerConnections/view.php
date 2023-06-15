@@ -46,7 +46,7 @@
                         <tr>
                             <th><?= __('Customer Point') ?></th>
                             <td>
-                                <?= $customerConnection->has('customer_point') ? $this->Html->link(
+                                <?= $customerConnection->__isset('customer_point') ? $this->Html->link(
                                     $customerConnection->customer_point->name,
                                     [
                                         'controller' => 'CustomerPoints',
@@ -59,7 +59,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td>
-                                <?= $customerConnection->has('access_point') ? $this->Html->link(
+                                <?= $customerConnection->__isset('access_point') ? $this->Html->link(
                                     $customerConnection->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
@@ -71,7 +71,7 @@
                         <tr>
                             <th><?= __('Customer Number') ?></th>
                             <td>
-                                <?= $customerConnection->has('customer_number') ? $this->Html->link(
+                                <?= $customerConnection->__isset('customer_number') ? $this->Html->link(
                                     $customerConnection->customer_number,
                                     env('WATCHER_CRM_URL') . '/admin/customers/' . (
                                         (int)$customerConnection->customer_number - (int)env('CUSTOMER_SERIES', '0')
@@ -98,7 +98,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $customerConnection->has('creator') ? $this->Html->link(
+                            <td><?= $customerConnection->__isset('creator') ? $this->Html->link(
                                 $customerConnection->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -113,7 +113,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $customerConnection->has('modifier') ? $this->Html->link(
+                            <td><?= $customerConnection->__isset('modifier') ? $this->Html->link(
                                 $customerConnection->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -205,7 +205,7 @@
                         <tr>
                             <td><?= h($routerosDevices->name) ?></td>
                             <td>
-                                <?= $routerosDevices->has('access_point') ? $this->Html->link(
+                                <?= $routerosDevices->__isset('access_point') ? $this->Html->link(
                                     $routerosDevices->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
@@ -215,7 +215,7 @@
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $routerosDevices->has('device_type') ? $this->Html->link(
+                                <?= $routerosDevices->__isset('device_type') ? $this->Html->link(
                                     $routerosDevices->device_type->name,
                                     [
                                         'controller' => 'DeviceTypes',

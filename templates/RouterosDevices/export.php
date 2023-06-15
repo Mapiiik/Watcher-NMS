@@ -61,13 +61,13 @@ $this->setLayout('clean');
                 <?php foreach ($routerosDevices as $routerosDevice) : ?>
                     <tr>
                         <td>
-                            <?= $routerosDevice->has('access_point') ? $this->Html->link(
+                            <?= $routerosDevice->__isset('access_point') ? $this->Html->link(
                                 $routerosDevice->access_point->name,
                                 ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]
                             ) : '' ?>
                         </td>
                         <td>
-                            <?= $routerosDevice->has('customer_connection') ? $this->Html->link(
+                            <?= $routerosDevice->__isset('customer_connection') ? $this->Html->link(
                                 $routerosDevice->customer_connection->name,
                                 [
                                     'controller' => 'CustomerConnections',
@@ -78,7 +78,7 @@ $this->setLayout('clean');
                         </td>
                         <td><?= h($routerosDevice->name) ?></td>
                         <td>
-                            <?= $routerosDevice->has('device_type') ? $this->Html->link(
+                            <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
                                 $routerosDevice->device_type->name,
                                 ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id]
                             ) : '' ?>
@@ -90,7 +90,7 @@ $this->setLayout('clean');
                         <td><?= h($routerosDevice->software_version) ?></td>
                         <td><?= h($routerosDevice->firmware_version) ?></td>
                         <td>
-                            <?php if ($routerosDevice->has('routeros_device_interfaces')) {
+                            <?php if ($routerosDevice->__isset('routeros_device_interfaces')) {
                                 foreach ($routerosDevice->routeros_device_interfaces as $routeros_device_interface) {
                                     if (isset($routeros_device_interface->mac_address)) {
                                         echo $routeros_device_interface->mac_address . '<br />';
@@ -100,7 +100,7 @@ $this->setLayout('clean');
                             ?>
                         </td>
                         <td>
-                            <?php if ($routerosDevice->has('routeros_device_interfaces')) {
+                            <?php if ($routerosDevice->__isset('routeros_device_interfaces')) {
                                 foreach ($routerosDevice->routeros_device_interfaces as $routeros_device_interface) {
                                     if (isset($routeros_device_interface->mac_address)) {
                                         echo $routeros_device_interface->band . '<br />';
@@ -110,7 +110,7 @@ $this->setLayout('clean');
                             ?>
                         </td>
                         <td>
-                            <?php if ($routerosDevice->has('routeros_device_interfaces')) {
+                            <?php if ($routerosDevice->__isset('routeros_device_interfaces')) {
                                 foreach ($routerosDevice->routeros_device_interfaces as $routeros_device_interface) {
                                     if (isset($routeros_device_interface->mac_address)) {
                                         echo $routeros_device_interface->ssid . '<br />';
@@ -119,15 +119,15 @@ $this->setLayout('clean');
                             }
                             ?></td>
                         <td>
-                            <?= $routerosDevice->has('access_point') ?
+                            <?= $routerosDevice->__isset('access_point') ?
                                 h($routerosDevice->access_point->gps_y ?? '') . '<br />' : '' ?>
-                            <?= $routerosDevice->has('customer_connection') ?
+                            <?= $routerosDevice->__isset('customer_connection') ?
                                 h($routerosDevice->customer_connection->customer_point->gps_y ?? '') . '<br />' : '' ?>
                         </td>
                         <td>
-                            <?= $routerosDevice->has('access_point') ?
+                            <?= $routerosDevice->__isset('access_point') ?
                                 h($routerosDevice->access_point->gps_x ?? '') . '<br />' : '' ?>
-                            <?= $routerosDevice->has('customer_connection') ?
+                            <?= $routerosDevice->__isset('customer_connection') ?
                                 h($routerosDevice->customer_connection->customer_point->gps_x ?? '') . '<br />' : '' ?>
                         </td>
                         <td class="actions">

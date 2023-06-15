@@ -38,7 +38,7 @@
                 <tr>
                     <td><?= h($customerConnectionIp->name) ?></td>
                     <td>
-                        <?= $customerConnectionIp->has('customer_connection') ? $this->Html->link(
+                        <?= $customerConnectionIp->__isset('customer_connection') ? $this->Html->link(
                             $customerConnectionIp->customer_connection->name,
                             [
                                 'controller' => 'CustomerConnections',

@@ -43,7 +43,7 @@
                         <tr>
                             <th><?= __('Radio Unit Type') ?></th>
                             <td>
-                                <?= $radioUnit->has('radio_unit_type') ? $this->Html->link(
+                                <?= $radioUnit->__isset('radio_unit_type') ? $this->Html->link(
                                     $radioUnit->radio_unit_type->name,
                                     [
                                         'controller' => 'RadioUnitTypes',
@@ -56,7 +56,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td>
-                                <?= $radioUnit->has('access_point') ? $this->Html->link(
+                                <?= $radioUnit->__isset('access_point') ? $this->Html->link(
                                     $radioUnit->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
@@ -69,7 +69,7 @@
                         <tr>
                             <th><?= __('Radio Link') ?></th>
                             <td>
-                                <?= $radioUnit->has('radio_link') ? $this->Html->link(
+                                <?= $radioUnit->__isset('radio_link') ? $this->Html->link(
                                     $radioUnit->radio_link->name,
                                     [
                                         'controller' => 'RadioLinks',
@@ -82,7 +82,7 @@
                         <tr>
                             <th><?= __('Antenna Type') ?></th>
                             <td>
-                                <?= $radioUnit->has('antenna_type') ? $this->Html->link(
+                                <?= $radioUnit->__isset('antenna_type') ? $this->Html->link(
                                     $radioUnit->antenna_type->name,
                                     [
                                         'controller' => 'AntennaTypes',
@@ -189,7 +189,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $radioUnit->has('creator') ? $this->Html->link(
+                            <td><?= $radioUnit->__isset('creator') ? $this->Html->link(
                                 $radioUnit->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -204,7 +204,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $radioUnit->has('modifier') ? $this->Html->link(
+                            <td><?= $radioUnit->__isset('modifier') ? $this->Html->link(
                                 $radioUnit->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

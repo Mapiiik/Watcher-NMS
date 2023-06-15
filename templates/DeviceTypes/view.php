@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $deviceType->has('creator') ? $this->Html->link(
+                            <td><?= $deviceType->__isset('creator') ? $this->Html->link(
                                 $deviceType->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -91,7 +91,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $deviceType->has('modifier') ? $this->Html->link(
+                            <td><?= $deviceType->__isset('modifier') ? $this->Html->link(
                                 $deviceType->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -130,7 +130,7 @@
                         <tr>
                             <td><?= h($routerosDevices->name) ?></td>
                             <td>
-                                <?= $routerosDevices->has('access_point') ? $this->Html->link(
+                                <?= $routerosDevices->__isset('access_point') ? $this->Html->link(
                                     $routerosDevices->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
@@ -140,7 +140,7 @@
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $routerosDevices->has('customer_connection') ? $this->Html->link(
+                                <?= $routerosDevices->__isset('customer_connection') ? $this->Html->link(
                                     $routerosDevices->customer_connection->name,
                                     [
                                         'controller' => 'CustomerConnections',

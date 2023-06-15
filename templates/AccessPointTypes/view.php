@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $accessPointType->has('creator') ? $this->Html->link(
+                            <td><?= $accessPointType->__isset('creator') ? $this->Html->link(
                                 $accessPointType->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -78,7 +78,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $accessPointType->has('modifier') ? $this->Html->link(
+                            <td><?= $accessPointType->__isset('modifier') ? $this->Html->link(
                                 $accessPointType->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -115,7 +115,7 @@
                         <tr>
                             <td><?= h($accessPoint->name) ?></td>
                             <td><?= h($accessPoint->device_name) ?></td>
-                            <td><?= $accessPoint->has('parent_access_point') ?
+                            <td><?= $accessPoint->__isset('parent_access_point') ?
                                 $this->Html->link(
                                     $accessPoint->parent_access_point->name,
                                     [

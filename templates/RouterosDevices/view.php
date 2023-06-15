@@ -45,7 +45,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td>
-                                <?= $routerosDevice->has('access_point') ? $this->Html->link(
+                                <?= $routerosDevice->__isset('access_point') ? $this->Html->link(
                                     $routerosDevice->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
@@ -58,7 +58,7 @@
                         <tr>
                             <th><?= __('Customer Connection') ?></th>
                             <td>
-                                <?= $routerosDevice->has('customer_connection') ? $this->Html->link(
+                                <?= $routerosDevice->__isset('customer_connection') ? $this->Html->link(
                                     $routerosDevice->customer_connection->name,
                                     [
                                         'controller' => 'CustomerConnections',
@@ -71,7 +71,7 @@
                         <tr>
                             <th><?= __('Device Type') ?></th>
                             <td>
-                                <?= $routerosDevice->has('device_type') ? $this->Html->link(
+                                <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
                                     $routerosDevice->device_type->name,
                                     [
                                         'controller' => 'DeviceTypes',
@@ -134,7 +134,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $routerosDevice->has('creator') ? $this->Html->link(
+                            <td><?= $routerosDevice->__isset('creator') ? $this->Html->link(
                                 $routerosDevice->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -149,7 +149,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $routerosDevice->has('modifier') ? $this->Html->link(
+                            <td><?= $routerosDevice->__isset('modifier') ? $this->Html->link(
                                 $routerosDevice->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

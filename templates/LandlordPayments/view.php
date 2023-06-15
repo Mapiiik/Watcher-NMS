@@ -41,7 +41,7 @@
                     <table>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td><?= $landlordPayment->has('access_point') ?
+                            <td><?= $landlordPayment->__isset('access_point') ?
                                 $this->Html->link(
                                     $landlordPayment->access_point->name,
                                     [
@@ -53,7 +53,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Payment Purpose') ?></th>
-                            <td><?= $landlordPayment->has('payment_purpose') ?
+                            <td><?= $landlordPayment->__isset('payment_purpose') ?
                                 $this->Html->link(
                                     $landlordPayment->payment_purpose->name,
                                     [
@@ -87,7 +87,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $landlordPayment->has('creator') ? $this->Html->link(
+                            <td><?= $landlordPayment->__isset('creator') ? $this->Html->link(
                                 $landlordPayment->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -102,7 +102,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $landlordPayment->has('modifier') ? $this->Html->link(
+                            <td><?= $landlordPayment->__isset('modifier') ? $this->Html->link(
                                 $landlordPayment->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

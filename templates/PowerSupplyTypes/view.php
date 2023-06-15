@@ -46,7 +46,7 @@
                         <tr>
                             <th><?= __('Manufacturer') ?></th>
                             <td>
-                                <?= $powerSupplyType->has('manufacturer') ? $this->Html->link(
+                                <?= $powerSupplyType->__isset('manufacturer') ? $this->Html->link(
                                     $powerSupplyType->manufacturer->name,
                                     [
                                         'controller' => 'Manufacturers',
@@ -82,7 +82,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $powerSupplyType->has('creator') ? $this->Html->link(
+                            <td><?= $powerSupplyType->__isset('creator') ? $this->Html->link(
                                 $powerSupplyType->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -97,7 +97,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $powerSupplyType->has('modifier') ? $this->Html->link(
+                            <td><?= $powerSupplyType->__isset('modifier') ? $this->Html->link(
                                 $powerSupplyType->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -136,7 +136,7 @@
                         <tr>
                             <td><?= h($powerSupplies->name) ?></td>
                             <td>
-                                <?= $powerSupplies->has('access_point') ? $this->Html->link(
+                                <?= $powerSupplies->__isset('access_point') ? $this->Html->link(
                                     $powerSupplies->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',

@@ -46,7 +46,7 @@
                         <tr>
                             <th><?= __('Customer Connection') ?></th>
                             <td>
-                                <?= $customerConnectionIp->has('customer_connection') ? $this->Html->link(
+                                <?= $customerConnectionIp->__isset('customer_connection') ? $this->Html->link(
                                     $customerConnectionIp->customer_connection->name,
                                     [
                                         'controller' => 'CustomerConnections',
@@ -74,7 +74,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $customerConnectionIp->has('creator') ? $this->Html->link(
+                            <td><?= $customerConnectionIp->__isset('creator') ? $this->Html->link(
                                 $customerConnectionIp->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -89,7 +89,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $customerConnectionIp->has('modifier') ? $this->Html->link(
+                            <td><?= $customerConnectionIp->__isset('modifier') ? $this->Html->link(
                                 $customerConnectionIp->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

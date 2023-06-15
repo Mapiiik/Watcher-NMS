@@ -57,13 +57,13 @@
                 <tr>
                     <td><?= h($routerosDevice->name) ?></td>
                     <td>
-                        <?= $routerosDevice->has('access_point') ? $this->Html->link(
+                        <?= $routerosDevice->__isset('access_point') ? $this->Html->link(
                             $routerosDevice->access_point->name,
                             ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $routerosDevice->has('customer_connection') ? $this->Html->link(
+                        <?= $routerosDevice->__isset('customer_connection') ? $this->Html->link(
                             $routerosDevice->customer_connection->name,
                             [
                                 'controller' => 'CustomerConnections',
@@ -73,7 +73,7 @@
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $routerosDevice->has('device_type') ? $this->Html->link(
+                        <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
                             $routerosDevice->device_type->name,
                             ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id]
                         ) : '' ?>

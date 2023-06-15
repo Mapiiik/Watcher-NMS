@@ -55,7 +55,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $radioUnitBand->has('creator') ? $this->Html->link(
+                            <td><?= $radioUnitBand->__isset('creator') ? $this->Html->link(
                                 $radioUnitBand->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $radioUnitBand->has('modifier') ? $this->Html->link(
+                            <td><?= $radioUnitBand->__isset('modifier') ? $this->Html->link(
                                 $radioUnitBand->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -105,7 +105,7 @@
                         <tr>
                             <td><?= h($antennaTypes->name) ?></td>
                             <td>
-                                <?= $antennaTypes->has('manufacturer') ? $this->Html->link(
+                                <?= $antennaTypes->__isset('manufacturer') ? $this->Html->link(
                                     $antennaTypes->manufacturer->name,
                                     [
                                         'controller' => 'Manufacturers',
@@ -155,7 +155,7 @@
                         <tr>
                             <td><?= h($radioUnitTypes->name) ?></td>
                             <td>
-                                <?= $radioUnitTypes->has('manufacturer') ? $this->Html->link(
+                                <?= $radioUnitTypes->__isset('manufacturer') ? $this->Html->link(
                                     $radioUnitTypes->manufacturer->name,
                                     [
                                         'controller' => 'Manufacturers',

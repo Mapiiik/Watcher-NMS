@@ -62,13 +62,13 @@
                         ) . '<br />';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
-                        echo $radioUnit->has('radio_unit_type') ? $this->Html->link(
+                        echo $radioUnit->__isset('radio_unit_type') ? $this->Html->link(
                             $radioUnit->radio_unit_type->name,
                             ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]
                         ) . '<br />' : '<br />';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
-                        echo $radioUnit->has('antenna_type') ? $this->Html->link(
+                        echo $radioUnit->__isset('antenna_type') ? $this->Html->link(
                             $radioUnit->antenna_type->name,
                             ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]
                         ) . '<br />' : '<br />';
@@ -86,10 +86,10 @@
                         echo $this->Number->format($radioUnit->rx_frequency) . '<br />';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
-                        echo $this->Number->format($radioUnit->tx_power) . '<br />';
+                        echo $this->Number->format($radioUnit->tx_power ?? '') . '<br />';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
-                        echo $this->Number->format($radioUnit->rx_signal) . '<br />';
+                        echo $this->Number->format($radioUnit->rx_signal ?? '') . '<br />';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
                         echo $this->Number->format($radioUnit->operating_speed) . '<br />';

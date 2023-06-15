@@ -46,7 +46,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td>
-                                <?= $electricityMeterReading->has('access_point') ? $this->Html->link(
+                                <?= $electricityMeterReading->__isset('access_point') ? $this->Html->link(
                                     $electricityMeterReading->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
@@ -81,7 +81,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $electricityMeterReading->has('creator') ? $this->Html->link(
+                            <td><?= $electricityMeterReading->__isset('creator') ? $this->Html->link(
                                 $electricityMeterReading->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -96,7 +96,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $electricityMeterReading->has('modifier') ? $this->Html->link(
+                            <td><?= $electricityMeterReading->__isset('modifier') ? $this->Html->link(
                                 $electricityMeterReading->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

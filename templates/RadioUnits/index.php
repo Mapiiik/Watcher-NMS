@@ -58,25 +58,25 @@
                 <tr style="<?= $radioUnit->style ?>">
                     <td><?= h($radioUnit->name) ?></td>
                     <td>
-                        <?= $radioUnit->has('access_point') ? $this->Html->link(
+                        <?= $radioUnit->__isset('access_point') ? $this->Html->link(
                             $radioUnit->access_point->name,
                             ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->has('radio_unit_type') ? $this->Html->link(
+                        <?= $radioUnit->__isset('radio_unit_type') ? $this->Html->link(
                             $radioUnit->radio_unit_type->name,
                             ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->has('radio_link') ? $this->Html->link(
+                        <?= $radioUnit->__isset('radio_link') ? $this->Html->link(
                             $radioUnit->radio_link->name,
                             ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->has('antenna_type') ? $this->Html->link(
+                        <?= $radioUnit->__isset('antenna_type') ? $this->Html->link(
                             $radioUnit->antenna_type->name,
                             ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]
                         ) : '' ?>

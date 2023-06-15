@@ -73,7 +73,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $radarInterference->has('creator') ? $this->Html->link(
+                            <td><?= $radarInterference->__isset('creator') ? $this->Html->link(
                                 $radarInterference->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -88,7 +88,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $radarInterference->has('modifier') ? $this->Html->link(
+                            <td><?= $radarInterference->__isset('modifier') ? $this->Html->link(
                                 $radarInterference->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -126,7 +126,7 @@
                         <?php foreach ($radarInterference->routeros_device_interfaces as $routerosDeviceInterfaces) : ?>
                         <tr>
                             <td>
-                                <?= $routerosDeviceInterfaces->has('routeros_device') ? $this->Html->link(
+                                <?= $routerosDeviceInterfaces->__isset('routeros_device') ? $this->Html->link(
                                     $routerosDeviceInterfaces->routeros_device->name,
                                     [
                                         'controller' => 'RouterosDevices',

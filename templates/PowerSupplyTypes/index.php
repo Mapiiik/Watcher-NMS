@@ -40,7 +40,7 @@
                 <tr>
                     <td><?= h($powerSupplyType->name) ?></td>
                     <td>
-                        <?= $powerSupplyType->has('manufacturer') ? $this->Html->link(
+                        <?= $powerSupplyType->__isset('manufacturer') ? $this->Html->link(
                             $powerSupplyType->manufacturer->name,
                             ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]
                         ) : '' ?>

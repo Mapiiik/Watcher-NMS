@@ -63,7 +63,7 @@ class CustomerConnection extends Entity
      */
     protected function _getNameForLists(): string
     {
-        return $this->has('contract_number') ?
+        return $this->__isset('contract_number') ?
             strval($this->name) . ' (' . strval($this->contract_number) . ')' :
             strval($this->name);
     }

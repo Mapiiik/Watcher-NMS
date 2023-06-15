@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $manufacturer->has('creator') ? $this->Html->link(
+                            <td><?= $manufacturer->__isset('creator') ? $this->Html->link(
                                 $manufacturer->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -72,7 +72,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $manufacturer->has('modifier') ? $this->Html->link(
+                            <td><?= $manufacturer->__isset('modifier') ? $this->Html->link(
                                 $manufacturer->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -108,7 +108,7 @@
                         <tr>
                             <td><?= h($antennaTypes->name) ?></td>
                             <td>
-                                <?= $antennaTypes->has('radio_unit_band') ? $this->Html->link(
+                                <?= $antennaTypes->__isset('radio_unit_band') ? $this->Html->link(
                                     $antennaTypes->radio_unit_band->name,
                                     [
                                         'controller' => 'RadioUnitBands',
@@ -200,7 +200,7 @@
                         <tr>
                             <td><?= h($radioUnitTypes->name) ?></td>
                             <td>
-                                <?= $radioUnitTypes->has('radio_unit_band') ? $this->Html->link(
+                                <?= $radioUnitTypes->__isset('radio_unit_band') ? $this->Html->link(
                                     $radioUnitTypes->radio_unit_band->name,
                                     [
                                         'controller' => 'RadioUnitBands',

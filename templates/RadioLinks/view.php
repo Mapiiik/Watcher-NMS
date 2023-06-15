@@ -62,7 +62,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $radioLink->has('creator') ? $this->Html->link(
+                            <td><?= $radioLink->__isset('creator') ? $this->Html->link(
                                 $radioLink->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -77,7 +77,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $radioLink->has('modifier') ? $this->Html->link(
+                            <td><?= $radioLink->__isset('modifier') ? $this->Html->link(
                                 $radioLink->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -131,13 +131,13 @@
                         <tr>
                             <td><?= h($radioUnits->name) ?></td>
                             <td>
-                                <?= $radioUnits->has('access_point') ? $this->Html->link(
+                                <?= $radioUnits->__isset('access_point') ? $this->Html->link(
                                     $radioUnits->access_point->name,
                                     ['controller' => 'AccessPoints', 'action' => 'view', $radioUnits->access_point->id]
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $radioUnits->has('radio_unit_type') ? $this->Html->link(
+                                <?= $radioUnits->__isset('radio_unit_type') ? $this->Html->link(
                                     $radioUnits->radio_unit_type->name,
                                     [
                                         'controller' => 'RadioUnitTypes',
@@ -147,7 +147,7 @@
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $radioUnits->has('antenna_type') ? $this->Html->link(
+                                <?= $radioUnits->__isset('antenna_type') ? $this->Html->link(
                                     $radioUnits->antenna_type->name,
                                     ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id]
                                 ) : '' ?>

@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td><?= $accessPointContact->has('access_point') ? $this->Html->link(
+                            <td><?= $accessPointContact->__isset('access_point') ? $this->Html->link(
                                 $accessPointContact->access_point->name,
                                 [
                                     'controller' => 'AccessPoints',
@@ -64,7 +64,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Customer Number') ?></th>
-                            <td><?= $accessPointContact->has('customer_number') ? $this->Html->link(
+                            <td><?= $accessPointContact->__isset('customer_number') ? $this->Html->link(
                                 $accessPointContact->customer_number,
                                 env('WATCHER_CRM_URL') . '/admin/customers/' . (
                                     (int)$accessPointContact->customer_number - (int)env('CUSTOMER_SERIES', '0')
@@ -90,7 +90,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $accessPointContact->has('creator') ? $this->Html->link(
+                            <td><?= $accessPointContact->__isset('creator') ? $this->Html->link(
                                 $accessPointContact->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -105,7 +105,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $accessPointContact->has('modifier') ? $this->Html->link(
+                            <td><?= $accessPointContact->__isset('modifier') ? $this->Html->link(
                                 $accessPointContact->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

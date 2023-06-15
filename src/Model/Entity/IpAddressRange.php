@@ -74,7 +74,7 @@ class IpAddressRange extends Entity
      */
     protected function _getNameForLists(): string
     {
-        return $this->has('ip_network') ?
+        return $this->__isset('ip_network') ?
             strval($this->name) . ' (' . strval($this->ip_network) . ')' :
             strval($this->name);
     }

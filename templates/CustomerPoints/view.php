@@ -83,7 +83,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $customerPoint->has('creator') ? $this->Html->link(
+                            <td><?= $customerPoint->__isset('creator') ? $this->Html->link(
                                 $customerPoint->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -98,7 +98,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $customerPoint->has('modifier') ? $this->Html->link(
+                            <td><?= $customerPoint->__isset('modifier') ? $this->Html->link(
                                 $customerPoint->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

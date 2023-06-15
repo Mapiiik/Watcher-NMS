@@ -42,7 +42,7 @@
                         <tr>
                             <th><?= __('RouterOS Device') ?></th>
                             <td>
-                                <?= $routerosDeviceIp->has('routeros_device') ? $this->Html->link(
+                                <?= $routerosDeviceIp->__isset('routeros_device') ? $this->Html->link(
                                     $routerosDeviceIp->routeros_device->name,
                                     [
                                         'controller' => 'RouterosDevices',
@@ -78,7 +78,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $routerosDeviceIp->has('creator') ? $this->Html->link(
+                            <td><?= $routerosDeviceIp->__isset('creator') ? $this->Html->link(
                                 $routerosDeviceIp->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -93,7 +93,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $routerosDeviceIp->has('modifier') ? $this->Html->link(
+                            <td><?= $routerosDeviceIp->__isset('modifier') ? $this->Html->link(
                                 $routerosDeviceIp->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

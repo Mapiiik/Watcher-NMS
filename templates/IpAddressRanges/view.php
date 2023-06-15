@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td><?= $ipAddressRange->has('access_point') ?
+                            <td><?= $ipAddressRange->__isset('access_point') ?
                                 $this->Html->link(
                                     $ipAddressRange->access_point->name,
                                     [
@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Parent IP Address Range') ?></th>
-                            <td><?= $ipAddressRange->has('parent_ip_address_range') ?
+                            <td><?= $ipAddressRange->__isset('parent_ip_address_range') ?
                                 $this->Html->link(
                                     $ipAddressRange->parent_ip_address_range->name,
                                     [
@@ -127,7 +127,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $ipAddressRange->has('creator') ? $this->Html->link(
+                            <td><?= $ipAddressRange->__isset('creator') ? $this->Html->link(
                                 $ipAddressRange->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -142,7 +142,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $ipAddressRange->has('modifier') ? $this->Html->link(
+                            <td><?= $ipAddressRange->__isset('modifier') ? $this->Html->link(
                                 $ipAddressRange->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

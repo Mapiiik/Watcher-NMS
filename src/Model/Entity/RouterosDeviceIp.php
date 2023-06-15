@@ -56,7 +56,7 @@ class RouterosDeviceIp extends Entity
      */
     protected function _getNameForLists(): string
     {
-        return $this->has('ip_address') ?
+        return $this->__isset('ip_address') ?
             strval($this->name) . ' (' . strval($this->ip_address) . ')' :
             strval($this->name);
     }

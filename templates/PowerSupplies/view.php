@@ -46,7 +46,7 @@
                         <tr>
                             <th><?= __('Power Supply Type') ?></th>
                             <td>
-                                <?= $powerSupply->has('power_supply_type') ? $this->Html->link(
+                                <?= $powerSupply->__isset('power_supply_type') ? $this->Html->link(
                                     $powerSupply->power_supply_type->name,
                                     [
                                         'controller' => 'PowerSupplyTypes',
@@ -59,7 +59,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td>
-                                <?= $powerSupply->has('access_point') ? $this->Html->link(
+                                <?= $powerSupply->__isset('access_point') ? $this->Html->link(
                                     $powerSupply->access_point->name,
                                     ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]
                                 ) : '' ?>
@@ -106,7 +106,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $powerSupply->has('creator') ? $this->Html->link(
+                            <td><?= $powerSupply->__isset('creator') ? $this->Html->link(
                                 $powerSupply->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -121,7 +121,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $powerSupply->has('modifier') ? $this->Html->link(
+                            <td><?= $powerSupply->__isset('modifier') ? $this->Html->link(
                                 $powerSupply->modifier->username,
                                 [
                                     'controller' => 'AppUsers',

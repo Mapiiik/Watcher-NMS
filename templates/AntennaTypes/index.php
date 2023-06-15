@@ -36,13 +36,13 @@
                 <tr style="<?= $antennaType->style ?>">
                     <td><?= h($antennaType->name) ?></td>
                     <td>
-                        <?= $antennaType->has('radio_unit_band') ? $this->Html->link(
+                        <?= $antennaType->__isset('radio_unit_band') ? $this->Html->link(
                             $antennaType->radio_unit_band->name,
                             ['controller' => 'RadioUnitBands', 'action' => 'view', $antennaType->radio_unit_band->id]
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $antennaType->has('manufacturer') ? $this->Html->link(
+                        <?= $antennaType->__isset('manufacturer') ? $this->Html->link(
                             $antennaType->manufacturer->name,
                             ['controller' => 'Manufacturers', 'action' => 'view', $antennaType->manufacturer->id]
                         ) : '' ?>

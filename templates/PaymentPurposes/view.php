@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Created By') ?></th>
-                            <td><?= $paymentPurpose->has('creator') ? $this->Html->link(
+                            <td><?= $paymentPurpose->__isset('creator') ? $this->Html->link(
                                 $paymentPurpose->creator->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -72,7 +72,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Modified By') ?></th>
-                            <td><?= $paymentPurpose->has('modifier') ? $this->Html->link(
+                            <td><?= $paymentPurpose->__isset('modifier') ? $this->Html->link(
                                 $paymentPurpose->modifier->username,
                                 [
                                     'controller' => 'AppUsers',
@@ -105,7 +105,7 @@
                         </tr>
                         <?php foreach ($paymentPurpose->landlord_payments as $landlordPayment) : ?>
                         <tr>
-                            <td><?= $landlordPayment->has('access_point') ?
+                            <td><?= $landlordPayment->__isset('access_point') ?
                                 $this->Html->link(
                                     $landlordPayment->access_point->name,
                                     [
