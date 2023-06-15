@@ -31,6 +31,7 @@ class AppUsersController extends AppController
     use RegisterTrait;
     use SimpleCrudTrait;
     use SocialTrait;
+    use UserSettingsTrait;
     use Webauthn2faTrait;
 
     /**
