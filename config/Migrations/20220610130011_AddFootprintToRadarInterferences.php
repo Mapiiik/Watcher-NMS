@@ -13,7 +13,7 @@ class AddFootprintToRadarInterferences extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('radar_interferences');
         $table->addColumn('created_by', 'uuid', [

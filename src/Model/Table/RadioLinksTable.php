@@ -88,7 +88,7 @@ class RadioLinksTable extends AppTable
      * @param ?string $radioUnitBandId Radio Unit Band Id.
      * @return \Cake\ORM\Query\SelectQuery
      */
-    public function findBand(SelectQuery $query, ?string $radioUnitBandId = null)
+    public function findBand(SelectQuery $query, ?string $radioUnitBandId = null): SelectQuery
     {
         $query
             ->innerJoinWith('RadioUnits', function (SelectQuery $q) use ($radioUnitBandId) {

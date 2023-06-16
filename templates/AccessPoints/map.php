@@ -1,10 +1,10 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\AccessPoint[]|\Cake\Collection\CollectionInterface $accessPoints
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\AccessPoint> $accessPoints
  * @var \App\Form\MapOptionsForm $mapOptions
- * @var string[]|\Cake\Collection\CollectionInterface $accessPointsFilter
- * @var string[]|\Cake\Collection\CollectionInterface $routerosDevicesFilter
+ * @var \Cake\Collection\CollectionInterface|array<string> $accessPointsFilter
+ * @var \Cake\Collection\CollectionInterface|array<string> $routerosDevicesFilter
  * @var array $mapMarkers
  * @var array $mapPolylines
  */

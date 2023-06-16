@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\RouterosDeviceIp[]|\Cake\Collection\CollectionInterface $routerosDeviceIps
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RouterosDeviceIp> $routerosDeviceIps
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

@@ -13,7 +13,7 @@ class AddFootprintToPowerSupplyTypes extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('power_supply_types');
         $table->addColumn('created_by', 'uuid', [

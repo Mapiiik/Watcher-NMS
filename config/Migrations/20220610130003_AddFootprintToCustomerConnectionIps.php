@@ -13,7 +13,7 @@ class AddFootprintToCustomerConnectionIps extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('customer_connection_ips');
         $table->addColumn('created_by', 'uuid', [

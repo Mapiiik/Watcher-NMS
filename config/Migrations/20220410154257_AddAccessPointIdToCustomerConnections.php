@@ -13,7 +13,7 @@ class AddAccessPointIdToCustomerConnections extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('customer_connections');
         $table->addColumn('access_point_id', 'uuid', [

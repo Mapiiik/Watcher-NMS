@@ -13,7 +13,7 @@ class AddFootprintToManufacturers extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('manufacturers');
         $table->addColumn('created_by', 'uuid', [

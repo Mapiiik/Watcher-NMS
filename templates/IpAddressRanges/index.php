@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\IpAddressRange[]|\Cake\Collection\CollectionInterface $ipAddressRanges
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\IpAddressRange> $ipAddressRanges
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

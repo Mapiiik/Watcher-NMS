@@ -13,7 +13,7 @@ class AddCustomerConnectionIdIdToRouterosDevices extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('routeros_devices');
         $table->addColumn('customer_connection_id', 'uuid', [

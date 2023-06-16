@@ -10,6 +10,7 @@ use Cake\Console\ConsoleOptionParser;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use Cake\Routing\Router;
+use Exception;
 
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
@@ -45,6 +46,7 @@ class RadarInterferencesReportCommand extends Command
      * @param \Cake\Console\Arguments $args The command arguments.
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
@@ -132,7 +134,7 @@ class RadarInterferencesReportCommand extends Command
 
                 Log::write('debug', 'Devices that interfere with radar found and reported.');
                 $io->info(__('Devices that interfere with radar found and reported.'));
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Log::write(
                     'warning',
                     'Devices that interfere with radar found but cannot be reported. (' . $e->getMessage() . ')'

@@ -61,9 +61,14 @@ class LandlordPaymentsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
-        $landlordPayment = $this->LandlordPayments->get($id, contain: ['Creators', 'Modifiers', 'AccessPoints', 'PaymentPurposes']);
+        $landlordPayment = $this->LandlordPayments->get($id, contain: [
+            'Creators',
+            'Modifiers',
+            'AccessPoints',
+            'PaymentPurposes',
+        ]);
 
         $this->set(compact('landlordPayment'));
     }
@@ -107,7 +112,7 @@ class LandlordPaymentsController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
@@ -136,7 +141,7 @@ class LandlordPaymentsController extends AppController
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $landlordPayment = $this->LandlordPayments->get($id);

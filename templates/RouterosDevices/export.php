@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\RouterosDevice[]|\Cake\Collection\CollectionInterface $routerosDevices
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RouterosDevice> $routerosDevices
  */
 $this->setLayout('clean');
 ?>

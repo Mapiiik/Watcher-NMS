@@ -95,7 +95,7 @@ class IpAddressRangesController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
         $ipAddressRange = $this->IpAddressRanges->get($id, contain: ['AccessPoints', 'ParentIpAddressRanges']);
 
@@ -131,7 +131,7 @@ class IpAddressRangesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
         $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $ipAddressRange = $this->IpAddressRanges->get($id);
@@ -155,7 +155,7 @@ class IpAddressRangesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null)
     {
         $this->getRequest()->allowMethod(['delete']);
         $ipAddressRange = $this->IpAddressRanges->get($id);

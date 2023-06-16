@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\RadioUnitType[]|\Cake\Collection\CollectionInterface $radioUnitTypes
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RadioUnitType> $radioUnitTypes
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

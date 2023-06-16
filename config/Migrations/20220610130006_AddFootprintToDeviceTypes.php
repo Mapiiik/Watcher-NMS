@@ -13,7 +13,7 @@ class AddFootprintToDeviceTypes extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('device_types');
         $table->addColumn('created_by', 'uuid', [

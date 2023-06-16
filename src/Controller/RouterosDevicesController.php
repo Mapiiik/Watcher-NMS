@@ -23,7 +23,7 @@ class RouterosDevicesController extends AppController
      *
      * @var \SNMP|null
      */
-    private $snmp = null;
+    private ?SNMP $snmp = null;
 
     /**
      * Index method
@@ -88,7 +88,7 @@ class RouterosDevicesController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
         $routerosDevice = $this->RouterosDevices->get($id, contain: [
             'AccessPoints',
@@ -207,7 +207,7 @@ class RouterosDevicesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
@@ -239,7 +239,7 @@ class RouterosDevicesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null)
     {
         $access_point_id = $this->getRequest()->getParam('access_point_id');
 
@@ -264,7 +264,7 @@ class RouterosDevicesController extends AppController
      * @param string $mask network mask in dotted format
      * @return int
      */
-    private function mask2cidr($mask = null)
+    private function mask2cidr(?string $mask = null)
     {
          $long = ip2long($mask);
          $base = ip2long('255.255.255.255');
@@ -278,7 +278,7 @@ class RouterosDevicesController extends AppController
      * @param string $string any text
      * @return string
      */
-    private function strToHex($string = null)
+    private function strToHex(?string $string = null)
     {
         $hex = '';
         $length = strlen($string);
@@ -317,7 +317,7 @@ class RouterosDevicesController extends AppController
      * @param string $value any text
      * @return string|null
      */
-    private function nullIfEmptyString($value = null)
+    private function nullIfEmptyString(?string $value = null)
     {
         if ($value === '') {
             return null;
@@ -732,7 +732,7 @@ class RouterosDevicesController extends AppController
      * @param string $hex text encoded in hexa format
      * @return string
      */
-    private function hexToSetString($hex)
+    private function hexToSetString(string $hex)
     {
         $chars = 'abcdefghijklmnopqrstuwvxyzABCDEFGHIJKLMNOPQRSTUWVXYZ0123456789';
         $setbase = strlen($chars);
@@ -798,7 +798,7 @@ class RouterosDevicesController extends AppController
      * @param string $serialNumber serial number
      * @return void
      */
-    public function configurationScript($deviceTypeIdentifier = null, $serialNumber = null): void
+    public function configurationScript(?string $deviceTypeIdentifier = null, ?string $serialNumber = null): void
     {
         $deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first();
 
@@ -906,15 +906,22 @@ class RouterosDevicesController extends AppController
             ];
         }
 
-        $routerosDevices = $this->RouterosDevices->find('all',
-        contain: [
-            'AccessPoints',
-            'DeviceTypes',
-            'CustomerConnections' => ['CustomerPoints'],
-            'RouterosDeviceInterfaces',
-        ],
-        order: ['AccessPoints.name' => 'ASC', 'RouterosDevices.name' => 'ASC'],
-        conditions: $conditions);
+        $routerosDevices = $this->RouterosDevices->find(
+            'all',
+            contain: [
+                'AccessPoints',
+                'DeviceTypes',
+                'CustomerConnections' => [
+                    'CustomerPoints',
+                ],
+                'RouterosDeviceInterfaces',
+            ],
+            order: [
+                'AccessPoints.name' => 'ASC',
+                'RouterosDevices.name' => 'ASC',
+            ],
+            conditions: $conditions
+        );
 
         $this->set(compact('routerosDevices'));
     }

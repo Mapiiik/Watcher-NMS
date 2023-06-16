@@ -13,7 +13,7 @@ class AddFootprintToRadioLinks extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('radio_links');
         $table->addColumn('created_by', 'uuid', [

@@ -2,10 +2,10 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnit $radioUnit
- * @var string[]|\Cake\Collection\CollectionInterface $accessPoints
- * @var string[]|\Cake\Collection\CollectionInterface $antennaTypes
- * @var string[]|\Cake\Collection\CollectionInterface $radioLinks
- * @var string[]|\Cake\Collection\CollectionInterface $radioUnitTypes
+ * @var \Cake\Collection\CollectionInterface|array<string> $accessPoints
+ * @var \Cake\Collection\CollectionInterface|array<string> $antennaTypes
+ * @var \Cake\Collection\CollectionInterface|array<string> $radioLinks
+ * @var \Cake\Collection\CollectionInterface|array<string> $radioUnitTypes
  */
 ?>
 <div class="row">

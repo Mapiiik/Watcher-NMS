@@ -2,8 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\LandlordPayment $landlordPayment
- * @var string[]|\Cake\Collection\CollectionInterface $accessPoints
- * @var string[]|\Cake\Collection\CollectionInterface $paymentPurposes
+ * @var \Cake\Collection\CollectionInterface|array<string> $accessPoints
+ * @var \Cake\Collection\CollectionInterface|array<string> $paymentPurposes
  */
 ?>
 <div class="row">

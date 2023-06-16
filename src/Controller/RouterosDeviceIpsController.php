@@ -63,7 +63,7 @@ class RouterosDeviceIpsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id, contain: [
             'RouterosDevices',
@@ -104,7 +104,7 @@ class RouterosDeviceIpsController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -129,7 +129,7 @@ class RouterosDeviceIpsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id);

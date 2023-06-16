@@ -13,7 +13,7 @@ class AddFootprintToRadioUnitTypes extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('radio_unit_types');
         $table->addColumn('created_by', 'uuid', [

@@ -2,9 +2,9 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RouterosDevice $routerosDevice
- * @var string[]|\Cake\Collection\CollectionInterface $accessPoints
- * @var string[]|\Cake\Collection\CollectionInterface $customerConnections
- * @var string[]|\Cake\Collection\CollectionInterface $deviceTypes
+ * @var \Cake\Collection\CollectionInterface|array<string> $accessPoints
+ * @var \Cake\Collection\CollectionInterface|array<string> $customerConnections
+ * @var \Cake\Collection\CollectionInterface|array<string> $deviceTypes
  */
 ?>
 <div class="row">

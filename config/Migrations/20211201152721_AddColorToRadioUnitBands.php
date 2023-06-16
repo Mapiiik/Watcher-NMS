@@ -13,7 +13,7 @@ class AddColorToRadioUnitBands extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('radio_unit_bands');
         $table->addColumn('color', 'string', [

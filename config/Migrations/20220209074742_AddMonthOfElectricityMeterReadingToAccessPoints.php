@@ -13,7 +13,7 @@ class AddMonthOfElectricityMeterReadingToAccessPoints extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('access_points');
         $table->addColumn('month_of_electricity_meter_reading', 'integer', [

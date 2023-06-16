@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\AccessPointContact[]|\Cake\Collection\CollectionInterface $accessPointContacts
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\AccessPointContact> $accessPointContacts
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

@@ -14,7 +14,7 @@ class CreateIpAddressRanges extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $this->table('ip_address_ranges', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [

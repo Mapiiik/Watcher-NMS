@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\PowerSupplyType[]|\Cake\Collection\CollectionInterface $powerSupplyTypes
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\PowerSupplyType> $powerSupplyTypes
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

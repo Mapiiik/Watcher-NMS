@@ -17,7 +17,7 @@ class InitialNMS extends AbstractMigration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // create extension for full UUID support
         $this->execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
@@ -961,7 +961,7 @@ class InitialNMS extends AbstractMigration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $this->table('access_point_contacts')->drop()->save();
         $this->table('access_points')->drop()->save();

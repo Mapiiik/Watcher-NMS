@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\PowerSupplyType $powerSupplyType
- * @var string[]|\Cake\Collection\CollectionInterface $manufacturers
+ * @var \Cake\Collection\CollectionInterface|array<string> $manufacturers
  */
 ?>
 <div class="row">

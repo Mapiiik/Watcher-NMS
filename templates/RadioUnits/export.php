@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\RadioUnit[]|\Cake\Collection\CollectionInterface $radioUnits
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RadioUnit> $radioUnits
  */
 $this->setLayout('clean');
 ?>

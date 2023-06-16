@@ -60,7 +60,7 @@ class PowerSuppliesController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
         $powerSupply = $this->PowerSupplies->get($id, contain: [
             'PowerSupplyTypes',
@@ -113,7 +113,7 @@ class PowerSuppliesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
         $access_point_id = $this->getRequest()->getParam('access_point_id');
         $this->set('access_point_id', $access_point_id);
@@ -144,7 +144,7 @@ class PowerSuppliesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null)
     {
         $access_point_id = $this->getRequest()->getParam('access_point_id');
 

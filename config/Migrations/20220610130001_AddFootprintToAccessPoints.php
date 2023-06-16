@@ -13,7 +13,7 @@ class AddFootprintToAccessPoints extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('access_points');
         $table->addColumn('created_by', 'uuid', [

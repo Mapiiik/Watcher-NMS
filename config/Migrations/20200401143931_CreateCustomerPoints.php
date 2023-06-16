@@ -14,7 +14,7 @@ class CreateCustomerPoints extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $this->table('customer_points', ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'uuid', [

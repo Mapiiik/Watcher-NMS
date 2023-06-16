@@ -2,8 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\AntennaType $antennaType
- * @var string[]|\Cake\Collection\CollectionInterface $radioUnitBands
- * @var string[]|\Cake\Collection\CollectionInterface $manufacturers
+ * @var \Cake\Collection\CollectionInterface|array<string> $radioUnitBands
+ * @var \Cake\Collection\CollectionInterface|array<string> $manufacturers
  */
 ?>
 <div class="row">

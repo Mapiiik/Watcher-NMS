@@ -13,7 +13,7 @@ class AddParentAccessPointIdToAccessPoints extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('access_points');
         $table->addColumn('parent_access_point_id', 'uuid', [

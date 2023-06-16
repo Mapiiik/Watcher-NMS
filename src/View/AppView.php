@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace App\View;
 
 use Cake\View\View;
+use IntlDateFormatter;
 
 /**
  * Application View
@@ -47,11 +48,11 @@ class AppView extends View
     /**
      * Months method
      *
-     * @return string[] Months names
+     * @return array<string> Months names
      */
-    public static function months()
+    public static function months(): array
     {
-        $formatter = new \IntlDateFormatter(null, \IntlDateFormatter::FULL, \IntlDateFormatter::FULL);
+        $formatter = new IntlDateFormatter(null, IntlDateFormatter::FULL, IntlDateFormatter::FULL);
         $formatter->setPattern('LLLL');
         for ($m = 1; $m <= 12; $m++) {
             $months[$m] = $formatter->format(mktime(0, 0, 0, $m, 12));

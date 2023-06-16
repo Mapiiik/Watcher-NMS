@@ -1,8 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\RadioUnit[]|\Cake\Collection\CollectionInterface $radioUnits
- * @var \App\Model\Entity\RadioUnitBand[]|\Cake\Collection\CollectionInterface $radioUnitBands
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RadioUnit> $radioUnits
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RadioUnitBand> $radioUnitBands
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

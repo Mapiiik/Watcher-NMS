@@ -12,7 +12,7 @@
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\AccessPoint[]|\Cake\Collection\CollectionInterface $accessPoints
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\AccessPoint> $accessPoints
  */
 
 use App\Model\Entity\ElectricityMeterReading;

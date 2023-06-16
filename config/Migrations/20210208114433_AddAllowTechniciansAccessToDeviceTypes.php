@@ -13,7 +13,7 @@ class AddAllowTechniciansAccessToDeviceTypes extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('device_types');
         $table->addColumn('allow_technicians_access', 'boolean', [

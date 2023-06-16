@@ -13,7 +13,7 @@ class AddAssignCustomerConnectionByIpToDeviceTypes extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('device_types');
         $table->addColumn('assign_customer_connection_by_ip', 'boolean', [

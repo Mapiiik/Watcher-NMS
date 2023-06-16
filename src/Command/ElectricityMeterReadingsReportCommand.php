@@ -11,6 +11,7 @@ use Cake\Console\ConsoleOptionParser;
 use Cake\I18n\Date;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
+use Exception;
 
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
@@ -42,6 +43,7 @@ class ElectricityMeterReadingsReportCommand extends Command
      * @param \Cake\Console\Arguments $args The command arguments.
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
@@ -115,7 +117,7 @@ class ElectricityMeterReadingsReportCommand extends Command
                 $mailer->deliver();
                 Log::write('debug', 'The electricity meter readings to be made have been reported.');
                 $io->info(__('The electricity meter readings to be made have been reported.'));
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Log::write(
                     'warning',
                     'The electricity meter readings to be made cannot be reported. (' . $e->getMessage() . ')'

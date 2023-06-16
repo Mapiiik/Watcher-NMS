@@ -15,8 +15,6 @@
  */
 
 $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
-/** @psalm-scope-this App\View\AppView */
-$request = $this->getRequest();
 ?>
 <!DOCTYPE html>
 <html>

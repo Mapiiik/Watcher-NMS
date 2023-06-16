@@ -13,7 +13,7 @@ class AddAssignAccessPointByDeviceNameToDeviceTypes extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('device_types');
         $table->addColumn('assign_access_point_by_device_name', 'boolean', [

@@ -13,7 +13,7 @@ class AddAutomaticallySetAUniquePasswordToDeviceTypes extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('device_types');
         $table->addColumn('automatically_set_a_unique_password', 'boolean', [

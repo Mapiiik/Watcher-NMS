@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\RadarInterference[]|\Cake\Collection\CollectionInterface $radarInterferences
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RadarInterference> $radarInterferences
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

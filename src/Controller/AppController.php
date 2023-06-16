@@ -87,7 +87,7 @@ class AppController extends Controller
                 + $this->getRequest()->getParam('pass')
             );
         }
-        
+
         return parent::paginate($object, $settings);
     }
 

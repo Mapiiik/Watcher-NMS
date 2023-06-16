@@ -14,7 +14,7 @@ class CreateAccessPointTypes extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('access_point_types', ['id' => false, 'primary_key' => ['id']]);
         $table->addColumn('id', 'uuid', [

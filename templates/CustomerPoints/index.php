@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\CustomerPoint[]|\Cake\Collection\CollectionInterface $customerPoints
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\CustomerPoint> $customerPoints
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

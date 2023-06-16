@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\RadioLink[]|\Cake\Collection\CollectionInterface $radioLinks
+ * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RadioLink> $radioLinks
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
