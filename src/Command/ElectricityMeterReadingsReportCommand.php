@@ -112,7 +112,7 @@ class ElectricityMeterReadingsReportCommand extends Command
             ]);
 
             try {
-                //$mailer->deliver();
+                $mailer->deliver();
                 Log::write('debug', 'The electricity meter readings to be made have been reported.');
                 $io->info(__('The electricity meter readings to be made have been reported.'));
             } catch (\Exception $e) {
