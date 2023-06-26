@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Controller\Traits\UserSettingsTrait;
+use CakeDC\Users\Controller\Traits\CustomUsersTableTrait;
 use CakeDC\Users\Controller\Traits\LinkSocialTrait;
 use CakeDC\Users\Controller\Traits\LoginTrait;
 use CakeDC\Users\Controller\Traits\OneTimePasswordVerifyTrait;
@@ -22,6 +23,7 @@ use CakeDC\Users\Controller\Traits\Webauthn2faTrait;
  */
 class AppUsersController extends AppController
 {
+    use CustomUsersTableTrait;
     use LinkSocialTrait;
     use LoginTrait;
     use OneTimePasswordVerifyTrait;
