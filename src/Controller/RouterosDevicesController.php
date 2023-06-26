@@ -71,12 +71,18 @@ class RouterosDevicesController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['AccessPoints', 'DeviceTypes', 'CustomerConnections'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $routerosDevices = $this->paginate($this->RouterosDevices);
+        $routerosDevices = $this->paginate($this->RouterosDevices->find(
+            'all',
+            contain: [
+                'AccessPoints',
+                'CustomerConnections',
+                'DeviceTypes',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('routerosDevices'));
     }
@@ -470,11 +476,9 @@ class RouterosDevicesController extends AppController
             if ($assign_access_point_by_device_name) {
                 $accessPoints = $this->RouterosDevices->AccessPoints->find(
                     'all',
-                    [
-                        'conditions' => [
-                            '\'' . $routerosDeviceData['name'] . '\' ILIKE AccessPoints.device_name || \'%\'',
-                        ],
-                    ]
+                    conditions: [
+                        '\'' . $routerosDeviceData['name'] . '\' ILIKE AccessPoints.device_name || \'%\'',
+                    ],
                 );
 
                 $accessPoint = $accessPoints->first();
@@ -488,10 +492,12 @@ class RouterosDevicesController extends AppController
             if ($assign_customer_connection_by_ip) {
                 $customerConnectionIps = $this->RouterosDevices->CustomerConnections->CustomerConnectionIps->find(
                     'all',
-                    [
-                        'conditions' => ['ip_address' => $routerosDeviceData['ip_address']],
-                        'order' => ['modified' => 'DESC'],
-                    ]
+                    conditions: [
+                        'ip_address' => $routerosDeviceData['ip_address'],
+                    ],
+                    order: [
+                        'modified' => 'DESC',
+                    ],
                 );
 
                 $customerConnectionIp = $customerConnectionIps->first();

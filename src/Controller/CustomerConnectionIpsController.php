@@ -36,11 +36,15 @@ class CustomerConnectionIpsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['CustomerConnections'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
-        $customerConnectionIps = $this->paginate($this->CustomerConnectionIps);
+        $customerConnectionIps = $this->paginate($this->CustomerConnectionIps->find(
+            'all',
+            contain: [
+                'CustomerConnections',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('customerConnectionIps'));
     }

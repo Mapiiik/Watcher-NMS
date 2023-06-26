@@ -43,12 +43,17 @@ class PowerSuppliesController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['PowerSupplyTypes', 'AccessPoints'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $powerSupplies = $this->paginate($this->PowerSupplies);
+        $powerSupplies = $this->paginate($this->PowerSupplies->find(
+            'all',
+            contain: [
+                'AccessPoints',
+                'PowerSupplyTypes',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('powerSupplies'));
     }

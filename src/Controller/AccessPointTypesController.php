@@ -33,9 +33,11 @@ class AccessPointTypesController extends AppController
 
         $this->paginate = [
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
-        $accessPointTypes = $this->paginate($this->AccessPointTypes);
+        $accessPointTypes = $this->paginate($this->AccessPointTypes->find(
+            'all',
+            conditions: $conditions
+        ));
 
         $this->set(compact('accessPointTypes'));
     }

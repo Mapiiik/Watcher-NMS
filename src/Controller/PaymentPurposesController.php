@@ -33,10 +33,12 @@ class PaymentPurposesController extends AppController
 
         $this->paginate = [
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $paymentPurposes = $this->paginate($this->PaymentPurposes);
+        $paymentPurposes = $this->paginate($this->PaymentPurposes->find(
+            'all',
+            conditions: $conditions
+        ));
 
         $this->set(compact('paymentPurposes'));
     }

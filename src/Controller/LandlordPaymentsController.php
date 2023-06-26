@@ -41,15 +41,17 @@ class LandlordPaymentsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => [
+            'order' => ['name' => 'ASC'],
+        ];
+
+        $landlordPayments = $this->paginate($this->LandlordPayments->find(
+            'all',
+            contain: [
                 'AccessPoints',
                 'PaymentPurposes',
             ],
-            'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
-        ];
-
-        $landlordPayments = $this->paginate($this->LandlordPayments);
+            conditions: $conditions
+        ));
 
         $this->set(compact('landlordPayments'));
     }

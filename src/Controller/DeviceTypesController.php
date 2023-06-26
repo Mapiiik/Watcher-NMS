@@ -33,10 +33,12 @@ class DeviceTypesController extends AppController
 
         $this->paginate = [
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $deviceTypes = $this->paginate($this->DeviceTypes);
+        $deviceTypes = $this->paginate($this->DeviceTypes->find(
+            'all',
+            conditions: $conditions
+        ));
 
         $this->set(compact('deviceTypes'));
     }

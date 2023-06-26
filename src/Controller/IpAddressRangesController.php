@@ -44,11 +44,16 @@ class IpAddressRangesController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['AccessPoints', 'ParentIpAddressRanges'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
-        $ipAddressRanges = $this->paginate($this->IpAddressRanges);
+        $ipAddressRanges = $this->paginate($this->IpAddressRanges->find(
+            'all',
+            contain: [
+                'AccessPoints',
+                'ParentIpAddressRanges',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('ipAddressRanges'));
     }

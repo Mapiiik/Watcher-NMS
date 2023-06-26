@@ -39,10 +39,12 @@ class RadarInterferencesController extends AppController
 
         $this->paginate = [
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $radarInterferences = $this->paginate($this->RadarInterferences);
+        $radarInterferences = $this->paginate($this->RadarInterferences->find(
+            'all',
+            conditions: $conditions
+        ));
 
         $this->set(compact('radarInterferences'));
     }

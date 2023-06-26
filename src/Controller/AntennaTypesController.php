@@ -34,11 +34,16 @@ class AntennaTypesController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['RadioUnitBands', 'Manufacturers'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
-        $antennaTypes = $this->paginate($this->AntennaTypes);
+        $antennaTypes = $this->paginate($this->AntennaTypes->find(
+            'all',
+            contain: [
+                'Manufacturers',
+                'RadioUnitBands',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('antennaTypes'));
     }

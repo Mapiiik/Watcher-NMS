@@ -36,12 +36,17 @@ class CustomerConnectionsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['CustomerPoints', 'AccessPoints'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $customerConnections = $this->paginate($this->CustomerConnections);
+        $customerConnections = $this->paginate($this->CustomerConnections->find(
+            'all',
+            contain: [
+                'AccessPoints',
+                'CustomerPoints',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('customerConnections'));
     }

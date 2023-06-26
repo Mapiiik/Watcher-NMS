@@ -51,12 +51,16 @@ class RouterosDeviceInterfacesController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['RouterosDevices'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $routerosDeviceInterfaces = $this->paginate($this->RouterosDeviceInterfaces);
+        $routerosDeviceInterfaces = $this->paginate($this->RouterosDeviceInterfaces->find(
+            'all',
+            contain: [
+                'RouterosDevices',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('routerosDeviceInterfaces'));
     }

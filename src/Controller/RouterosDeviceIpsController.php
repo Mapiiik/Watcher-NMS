@@ -46,12 +46,16 @@ class RouterosDeviceIpsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['RouterosDevices'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $routerosDeviceIps = $this->paginate($this->RouterosDeviceIps);
+        $routerosDeviceIps = $this->paginate($this->RouterosDeviceIps->find(
+            'all',
+            contain: [
+                'RouterosDevices',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('routerosDeviceIps'));
     }

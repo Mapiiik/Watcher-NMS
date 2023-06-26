@@ -52,12 +52,21 @@ class RadioUnitsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['RadioUnitTypes' => ['RadioUnitBands'], 'AccessPoints', 'RadioLinks', 'AntennaTypes'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $radioUnits = $this->paginate($this->RadioUnits);
+        $radioUnits = $this->paginate($this->RadioUnits->find(
+            'all',
+            contain: [
+                'AccessPoints',
+                'AntennaTypes',
+                'RadioLinks',
+                'RadioUnitTypes' => [
+                    'RadioUnitBands',
+                ],
+            ],
+            conditions: $conditions
+        ));
 
         $radioUnitBands = $this->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', ['order' => 'name']);
 

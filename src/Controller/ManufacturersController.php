@@ -33,10 +33,12 @@ class ManufacturersController extends AppController
 
         $this->paginate = [
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $manufacturers = $this->paginate($this->Manufacturers);
+        $manufacturers = $this->paginate($this->Manufacturers->find(
+            'all',
+            conditions: $conditions
+        ));
 
         $this->set(compact('manufacturers'));
     }

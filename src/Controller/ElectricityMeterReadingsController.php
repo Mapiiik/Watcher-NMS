@@ -41,12 +41,16 @@ class ElectricityMeterReadingsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['AccessPoints'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $electricityMeterReadings = $this->paginate($this->ElectricityMeterReadings);
+        $electricityMeterReadings = $this->paginate($this->ElectricityMeterReadings->find(
+            'all',
+            contain: [
+                'AccessPoints',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('electricityMeterReadings'));
     }

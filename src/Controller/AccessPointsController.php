@@ -25,7 +25,13 @@ class AccessPointsController extends AppController
     public function index()
     {
         // access points query
-        $accessPointsQuery = $this->AccessPoints->find();
+        $accessPointsQuery = $this->AccessPoints->find(
+            'all',
+            contain: [
+                'AccessPointTypes',
+                'ParentAccessPoints',
+            ]
+        );
 
         // search
         $search = $this->getRequest()->getQuery('search');
@@ -44,10 +50,6 @@ class AccessPointsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => [
-                'AccessPointTypes',
-                'ParentAccessPoints',
-            ],
             'order' => ['name' => 'ASC'],
         ];
 

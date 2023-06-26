@@ -34,11 +34,16 @@ class RadioUnitTypesController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['RadioUnitBands', 'Manufacturers'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
-        $radioUnitTypes = $this->paginate($this->RadioUnitTypes);
+        $radioUnitTypes = $this->paginate($this->RadioUnitTypes->find(
+            'all',
+            contain: [
+                'Manufacturers',
+                'RadioUnitBands',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('radioUnitTypes'));
     }

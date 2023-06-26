@@ -45,12 +45,16 @@ class AccessPointContactsController extends AppController
         }
 
         $this->paginate = [
-            'contain' => ['AccessPoints'],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $accessPointContacts = $this->paginate($this->AccessPointContacts);
+        $accessPointContacts = $this->paginate($this->AccessPointContacts->find(
+            'all',
+            contain: [
+                'AccessPoints',
+            ],
+            conditions: $conditions
+        ));
 
         $this->set(compact('accessPointContacts'));
     }

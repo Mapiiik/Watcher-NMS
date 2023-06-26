@@ -20,7 +20,7 @@ class RouterosDevicesController extends AppController
      */
     public function index()
     {
-        $routerosDevices = $this->RouterosDevices->find('all')->all();
+        $routerosDevices = $this->RouterosDevices->find('all');
 
         $this->set('routerosDevices', $routerosDevices);
         $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
@@ -33,21 +33,25 @@ class RouterosDevicesController extends AppController
      */
     public function search()
     {
-        $options = [
-            'contain' => [
+        $routerosDevices = $this->RouterosDevices->find(
+            'all',
+            contain: [
                 'AccessPoints',
-                'DeviceTypes',
                 'CustomerConnections',
+                'DeviceTypes',
                 'RouterosDeviceInterfaces',
                 'RouterosDeviceIps',
             ],
-            'order' => ['RouterosDevices.modified' => 'DESC'],
-        ];
+            order: [
+                'RouterosDevices.modified' => 'DESC',
+            ],
+        );
 
         if ($this->getRequest()->is(['get']) && ($this->getRequest()->getQuery('ip_address')) !== null) {
-            $options['conditions']['ip_address'] = $this->getRequest()->getQuery('ip_address');
+            $routerosDevices->where([
+                'ip_address' => $this->getRequest()->getQuery('ip_address'),
+            ]);
         }
-        $routerosDevices = $this->RouterosDevices->find('all', $options);
 
         $this->set('routerosDevices', $routerosDevices);
         $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
@@ -64,8 +68,8 @@ class RouterosDevicesController extends AppController
     {
         $routerosDevice = $this->RouterosDevices->get($id, contain: [
             'AccessPoints',
-            'DeviceTypes',
             'CustomerConnections',
+            'DeviceTypes',
             'RouterosDeviceInterfaces',
             'RouterosDeviceIps',
         ]);

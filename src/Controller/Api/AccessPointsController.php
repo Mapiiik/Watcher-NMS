@@ -20,7 +20,7 @@ class AccessPointsController extends AppController
      */
     public function index()
     {
-        $accessPoints = $this->AccessPoints->find('all')->all();
+        $accessPoints = $this->AccessPoints->find('all');
 
         $this->set('accessPoints', $accessPoints);
         $this->viewBuilder()->setOption('serialize', ['accessPoints']);
@@ -38,9 +38,17 @@ class AccessPointsController extends AppController
         $accessPoint = $this->AccessPoints->get($id, contain: [
             'AccessPointContacts',
             'ElectricityMeterReadings',
-            'PowerSupplies' => ['PowerSupplyTypes'],
-            'RadioUnits' => ['RadioUnitTypes', 'RadioLinks', 'AntennaTypes'],
-            'RouterosDevices' => ['DeviceTypes'],
+            'PowerSupplies' => [
+                'PowerSupplyTypes',
+            ],
+            'RadioUnits' => [
+                'AntennaTypes',
+                'RadioLinks',
+                'RadioUnitTypes',
+            ],
+            'RouterosDevices' => [
+                'DeviceTypes',
+            ],
         ]);
 
         $this->set('accessPoint', $accessPoint);

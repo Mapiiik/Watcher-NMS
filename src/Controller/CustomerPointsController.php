@@ -33,10 +33,12 @@ class CustomerPointsController extends AppController
 
         $this->paginate = [
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
         ];
 
-        $customerPoints = $this->paginate($this->CustomerPoints);
+        $customerPoints = $this->paginate($this->CustomerPoints->find(
+            'all',
+            conditions: $conditions
+        ));
 
         $this->set(compact('customerPoints'));
     }

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query\SelectQuery;
 use Cake\Validation\Validator;
 
 /**
@@ -79,27 +78,5 @@ class RadioLinksTable extends AppTable
             ->allowEmptyString('note');
 
         return $validator;
-    }
-
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\ORM\Query\SelectQuery $query Query instance.
-     * @param ?string $radioUnitBandId Radio Unit Band Id.
-     * @return \Cake\ORM\Query\SelectQuery
-     */
-    public function findBand(SelectQuery $query, ?string $radioUnitBandId = null): SelectQuery
-    {
-        $query
-            ->innerJoinWith('RadioUnits', function (SelectQuery $q) use ($radioUnitBandId) {
-                return $q->innerJoinWith('RadioUnitTypes', function (SelectQuery $q) use ($radioUnitBandId) {
-                    return $q->where([
-                        'RadioUnitTypes.radio_unit_band_id' => $radioUnitBandId,
-                    ]);
-                });
-            })
-            ->groupBy(['RadioLinks.id']);
-
-        return $query;
     }
 }

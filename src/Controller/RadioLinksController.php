@@ -18,39 +18,48 @@ class RadioLinksController extends AppController
      */
     public function index()
     {
+        // RadioLinks Query
+        $radioLinksQuery = $this->RadioLinks->find(
+            'all',
+            contain: [
+                'RadioUnits' => [
+                    'AccessPoints',
+                    'AntennaTypes',
+                    'RadioLinks',
+                    'RadioUnitTypes' => [
+                        'RadioUnitBands',
+                    ],
+                ],
+            ]
+        );
         // filter
-        $conditions = [];
-        $finder = [];
         $radio_unit_band_id = $this->getRequest()->getQuery('radio_unit_band_id');
         if (!empty($radio_unit_band_id)) {
-            $finder['band'] = [
-                'radioUnitBandId' => $radio_unit_band_id,
-            ];
+            $radioLinksQuery->matching(
+                'RadioUnits.RadioUnitTypes',
+                function ($q) use ($radio_unit_band_id) {
+                    return $q->where([
+                        'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
+                    ]);
+                }
+            );
         }
 
         // search
         $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
-            $conditions[] = [
+            $radioLinksQuery->where([
                 'OR' => [
                     'RadioLinks.name ILIKE' => '%' . trim($search) . '%',
                 ],
-            ];
+            ]);
         }
 
         $this->paginate = [
-            'contain' => ['RadioUnits' => [
-                'RadioUnitTypes' => ['RadioUnitBands'],
-                'AccessPoints',
-                'RadioLinks',
-                'AntennaTypes',
-            ]],
             'order' => ['name' => 'ASC'],
-            'conditions' => $conditions,
-            'finder' => $finder,
         ];
 
-        $radioLinks = $this->paginate($this->RadioLinks);
+        $radioLinks = $this->paginate($radioLinksQuery);
 
         $radioUnitBands = $this->RadioLinks
             ->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', order: ['name']);
