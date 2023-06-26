@@ -48,13 +48,6 @@ $routes->setRouteClass(DashedRoute::class);
 
 $routes->scope('/', function (RouteBuilder $builder): void {
     /*
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, templates/Pages/home.php)...
-     */
-    $builder->connect('/', ['controller' => 'AccessPoints', 'action' => 'index']);
-
-    /*
      * Access Points - nested routes
      */
     $builder
@@ -90,6 +83,9 @@ $routes->scope('/', function (RouteBuilder $builder): void {
         ->setPatterns([
             'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
         ]);
+
+    // Default redirect
+    $builder->redirect('/', ['controller' => 'AccessPoints', 'action' => 'index'], ['status' => 303]);
 
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
