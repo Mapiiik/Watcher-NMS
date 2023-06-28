@@ -103,10 +103,10 @@ class IpAddressRangesController extends AppController
             $this->Flash->error(__('The IP address range could not be saved. Please, try again.'));
         }
         $accessPoints = $this->IpAddressRanges->AccessPoints
-            ->find('list', ['order' => 'name'])
+            ->find('list', order: ['name'])
             ->all();
         $parentIpAddressRanges = $this->IpAddressRanges->ParentIpAddressRanges
-            ->find('list', ['order' => 'name'])
+            ->find('list', order: ['name'])
             ->all();
         $this->set(compact('ipAddressRange', 'accessPoints', 'parentIpAddressRanges'));
     }
@@ -134,10 +134,10 @@ class IpAddressRangesController extends AppController
             $this->Flash->error(__('The IP address range could not be saved. Please, try again.'));
         }
         $accessPoints = $this->IpAddressRanges->AccessPoints
-            ->find('list', ['order' => 'name'])
+            ->find('list', order: ['name'])
             ->all();
         $parentIpAddressRanges = $this->IpAddressRanges->ParentIpAddressRanges
-            ->find('list', ['order' => 'name'])
+            ->find('list', order: ['name'])
             ->where(['ParentIpAddressRanges.id !=' => $id])
             ->all();
         $this->set(compact('ipAddressRange', 'accessPoints', 'parentIpAddressRanges'));

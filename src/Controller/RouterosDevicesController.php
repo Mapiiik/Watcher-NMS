@@ -200,9 +200,9 @@ class RouterosDevicesController extends AppController
             }
             $this->Flash->error(__('The RouterOS device could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['order' => 'name']);
-        $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['order' => 'name']);
-        $customerConnections = $this->RouterosDevices->CustomerConnections->find('list', ['order' => 'name']);
+        $accessPoints = $this->RouterosDevices->AccessPoints->find('list', order: ['name']);
+        $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', order: ['name']);
+        $customerConnections = $this->RouterosDevices->CustomerConnections->find('list', order: ['name']);
         $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes', 'customerConnections'));
     }
 
@@ -232,9 +232,9 @@ class RouterosDevicesController extends AppController
             }
             $this->Flash->error(__('The RouterOS device could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->RouterosDevices->AccessPoints->find('list', ['order' => 'name']);
-        $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', ['order' => 'name']);
-        $customerConnections = $this->RouterosDevices->CustomerConnections->find('list', ['order' => 'name']);
+        $accessPoints = $this->RouterosDevices->AccessPoints->find('list', order: ['name']);
+        $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', order: ['name']);
+        $customerConnections = $this->RouterosDevices->CustomerConnections->find('list', order: ['name']);
         $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes', 'customerConnections'));
     }
 

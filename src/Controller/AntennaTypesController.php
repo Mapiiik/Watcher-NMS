@@ -89,8 +89,8 @@ class AntennaTypesController extends AppController
             }
             $this->Flash->error(__('The antenna type could not be saved. Please, try again.'));
         }
-        $radioUnitBands = $this->AntennaTypes->RadioUnitBands->find('list', ['order' => 'name']);
-        $manufacturers = $this->AntennaTypes->Manufacturers->find('list', ['order' => 'name']);
+        $radioUnitBands = $this->AntennaTypes->RadioUnitBands->find('list', order: ['name']);
+        $manufacturers = $this->AntennaTypes->Manufacturers->find('list', order: ['name']);
         $this->set(compact('antennaType', 'radioUnitBands', 'manufacturers'));
     }
 
@@ -113,8 +113,8 @@ class AntennaTypesController extends AppController
             }
             $this->Flash->error(__('The antenna type could not be saved. Please, try again.'));
         }
-        $radioUnitBands = $this->AntennaTypes->RadioUnitBands->find('list', ['order' => 'name']);
-        $manufacturers = $this->AntennaTypes->Manufacturers->find('list', ['order' => 'name']);
+        $radioUnitBands = $this->AntennaTypes->RadioUnitBands->find('list', order: ['name']);
+        $manufacturers = $this->AntennaTypes->Manufacturers->find('list', order: ['name']);
         $this->set(compact('antennaType', 'radioUnitBands', 'manufacturers'));
     }
 

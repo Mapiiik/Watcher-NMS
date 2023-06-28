@@ -102,8 +102,8 @@ class LandlordPaymentsController extends AppController
             }
             $this->Flash->error(__('The landlord payment could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->LandlordPayments->AccessPoints->find('list', ['order' => 'name'])->all();
-        $paymentPurposes = $this->LandlordPayments->PaymentPurposes->find('list', ['order' => 'name'])->all();
+        $accessPoints = $this->LandlordPayments->AccessPoints->find('list', order: ['name'])->all();
+        $paymentPurposes = $this->LandlordPayments->PaymentPurposes->find('list', order: ['name'])->all();
         $this->set(compact('landlordPayment', 'accessPoints', 'paymentPurposes'));
     }
 
@@ -131,8 +131,8 @@ class LandlordPaymentsController extends AppController
             }
             $this->Flash->error(__('The landlord payment could not be saved. Please, try again.'));
         }
-        $accessPoints = $this->LandlordPayments->AccessPoints->find('list', ['order' => 'name'])->all();
-        $paymentPurposes = $this->LandlordPayments->PaymentPurposes->find('list', ['order' => 'name'])->all();
+        $accessPoints = $this->LandlordPayments->AccessPoints->find('list', order: ['name'])->all();
+        $paymentPurposes = $this->LandlordPayments->PaymentPurposes->find('list', order: ['name'])->all();
         $this->set(compact('landlordPayment', 'accessPoints', 'paymentPurposes'));
     }
 

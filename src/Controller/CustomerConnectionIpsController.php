@@ -86,7 +86,7 @@ class CustomerConnectionIpsController extends AppController
             }
             $this->Flash->error(__('The customer connection IP could not be saved. Please, try again.'));
         }
-        $customerConnections = $this->CustomerConnectionIps->CustomerConnections->find('list', ['order' => 'name']);
+        $customerConnections = $this->CustomerConnectionIps->CustomerConnections->find('list', order: ['name']);
         $this->set(compact('customerConnectionIp', 'customerConnections'));
     }
 
@@ -111,7 +111,7 @@ class CustomerConnectionIpsController extends AppController
             }
             $this->Flash->error(__('The customer connection IP could not be saved. Please, try again.'));
         }
-        $customerConnections = $this->CustomerConnectionIps->CustomerConnections->find('list', ['order' => 'name']);
+        $customerConnections = $this->CustomerConnectionIps->CustomerConnections->find('list', order: ['name']);
         $this->set(compact('customerConnectionIp', 'customerConnections'));
     }
 

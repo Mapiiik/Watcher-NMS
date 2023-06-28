@@ -68,7 +68,7 @@ class RadioUnitsController extends AppController
             conditions: $conditions
         ));
 
-        $radioUnitBands = $this->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', ['order' => 'name']);
+        $radioUnitBands = $this->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', order: ['name']);
 
         $this->set(compact('radioUnits', 'radioUnitBands'));
     }
@@ -128,10 +128,10 @@ class RadioUnitsController extends AppController
                 $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
             }
         }
-        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['order' => 'name']);
-        $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['order' => 'name']);
-        $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['order' => 'name']);
-        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['order' => 'name']);
+        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', order: ['name']);
+        $accessPoints = $this->RadioUnits->AccessPoints->find('list', order: ['name']);
+        $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name']);
+        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', order: ['name']);
 
         if (isset($radioUnit->radio_unit_type_id)) {
             $antennaTypes->where(['OR' => [
@@ -174,10 +174,10 @@ class RadioUnitsController extends AppController
                 $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
             }
         }
-        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', ['order' => 'name']);
-        $accessPoints = $this->RadioUnits->AccessPoints->find('list', ['order' => 'name']);
-        $radioLinks = $this->RadioUnits->RadioLinks->find('list', ['order' => 'name']);
-        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', ['order' => 'name']);
+        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', order: ['name']);
+        $accessPoints = $this->RadioUnits->AccessPoints->find('list', order: ['name']);
+        $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name']);
+        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', order: ['name']);
 
         if (isset($radioUnit->radio_unit_type_id)) {
             $antennaTypes->where(['OR' => [

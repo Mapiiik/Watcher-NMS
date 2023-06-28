@@ -97,7 +97,7 @@ class RouterosDeviceIpsController extends AppController
             }
             $this->Flash->error(__('The RouterOS device IP could not be saved. Please, try again.'));
         }
-        $routerosDevices = $this->RouterosDeviceIps->RouterosDevices->find('list', ['order' => 'name']);
+        $routerosDevices = $this->RouterosDeviceIps->RouterosDevices->find('list', order: ['name']);
         $this->set(compact('routerosDeviceIp', 'routerosDevices'));
     }
 
@@ -122,7 +122,7 @@ class RouterosDeviceIpsController extends AppController
             }
             $this->Flash->error(__('The RouterOS device IP could not be saved. Please, try again.'));
         }
-        $routerosDevices = $this->RouterosDeviceIps->RouterosDevices->find('list', ['order' => 'name']);
+        $routerosDevices = $this->RouterosDeviceIps->RouterosDevices->find('list', order: ['name']);
         $this->set(compact('routerosDeviceIp', 'routerosDevices'));
     }
 

@@ -106,8 +106,8 @@ class PowerSuppliesController extends AppController
             }
             $this->Flash->error(__('The power supply could not be saved. Please, try again.'));
         }
-        $powerSupplyTypes = $this->PowerSupplies->PowerSupplyTypes->find('list', ['order' => 'name']);
-        $accessPoints = $this->PowerSupplies->AccessPoints->find('list', ['order' => 'name']);
+        $powerSupplyTypes = $this->PowerSupplies->PowerSupplyTypes->find('list', order: ['name']);
+        $accessPoints = $this->PowerSupplies->AccessPoints->find('list', order: ['name']);
         $this->set(compact('powerSupply', 'powerSupplyTypes', 'accessPoints'));
     }
 
@@ -137,8 +137,8 @@ class PowerSuppliesController extends AppController
             }
             $this->Flash->error(__('The power supply could not be saved. Please, try again.'));
         }
-        $powerSupplyTypes = $this->PowerSupplies->PowerSupplyTypes->find('list', ['order' => 'name']);
-        $accessPoints = $this->PowerSupplies->AccessPoints->find('list', ['order' => 'name']);
+        $powerSupplyTypes = $this->PowerSupplies->PowerSupplyTypes->find('list', order: ['name']);
+        $accessPoints = $this->PowerSupplies->AccessPoints->find('list', order: ['name']);
         $this->set(compact('powerSupply', 'powerSupplyTypes', 'accessPoints'));
     }
 

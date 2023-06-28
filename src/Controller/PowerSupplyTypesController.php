@@ -83,7 +83,7 @@ class PowerSupplyTypesController extends AppController
             }
             $this->Flash->error(__('The power supply type could not be saved. Please, try again.'));
         }
-        $manufacturers = $this->PowerSupplyTypes->Manufacturers->find('list', ['order' => 'name']);
+        $manufacturers = $this->PowerSupplyTypes->Manufacturers->find('list', order: ['name']);
         $this->set(compact('powerSupplyType', 'manufacturers'));
     }
 
@@ -106,7 +106,7 @@ class PowerSupplyTypesController extends AppController
             }
             $this->Flash->error(__('The power supply type could not be saved. Please, try again.'));
         }
-        $manufacturers = $this->PowerSupplyTypes->Manufacturers->find('list', ['order' => 'name']);
+        $manufacturers = $this->PowerSupplyTypes->Manufacturers->find('list', order: ['name']);
         $this->set(compact('powerSupplyType', 'manufacturers'));
     }
 

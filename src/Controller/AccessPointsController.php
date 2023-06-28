@@ -181,8 +181,8 @@ class AccessPointsController extends AppController
             }
             $this->Flash->error(__('The access point could not be saved. Please, try again.'));
         }
-        $accessPointTypes = $this->AccessPoints->AccessPointTypes->find('list', ['order' => 'name']);
-        $parentAccessPoints = $this->AccessPoints->ParentAccessPoints->find('list', ['order' => 'name']);
+        $accessPointTypes = $this->AccessPoints->AccessPointTypes->find('list', order: ['name']);
+        $parentAccessPoints = $this->AccessPoints->ParentAccessPoints->find('list', order: ['name']);
         $this->set(compact('accessPoint', 'accessPointTypes', 'parentAccessPoints'));
     }
 
@@ -205,9 +205,9 @@ class AccessPointsController extends AppController
             }
             $this->Flash->error(__('The access point could not be saved. Please, try again.'));
         }
-        $accessPointTypes = $this->AccessPoints->AccessPointTypes->find('list', ['order' => 'name']);
+        $accessPointTypes = $this->AccessPoints->AccessPointTypes->find('list', order: ['name']);
         $parentAccessPoints = $this->AccessPoints->ParentAccessPoints
-            ->find('list', ['order' => 'name'])
+            ->find('list', order: ['name'])
             ->where(['ParentAccessPoints.id !=' => $id]);
         $this->set(compact('accessPoint', 'accessPointTypes', 'parentAccessPoints'));
     }
@@ -369,8 +369,8 @@ class AccessPointsController extends AppController
             ]);
         }
 
-        $accessPointsFilter = $this->AccessPoints->find('list', order: 'name');
-        $routerosDevicesFilter = $this->AccessPoints->RouterosDevices->find('list', ['order' => 'name']);
+        $accessPointsFilter = $this->AccessPoints->find('list', order: ['name']);
+        $routerosDevicesFilter = $this->AccessPoints->RouterosDevices->find('list', order: ['name']);
 
         if ($mapOptions->getData('access_point_id') <> '') {
             $accessPointsQuery->where([
