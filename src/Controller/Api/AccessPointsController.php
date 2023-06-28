@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Api;
 
 use App\Controller\AppController;
+use Cake\View\JsonView;
 
 /**
  * AccessPoints Controller
@@ -14,13 +15,21 @@ use App\Controller\AppController;
 class AccessPointsController extends AppController
 {
     /**
+     * Returns supported output types
+     */
+    public function viewClasses(): array
+    {
+        return [JsonView::class];
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
-        $accessPoints = $this->AccessPoints->find('all');
+        $accessPoints = $this->AccessPoints->find('all')->all();
 
         $this->set('accessPoints', $accessPoints);
         $this->viewBuilder()->setOption('serialize', ['accessPoints']);

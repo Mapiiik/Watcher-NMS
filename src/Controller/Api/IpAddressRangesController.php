@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Api;
 
 use App\Controller\AppController;
+use Cake\View\JsonView;
 
 /**
  * IpAddressRanges Controller
@@ -13,6 +14,14 @@ use App\Controller\AppController;
  */
 class IpAddressRangesController extends AppController
 {
+    /**
+     * Returns supported output types
+     */
+    public function viewClasses(): array
+    {
+        return [JsonView::class];
+    }
+
     /**
      * Index method
      *
@@ -26,7 +35,7 @@ class IpAddressRangesController extends AppController
                 'AccessPoints',
                 'ParentIpAddressRanges',
             ]
-        );
+        )->all();
 
         $this->set(compact('ipAddressRanges'));
         $this->viewBuilder()->setOption('serialize', ['ipAddressRanges']);
@@ -105,7 +114,7 @@ class IpAddressRangesController extends AppController
             order: [
                 'masklen(IpAddressRanges.ip_network)' => 'DESC',
             ],
-        );
+        )->all();
 
         $this->set(compact('ipAddressRanges'));
         $this->viewBuilder()->setOption('serialize', ['ipAddressRanges']);

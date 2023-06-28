@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Api;
 
 use App\Controller\AppController;
+use Cake\View\JsonView;
 
 /**
  * RouterosDevices Controller
@@ -14,13 +15,21 @@ use App\Controller\AppController;
 class RouterosDevicesController extends AppController
 {
     /**
+     * Returns supported output types
+     */
+    public function viewClasses(): array
+    {
+        return [JsonView::class];
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
     {
-        $routerosDevices = $this->RouterosDevices->find('all');
+        $routerosDevices = $this->RouterosDevices->find('all')->all();
 
         $this->set('routerosDevices', $routerosDevices);
         $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
@@ -33,7 +42,7 @@ class RouterosDevicesController extends AppController
      */
     public function search()
     {
-        $routerosDevices = $this->RouterosDevices->find(
+        $routerosDevicesQuery = $this->RouterosDevices->find(
             'all',
             contain: [
                 'AccessPoints',
@@ -48,10 +57,12 @@ class RouterosDevicesController extends AppController
         );
 
         if ($this->getRequest()->is(['get']) && ($this->getRequest()->getQuery('ip_address')) !== null) {
-            $routerosDevices->where([
+            $routerosDevicesQuery->where([
                 'ip_address' => $this->getRequest()->getQuery('ip_address'),
             ]);
         }
+
+        $routerosDevices = $routerosDevicesQuery->all();
 
         $this->set('routerosDevices', $routerosDevices);
         $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
