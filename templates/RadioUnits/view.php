@@ -101,34 +101,41 @@
                         </tr>
                         <tr>
                             <th><?= __('Channel Width') ?></th>
-                            <td><?= $this->Number->format($radioUnit->channel_width) ?></td>
+                            <td><?= $radioUnit->channel_width === null ?
+                                '' : $this->Number->format($radioUnit->channel_width) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Tx Frequency') ?></th>
-                            <td><?= $this->Number->format($radioUnit->tx_frequency) ?></td>
+                            <td><?= $radioUnit->tx_frequency === null ?
+                                '' : $this->Number->format($radioUnit->tx_frequency) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Rx Frequency') ?></th>
-                            <td><?= $this->Number->format($radioUnit->rx_frequency) ?></td>
+                            <td><?= $radioUnit->rx_frequency === null ?
+                                '' : $this->Number->format($radioUnit->rx_frequency) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Tx Power') ?></th>
-                            <td><?= $this->Number->format($radioUnit->tx_power) ?></td>
+                            <td><?= $radioUnit->tx_power === null ?
+                                '' : $this->Number->format($radioUnit->tx_power) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Rx Signal') ?></th>
-                            <td><?= $this->Number->format($radioUnit->rx_signal) ?></td>
+                            <td><?= $radioUnit->rx_signal === null ?
+                                '' : $this->Number->format($radioUnit->rx_signal) ?></td>
                         </tr>
                         <tr>
                             <td colspan="2"></td>
                         </tr>
                         <tr>
                             <th><?= __('Operating Speed') ?></th>
-                            <td><?= $this->Number->format($radioUnit->operating_speed) ?></td>
+                            <td><?= $radioUnit->operating_speed === null ?
+                                '' : $this->Number->format($radioUnit->operating_speed) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Maximal Speed') ?></th>
-                            <td><?= $this->Number->format($radioUnit->maximal_speed) ?></td>
+                            <td><?= $radioUnit->maximal_speed === null ?
+                                '' : $this->Number->format($radioUnit->maximal_speed) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Acm') ?></th>
