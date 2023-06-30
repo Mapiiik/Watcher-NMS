@@ -62,7 +62,8 @@
                         </tr>
                         <tr>
                             <th><?= __('Interface Index') ?></th>
-                            <td><?= $this->Number->format($routerosDeviceIp->interface_index) ?></td>
+                            <td><?= $routerosDeviceIp->interface_index === null ?
+                                '' : $this->Number->format($routerosDeviceIp->interface_index) ?></td>
                         </tr>
                     </table>
                 </div>

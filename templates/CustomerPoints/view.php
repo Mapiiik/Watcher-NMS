@@ -37,11 +37,13 @@
                         </tr>
                         <tr>
                             <th><?= __('Gps Y') ?></th>
-                            <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
+                            <td><?= $customerPoint->gps_y === null ?
+                                '' : $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Gps X') ?></th>
-                            <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
+                            <td><?= $customerPoint->gps_x === null ?
+                                '' : $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Maps') ?></th>

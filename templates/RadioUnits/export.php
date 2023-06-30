@@ -92,13 +92,20 @@ $this->setLayout('clean');
                         ) : '' ?>
                     </td>
                     <td><?= h($radioUnit->polarization) ?></td>
-                    <td><?= $this->Number->format($radioUnit->channel_width) ?></td>
-                    <td><?= $this->Number->format($radioUnit->tx_frequency) ?></td>
-                    <td><?= $this->Number->format($radioUnit->rx_frequency) ?></td>
-                    <td><?= $this->Number->format($radioUnit->tx_power) ?></td>
-                    <td><?= $this->Number->format($radioUnit->rx_signal) ?></td>
-                    <td><?= $this->Number->format($radioUnit->operating_speed) ?></td>
-                    <td><?= $this->Number->format($radioUnit->maximal_speed) ?></td>
+                    <td><?= $radioUnit->channel_width === null ?
+                        '' : $this->Number->format($radioUnit->channel_width) ?></td>
+                    <td><?= $radioUnit->tx_frequency === null ?
+                        '' : $this->Number->format($radioUnit->tx_frequency) ?></td>
+                    <td><?= $radioUnit->rx_frequency === null ?
+                        '' : $this->Number->format($radioUnit->rx_frequency) ?></td>
+                    <td><?= $radioUnit->tx_power === null ?
+                        '' : $this->Number->format($radioUnit->tx_power) ?></td>
+                    <td><?= $radioUnit->rx_signal === null ?
+                        '' : $this->Number->format($radioUnit->rx_signal) ?></td>
+                    <td><?= $radioUnit->operating_speed === null ?
+                        '' : $this->Number->format($radioUnit->operating_speed) ?></td>
+                    <td><?= $radioUnit->maximal_speed === null ?
+                        '' : $this->Number->format($radioUnit->maximal_speed) ?></td>
                     <td><?= h($radioUnit->acm) ?></td>
                     <td><?= h($radioUnit->atpc) ?></td>
                     <td><?= h($radioUnit->firmware_version) ?></td>

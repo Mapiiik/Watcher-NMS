@@ -62,11 +62,13 @@
                         </tr>
                         <tr>
                             <th><?= __('Voltage') ?></th>
-                            <td><?= $this->Number->format($powerSupplyType->voltage) ?></td>
+                            <td><?= $powerSupplyType->voltage === null ?
+                                '' : $this->Number->format($powerSupplyType->voltage) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Current') ?></th>
-                            <td><?= $this->Number->format($powerSupplyType->current) ?></td>
+                            <td><?= $powerSupplyType->current === null ?
+                                '' : $this->Number->format($powerSupplyType->current) ?></td>
                         </tr>
                     </table>
                 </div>

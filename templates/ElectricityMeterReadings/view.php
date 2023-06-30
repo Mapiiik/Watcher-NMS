@@ -62,10 +62,11 @@
                         </tr>
                         <tr>
                             <th><?= __('Reading Value') ?></th>
-                            <td><?= $this->Number->format(
-                                $electricityMeterReading->reading_value,
-                                ['after' => ' kWh']
-                            ) ?></td>
+                            <td><?= $electricityMeterReading->reading_value === null ?
+                                '' : $this->Number->format(
+                                    $electricityMeterReading->reading_value,
+                                    ['after' => ' kWh']
+                                ) ?></td>
                         </tr>
                     </table>
                 </div>

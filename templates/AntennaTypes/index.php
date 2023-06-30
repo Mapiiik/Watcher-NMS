@@ -47,7 +47,8 @@
                             ['controller' => 'Manufacturers', 'action' => 'view', $antennaType->manufacturer->id]
                         ) : '' ?>
                     </td>
-                    <td><?= $this->Number->format($antennaType->antenna_gain) ?></td>
+                    <td><?= $antennaType->antenna_gain === null ?
+                        '' : $this->Number->format($antennaType->antenna_gain) ?></td>
                     <td><?= h($antennaType->part_number) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(

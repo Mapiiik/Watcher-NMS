@@ -79,14 +79,22 @@
                     <td><?= h($routerosDeviceInterface->ssid) ?></td>
                     <td><?= h($routerosDeviceInterface->bssid) ?></td>
                     <td><?= h($routerosDeviceInterface->band) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceInterface->frequency) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceInterface->noise_floor) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceInterface->client_count) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceInterface->overall_tx_ccq) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceInterface->interface_index) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceInterface->interface_type) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceInterface->interface_admin_status) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceInterface->interface_oper_status) ?></td>
+                    <td><?= $routerosDeviceInterface->frequency === null ?
+                        '' : $this->Number->format($routerosDeviceInterface->frequency) ?></td>
+                    <td><?= $routerosDeviceInterface->noise_floor === null ?
+                        '' : $this->Number->format($routerosDeviceInterface->noise_floor) ?></td>
+                    <td><?= $routerosDeviceInterface->client_count === null ?
+                        '' : $this->Number->format($routerosDeviceInterface->client_count) ?></td>
+                    <td><?= $routerosDeviceInterface->overall_tx_ccq === null ?
+                        '' : $this->Number->format($routerosDeviceInterface->overall_tx_ccq) ?></td>
+                    <td><?= $routerosDeviceInterface->interface_index === null ?
+                        '' : $this->Number->format($routerosDeviceInterface->interface_index) ?></td>
+                    <td><?= $routerosDeviceInterface->interface_type === null ?
+                        '' : $this->Number->format($routerosDeviceInterface->interface_type) ?></td>
+                    <td><?= $routerosDeviceInterface->interface_admin_status === null ?
+                        '' : $this->Number->format($routerosDeviceInterface->interface_admin_status) ?></td>
+                    <td><?= $routerosDeviceInterface->interface_oper_status === null ?
+                        '' : $this->Number->format($routerosDeviceInterface->interface_oper_status) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
                             __('View'),

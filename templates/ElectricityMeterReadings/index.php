@@ -49,7 +49,8 @@
                         ) : '' ?>
                     </td>
                     <td><?= h($electricityMeterReading->reading_date) ?></td>
-                    <td><?= $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
+                    <td><?= $electricityMeterReading->reading_value === null ?
+                        '' : $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
                             __('View'),

@@ -66,7 +66,8 @@
                         </tr>
                         <tr>
                             <th><?= __('Antenna Gain') ?></th>
-                            <td><?= $this->Number->format($antennaType->antenna_gain) ?></td>
+                            <td><?= $antennaType->antenna_gain === null ?
+                                '' : $this->Number->format($antennaType->antenna_gain) ?></td>
                         </tr>
                     </table>
                 </div>

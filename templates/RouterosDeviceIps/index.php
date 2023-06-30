@@ -64,7 +64,8 @@
                         ) : '' ?>
                     </td>
                     <td><?= h($routerosDeviceIp->ip_address) ?></td>
-                    <td><?= $this->Number->format($routerosDeviceIp->interface_index) ?></td>
+                    <td><?= $routerosDeviceIp->interface_index === null ?
+                        '' : $this->Number->format($routerosDeviceIp->interface_index) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
                             __('View'),

@@ -74,15 +74,18 @@
                         </tr>
                         <tr>
                             <th><?= __('Battery Count') ?></th>
-                            <td><?= $this->Number->format($powerSupply->battery_count) ?></td>
+                            <td><?= $powerSupply->battery_count === null ?
+                                '' : $this->Number->format($powerSupply->battery_count) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Battery Voltage') ?></th>
-                            <td><?= $this->Number->format($powerSupply->battery_voltage) ?></td>
+                            <td><?= $powerSupply->battery_voltage === null ?
+                                '' : $this->Number->format($powerSupply->battery_voltage) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Battery Capacity') ?></th>
-                            <td><?= $this->Number->format($powerSupply->battery_capacity) ?></td>
+                            <td><?= $powerSupply->battery_capacity === null ?
+                                '' : $this->Number->format($powerSupply->battery_capacity) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Battery Replacement') ?></th>

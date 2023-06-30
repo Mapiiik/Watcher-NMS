@@ -34,8 +34,10 @@
                 <?php foreach ($customerPoints as $customerPoint) : ?>
                 <tr>
                     <td><?= h($customerPoint->name) ?></td>
-                    <td><?= $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
-                    <td><?= $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
+                    <td><?= $customerPoint->gps_y === null ?
+                        '' : $this->Number->format($customerPoint->gps_y, ['precision' => 15]) ?></td>
+                    <td><?= $customerPoint->gps_x === null ?
+                        '' : $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
                             __('Google Maps'),

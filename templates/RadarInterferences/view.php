@@ -57,7 +57,8 @@
                         </tr>
                         <tr>
                             <th><?= __('Signal') ?></th>
-                            <td><?= $this->Number->format($radarInterference->signal) ?></td>
+                            <td><?= $radarInterference->signal === null ?
+                                '' : $this->Number->format($radarInterference->signal) ?></td>
                         </tr>
                     </table>
                 </div>

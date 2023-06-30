@@ -125,8 +125,10 @@
                                     ]
                                 ) : '' ?></td>
                             <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
-                            <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
-                            <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
+                            <td><?= $accessPoint->gps_y === null ?
+                                '' : $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
+                            <td><?= $accessPoint->gps_x === null ?
+                                '' : $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(
                                     __('Google Maps'),

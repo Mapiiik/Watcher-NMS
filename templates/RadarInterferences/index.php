@@ -51,7 +51,8 @@
                     <td><?= h($radarInterference->name) ?></td>
                     <td><?= h($radarInterference->mac_address) ?></td>
                     <td><?= h($radarInterference->ssid) ?></td>
-                    <td><?= $this->Number->format($radarInterference->signal) ?></td>
+                    <td><?= $radarInterference->signal === null ?
+                        '' : $this->Number->format($radarInterference->signal) ?></td>
                     <td><?= h($radarInterference->radio_name) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(

@@ -57,9 +57,12 @@
                         ) : '' ?>
                     </td>
                     <td><?= h($powerSupply->serial_number) ?></td>
-                    <td><?= $this->Number->format($powerSupply->battery_count) ?></td>
-                    <td><?= $this->Number->format($powerSupply->battery_voltage) ?></td>
-                    <td><?= $this->Number->format($powerSupply->battery_capacity) ?></td>
+                    <td><?= $powerSupply->battery_count === null ?
+                        '' : $this->Number->format($powerSupply->battery_count) ?></td>
+                    <td><?= $powerSupply->battery_voltage === null ?
+                        '' : $this->Number->format($powerSupply->battery_voltage) ?></td>
+                    <td><?= $powerSupply->battery_capacity === null ?
+                        '' : $this->Number->format($powerSupply->battery_capacity) ?></td>
                     <td><?= h($powerSupply->battery_replacement) ?></td>
                     <td><?= h($powerSupply->battery_duration) ?></td>
                     <td><?= $this->Text->autoParagraph(h($powerSupply->note)); ?></td>

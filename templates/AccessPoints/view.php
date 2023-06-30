@@ -72,11 +72,13 @@
                         </tr>
                         <tr>
                             <th><?= __('Gps Y') ?></th>
-                            <td><?= $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
+                            <td><?= $accessPoint->gps_y === null ?
+                                '' : $this->Number->format($accessPoint->gps_y, ['precision' => 15]) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Gps X') ?></th>
-                            <td><?= $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
+                            <td><?= $accessPoint->gps_x === null ?
+                                '' : $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Maps') ?></th>
@@ -257,9 +259,10 @@
                         <tr>
                             <td><?= h($electricityMeterReadings->name) ?></td>
                             <td><?= h($electricityMeterReadings->reading_date) ?></td>
-                            <td><?= $this->Number->format($electricityMeterReadings->reading_value, [
-                                'after' => ' kWh',
-                            ]) ?></td>
+                            <td><?= $electricityMeterReadings->reading_value === null ?
+                                '' : $this->Number->format($electricityMeterReadings->reading_value, [
+                                    'after' => ' kWh',
+                                ]) ?></td>
                             <td><?= $electricityMeterReadings['daily_consumption'] ?
                                 $this->Number->format($electricityMeterReadings['daily_consumption'], [
                                     'after' => ' kWh',

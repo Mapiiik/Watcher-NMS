@@ -45,8 +45,10 @@
                             ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]
                         ) : '' ?>
                     </td>
-                    <td><?= $this->Number->format($powerSupplyType->voltage) ?></td>
-                    <td><?= $this->Number->format($powerSupplyType->current) ?></td>
+                    <td><?= $powerSupplyType->voltage === null ?
+                        '' : $this->Number->format($powerSupplyType->voltage) ?></td>
+                    <td><?= $powerSupplyType->current === null ?
+                        '' : $this->Number->format($powerSupplyType->current) ?></td>
                     <td><?= h($powerSupplyType->part_number) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
