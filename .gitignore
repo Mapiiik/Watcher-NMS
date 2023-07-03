@@ -27,6 +27,7 @@ docker-compose.yml
 compose.yaml
 # PHPUnit
 .phpunit.cache
+.phpunit.result.cache
 tests.sqlite
 # vim
 *~
