@@ -38,9 +38,13 @@ class RadioLinksController extends AppController
             $radioLinksQuery->matching(
                 'RadioUnits.RadioUnitTypes',
                 function ($q) use ($radio_unit_band_id) {
-                    return $q->where([
-                        'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
-                    ]);
+                    return $q
+                        ->where([
+                            'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
+                        ])
+                        ->groupBy([
+                            'RadioLinks.id',
+                        ]);
                 }
             );
         }
