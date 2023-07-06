@@ -35,18 +35,18 @@ class RadioLinksController extends AppController
         // filter
         $radio_unit_band_id = $this->getRequest()->getQuery('radio_unit_band_id');
         if (!empty($radio_unit_band_id)) {
-            $radioLinksQuery->matching(
-                'RadioUnits.RadioUnitTypes',
-                function ($q) use ($radio_unit_band_id) {
-                    return $q
-                        ->where([
+            $radioLinksQuery
+                ->innerJoinWith(
+                    'RadioUnits.RadioUnitTypes',
+                    function ($q) use ($radio_unit_band_id) {
+                        return $q->where([
                             'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
-                        ])
-                        ->groupBy([
-                            'RadioLinks.id',
                         ]);
-                }
-            );
+                    }
+                )
+                ->groupBy([
+                    'RadioLinks.id',
+                ]);
         }
 
         // search
