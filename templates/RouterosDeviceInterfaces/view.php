@@ -82,22 +82,22 @@
                         <tr>
                             <th><?= __('Frequency') ?></th>
                             <td><?= $routerosDeviceInterface->frequency === null ?
-                                '' : $this->Number->format($routerosDeviceInterface->frequency) ?></td>
+                                '' : $this->Number->format($routerosDeviceInterface->frequency); ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Noise Floor') ?></th>
                             <td><?= $routerosDeviceInterface->noise_floor === null ?
-                                '' : $this->Number->format($routerosDeviceInterface->noise_floor) ?></td>
+                                '' : $this->Number->format($routerosDeviceInterface->noise_floor); ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Client Count') ?></th>
                             <td><?= $routerosDeviceInterface->client_count === null ?
-                                '' : $this->Number->format($routerosDeviceInterface->client_count) ?></td>
+                                '' : $this->Number->format($routerosDeviceInterface->client_count); ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Overall Tx Ccq') ?></th>
                             <td><?= $routerosDeviceInterface->overall_tx_ccq === null ?
-                                '' : $this->Number->format($routerosDeviceInterface->overall_tx_ccq) ?></td>
+                                '' : $this->Number->format($routerosDeviceInterface->overall_tx_ccq); ?></td>
                         </tr>
                     </table>
                 </div>
@@ -106,22 +106,22 @@
                         <tr>
                             <th><?= __('Interface Index') ?></th>
                             <td><?= $routerosDeviceInterface->interface_index === null ?
-                                '' : $this->Number->format($routerosDeviceInterface->interface_index) ?></td>
+                                '' : $this->Number->format($routerosDeviceInterface->interface_index); ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Interface Type') ?></th>
                             <td><?= $routerosDeviceInterface->interface_type === null ?
-                                '' : $this->Number->format($routerosDeviceInterface->interface_type) ?></td>
+                                '' : $this->Number->format($routerosDeviceInterface->interface_type); ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Interface Admin Status') ?></th>
                             <td><?= $routerosDeviceInterface->interface_admin_status === null ?
-                                '' : $this->Number->format($routerosDeviceInterface->interface_admin_status) ?></td>
+                                '' : $this->Number->format($routerosDeviceInterface->interface_admin_status); ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Interface Oper Status') ?></th>
                             <td><?= $routerosDeviceInterface->interface_oper_status === null ?
-                                '' : $this->Number->format($routerosDeviceInterface->interface_oper_status) ?></td>
+                                '' : $this->Number->format($routerosDeviceInterface->interface_oper_status); ?></td>
                         </tr>
                     </table>
                     <table>
