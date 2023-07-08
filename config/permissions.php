@@ -9,11 +9,10 @@
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+use Cake\Http\ServerRequest;
+use Cake\Utility\Hash;
+
 /*
- * IMPORTANT:
- * This is an example configuration file. Copy this file into your config directory and edit to
- * setup your app permissions.
- *
  * This is a quick roles-permissions implementation
  * Rules are evaluated top-down, first matching rule will apply
  * Each line define
@@ -49,7 +48,10 @@
     ],
  */
 
-return [
+/*
+ * Default permissions
+ */
+$permissions = [
     'CakeDC/Auth.permissions' => [
         //RouterOS devices access to configuration script
         [
@@ -128,8 +130,8 @@ return [
             'plugin' => null,
             'controller' => 'AppUsers',
             'action' => 'resetOneTimePasswordAuthenticator',
-            'allowed' => function (array $user, $role, \Cake\Http\ServerRequest $request) {
-                $userId = \Cake\Utility\Hash::get($request->getAttribute('params'), 'pass.0');
+            'allowed' => function (array $user, $role, ServerRequest $request) {
+                $userId = Hash::get($request->getAttribute('params'), 'pass.0');
                 if (!empty($userId) && !empty($user)) {
                     return $userId === $user['id'];
                 }
@@ -290,3 +292,17 @@ return [
         ],
     ],
 ];
+
+/*
+ * Load local permissions if exists
+ */
+$localPermissionsFile = CONFIG . 'permissions_local.php';
+if (file_exists($localPermissionsFile)) {
+    $localPermissions = include $localPermissionsFile;
+    if (is_array($localPermissions)) {
+        // merge permissions - local first in order
+        $permissions = array_merge_recursive($localPermissions, $permissions);
+    }
+}
+
+return $permissions;
