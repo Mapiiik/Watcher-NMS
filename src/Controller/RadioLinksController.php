@@ -55,6 +55,7 @@ class RadioLinksController extends AppController
             $radioLinksQuery->where([
                 'OR' => [
                     'RadioLinks.name ILIKE' => '%' . trim($search) . '%',
+                    'RadioLinks.authorization_number ILIKE' => '%' . trim($search) . '%',
                 ],
             ]);
         }

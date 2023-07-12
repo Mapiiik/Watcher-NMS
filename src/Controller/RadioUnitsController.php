@@ -43,6 +43,7 @@ class RadioUnitsController extends AppController
                     'RadioUnits.name ILIKE' => '%' . trim($search) . '%',
                     'RadioUnits.serial_number ILIKE' => '%' . trim($search) . '%',
                     'RadioUnits.station_address ILIKE' => '%' . trim($search) . '%',
+                    'RadioUnits.authorization_number ILIKE' => '%' . trim($search) . '%',
                     'RadioUnitTypes.name ILIKE' => '%' . trim($search) . '%',
                     'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
                     'RadioLinks.name ILIKE' => '%' . trim($search) . '%',
