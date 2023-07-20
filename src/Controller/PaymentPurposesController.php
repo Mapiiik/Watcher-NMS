@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * PaymentPurposes Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class PaymentPurposesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -120,6 +124,7 @@ class PaymentPurposesController extends AppController
         if ($this->PaymentPurposes->delete($paymentPurpose)) {
             $this->Flash->success(__('The payment purpose has been deleted.'));
         } else {
+            $this->flashValidationErrors($paymentPurpose->getErrors());
             $this->Flash->error(__('The payment purpose could not be deleted. Please, try again.'));
         }
 

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * RadioLinks Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class RadioLinksController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -146,6 +150,7 @@ class RadioLinksController extends AppController
         if ($this->RadioLinks->delete($radioLink)) {
             $this->Flash->success(__('The radio link has been deleted.'));
         } else {
+            $this->flashValidationErrors($radioLink->getErrors());
             $this->Flash->error(__('The radio link could not be deleted. Please, try again.'));
         }
 

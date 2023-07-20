@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
 use App\Model\Entity\RouterosDevice;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
@@ -18,6 +19,8 @@ use SNMPException;
  */
 class RouterosDevicesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * SNMP instance
      *
@@ -254,6 +257,7 @@ class RouterosDevicesController extends AppController
         if ($this->RouterosDevices->delete($routerosDevice)) {
             $this->Flash->success(__('The RouterOS device has been deleted.'));
         } else {
+            $this->flashValidationErrors($routerosDevice->getErrors());
             $this->Flash->error(__('The RouterOS device could not be deleted. Please, try again.'));
         }
 

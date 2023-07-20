@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * ElectricityMeterReadings Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class ElectricityMeterReadingsController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -156,6 +160,7 @@ class ElectricityMeterReadingsController extends AppController
         if ($this->ElectricityMeterReadings->delete($electricityMeterReading)) {
             $this->Flash->success(__('The electricity meter reading has been deleted.'));
         } else {
+            $this->flashValidationErrors($electricityMeterReading->getErrors());
             $this->Flash->error(__('The electricity meter reading could not be deleted. Please, try again.'));
         }
 

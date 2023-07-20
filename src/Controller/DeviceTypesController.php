@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * DeviceTypes Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class DeviceTypesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -117,6 +121,7 @@ class DeviceTypesController extends AppController
         if ($this->DeviceTypes->delete($deviceType)) {
             $this->Flash->success(__('The device type has been deleted.'));
         } else {
+            $this->flashValidationErrors($deviceType->getErrors());
             $this->Flash->error(__('The device type could not be deleted. Please, try again.'));
         }
 

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * AntennaTypes Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class AntennaTypesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -132,6 +136,7 @@ class AntennaTypesController extends AppController
         if ($this->AntennaTypes->delete($antennaType)) {
             $this->Flash->success(__('The antenna type has been deleted.'));
         } else {
+            $this->flashValidationErrors($antennaType->getErrors());
             $this->Flash->error(__('The antenna type could not be deleted. Please, try again.'));
         }
 

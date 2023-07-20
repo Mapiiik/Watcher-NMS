@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * CustomerConnectionIps Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class CustomerConnectionIpsController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -129,6 +133,7 @@ class CustomerConnectionIpsController extends AppController
         if ($this->CustomerConnectionIps->delete($customerConnectionIp)) {
             $this->Flash->success(__('The customer connection IP has been deleted.'));
         } else {
+            $this->flashValidationErrors($customerConnectionIp->getErrors());
             $this->Flash->error(__('The customer connection IP could not be deleted. Please, try again.'));
         }
 

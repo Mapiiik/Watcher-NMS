@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * LandlordPayments Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class LandlordPaymentsController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -150,6 +154,7 @@ class LandlordPaymentsController extends AppController
         if ($this->LandlordPayments->delete($landlordPayment)) {
             $this->Flash->success(__('The landlord payment has been deleted.'));
         } else {
+            $this->flashValidationErrors($landlordPayment->getErrors());
             $this->Flash->error(__('The landlord payment could not be deleted. Please, try again.'));
         }
 

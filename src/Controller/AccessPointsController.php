@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
 use App\Form\MapOptionsForm;
 use Cake\I18n\DateTime;
 use Cake\View\Helper\HtmlHelper;
@@ -17,6 +18,8 @@ use Cake\View\View;
  */
 class AccessPointsController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -226,6 +229,7 @@ class AccessPointsController extends AppController
         if ($this->AccessPoints->delete($accessPoint)) {
             $this->Flash->success(__('The access point has been deleted.'));
         } else {
+            $this->flashValidationErrors($accessPoint->getErrors());
             $this->Flash->error(__('The access point could not be deleted. Please, try again.'));
         }
 

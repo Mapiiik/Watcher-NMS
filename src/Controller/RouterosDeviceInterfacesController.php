@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
 use Cake\I18n\DateTime;
 
 /**
@@ -13,6 +14,8 @@ use Cake\I18n\DateTime;
  */
 class RouterosDeviceInterfacesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -145,6 +148,7 @@ class RouterosDeviceInterfacesController extends AppController
         if ($this->RouterosDeviceInterfaces->delete($routerosDeviceInterface)) {
             $this->Flash->success(__('The RouterOS device interface has been deleted.'));
         } else {
+            $this->flashValidationErrors($routerosDeviceInterface->getErrors());
             $this->Flash->error(__('The RouterOS device interface could not be deleted. Please, try again.'));
         }
 

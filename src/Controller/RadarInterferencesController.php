@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Application;
+use App\Controller\Traits\ErrorFormatterTrait;
 use Cake\Console\CommandRunner;
 
 /**
@@ -14,6 +15,8 @@ use Cake\Console\CommandRunner;
  */
 class RadarInterferencesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -127,6 +130,7 @@ class RadarInterferencesController extends AppController
         if ($this->RadarInterferences->delete($radarInterference)) {
             $this->Flash->success(__('The radar interference has been deleted.'));
         } else {
+            $this->flashValidationErrors($radarInterference->getErrors());
             $this->Flash->error(__('The radar interference could not be deleted. Please, try again.'));
         }
 

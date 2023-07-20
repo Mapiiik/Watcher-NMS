@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * PowerSupplies Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class PowerSuppliesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -158,6 +162,7 @@ class PowerSuppliesController extends AppController
         if ($this->PowerSupplies->delete($powerSupply)) {
             $this->Flash->success(__('The power supply has been deleted.'));
         } else {
+            $this->flashValidationErrors($powerSupply->getErrors());
             $this->Flash->error(__('The power supply could not be deleted. Please, try again.'));
         }
 

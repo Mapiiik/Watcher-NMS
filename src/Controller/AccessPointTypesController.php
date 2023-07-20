@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * AccessPointTypes Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class AccessPointTypesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -118,6 +122,7 @@ class AccessPointTypesController extends AppController
         if ($this->AccessPointTypes->delete($accessPointType)) {
             $this->Flash->success(__('The access point type has been deleted.'));
         } else {
+            $this->flashValidationErrors($accessPointType->getErrors());
             $this->Flash->error(__('The access point type could not be deleted. Please, try again.'));
         }
 

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * AccessPointContacts Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class AccessPointContactsController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -160,6 +164,7 @@ class AccessPointContactsController extends AppController
         if ($this->AccessPointContacts->delete($accessPointContact)) {
             $this->Flash->success(__('The access point contact has been deleted.'));
         } else {
+            $this->flashValidationErrors($accessPointContact->getErrors());
             $this->Flash->error(__('The access point contact could not be deleted. Please, try again.'));
         }
 

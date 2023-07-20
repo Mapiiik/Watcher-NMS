@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * Manufacturers Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class ManufacturersController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -119,6 +123,7 @@ class ManufacturersController extends AppController
         if ($this->Manufacturers->delete($manufacturer)) {
             $this->Flash->success(__('The manufacturer has been deleted.'));
         } else {
+            $this->flashValidationErrors($manufacturer->getErrors());
             $this->Flash->error(__('The manufacturer could not be deleted. Please, try again.'));
         }
 

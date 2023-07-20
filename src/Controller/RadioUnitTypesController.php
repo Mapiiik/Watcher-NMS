@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * RadioUnitTypes Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class RadioUnitTypesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -132,6 +136,7 @@ class RadioUnitTypesController extends AppController
         if ($this->RadioUnitTypes->delete($radioUnitType)) {
             $this->Flash->success(__('The radio unit type has been deleted.'));
         } else {
+            $this->flashValidationErrors($radioUnitType->getErrors());
             $this->Flash->error(__('The radio unit type could not be deleted. Please, try again.'));
         }
 

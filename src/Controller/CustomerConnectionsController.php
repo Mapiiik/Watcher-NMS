@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * CustomerConnections Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class CustomerConnectionsController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -139,6 +143,7 @@ class CustomerConnectionsController extends AppController
         if ($this->CustomerConnections->delete($customerConnection)) {
             $this->Flash->success(__('The customer connection has been deleted.'));
         } else {
+            $this->flashValidationErrors($customerConnection->getErrors());
             $this->Flash->error(__('The customer connection could not be deleted. Please, try again.'));
         }
 

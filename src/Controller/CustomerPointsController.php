@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * CustomerPoints Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class CustomerPointsController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -117,6 +121,7 @@ class CustomerPointsController extends AppController
         if ($this->CustomerPoints->delete($customerPoint)) {
             $this->Flash->success(__('The customer point has been deleted.'));
         } else {
+            $this->flashValidationErrors($customerPoint->getErrors());
             $this->Flash->error(__('The customer point could not be deleted. Please, try again.'));
         }
 

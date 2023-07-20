@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\ErrorFormatterTrait;
+
 /**
  * IpAddressRanges Controller
  *
@@ -11,6 +13,8 @@ namespace App\Controller;
  */
 class IpAddressRangesController extends AppController
 {
+    use ErrorFormatterTrait;
+
     /**
      * Index method
      *
@@ -157,6 +161,7 @@ class IpAddressRangesController extends AppController
         if ($this->IpAddressRanges->delete($ipAddressRange)) {
             $this->Flash->success(__('The IP address range has been deleted.'));
         } else {
+            $this->flashValidationErrors($ipAddressRange->getErrors());
             $this->Flash->error(__('The IP address range could not be deleted. Please, try again.'));
         }
 
