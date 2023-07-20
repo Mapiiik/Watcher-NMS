@@ -1,9 +1,8 @@
 <?php
 /**
- * @var \App\View\AppView $this
+ * @var \Cake\View\View $this
  * @var string $title
  * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\AccessPoint> $accessPoints
- * @psalm-scope-this \App\View\AppView
  */
 use App\Model\Entity\ElectricityMeterReading;
 
