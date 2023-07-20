@@ -4,8 +4,7 @@ parameters:
     checkGenericClassInNonGenericObjectType: false
     treatPhpDocTypesAsCertain: false
     bootstrapFiles:
-        - config/paths.php
-        - vendor/cakephp/cakephp/src/functions.php
+        - config/bootstrap.php
     paths:
         - src/
         - templates/

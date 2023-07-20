@@ -12,6 +12,7 @@
  * @since     0.10.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
+ * @psalm-scope-this \App\View\AppView
  */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;

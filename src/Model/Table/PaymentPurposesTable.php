@@ -8,7 +8,7 @@ use Cake\Validation\Validator;
 /**
  * PaymentPurposes Model
  *
- * @property \App\Model\Table\LandlordPaymentsTable&\Cake\ORM\Association\HasMany $landlordPayments
+ * @property \App\Model\Table\LandlordPaymentsTable&\Cake\ORM\Association\HasMany $LandlordPayments
  * @method \App\Model\Entity\PaymentPurpose newEmptyEntity()
  * @method \App\Model\Entity\PaymentPurpose newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\PaymentPurpose[] newEntities(array $data, array $options = [])

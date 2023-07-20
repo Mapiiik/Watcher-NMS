@@ -4,11 +4,11 @@
  * @var \Cake\Database\StatementInterface $error
  * @var string $message
  * @var string $url
+ * @psalm-scope-this \App\View\AppView
  */
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
-/** @psalm-scope-this App\View\AppView */
 $this->setLayout('error');
 
 if (Configure::read('debug')) :
