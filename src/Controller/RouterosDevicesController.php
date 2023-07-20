@@ -347,9 +347,7 @@ class RouterosDevicesController extends AppController
     {
         $this->snmp = new SNMP(SNMP::VERSION_2C, $host, $community);
         $this->snmp->valueretrieval = SNMP_VALUE_OBJECT | SNMP_VALUE_PLAIN;
-        /** @psalm-suppress UndefinedPropertyAssignment */
         $this->snmp->oid_output_format = SNMP_OID_OUTPUT_NUMERIC;
-        /** @psalm-suppress UndefinedPropertyAssignment */
         $this->snmp->exceptions_enabled = SNMP::ERRNO_ANY;
     }
 

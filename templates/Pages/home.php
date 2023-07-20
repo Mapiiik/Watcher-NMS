@@ -11,8 +11,6 @@
  * @link      https://cakephp.org CakePHP(tm) Project
  * @since     0.10.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
- * @var \App\View\AppView $this
- * @psalm-scope-this \App\View\AppView
  */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
@@ -20,6 +18,11 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
+
+/**
+ * @var \App\View\AppView $this
+ * @psalm-scope-this \App\View\AppView
+ */
 
 $this->disableAutoLayout();
 
