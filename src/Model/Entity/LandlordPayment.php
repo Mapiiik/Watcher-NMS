@@ -25,6 +25,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\PaymentPurpose $payment_purpose
  *
  * @property string $name_for_lists
+ * @property string $name
  */
 class LandlordPayment extends Entity
 {
@@ -61,5 +62,26 @@ class LandlordPayment extends Entity
     protected function _getNameForLists(): string
     {
         return strval($this->id);
+    }
+
+    /**
+     * getter for name
+     *
+     * @return string
+     */
+    protected function _getName(): string
+    {
+        $name = '';
+        if (isset($this->access_point->name)) {
+            $name .= $this->access_point->name;
+        }
+        if (isset($this->payment_purpose->name)) {
+            if ($name <> '') {
+                $name .= ' - ';
+            }
+            $name .= $this->payment_purpose->name;
+        }
+
+        return $name;
     }
 }

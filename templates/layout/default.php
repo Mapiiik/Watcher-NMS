@@ -20,6 +20,25 @@ use Cake\Core\Configure;
 $cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
 /** @psalm-scope-this App\View\AppView */
 $request = $this->getRequest();
+
+$controller = $this->getName();
+$action = $request->getParam('action');
+
+$buttonSelected = function ($haystack = []) use ($controller, $action) {
+    if (in_array($controller, $haystack)) {
+        return ' button-selected';
+    } elseif (in_array($action, $haystack)) {
+        return ' button-selected';
+    } else {
+        return '';
+    }
+};
+
+$urlWithQuery = function ($query = []) use ($request) {
+    return $this->Url->build(
+        ['?' => $query + $request->getQueryParams()] + $request->getParam('pass')
+    );
+};
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,25 +89,6 @@ $request = $this->getRequest();
 
         <?php if (!($request->getQuery('win-link') == 'true')) : ?>
         <div class="top-nav-links">
-            <?php
-            $controller = $this->getName();
-            $action = $request->getParam('action');
-            $buttonSelected = function ($haystack = []) use ($controller, $action) {
-                if (in_array($controller, $haystack)) {
-                    return ' button-selected';
-                } elseif (in_array($action, $haystack)) {
-                    return ' button-selected';
-                } else {
-                    return '';
-                }
-            };
-
-            $urlWithQuery = function ($query = []) use ($request) {
-                return $this->Url->build(
-                    ['?' => $query + $request->getQueryParams()] + $request->getParam('pass')
-                );
-            }; ?>
-
             <?= $this->AuthLink->link(
                 __('Access Points'),
                 ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null],
