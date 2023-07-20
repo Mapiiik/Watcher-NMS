@@ -38,7 +38,7 @@ class PaymentPurposesTableTest extends TestCase
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('PaymentPurposes') ? [] : ['className' => PaymentPurposesTable::class];
-        $this->PaymentPurposes = $this->fetchTable('PaymentPurposes', $config);
+        $this->PaymentPurposes = $this->getTableLocator()->get('PaymentPurposes', $config);
     }
 
     /**

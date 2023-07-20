@@ -38,7 +38,7 @@ class LandlordPaymentsTableTest extends TestCase
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('LandlordPayments') ? [] : ['className' => LandlordPaymentsTable::class];
-        $this->LandlordPayments = $this->fetchTable('LandlordPayments', $config);
+        $this->LandlordPayments = $this->getTableLocator()->get('LandlordPayments', $config);
     }
 
     /**

@@ -37,7 +37,7 @@ class AccessPointContactsTableTest extends TestCase
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('AccessPointContacts') ? [] : ['className' => AccessPointContactsTable::class];
-        $this->AccessPointContacts = $this->fetchTable('AccessPointContacts', $config);
+        $this->AccessPointContacts = $this->getTableLocator()->get('AccessPointContacts', $config);
     }
 
     /**
