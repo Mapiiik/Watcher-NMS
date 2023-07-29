@@ -34,21 +34,21 @@
                     <td><?= h($radarInterference->radio_name) ?></td>
                     <td>
                         <?= $this->Html->link(
-                            $radarInterference->routeros_device_name,
+                            $radarInterference['routeros_device_name'],
                             [
                                 'controller' => 'RouterosDevices',
                                 'action' => 'view',
-                                $radarInterference->routeros_device_id,
+                                $radarInterference['routeros_device_id'],
                             ]
                         ) ?>
                     </td>
                     <td>
                         <?= $this->Html->link(
-                            $radarInterference->routeros_device_interface_name,
+                            $radarInterference['routeros_device_interface_name'],
                             [
                                 'controller' => 'RouterosDeviceInterfaces',
                                 'action' => 'view',
-                                $radarInterference->routeros_device_interface_id,
+                                $radarInterference['routeros_device_interface_id'],
                             ]
                         ) ?>
                     </td>
