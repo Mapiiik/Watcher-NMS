@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RouterosDeviceInterface> $routerosDeviceInterfaces
+ * @var iterable<\App\Model\Entity\RouterosDeviceInterface> $routerosDeviceInterfaces
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>

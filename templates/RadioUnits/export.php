@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RadioUnit> $radioUnits
+ * @var iterable<\App\Model\Entity\RadioUnit> $radioUnits
  */
 $this->setLayout('clean');
 ?>

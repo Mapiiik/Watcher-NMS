@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\AccessPoint> $accessPoints
+ * @var iterable<\App\Model\Entity\AccessPoint> $accessPoints
  * @var \App\Form\MapOptionsForm $mapOptions
  * @var \Cake\Collection\CollectionInterface|array<string> $accessPointsFilter
  * @var \Cake\Collection\CollectionInterface|array<string> $routerosDevicesFilter

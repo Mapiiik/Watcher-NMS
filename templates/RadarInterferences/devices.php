@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\RadarInterference> $radarInterferences
+ * @var iterable<\App\Model\Entity\RadarInterference> $radarInterferences
  */
 ?>
 <div class="radarInterferences index content">

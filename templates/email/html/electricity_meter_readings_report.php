@@ -4,7 +4,7 @@ use App\Model\Entity\ElectricityMeterReading;
 /**
  * @var \Cake\View\View $this
  * @var string $title
- * @var \Cake\Collection\CollectionInterface|array<\App\Model\Entity\AccessPoint> $accessPoints
+ * @var iterable<\App\Model\Entity\AccessPoint> $accessPoints
  */
 
 // set title
