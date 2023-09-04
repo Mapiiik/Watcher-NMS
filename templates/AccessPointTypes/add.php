@@ -2,8 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\AccessPointType $accessPointType
- * @var \Cake\Collection\CollectionInterface|array<string> $creators
- * @var \Cake\Collection\CollectionInterface|array<string> $modifiers
  */
 ?>
 <div class="row">
