@@ -11,6 +11,7 @@ use Cake\Console\ConsoleOptionParser;
 use Cake\I18n\Date;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
+use Cake\ORM\Query\SelectQuery;
 use Exception;
 
 /**
@@ -58,8 +59,8 @@ class ElectricityMeterReadingsReportCommand extends Command
             ->find('all', conditions: [
                 'month_of_electricity_meter_reading' => (int)$now->i18nFormat('L'),
             ])
-            ->contain('ElectricityMeterReadings', function ($q) {
-                return $q->order(['reading_date' => 'DESC']);
+            ->contain('ElectricityMeterReadings', function (SelectQuery $q) {
+                return $q->orderBy(['reading_date' => 'DESC']);
             })
             ->all();
 

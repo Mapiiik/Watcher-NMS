@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Controller\Traits\ErrorFormatterTrait;
+use Cake\ORM\Query\SelectQuery;
 
 /**
  * RadioLinks Controller
@@ -42,7 +43,7 @@ class RadioLinksController extends AppController
             $radioLinksQuery
                 ->innerJoinWith(
                     'RadioUnits.RadioUnitTypes',
-                    function ($q) use ($radio_unit_band_id) {
+                    function (SelectQuery $q) use ($radio_unit_band_id) {
                         return $q->where([
                             'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
                         ]);
