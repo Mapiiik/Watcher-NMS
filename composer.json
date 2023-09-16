@@ -25,7 +25,7 @@
         "league/oauth2-google": "^4.0",
         "mapik/audit-log": "5.x-dev",
         "mobiledetect/mobiledetectlib": "^3.74",
-        "php-http/cakephp-adapter": "next-dev",
+        "php-http/guzzle7-adapter": "^1.0",
         "php-http/message": "^1.8.0"
     },
     "require-dev": {
