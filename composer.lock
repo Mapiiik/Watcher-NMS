@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac905367a008ad468c041e98bc944b7d",
+    "content-hash": "500732ee0d2657328d82239dc0da1e95",
     "packages": [
         {
             "name": "cakedc/auth",
@@ -1746,6 +1746,99 @@
             "time": "2020-10-15T08:29:30+00:00"
         },
         {
+            "name": "php-http/cakephp-adapter",
+            "version": "dev-patch-1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Mapiiik/cakephp-adapter.git",
+                "reference": "4cf902f94686fa9dbf7cddb129c7ee3a13f74aac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Mapiiik/cakephp-adapter/zipball/4cf902f94686fa9dbf7cddb129c7ee3a13f74aac",
+                "reference": "4cf902f94686fa9dbf7cddb129c7ee3a13f74aac",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.0",
+                "php": ">=8.1",
+                "php-http/discovery": "^1.0",
+                "php-http/httplug": "^2.0"
+            },
+            "provide": {
+                "php-http/client-implementation": "1.0",
+                "psr/http-client-implementation": "1.0"
+            },
+            "require-dev": {
+                "php-http/message-factory": "^1.0.2",
+                "phpunit/phpunit": "^9.5",
+                "spryker/code-sniffer": "^0.17.15"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Adapter\\Cake\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Http\\Adapter\\Cake\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ],
+                "test-coverage": [
+                    "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml"
+                ],
+                "stan": [
+                    "phpstan analyse"
+                ],
+                "stan-setup": [
+                    "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^1.0.0 && mv composer.backup composer.json"
+                ],
+                "lowest": [
+                    " validate-prefer-lowest"
+                ],
+                "lowest-setup": [
+                    "composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction && cp composer.json composer.backup && composer require --dev dereuromark/composer-prefer-lowest && mv composer.backup composer.json"
+                ],
+                "cs-check": [
+                    "phpcs --extensions=php"
+                ],
+                "cs-fix": [
+                    "phpcbf --extensions=php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joel Wurtz",
+                    "email": "joel.wurtz@gmail.com"
+                }
+            ],
+            "description": "CakePHP adapter for PHP-HTTP",
+            "homepage": "https://httplug.io",
+            "keywords": [
+                "cake",
+                "cakephp",
+                "http",
+                "httplug"
+            ],
+            "support": {
+                "source": "https://github.com/Mapiiik/cakephp-adapter/tree/patch-1"
+            },
+            "time": "2023-09-16T09:25:04+00:00"
+        },
+        {
             "name": "php-http/discovery",
             "version": "1.19.1",
             "source": {
@@ -1822,68 +1915,6 @@
                 "source": "https://github.com/php-http/discovery/tree/1.19.1"
             },
             "time": "2023-07-11T07:02:26+00:00"
-        },
-        {
-            "name": "php-http/guzzle7-adapter",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-http/guzzle7-adapter.git",
-                "reference": "fb075a71dbfa4847cf0c2938c4e5a9c478ef8b01"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-http/guzzle7-adapter/zipball/fb075a71dbfa4847cf0c2938c4e5a9c478ef8b01",
-                "reference": "fb075a71dbfa4847cf0c2938c4e5a9c478ef8b01",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^7.0",
-                "php": "^7.2 | ^8.0",
-                "php-http/httplug": "^2.0",
-                "psr/http-client": "^1.0"
-            },
-            "provide": {
-                "php-http/async-client-implementation": "1.0",
-                "php-http/client-implementation": "1.0",
-                "psr/http-client-implementation": "1.0"
-            },
-            "require-dev": {
-                "php-http/client-integration-tests": "^3.0",
-                "phpunit/phpunit": "^8.0|^9.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Http\\Adapter\\Guzzle7\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tobias Nyholm",
-                    "email": "tobias.nyholm@gmail.com"
-                }
-            ],
-            "description": "Guzzle 7 HTTP Adapter",
-            "homepage": "http://httplug.io",
-            "keywords": [
-                "Guzzle",
-                "http"
-            ],
-            "support": {
-                "issues": "https://github.com/php-http/guzzle7-adapter/issues",
-                "source": "https://github.com/php-http/guzzle7-adapter/tree/1.0.0"
-            },
-            "time": "2021-03-09T07:35:15+00:00"
         },
         {
             "name": "php-http/httplug",
@@ -7495,6 +7526,7 @@
         "cakedc/users": 20,
         "dereuromark/cakephp-geo": 20,
         "mapik/audit-log": 20,
+        "php-http/cakephp-adapter": 20,
         "cakedc/cakephp-phpstan": 20
     },
     "prefer-stable": true,
