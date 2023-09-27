@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-08-01 18:34+0200\n"
+"POT-Creation-Date: 2023-09-27 17:52+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "The customer points data could not be updated. Please, try again."
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:69
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:70
 #: ./templates/AccessPointContacts/view.php:47
 #: ./templates/AntennaTypes/view.php:126
 #: ./templates/CustomerConnections/view.php:60
@@ -45,51 +45,51 @@ msgstr ""
 msgid "Access Point"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:70
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:71
 #: ./templates/AccessPoints/view.php:155
 #: ./templates/email/html/electricity_meter_readings_report.php:28
 msgid "Contract Conditions"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:71
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:72
 #: ./templates/email/html/electricity_meter_readings_report.php:29
 msgid "Last Reading Date"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:72
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:73
 #: ./templates/email/html/electricity_meter_readings_report.php:30
 msgid "Last Reading Value"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:73
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:74
 #: ./templates/email/html/electricity_meter_readings_report.php:31
 msgid "Number of days since last"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:89
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:90
 #: ./templates/email/html/electricity_meter_readings_report.php:49
 msgid "Never"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:101
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:102
 #: ./templates/ElectricityMeterReadings/index.php:25
 #: ./templates/layout/default.php:251
 msgid "Electricity Meter Readings"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:109
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:110
 msgid "These electricity meter readings should take place in {month}."
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:119
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:120
 msgid "The electricity meter readings to be made have been reported."
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:125
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:126
 msgid "The electricity meter readings to be made cannot be reported."
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:129
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:130
 msgid "There is no need to take any electricity meter readings this month."
 msgstr ""
 
@@ -527,21 +527,21 @@ msgstr ""
 msgid "The radar interference could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:108
-#: ./src/Controller/RadioLinksController.php:130
+#: ./src/Controller/RadioLinksController.php:109
+#: ./src/Controller/RadioLinksController.php:131
 msgid "The radio link has been saved."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:112
-#: ./src/Controller/RadioLinksController.php:134
+#: ./src/Controller/RadioLinksController.php:113
+#: ./src/Controller/RadioLinksController.php:135
 msgid "The radio link could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:151
+#: ./src/Controller/RadioLinksController.php:152
 msgid "The radio link has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:154
+#: ./src/Controller/RadioLinksController.php:155
 msgid "The radio link could not be deleted. Please, try again."
 msgstr ""
 
@@ -705,8 +705,8 @@ msgstr ""
 #: ./templates/AccessPointContacts/edit.php:11
 #: ./templates/AccessPointContacts/index.php:36
 #: ./templates/AccessPointContacts/view.php:10
-#: ./templates/AccessPointTypes/add.php:12
-#: ./templates/AccessPointTypes/edit.php:12
+#: ./templates/AccessPointTypes/add.php:10
+#: ./templates/AccessPointTypes/edit.php:10
 #: ./templates/AccessPointTypes/index.php:32
 #: ./templates/AccessPointTypes/view.php:10
 #: ./templates/AccessPointTypes/view.php:112
@@ -837,8 +837,8 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/add.php:36
 #: ./templates/AccessPointContacts/edit.php:44
-#: ./templates/AccessPointTypes/add.php:27
-#: ./templates/AccessPointTypes/edit.php:35
+#: ./templates/AccessPointTypes/add.php:25
+#: ./templates/AccessPointTypes/edit.php:33
 #: ./templates/AccessPoints/add.php:53
 #: ./templates/AccessPoints/edit.php:61
 #: ./templates/AccessPoints/map.php:85
@@ -887,7 +887,7 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/edit.php:13
 #: ./templates/AccessPointContacts/index.php:61
-#: ./templates/AccessPointTypes/edit.php:14
+#: ./templates/AccessPointTypes/edit.php:12
 #: ./templates/AccessPointTypes/index.php:53
 #: ./templates/AccessPointTypes/view.php:165
 #: ./templates/AccessPoints/edit.php:14
@@ -965,7 +965,7 @@ msgstr ""
 #: ./templates/AccessPointContacts/edit.php:16
 #: ./templates/AccessPointContacts/index.php:63
 #: ./templates/AccessPointContacts/view.php:20
-#: ./templates/AccessPointTypes/edit.php:17
+#: ./templates/AccessPointTypes/edit.php:15
 #: ./templates/AccessPointTypes/index.php:55
 #: ./templates/AccessPointTypes/view.php:20
 #: ./templates/AccessPointTypes/view.php:167
@@ -1157,7 +1157,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:204
 #: ./templates/RouterosDevices/view.php:257
 #: ./templates/email/html/electricity_meter_readings_report.php:52
-#: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1164
+#: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1162
 msgid "View"
 msgstr ""
 
@@ -1547,18 +1547,18 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
-#: ./templates/AccessPointTypes/add.php:13
-#: ./templates/AccessPointTypes/edit.php:21
+#: ./templates/AccessPointTypes/add.php:11
+#: ./templates/AccessPointTypes/edit.php:19
 #: ./templates/AccessPointTypes/view.php:25
 #: ./templates/Settings/index.php:29
 msgid "List Access Point Types"
 msgstr ""
 
-#: ./templates/AccessPointTypes/add.php:20
+#: ./templates/AccessPointTypes/add.php:18
 msgid "Add Access Point Type"
 msgstr ""
 
-#: ./templates/AccessPointTypes/edit.php:28
+#: ./templates/AccessPointTypes/edit.php:26
 #: ./templates/AccessPointTypes/view.php:12
 msgid "Edit Access Point Type"
 msgstr ""
