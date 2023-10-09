@@ -140,6 +140,6 @@ class RadioUnitTypesController extends AppController
             $this->Flash->error(__('The radio unit type could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->afterDeleteRedirect(['action' => 'index']);
     }
 }

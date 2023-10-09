@@ -147,6 +147,6 @@ class CustomerConnectionsController extends AppController
             $this->Flash->error(__('The customer connection could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->afterDeleteRedirect(['action' => 'index']);
     }
 }

@@ -152,6 +152,6 @@ class RouterosDeviceInterfacesController extends AppController
             $this->Flash->error(__('The RouterOS device interface could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->afterDeleteRedirect(['action' => 'index']);
     }
 }

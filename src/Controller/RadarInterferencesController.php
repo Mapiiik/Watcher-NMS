@@ -134,7 +134,7 @@ class RadarInterferencesController extends AppController
             $this->Flash->error(__('The radar interference could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->afterDeleteRedirect(['action' => 'index']);
     }
 
     /**

@@ -212,11 +212,7 @@ class RadioUnitsController extends AppController
             $this->Flash->error(__('The radio unit could not be deleted. Please, try again.'));
         }
 
-        if (isset($this->access_point_id)) {
-            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $this->access_point_id]);
-        }
-
-        return $this->redirect(['action' => 'index']);
+        return $this->afterDeleteRedirect(['action' => 'index']);
     }
 
     /**
