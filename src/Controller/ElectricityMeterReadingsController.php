@@ -22,14 +22,11 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         // filter
         $conditions = [];
-        if (isset($access_point_id)) {
+        if (isset($this->access_point_id)) {
             $conditions[] = [
-                'ElectricityMeterReadings.access_point_id' => $access_point_id,
+                'ElectricityMeterReadings.access_point_id' => $this->access_point_id,
             ];
         }
 
@@ -84,13 +81,10 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         $electricityMeterReading = $this->ElectricityMeterReadings->newEmptyEntity();
 
-        if (isset($access_point_id)) {
-            $electricityMeterReading->access_point_id = $access_point_id;
+        if (isset($this->access_point_id)) {
+            $electricityMeterReading->access_point_id = $this->access_point_id;
         }
 
         if ($this->getRequest()->is('post')) {
@@ -100,8 +94,12 @@ class ElectricityMeterReadingsController extends AppController
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {
                 $this->Flash->success(__('The electricity meter reading has been saved.'));
 
-                if (isset($access_point_id)) {
-                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                if (isset($this->access_point_id)) {
+                    return $this->redirect([
+                        'controller' => 'AccessPoints',
+                        'action' => 'view',
+                        $this->access_point_id,
+                    ]);
                 }
 
                 return $this->redirect(['action' => 'index']);
@@ -121,9 +119,6 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function edit(?string $id = null)
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         $electricityMeterReading = $this->ElectricityMeterReadings->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $electricityMeterReading = $this->ElectricityMeterReadings
@@ -132,8 +127,12 @@ class ElectricityMeterReadingsController extends AppController
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {
                 $this->Flash->success(__('The electricity meter reading has been saved.'));
 
-                if (isset($access_point_id)) {
-                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                if (isset($this->access_point_id)) {
+                    return $this->redirect([
+                        'controller' => 'AccessPoints',
+                        'action' => 'view',
+                        $this->access_point_id,
+                    ]);
                 }
 
                 return $this->redirect(['action' => 'index']);
@@ -153,8 +152,6 @@ class ElectricityMeterReadingsController extends AppController
      */
     public function delete(?string $id = null)
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-
         $this->getRequest()->allowMethod(['post', 'delete']);
         $electricityMeterReading = $this->ElectricityMeterReadings->get($id);
         if ($this->ElectricityMeterReadings->delete($electricityMeterReading)) {
@@ -164,8 +161,8 @@ class ElectricityMeterReadingsController extends AppController
             $this->Flash->error(__('The electricity meter reading could not be deleted. Please, try again.'));
         }
 
-        if (isset($access_point_id)) {
-            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+        if (isset($this->access_point_id)) {
+            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $this->access_point_id]);
         }
 
         return $this->redirect(['action' => 'index']);

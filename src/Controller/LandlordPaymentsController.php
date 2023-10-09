@@ -22,14 +22,11 @@ class LandlordPaymentsController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         // filter
         $conditions = [];
-        if (isset($access_point_id)) {
+        if (isset($this->access_point_id)) {
             $conditions[] = [
-                'LandlordPayments.access_point_id' => $access_point_id,
+                'LandlordPayments.access_point_id' => $this->access_point_id,
             ];
         }
 
@@ -86,18 +83,15 @@ class LandlordPaymentsController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         $landlordPayment = $this->LandlordPayments->newEmptyEntity();
 
-        if (isset($access_point_id)) {
-            $landlordPayment->access_point_id = $access_point_id;
+        if (isset($this->access_point_id)) {
+            $landlordPayment->access_point_id = $this->access_point_id;
         }
 
-        if ($this->request->is('post')) {
+        if ($this->getRequest()->is('post')) {
             $landlordPayment = $this->LandlordPayments
-                ->patchEntity($landlordPayment, $this->request->getData());
+                ->patchEntity($landlordPayment, $this->getRequest()->getData());
 
             if ($this->LandlordPayments->save($landlordPayment)) {
                 $this->Flash->success(__('The landlord payment has been saved.'));
@@ -120,13 +114,10 @@ class LandlordPaymentsController extends AppController
      */
     public function edit(?string $id = null)
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         $landlordPayment = $this->LandlordPayments->get($id, contain: []);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $landlordPayment = $this->LandlordPayments
-                ->patchEntity($landlordPayment, $this->request->getData());
+                ->patchEntity($landlordPayment, $this->getRequest()->getData());
 
             if ($this->LandlordPayments->save($landlordPayment)) {
                 $this->Flash->success(__('The landlord payment has been saved.'));
@@ -149,7 +140,7 @@ class LandlordPaymentsController extends AppController
      */
     public function delete(?string $id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $landlordPayment = $this->LandlordPayments->get($id);
         if ($this->LandlordPayments->delete($landlordPayment)) {
             $this->Flash->success(__('The landlord payment has been deleted.'));

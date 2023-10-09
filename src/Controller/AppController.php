@@ -38,8 +38,15 @@ use Cake\Routing\Router;
  */
 class AppController extends Controller
 {
-    # User settings
+    /*
+     * User settings
+     */
     protected array $user_settings = [];
+
+    /*
+     * Access Point ID
+     */
+    protected ?string $access_point_id = null;
 
     /**
      * Initialization hook method.
@@ -115,6 +122,10 @@ class AppController extends Controller
 
         # Load user settings
         $this->user_settings = $identity['user_settings'] ?? [];
+
+        # Load selected access point ID from request
+        $this->access_point_id = $this->getRequest()->getParam('access_point_id');
+        $this->set('access_point_id', $this->access_point_id);
 
         # Determine if we want to set the language
         if ($this->getRequest()->getQuery('language')) {

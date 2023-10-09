@@ -22,14 +22,11 @@ class AccessPointContactsController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         // filter
         $conditions = [];
-        if (isset($access_point_id)) {
+        if (isset($this->access_point_id)) {
             $conditions[] = [
-                'AccessPointContacts.access_point_id' => $access_point_id,
+                'AccessPointContacts.access_point_id' => $this->access_point_id,
             ];
         }
 
@@ -88,13 +85,10 @@ class AccessPointContactsController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         $accessPointContact = $this->AccessPointContacts->newEmptyEntity();
 
-        if (isset($access_point_id)) {
-            $accessPointContact->access_point_id = $access_point_id;
+        if (isset($this->access_point_id)) {
+            $accessPointContact->access_point_id = $this->access_point_id;
         }
 
         if ($this->getRequest()->is('post')) {
@@ -104,8 +98,12 @@ class AccessPointContactsController extends AppController
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
 
-                if (isset($access_point_id)) {
-                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                if (isset($this->access_point_id)) {
+                    return $this->redirect([
+                        'controller' => 'AccessPoints',
+                        'action' => 'view',
+                        $this->access_point_id,
+                    ]);
                 }
 
                 return $this->redirect(['action' => 'index']);
@@ -125,9 +123,6 @@ class AccessPointContactsController extends AppController
      */
     public function edit(?string $id = null)
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         $accessPointContact = $this->AccessPointContacts->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $accessPointContact = $this->AccessPointContacts
@@ -136,8 +131,12 @@ class AccessPointContactsController extends AppController
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
 
-                if (isset($access_point_id)) {
-                    return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                if (isset($this->access_point_id)) {
+                    return $this->redirect([
+                        'controller' => 'AccessPoints',
+                        'action' => 'view',
+                        $this->access_point_id,
+                    ]);
                 }
 
                 return $this->redirect(['action' => 'index']);
@@ -157,8 +156,6 @@ class AccessPointContactsController extends AppController
      */
     public function delete(?string $id = null)
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-
         $this->getRequest()->allowMethod(['post', 'delete']);
         $accessPointContact = $this->AccessPointContacts->get($id);
         if ($this->AccessPointContacts->delete($accessPointContact)) {
@@ -168,8 +165,8 @@ class AccessPointContactsController extends AppController
             $this->Flash->error(__('The access point contact could not be deleted. Please, try again.'));
         }
 
-        if (isset($access_point_id)) {
-            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+        if (isset($this->access_point_id)) {
+            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $this->access_point_id]);
         }
 
         return $this->redirect(['action' => 'index']);

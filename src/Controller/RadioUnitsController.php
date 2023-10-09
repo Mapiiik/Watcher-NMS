@@ -22,14 +22,11 @@ class RadioUnitsController extends AppController
      */
     public function index()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         // filter
         $conditions = [];
-        if (isset($access_point_id)) {
+        if (isset($this->access_point_id)) {
             $conditions[] = [
-                'RadioUnits.access_point_id' => $access_point_id,
+                'RadioUnits.access_point_id' => $this->access_point_id,
             ];
         }
         $radio_unit_band_id = $this->getRequest()->getQuery('radio_unit_band_id');
@@ -106,13 +103,10 @@ class RadioUnitsController extends AppController
      */
     public function add()
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         $radioUnit = $this->RadioUnits->newEmptyEntity();
 
-        if (isset($access_point_id)) {
-            $radioUnit->access_point_id = $access_point_id;
+        if (isset($this->access_point_id)) {
+            $radioUnit->access_point_id = $this->access_point_id;
         }
 
         if ($this->getRequest()->is('post')) {
@@ -124,8 +118,12 @@ class RadioUnitsController extends AppController
                 if ($this->RadioUnits->save($radioUnit)) {
                     $this->Flash->success(__('The radio unit has been saved.'));
 
-                    if (isset($access_point_id)) {
-                        return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                    if (isset($this->access_point_id)) {
+                        return $this->redirect([
+                            'controller' => 'AccessPoints',
+                            'action' => 'view',
+                            $this->access_point_id,
+                        ]);
                     }
 
                     return $this->redirect(['action' => 'index']);
@@ -158,9 +156,6 @@ class RadioUnitsController extends AppController
      */
     public function edit(?string $id = null)
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-        $this->set('access_point_id', $access_point_id);
-
         $radioUnit = $this->RadioUnits->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             if ($this->getRequest()->getData('refresh') == 'refresh') {
@@ -170,8 +165,12 @@ class RadioUnitsController extends AppController
                 if ($this->RadioUnits->save($radioUnit)) {
                     $this->Flash->success(__('The radio unit has been saved.'));
 
-                    if (isset($access_point_id)) {
-                        return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+                    if (isset($this->access_point_id)) {
+                        return $this->redirect([
+                            'controller' => 'AccessPoints',
+                            'action' => 'view',
+                            $this->access_point_id,
+                        ]);
                     }
 
                     return $this->redirect(['action' => 'index']);
@@ -204,8 +203,6 @@ class RadioUnitsController extends AppController
      */
     public function delete(?string $id = null)
     {
-        $access_point_id = $this->getRequest()->getParam('access_point_id');
-
         $this->getRequest()->allowMethod(['post', 'delete']);
         $radioUnit = $this->RadioUnits->get($id);
         if ($this->RadioUnits->delete($radioUnit)) {
@@ -215,8 +212,8 @@ class RadioUnitsController extends AppController
             $this->Flash->error(__('The radio unit could not be deleted. Please, try again.'));
         }
 
-        if (isset($access_point_id)) {
-            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $access_point_id]);
+        if (isset($this->access_point_id)) {
+            return $this->redirect(['controller' => 'AccessPoints', 'action' => 'view', $this->access_point_id]);
         }
 
         return $this->redirect(['action' => 'index']);

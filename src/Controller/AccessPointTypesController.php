@@ -74,8 +74,8 @@ class AccessPointTypesController extends AppController
     public function add()
     {
         $accessPointType = $this->AccessPointTypes->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $accessPointType = $this->AccessPointTypes->patchEntity($accessPointType, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $accessPointType = $this->AccessPointTypes->patchEntity($accessPointType, $this->getRequest()->getData());
             if ($this->AccessPointTypes->save($accessPointType)) {
                 $this->Flash->success(__('The access point type has been saved.'));
 
@@ -96,8 +96,8 @@ class AccessPointTypesController extends AppController
     public function edit(?string $id = null)
     {
         $accessPointType = $this->AccessPointTypes->get($id, contain: []);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $accessPointType = $this->AccessPointTypes->patchEntity($accessPointType, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $accessPointType = $this->AccessPointTypes->patchEntity($accessPointType, $this->getRequest()->getData());
             if ($this->AccessPointTypes->save($accessPointType)) {
                 $this->Flash->success(__('The access point type has been saved.'));
 
@@ -117,7 +117,7 @@ class AccessPointTypesController extends AppController
      */
     public function delete(?string $id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $accessPointType = $this->AccessPointTypes->get($id);
         if ($this->AccessPointTypes->delete($accessPointType)) {
             $this->Flash->success(__('The access point type has been deleted.'));

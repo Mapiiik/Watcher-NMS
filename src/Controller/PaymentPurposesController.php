@@ -75,8 +75,8 @@ class PaymentPurposesController extends AppController
     public function add()
     {
         $paymentPurpose = $this->PaymentPurposes->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $paymentPurpose = $this->PaymentPurposes->patchEntity($paymentPurpose, $this->request->getData());
+        if ($this->getRequest()->is('post')) {
+            $paymentPurpose = $this->PaymentPurposes->patchEntity($paymentPurpose, $this->getRequest()->getData());
 
             if ($this->PaymentPurposes->save($paymentPurpose)) {
                 $this->Flash->success(__('The payment purpose has been saved.'));
@@ -98,8 +98,8 @@ class PaymentPurposesController extends AppController
     public function edit(?string $id = null)
     {
         $paymentPurpose = $this->PaymentPurposes->get($id, contain: []);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $paymentPurpose = $this->PaymentPurposes->patchEntity($paymentPurpose, $this->request->getData());
+        if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $paymentPurpose = $this->PaymentPurposes->patchEntity($paymentPurpose, $this->getRequest()->getData());
             if ($this->PaymentPurposes->save($paymentPurpose)) {
                 $this->Flash->success(__('The payment purpose has been saved.'));
 
@@ -119,7 +119,7 @@ class PaymentPurposesController extends AppController
      */
     public function delete(?string $id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->getRequest()->allowMethod(['post', 'delete']);
         $paymentPurpose = $this->PaymentPurposes->get($id);
         if ($this->PaymentPurposes->delete($paymentPurpose)) {
             $this->Flash->success(__('The payment purpose has been deleted.'));
