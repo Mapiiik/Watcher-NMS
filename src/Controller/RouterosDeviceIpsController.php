@@ -121,7 +121,7 @@ class RouterosDeviceIpsController extends AppController
             if ($this->RouterosDeviceIps->save($routerosDeviceIp)) {
                 $this->Flash->success(__('The RouterOS device IP has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $routerosDeviceIp->id]);
             }
             $this->Flash->error(__('The RouterOS device IP could not be saved. Please, try again.'));
         }

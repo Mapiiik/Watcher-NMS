@@ -101,7 +101,7 @@ class AccessPointTypesController extends AppController
             if ($this->AccessPointTypes->save($accessPointType)) {
                 $this->Flash->success(__('The access point type has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $accessPointType->id]);
             }
             $this->Flash->error(__('The access point type could not be saved. Please, try again.'));
         }

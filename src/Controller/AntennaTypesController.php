@@ -113,7 +113,7 @@ class AntennaTypesController extends AppController
             if ($this->AntennaTypes->save($antennaType)) {
                 $this->Flash->success(__('The antenna type has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $antennaType->id]);
             }
             $this->Flash->error(__('The antenna type could not be saved. Please, try again.'));
         }

@@ -103,7 +103,7 @@ class PaymentPurposesController extends AppController
             if ($this->PaymentPurposes->save($paymentPurpose)) {
                 $this->Flash->success(__('The payment purpose has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $paymentPurpose->id]);
             }
             $this->Flash->error(__('The payment purpose could not be saved. Please, try again.'));
         }

@@ -120,7 +120,7 @@ class CustomerConnectionsController extends AppController
             if ($this->CustomerConnections->save($customerConnection)) {
                 $this->Flash->success(__('The customer connection has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $customerConnection->id]);
             }
             $this->Flash->error(__('The customer connection could not be saved. Please, try again.'));
         }

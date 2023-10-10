@@ -109,7 +109,7 @@ class RadarInterferencesController extends AppController
             if ($this->RadarInterferences->save($radarInterference)) {
                 $this->Flash->success(__('The radar interference has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $radarInterference->id]);
             }
             $this->Flash->error(__('The radar interference could not be saved. Please, try again.'));
         }

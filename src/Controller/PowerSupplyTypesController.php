@@ -106,7 +106,7 @@ class PowerSupplyTypesController extends AppController
             if ($this->PowerSupplyTypes->save($powerSupplyType)) {
                 $this->Flash->success(__('The power supply type has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $powerSupplyType->id]);
             }
             $this->Flash->error(__('The power supply type could not be saved. Please, try again.'));
         }

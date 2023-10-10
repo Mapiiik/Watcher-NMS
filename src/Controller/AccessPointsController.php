@@ -204,7 +204,7 @@ class AccessPointsController extends AppController
             if ($this->AccessPoints->save($accessPoint)) {
                 $this->Flash->success(__('The access point has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $accessPoint->id]);
             }
             $this->Flash->error(__('The access point could not be saved. Please, try again.'));
         }

@@ -120,15 +120,7 @@ class PowerSuppliesController extends AppController
             if ($this->PowerSupplies->save($powerSupply)) {
                 $this->Flash->success(__('The power supply has been saved.'));
 
-                if (isset($this->access_point_id)) {
-                    return $this->redirect([
-                        'controller' => 'AccessPoints',
-                        'action' => 'view',
-                        $this->access_point_id,
-                    ]);
-                }
-
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $powerSupply->id]);
             }
             $this->Flash->error(__('The power supply could not be saved. Please, try again.'));
         }

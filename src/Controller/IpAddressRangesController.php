@@ -124,7 +124,7 @@ class IpAddressRangesController extends AppController
             if ($this->IpAddressRanges->save($ipAddressRange)) {
                 $this->Flash->success(__('The IP address range has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterEditRedirect(['action' => 'view', $ipAddressRange->id]);
             }
             $this->Flash->error(__('The IP address range could not be saved. Please, try again.'));
         }
