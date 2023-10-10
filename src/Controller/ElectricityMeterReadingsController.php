@@ -94,15 +94,7 @@ class ElectricityMeterReadingsController extends AppController
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {
                 $this->Flash->success(__('The electricity meter reading has been saved.'));
 
-                if (isset($this->access_point_id)) {
-                    return $this->redirect([
-                        'controller' => 'AccessPoints',
-                        'action' => 'view',
-                        $this->access_point_id,
-                    ]);
-                }
-
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $electricityMeterReading->id]);
             }
             $this->Flash->error(__('The electricity meter reading could not be saved. Please, try again.'));
         }

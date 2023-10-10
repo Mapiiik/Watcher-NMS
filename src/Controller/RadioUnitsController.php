@@ -118,15 +118,7 @@ class RadioUnitsController extends AppController
                 if ($this->RadioUnits->save($radioUnit)) {
                     $this->Flash->success(__('The radio unit has been saved.'));
 
-                    if (isset($this->access_point_id)) {
-                        return $this->redirect([
-                            'controller' => 'AccessPoints',
-                            'action' => 'view',
-                            $this->access_point_id,
-                        ]);
-                    }
-
-                    return $this->redirect(['action' => 'index']);
+                    return $this->afterAddRedirect(['action' => 'view', $radioUnit->id]);
                 }
                 $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
             }

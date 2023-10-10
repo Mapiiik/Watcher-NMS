@@ -189,15 +189,7 @@ class RouterosDevicesController extends AppController
             if ($this->RouterosDevices->save($routerosDevice)) {
                 $this->Flash->success(__('The RouterOS device has been saved.'));
 
-                if (isset($this->access_point_id)) {
-                    return $this->redirect([
-                        'controller' => 'AccessPoints',
-                        'action' => 'view',
-                        $this->access_point_id,
-                    ]);
-                }
-
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $routerosDevice->id]);
             }
             $this->Flash->error(__('The RouterOS device could not be saved. Please, try again.'));
         }

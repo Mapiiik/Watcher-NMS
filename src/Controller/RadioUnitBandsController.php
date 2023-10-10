@@ -79,7 +79,7 @@ class RadioUnitBandsController extends AppController
             if ($this->RadioUnitBands->save($radioUnitBand)) {
                 $this->Flash->success(__('The radio unit band has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $radioUnitBand->id]);
             }
             $this->Flash->error(__('The radio unit band could not be saved. Please, try again.'));
         }

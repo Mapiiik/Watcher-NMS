@@ -86,7 +86,7 @@ class CustomerConnectionIpsController extends AppController
             if ($this->CustomerConnectionIps->save($customerConnectionIp)) {
                 $this->Flash->success(__('The customer connection IP has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $customerConnectionIp->id]);
             }
             $this->Flash->error(__('The customer connection IP could not be saved. Please, try again.'));
         }

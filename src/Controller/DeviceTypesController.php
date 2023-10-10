@@ -78,7 +78,7 @@ class DeviceTypesController extends AppController
             if ($this->DeviceTypes->save($deviceType)) {
                 $this->Flash->success(__('The device type has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $deviceType->id]);
             }
             $this->Flash->error(__('The device type could not be saved. Please, try again.'));
         }

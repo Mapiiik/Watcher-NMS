@@ -80,7 +80,7 @@ class ManufacturersController extends AppController
             if ($this->Manufacturers->save($manufacturer)) {
                 $this->Flash->success(__('The manufacturer has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $manufacturer->id]);
             }
             $this->Flash->error(__('The manufacturer could not be saved. Please, try again.'));
         }

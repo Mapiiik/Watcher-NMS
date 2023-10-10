@@ -89,7 +89,7 @@ class RadioUnitTypesController extends AppController
             if ($this->RadioUnitTypes->save($radioUnitType)) {
                 $this->Flash->success(__('The radio unit type has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $radioUnitType->id]);
             }
             $this->Flash->error(__('The radio unit type could not be saved. Please, try again.'));
         }

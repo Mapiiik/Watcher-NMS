@@ -78,7 +78,7 @@ class CustomerPointsController extends AppController
             if ($this->CustomerPoints->save($customerPoint)) {
                 $this->Flash->success(__('The customer point has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $customerPoint->id]);
             }
             $this->Flash->error(__('The customer point could not be saved. Please, try again.'));
         }

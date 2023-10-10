@@ -101,7 +101,7 @@ class RouterosDeviceInterfacesController extends AppController
             if ($this->RouterosDeviceInterfaces->save($routerosDeviceInterface)) {
                 $this->Flash->success(__('The RouterOS device interface has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $routerosDeviceInterface->id]);
             }
             $this->Flash->error(__('The RouterOS device interface could not be saved. Please, try again.'));
         }

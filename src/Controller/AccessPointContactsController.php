@@ -98,15 +98,7 @@ class AccessPointContactsController extends AppController
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));
 
-                if (isset($this->access_point_id)) {
-                    return $this->redirect([
-                        'controller' => 'AccessPoints',
-                        'action' => 'view',
-                        $this->access_point_id,
-                    ]);
-                }
-
-                return $this->redirect(['action' => 'index']);
+                return $this->afterAddRedirect(['action' => 'view', $accessPointContact->id]);
             }
             $this->Flash->error(__('The access point contact could not be saved. Please, try again.'));
         }
