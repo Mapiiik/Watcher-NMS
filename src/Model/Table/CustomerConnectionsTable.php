@@ -108,6 +108,9 @@ class CustomerConnectionsTable extends AppTable
         $rules->add($rules->existsIn(['customer_point_id'], 'CustomerPoints'));
         $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
 
+        $rules->addDelete($rules->isNotLinkedTo('CustomerConnectionIps'));
+        $rules->addDelete($rules->isNotLinkedTo('RouterosDevices'));
+
         return $rules;
     }
 }

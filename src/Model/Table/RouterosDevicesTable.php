@@ -139,6 +139,9 @@ class RouterosDevicesTable extends AppTable
         $rules->add($rules->existsIn(['device_type_id'], 'DeviceTypes'));
         $rules->add($rules->existsIn(['customer_connection_id'], 'CustomerConnections'));
 
+        $rules->addDelete($rules->isNotLinkedTo('RouterosDeviceInterfaces'));
+        $rules->addDelete($rules->isNotLinkedTo('RouterosDeviceIps'));
+
         return $rules;
     }
 }

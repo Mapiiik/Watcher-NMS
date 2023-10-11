@@ -100,6 +100,8 @@ class PowerSupplyTypesTable extends AppTable
     {
         $rules->add($rules->existsIn(['manufacturer_id'], 'Manufacturers'));
 
+        $rules->addDelete($rules->isNotLinkedTo('PowerSupplies'));
+
         return $rules;
     }
 }

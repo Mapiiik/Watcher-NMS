@@ -101,6 +101,8 @@ class AntennaTypesTable extends AppTable
         $rules->add($rules->existsIn(['radio_unit_band_id'], 'RadioUnitBands'));
         $rules->add($rules->existsIn(['manufacturer_id'], 'Manufacturers'));
 
+        $rules->addDelete($rules->isNotLinkedTo('RadioUnits'));
+
         return $rules;
     }
 }

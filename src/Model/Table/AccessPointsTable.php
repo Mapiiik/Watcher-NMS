@@ -164,6 +164,15 @@ class AccessPointsTable extends AppTable
             ['errorField' => 'parent_access_point_id']
         );
 
+        $rules->addDelete($rules->isNotLinkedTo('AccessPointContacts'));
+        $rules->addDelete($rules->isNotLinkedTo('CustomerConnections'));
+        $rules->addDelete($rules->isNotLinkedTo('ElectricityMeterReadings'));
+        $rules->addDelete($rules->isNotLinkedTo('IpAddressRanges'));
+        $rules->addDelete($rules->isNotLinkedTo('LandlordPayments'));
+        $rules->addDelete($rules->isNotLinkedTo('PowerSupplies'));
+        $rules->addDelete($rules->isNotLinkedTo('RadioUnits'));
+        $rules->addDelete($rules->isNotLinkedTo('RouterosDevices'));
+
         return $rules;
     }
 }
