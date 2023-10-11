@@ -25,6 +25,10 @@ class DeviceTypesTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.DeviceTypes',
+        'app.AccessPointTypes',
+        'app.AccessPoints',
+        'app.CustomerPoints',
+        'app.CustomerConnections',
         'app.RouterosDevices',
     ];
 

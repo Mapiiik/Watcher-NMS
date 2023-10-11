@@ -21,7 +21,7 @@ class PowerSupplyTypesFixture extends TestFixture
             [
                 'id' => '7c22eb67-2f86-4b49-8501-6da8e2ed0792',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'manufacturer_id' => '763ac47f-82e0-4c7e-80ec-38e1da0b1137',
+                'manufacturer_id' => '9609be52-8fc6-4a98-a806-5565ee569f07',
                 'voltage' => 1,
                 'current' => 1,
                 'part_number' => 'Lorem ipsum dolor sit amet',

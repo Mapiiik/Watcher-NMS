@@ -25,9 +25,11 @@ class PowerSuppliesTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.PowerSupplies',
-        'app.PowerSupplyTypes',
+        'app.AccessPointTypes',
         'app.AccessPoints',
+        'app.Manufacturers',
+        'app.PowerSupplyTypes',
+        'app.PowerSupplies',
     ];
 
     /**

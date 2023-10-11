@@ -24,8 +24,9 @@ class ElectricityMeterReadingsTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.ElectricityMeterReadings',
+        'app.AccessPointTypes',
         'app.AccessPoints',
+        'app.ElectricityMeterReadings',
     ];
 
     /**

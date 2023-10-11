@@ -24,16 +24,20 @@ class AccessPointsTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.AccessPoints',
         'app.AccessPointTypes',
+        'app.AccessPoints',
         'app.AccessPointContacts',
-        'app.CustomerConnections',
-        'app.ElectricityMeterReadings',
-        'app.IpAddressRanges',
-        'app.PaymentPurposes',
-        'app.LandlordPayments',
+        'app.Manufacturers',
+        'app.PowerSupplyTypes',
         'app.PowerSupplies',
+        'app.RadioLinks',
+        'app.RadioUnitBands',
+        'app.RadioUnitTypes',
+        'app.AntennaTypes',
         'app.RadioUnits',
+        'app.CustomerPoints',
+        'app.CustomerConnections',
+        'app.DeviceTypes',
         'app.RouterosDevices',
     ];
 

@@ -26,6 +26,7 @@ class ManufacturersTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Manufacturers',
+        'app.RadioUnitBands',
         'app.AntennaTypes',
         'app.PowerSupplyTypes',
         'app.RadioUnitTypes',

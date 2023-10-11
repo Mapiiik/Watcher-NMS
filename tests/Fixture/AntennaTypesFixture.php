@@ -21,8 +21,8 @@ class AntennaTypesFixture extends TestFixture
             [
                 'id' => 'd00da433-f9e7-4ec3-a11e-3032c36af7d1',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'radio_unit_band_id' => 'ace74418-92ee-41f5-8f85-213967e34e4b',
-                'manufacturer_id' => 'a4355cf1-3357-4cd8-b394-f9b6f6c10ee5',
+                'radio_unit_band_id' => '04c8767f-d828-42dd-8950-6500917fc0ce',
+                'manufacturer_id' => '9609be52-8fc6-4a98-a806-5565ee569f07',
                 'antenna_gain' => 1,
                 'part_number' => 'Lorem ipsum dolor sit amet',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',

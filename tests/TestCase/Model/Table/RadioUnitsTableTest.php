@@ -25,11 +25,14 @@ class RadioUnitsTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.RadioUnits',
-        'app.RadioUnitTypes',
+        'app.Manufacturers',
+        'app.RadioUnitBands',
+        'app.AntennaTypes',
+        'app.AccessPointTypes',
         'app.AccessPoints',
         'app.RadioLinks',
-        'app.AntennaTypes',
+        'app.RadioUnitTypes',
+        'app.RadioUnits',
     ];
 
     /**

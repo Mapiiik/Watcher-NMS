@@ -21,7 +21,7 @@ class AccessPointContactsFixture extends TestFixture
             [
                 'id' => '04da9250-9ce9-4085-8b04-12354542f1b9',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'access_point_id' => 'b1731629-92f0-4056-ada3-1d3546d4889f',
+                'access_point_id' => '1ec58677-1213-4950-80c4-bc1de41ea133',
                 'phone' => 'Lorem ipsum dolor sit amet',
                 'email' => 'Lorem ipsum dolor sit amet',
                 'customer_number' => 'Lorem ipsum dolor sit amet',

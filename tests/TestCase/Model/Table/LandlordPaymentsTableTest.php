@@ -24,9 +24,10 @@ class LandlordPaymentsTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.LandlordPayments',
+        'app.AccessPointTypes',
         'app.AccessPoints',
         'app.PaymentPurposes',
+        'app.LandlordPayments',
     ];
 
     /**

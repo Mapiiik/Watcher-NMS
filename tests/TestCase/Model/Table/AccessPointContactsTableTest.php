@@ -24,8 +24,9 @@ class AccessPointContactsTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.AccessPointContacts',
+        'app.AccessPointTypes',
         'app.AccessPoints',
+        'app.AccessPointContacts',
     ];
 
     /**

@@ -21,11 +21,20 @@ class AccessPointsControllerTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
+        'app.AccessPointTypes',
         'app.AccessPoints',
         'app.AccessPointContacts',
-        'app.ElectricityMeterReadings',
+        'app.Manufacturers',
+        'app.PowerSupplyTypes',
         'app.PowerSupplies',
+        'app.RadioLinks',
+        'app.RadioUnitBands',
+        'app.RadioUnitTypes',
+        'app.AntennaTypes',
         'app.RadioUnits',
+        'app.CustomerPoints',
+        'app.CustomerConnections',
+        'app.DeviceTypes',
         'app.RouterosDevices',
     ];
 

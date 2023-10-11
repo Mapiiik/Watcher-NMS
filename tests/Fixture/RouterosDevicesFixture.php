@@ -21,8 +21,8 @@ class RouterosDevicesFixture extends TestFixture
             [
                 'id' => '8a6bef12-429a-49b6-8cc2-8481567bc1a2',
                 'name' => 'Lorem ipsum dolor sit amet',
-                'access_point_id' => 'e8e26d93-c3a5-497b-8337-b2370af08cdb',
-                'device_type_id' => 'b2de7ed5-abe6-424b-bd4d-acba33b0153d',
+                'access_point_id' => '1ec58677-1213-4950-80c4-bc1de41ea133',
+                'device_type_id' => 'c5b16172-2b9c-4a29-aab4-ddc23bc00405',
                 'ip_address' => '192.168.11.11',
                 'system_description' => 'Lorem ipsum dolor sit amet',
                 'board_name' => 'Lorem ipsum dolor sit amet',

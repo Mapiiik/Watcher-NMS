@@ -22,6 +22,12 @@ class RadarInterferencesControllerTest extends TestCase
      */
     protected array $fixtures = [
         'app.RadarInterferences',
+        'app.AccessPointTypes',
+        'app.AccessPoints',
+        'app.CustomerPoints',
+        'app.CustomerConnections',
+        'app.DeviceTypes',
+        'app.RouterosDevices',
         'app.RouterosDeviceInterfaces',
     ];
 
