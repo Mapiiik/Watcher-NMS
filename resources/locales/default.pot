@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-10-11 13:58+0200\n"
+"POT-Creation-Date: 2023-10-12 15:08+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -649,7 +649,7 @@ msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr ""
 
 #: ./src/Controller/Traits/ErrorFormatterTrait.php:35
-msgid "<strong>Errors: </strong> {0}"
+msgid "Errors"
 msgstr ""
 
 #: ./src/Model/Entity/AccessPoint.php:101
