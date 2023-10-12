@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Controller\Traits\ErrorFormatterTrait;
 use App\Form\MapOptionsForm;
 use Cake\I18n\DateTime;
 use Cake\View\Helper\HtmlHelper;
@@ -18,8 +17,6 @@ use Cake\View\View;
  */
 class AccessPointsController extends AppController
 {
-    use ErrorFormatterTrait;
-
     /**
      * Index method
      *

@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Application;
-use App\Controller\Traits\ErrorFormatterTrait;
 use Cake\Console\CommandRunner;
 
 /**
@@ -15,8 +14,6 @@ use Cake\Console\CommandRunner;
  */
 class RadarInterferencesController extends AppController
 {
-    use ErrorFormatterTrait;
-
     /**
      * Index method
      *

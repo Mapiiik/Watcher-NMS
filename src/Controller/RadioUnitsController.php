@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Controller\Traits\ErrorFormatterTrait;
-
 /**
  * RadioUnits Controller
  *
@@ -13,8 +11,6 @@ use App\Controller\Traits\ErrorFormatterTrait;
  */
 class RadioUnitsController extends AppController
 {
-    use ErrorFormatterTrait;
-
     /**
      * Index method
      *

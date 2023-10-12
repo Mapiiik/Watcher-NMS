@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Controller\Traits\ErrorFormatterTrait;
 use App\Model\Entity\RouterosDevice;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
@@ -19,8 +18,6 @@ use SNMPException;
  */
 class RouterosDevicesController extends AppController
 {
-    use ErrorFormatterTrait;
-
     /**
      * SNMP instance
      *

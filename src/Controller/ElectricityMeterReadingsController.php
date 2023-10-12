@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Controller\Traits\ErrorFormatterTrait;
-
 /**
  * ElectricityMeterReadings Controller
  *
@@ -13,8 +11,6 @@ use App\Controller\Traits\ErrorFormatterTrait;
  */
 class ElectricityMeterReadingsController extends AppController
 {
-    use ErrorFormatterTrait;
-
     /**
      * Index method
      *

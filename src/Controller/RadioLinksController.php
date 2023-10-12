@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Controller\Traits\ErrorFormatterTrait;
 use Cake\ORM\Query\SelectQuery;
 
 /**
@@ -14,8 +13,6 @@ use Cake\ORM\Query\SelectQuery;
  */
 class RadioLinksController extends AppController
 {
-    use ErrorFormatterTrait;
-
     /**
      * Index method
      *

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Controller\Traits\ErrorFormatterTrait;
 use Cake\I18n\DateTime;
 
 /**
@@ -14,8 +13,6 @@ use Cake\I18n\DateTime;
  */
 class RouterosDeviceIpsController extends AppController
 {
-    use ErrorFormatterTrait;
-
     /**
      * Index method
      *
