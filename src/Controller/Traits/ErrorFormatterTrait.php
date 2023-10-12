@@ -19,7 +19,7 @@ trait ErrorFormatterTrait
         // get Validation errors and append them into a string
         $flattened = array_values(Hash::flatten($validationErrors));
 
-        return Text::toList($flattened);
+        return Text::toList($flattened, '<br>' . PHP_EOL, '<br>' . PHP_EOL);
     }
 
     /**
@@ -32,7 +32,7 @@ trait ErrorFormatterTrait
     {
         // Generate Flash message with Validation errors
         $this->Flash->error(
-            __('<strong>Errors: </strong> {0}', $this->formatValidationErrors($validationErrors)),
+            '<strong>' . __('Errors') . ':</strong><br>' . PHP_EOL . $this->formatValidationErrors($validationErrors),
             [
                 'escape' => false,
             ]
