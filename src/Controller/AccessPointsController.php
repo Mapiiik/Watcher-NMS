@@ -414,7 +414,7 @@ class AccessPointsController extends AppController
                 $content =
                     '<b>'
                     . $html->link($accessPoint->name, ['action' => 'view', $accessPoint->id])
-                    . '</b>' . '<br />' . '<br />';
+                    . '</b>' . '<br>' . '<br>';
 
                 foreach ($accessPoint->routeros_devices as $routerosDevice) {
                     $content .=
@@ -425,7 +425,7 @@ class AccessPointsController extends AppController
                                 'action' => 'view',
                                 $routerosDevice->id,
                             ]
-                        ) . '<br />';
+                        ) . '<br>';
 
                     $content .= '<ul>';
 
@@ -520,14 +520,14 @@ class AccessPointsController extends AppController
                                                     ]
                                                 )
                                                 . '</b>'
-                                                . '<br />',
+                                                . '<br>',
                                         ];
                                     }
 
                                     // add informations to map marker about this IP link if not locked (to access point)
                                     if (!$mapMarkers[$neighbouringAccessPoint->id]['locked']) {
                                         $mapMarkers[$neighbouringAccessPoint->id]['content'] .=
-                                            '<br />'
+                                            '<br>'
                                             . $html->link(
                                                 $routerosIpLink
                                                     ->neighbouring_ip_address
@@ -552,7 +552,7 @@ class AccessPointsController extends AppController
                                                 ]
                                             )
                                             . ' (' . $routerosIpLink->ip_address . ')'
-                                            . '<br />';
+                                            . '<br>';
                                     }
                                 }
                             }
@@ -614,13 +614,13 @@ class AccessPointsController extends AppController
                                                     ]
                                                 )
                                                 . '</b>'
-                                                . '<br />',
+                                                . '<br>',
                                         ];
                                     }
 
                                     // add informations to map marker about this IP link (to customer point)
                                     $mapMarkers[$neighbouringCustomerPoint->id]['content'] .=
-                                        '<br />'
+                                        '<br>'
                                         . '<b>'
                                         . $html->link(
                                             $routerosIpLink
@@ -639,7 +639,7 @@ class AccessPointsController extends AppController
                                             ]
                                         )
                                         . '</b>'
-                                        . '<br />'
+                                        . '<br>'
                                         . $html->link(
                                             $routerosIpLink
                                                 ->neighbouring_ip_address
@@ -664,7 +664,7 @@ class AccessPointsController extends AppController
                                             ]
                                         )
                                         . ' (' . $routerosIpLink->ip_address . ')'
-                                        . '<br />';
+                                        . '<br>';
                                 }
                             }
                         }
@@ -762,14 +762,14 @@ class AccessPointsController extends AppController
                                                     ]
                                                 )
                                                 . '</b>'
-                                                . '<br />',
+                                                . '<br>',
                                         ];
                                     }
 
                                     // add informations to map marker about this wireless link if not locked (to access point)
                                     if (!$mapMarkers[$neighbouringAccessPoint->id]['locked']) {
                                         $mapMarkers[$neighbouringAccessPoint->id]['content'] .=
-                                            '<br />'
+                                            '<br>'
                                             . $html->link(
                                                 $routerosWirelessLink
                                                     ->neighbouring_interface
@@ -794,7 +794,7 @@ class AccessPointsController extends AppController
                                                 ]
                                             )
                                             . ' (' . $routerosWirelessLink->name . ')'
-                                            . '<br />';
+                                            . '<br>';
                                     }
                                 }
                             }
@@ -856,13 +856,13 @@ class AccessPointsController extends AppController
                                                     ]
                                                 )
                                                 . '</b>'
-                                                . '<br />',
+                                                . '<br>',
                                         ];
                                     }
 
                                     // add informations to map marker about this wireless link (to customer point)
                                     $mapMarkers[$neighbouringCustomerPoint->id]['content'] .=
-                                        '<br />'
+                                        '<br>'
                                         . '<b>'
                                         . $html->link(
                                             $routerosWirelessLink
@@ -881,7 +881,7 @@ class AccessPointsController extends AppController
                                             ]
                                         )
                                         . '</b>'
-                                        . '<br />'
+                                        . '<br>'
                                         . $html->link(
                                             $routerosWirelessLink
                                                 ->neighbouring_interface
@@ -906,7 +906,7 @@ class AccessPointsController extends AppController
                                             ]
                                         )
                                         . ' (' . $routerosWirelessLink->name . ')'
-                                        . '<br />';
+                                        . '<br>';
                                 }
                             }
                         }
