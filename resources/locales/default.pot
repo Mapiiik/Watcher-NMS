@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-10-12 15:08+0200\n"
+"POT-Creation-Date: 2023-10-13 14:57+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -221,430 +221,430 @@ msgid "No devices that interfere with radar found."
 msgstr ""
 
 #: ./src/Command/RadarInterferencesUpdateCommand.php:88
-#: ./src/Controller/RadarInterferencesController.php:149
+#: ./src/Controller/RadarInterferencesController.php:146
 msgid "The radar interferences table has been updated."
 msgstr ""
 
 #: ./src/Command/RadarInterferencesUpdateCommand.php:91
-#: ./src/Controller/RadarInterferencesController.php:151
+#: ./src/Controller/RadarInterferencesController.php:148
 msgid "The radar interferences table could not be updated. Please, try again."
+msgstr ""
+
+#: ./src/Controller/AccessPointContactsController.php:95
+#: ./src/Controller/AccessPointContactsController.php:120
+msgid "The access point contact has been saved."
 msgstr ""
 
 #: ./src/Controller/AccessPointContactsController.php:99
 #: ./src/Controller/AccessPointContactsController.php:124
-msgid "The access point contact has been saved."
-msgstr ""
-
-#: ./src/Controller/AccessPointContactsController.php:103
-#: ./src/Controller/AccessPointContactsController.php:128
 msgid "The access point contact could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointContactsController.php:146
+#: ./src/Controller/AccessPointContactsController.php:142
 msgid "The access point contact has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointContactsController.php:149
+#: ./src/Controller/AccessPointContactsController.php:145
 msgid "The access point contact could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/AccessPointTypesController.php:76
+#: ./src/Controller/AccessPointTypesController.php:98
+msgid "The access point type has been saved."
 msgstr ""
 
 #: ./src/Controller/AccessPointTypesController.php:80
 #: ./src/Controller/AccessPointTypesController.php:102
-msgid "The access point type has been saved."
-msgstr ""
-
-#: ./src/Controller/AccessPointTypesController.php:84
-#: ./src/Controller/AccessPointTypesController.php:106
 msgid "The access point type could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointTypesController.php:123
+#: ./src/Controller/AccessPointTypesController.php:119
 msgid "The access point type has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointTypesController.php:126
+#: ./src/Controller/AccessPointTypesController.php:122
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:181
-#: ./src/Controller/AccessPointsController.php:205
+#: ./src/Controller/AccessPointsController.php:178
+#: ./src/Controller/AccessPointsController.php:202
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:185
-#: ./src/Controller/AccessPointsController.php:209
+#: ./src/Controller/AccessPointsController.php:182
+#: ./src/Controller/AccessPointsController.php:206
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:230
+#: ./src/Controller/AccessPointsController.php:227
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:233
+#: ./src/Controller/AccessPointsController.php:230
 msgid "The access point could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/AntennaTypesController.php:86
+#: ./src/Controller/AntennaTypesController.php:110
+msgid "The antenna type has been saved."
 msgstr ""
 
 #: ./src/Controller/AntennaTypesController.php:90
 #: ./src/Controller/AntennaTypesController.php:114
-msgid "The antenna type has been saved."
-msgstr ""
-
-#: ./src/Controller/AntennaTypesController.php:94
-#: ./src/Controller/AntennaTypesController.php:118
 msgid "The antenna type could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AntennaTypesController.php:137
+#: ./src/Controller/AntennaTypesController.php:133
 msgid "The antenna type has been deleted."
 msgstr ""
 
-#: ./src/Controller/AntennaTypesController.php:140
+#: ./src/Controller/AntennaTypesController.php:136
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AppController.php:89
+#: ./src/Controller/AppController.php:91
 msgid "Unable to find results on page {0}. Redirect to page 1."
+msgstr ""
+
+#: ./src/Controller/CustomerConnectionIpsController.php:83
+#: ./src/Controller/CustomerConnectionIpsController.php:108
+msgid "The customer connection IP has been saved."
 msgstr ""
 
 #: ./src/Controller/CustomerConnectionIpsController.php:87
 #: ./src/Controller/CustomerConnectionIpsController.php:112
-msgid "The customer connection IP has been saved."
-msgstr ""
-
-#: ./src/Controller/CustomerConnectionIpsController.php:91
-#: ./src/Controller/CustomerConnectionIpsController.php:116
 msgid "The customer connection IP could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionIpsController.php:134
+#: ./src/Controller/CustomerConnectionIpsController.php:130
 msgid "The customer connection IP has been deleted."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionIpsController.php:137
+#: ./src/Controller/CustomerConnectionIpsController.php:133
 msgid "The customer connection IP could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/CustomerConnectionsController.php:91
+#: ./src/Controller/CustomerConnectionsController.php:117
+msgid "The customer connection has been saved."
 msgstr ""
 
 #: ./src/Controller/CustomerConnectionsController.php:95
 #: ./src/Controller/CustomerConnectionsController.php:121
-msgid "The customer connection has been saved."
-msgstr ""
-
-#: ./src/Controller/CustomerConnectionsController.php:99
-#: ./src/Controller/CustomerConnectionsController.php:125
 msgid "The customer connection could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:144
+#: ./src/Controller/CustomerConnectionsController.php:140
 msgid "The customer connection has been deleted."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:147
+#: ./src/Controller/CustomerConnectionsController.php:143
 msgid "The customer connection could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/CustomerPointsController.php:75
+#: ./src/Controller/CustomerPointsController.php:97
+msgid "The customer point has been saved."
 msgstr ""
 
 #: ./src/Controller/CustomerPointsController.php:79
 #: ./src/Controller/CustomerPointsController.php:101
-msgid "The customer point has been saved."
-msgstr ""
-
-#: ./src/Controller/CustomerPointsController.php:83
-#: ./src/Controller/CustomerPointsController.php:105
 msgid "The customer point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/CustomerPointsController.php:122
+#: ./src/Controller/CustomerPointsController.php:118
 msgid "The customer point has been deleted."
 msgstr ""
 
-#: ./src/Controller/CustomerPointsController.php:125
+#: ./src/Controller/CustomerPointsController.php:121
 msgid "The customer point could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/DeviceTypesController.php:75
+#: ./src/Controller/DeviceTypesController.php:97
+msgid "The device type has been saved."
 msgstr ""
 
 #: ./src/Controller/DeviceTypesController.php:79
 #: ./src/Controller/DeviceTypesController.php:101
-msgid "The device type has been saved."
-msgstr ""
-
-#: ./src/Controller/DeviceTypesController.php:83
-#: ./src/Controller/DeviceTypesController.php:105
 msgid "The device type could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/DeviceTypesController.php:122
+#: ./src/Controller/DeviceTypesController.php:118
 msgid "The device type has been deleted."
 msgstr ""
 
-#: ./src/Controller/DeviceTypesController.php:125
+#: ./src/Controller/DeviceTypesController.php:121
 msgid "The device type could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/ElectricityMeterReadingsController.php:91
+#: ./src/Controller/ElectricityMeterReadingsController.php:116
+msgid "The electricity meter reading has been saved."
 msgstr ""
 
 #: ./src/Controller/ElectricityMeterReadingsController.php:95
 #: ./src/Controller/ElectricityMeterReadingsController.php:120
-msgid "The electricity meter reading has been saved."
-msgstr ""
-
-#: ./src/Controller/ElectricityMeterReadingsController.php:99
-#: ./src/Controller/ElectricityMeterReadingsController.php:124
 msgid "The electricity meter reading could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/ElectricityMeterReadingsController.php:142
+#: ./src/Controller/ElectricityMeterReadingsController.php:138
 msgid "The electricity meter reading has been deleted."
 msgstr ""
 
-#: ./src/Controller/ElectricityMeterReadingsController.php:145
+#: ./src/Controller/ElectricityMeterReadingsController.php:141
 msgid "The electricity meter reading could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/IpAddressRangesController.php:93
+#: ./src/Controller/IpAddressRangesController.php:121
+msgid "The IP address range has been saved."
 msgstr ""
 
 #: ./src/Controller/IpAddressRangesController.php:97
 #: ./src/Controller/IpAddressRangesController.php:125
-msgid "The IP address range has been saved."
-msgstr ""
-
-#: ./src/Controller/IpAddressRangesController.php:101
-#: ./src/Controller/IpAddressRangesController.php:129
 msgid "The IP address range could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/IpAddressRangesController.php:153
+#: ./src/Controller/IpAddressRangesController.php:149
 msgid "The IP address range has been deleted."
 msgstr ""
 
-#: ./src/Controller/IpAddressRangesController.php:156
+#: ./src/Controller/IpAddressRangesController.php:152
 msgid "The IP address range could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/LandlordPaymentsController.php:93
+#: ./src/Controller/LandlordPaymentsController.php:119
+msgid "The landlord payment has been saved."
 msgstr ""
 
 #: ./src/Controller/LandlordPaymentsController.php:97
 #: ./src/Controller/LandlordPaymentsController.php:123
-msgid "The landlord payment has been saved."
-msgstr ""
-
-#: ./src/Controller/LandlordPaymentsController.php:101
-#: ./src/Controller/LandlordPaymentsController.php:127
 msgid "The landlord payment could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/LandlordPaymentsController.php:146
+#: ./src/Controller/LandlordPaymentsController.php:142
 msgid "The landlord payment has been deleted."
 msgstr ""
 
-#: ./src/Controller/LandlordPaymentsController.php:149
+#: ./src/Controller/LandlordPaymentsController.php:145
 msgid "The landlord payment could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/ManufacturersController.php:77
+#: ./src/Controller/ManufacturersController.php:99
+msgid "The manufacturer has been saved."
 msgstr ""
 
 #: ./src/Controller/ManufacturersController.php:81
 #: ./src/Controller/ManufacturersController.php:103
-msgid "The manufacturer has been saved."
-msgstr ""
-
-#: ./src/Controller/ManufacturersController.php:85
-#: ./src/Controller/ManufacturersController.php:107
 msgid "The manufacturer could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/ManufacturersController.php:124
+#: ./src/Controller/ManufacturersController.php:120
 msgid "The manufacturer has been deleted."
 msgstr ""
 
-#: ./src/Controller/ManufacturersController.php:127
+#: ./src/Controller/ManufacturersController.php:123
 msgid "The manufacturer could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/PaymentPurposesController.php:78
+#: ./src/Controller/PaymentPurposesController.php:100
+msgid "The payment purpose has been saved."
 msgstr ""
 
 #: ./src/Controller/PaymentPurposesController.php:82
 #: ./src/Controller/PaymentPurposesController.php:104
-msgid "The payment purpose has been saved."
-msgstr ""
-
-#: ./src/Controller/PaymentPurposesController.php:86
-#: ./src/Controller/PaymentPurposesController.php:108
 msgid "The payment purpose could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/PaymentPurposesController.php:125
+#: ./src/Controller/PaymentPurposesController.php:121
 msgid "The payment purpose has been deleted."
 msgstr ""
 
-#: ./src/Controller/PaymentPurposesController.php:128
+#: ./src/Controller/PaymentPurposesController.php:124
 msgid "The payment purpose could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/PowerSuppliesController.php:93
+#: ./src/Controller/PowerSuppliesController.php:117
+msgid "The power supply has been saved."
 msgstr ""
 
 #: ./src/Controller/PowerSuppliesController.php:97
 #: ./src/Controller/PowerSuppliesController.php:121
-msgid "The power supply has been saved."
-msgstr ""
-
-#: ./src/Controller/PowerSuppliesController.php:101
-#: ./src/Controller/PowerSuppliesController.php:125
 msgid "The power supply could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/PowerSuppliesController.php:144
+#: ./src/Controller/PowerSuppliesController.php:140
 msgid "The power supply has been deleted."
 msgstr ""
 
-#: ./src/Controller/PowerSuppliesController.php:147
+#: ./src/Controller/PowerSuppliesController.php:143
 msgid "The power supply could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/PowerSupplyTypesController.php:80
+#: ./src/Controller/PowerSupplyTypesController.php:103
+msgid "The power supply type has been saved."
 msgstr ""
 
 #: ./src/Controller/PowerSupplyTypesController.php:84
 #: ./src/Controller/PowerSupplyTypesController.php:107
-msgid "The power supply type has been saved."
-msgstr ""
-
-#: ./src/Controller/PowerSupplyTypesController.php:88
-#: ./src/Controller/PowerSupplyTypesController.php:111
 msgid "The power supply type could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/PowerSupplyTypesController.php:129
+#: ./src/Controller/PowerSupplyTypesController.php:125
 msgid "The power supply type has been deleted."
 msgstr ""
 
-#: ./src/Controller/PowerSupplyTypesController.php:132
+#: ./src/Controller/PowerSupplyTypesController.php:128
 msgid "The power supply type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadarInterferencesController.php:86
-#: ./src/Controller/RadarInterferencesController.php:110
+#: ./src/Controller/RadarInterferencesController.php:83
+#: ./src/Controller/RadarInterferencesController.php:107
 msgid "The radar interference has been saved."
 msgstr ""
 
-#: ./src/Controller/RadarInterferencesController.php:90
-#: ./src/Controller/RadarInterferencesController.php:114
+#: ./src/Controller/RadarInterferencesController.php:87
+#: ./src/Controller/RadarInterferencesController.php:111
 msgid "The radar interference could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadarInterferencesController.php:131
+#: ./src/Controller/RadarInterferencesController.php:128
 msgid "The radar interference has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadarInterferencesController.php:134
+#: ./src/Controller/RadarInterferencesController.php:131
 msgid "The radar interference could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:109
-#: ./src/Controller/RadioLinksController.php:131
+#: ./src/Controller/RadioLinksController.php:106
+#: ./src/Controller/RadioLinksController.php:128
 msgid "The radio link has been saved."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:113
-#: ./src/Controller/RadioLinksController.php:135
+#: ./src/Controller/RadioLinksController.php:110
+#: ./src/Controller/RadioLinksController.php:132
 msgid "The radio link could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:152
+#: ./src/Controller/RadioLinksController.php:149
 msgid "The radio link has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:155
+#: ./src/Controller/RadioLinksController.php:152
 msgid "The radio link could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/RadioUnitBandsController.php:76
+#: ./src/Controller/RadioUnitBandsController.php:98
+msgid "The radio unit band has been saved."
 msgstr ""
 
 #: ./src/Controller/RadioUnitBandsController.php:80
 #: ./src/Controller/RadioUnitBandsController.php:102
-msgid "The radio unit band has been saved."
-msgstr ""
-
-#: ./src/Controller/RadioUnitBandsController.php:84
-#: ./src/Controller/RadioUnitBandsController.php:106
 msgid "The radio unit band could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitBandsController.php:123
+#: ./src/Controller/RadioUnitBandsController.php:119
 msgid "The radio unit band has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioUnitBandsController.php:126
+#: ./src/Controller/RadioUnitBandsController.php:122
 msgid "The radio unit band could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/RadioUnitTypesController.php:86
+#: ./src/Controller/RadioUnitTypesController.php:110
+msgid "The radio unit type has been saved."
 msgstr ""
 
 #: ./src/Controller/RadioUnitTypesController.php:90
 #: ./src/Controller/RadioUnitTypesController.php:114
-msgid "The radio unit type has been saved."
-msgstr ""
-
-#: ./src/Controller/RadioUnitTypesController.php:94
-#: ./src/Controller/RadioUnitTypesController.php:118
 msgid "The radio unit type could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitTypesController.php:137
+#: ./src/Controller/RadioUnitTypesController.php:133
 msgid "The radio unit type has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioUnitTypesController.php:140
+#: ./src/Controller/RadioUnitTypesController.php:136
 msgid "The radio unit type could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/RadioUnitsController.php:115
+#: ./src/Controller/RadioUnitsController.php:154
+msgid "The radio unit has been saved."
 msgstr ""
 
 #: ./src/Controller/RadioUnitsController.php:119
 #: ./src/Controller/RadioUnitsController.php:158
-msgid "The radio unit has been saved."
-msgstr ""
-
-#: ./src/Controller/RadioUnitsController.php:123
-#: ./src/Controller/RadioUnitsController.php:162
 msgid "The radio unit could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:193
+#: ./src/Controller/RadioUnitsController.php:189
 msgid "The radio unit has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:196
+#: ./src/Controller/RadioUnitsController.php:192
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceInterfacesController.php:102
-#: ./src/Controller/RouterosDeviceInterfacesController.php:127
+#: ./src/Controller/RouterosDeviceInterfacesController.php:99
+#: ./src/Controller/RouterosDeviceInterfacesController.php:124
 msgid "The RouterOS device interface has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceInterfacesController.php:106
-#: ./src/Controller/RouterosDeviceInterfacesController.php:131
+#: ./src/Controller/RouterosDeviceInterfacesController.php:103
+#: ./src/Controller/RouterosDeviceInterfacesController.php:128
 msgid "The RouterOS device interface could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceInterfacesController.php:149
+#: ./src/Controller/RouterosDeviceInterfacesController.php:146
 msgid "The RouterOS device interface has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceInterfacesController.php:152
+#: ./src/Controller/RouterosDeviceInterfacesController.php:149
 msgid "The RouterOS device interface could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceIpsController.php:97
-#: ./src/Controller/RouterosDeviceIpsController.php:122
+#: ./src/Controller/RouterosDeviceIpsController.php:94
+#: ./src/Controller/RouterosDeviceIpsController.php:119
 msgid "The RouterOS device IP has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceIpsController.php:101
-#: ./src/Controller/RouterosDeviceIpsController.php:126
+#: ./src/Controller/RouterosDeviceIpsController.php:98
+#: ./src/Controller/RouterosDeviceIpsController.php:123
 msgid "The RouterOS device IP could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceIpsController.php:144
+#: ./src/Controller/RouterosDeviceIpsController.php:141
 msgid "The RouterOS device IP has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceIpsController.php:147
+#: ./src/Controller/RouterosDeviceIpsController.php:144
 msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:190
-#: ./src/Controller/RouterosDevicesController.php:215
+#: ./src/Controller/RouterosDevicesController.php:187
+#: ./src/Controller/RouterosDevicesController.php:212
 msgid "The RouterOS device has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:194
-#: ./src/Controller/RouterosDevicesController.php:219
+#: ./src/Controller/RouterosDevicesController.php:191
+#: ./src/Controller/RouterosDevicesController.php:216
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:239
+#: ./src/Controller/RouterosDevicesController.php:236
 msgid "The RouterOS device has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:242
+#: ./src/Controller/RouterosDevicesController.php:239
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr ""
 

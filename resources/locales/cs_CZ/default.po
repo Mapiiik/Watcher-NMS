@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-10-12 15:08+0200\n"
-"PO-Revision-Date: 2023-10-12 15:10+0200\n"
+"POT-Creation-Date: 2023-10-13 14:57+0200\n"
+"PO-Revision-Date: 2023-10-13 15:00+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -198,430 +198,430 @@ msgid "No devices that interfere with radar found."
 msgstr "Nebyla nalezena žádná zařízení, která ruší radar."
 
 #: src/Command/RadarInterferencesUpdateCommand.php:88
-#: src/Controller/RadarInterferencesController.php:149
+#: src/Controller/RadarInterferencesController.php:146
 msgid "The radar interferences table has been updated."
 msgstr "Tabulka radarových rušení byla aktualizována."
 
 #: src/Command/RadarInterferencesUpdateCommand.php:91
-#: src/Controller/RadarInterferencesController.php:151
+#: src/Controller/RadarInterferencesController.php:148
 msgid "The radar interferences table could not be updated. Please, try again."
 msgstr "Tabulku radarových rušení nelze aktualizovat. Opakujte akci."
 
-#: src/Controller/AccessPointContactsController.php:99
-#: src/Controller/AccessPointContactsController.php:124
+#: src/Controller/AccessPointContactsController.php:95
+#: src/Controller/AccessPointContactsController.php:120
 msgid "The access point contact has been saved."
 msgstr "Kontakt přístupového bodu byl uložen."
 
-#: src/Controller/AccessPointContactsController.php:103
-#: src/Controller/AccessPointContactsController.php:128
+#: src/Controller/AccessPointContactsController.php:99
+#: src/Controller/AccessPointContactsController.php:124
 msgid "The access point contact could not be saved. Please, try again."
 msgstr "Kontakt přístupového bodu nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointContactsController.php:146
+#: src/Controller/AccessPointContactsController.php:142
 msgid "The access point contact has been deleted."
 msgstr "Kontakt přístupového bodu byl odstraněn."
 
-#: src/Controller/AccessPointContactsController.php:149
+#: src/Controller/AccessPointContactsController.php:145
 msgid "The access point contact could not be deleted. Please, try again."
 msgstr "Kontakt přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointTypesController.php:80
-#: src/Controller/AccessPointTypesController.php:102
+#: src/Controller/AccessPointTypesController.php:76
+#: src/Controller/AccessPointTypesController.php:98
 msgid "The access point type has been saved."
 msgstr "Typ přístupového bodu byl uložen."
 
-#: src/Controller/AccessPointTypesController.php:84
-#: src/Controller/AccessPointTypesController.php:106
+#: src/Controller/AccessPointTypesController.php:80
+#: src/Controller/AccessPointTypesController.php:102
 msgid "The access point type could not be saved. Please, try again."
 msgstr "Typ přístupového bodu nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointTypesController.php:123
+#: src/Controller/AccessPointTypesController.php:119
 msgid "The access point type has been deleted."
 msgstr "Typ přístupového bodu byl odstraněn."
 
-#: src/Controller/AccessPointTypesController.php:126
+#: src/Controller/AccessPointTypesController.php:122
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:181
-#: src/Controller/AccessPointsController.php:205
+#: src/Controller/AccessPointsController.php:178
+#: src/Controller/AccessPointsController.php:202
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:185
-#: src/Controller/AccessPointsController.php:209
+#: src/Controller/AccessPointsController.php:182
+#: src/Controller/AccessPointsController.php:206
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:230
+#: src/Controller/AccessPointsController.php:227
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:233
+#: src/Controller/AccessPointsController.php:230
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
-#: src/Controller/AntennaTypesController.php:90
-#: src/Controller/AntennaTypesController.php:114
+#: src/Controller/AntennaTypesController.php:86
+#: src/Controller/AntennaTypesController.php:110
 msgid "The antenna type has been saved."
 msgstr "Typ antény byl uložen."
 
-#: src/Controller/AntennaTypesController.php:94
-#: src/Controller/AntennaTypesController.php:118
+#: src/Controller/AntennaTypesController.php:90
+#: src/Controller/AntennaTypesController.php:114
 msgid "The antenna type could not be saved. Please, try again."
 msgstr "Typ antény nelze uložit. Opakujte akci."
 
-#: src/Controller/AntennaTypesController.php:137
+#: src/Controller/AntennaTypesController.php:133
 msgid "The antenna type has been deleted."
 msgstr "Typ antény byl odstraněn."
 
-#: src/Controller/AntennaTypesController.php:140
+#: src/Controller/AntennaTypesController.php:136
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr "Typ antény nelze odstranit. Opakujte akci."
 
-#: src/Controller/AppController.php:89
+#: src/Controller/AppController.php:91
 msgid "Unable to find results on page {0}. Redirect to page 1."
 msgstr "Nelze najít výsledky na stránce {0}. Přesměrování na stranu 1."
 
-#: src/Controller/CustomerConnectionIpsController.php:87
-#: src/Controller/CustomerConnectionIpsController.php:112
+#: src/Controller/CustomerConnectionIpsController.php:83
+#: src/Controller/CustomerConnectionIpsController.php:108
 msgid "The customer connection IP has been saved."
 msgstr "IP adresa připojení zákazníka byla uložena."
 
-#: src/Controller/CustomerConnectionIpsController.php:91
-#: src/Controller/CustomerConnectionIpsController.php:116
+#: src/Controller/CustomerConnectionIpsController.php:87
+#: src/Controller/CustomerConnectionIpsController.php:112
 msgid "The customer connection IP could not be saved. Please, try again."
 msgstr "IP adresu připojení zákazníka nelze uložit. Opakujte akci."
 
-#: src/Controller/CustomerConnectionIpsController.php:134
+#: src/Controller/CustomerConnectionIpsController.php:130
 msgid "The customer connection IP has been deleted."
 msgstr "IP adresa připojení zákazníka byla odstraněna."
 
-#: src/Controller/CustomerConnectionIpsController.php:137
+#: src/Controller/CustomerConnectionIpsController.php:133
 msgid "The customer connection IP could not be deleted. Please, try again."
 msgstr "IP adresu připojení zákazníka nelze odstranit. Opakujte akci."
 
-#: src/Controller/CustomerConnectionsController.php:95
-#: src/Controller/CustomerConnectionsController.php:121
+#: src/Controller/CustomerConnectionsController.php:91
+#: src/Controller/CustomerConnectionsController.php:117
 msgid "The customer connection has been saved."
 msgstr "Připojení zákazníka bylo uloženo."
 
-#: src/Controller/CustomerConnectionsController.php:99
-#: src/Controller/CustomerConnectionsController.php:125
+#: src/Controller/CustomerConnectionsController.php:95
+#: src/Controller/CustomerConnectionsController.php:121
 msgid "The customer connection could not be saved. Please, try again."
 msgstr "Připojení zákazníka nelze uložit. Opakujte akci."
 
-#: src/Controller/CustomerConnectionsController.php:144
+#: src/Controller/CustomerConnectionsController.php:140
 msgid "The customer connection has been deleted."
 msgstr "Připojení zákazníka bylo odstraněno."
 
-#: src/Controller/CustomerConnectionsController.php:147
+#: src/Controller/CustomerConnectionsController.php:143
 msgid "The customer connection could not be deleted. Please, try again."
 msgstr "Připojení zákazníka nelze odstranit. Opakujte akci."
 
-#: src/Controller/CustomerPointsController.php:79
-#: src/Controller/CustomerPointsController.php:101
+#: src/Controller/CustomerPointsController.php:75
+#: src/Controller/CustomerPointsController.php:97
 msgid "The customer point has been saved."
 msgstr "Bod zákazníka byl uložen."
 
-#: src/Controller/CustomerPointsController.php:83
-#: src/Controller/CustomerPointsController.php:105
+#: src/Controller/CustomerPointsController.php:79
+#: src/Controller/CustomerPointsController.php:101
 msgid "The customer point could not be saved. Please, try again."
 msgstr "Bod zákazníka nelze uložit. Opakujte akci."
 
-#: src/Controller/CustomerPointsController.php:122
+#: src/Controller/CustomerPointsController.php:118
 msgid "The customer point has been deleted."
 msgstr "Bod zákazníka byl odstraněn."
 
-#: src/Controller/CustomerPointsController.php:125
+#: src/Controller/CustomerPointsController.php:121
 msgid "The customer point could not be deleted. Please, try again."
 msgstr "Bod zákazníka nelze odstranit. Opakujte akci."
 
-#: src/Controller/DeviceTypesController.php:79
-#: src/Controller/DeviceTypesController.php:101
+#: src/Controller/DeviceTypesController.php:75
+#: src/Controller/DeviceTypesController.php:97
 msgid "The device type has been saved."
 msgstr "Typ zařízení byl uložen."
 
-#: src/Controller/DeviceTypesController.php:83
-#: src/Controller/DeviceTypesController.php:105
+#: src/Controller/DeviceTypesController.php:79
+#: src/Controller/DeviceTypesController.php:101
 msgid "The device type could not be saved. Please, try again."
 msgstr "Typ zařízení nelze uložit. Opakujte akci."
 
-#: src/Controller/DeviceTypesController.php:122
+#: src/Controller/DeviceTypesController.php:118
 msgid "The device type has been deleted."
 msgstr "Typ zařízení byl odstraněn."
 
-#: src/Controller/DeviceTypesController.php:125
+#: src/Controller/DeviceTypesController.php:121
 msgid "The device type could not be deleted. Please, try again."
 msgstr "Typ zařízení nelze odstranit. Opakujte akci."
 
-#: src/Controller/ElectricityMeterReadingsController.php:95
-#: src/Controller/ElectricityMeterReadingsController.php:120
+#: src/Controller/ElectricityMeterReadingsController.php:91
+#: src/Controller/ElectricityMeterReadingsController.php:116
 msgid "The electricity meter reading has been saved."
 msgstr "Odečet elektroměru byl uložen."
 
-#: src/Controller/ElectricityMeterReadingsController.php:99
-#: src/Controller/ElectricityMeterReadingsController.php:124
+#: src/Controller/ElectricityMeterReadingsController.php:95
+#: src/Controller/ElectricityMeterReadingsController.php:120
 msgid "The electricity meter reading could not be saved. Please, try again."
 msgstr "Odečet elektroměru nelze uložit. Opakujte akci."
 
-#: src/Controller/ElectricityMeterReadingsController.php:142
+#: src/Controller/ElectricityMeterReadingsController.php:138
 msgid "The electricity meter reading has been deleted."
 msgstr "Odečet elektroměru byl odstraněn."
 
-#: src/Controller/ElectricityMeterReadingsController.php:145
+#: src/Controller/ElectricityMeterReadingsController.php:141
 msgid "The electricity meter reading could not be deleted. Please, try again."
 msgstr "Odečet elektroměru nelze odstranit. Opakujte akci."
 
-#: src/Controller/IpAddressRangesController.php:97
-#: src/Controller/IpAddressRangesController.php:125
+#: src/Controller/IpAddressRangesController.php:93
+#: src/Controller/IpAddressRangesController.php:121
 msgid "The IP address range has been saved."
 msgstr "Rozsah IP adres byl uložen."
 
-#: src/Controller/IpAddressRangesController.php:101
-#: src/Controller/IpAddressRangesController.php:129
+#: src/Controller/IpAddressRangesController.php:97
+#: src/Controller/IpAddressRangesController.php:125
 msgid "The IP address range could not be saved. Please, try again."
 msgstr "Rozsah IP adres nelze uložit. Zkuste to prosím znovu."
 
-#: src/Controller/IpAddressRangesController.php:153
+#: src/Controller/IpAddressRangesController.php:149
 msgid "The IP address range has been deleted."
 msgstr "Rozsah IP adres byl odstraněn."
 
-#: src/Controller/IpAddressRangesController.php:156
+#: src/Controller/IpAddressRangesController.php:152
 msgid "The IP address range could not be deleted. Please, try again."
 msgstr "Rozsah IP adres nelze odstranit. Zkuste to prosím znovu."
 
-#: src/Controller/LandlordPaymentsController.php:97
-#: src/Controller/LandlordPaymentsController.php:123
+#: src/Controller/LandlordPaymentsController.php:93
+#: src/Controller/LandlordPaymentsController.php:119
 msgid "The landlord payment has been saved."
 msgstr "Platba pronajímateli byla uložena."
 
-#: src/Controller/LandlordPaymentsController.php:101
-#: src/Controller/LandlordPaymentsController.php:127
+#: src/Controller/LandlordPaymentsController.php:97
+#: src/Controller/LandlordPaymentsController.php:123
 msgid "The landlord payment could not be saved. Please, try again."
 msgstr "Platbu pronajímateli nebylo možné uložit. Zkuste to prosím znovu."
 
-#: src/Controller/LandlordPaymentsController.php:146
+#: src/Controller/LandlordPaymentsController.php:142
 msgid "The landlord payment has been deleted."
 msgstr "Platba pronajímateli byla odstraněna."
 
-#: src/Controller/LandlordPaymentsController.php:149
+#: src/Controller/LandlordPaymentsController.php:145
 msgid "The landlord payment could not be deleted. Please, try again."
 msgstr "Platbu pronajímateli nebylo možné smazat. Zkuste to prosím znovu."
 
-#: src/Controller/ManufacturersController.php:81
-#: src/Controller/ManufacturersController.php:103
+#: src/Controller/ManufacturersController.php:77
+#: src/Controller/ManufacturersController.php:99
 msgid "The manufacturer has been saved."
 msgstr "Výrobce byl uložen."
 
-#: src/Controller/ManufacturersController.php:85
-#: src/Controller/ManufacturersController.php:107
+#: src/Controller/ManufacturersController.php:81
+#: src/Controller/ManufacturersController.php:103
 msgid "The manufacturer could not be saved. Please, try again."
 msgstr "Výrobce nelze uložit. Opakujte akci."
 
-#: src/Controller/ManufacturersController.php:124
+#: src/Controller/ManufacturersController.php:120
 msgid "The manufacturer has been deleted."
 msgstr "Výrobce byl odstraněn."
 
-#: src/Controller/ManufacturersController.php:127
+#: src/Controller/ManufacturersController.php:123
 msgid "The manufacturer could not be deleted. Please, try again."
 msgstr "Výrobce nelze odstranit. Opakujte akci."
 
-#: src/Controller/PaymentPurposesController.php:82
-#: src/Controller/PaymentPurposesController.php:104
+#: src/Controller/PaymentPurposesController.php:78
+#: src/Controller/PaymentPurposesController.php:100
 msgid "The payment purpose has been saved."
 msgstr "Účel platby byl uložen."
 
-#: src/Controller/PaymentPurposesController.php:86
-#: src/Controller/PaymentPurposesController.php:108
+#: src/Controller/PaymentPurposesController.php:82
+#: src/Controller/PaymentPurposesController.php:104
 msgid "The payment purpose could not be saved. Please, try again."
 msgstr "Účel platby nebylo možné uložit. Zkuste to prosím znovu."
 
-#: src/Controller/PaymentPurposesController.php:125
+#: src/Controller/PaymentPurposesController.php:121
 msgid "The payment purpose has been deleted."
 msgstr "Účel platby byl vymazán."
 
-#: src/Controller/PaymentPurposesController.php:128
+#: src/Controller/PaymentPurposesController.php:124
 msgid "The payment purpose could not be deleted. Please, try again."
 msgstr "Účel platby nebylo možné vymazat. Zkuste to prosím znovu."
 
-#: src/Controller/PowerSuppliesController.php:97
-#: src/Controller/PowerSuppliesController.php:121
+#: src/Controller/PowerSuppliesController.php:93
+#: src/Controller/PowerSuppliesController.php:117
 msgid "The power supply has been saved."
 msgstr "Napájecí zdroj byl uložen."
 
-#: src/Controller/PowerSuppliesController.php:101
-#: src/Controller/PowerSuppliesController.php:125
+#: src/Controller/PowerSuppliesController.php:97
+#: src/Controller/PowerSuppliesController.php:121
 msgid "The power supply could not be saved. Please, try again."
 msgstr "Napájecí zdroj nelze uložit. Opakujte akci."
 
-#: src/Controller/PowerSuppliesController.php:144
+#: src/Controller/PowerSuppliesController.php:140
 msgid "The power supply has been deleted."
 msgstr "Napájecí zdroj byl odstraněn."
 
-#: src/Controller/PowerSuppliesController.php:147
+#: src/Controller/PowerSuppliesController.php:143
 msgid "The power supply could not be deleted. Please, try again."
 msgstr "Napájecí zdroj nelze odstranit. Opakujte akci."
 
-#: src/Controller/PowerSupplyTypesController.php:84
-#: src/Controller/PowerSupplyTypesController.php:107
+#: src/Controller/PowerSupplyTypesController.php:80
+#: src/Controller/PowerSupplyTypesController.php:103
 msgid "The power supply type has been saved."
 msgstr "Typ napájecího zdroje byl uložen."
 
-#: src/Controller/PowerSupplyTypesController.php:88
-#: src/Controller/PowerSupplyTypesController.php:111
+#: src/Controller/PowerSupplyTypesController.php:84
+#: src/Controller/PowerSupplyTypesController.php:107
 msgid "The power supply type could not be saved. Please, try again."
 msgstr "Typ napájecího zdroje nelze uložit. Opakujte akci."
 
-#: src/Controller/PowerSupplyTypesController.php:129
+#: src/Controller/PowerSupplyTypesController.php:125
 msgid "The power supply type has been deleted."
 msgstr "Typ napájecího zdroje byl odstraněn."
 
-#: src/Controller/PowerSupplyTypesController.php:132
+#: src/Controller/PowerSupplyTypesController.php:128
 msgid "The power supply type could not be deleted. Please, try again."
 msgstr "Typ napájecího zdroje nelze odstranit. Opakujte akci."
 
-#: src/Controller/RadarInterferencesController.php:86
-#: src/Controller/RadarInterferencesController.php:110
+#: src/Controller/RadarInterferencesController.php:83
+#: src/Controller/RadarInterferencesController.php:107
 msgid "The radar interference has been saved."
 msgstr "Rušení radaru bylo uloženo."
 
-#: src/Controller/RadarInterferencesController.php:90
-#: src/Controller/RadarInterferencesController.php:114
+#: src/Controller/RadarInterferencesController.php:87
+#: src/Controller/RadarInterferencesController.php:111
 msgid "The radar interference could not be saved. Please, try again."
 msgstr "Rušení radaru nelze uložit. Opakujte akci."
 
-#: src/Controller/RadarInterferencesController.php:131
+#: src/Controller/RadarInterferencesController.php:128
 msgid "The radar interference has been deleted."
 msgstr "Rušení radaru bylo odstraněno."
 
-#: src/Controller/RadarInterferencesController.php:134
+#: src/Controller/RadarInterferencesController.php:131
 msgid "The radar interference could not be deleted. Please, try again."
 msgstr "Rušení radaru nelze odstranit. Opakujte akci."
 
-#: src/Controller/RadioLinksController.php:109
-#: src/Controller/RadioLinksController.php:131
+#: src/Controller/RadioLinksController.php:106
+#: src/Controller/RadioLinksController.php:128
 msgid "The radio link has been saved."
 msgstr "Rádiový spoj byl uložen."
 
-#: src/Controller/RadioLinksController.php:113
-#: src/Controller/RadioLinksController.php:135
+#: src/Controller/RadioLinksController.php:110
+#: src/Controller/RadioLinksController.php:132
 msgid "The radio link could not be saved. Please, try again."
 msgstr "Rádiový spoj nelze uložit. Opakujte akci."
 
-#: src/Controller/RadioLinksController.php:152
+#: src/Controller/RadioLinksController.php:149
 msgid "The radio link has been deleted."
 msgstr "Rádiový spoj byl odstraněn."
 
-#: src/Controller/RadioLinksController.php:155
+#: src/Controller/RadioLinksController.php:152
 msgid "The radio link could not be deleted. Please, try again."
 msgstr "Rádiový spoj nelze odstranit. Opakujte akci."
 
-#: src/Controller/RadioUnitBandsController.php:80
-#: src/Controller/RadioUnitBandsController.php:102
+#: src/Controller/RadioUnitBandsController.php:76
+#: src/Controller/RadioUnitBandsController.php:98
 msgid "The radio unit band has been saved."
 msgstr "Pásmo rádiových jednotek bylo uloženo."
 
-#: src/Controller/RadioUnitBandsController.php:84
-#: src/Controller/RadioUnitBandsController.php:106
+#: src/Controller/RadioUnitBandsController.php:80
+#: src/Controller/RadioUnitBandsController.php:102
 msgid "The radio unit band could not be saved. Please, try again."
 msgstr "Pásmo rádiových jednotek nelze uložit. Opakujte akci."
 
-#: src/Controller/RadioUnitBandsController.php:123
+#: src/Controller/RadioUnitBandsController.php:119
 msgid "The radio unit band has been deleted."
 msgstr "Pásmo rádiových jednotek bylo odstraněno."
 
-#: src/Controller/RadioUnitBandsController.php:126
+#: src/Controller/RadioUnitBandsController.php:122
 msgid "The radio unit band could not be deleted. Please, try again."
 msgstr "Pásmo rádiových jednotek nelze odstranit. Opakujte akci."
 
-#: src/Controller/RadioUnitTypesController.php:90
-#: src/Controller/RadioUnitTypesController.php:114
+#: src/Controller/RadioUnitTypesController.php:86
+#: src/Controller/RadioUnitTypesController.php:110
 msgid "The radio unit type has been saved."
 msgstr "Typ rádiové jednotky byl uložen."
 
-#: src/Controller/RadioUnitTypesController.php:94
-#: src/Controller/RadioUnitTypesController.php:118
+#: src/Controller/RadioUnitTypesController.php:90
+#: src/Controller/RadioUnitTypesController.php:114
 msgid "The radio unit type could not be saved. Please, try again."
 msgstr "Typ rádiové jednotky nelze uložit. Opakujte akci."
 
-#: src/Controller/RadioUnitTypesController.php:137
+#: src/Controller/RadioUnitTypesController.php:133
 msgid "The radio unit type has been deleted."
 msgstr "Typ rádiové jednotky byl odstraněn."
 
-#: src/Controller/RadioUnitTypesController.php:140
+#: src/Controller/RadioUnitTypesController.php:136
 msgid "The radio unit type could not be deleted. Please, try again."
 msgstr "Typ rádiové jednotky nelze odstranit. Opakujte akci."
 
-#: src/Controller/RadioUnitsController.php:119
-#: src/Controller/RadioUnitsController.php:158
+#: src/Controller/RadioUnitsController.php:115
+#: src/Controller/RadioUnitsController.php:154
 msgid "The radio unit has been saved."
 msgstr "Rádiová jednotka byla uložena."
 
-#: src/Controller/RadioUnitsController.php:123
-#: src/Controller/RadioUnitsController.php:162
+#: src/Controller/RadioUnitsController.php:119
+#: src/Controller/RadioUnitsController.php:158
 msgid "The radio unit could not be saved. Please, try again."
 msgstr "Rádiovou jednotku nelze uložit. Opakujte akci."
 
-#: src/Controller/RadioUnitsController.php:193
+#: src/Controller/RadioUnitsController.php:189
 msgid "The radio unit has been deleted."
 msgstr "Rádiová jednotka byla odstraněna."
 
-#: src/Controller/RadioUnitsController.php:196
+#: src/Controller/RadioUnitsController.php:192
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr "Rádiovou jednotku nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDeviceInterfacesController.php:102
-#: src/Controller/RouterosDeviceInterfacesController.php:127
+#: src/Controller/RouterosDeviceInterfacesController.php:99
+#: src/Controller/RouterosDeviceInterfacesController.php:124
 msgid "The RouterOS device interface has been saved."
 msgstr "Rozhraní zařízení RouterOS bylo uloženo."
 
-#: src/Controller/RouterosDeviceInterfacesController.php:106
-#: src/Controller/RouterosDeviceInterfacesController.php:131
+#: src/Controller/RouterosDeviceInterfacesController.php:103
+#: src/Controller/RouterosDeviceInterfacesController.php:128
 msgid "The RouterOS device interface could not be saved. Please, try again."
 msgstr "Rozhraní zařízení RouterOS nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDeviceInterfacesController.php:149
+#: src/Controller/RouterosDeviceInterfacesController.php:146
 msgid "The RouterOS device interface has been deleted."
 msgstr "Rozhraní zařízení RouterOS bylo odstraněno."
 
-#: src/Controller/RouterosDeviceInterfacesController.php:152
+#: src/Controller/RouterosDeviceInterfacesController.php:149
 msgid "The RouterOS device interface could not be deleted. Please, try again."
 msgstr "Rozhraní zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDeviceIpsController.php:97
-#: src/Controller/RouterosDeviceIpsController.php:122
+#: src/Controller/RouterosDeviceIpsController.php:94
+#: src/Controller/RouterosDeviceIpsController.php:119
 msgid "The RouterOS device IP has been saved."
 msgstr "IP RouterOS zařízení byla uložena."
 
-#: src/Controller/RouterosDeviceIpsController.php:101
-#: src/Controller/RouterosDeviceIpsController.php:126
+#: src/Controller/RouterosDeviceIpsController.php:98
+#: src/Controller/RouterosDeviceIpsController.php:123
 msgid "The RouterOS device IP could not be saved. Please, try again."
 msgstr "IP RouterOS zařízení nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDeviceIpsController.php:144
+#: src/Controller/RouterosDeviceIpsController.php:141
 msgid "The RouterOS device IP has been deleted."
 msgstr "IP RouterOS zařízení byla odstraněna."
 
-#: src/Controller/RouterosDeviceIpsController.php:147
+#: src/Controller/RouterosDeviceIpsController.php:144
 msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr "IP adresu zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:190
-#: src/Controller/RouterosDevicesController.php:215
+#: src/Controller/RouterosDevicesController.php:187
+#: src/Controller/RouterosDevicesController.php:212
 msgid "The RouterOS device has been saved."
 msgstr "Zařízení RouterOS bylo uloženo."
 
-#: src/Controller/RouterosDevicesController.php:194
-#: src/Controller/RouterosDevicesController.php:219
+#: src/Controller/RouterosDevicesController.php:191
+#: src/Controller/RouterosDevicesController.php:216
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr "Zařízení RouterOS nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:239
+#: src/Controller/RouterosDevicesController.php:236
 msgid "The RouterOS device has been deleted."
 msgstr "Zařízení RouterOS bylo odstraněno."
 
-#: src/Controller/RouterosDevicesController.php:242
+#: src/Controller/RouterosDevicesController.php:239
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr "Zařízení RouterOS nelze odstranit. Opakujte akci."
 
