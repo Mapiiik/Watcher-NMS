@@ -26,6 +26,8 @@ class RouterosDeviceIpsFixture extends TestFixture
                 'interface_index' => 1,
                 'created' => 1635924822,
                 'modified' => 1635924822,
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
             ],
         ];
         parent::init();

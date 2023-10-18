@@ -3,21 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\CustomerPointsTable;
-use Cake\ORM\TableRegistry;
+use App\Model\Table\AppUsersTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\CustomerPointsTable Test Case
+ * App\Model\Table\AppUsersTable Test Case
  */
-class CustomerPointsTableTest extends TestCase
+class AppUsersTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\CustomerPointsTable
+     * @var \App\Model\Table\AppUsersTable
      */
-    protected $CustomerPoints;
+    protected $AppUsers;
 
     /**
      * Fixtures
@@ -26,8 +25,6 @@ class CustomerPointsTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.AppUsers',
-        'app.CustomerPoints',
-        'app.CustomerConnections',
     ];
 
     /**
@@ -35,11 +32,11 @@ class CustomerPointsTableTest extends TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('CustomerPoints') ? [] : ['className' => CustomerPointsTable::class];
-        $this->CustomerPoints = TableRegistry::getTableLocator()->get('CustomerPoints', $config);
+        $config = $this->getTableLocator()->exists('AppUsers') ? [] : ['className' => AppUsersTable::class];
+        $this->AppUsers = $this->getTableLocator()->get('AppUsers', $config);
     }
 
     /**
@@ -47,9 +44,9 @@ class CustomerPointsTableTest extends TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
-        unset($this->CustomerPoints);
+        unset($this->AppUsers);
 
         parent::tearDown();
     }
@@ -58,6 +55,7 @@ class CustomerPointsTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
+     * @uses \App\Model\Table\PaymentPurposesTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

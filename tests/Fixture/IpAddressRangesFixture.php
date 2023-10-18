@@ -21,9 +21,9 @@ class IpAddressRangesFixture extends TestFixture
             [
                 'id' => 'fa060f68-b28c-40fe-b734-1abb6a78c179',
                 'created' => 1649838578,
-                'created_by' => '19c2eef7-2084-434f-8abe-226c4c8c5de9',
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'modified' => 1649838578,
-                'modified_by' => '3e261865-2572-49e3-8f21-11197cc38759',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'name' => 'Lorem ipsum dolor sit',
                 'ip_network' => '192.168.1.0/24',
                 'ip_gateway' => null,
@@ -41,9 +41,9 @@ class IpAddressRangesFixture extends TestFixture
             [
                 'id' => 'c22cef67-ab70-4363-af2d-a3e7456c1ea5',
                 'created' => 1649838578,
-                'created_by' => '19c2eef7-2084-434f-8abe-226c4c8c5de9',
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'modified' => 1649838578,
-                'modified_by' => '3e261865-2572-49e3-8f21-11197cc38759',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'ip_network' => '192.168.1.0/25',
                 'ip_gateway' => '192.168.1.1',

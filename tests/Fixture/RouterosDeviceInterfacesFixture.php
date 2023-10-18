@@ -37,6 +37,8 @@ class RouterosDeviceInterfacesFixture extends TestFixture
                 'created' => 1635924822,
                 'modified' => 1635924822,
                 'bssid' => '11:22:33:44:55:66',
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
             ],
         ];
         parent::init();

@@ -32,6 +32,8 @@ class RouterosDevicesFixture extends TestFixture
                 'created' => 1635924822,
                 'modified' => 1635924822,
                 'customer_connection_id' => '2561f92d-4edc-4357-91b6-990e74e1ef64',
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
             ],
         ];
         parent::init();

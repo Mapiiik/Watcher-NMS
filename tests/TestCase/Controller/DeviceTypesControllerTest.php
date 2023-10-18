@@ -21,6 +21,7 @@ class DeviceTypesControllerTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
+        'app.AppUsers',
         'app.DeviceTypes',
         'app.AccessPointTypes',
         'app.AccessPoints',

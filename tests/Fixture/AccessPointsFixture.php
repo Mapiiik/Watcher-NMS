@@ -30,8 +30,8 @@ class AccessPointsFixture extends TestFixture
                 'month_of_electricity_meter_reading' => 1,
                 'parent_access_point_id' => null,
                 'contract_conditions' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'created_by' => 'b9d2e3c2-113c-4898-bad5-6541c2718e8a',
-                'modified_by' => '8b6b2407-73a8-4373-8c09-886ccfe410f1',
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'access_point_type_id' => 'd97cd0d5-fbe4-4a3f-bc88-58d7c6d8b709',
             ],
             [
@@ -46,8 +46,8 @@ class AccessPointsFixture extends TestFixture
                 'month_of_electricity_meter_reading' => 1,
                 'parent_access_point_id' => '1bd5e754-e102-46ad-8488-11b1b44bf026',
                 'contract_conditions' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'created_by' => 'b9d2e3c2-113c-4898-bad5-6541c2718e8a',
-                'modified_by' => '8b6b2407-73a8-4373-8c09-886ccfe410f1',
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'access_point_type_id' => 'd97cd0d5-fbe4-4a3f-bc88-58d7c6d8b709',
             ],
         ];

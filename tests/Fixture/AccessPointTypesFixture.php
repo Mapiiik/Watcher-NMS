@@ -24,9 +24,9 @@ class AccessPointTypesFixture extends TestFixture
                 'color' => 'Lorem',
                 'note' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'created' => 1669030015,
-                'created_by' => 'f4472459-e54a-44df-b9dc-1a5e3f5a6869',
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'modified' => 1669030015,
-                'modified_by' => '19b048fb-2569-4f78-964b-dd296e975d12',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
             ],
         ];
         parent::init();

@@ -29,6 +29,8 @@ class DeviceTypesFixture extends TestFixture
                 'assign_access_point_by_device_name' => 1,
                 'assign_customer_connection_by_ip' => 1,
                 'allow_technicians_access' => 1,
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
             ],
         ];
         parent::init();
