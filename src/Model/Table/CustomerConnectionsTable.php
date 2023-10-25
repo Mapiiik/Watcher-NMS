@@ -90,6 +90,16 @@ class CustomerConnectionsTable extends AppTable
             ->allowEmptyString('contract_number');
 
         $validator
+            ->scalar('customer_url')
+            ->maxLength('customer_url', 255)
+            ->allowEmptyString('customer_url');
+
+        $validator
+            ->scalar('contract_url')
+            ->maxLength('contract_url', 255)
+            ->allowEmptyString('contract_url');
+
+        $validator
             ->scalar('note')
             ->allowEmptyString('note');
 

@@ -71,18 +71,22 @@
                         <tr>
                             <th><?= __('Customer Number') ?></th>
                             <td>
-                                <?= $customerConnection->__isset('customer_number') ? $this->Html->link(
+                                <?= $customerConnection->__isset('customer_url') ? $this->Html->link(
                                     $customerConnection->customer_number,
-                                    env('WATCHER_CRM_URL') . '/admin/customers/' . (
-                                        (int)$customerConnection->customer_number - (int)env('CUSTOMER_SERIES', '0')
-                                    ),
+                                    env('WATCHER_CRM_URL') . $customerConnection->customer_url,
                                     ['target' => '_blank']
-                                ) : '' ?>
+                                ) : h($customerConnection->customer_number) ?>
                             </td>
                         </tr>
                         <tr>
                             <th><?= __('Contract Number') ?></th>
-                            <td><?= h($customerConnection->contract_number) ?></td>
+                            <td>
+                                <?= $customerConnection->__isset('contract_url') ? $this->Html->link(
+                                    $customerConnection->contract_number,
+                                    env('WATCHER_CRM_URL') . $customerConnection->contract_url,
+                                    ['target' => '_blank']
+                                ) : h($customerConnection->contract_number) ?>
+                            </td>
                         </tr>
                     </table>
                 </div>

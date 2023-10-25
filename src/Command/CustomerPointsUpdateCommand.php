@@ -103,6 +103,8 @@ class CustomerPointsUpdateCommand extends Command
                     $customerConnection = $this->fetchTable('CustomerConnections')->patchEntity($customerConnection, [
                         'customer_point_id' => $customerPoint->id ?? null,
                         'access_point_id' => $importCustomerConnection->access_point_id ?? null,
+                        'customer_url' => $importCustomerConnection->customer_url ?? null,
+                        'contract_url' => $importCustomerConnection->contract_url ?? null,
                         'name' => $importCustomerConnection->name ?? null,
                         'note' => $importCustomerConnection->note ?? null,
                     ]);

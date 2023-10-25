@@ -14,6 +14,8 @@ use Cake\ORM\Entity;
  * @property string|null $access_point_id
  * @property string|null $customer_number
  * @property string|null $contract_number
+ * @property string|null $customer_url
+ * @property string|null $contract_url
  * @property string|null $note
  * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
@@ -46,6 +48,8 @@ class CustomerConnection extends Entity
         'access_point_id' => true,
         'customer_number' => true,
         'contract_number' => true,
+        'customer_url' => true,
+        'contract_url' => true,
         'note' => true,
         'created' => true,
         'created_by' => true,
