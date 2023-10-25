@@ -72,7 +72,7 @@ return [
             //'port' => 'non_standard_port_number',
             'username' => 'postgres',
             'password' => 'postgres',
-            'database' => 'watcher_nms',
+            'database' => 'watcher_nms_test',
             //'schema' => 'public',
             'url' => env('DATABASE_TEST_URL', null),
         ],
