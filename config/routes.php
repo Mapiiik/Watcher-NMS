@@ -61,11 +61,11 @@ $routes->scope('/', function (RouteBuilder $builder): void {
         ->setPass(['access_point_id']);
 
     $builder
-        ->connect('/access-points/{access_point_id}/edit', [
+        ->connect('/access-points/{access_point_id}/{action}', [
             'controller' => 'AccessPoints',
-            'action' => 'edit',
         ])
         ->setPatterns([
+            'action' => 'edit|delete',
             'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
         ])
         ->setPass(['access_point_id']);
