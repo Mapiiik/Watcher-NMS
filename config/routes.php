@@ -56,7 +56,7 @@ $routes->scope('/', function (RouteBuilder $builder): void {
             'action' => 'view',
         ])
         ->setPatterns([
-            'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
+            'access_point_id' => RouteBuilder::UUID,
         ])
         ->setPass(['access_point_id']);
 
@@ -66,7 +66,7 @@ $routes->scope('/', function (RouteBuilder $builder): void {
         ])
         ->setPatterns([
             'action' => 'edit|delete',
-            'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
+            'access_point_id' => RouteBuilder::UUID,
         ])
         ->setPass(['access_point_id']);
 
@@ -75,13 +75,13 @@ $routes->scope('/', function (RouteBuilder $builder): void {
             'action' => 'index',
         ])
         ->setPatterns([
-            'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
+            'access_point_id' => RouteBuilder::UUID,
         ]);
 
     $builder
         ->connect('/access-points/{access_point_id}/{controller}/{action}/*', [])
         ->setPatterns([
-            'access_point_id' => '[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',
+            'access_point_id' => RouteBuilder::UUID,
         ]);
 
     // Default redirect
