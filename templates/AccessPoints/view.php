@@ -182,29 +182,33 @@
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($accessPoint->access_point_contacts as $accessPointContacts) : ?>
+                        <?php foreach ($accessPoint->access_point_contacts as $accessPointContact) : ?>
                         <tr>
-                            <td><?= h($accessPointContacts->name) ?></td>
-                            <td><?= h($accessPointContacts->phone) ?></td>
-                            <td><?= h($accessPointContacts->email) ?></td>
-                            <td>
-                                <?= $accessPointContacts->__isset('customer_number') ? $this->Html->link(
-                                    $accessPointContacts->customer_number,
-                                    env('WATCHER_CRM_URL') . '/admin/customers/' . (
-                                        (int)$accessPointContacts->customer_number - (int)env('CUSTOMER_SERIES', '0')
-                                    ),
+                            <td><?= h($accessPointContact->name) ?></td>
+                            <td><?= h($accessPointContact->phone) ?></td>
+                            <td><?= h($accessPointContact->email) ?></td>
+                            <td><?= $accessPointContact->__isset('customer_number') && env('WATCHER_CRM_URL') ?
+                                $this->Html->link(
+                                    $accessPointContact->customer_number,
+                                    env('WATCHER_CRM_URL')
+                                        . '/customers?search=' . $accessPointContact->customer_number,
                                     ['target' => '_blank']
-                                ) : '' ?>
-                            </td>
-                            <td><?= h($accessPointContacts->contract_number) ?></td>
-                            <td><?= $this->Text->autoParagraph(h($accessPointContacts->note)); ?></td>
+                                ) : h($accessPointContact->customer_number) ?></td>
+                            <td><?= $accessPointContact->__isset('contract_number') && env('WATCHER_CRM_URL') ?
+                                $this->Html->link(
+                                    $accessPointContact->contract_number,
+                                    env('WATCHER_CRM_URL')
+                                        . '/customers?search=' . $accessPointContact->contract_number,
+                                    ['target' => '_blank']
+                                ) : h($accessPointContact->contract_number) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($accessPointContact->note)); ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(
                                     __('View'),
                                     [
                                         'controller' => 'AccessPointContacts',
                                         'action' => 'view',
-                                        $accessPointContacts->id,
+                                        $accessPointContact->id,
                                     ]
                                 ) ?>
                                 <?= $this->Html->link(
@@ -212,7 +216,7 @@
                                     [
                                         'controller' => 'AccessPointContacts',
                                         'action' => 'edit',
-                                        $accessPointContacts->id,
+                                        $accessPointContact->id,
                                     ],
                                     ['class' => 'win-link']
                                 ) ?>
@@ -221,11 +225,11 @@
                                     [
                                         'controller' => 'AccessPointContacts',
                                         'action' => 'delete',
-                                        $accessPointContacts->id,
+                                        $accessPointContact->id,
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $accessPointContacts->id
+                                        $accessPointContact->id
                                     )]
                                 ) ?>
                             </td>

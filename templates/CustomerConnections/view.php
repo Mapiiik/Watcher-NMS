@@ -45,48 +45,44 @@
                         </tr>
                         <tr>
                             <th><?= __('Customer Point') ?></th>
-                            <td>
-                                <?= $customerConnection->__isset('customer_point') ? $this->Html->link(
+                            <td><?= $customerConnection->__isset('customer_point') ?
+                                $this->Html->link(
                                     $customerConnection->customer_point->name,
                                     [
                                         'controller' => 'CustomerPoints',
                                         'action' => 'view',
                                         $customerConnection->customer_point->id,
                                     ]
-                                ) : '' ?>
-                            </td>
+                                ) : '' ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td>
-                                <?= $customerConnection->__isset('access_point') ? $this->Html->link(
+                            <td><?= $customerConnection->__isset('access_point') ?
+                                $this->Html->link(
                                     $customerConnection->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $customerConnection->access_point->id,
                                     ]
-                                ) : '' ?>
-                            </td>
+                                ) : '' ?></td>
                         <tr>
                             <th><?= __('Customer Number') ?></th>
-                            <td>
-                                <?= $customerConnection->__isset('customer_url') ? $this->Html->link(
+                            <td><?= $customerConnection->__isset('customer_url') && env('WATCHER_CRM_URL') ?
+                                $this->Html->link(
                                     $customerConnection->customer_number,
                                     env('WATCHER_CRM_URL') . $customerConnection->customer_url,
                                     ['target' => '_blank']
-                                ) : h($customerConnection->customer_number) ?>
-                            </td>
+                                ) : h($customerConnection->customer_number) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Contract Number') ?></th>
-                            <td>
-                                <?= $customerConnection->__isset('contract_url') ? $this->Html->link(
+                            <td><?= $customerConnection->__isset('contract_url') && env('WATCHER_CRM_URL') ?
+                                $this->Html->link(
                                     $customerConnection->contract_number,
                                     env('WATCHER_CRM_URL') . $customerConnection->contract_url,
                                     ['target' => '_blank']
-                                ) : h($customerConnection->contract_number) ?>
-                            </td>
+                                ) : h($customerConnection->contract_number) ?></td>
                         </tr>
                     </table>
                 </div>
