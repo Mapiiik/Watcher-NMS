@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c801beb7b99ab083070c62d88de5221",
+    "content-hash": "e9ce0456baa9ff1ca7a58924653bd268",
     "packages": [
         {
             "name": "cakedc/auth",
@@ -80,19 +80,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CakeDC/users.git",
-                "reference": "85d913772f3ab5e6f06779b5e1898e6d74e118dc"
+                "reference": "3692c585104b0095902ec8a9785c1f74c93354ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/users/zipball/85d913772f3ab5e6f06779b5e1898e6d74e118dc",
-                "reference": "85d913772f3ab5e6f06779b5e1898e6d74e118dc",
+                "url": "https://api.github.com/repos/CakeDC/users/zipball/3692c585104b0095902ec8a9785c1f74c93354ea",
+                "reference": "3692c585104b0095902ec8a9785c1f74c93354ea",
                 "shasum": ""
             },
             "require": {
-                "cakedc/auth": "^8.0",
-                "cakephp/authentication": "^3.0",
-                "cakephp/authorization": "^3.0",
-                "cakephp/cakephp": "^5.0",
+                "cakedc/auth": "^8.0.0",
+                "cakephp/authentication": "^3.0.0",
+                "cakephp/authorization": "^3.0.0",
+                "cakephp/cakephp": "^5.0.0",
                 "php": ">=8.1"
             },
             "require-dev": {
@@ -155,7 +155,7 @@
                 "issues": "https://github.com/CakeDC/users/issues",
                 "source": "https://github.com/CakeDC/users"
             },
-            "time": "2023-09-15T22:14:45+00:00"
+            "time": "2023-11-06T20:40:57+00:00"
         },
         {
             "name": "cakephp/authentication",
@@ -717,31 +717,32 @@
         },
         {
             "name": "dereuromark/cakephp-geo",
-            "version": "3.0.0-RC",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "a14d4081fafcd0f084970b8220d7f1aad687bf01"
+                "reference": "0093e9f81994a0648edcff7e330e99999089f831"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/a14d4081fafcd0f084970b8220d7f1aad687bf01",
-                "reference": "a14d4081fafcd0f084970b8220d7f1aad687bf01",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/0093e9f81994a0648edcff7e330e99999089f831",
+                "reference": "0093e9f81994a0648edcff7e330e99999089f831",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^5.0.0",
+                "cakephp/cakephp": "^5.0.2",
                 "php": ">=8.1"
             },
             "require-dev": {
-                "dereuromark/cakephp-tools": "dev-cake5",
+                "dereuromark/cakephp-tools": "^3.0.0",
                 "ext-intl": "*",
                 "ext-json": "*",
                 "fig-r/psr2r-sniffer": "dev-next",
-                "geocoder-php/google-maps-provider": "^4.4.0",
-                "geocoder-php/nominatim-provider": "^5.1",
+                "geocoder-php/google-maps-provider": "^4.7.0",
+                "geocoder-php/nominatim-provider": "^5.7",
                 "geocoder-php/provider-implementation": "^1.0",
-                "php-http/cakephp-adapter": "dev-next",
+                "php-http/cakephp-adapter": "^0.4.0",
+                "php-http/discovery": "^1.18.0",
                 "php-http/message": "^1.8.0",
                 "phpunit/phpunit": "^10.1",
                 "psr/http-message": "2.0.x-dev as 1.0.0",
@@ -778,7 +779,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2023-09-10T09:08:16+00:00"
+            "time": "2023-11-09T16:42:56+00:00"
         },
         {
             "name": "geocoder-php/common-http",
@@ -2076,16 +2077,16 @@
         },
         {
             "name": "php-http/promise",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/promise.git",
-                "reference": "ef4905bfb492ff389eb7f12e26925a0f20073050"
+                "reference": "44a67cb59f708f826f3bec35f22030b3edb90119"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/promise/zipball/ef4905bfb492ff389eb7f12e26925a0f20073050",
-                "reference": "ef4905bfb492ff389eb7f12e26925a0f20073050",
+                "url": "https://api.github.com/repos/php-http/promise/zipball/44a67cb59f708f826f3bec35f22030b3edb90119",
+                "reference": "44a67cb59f708f826f3bec35f22030b3edb90119",
                 "shasum": ""
             },
             "require": {
@@ -2122,9 +2123,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/promise/issues",
-                "source": "https://github.com/php-http/promise/tree/1.2.0"
+                "source": "https://github.com/php-http/promise/tree/1.2.1"
             },
-            "time": "2023-10-24T09:20:26+00:00"
+            "time": "2023-11-08T12:57:08+00:00"
         },
         {
             "name": "psr/container",
@@ -2599,27 +2600,27 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "0.15.2",
+            "version": "0.15.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "26753bdb66827383781eb0033b34cb467da1d12c"
+                "reference": "ccbb7f2b4bf1297fec64447d1f4a773f5d9455e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/26753bdb66827383781eb0033b34cb467da1d12c",
-                "reference": "26753bdb66827383781eb0033b34cb467da1d12c",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/ccbb7f2b4bf1297fec64447d1f4a773f5d9455e0",
+                "reference": "ccbb7f2b4bf1297fec64447d1f4a773f5d9455e0",
                 "shasum": ""
             },
             "require": {
-                "cakephp/database": "^5.0",
+                "cakephp/database": "^5.0.2",
                 "php-64bit": ">=8.1",
-                "psr/container": "^2.0",
+                "psr/container": "^1.1|^2.0",
                 "symfony/config": "^3.4|^4.0|^5.0|^6.0",
                 "symfony/console": "^6.0"
             },
             "require-dev": {
-                "cakephp/cakephp": "^5.0",
+                "cakephp/cakephp": "^5.0.2",
                 "cakephp/cakephp-codesniffer": "^5.0",
                 "ext-json": "*",
                 "ext-pdo": "*",
@@ -2679,9 +2680,9 @@
             ],
             "support": {
                 "issues": "https://github.com/cakephp/phinx/issues",
-                "source": "https://github.com/cakephp/phinx/tree/0.15.2"
+                "source": "https://github.com/cakephp/phinx/tree/0.15.3"
             },
-            "time": "2023-09-22T18:18:07+00:00"
+            "time": "2023-11-09T19:51:49+00:00"
         },
         {
             "name": "symfony/config",
@@ -5134,16 +5135,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.40",
+            "version": "1.10.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "93c84b5bf7669920d823631e39904d69b9c7dc5d"
+                "reference": "c6174523c2a69231df55bdc65b61655e72876d76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/93c84b5bf7669920d823631e39904d69b9c7dc5d",
-                "reference": "93c84b5bf7669920d823631e39904d69b9c7dc5d",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c6174523c2a69231df55bdc65b61655e72876d76",
+                "reference": "c6174523c2a69231df55bdc65b61655e72876d76",
                 "shasum": ""
             },
             "require": {
@@ -5192,7 +5193,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-30T14:48:31+00:00"
+            "time": "2023-11-05T12:57:57+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -7493,7 +7494,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dereuromark/cakephp-geo": 5,
         "geocoder-php/common-http": 20
     },
     "prefer-stable": true,
