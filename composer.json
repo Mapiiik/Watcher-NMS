@@ -27,8 +27,7 @@
         "mapik/audit-log": "^5.0",
         "mobiledetect/mobiledetectlib": "^3.74",
         "php-http/cakephp-adapter": "^0.4.0",
-        "php-http/message": "^1.8.0",
-        "robmorgan/phinx": "0.15.2"
+        "php-http/message": "^1.8.0"
     },
     "require-dev": {
         "cakedc/cakephp-phpstan": "^3.0.0",
