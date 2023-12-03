@@ -1,15 +1,15 @@
 {
     "name": "mapik/watcher-nms",
     "description": "Watcher NMS",
-    "homepage": "https://github.com/Mapiiik/Watcher-NMS",
-    "type": "project",
     "license": "GPL-2.0-only",
+    "type": "project",
     "authors": [
         {
             "name": "Martin Patočka",
             "email": "mapik@mapik.net"
         }
     ],
+    "homepage": "https://github.com/Mapiiik/Watcher-NMS",
     "support": {
         "issues": "https://github.com/Mapiiik/Watcher-NMS/issues",
         "source": "https://github.com/Mapiiik/Watcher-NMS"
@@ -41,10 +41,11 @@
         "psalm/phar": "^5.12"
     },
     "suggest": {
-        "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
         "dereuromark/cakephp-ide-helper": "After baking your code, this keeps your annotations in sync with the code evolving from there on for maximum IDE and PHPStan/Psalm compatibility.",
+        "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
         "phpstan/phpstan": "PHPStan focuses on finding errors in your code without actually running it. It catches whole classes of bugs even before you write tests for the code."
     },
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "App\\": "src/"
@@ -56,21 +57,23 @@
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "cakephp/plugin-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
     "scripts": {
-        "post-create-project-cmd": [
-            "@migrations",
-            "@schema-cache"
-        ],
         "post-install-cmd": [
             "App\\Console\\Installer::postInstall"
         ],
         "post-update-cmd": [],
-        "migrations": [
-            "bin/cake migrations migrate --plugin CakeDC/Users",
-            "bin/cake migrations migrate"
-        ],
-        "schema-cache": [
-            "bin/cake schema_cache build"
+        "post-create-project-cmd": [
+            "@migrations",
+            "@schema-cache"
         ],
         "check": [
             "@test",
@@ -78,17 +81,14 @@
         ],
         "cs-check": "phpcs --colors -p",
         "cs-fix": "phpcbf --colors -p",
+        "migrations": [
+            "bin/cake migrations migrate --plugin CakeDC/Users",
+            "bin/cake migrations migrate"
+        ],
+        "schema-cache": [
+            "bin/cake schema_cache build"
+        ],
         "stan": "phpstan analyse",
         "test": "phpunit --colors=always"
-    },
-    "prefer-stable": true,
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "cakephp/plugin-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true,
-            "php-http/discovery": true
-        }
     }
 }
