@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM webdevops/php-nginx-dev:8.2
+FROM webdevops/php-nginx-dev:8.3-alpine
 
 ARG buildno
 ARG gitcommithash
@@ -13,8 +13,7 @@ ENV WEB_DOCUMENT_ROOT "/app/webroot"
 
 # Install PHP-SNMP extension
 RUN set -x \
- && apt-update \
- && apt-install libsnmp-dev \
+ && apk add -U --no-cache net-snmp-dev \
  && docker-php-ext-configure snmp \
  && docker-php-ext-install -j$(nproc) snmp \
  && docker-run-bootstrap \
