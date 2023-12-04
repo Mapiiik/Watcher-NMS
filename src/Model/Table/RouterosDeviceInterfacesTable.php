@@ -21,10 +21,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RouterosDeviceInterface[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RouterosDeviceInterface saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\RouterosDeviceInterface[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\RouterosDeviceInterface>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\RouterosDeviceInterface> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\RouterosDeviceInterface>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\RouterosDeviceInterface> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RouterosDeviceInterfacesTable extends AppTable
@@ -32,7 +32,7 @@ class RouterosDeviceInterfacesTable extends AppTable
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void

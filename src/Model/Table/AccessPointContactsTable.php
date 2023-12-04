@@ -19,10 +19,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\AccessPointContact[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\AccessPointContact|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\AccessPointContact saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\AccessPointContact[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\AccessPointContact[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\AccessPointContact[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\AccessPointContact[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\AccessPointContact>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\AccessPointContact> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\AccessPointContact>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\AccessPointContact> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class AccessPointContactsTable extends AppTable
@@ -30,7 +30,7 @@ class AccessPointContactsTable extends AppTable
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void

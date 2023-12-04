@@ -28,10 +28,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\AccessPoint[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\AccessPoint|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\AccessPoint saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\AccessPoint[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\AccessPoint[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\AccessPoint[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\AccessPoint[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\AccessPoint>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\AccessPoint> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\AccessPoint>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\AccessPoint> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class AccessPointsTable extends AppTable
@@ -39,7 +39,7 @@ class AccessPointsTable extends AppTable
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void

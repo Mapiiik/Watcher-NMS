@@ -21,10 +21,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Manufacturer[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\Manufacturer|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\Manufacturer saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Manufacturer[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Manufacturer[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\Manufacturer[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Manufacturer[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\Manufacturer>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\Manufacturer> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\Manufacturer>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\Manufacturer> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ManufacturersTable extends AppTable
@@ -32,7 +32,7 @@ class ManufacturersTable extends AppTable
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void

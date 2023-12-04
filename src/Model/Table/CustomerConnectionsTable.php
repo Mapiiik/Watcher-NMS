@@ -22,10 +22,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\CustomerConnection[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\CustomerConnection|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\CustomerConnection saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\CustomerConnection[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\CustomerConnection[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\CustomerConnection[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\CustomerConnection[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\CustomerConnection>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\CustomerConnection> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\CustomerConnection>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\CustomerConnection> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class CustomerConnectionsTable extends AppTable
@@ -33,7 +33,7 @@ class CustomerConnectionsTable extends AppTable
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void

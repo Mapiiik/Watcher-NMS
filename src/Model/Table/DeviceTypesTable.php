@@ -19,10 +19,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\DeviceType[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\DeviceType|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\DeviceType saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\DeviceType[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\DeviceType[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\DeviceType[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\DeviceType[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\DeviceType>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\DeviceType> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\DeviceType>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\DeviceType> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class DeviceTypesTable extends AppTable
@@ -30,7 +30,7 @@ class DeviceTypesTable extends AppTable
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void

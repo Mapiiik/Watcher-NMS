@@ -19,10 +19,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\CustomerPoint[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\CustomerPoint|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\CustomerPoint saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\CustomerPoint[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\CustomerPoint[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\CustomerPoint[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\CustomerPoint[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\CustomerPoint>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\CustomerPoint> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\CustomerPoint>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\CustomerPoint> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class CustomerPointsTable extends AppTable
@@ -30,7 +30,7 @@ class CustomerPointsTable extends AppTable
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void

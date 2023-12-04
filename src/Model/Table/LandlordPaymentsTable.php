@@ -20,10 +20,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\LandlordPayment[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\LandlordPayment|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\LandlordPayment saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\LandlordPayment[]|iterable<\Cake\Datasource\EntityInterface>|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\LandlordPayment[]|iterable<\Cake\Datasource\EntityInterface> saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\LandlordPayment[]|iterable<\Cake\Datasource\EntityInterface>|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\LandlordPayment[]|iterable<\Cake\Datasource\EntityInterface> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\LandlordPayment>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\LandlordPayment> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\LandlordPayment>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\App\Model\Entity\LandlordPayment> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class LandlordPaymentsTable extends AppTable
@@ -31,7 +31,7 @@ class LandlordPaymentsTable extends AppTable
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
