@@ -290,6 +290,24 @@ $permissions = [
                 'edit',
             ],
         ],
+        [
+            'role' => [
+                'sales-manager',
+                'bookkeeper',
+            ],
+            'plugin' => null,
+            'controller' => [
+                'AccessPointContacts',
+                'ElectricityMeterReadings',
+                'LandlordPayments',
+            ],
+            'action' => [
+                'index',
+                'view',
+                'add',
+                'edit',
+            ],
+        ],
     ],
 ];
 
