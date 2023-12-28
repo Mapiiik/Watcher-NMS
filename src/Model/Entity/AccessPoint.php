@@ -5,7 +5,9 @@ namespace App\Model\Entity;
 
 use Cake\Cache\Cache;
 use Cake\ORM\Entity;
-use Geo\Geocoder\Geocoder;
+use Geocoder\Provider\GoogleMaps\GoogleMaps;
+use Geocoder\Query\ReverseQuery;
+use Http\Discovery\Psr18Client;
 
 /**
  * AccessPoint Entity
@@ -109,13 +111,16 @@ class AccessPoint extends Entity
         $address_collection = Cache::remember(
             'access_point__address_lookup_' . $this->id,
             function () {
-                $geocoder = new Geocoder([
-                    'apiKey' => env('GOOLE_MAP_API_KEY', null),
-                    'locale' => env('APP_DEFAULT_LOCALE', 'en_US'),
-                ]);
-                $result = $geocoder->reverse($this->gps_y, $this->gps_x);
+                $geocoder = new GoogleMaps(
+                    new Psr18Client(),
+                    null,
+                    env('GOOLE_MAP_API_KEY', null)
+                );
 
-                return $result;
+                return $geocoder->reverseQuery(
+                    ReverseQuery::fromCoordinates($this->gps_y, $this->gps_x)
+                        ->withLocale(env('APP_DEFAULT_LOCALE', 'en_US'))
+                );
             },
             'default'
         );
