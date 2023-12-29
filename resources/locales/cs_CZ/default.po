@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-11-09 21:24+0100\n"
-"PO-Revision-Date: 2023-11-09 21:27+0100\n"
+"Project-Id-Version: Watcher NMS\n"
+"POT-Creation-Date: 2023-12-29 11:56+0100\n"
+"PO-Revision-Date: 2023-12-29 11:59+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: src/Command/CustomerPointsUpdateCommand.php:165
 msgid "The customer points data have been updated."
@@ -629,11 +629,11 @@ msgstr "Zařízení RouterOS nelze odstranit. Opakujte akci."
 msgid "Errors"
 msgstr "Chyby"
 
-#: src/Model/Entity/AccessPoint.php:101
+#: src/Model/Entity/AccessPoint.php:103
 msgid "You must provide an Google Map API key."
 msgstr "Musíte zadat klíč Google Map API."
 
-#: src/Model/Entity/AccessPoint.php:105
+#: src/Model/Entity/AccessPoint.php:107
 msgid "You need to set the correct GPS coordinates."
 msgstr "Je třeba nastavit správné souřadnice GPS."
 

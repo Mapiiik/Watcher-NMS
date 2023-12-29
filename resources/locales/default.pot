@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-11-09 21:24+0100\n"
+"POT-Creation-Date: 2023-12-29 11:56+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -652,11 +652,11 @@ msgstr ""
 msgid "Errors"
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:101
+#: ./src/Model/Entity/AccessPoint.php:103
 msgid "You must provide an Google Map API key."
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:105
+#: ./src/Model/Entity/AccessPoint.php:107
 msgid "You need to set the correct GPS coordinates."
 msgstr ""
 
