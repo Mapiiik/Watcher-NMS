@@ -88,5 +88,10 @@
         ],
         "stan": "phpstan analyse",
         "test": "phpunit --colors=always"
+    },
+    "extra": {
+        "discovery": {
+            "psr/http-client-implementation": "Cake\\Http\\Client"
+        }
     }
 }
