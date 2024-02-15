@@ -23,7 +23,7 @@ use IntlDateFormatter;
  *
  * Your application's default view class
  *
- * @link https://book.cakephp.org/4/en/views.html#the-app-view
+ * @link https://book.cakephp.org/5/en/views.html#the-app-view
  * @property \CakeDC\Users\View\Helper\AuthLinkHelper $AuthLink
  * @property \Geo\View\Helper\GoogleMapHelper $GoogleMap
  */
