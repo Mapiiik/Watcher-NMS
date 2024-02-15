@@ -27,153 +27,159 @@ use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 
 /*
- * The default class to use for all routes
- *
- * The following route classes are supplied with CakePHP and are appropriate
- * to set as the default:
- *
- * - Route
- * - InflectedRoute
- * - DashedRoute
- *
- * If no call is made to `Router::defaultRouteClass()`, the class used is
- * `Route` (`Cake\Routing\Route\Route`)
- *
- * Note that `Route` does not do any inflections on URLs which will result in
- * inconsistently cased URLs when used with `:plugin`, `:controller` and
- * `:action` markers.
+ * This file is loaded in the context of the `Application` class.
+  * So you can use  `$this` to reference the application class instance
+  * if required.
  */
-/** @var \Cake\Routing\RouteBuilder $routes */
-$routes->setRouteClass(DashedRoute::class);
-
-$routes->scope('/', function (RouteBuilder $builder): void {
+return function (RouteBuilder $routes): void {
     /*
-     * Access Points - nested routes
-     */
-    $builder
-        ->connect('/access-points/{access_point_id}', [
-            'controller' => 'AccessPoints',
-            'action' => 'view',
-        ])
-        ->setPatterns([
-            'access_point_id' => RouteBuilder::UUID,
-        ])
-        ->setPass(['access_point_id']);
-
-    $builder
-        ->connect('/access-points/{access_point_id}/{action}', [
-            'controller' => 'AccessPoints',
-        ])
-        ->setPatterns([
-            'action' => 'edit|delete',
-            'access_point_id' => RouteBuilder::UUID,
-        ])
-        ->setPass(['access_point_id']);
-
-    $builder
-        ->connect('/access-points/{access_point_id}/{controller}', [
-            'action' => 'index',
-        ])
-        ->setPatterns([
-            'access_point_id' => RouteBuilder::UUID,
-        ]);
-
-    $builder
-        ->connect('/access-points/{access_point_id}/{controller}/{action}/*', [])
-        ->setPatterns([
-            'access_point_id' => RouteBuilder::UUID,
-        ]);
-
-    // Default redirect
-    $builder->redirect('/', ['controller' => 'AccessPoints', 'action' => 'index'], ['status' => 303]);
-
-    /*
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
-    $builder->connect('/pages/*', 'Pages::display');
-
-    /*
-     * Connect catchall routes for all controllers.
+     * The default class to use for all routes
      *
-     * The `fallbacks` method is a shortcut for
+     * The following route classes are supplied with CakePHP and are appropriate
+     * to set as the default:
      *
-     * ```
-     * $builder->connect('/:controller', ['action' => 'index']);
-     * $builder->connect('/:controller/:action/*', []);
-     * ```
+     * - Route
+     * - InflectedRoute
+     * - DashedRoute
      *
-     * You can remove these routes once you've connected the
-     * routes you want in your application.
+     * If no call is made to `Router::defaultRouteClass()`, the class used is
+     * `Route` (`Cake\Routing\Route\Route`)
+     *
+     * Note that `Route` does not do any inflections on URLs which will result in
+     * inconsistently cased URLs when used with `{plugin}`, `{controller}` and
+     * `{action}` markers.
      */
-    $builder->fallbacks();
-});
+    $routes->setRouteClass(DashedRoute::class);
 
-/*
- * If you need a different set of middleware or none at all,
- * open new scope and define routes there.
- *
- * ```
- * $routes->scope('/api', function (RouteBuilder $builder) {
- *     // No $builder->applyMiddleware() here.
- *
- *     // Parse specified extensions from URLs
- *     // $builder->setExtensions(['json', 'xml']);
- *
- *     // Connect API actions here.
- * });
- * ```
- */
+    $routes->scope('/', function (RouteBuilder $builder): void {
+        /*
+        * Access Points - nested routes
+        */
+        $builder
+            ->connect('/access-points/{access_point_id}', [
+                'controller' => 'AccessPoints',
+                'action' => 'view',
+            ])
+            ->setPatterns([
+                'access_point_id' => RouteBuilder::UUID,
+            ])
+            ->setPass(['access_point_id']);
 
-$routes->prefix('Api', function (RouteBuilder $builder): void {
-    $builder->setExtensions(['json']);
+        $builder
+            ->connect('/access-points/{access_point_id}/{action}', [
+                'controller' => 'AccessPoints',
+            ])
+            ->setPatterns([
+                'action' => 'edit|delete',
+                'access_point_id' => RouteBuilder::UUID,
+            ])
+            ->setPass(['access_point_id']);
 
-    $builder->resources('AccessPoints');
-    $builder->resources('IpAddressRanges', [
-        'map' => [
-            'search' => [
-                'action' => 'search',
-                'method' => 'GET',
-            ],
-        ],
-    ]);
-    $builder->resources('RouterosDevices', [
-        'map' => [
-            'search' => [
-                'action' => 'search',
-                'method' => 'GET',
-            ],
-        ],
-    ]);
-});
+        $builder
+            ->connect('/access-points/{access_point_id}/{controller}', [
+                'action' => 'index',
+            ])
+            ->setPatterns([
+                'access_point_id' => RouteBuilder::UUID,
+            ]);
 
-//apply URL filters only if not called from console
-if (!(php_sapi_name() == 'cli')) {
-    Router::addUrlFilter(function (array $params, ServerRequest $request) {
-        //persistent win-link parameter
-        $winLink = $request->getQuery('win-link') == 'true';
-        if ($winLink) {
-            $params['?']['win-link'] = 'true';
-        }
+        $builder
+            ->connect('/access-points/{access_point_id}/{controller}/{action}/*', [])
+            ->setPatterns([
+                'access_point_id' => RouteBuilder::UUID,
+            ]);
 
-        //controllers related to access points
-        $accessPointControllers = [
-            'AccessPointContacts',
-            'ElectricityMeterReadings',
-            'IpAddressRanges',
-            'LandlordPayments',
-            'PowerSupplies',
-            'RadioUnits',
-            'RouterosDevices',
-        ];
-        $controller = $params['controller'] ?? $request->getParam('controller');
-        if (in_array($controller, $accessPointControllers)) {
-            //inject access_point_id
-            $accessPointId = $request->getParam('access_point_id');
-            if ($accessPointId && !isset($params['access_point_id'])) {
-                $params['access_point_id'] = $accessPointId;
-            }
-        }
+        // Default redirect
+        $builder->redirect('/', ['controller' => 'AccessPoints', 'action' => 'index'], ['status' => 303]);
 
-        return $params;
+        /*
+        * ...and connect the rest of 'Pages' controller's URLs.
+        */
+        $builder->connect('/pages/*', 'Pages::display');
+
+        /*
+        * Connect catchall routes for all controllers.
+        *
+        * The `fallbacks` method is a shortcut for
+        *
+        * ```
+        * $builder->connect('/:controller', ['action' => 'index']);
+        * $builder->connect('/:controller/:action/*', []);
+        * ```
+        *
+        * You can remove these routes once you've connected the
+        * routes you want in your application.
+        */
+        $builder->fallbacks();
     });
-}
+
+    /*
+    * If you need a different set of middleware or none at all,
+    * open new scope and define routes there.
+    *
+    * ```
+    * $routes->scope('/api', function (RouteBuilder $builder) {
+    *     // No $builder->applyMiddleware() here.
+    *
+    *     // Parse specified extensions from URLs
+    *     // $builder->setExtensions(['json', 'xml']);
+    *
+    *     // Connect API actions here.
+    * });
+    * ```
+    */
+
+    $routes->prefix('Api', function (RouteBuilder $builder): void {
+        $builder->setExtensions(['json']);
+
+        $builder->resources('AccessPoints');
+        $builder->resources('IpAddressRanges', [
+            'map' => [
+                'search' => [
+                    'action' => 'search',
+                    'method' => 'GET',
+                ],
+            ],
+        ]);
+        $builder->resources('RouterosDevices', [
+            'map' => [
+                'search' => [
+                    'action' => 'search',
+                    'method' => 'GET',
+                ],
+            ],
+        ]);
+    });
+
+    //apply URL filters only if not called from console
+    if (PHP_SAPI !== 'cli') {
+        Router::addUrlFilter(function (array $params, ServerRequest $request) {
+            //persistent win-link parameter
+            $winLink = $request->getQuery('win-link') == 'true';
+            if ($winLink) {
+                $params['?']['win-link'] = 'true';
+            }
+
+            //controllers related to access points
+            $accessPointControllers = [
+                'AccessPointContacts',
+                'ElectricityMeterReadings',
+                'IpAddressRanges',
+                'LandlordPayments',
+                'PowerSupplies',
+                'RadioUnits',
+                'RouterosDevices',
+            ];
+            $controller = $params['controller'] ?? $request->getParam('controller');
+            if (in_array($controller, $accessPointControllers)) {
+                //inject access_point_id
+                $accessPointId = $request->getParam('access_point_id');
+                if ($accessPointId && !isset($params['access_point_id'])) {
+                    $params['access_point_id'] = $accessPointId;
+                }
+            }
+
+            return $params;
+        });
+    }
+};
