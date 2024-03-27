@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2023-12-29 11:56+0100\n"
+"POT-Creation-Date: 2024-03-27 18:26+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -40,8 +40,12 @@ msgstr ""
 #: ./templates/RadioUnits/view.php:57
 #: ./templates/RouterosDevices/export.php:42
 #: ./templates/RouterosDevices/view.php:46
+#: ./templates/TaskStates/view.php:102
+#: ./templates/TaskTypes/view.php:94
+#: ./templates/Tasks/view.php:63
 #: ./templates/cell/AccessPoint/display.php:12
 #: ./templates/email/html/electricity_meter_readings_report.php:27
+#: ./templates/email/html/task_notification.php:58
 msgid "Access Point"
 msgstr ""
 
@@ -73,7 +77,7 @@ msgstr ""
 
 #: ./src/Command/ElectricityMeterReadingsReportCommand.php:102
 #: ./templates/ElectricityMeterReadings/index.php:25
-#: ./templates/layout/default.php:251
+#: ./templates/layout/default.php:260
 msgid "Electricity Meter Readings"
 msgstr ""
 
@@ -143,6 +147,8 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:42
 #: ./templates/RouterosDevices/view.php:170
 #: ./templates/RouterosDevices/view.php:245
+#: ./templates/TaskStates/view.php:32
+#: ./templates/TaskTypes/view.php:32
 msgid "Name"
 msgstr ""
 
@@ -648,6 +654,86 @@ msgstr ""
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr ""
 
+#: ./src/Controller/TaskStatesController.php:82
+#: ./src/Controller/TaskStatesController.php:104
+msgid "The task state has been saved."
+msgstr ""
+
+#: ./src/Controller/TaskStatesController.php:86
+#: ./src/Controller/TaskStatesController.php:108
+msgid "The task state could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/TaskStatesController.php:125
+msgid "The task state has been deleted."
+msgstr ""
+
+#: ./src/Controller/TaskStatesController.php:128
+msgid "The task state could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/TaskTypesController.php:81
+#: ./src/Controller/TaskTypesController.php:103
+msgid "The task type has been saved."
+msgstr ""
+
+#: ./src/Controller/TaskTypesController.php:85
+#: ./src/Controller/TaskTypesController.php:107
+msgid "The task type could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/TaskTypesController.php:124
+msgid "The task type has been deleted."
+msgstr ""
+
+#: ./src/Controller/TaskTypesController.php:127
+msgid "The task type could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/TasksController.php:190
+msgid "none"
+msgstr ""
+
+#: ./src/Controller/TasksController.php:292
+#: ./src/Controller/TasksController.php:367
+msgid "The task has been saved."
+msgstr ""
+
+#: ./src/Controller/TasksController.php:296
+#: ./src/Controller/TasksController.php:371
+msgid "The task could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/TasksController.php:420
+msgid "The task has been deleted."
+msgstr ""
+
+#: ./src/Controller/TasksController.php:423
+msgid "The task could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/TasksController.php:472
+msgid "You have a new task # {0}"
+msgstr ""
+
+#: ./src/Controller/TasksController.php:474
+msgid "You have changes in task # {0}"
+msgstr ""
+
+#: ./src/Controller/TasksController.php:488
+msgid "Notification email sent."
+msgstr ""
+
+#: ./src/Controller/TasksController.php:492
+msgid "The notification email could not be sent."
+msgstr ""
+
+#: ./src/Controller/TasksController.php:210
+msgid "There was {0} unfinished task found that does not have a user assigned."
+msgid_plural "There were {0} unfinished tasks found that do not have a user assigned."
+msgstr[0] ""
+msgstr[1] ""
+
 #: ./src/Controller/Traits/ErrorFormatterTrait.php:35
 msgid "Errors"
 msgstr ""
@@ -660,40 +746,64 @@ msgstr ""
 msgid "You need to set the correct GPS coordinates."
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:45
+#: ./src/Model/Entity/AppUser.php:91
+#: ./templates/TaskStates/view.php:97
+#: ./templates/TaskTypes/view.php:89
+#: ./templates/Tasks/view.php:46
+#: ./templates/email/html/task_notification.php:46
 msgid "User"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:46
+#: ./src/Model/Entity/AppUser.php:92
 msgid "Customer Service Technician"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:47
+#: ./src/Model/Entity/AppUser.php:93
 msgid "Network Technician"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:48
+#: ./src/Model/Entity/AppUser.php:94
 msgid "Network Manager"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:49
+#: ./src/Model/Entity/AppUser.php:95
 msgid "Sales Representative"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:50
+#: ./src/Model/Entity/AppUser.php:96
 msgid "Sales Manager"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:51
+#: ./src/Model/Entity/AppUser.php:97
 msgid "Bookkeeper"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:52
+#: ./src/Model/Entity/AppUser.php:98
 msgid "Admin"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:53
+#: ./src/Model/Entity/AppUser.php:99
 msgid "API"
+msgstr ""
+
+#: ./src/Model/Entity/Task.php:132
+msgid "Low"
+msgstr ""
+
+#: ./src/Model/Entity/Task.php:133
+msgid "Normal"
+msgstr ""
+
+#: ./src/Model/Entity/Task.php:134
+msgid "High"
+msgstr ""
+
+#: ./src/Model/Entity/Task.php:135
+msgid "Urgent"
+msgstr ""
+
+#: ./src/Model/Table/TasksTable.php:161
+msgid "The specified task type requires the assignment of an access point."
 msgstr ""
 
 #: ./src/Versioning.php:52
@@ -821,6 +931,20 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:10
 #: ./templates/RouterosDevices/view.php:184
 #: ./templates/RouterosDevices/view.php:248
+#: ./templates/TaskStates/add.php:10
+#: ./templates/TaskStates/edit.php:10
+#: ./templates/TaskStates/index.php:30
+#: ./templates/TaskStates/view.php:10
+#: ./templates/TaskStates/view.php:107
+#: ./templates/TaskTypes/add.php:10
+#: ./templates/TaskTypes/edit.php:10
+#: ./templates/TaskTypes/index.php:28
+#: ./templates/TaskTypes/view.php:10
+#: ./templates/TaskTypes/view.php:99
+#: ./templates/Tasks/add.php:14
+#: ./templates/Tasks/edit.php:14
+#: ./templates/Tasks/index.php:68
+#: ./templates/Tasks/view.php:10
 #: ./templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
 msgstr ""
@@ -882,6 +1006,12 @@ msgstr ""
 #: ./templates/RouterosDeviceIps/edit.php:45
 #: ./templates/RouterosDevices/add.php:56
 #: ./templates/RouterosDevices/edit.php:64
+#: ./templates/TaskStates/add.php:26
+#: ./templates/TaskStates/edit.php:31
+#: ./templates/TaskTypes/add.php:24
+#: ./templates/TaskTypes/edit.php:29
+#: ./templates/Tasks/add.php:59
+#: ./templates/Tasks/edit.php:64
 msgid "Submit"
 msgstr ""
 
@@ -959,6 +1089,13 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:98
 #: ./templates/RouterosDevices/view.php:221
 #: ./templates/RouterosDevices/view.php:266
+#: ./templates/TaskStates/edit.php:12
+#: ./templates/TaskStates/index.php:48
+#: ./templates/TaskStates/view.php:152
+#: ./templates/TaskTypes/edit.php:12
+#: ./templates/TaskTypes/index.php:44
+#: ./templates/TaskTypes/view.php:144
+#: ./templates/Tasks/edit.php:16
 msgid "Delete"
 msgstr ""
 
@@ -1059,6 +1196,16 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:20
 #: ./templates/RouterosDevices/view.php:227
 #: ./templates/RouterosDevices/view.php:268
+#: ./templates/TaskStates/edit.php:14
+#: ./templates/TaskStates/index.php:50
+#: ./templates/TaskStates/view.php:19
+#: ./templates/TaskStates/view.php:154
+#: ./templates/TaskTypes/edit.php:14
+#: ./templates/TaskTypes/index.php:46
+#: ./templates/TaskTypes/view.php:19
+#: ./templates/TaskTypes/view.php:146
+#: ./templates/Tasks/edit.php:18
+#: ./templates/Tasks/view.php:15
 msgid "Are you sure you want to delete # {0}?"
 msgstr ""
 
@@ -1091,6 +1238,9 @@ msgstr ""
 #: ./templates/RouterosDeviceIps/index.php:11
 #: ./templates/RouterosDevices/export.php:12
 #: ./templates/RouterosDevices/index.php:11
+#: ./templates/TaskStates/index.php:11
+#: ./templates/TaskTypes/index.php:11
+#: ./templates/Tasks/index.php:41
 msgid "Search"
 msgstr ""
 
@@ -1101,7 +1251,7 @@ msgid "New Access Point Contact"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:25
-#: ./templates/layout/default.php:246
+#: ./templates/layout/default.php:255
 msgid "Access Point Contacts"
 msgstr ""
 
@@ -1156,6 +1306,11 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:89
 #: ./templates/RouterosDevices/view.php:204
 #: ./templates/RouterosDevices/view.php:257
+#: ./templates/TaskStates/index.php:41
+#: ./templates/TaskStates/view.php:143
+#: ./templates/TaskTypes/index.php:37
+#: ./templates/TaskTypes/view.php:135
+#: ./templates/Tasks/index.php:111
 #: ./templates/email/html/electricity_meter_readings_report.php:52
 #: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1162
 msgid "View"
@@ -1212,6 +1367,11 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:93
 #: ./templates/RouterosDevices/view.php:212
 #: ./templates/RouterosDevices/view.php:261
+#: ./templates/TaskStates/index.php:43
+#: ./templates/TaskStates/view.php:147
+#: ./templates/TaskTypes/index.php:39
+#: ./templates/TaskTypes/view.php:139
+#: ./templates/Tasks/index.php:115
 msgid "Edit"
 msgstr ""
 
@@ -1239,6 +1399,9 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:121
 #: ./templates/RouterosDeviceIps/index.php:92
 #: ./templates/RouterosDevices/index.php:110
+#: ./templates/TaskStates/index.php:60
+#: ./templates/TaskTypes/index.php:56
+#: ./templates/Tasks/index.php:127
 msgid "first"
 msgstr ""
 
@@ -1266,6 +1429,9 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:122
 #: ./templates/RouterosDeviceIps/index.php:93
 #: ./templates/RouterosDevices/index.php:111
+#: ./templates/TaskStates/index.php:61
+#: ./templates/TaskTypes/index.php:57
+#: ./templates/Tasks/index.php:128
 msgid "previous"
 msgstr ""
 
@@ -1293,6 +1459,9 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:124
 #: ./templates/RouterosDeviceIps/index.php:95
 #: ./templates/RouterosDevices/index.php:113
+#: ./templates/TaskStates/index.php:63
+#: ./templates/TaskTypes/index.php:59
+#: ./templates/Tasks/index.php:130
 msgid "next"
 msgstr ""
 
@@ -1320,6 +1489,9 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:125
 #: ./templates/RouterosDeviceIps/index.php:96
 #: ./templates/RouterosDevices/index.php:114
+#: ./templates/TaskStates/index.php:64
+#: ./templates/TaskTypes/index.php:60
+#: ./templates/Tasks/index.php:131
 msgid "last"
 msgstr ""
 
@@ -1347,6 +1519,9 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:128
 #: ./templates/RouterosDeviceIps/index.php:99
 #: ./templates/RouterosDevices/index.php:117
+#: ./templates/TaskStates/index.php:67
+#: ./templates/TaskTypes/index.php:63
+#: ./templates/Tasks/index.php:134
 msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
 
@@ -1356,11 +1531,19 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:58
 #: ./templates/AccessPoints/view.php:178
+#: ./templates/TaskStates/view.php:101
+#: ./templates/TaskTypes/view.php:93
+#: ./templates/Tasks/view.php:59
+#: ./templates/email/html/task_notification.php:54
 msgid "Phone"
 msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:62
 #: ./templates/AccessPoints/view.php:179
+#: ./templates/TaskStates/view.php:100
+#: ./templates/TaskTypes/view.php:92
+#: ./templates/Tasks/view.php:55
+#: ./templates/email/html/task_notification.php:50
 msgid "Email"
 msgstr ""
 
@@ -1401,6 +1584,10 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/view.php:129
 #: ./templates/RouterosDeviceIps/view.php:73
 #: ./templates/RouterosDevices/view.php:128
+#: ./templates/TaskStates/view.php:52
+#: ./templates/TaskTypes/view.php:44
+#: ./templates/Tasks/view.php:96
+#: ./templates/email/html/task_notification.php:90
 msgid "Id"
 msgstr ""
 
@@ -1427,6 +1614,10 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/view.php:133
 #: ./templates/RouterosDeviceIps/view.php:77
 #: ./templates/RouterosDevices/view.php:132
+#: ./templates/TaskStates/view.php:56
+#: ./templates/TaskTypes/view.php:48
+#: ./templates/Tasks/view.php:100
+#: ./templates/email/html/task_notification.php:94
 msgid "Created"
 msgstr ""
 
@@ -1453,6 +1644,10 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/view.php:137
 #: ./templates/RouterosDeviceIps/view.php:81
 #: ./templates/RouterosDevices/view.php:136
+#: ./templates/TaskStates/view.php:60
+#: ./templates/TaskTypes/view.php:52
+#: ./templates/Tasks/view.php:104
+#: ./templates/email/html/task_notification.php:98
 msgid "Created By"
 msgstr ""
 
@@ -1479,6 +1674,10 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/view.php:148
 #: ./templates/RouterosDeviceIps/view.php:92
 #: ./templates/RouterosDevices/view.php:147
+#: ./templates/TaskStates/view.php:71
+#: ./templates/TaskTypes/view.php:63
+#: ./templates/Tasks/view.php:115
+#: ./templates/email/html/task_notification.php:102
 msgid "Modified"
 msgstr ""
 
@@ -1505,6 +1704,10 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/view.php:152
 #: ./templates/RouterosDeviceIps/view.php:96
 #: ./templates/RouterosDevices/view.php:151
+#: ./templates/TaskStates/view.php:75
+#: ./templates/TaskTypes/view.php:67
+#: ./templates/Tasks/view.php:119
+#: ./templates/email/html/task_notification.php:106
 msgid "Modified By"
 msgstr ""
 
@@ -1578,6 +1781,7 @@ msgstr ""
 
 #: ./templates/AccessPointTypes/view.php:47
 #: ./templates/RadioUnitBands/view.php:39
+#: ./templates/TaskStates/view.php:36
 msgid "Color"
 msgstr ""
 
@@ -1664,7 +1868,7 @@ msgstr ""
 #: ./templates/AccessPoints/index.php:22
 #: ./templates/AccessPoints/map.php:15
 #: ./templates/layout/default.php:97
-#: ./templates/layout/default.php:241
+#: ./templates/layout/default.php:250
 msgid "Access Points"
 msgstr ""
 
@@ -1869,6 +2073,10 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:113
 #: ./templates/RadioUnits/view.php:142
 #: ./templates/RadioUnits/view.php:146
+#: ./templates/TaskStates/index.php:39
+#: ./templates/TaskStates/view.php:45
+#: ./templates/TaskTypes/index.php:35
+#: ./templates/TaskTypes/view.php:37
 msgid "Yes"
 msgstr ""
 
@@ -1903,6 +2111,10 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:113
 #: ./templates/RadioUnits/view.php:142
 #: ./templates/RadioUnits/view.php:146
+#: ./templates/TaskStates/index.php:39
+#: ./templates/TaskStates/view.php:45
+#: ./templates/TaskTypes/index.php:35
+#: ./templates/TaskTypes/view.php:37
 msgid "No"
 msgstr ""
 
@@ -2313,22 +2525,22 @@ msgid "Antenna Gain"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:52
-#: ./templates/layout/default.php:193
+#: ./templates/layout/default.php:202
 msgid "Default"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:53
-#: ./templates/layout/default.php:194
+#: ./templates/layout/default.php:203
 msgid "Contrast"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:54
-#: ./templates/layout/default.php:195
+#: ./templates/layout/default.php:204
 msgid "Legacy"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:55
-#: ./templates/layout/default.php:196
+#: ./templates/layout/default.php:205
 msgid "Dark"
 msgstr ""
 
@@ -2353,7 +2565,7 @@ msgid "New Customer Connection IP"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/index.php:25
-#: ./templates/layout/default.php:280
+#: ./templates/layout/default.php:289
 msgid "Customer Connection Ips"
 msgstr ""
 
@@ -2389,7 +2601,7 @@ msgid "New Customer Connection"
 msgstr ""
 
 #: ./templates/CustomerConnections/index.php:25
-#: ./templates/layout/default.php:275
+#: ./templates/layout/default.php:284
 msgid "Customer Connections"
 msgstr ""
 
@@ -2426,8 +2638,8 @@ msgid "New Customer Point"
 msgstr ""
 
 #: ./templates/CustomerPoints/index.php:21
-#: ./templates/layout/default.php:107
-#: ./templates/layout/default.php:270
+#: ./templates/layout/default.php:116
+#: ./templates/layout/default.php:279
 msgid "Customer Points"
 msgstr ""
 
@@ -2530,7 +2742,7 @@ msgid "Edit IP Address Range"
 msgstr ""
 
 #: ./templates/IpAddressRanges/index.php:25
-#: ./templates/layout/default.php:116
+#: ./templates/layout/default.php:125
 msgid "IP Address Ranges"
 msgstr ""
 
@@ -2554,7 +2766,7 @@ msgid "Edit Landlord Payment"
 msgstr ""
 
 #: ./templates/LandlordPayments/index.php:25
-#: ./templates/layout/default.php:256
+#: ./templates/layout/default.php:265
 msgid "Landlord Payments"
 msgstr ""
 
@@ -2661,7 +2873,7 @@ msgid "Edit Power Supply"
 msgstr ""
 
 #: ./templates/PowerSupplies/index.php:21
-#: ./templates/layout/default.php:141
+#: ./templates/layout/default.php:150
 msgid "Power Supplies"
 msgstr ""
 
@@ -2732,7 +2944,7 @@ msgid "Devices That Interfere"
 msgstr ""
 
 #: ./templates/RadarInterferences/index.php:35
-#: ./templates/layout/default.php:310
+#: ./templates/layout/default.php:319
 msgid "Radar Interferences"
 msgstr ""
 
@@ -2839,15 +3051,15 @@ msgid "New Radio Link"
 msgstr ""
 
 #: ./templates/RadioLinks/index.php:27
-#: ./templates/layout/default.php:133
-#: ./templates/layout/default.php:323
+#: ./templates/layout/default.php:142
+#: ./templates/layout/default.php:332
 msgid "Radio Links"
 msgstr ""
 
 #: ./templates/RadioLinks/index.php:35
 #: ./templates/RadioUnits/export.php:10
 #: ./templates/RadioUnits/index.php:29
-#: ./templates/layout/default.php:328
+#: ./templates/layout/default.php:337
 msgid "Radio Units"
 msgstr ""
 
@@ -3003,7 +3215,7 @@ msgid "New RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/index.php:40
-#: ./templates/layout/default.php:300
+#: ./templates/layout/default.php:309
 msgid "RouterOS Device Interfaces"
 msgstr ""
 
@@ -3061,7 +3273,7 @@ msgid "New RouterOS Device IP"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/index.php:40
-#: ./templates/layout/default.php:305
+#: ./templates/layout/default.php:314
 msgid "RouterOS Device Ips"
 msgstr ""
 
@@ -3086,8 +3298,8 @@ msgstr ""
 
 #: ./templates/RouterosDevices/export.php:37
 #: ./templates/RouterosDevices/index.php:37
-#: ./templates/layout/default.php:123
-#: ./templates/layout/default.php:295
+#: ./templates/layout/default.php:132
+#: ./templates/layout/default.php:304
 msgid "RouterOS Devices"
 msgstr ""
 
@@ -3108,7 +3320,7 @@ msgid "Related RouterOS Device Ips"
 msgstr ""
 
 #: ./templates/Settings/index.php:7
-#: ./templates/layout/default.php:148
+#: ./templates/layout/default.php:157
 msgid "Settings"
 msgstr ""
 
@@ -3140,23 +3352,214 @@ msgstr ""
 msgid "Power Supply Related"
 msgstr ""
 
+#: ./templates/Settings/index.php:95
+msgid "Task Related"
+msgstr ""
+
+#: ./templates/Settings/index.php:98
+#: ./templates/TaskStates/add.php:11
+#: ./templates/TaskStates/edit.php:16
+#: ./templates/TaskStates/view.php:21
+msgid "List Task States"
+msgstr ""
+
+#: ./templates/Settings/index.php:103
+#: ./templates/TaskTypes/add.php:11
+#: ./templates/TaskTypes/edit.php:16
+#: ./templates/TaskTypes/view.php:21
+msgid "List Task Types"
+msgstr ""
+
+#: ./templates/TaskStates/add.php:18
+msgid "Add Task State"
+msgstr ""
+
+#: ./templates/TaskStates/edit.php:23
+#: ./templates/TaskStates/view.php:12
+msgid "Edit Task State"
+msgstr ""
+
+#: ./templates/TaskStates/index.php:20
+#: ./templates/TaskStates/view.php:22
+msgid "New Task State"
+msgstr ""
+
+#: ./templates/TaskStates/index.php:21
+msgid "Task States"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:17
+msgid "Delete Task State"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:40
+#: ./templates/TaskStates/view.php:96
+#: ./templates/TaskTypes/view.php:87
+#: ./templates/Tasks/view.php:35
+#: ./templates/email/html/task_notification.php:38
+msgid "Priority"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:44
+msgid "Completed"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:89
+#: ./templates/TaskTypes/view.php:81
+msgid "Related Tasks"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:94
+#: ./templates/TaskTypes/view.php:86
+#: ./templates/Tasks/index.php:56
+msgid "Number"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:95
+#: ./templates/Tasks/view.php:28
+#: ./templates/email/html/task_notification.php:34
+msgid "Task Type"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:98
+#: ./templates/TaskTypes/view.php:90
+#: ./templates/Tasks/view.php:133
+#: ./templates/email/html/task_notification.php:118
+msgid "Subject"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:99
+#: ./templates/TaskTypes/view.php:91
+#: ./templates/Tasks/view.php:143
+#: ./templates/email/html/task_notification.php:128
+msgid "Text"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:103
+#: ./templates/TaskTypes/view.php:95
+#: ./templates/Tasks/view.php:78
+#: ./templates/email/html/task_notification.php:74
+msgid "Start Date"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:104
+#: ./templates/TaskTypes/view.php:96
+#: ./templates/Tasks/view.php:82
+#: ./templates/email/html/task_notification.php:78
+msgid "Estimated Date"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:105
+#: ./templates/TaskTypes/view.php:97
+#: ./templates/Tasks/view.php:86
+#: ./templates/email/html/task_notification.php:82
+msgid "Critical Date"
+msgstr ""
+
+#: ./templates/TaskStates/view.php:106
+#: ./templates/TaskTypes/view.php:98
+#: ./templates/Tasks/view.php:90
+#: ./templates/email/html/task_notification.php:86
+msgid "Finish Date"
+msgstr ""
+
+#: ./templates/TaskTypes/add.php:18
+msgid "Add Task Type"
+msgstr ""
+
+#: ./templates/TaskTypes/edit.php:23
+#: ./templates/TaskTypes/view.php:12
+msgid "Edit Task Type"
+msgstr ""
+
+#: ./templates/TaskTypes/index.php:20
+#: ./templates/TaskTypes/view.php:22
+msgid "New Task Type"
+msgstr ""
+
+#: ./templates/TaskTypes/index.php:21
+msgid "Task Types"
+msgstr ""
+
+#: ./templates/TaskTypes/view.php:17
+msgid "Delete Task Type"
+msgstr ""
+
+#: ./templates/TaskTypes/view.php:36
+msgid "Access Point Required"
+msgstr ""
+
+#: ./templates/TaskTypes/view.php:88
+#: ./templates/Tasks/index.php:59
+#: ./templates/Tasks/view.php:39
+#: ./templates/email/html/task_notification.php:42
+msgid "Task State"
+msgstr ""
+
+#: ./templates/Tasks/add.php:15
+#: ./templates/Tasks/edit.php:20
+#: ./templates/Tasks/view.php:17
+msgid "List Tasks"
+msgstr ""
+
+#: ./templates/Tasks/add.php:22
+msgid "Add Task"
+msgstr ""
+
+#: ./templates/Tasks/edit.php:27
+#: ./templates/Tasks/view.php:11
+msgid "Edit Task"
+msgstr ""
+
+#: ./templates/Tasks/index.php:16
+msgid "Show Completed"
+msgstr ""
+
+#: ./templates/Tasks/index.php:50
+#: ./templates/Tasks/view.php:18
+msgid "New Task"
+msgstr ""
+
+#: ./templates/Tasks/index.php:51
+#: ./templates/layout/default.php:107
+msgid "Tasks"
+msgstr ""
+
+#: ./templates/Tasks/index.php:61
+#: ./templates/Tasks/view.php:137
+#: ./templates/email/html/task_notification.php:122
+msgid "Summary Text"
+msgstr ""
+
+#: ./templates/Tasks/view.php:13
+msgid "Delete Task"
+msgstr ""
+
+#: ./templates/Tasks/view.php:23
+msgid "Task No."
+msgstr ""
+
 #: ./templates/element/GoogleMaps/map-with-search.php:117
 msgid "Search on the Map"
 msgstr ""
 
-#: ./templates/layout/default.php:166
+#: ./templates/email/html/task_notification.php:114
+msgid "View Task"
+msgstr ""
+
+#: ./templates/layout/default.php:175
 msgid "Customer Relationship Management"
 msgstr ""
 
-#: ./templates/layout/default.php:221
+#: ./templates/layout/default.php:230
 msgid "Logout"
 msgstr ""
 
-#: ./templates/layout/default.php:347
+#: ./templates/layout/default.php:356
 msgid "Changelog"
 msgstr ""
 
-#: ./templates/layout/default.php:348
+#: ./templates/layout/default.php:357
 msgid "Version"
 msgstr ""
 
