@@ -90,5 +90,21 @@
                 ) ?>
             </div>
         </div>
+
+        <div class="related">
+            <h4><?= __('Task Related') ?></h4>
+            <div>
+                <?= $this->AuthLink->link(
+                    __('List Task States'),
+                    ['controller' => 'TaskStates', 'action' => 'index', 'plugin' => null],
+                    ['class' => 'side-nav-item']
+                ) ?>
+                <?= $this->AuthLink->link(
+                    __('List Task Types'),
+                    ['controller' => 'TaskTypes', 'action' => 'index', 'plugin' => null],
+                    ['class' => 'side-nav-item']
+                ) ?>
+            </div>
+        </div>
     </div>
 </div>

@@ -19,6 +19,8 @@ use CakeDC\Users\Model\Entity\User;
  * @property \Cake\I18n\Date $created
  * @property \Cake\I18n\Date $modified
  * @property array|null $user_settings
+ * @property string $name
+ * @property string $name_for_lists
  */
 class AppUser extends User
 {
@@ -33,6 +35,50 @@ class AppUser extends User
         'is_superuser' => false,
         'role' => true,
     ];
+
+    /**
+     * getter for name of user
+     *
+     * @return string
+     */
+    protected function _getName(): string
+    {
+        $name = '';
+
+        if (isset($this->first_name)) {
+            $name .= $this->first_name;
+        }
+        if (isset($this->last_name)) {
+            if ($name <> '') {
+                $name .= ' ';
+            }
+            $name .= $this->last_name;
+        }
+
+        return $name . ' (' . $this->username . ')';
+    }
+
+    /**
+     * getter for full name with company and with customer number for lists
+     *
+     * @return string
+     */
+    protected function _getNameForLists(): string
+    {
+        $name = '';
+
+        if (isset($this->last_name)) {
+            $name .= $this->last_name;
+        }
+        if (isset($this->first_name)) {
+            if ($name <> '') {
+                $name .= ' ';
+            }
+            $name .= $this->first_name;
+        }
+
+        return $name . ' (' . $this->username . ')';
+    }
 
     /**
      * Get role options method
@@ -55,7 +101,7 @@ class AppUser extends User
     }
 
     /**
-     * Get dealer state method
+     * Get role name method
      *
      * @return string
      */
