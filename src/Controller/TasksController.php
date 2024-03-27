@@ -181,7 +181,7 @@ class TasksController extends AppController
             ->map(function ($user) {
                 return [
                     'value' => $user->id,
-                    'text' => $user->name,
+                    'text' => $user->name_for_lists,
                     'style' => $user->active ? null : 'color: darkgray;',
                 ];
             })
