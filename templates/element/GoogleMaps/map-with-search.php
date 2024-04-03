@@ -28,7 +28,7 @@ $markerNumber = $this->GoogleMap->addMarker([
     'title' => $mapPoint->name,
     'content' => $mapPoint->name,
     'icon' => $this->GoogleMap->icon(
-        'https://chart.apis.google.com/chart?chst=d_map_pin_letter'
+        'https://chart.googleapis.com/chart?chst=d_map_pin_letter'
         . '&chld=%E2%80%A2|FE7569'
     ),
 ]);

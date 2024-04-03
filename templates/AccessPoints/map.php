@@ -34,7 +34,7 @@ foreach ($mapMarkers as $mapMarker) {
     $icon_color = str_replace('#', '', $mapMarker['color']);
     if (!isset($icons[$icon_color])) {
         $icons[$icon_color] = $this->GoogleMap->icon(
-            'https://chart.apis.google.com/chart?chst=d_map_pin_letter'
+            'https://chart.googleapis.com/chart?chst=d_map_pin_letter'
             . '&chld=%E2%80%A2|' . $icon_color
         );
     }
