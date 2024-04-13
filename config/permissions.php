@@ -233,6 +233,27 @@ $permissions = [
                 'view',
             ],
         ],
+        //allow tasks for technicians, sales and bookkeepers
+        [
+            'role' => [
+                'customer-service-technician',
+                'network-technician',
+                'network-manager',
+                'sales-representative',
+                'sales-manager',
+                'bookkeeper',
+            ],
+            'plugin' => null,
+            'controller' => [
+                'Tasks',
+            ],
+            'action' => [
+                'index',
+                'view',
+                'add',
+                'edit',
+            ],
+        ],
         //allow all indexes and views for sales-managers and network-managers
         [
             'role' => [
