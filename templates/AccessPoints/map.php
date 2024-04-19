@@ -41,7 +41,7 @@ foreach ($mapMarkers as $mapMarker) {
             strokeWeight: 0.5,
             rotation: 0,
             scale: 1,
-            anchor: new google.maps.Point(12, 33),
+            anchor: new google.maps.Point(12, 30),
         }';
         // phpcs:enable
         $icons[$icon_color] = $this->GoogleMap::$iconCount++;
