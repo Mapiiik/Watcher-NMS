@@ -492,7 +492,7 @@ class AccessPointsController extends AppController
                                             'lng' => $neighbouringAccessPoint->gps_x,
                                         ],
                                         'options' => [
-                                            'color' => '#00DD00',
+                                            'color' => '#00dd00',
                                             'opacity' => 0.7,
                                             'weight' => 2,
                                         ],
@@ -504,7 +504,7 @@ class AccessPointsController extends AppController
                                             'lat' => $neighbouringAccessPoint->gps_y,
                                             'lng' => $neighbouringAccessPoint->gps_x,
                                             'title' => $neighbouringAccessPoint->name,
-                                            'color' => $neighbouringAccessPoint->access_point_type->color ?? '#FE7569',
+                                            'color' => $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
                                             'locked' => false,
                                             'content' =>
                                                 '<b>'
@@ -586,7 +586,7 @@ class AccessPointsController extends AppController
                                             'lng' => $neighbouringCustomerPoint->gps_x,
                                         ],
                                         'options' => [
-                                            'color' => '#00DD00',
+                                            'color' => '#00dd00',
                                             'opacity' => 0.7,
                                             'weight' => 1,
                                         ],
@@ -598,7 +598,7 @@ class AccessPointsController extends AppController
                                             'lat' => $neighbouringCustomerPoint->gps_y,
                                             'lng' => $neighbouringCustomerPoint->gps_x,
                                             'title' => $neighbouringCustomerPoint->name,
-                                            'color' => '#65BA4A',
+                                            'color' => '#65ba4a',
                                             'locked' => false,
                                             'content' =>
                                                 '<b>'
@@ -734,7 +734,7 @@ class AccessPointsController extends AppController
                                             'lng' => $neighbouringAccessPoint->gps_x,
                                         ],
                                         'options' => [
-                                            'color' => '#FF0000',
+                                            'color' => '#ff0000',
                                             'opacity' => 0.7,
                                             'weight' => 2,
                                         ],
@@ -746,7 +746,7 @@ class AccessPointsController extends AppController
                                             'lat' => $neighbouringAccessPoint->gps_y,
                                             'lng' => $neighbouringAccessPoint->gps_x,
                                             'title' => $neighbouringAccessPoint->name,
-                                            'color' => $neighbouringAccessPoint->access_point_type->color ?? '#FE7569',
+                                            'color' => $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
                                             'locked' => false,
                                             'content' =>
                                                 '<b>'
@@ -828,7 +828,7 @@ class AccessPointsController extends AppController
                                             'lng' => $neighbouringCustomerPoint->gps_x,
                                         ],
                                         'options' => [
-                                            'color' => '#FF0000',
+                                            'color' => '#ff0000',
                                             'opacity' => 0.7,
                                             'weight' => 1,
                                         ],
@@ -840,7 +840,7 @@ class AccessPointsController extends AppController
                                             'lat' => $neighbouringCustomerPoint->gps_y,
                                             'lng' => $neighbouringCustomerPoint->gps_x,
                                             'title' => $neighbouringCustomerPoint->name,
-                                            'color' => '#65BA4A',
+                                            'color' => '#65ba4a',
                                             'locked' => false,
                                             'content' =>
                                                 '<b>'
@@ -917,7 +917,7 @@ class AccessPointsController extends AppController
                     'lng' => $accessPoint->gps_x,
                     'title' => $accessPoint->name,
                     'content' => $content,
-                    'color' => $accessPoint->access_point_type->color ?? '#FE7569',
+                    'color' => $accessPoint->access_point_type->color ?? '#d33c43',
                     'locked' => true,
                 ];
 

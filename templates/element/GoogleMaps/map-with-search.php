@@ -27,10 +27,6 @@ $markerNumber = $this->GoogleMap->addMarker([
     'lng' => $mapPoint->gps_x ?? 0,
     'title' => $mapPoint->name,
     'content' => $mapPoint->name,
-    'icon' => $this->GoogleMap->icon(
-        'https://chart.googleapis.com/chart?chst=d_map_pin_letter'
-        . '&chld=%E2%80%A2|FE7569'
-    ),
 ]);
 
 // After clicking on the map, move the marker to the current position and enter the GPS coordinates in the form
