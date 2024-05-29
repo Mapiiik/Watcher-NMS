@@ -8,6 +8,7 @@ use Cake\I18n\Date;
 use Cake\I18n\DateTime;
 use Cake\Mailer\Mailer;
 use Cake\ORM\Query\SelectQuery;
+use Cake\Utility\Hash;
 use Cake\Validation\Validation;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
@@ -81,7 +82,12 @@ class TasksController extends AppController
                 'TaskStates.completed' => 0,
             ];
         }
-        $user_id = $filter['user_id'] ?? $this->getRequest()->getAttribute('identity')['id'] ?? null;
+
+        if (Hash::get($this->user_settings, 'tasks.all_by_default', false)) {
+            $user_id = $filter['user_id'] ?? null;
+        } else {
+            $user_id = $filter['user_id'] ?? $this->getRequest()->getAttribute('identity')['id'] ?? null;
+        }
         if (!empty($user_id)) {
             if ($user_id === 'none') {
                 $conditions[] = [
