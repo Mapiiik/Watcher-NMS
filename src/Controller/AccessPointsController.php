@@ -151,6 +151,11 @@ class AccessPointsController extends AppController
                 continue;
             }
 
+            // Check that reading dates are set
+            if (!isset($new->reading_date) || !isset($old->reading_date)) {
+                continue;
+            }
+
             $new['daily_consumption'] =
                 ($new->reading_value - $old->reading_value) / $new->reading_date->diffInDays($old->reading_date);
 
