@@ -68,8 +68,7 @@ class ElectricityMeterReadingsTable extends AppTable
             ->allowEmptyString('name');
 
         $validator
-            ->date('reading_date')
-            ->allowEmptyDate('reading_date');
+            ->date('reading_date');
 
         $validator
             ->numeric('reading_value')

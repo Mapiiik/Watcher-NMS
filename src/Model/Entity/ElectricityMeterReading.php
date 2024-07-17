@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property string|null $name
  * @property string|null $access_point_id
- * @property \Cake\I18n\Date|null $reading_date
+ * @property \Cake\I18n\Date $reading_date
  * @property float|null $reading_value
  * @property string|null $note
  * @property \Cake\I18n\DateTime|null $created

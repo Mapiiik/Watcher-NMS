@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property string|null $access_point_id
  * @property string|null $payment_purpose_id
- * @property \Cake\I18n\Date|null $payment_date
+ * @property \Cake\I18n\Date $payment_date
  * @property string|null $amount_paid
  * @property string|null $note
  * @property \Cake\I18n\DateTime|null $created

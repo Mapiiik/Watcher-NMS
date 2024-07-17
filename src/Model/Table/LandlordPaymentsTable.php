@@ -71,8 +71,7 @@ class LandlordPaymentsTable extends AppTable
             ->allowEmptyString('payment_purpose_id');
 
         $validator
-            ->date('payment_date')
-            ->allowEmptyDate('payment_date');
+            ->date('payment_date');
 
         $validator
             ->decimal('amount_paid')
