@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2024-03-27 18:26+0100\n"
-"PO-Revision-Date: 2024-03-27 18:42+0100\n"
+"POT-Creation-Date: 2024-07-24 16:22+0200\n"
+"PO-Revision-Date: 2024-07-24 16:34+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: src/Command/CustomerPointsUpdateCommand.php:165
 msgid "The customer points data have been updated."
@@ -246,21 +246,21 @@ msgstr "Typ přístupového bodu byl odstraněn."
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:178
-#: src/Controller/AccessPointsController.php:202
+#: src/Controller/AccessPointsController.php:183
+#: src/Controller/AccessPointsController.php:207
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:182
-#: src/Controller/AccessPointsController.php:206
+#: src/Controller/AccessPointsController.php:187
+#: src/Controller/AccessPointsController.php:211
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:227
+#: src/Controller/AccessPointsController.php:232
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:230
+#: src/Controller/AccessPointsController.php:235
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
@@ -664,45 +664,45 @@ msgstr "Typ úkolu byl odstraněn."
 msgid "The task type could not be deleted. Please, try again."
 msgstr "Typ úkolu nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:190
+#: src/Controller/TasksController.php:196
 msgid "none"
 msgstr "žádný"
 
-#: src/Controller/TasksController.php:292
-#: src/Controller/TasksController.php:367
+#: src/Controller/TasksController.php:298
+#: src/Controller/TasksController.php:373
 msgid "The task has been saved."
 msgstr "Úkol byl uložen."
 
-#: src/Controller/TasksController.php:296
-#: src/Controller/TasksController.php:371
+#: src/Controller/TasksController.php:302
+#: src/Controller/TasksController.php:377
 msgid "The task could not be saved. Please, try again."
 msgstr "Úkol nelze uložit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:420
+#: src/Controller/TasksController.php:426
 msgid "The task has been deleted."
 msgstr "Úkol byl odstraněn."
 
-#: src/Controller/TasksController.php:423
+#: src/Controller/TasksController.php:429
 msgid "The task could not be deleted. Please, try again."
 msgstr "Úkol nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:472
+#: src/Controller/TasksController.php:478
 msgid "You have a new task # {0}"
 msgstr "Máte nový úkol č. {0}"
 
-#: src/Controller/TasksController.php:474
+#: src/Controller/TasksController.php:480
 msgid "You have changes in task # {0}"
 msgstr "Máte změny v úkolu č. {0}"
 
-#: src/Controller/TasksController.php:488
+#: src/Controller/TasksController.php:494
 msgid "Notification email sent."
 msgstr "E-mail s oznámením odeslán."
 
-#: src/Controller/TasksController.php:492
+#: src/Controller/TasksController.php:498
 msgid "The notification email could not be sent."
 msgstr "E-mail s oznámením se nepodařilo odeslat."
 
-#: src/Controller/TasksController.php:210
+#: src/Controller/TasksController.php:216
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural ""
 "There were {0} unfinished tasks found that do not have a user assigned."
@@ -892,7 +892,7 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/AccessPointContacts/edit.php:44
 #: templates/AccessPointTypes/add.php:25 templates/AccessPointTypes/edit.php:33
 #: templates/AccessPoints/add.php:53 templates/AccessPoints/edit.php:61
-#: templates/AccessPoints/map.php:85 templates/AntennaTypes/add.php:30
+#: templates/AccessPoints/map.php:93 templates/AntennaTypes/add.php:30
 #: templates/AntennaTypes/edit.php:38
 #: templates/CustomerConnectionIps/add.php:36
 #: templates/CustomerConnectionIps/edit.php:44
@@ -1559,23 +1559,23 @@ msgstr "Mapa"
 msgid "Access Points"
 msgstr "Přístupové body"
 
-#: templates/AccessPoints/map.php:63
+#: templates/AccessPoints/map.php:71
 msgid "Map Options"
 msgstr "Možnosti mapy"
 
-#: templates/AccessPoints/map.php:66
+#: templates/AccessPoints/map.php:74
 msgid "RouterOS IP Links"
 msgstr "IP propoje RouterOS"
 
-#: templates/AccessPoints/map.php:69
+#: templates/AccessPoints/map.php:77
 msgid "RouterOS Wireless Links"
 msgstr "Bezdrátové propoje RouterOS"
 
-#: templates/AccessPoints/map.php:72
+#: templates/AccessPoints/map.php:80
 msgid "Linked Customers"
 msgstr "Propojení zákazníci"
 
-#: templates/AccessPoints/map.php:79 templates/RadarInterferences/view.php:110
+#: templates/AccessPoints/map.php:87 templates/RadarInterferences/view.php:110
 #: templates/RouterosDeviceInterfaces/add.php:28
 #: templates/RouterosDeviceInterfaces/edit.php:36
 #: templates/RouterosDeviceInterfaces/index.php:46
@@ -2981,7 +2981,7 @@ msgstr "Odstranit úkol"
 msgid "Task No."
 msgstr "Úkol č."
 
-#: templates/element/GoogleMaps/map-with-search.php:117
+#: templates/element/GoogleMaps/map-with-search.php:113
 msgid "Search on the Map"
 msgstr "Hledat na mapě"
 
