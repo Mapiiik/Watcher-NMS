@@ -285,9 +285,9 @@ return [
             'timezone' => 'UTC',
 
             /*
-             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
+             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
              */
-            //'encoding' => 'utf8mb4',
+            'encoding' => 'utf8mb4',
 
             /*
              * If your MySQL server is configured with `skip-character-set-client-handshake`
@@ -326,7 +326,7 @@ return [
             'driver' => Mysql::class,
             'persistent' => false,
             'timezone' => 'UTC',
-            //'encoding' => 'utf8mb4',
+            'encoding' => 'utf8mb4',
             'flags' => [],
             'cacheMetadata' => true,
             'quoteIdentifiers' => false,
@@ -423,6 +423,15 @@ return [
     'Session' => [
         'defaults' => 'database',
         'timeout' => 1440,
+    ],
+
+    /*
+     * DebugKit
+     */
+    'DebugKit' => [
+        'forceEnable' => filter_var(env('DEBUG_KIT_FORCE_ENABLE', false), FILTER_VALIDATE_BOOLEAN),
+        'safeTld' => env('DEBUG_KIT_SAFE_TLD', null),
+        'ignoreAuthorization' => env('DEBUG_KIT_IGNORE_AUTHORIZATION', false)
     ],
 
     /*
