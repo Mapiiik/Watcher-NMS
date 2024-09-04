@@ -7,7 +7,6 @@ namespace App\Controller;
  * AccessPointContacts Controller
  *
  * @property \App\Model\Table\AccessPointContactsTable $AccessPointContacts
- * @method \App\Model\Entity\AccessPointContact[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class AccessPointContactsController extends AppController
 {

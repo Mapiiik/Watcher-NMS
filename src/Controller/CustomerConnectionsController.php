@@ -7,7 +7,6 @@ namespace App\Controller;
  * CustomerConnections Controller
  *
  * @property \App\Model\Table\CustomerConnectionsTable $CustomerConnections
- * @method \App\Model\Entity\CustomerConnection[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class CustomerConnectionsController extends AppController
 {

@@ -7,7 +7,6 @@ namespace App\Controller;
  * IpAddressRanges Controller
  *
  * @property \App\Model\Table\IpAddressRangesTable $IpAddressRanges
- * @method \App\Model\Entity\IpAddressRange[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class IpAddressRangesController extends AppController
 {

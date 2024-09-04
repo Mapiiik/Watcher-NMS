@@ -7,7 +7,6 @@ namespace App\Controller;
  * PaymentPurposes Controller
  *
  * @property \App\Model\Table\PaymentPurposesTable $PaymentPurposes
- * @method \App\Model\Entity\PaymentPurpose[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class PaymentPurposesController extends AppController
 {

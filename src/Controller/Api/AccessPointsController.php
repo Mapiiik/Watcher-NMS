@@ -10,7 +10,6 @@ use Cake\View\JsonView;
  * AccessPoints Controller
  *
  * @property \App\Model\Table\AccessPointsTable $AccessPoints
- * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class AccessPointsController extends AppController
 {

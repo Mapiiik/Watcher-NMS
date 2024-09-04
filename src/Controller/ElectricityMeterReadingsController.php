@@ -7,7 +7,6 @@ namespace App\Controller;
  * ElectricityMeterReadings Controller
  *
  * @property \App\Model\Table\ElectricityMeterReadingsTable $ElectricityMeterReadings
- * @method \App\Model\Entity\ElectricityMeterReading[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class ElectricityMeterReadingsController extends AppController
 {

@@ -20,10 +20,10 @@ use Cake\ORM\Entity;
  * @property string|null $firmware_version
  * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
- * @property \CakeDC\Users\Model\Entity\User|null $creator
+ * @property \App\Model\Entity\AppUser|null $creator
  * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
- * @property \CakeDC\Users\Model\Entity\User|null $modifier
+ * @property \App\Model\Entity\AppUser|null $modifier
  * @property string|null $customer_connection_id
  * @property string|null $username
  * @property string|null $password

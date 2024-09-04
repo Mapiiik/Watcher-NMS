@@ -16,10 +16,10 @@ use Cake\ORM\Entity;
  * @property int|null $interface_index
  * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
- * @property \CakeDC\Users\Model\Entity\User|null $creator
+ * @property \App\Model\Entity\AppUser|null $creator
  * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
- * @property \CakeDC\Users\Model\Entity\User|null $modifier
+ * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property \App\Model\Entity\RouterosDevice $routeros_device
  * @property \App\Model\Entity\RouterosDeviceIp $neighbouring_ip_address

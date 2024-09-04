@@ -13,7 +13,6 @@ use Cake\View\View;
  *
  * @property \App\Model\Table\AccessPointsTable $AccessPoints
  * @property \App\Model\Table\CustomerPointsTable $CustomerPoints
- * @method \App\Model\Entity\AccessPoint[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class AccessPointsController extends AppController
 {

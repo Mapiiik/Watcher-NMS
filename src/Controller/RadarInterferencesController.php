@@ -10,7 +10,6 @@ use Cake\Console\CommandRunner;
  * RadarInterferences Controller
  *
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
- * @method \App\Model\Entity\RadarInterference[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RadarInterferencesController extends AppController
 {

@@ -15,10 +15,10 @@ use Cake\ORM\Entity;
  * @property string|null $note
  * @property \Cake\I18n\DateTime|null $created
  * @property string|null $created_by
- * @property \CakeDC\Users\Model\Entity\User|null $creator
+ * @property \App\Model\Entity\AppUser|null $creator
  * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
- * @property \CakeDC\Users\Model\Entity\User|null $modifier
+ * @property \App\Model\Entity\AppUser|null $modifier
  * @property bool $assign_access_point_by_device_name
  * @property bool $assign_customer_connection_by_ip
  * @property bool $allow_technicians_access

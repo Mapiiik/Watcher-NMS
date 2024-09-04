@@ -9,7 +9,6 @@ use Cake\I18n\DateTime;
  * RouterosDeviceIps Controller
  *
  * @property \App\Model\Table\RouterosDeviceIpsTable $RouterosDeviceIps
- * @method \App\Model\Entity\RouterosDeviceIp[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RouterosDeviceIpsController extends AppController
 {

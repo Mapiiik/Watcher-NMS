@@ -7,7 +7,6 @@ namespace App\Controller;
  * PowerSupplies Controller
  *
  * @property \App\Model\Table\PowerSuppliesTable $PowerSupplies
- * @method \App\Model\Entity\PowerSupply[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class PowerSuppliesController extends AppController
 {

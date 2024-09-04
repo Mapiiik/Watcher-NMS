@@ -5,8 +5,6 @@ namespace App\Controller;
 
 /**
  * Settings Controller
- *
- * @method \App\Model\Entity\Setting[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class SettingsController extends AppController
 {

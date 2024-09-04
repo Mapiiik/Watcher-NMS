@@ -10,7 +10,6 @@ use Cake\View\JsonView;
  * RouterosDevices Controller
  *
  * @property \App\Model\Table\RouterosDevicesTable $RouterosDevices
- * @method \App\Model\Entity\RouterosDevice[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class RouterosDevicesController extends AppController
 {

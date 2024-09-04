@@ -7,7 +7,6 @@ namespace App\Controller;
  * AccessPointTypes Controller
  *
  * @property \App\Model\Table\AccessPointTypesTable $AccessPointTypes
- * @method \App\Model\Entity\AccessPointType[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class AccessPointTypesController extends AppController
 {

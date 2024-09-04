@@ -7,7 +7,6 @@ namespace App\Controller;
  * LandlordPayments Controller
  *
  * @property \App\Model\Table\LandlordPaymentsTable $LandlordPayments
- * @method \App\Model\Entity\LandlordPayment[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class LandlordPaymentsController extends AppController
 {
