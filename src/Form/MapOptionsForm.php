@@ -42,7 +42,7 @@ class MapOptionsForm extends Form
     /**
      * Defines what to execute once the Form is processed
      *
-     * @param array $data Form data.
+     * @param array<mixed> $data Form data.
      * @return bool
      */
     protected function _execute(array $data): bool
