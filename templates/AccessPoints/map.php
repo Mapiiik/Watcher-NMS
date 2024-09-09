@@ -5,8 +5,8 @@
  * @var \App\Form\MapOptionsForm $mapOptions
  * @var \Cake\Collection\CollectionInterface|array<string> $accessPointsFilter
  * @var \Cake\Collection\CollectionInterface|array<string> $routerosDevicesFilter
- * @var array $mapMarkers
- * @var array $mapPolylines
+ * @var array<string, \App\Maps\Marker> $mapMarkers
+ * @var array<string, \App\Maps\Polyline> $mapPolylines
  */
 ?>
 <div class="accessPoints map content">
@@ -31,12 +31,12 @@ echo $map;
 $icons = [];
 
 foreach ($mapMarkers as $mapMarker) {
-    $icon_color = str_replace('#', '', $mapMarker['color']);
+    $icon_color = str_replace('#', '', $mapMarker->color);
     if (!isset($icons[$icon_color])) {
         // phpcs:disable
         $this->GoogleMap->icons[$this->GoogleMap::$iconCount] = '{
             path: "M12 0C7.16 0 3 4.56 3 10.08c0 6.48 9 19.92 9 19.92s9-13.44 9-19.92C21 4.56 16.84 0 12 0zm0 14.4c-1.8 0-3.24-1.44-3.24-3.24s1.44-3.24 3.24-3.24 3.24 1.44 3.24 3.24-1.44 3.24-3.24 3.24z",
-            fillColor: "' . $mapMarker['color'] . '",
+            fillColor: "' . $mapMarker->color . '",
             fillOpacity: 1.0,
             strokeWeight: 0.5,
             rotation: 0,
@@ -48,17 +48,21 @@ foreach ($mapMarkers as $mapMarker) {
     }
 
     $this->GoogleMap->addMarker([
-        'lat' => $mapMarker['lat'],
-        'lng' => $mapMarker['lng'],
-        'title' => $mapMarker['title'],
-        'content' => $mapMarker['content'],
+        'lat' => $mapMarker->position->lat,
+        'lng' => $mapMarker->position->lng,
+        'title' => $mapMarker->title,
+        'content' => $mapMarker->content,
         'icon' => $icons[$icon_color],
     ]);
 }
 unset($icons);
 
 foreach ($mapPolylines as $mapPolyline) {
-    $this->GoogleMap->addPolyline($mapPolyline['from'], $mapPolyline['to'], $mapPolyline['options']);
+    $this->GoogleMap->addPolyline(
+        $mapPolyline->from->toArray(),
+        $mapPolyline->to->toArray(),
+        $mapPolyline->options,
+    );
 }
 
 // Store the final JS in a HtmlHelper script block

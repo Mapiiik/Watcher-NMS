@@ -4,6 +4,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Form\MapOptionsForm;
+use App\Maps\Marker;
+use App\Maps\Polyline;
+use App\Maps\Position;
 use Cake\I18n\DateTime;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
@@ -402,7 +405,9 @@ class AccessPointsController extends AppController
             }
         }
 
+        /** @var array<string, \App\Maps\Marker> $mapMarkers */
         $mapMarkers = [];
+        /** @var array<string, \App\Maps\Polyline> $mapPolylines */
         $mapPolylines = [];
 
         $html = new HtmlHelper(new View());
@@ -486,31 +491,34 @@ class AccessPointsController extends AppController
                                     && is_numeric($neighbouringAccessPoint->gps_x)
                                 ) {
                                     // add map polyline for IP link (to access point)
-                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] = [
-                                        'from' => [
-                                            'lat' => $accessPoint->gps_y,
-                                            'lng' => $accessPoint->gps_x,
-                                        ],
-                                        'to' => [
-                                            'lat' => $neighbouringAccessPoint->gps_y,
-                                            'lng' => $neighbouringAccessPoint->gps_x,
-                                        ],
-                                        'options' => [
-                                            'color' => '#00dd00',
-                                            'opacity' => 0.7,
-                                            'weight' => 2,
-                                        ],
-                                    ];
+                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] =
+                                        new Polyline(
+                                            from: new Position(
+                                                lat: $accessPoint->gps_y,
+                                                lng: $accessPoint->gps_x,
+                                            ),
+                                            to: new Position(
+                                                lat: $neighbouringAccessPoint->gps_y,
+                                                lng: $neighbouringAccessPoint->gps_x,
+                                            ),
+                                            options: [
+                                                'color' => '#00dd00',
+                                                'opacity' => 0.7,
+                                                'weight' => 2,
+                                            ],
+                                        );
 
                                     // add map marker for access point if not exists
                                     if (!isset($mapMarkers[$neighbouringAccessPoint->id])) {
-                                        $mapMarkers[$neighbouringAccessPoint->id] = [
-                                            'lat' => $neighbouringAccessPoint->gps_y,
-                                            'lng' => $neighbouringAccessPoint->gps_x,
-                                            'title' => $neighbouringAccessPoint->name,
-                                            'color' => $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
-                                            'locked' => false,
-                                            'content' =>
+                                        $mapMarkers[$neighbouringAccessPoint->id] = new Marker(
+                                            position: new Position(
+                                                lat: $neighbouringAccessPoint->gps_y,
+                                                lng: $neighbouringAccessPoint->gps_x,
+                                            ),
+                                            title: $neighbouringAccessPoint->name,
+                                            color: $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
+                                            locked: false,
+                                            content:
                                                 '<b>'
                                                 . $html->link(
                                                     $neighbouringAccessPoint->name,
@@ -522,12 +530,12 @@ class AccessPointsController extends AppController
                                                 )
                                                 . '</b>'
                                                 . '<br>',
-                                        ];
+                                        );
                                     }
 
                                     // add informations to map marker about this IP link if not locked (to access point)
-                                    if (!$mapMarkers[$neighbouringAccessPoint->id]['locked']) {
-                                        $mapMarkers[$neighbouringAccessPoint->id]['content'] .=
+                                    if (!$mapMarkers[$neighbouringAccessPoint->id]->locked) {
+                                        $mapMarkers[$neighbouringAccessPoint->id]->content .=
                                             '<br>'
                                             . $html->link(
                                                 $routerosIpLink
@@ -580,31 +588,34 @@ class AccessPointsController extends AppController
                                     && is_numeric($neighbouringCustomerPoint->gps_x)
                                 ) {
                                     // add map polyline for IP link (to customer point)
-                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] = [
-                                        'from' => [
-                                            'lat' => $accessPoint->gps_y,
-                                            'lng' => $accessPoint->gps_x,
-                                        ],
-                                        'to' => [
-                                            'lat' => $neighbouringCustomerPoint->gps_y,
-                                            'lng' => $neighbouringCustomerPoint->gps_x,
-                                        ],
-                                        'options' => [
-                                            'color' => '#00dd00',
-                                            'opacity' => 0.7,
-                                            'weight' => 1,
-                                        ],
-                                    ];
+                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] =
+                                        new Polyline(
+                                            from: new Position(
+                                                lat: $accessPoint->gps_y,
+                                                lng: $accessPoint->gps_x,
+                                            ),
+                                            to: new Position(
+                                                lat: $neighbouringCustomerPoint->gps_y,
+                                                lng: $neighbouringCustomerPoint->gps_x,
+                                            ),
+                                            options: [
+                                                'color' => '#00dd00',
+                                                'opacity' => 0.7,
+                                                'weight' => 1,
+                                            ],
+                                        );
 
                                     // add map marker for customer point if not exists
                                     if (!isset($mapMarkers[$neighbouringCustomerPoint->id])) {
-                                        $mapMarkers[$neighbouringCustomerPoint->id] = [
-                                            'lat' => $neighbouringCustomerPoint->gps_y,
-                                            'lng' => $neighbouringCustomerPoint->gps_x,
-                                            'title' => $neighbouringCustomerPoint->name,
-                                            'color' => '#65ba4a',
-                                            'locked' => false,
-                                            'content' =>
+                                        $mapMarkers[$neighbouringCustomerPoint->id] = new Marker(
+                                            position: new Position(
+                                                lat: $neighbouringCustomerPoint->gps_y,
+                                                lng: $neighbouringCustomerPoint->gps_x,
+                                            ),
+                                            title: $neighbouringCustomerPoint->name,
+                                            color: '#65ba4a',
+                                            locked: false,
+                                            content:
                                                 '<b>'
                                                 . $html->link(
                                                     $neighbouringCustomerPoint->name,
@@ -616,11 +627,11 @@ class AccessPointsController extends AppController
                                                 )
                                                 . '</b>'
                                                 . '<br>',
-                                        ];
+                                        );
                                     }
 
                                     // add informations to map marker about this IP link (to customer point)
-                                    $mapMarkers[$neighbouringCustomerPoint->id]['content'] .=
+                                    $mapMarkers[$neighbouringCustomerPoint->id]->content .=
                                         '<br>'
                                         . '<b>'
                                         . $html->link(
@@ -728,31 +739,34 @@ class AccessPointsController extends AppController
                                     && is_numeric($neighbouringAccessPoint->gps_x)
                                 ) {
                                     // add map polyline for wireless link (to access point)
-                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] = [
-                                        'from' => [
-                                            'lat' => $accessPoint->gps_y,
-                                            'lng' => $accessPoint->gps_x,
-                                        ],
-                                        'to' => [
-                                            'lat' => $neighbouringAccessPoint->gps_y,
-                                            'lng' => $neighbouringAccessPoint->gps_x,
-                                        ],
-                                        'options' => [
-                                            'color' => '#ff0000',
-                                            'opacity' => 0.7,
-                                            'weight' => 2,
-                                        ],
-                                    ];
+                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] =
+                                        new Polyline(
+                                            from: new Position(
+                                                lat: $accessPoint->gps_y,
+                                                lng: $accessPoint->gps_x,
+                                            ),
+                                            to: new Position(
+                                                lat: $neighbouringAccessPoint->gps_y,
+                                                lng: $neighbouringAccessPoint->gps_x,
+                                            ),
+                                            options: [
+                                                'color' => '#ff0000',
+                                                'opacity' => 0.7,
+                                                'weight' => 2,
+                                            ],
+                                        );
 
                                     // add map marker for access point if not exists
                                     if (!isset($mapMarkers[$neighbouringAccessPoint->id])) {
-                                        $mapMarkers[$neighbouringAccessPoint->id] = [
-                                            'lat' => $neighbouringAccessPoint->gps_y,
-                                            'lng' => $neighbouringAccessPoint->gps_x,
-                                            'title' => $neighbouringAccessPoint->name,
-                                            'color' => $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
-                                            'locked' => false,
-                                            'content' =>
+                                        $mapMarkers[$neighbouringAccessPoint->id] = new Marker(
+                                            position: new Position(
+                                                lat: $neighbouringAccessPoint->gps_y,
+                                                lng: $neighbouringAccessPoint->gps_x,
+                                            ),
+                                            title: $neighbouringAccessPoint->name,
+                                            color: $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
+                                            locked: false,
+                                            content:
                                                 '<b>'
                                                 . $html->link(
                                                     $neighbouringAccessPoint->name,
@@ -764,12 +778,12 @@ class AccessPointsController extends AppController
                                                 )
                                                 . '</b>'
                                                 . '<br>',
-                                        ];
+                                        );
                                     }
 
                                     // add informations to map marker about this wireless link if not locked (to access point)
-                                    if (!$mapMarkers[$neighbouringAccessPoint->id]['locked']) {
-                                        $mapMarkers[$neighbouringAccessPoint->id]['content'] .=
+                                    if (!$mapMarkers[$neighbouringAccessPoint->id]->locked) {
+                                        $mapMarkers[$neighbouringAccessPoint->id]->content .=
                                             '<br>'
                                             . $html->link(
                                                 $routerosWirelessLink
@@ -822,31 +836,34 @@ class AccessPointsController extends AppController
                                     && is_numeric($neighbouringCustomerPoint->gps_x)
                                 ) {
                                     // add map polyline for wireless link (to customer point)
-                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] = [
-                                        'from' => [
-                                            'lat' => $accessPoint->gps_y,
-                                            'lng' => $accessPoint->gps_x,
-                                        ],
-                                        'to' => [
-                                            'lat' => $neighbouringCustomerPoint->gps_y,
-                                            'lng' => $neighbouringCustomerPoint->gps_x,
-                                        ],
-                                        'options' => [
-                                            'color' => '#ff0000',
-                                            'opacity' => 0.7,
-                                            'weight' => 1,
-                                        ],
-                                    ];
+                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] =
+                                        new Polyline(
+                                            from: new Position(
+                                                lat: $accessPoint->gps_y,
+                                                lng: $accessPoint->gps_x,
+                                            ),
+                                            to: new Position(
+                                                lat: $neighbouringCustomerPoint->gps_y,
+                                                lng: $neighbouringCustomerPoint->gps_x,
+                                            ),
+                                            options: [
+                                                'color' => '#ff0000',
+                                                'opacity' => 0.7,
+                                                'weight' => 1,
+                                            ],
+                                        );
 
                                     // add map marker for customer point if not exists
                                     if (!isset($mapMarkers[$neighbouringCustomerPoint->id])) {
-                                        $mapMarkers[$neighbouringCustomerPoint->id] = [
-                                            'lat' => $neighbouringCustomerPoint->gps_y,
-                                            'lng' => $neighbouringCustomerPoint->gps_x,
-                                            'title' => $neighbouringCustomerPoint->name,
-                                            'color' => '#65ba4a',
-                                            'locked' => false,
-                                            'content' =>
+                                        $mapMarkers[$neighbouringCustomerPoint->id] = new Marker(
+                                            position: new Position(
+                                                lat: $neighbouringCustomerPoint->gps_y,
+                                                lng: $neighbouringCustomerPoint->gps_x,
+                                            ),
+                                            title: $neighbouringCustomerPoint->name,
+                                            color: '#65ba4a',
+                                            locked: false,
+                                            content:
                                                 '<b>'
                                                 . $html->link(
                                                     $neighbouringCustomerPoint->name,
@@ -858,11 +875,11 @@ class AccessPointsController extends AppController
                                                 )
                                                 . '</b>'
                                                 . '<br>',
-                                        ];
+                                        );
                                     }
 
                                     // add informations to map marker about this wireless link (to customer point)
-                                    $mapMarkers[$neighbouringCustomerPoint->id]['content'] .=
+                                    $mapMarkers[$neighbouringCustomerPoint->id]->content .=
                                         '<br>'
                                         . '<b>'
                                         . $html->link(
@@ -916,14 +933,16 @@ class AccessPointsController extends AppController
                 }
 
                 // add a marker on the map for the access point (and override if there is one generated by the neighbor)
-                $mapMarkers[$accessPoint->id] = [
-                    'lat' => $accessPoint->gps_y,
-                    'lng' => $accessPoint->gps_x,
-                    'title' => $accessPoint->name,
-                    'content' => $content,
-                    'color' => $accessPoint->access_point_type->color ?? '#d33c43',
-                    'locked' => true,
-                ];
+                $mapMarkers[$accessPoint->id] = new Marker(
+                    position: new Position(
+                        lat: $accessPoint->gps_y,
+                        lng: $accessPoint->gps_x,
+                    ),
+                    title: $accessPoint->name,
+                    content: $content,
+                    color: $accessPoint->access_point_type->color ?? '#d33c43',
+                    locked: true,
+                );
 
                 unset($content);
             }
