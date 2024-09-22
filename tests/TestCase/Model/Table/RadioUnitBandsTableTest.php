@@ -22,7 +22,7 @@ class RadioUnitBandsTableTest extends TestCase
     /**
      * Fixtures
      *
-     * @var array<string>
+     * @var list<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
