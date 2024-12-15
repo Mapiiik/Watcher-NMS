@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\LandlordPaymentsTable;
+use App\Model\Table\LandlordPaymentsElectricityDetailsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\LandlordPaymentsTable Test Case
+ * App\Model\Table\LandlordPaymentsElectricityDetailsTable Test Case
  */
-class LandlordPaymentsTableTest extends TestCase
+class LandlordPaymentsElectricityDetailsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\LandlordPaymentsTable
+     * @var \App\Model\Table\LandlordPaymentsElectricityDetailsTable
      */
-    protected $LandlordPayments;
+    protected $LandlordPaymentsElectricityDetails;
 
     /**
      * Fixtures
@@ -40,8 +40,8 @@ class LandlordPaymentsTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('LandlordPayments') ? [] : ['className' => LandlordPaymentsTable::class];
-        $this->LandlordPayments = $this->getTableLocator()->get('LandlordPayments', $config);
+        $config = $this->getTableLocator()->exists('LandlordPaymentsElectricityDetails') ? [] : ['className' => LandlordPaymentsElectricityDetailsTable::class];
+        $this->LandlordPaymentsElectricityDetails = $this->getTableLocator()->get('LandlordPaymentsElectricityDetails', $config);
     }
 
     /**
@@ -51,7 +51,7 @@ class LandlordPaymentsTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->LandlordPayments);
+        unset($this->LandlordPaymentsElectricityDetails);
 
         parent::tearDown();
     }
@@ -60,7 +60,7 @@ class LandlordPaymentsTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\LandlordPaymentsTable::validationDefault()
+     * @uses \App\Model\Table\LandlordPaymentsElectricityDetailsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -71,7 +71,7 @@ class LandlordPaymentsTableTest extends TestCase
      * Test buildRules method
      *
      * @return void
-     * @uses \App\Model\Table\LandlordPaymentsTable::buildRules()
+     * @uses \App\Model\Table\LandlordPaymentsElectricityDetailsTable::buildRules()
      */
     public function testBuildRules(): void
     {

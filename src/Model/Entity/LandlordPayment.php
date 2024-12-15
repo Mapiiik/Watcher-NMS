@@ -18,11 +18,14 @@ use Cake\ORM\Entity;
  * @property string|null $created_by
  * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
+ * @property \Cake\I18n\Date|null $period_from
+ * @property \Cake\I18n\Date|null $period_until
  *
  * @property \App\Model\Entity\AppUser $creator
  * @property \App\Model\Entity\AppUser $modifier
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\PaymentPurpose $payment_purpose
+ * @property \App\Model\Entity\LandlordPaymentsElectricityDetail|null $landlord_payments_electricity_detail
  *
  * @property string $name_for_lists
  * @property string $name
@@ -48,10 +51,13 @@ class LandlordPayment extends Entity
         'created_by' => true,
         'modified' => true,
         'modified_by' => true,
+        'period_from' => true,
+        'period_until' => true,
         'creator' => true,
         'modifier' => true,
         'access_point' => true,
         'payment_purpose' => true,
+        'landlord_payments_electricity_detail' => true,
     ];
 
     /**

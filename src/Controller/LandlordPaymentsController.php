@@ -66,6 +66,7 @@ class LandlordPaymentsController extends AppController
             'Modifiers',
             'AccessPoints',
             'PaymentPurposes',
+            'LandlordPaymentsElectricityDetails',
         ]);
 
         $this->set(compact('landlordPayment'));
@@ -109,7 +110,7 @@ class LandlordPaymentsController extends AppController
      */
     public function edit(?string $id = null)
     {
-        $landlordPayment = $this->LandlordPayments->get($id, contain: []);
+        $landlordPayment = $this->LandlordPayments->get($id, contain: ['LandlordPaymentsElectricityDetails']);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $landlordPayment = $this->LandlordPayments
                 ->patchEntity($landlordPayment, $this->getRequest()->getData());

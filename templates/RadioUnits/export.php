@@ -45,7 +45,6 @@ $this->setLayout('clean');
             <tbody>
                 <?php foreach ($radioUnits as $radioUnit) : ?>
                 <tr>
-                    <?php //debug($radioUnit); ?>
                     <td>
                         <?= $radioUnit->__isset('access_point') ? $this->Html->link(
                             $radioUnit->access_point->name,

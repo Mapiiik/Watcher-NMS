@@ -29,6 +29,8 @@ class LandlordPaymentsFixture extends TestFixture
                 'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'modified' => 1685355166,
                 'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
+                'period_from' => '2024-11-13',
+                'period_until' => '2024-11-13',
             ],
         ];
         parent::init();

@@ -100,6 +100,8 @@
                             <th><?= __('Access Point') ?></th>
                             <th><?= __('Payment Date') ?></th>
                             <th><?= __('Amount Paid') ?></th>
+                            <th><?= __('Period From') ?></th>
+                            <th><?= __('Period Until') ?></th>
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -118,6 +120,8 @@
                             <td><?= $landlordPayment->amount_paid === null ?
                                 '' : $this->Number->currency($landlordPayment->amount_paid)
                             ?></td>
+                            <td><?= h($landlordPayment->period_from) ?></td>
+                            <td><?= h($landlordPayment->period_until) ?></td>
                             <td><?= h($landlordPayment->note) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(

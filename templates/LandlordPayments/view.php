@@ -73,6 +73,14 @@
                                 '' : $this->Number->currency($landlordPayment->amount_paid)
                             ?></td>
                         </tr>
+                        <tr>
+                            <th><?= __('Period From') ?></th>
+                            <td><?= h($landlordPayment->period_from) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Period Until') ?></th>
+                            <td><?= h($landlordPayment->period_until) ?></td>
+                        </tr>
                     </table>
                 </div>
                 <div class="column">
@@ -115,6 +123,72 @@
                     <tr>
                 </div>
             </div>
+            <?php if (!empty($landlordPayment->landlord_payments_electricity_detail)) : ?>
+                <?php $electricityDetail = $landlordPayment->landlord_payments_electricity_detail; ?>
+                <div class="row">
+                    <div class="column">
+                        <table>
+                            <tr>
+                                <th><?= __('Low Rate - Used kWh') ?></th>
+                                <td><?= $electricityDetail->low_rate_kwh_used === null ?
+                                    '' : $this->Number->format($electricityDetail->low_rate_kwh_used, [
+                                        'after' => ' kWh',
+                                    ]) ?></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('Low Rate - Price per kWh') ?></th>
+                                <td><?= $electricityDetail->low_rate_price_per_kwh === null ?
+                                    '' : $this->Number->currency($electricityDetail->low_rate_price_per_kwh) ?></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('Low Rate - Total Price') ?></th>
+                                <td><?=
+                                    $electricityDetail->low_rate_kwh_used === null
+                                    || $electricityDetail->low_rate_price_per_kwh === null
+                                    ?
+                                        ''
+                                    :
+                                        $this->Number->currency(
+                                            (float)$electricityDetail->low_rate_kwh_used
+                                            * (float)$electricityDetail->low_rate_price_per_kwh
+                                        )
+                                    ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="column">
+                        <table>
+                        <tr>
+                                <th><?= __('Low Rate - Used kWh') ?></th>
+                                <td><?= $electricityDetail->high_rate_kwh_used === null ?
+                                    '' : $this->Number->format($electricityDetail->high_rate_kwh_used, [
+                                        'after' => ' kWh',
+                                    ]) ?></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('Low Rate - Price per kWh') ?></th>
+                                <td><?= $electricityDetail->high_rate_price_per_kwh === null ?
+                                    '' : $this->Number->currency($electricityDetail->high_rate_price_per_kwh) ?></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('Low Rate - Total Price') ?></th>
+                                <td><?=
+                                    $electricityDetail->high_rate_kwh_used === null
+                                    || $electricityDetail->high_rate_price_per_kwh === null
+                                    ?
+                                        ''
+                                    :
+                                        $this->Number->currency(
+                                            (float)$electricityDetail->high_rate_kwh_used
+                                            * (float)$electricityDetail->high_rate_price_per_kwh
+                                        )
+                                    ?></td>
+                            </tr>
+                        </table>
+                        <tr>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="text">
                 <strong><?= __('Note') ?></strong>
                 <blockquote>

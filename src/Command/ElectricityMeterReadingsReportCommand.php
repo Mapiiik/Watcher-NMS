@@ -74,7 +74,6 @@ class ElectricityMeterReadingsReportCommand extends Command
                 __('Number of days since last'),
             ];
             foreach ($accessPoints as $accessPoint) {
-                debug($accessPoint);
                 if (isset($accessPoint->electricity_meter_readings[0])) {
                     $lastReading = $accessPoint->electricity_meter_readings[0];
                 } else {

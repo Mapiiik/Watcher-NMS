@@ -31,6 +31,8 @@
                     <th><?= $this->Paginator->sort('payment_purpose_id') ?></th>
                     <th><?= $this->Paginator->sort('payment_date') ?></th>
                     <th><?= $this->Paginator->sort('amount_paid') ?></th>
+                    <th><?= $this->Paginator->sort('period_from') ?></th>
+                    <th><?= $this->Paginator->sort('period_until') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -59,6 +61,8 @@
                     <td><?= $landlordPayment->amount_paid === null ?
                         '' : $this->Number->currency($landlordPayment->amount_paid)
                     ?></td>
+                    <td><?= h($landlordPayment->period_from) ?></td>
+                    <td><?= h($landlordPayment->period_until) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
                             __('View'),

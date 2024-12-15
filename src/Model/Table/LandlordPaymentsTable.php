@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Entity\LandlordPayment;
+use Cake\Event\EventInterface;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 
@@ -11,19 +13,20 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\PaymentPurposesTable&\Cake\ORM\Association\BelongsTo $PaymentPurposes
+ * @property \App\Model\Table\LandlordPaymentsElectricityDetailsTable&\Cake\ORM\Association\HasOne $LandlordPaymentsElectricityDetails
  * @method \App\Model\Entity\LandlordPayment newEmptyEntity()
  * @method \App\Model\Entity\LandlordPayment newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\LandlordPayment[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\LandlordPayment get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\LandlordPayment findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method array<\App\Model\Entity\LandlordPayment> newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\LandlordPayment get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \App\Model\Entity\LandlordPayment findOrCreate($search, ?callable $callback = null, array $options = [])
  * @method \App\Model\Entity\LandlordPayment patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\LandlordPayment[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\LandlordPayment|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\LandlordPayment saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method iterable<\App\Model\Entity\LandlordPayment>|false saveMany(iterable $entities, $options = [])
- * @method iterable<\App\Model\Entity\LandlordPayment> saveManyOrFail(iterable $entities, $options = [])
- * @method iterable<\App\Model\Entity\LandlordPayment>|false deleteMany(iterable $entities, $options = [])
- * @method iterable<\App\Model\Entity\LandlordPayment> deleteManyOrFail(iterable $entities, $options = [])
+ * @method array<\App\Model\Entity\LandlordPayment> patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\LandlordPayment|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \App\Model\Entity\LandlordPayment saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method iterable<\App\Model\Entity\LandlordPayment>|false saveMany(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\LandlordPayment> saveManyOrFail(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\LandlordPayment>|false deleteMany(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\LandlordPayment> deleteManyOrFail(iterable $entities, array $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class LandlordPaymentsTable extends AppTable
@@ -52,6 +55,11 @@ class LandlordPaymentsTable extends AppTable
         $this->belongsTo('PaymentPurposes', [
             'foreignKey' => 'payment_purpose_id',
         ]);
+        $this->hasOne('LandlordPaymentsElectricityDetails', [
+            'foreignKey' => 'landlord_payment_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
     }
 
     /**
@@ -71,7 +79,9 @@ class LandlordPaymentsTable extends AppTable
             ->allowEmptyString('payment_purpose_id');
 
         $validator
-            ->date('payment_date');
+            ->date('payment_date')
+            ->requirePresence('payment_date', 'create')
+            ->notEmptyDate('payment_date');
 
         $validator
             ->decimal('amount_paid')
@@ -89,6 +99,14 @@ class LandlordPaymentsTable extends AppTable
             ->uuid('modified_by')
             ->allowEmptyString('modified_by');
 
+        $validator
+            ->date('period_from')
+            ->allowEmptyDate('period_from');
+
+        $validator
+            ->date('period_until')
+            ->allowEmptyDate('period_until');
+
         return $validator;
     }
 
@@ -101,9 +119,43 @@ class LandlordPaymentsTable extends AppTable
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn('access_point_id', 'AccessPoints'), ['errorField' => 'access_point_id']);
-        $rules->add($rules->existsIn('payment_purpose_id', 'PaymentPurposes'), ['errorField' => 'payment_purpose_id']);
+        $rules->add(
+            $rules->existsIn(['access_point_id'], 'AccessPoints'),
+            ['errorField' => 'access_point_id']
+        );
+        $rules->add(
+            $rules->existsIn(['payment_purpose_id'], 'PaymentPurposes'),
+            ['errorField' => 'payment_purpose_id']
+        );
 
         return $rules;
+    }
+
+    /**
+     * Removal of electricity details if not filled in
+     *
+     * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event Event
+     */
+    public function afterMarshal(
+        EventInterface $event,
+        LandlordPayment $landlordPayment,
+    ): void {
+        if (
+            $landlordPayment->isDirty('landlord_payments_electricity_detail')
+            && $landlordPayment->landlord_payments_electricity_detail
+        ) {
+            $electricityDetail = $landlordPayment->landlord_payments_electricity_detail;
+            if (
+                $electricityDetail->low_rate_kwh_used === null
+                && $electricityDetail->low_rate_price_per_kwh === null
+                && $electricityDetail->high_rate_kwh_used === null
+                && $electricityDetail->high_rate_price_per_kwh === null
+            ) {
+                if (!$electricityDetail->isNew()) {
+                    $this->LandlordPaymentsElectricityDetails->delete($electricityDetail);
+                }
+                $landlordPayment->landlord_payments_electricity_detail = null;
+            }
+        }
     }
 }
