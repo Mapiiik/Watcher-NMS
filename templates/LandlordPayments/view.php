@@ -159,19 +159,19 @@
                     <div class="column">
                         <table>
                         <tr>
-                                <th><?= __('Low Rate - Used kWh') ?></th>
+                                <th><?= __('High Rate - Used kWh') ?></th>
                                 <td><?= $electricityDetail->high_rate_kwh_used === null ?
                                     '' : $this->Number->format($electricityDetail->high_rate_kwh_used, [
                                         'after' => ' kWh',
                                     ]) ?></td>
                             </tr>
                             <tr>
-                                <th><?= __('Low Rate - Price per kWh') ?></th>
+                                <th><?= __('High Rate - Price per kWh') ?></th>
                                 <td><?= $electricityDetail->high_rate_price_per_kwh === null ?
                                     '' : $this->Number->currency($electricityDetail->high_rate_price_per_kwh) ?></td>
                             </tr>
                             <tr>
-                                <th><?= __('Low Rate - Total Price') ?></th>
+                                <th><?= __('High Rate - Total Price') ?></th>
                                 <td><?=
                                     $electricityDetail->high_rate_kwh_used === null
                                     || $electricityDetail->high_rate_price_per_kwh === null

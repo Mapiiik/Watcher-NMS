@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2024-09-22 11:02+0200\n"
+"POT-Creation-Date: 2024-12-15 22:59+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -70,30 +70,30 @@ msgstr ""
 msgid "Number of days since last"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:90
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:89
 #: ./templates/email/html/electricity_meter_readings_report.php:49
 msgid "Never"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:102
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:101
 #: ./templates/ElectricityMeterReadings/index.php:25
 #: ./templates/layout/default.php:260
 msgid "Electricity Meter Readings"
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:110
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:109
 msgid "These electricity meter readings should take place in {month}."
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:120
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:119
 msgid "The electricity meter readings to be made have been reported."
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:126
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:125
 msgid "The electricity meter readings to be made cannot be reported."
 msgstr ""
 
-#: ./src/Command/ElectricityMeterReadingsReportCommand.php:130
+#: ./src/Command/ElectricityMeterReadingsReportCommand.php:129
 msgid "There is no need to take any electricity meter readings this month."
 msgstr ""
 
@@ -104,12 +104,12 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:35
 #: ./templates/AccessPoints/view.php:177
 #: ./templates/AccessPoints/view.php:254
-#: ./templates/AccessPoints/view.php:391
-#: ./templates/AccessPoints/view.php:464
-#: ./templates/AccessPoints/view.php:528
-#: ./templates/AccessPoints/view.php:620
-#: ./templates/AccessPoints/view.php:677
-#: ./templates/AccessPoints/view.php:783
+#: ./templates/AccessPoints/view.php:395
+#: ./templates/AccessPoints/view.php:468
+#: ./templates/AccessPoints/view.php:532
+#: ./templates/AccessPoints/view.php:624
+#: ./templates/AccessPoints/view.php:681
+#: ./templates/AccessPoints/view.php:787
 #: ./templates/AntennaTypes/view.php:35
 #: ./templates/AntennaTypes/view.php:125
 #: ./templates/CustomerConnectionIps/view.php:43
@@ -420,21 +420,21 @@ msgstr ""
 msgid "The IP address range could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/LandlordPaymentsController.php:92
-#: ./src/Controller/LandlordPaymentsController.php:118
+#: ./src/Controller/LandlordPaymentsController.php:93
+#: ./src/Controller/LandlordPaymentsController.php:119
 msgid "The landlord payment has been saved."
 msgstr ""
 
-#: ./src/Controller/LandlordPaymentsController.php:96
-#: ./src/Controller/LandlordPaymentsController.php:122
+#: ./src/Controller/LandlordPaymentsController.php:97
+#: ./src/Controller/LandlordPaymentsController.php:123
 msgid "The landlord payment could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/LandlordPaymentsController.php:141
+#: ./src/Controller/LandlordPaymentsController.php:142
 msgid "The landlord payment has been deleted."
 msgstr ""
 
-#: ./src/Controller/LandlordPaymentsController.php:144
+#: ./src/Controller/LandlordPaymentsController.php:145
 msgid "The landlord payment could not be deleted. Please, try again."
 msgstr ""
 
@@ -826,11 +826,11 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:10
 #: ./templates/AccessPoints/view.php:183
 #: ./templates/AccessPoints/view.php:260
-#: ./templates/AccessPoints/view.php:331
-#: ./templates/AccessPoints/view.php:402
-#: ./templates/AccessPoints/view.php:473
-#: ./templates/AccessPoints/view.php:546
-#: ./templates/AccessPoints/view.php:628
+#: ./templates/AccessPoints/view.php:333
+#: ./templates/AccessPoints/view.php:406
+#: ./templates/AccessPoints/view.php:477
+#: ./templates/AccessPoints/view.php:550
+#: ./templates/AccessPoints/view.php:632
 #: ./templates/AntennaTypes/add.php:12
 #: ./templates/AntennaTypes/edit.php:12
 #: ./templates/AntennaTypes/index.php:31
@@ -866,7 +866,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:10
 #: ./templates/LandlordPayments/add.php:12
 #: ./templates/LandlordPayments/edit.php:12
-#: ./templates/LandlordPayments/index.php:34
+#: ./templates/LandlordPayments/index.php:36
 #: ./templates/LandlordPayments/view.php:10
 #: ./templates/Manufacturers/add.php:10
 #: ./templates/Manufacturers/edit.php:10
@@ -879,7 +879,7 @@ msgstr ""
 #: ./templates/PaymentPurposes/edit.php:10
 #: ./templates/PaymentPurposes/index.php:27
 #: ./templates/PaymentPurposes/view.php:10
-#: ./templates/PaymentPurposes/view.php:104
+#: ./templates/PaymentPurposes/view.php:106
 #: ./templates/PowerSupplies/add.php:12
 #: ./templates/PowerSupplies/edit.php:12
 #: ./templates/PowerSupplies/index.php:36
@@ -980,8 +980,8 @@ msgstr ""
 #: ./templates/ElectricityMeterReadings/edit.php:42
 #: ./templates/IpAddressRanges/add.php:60
 #: ./templates/IpAddressRanges/edit.php:68
-#: ./templates/LandlordPayments/add.php:35
-#: ./templates/LandlordPayments/edit.php:43
+#: ./templates/LandlordPayments/add.php:62
+#: ./templates/LandlordPayments/edit.php:70
 #: ./templates/Manufacturers/add.php:24
 #: ./templates/Manufacturers/edit.php:32
 #: ./templates/PaymentPurposes/add.php:24
@@ -1024,11 +1024,11 @@ msgstr ""
 #: ./templates/AccessPoints/index.php:96
 #: ./templates/AccessPoints/view.php:224
 #: ./templates/AccessPoints/view.php:298
-#: ./templates/AccessPoints/view.php:364
-#: ./templates/AccessPoints/view.php:442
-#: ./templates/AccessPoints/view.php:506
-#: ./templates/AccessPoints/view.php:598
-#: ./templates/AccessPoints/view.php:659
+#: ./templates/AccessPoints/view.php:368
+#: ./templates/AccessPoints/view.php:446
+#: ./templates/AccessPoints/view.php:510
+#: ./templates/AccessPoints/view.php:602
+#: ./templates/AccessPoints/view.php:663
 #: ./templates/AntennaTypes/edit.php:14
 #: ./templates/AntennaTypes/index.php:64
 #: ./templates/AntennaTypes/view.php:195
@@ -1049,7 +1049,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/edit.php:14
 #: ./templates/IpAddressRanges/index.php:80
 #: ./templates/LandlordPayments/edit.php:14
-#: ./templates/LandlordPayments/index.php:73
+#: ./templates/LandlordPayments/index.php:77
 #: ./templates/Manufacturers/edit.php:12
 #: ./templates/Manufacturers/index.php:45
 #: ./templates/Manufacturers/view.php:134
@@ -1057,7 +1057,7 @@ msgstr ""
 #: ./templates/Manufacturers/view.php:225
 #: ./templates/PaymentPurposes/edit.php:12
 #: ./templates/PaymentPurposes/index.php:45
-#: ./templates/PaymentPurposes/view.php:141
+#: ./templates/PaymentPurposes/view.php:145
 #: ./templates/PowerSupplies/edit.php:14
 #: ./templates/PowerSupplies/index.php:80
 #: ./templates/PowerSupplyTypes/edit.php:13
@@ -1078,7 +1078,7 @@ msgstr ""
 #: ./templates/RadioUnitTypes/index.php:61
 #: ./templates/RadioUnitTypes/view.php:195
 #: ./templates/RadioUnits/edit.php:16
-#: ./templates/RadioUnits/export.php:132
+#: ./templates/RadioUnits/export.php:131
 #: ./templates/RadioUnits/index.php:116
 #: ./templates/RouterosDeviceInterfaces/edit.php:13
 #: ./templates/RouterosDeviceInterfaces/index.php:109
@@ -1111,11 +1111,11 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:20
 #: ./templates/AccessPoints/view.php:230
 #: ./templates/AccessPoints/view.php:304
-#: ./templates/AccessPoints/view.php:370
-#: ./templates/AccessPoints/view.php:444
-#: ./templates/AccessPoints/view.php:508
-#: ./templates/AccessPoints/view.php:600
-#: ./templates/AccessPoints/view.php:661
+#: ./templates/AccessPoints/view.php:374
+#: ./templates/AccessPoints/view.php:448
+#: ./templates/AccessPoints/view.php:512
+#: ./templates/AccessPoints/view.php:604
+#: ./templates/AccessPoints/view.php:665
 #: ./templates/AntennaTypes/edit.php:17
 #: ./templates/AntennaTypes/index.php:66
 #: ./templates/AntennaTypes/view.php:20
@@ -1143,7 +1143,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:82
 #: ./templates/IpAddressRanges/view.php:20
 #: ./templates/LandlordPayments/edit.php:17
-#: ./templates/LandlordPayments/index.php:75
+#: ./templates/LandlordPayments/index.php:79
 #: ./templates/LandlordPayments/view.php:20
 #: ./templates/Manufacturers/edit.php:15
 #: ./templates/Manufacturers/index.php:47
@@ -1154,7 +1154,7 @@ msgstr ""
 #: ./templates/PaymentPurposes/edit.php:15
 #: ./templates/PaymentPurposes/index.php:47
 #: ./templates/PaymentPurposes/view.php:20
-#: ./templates/PaymentPurposes/view.php:147
+#: ./templates/PaymentPurposes/view.php:151
 #: ./templates/PowerSupplies/edit.php:17
 #: ./templates/PowerSupplies/index.php:82
 #: ./templates/PowerSupplies/view.php:20
@@ -1181,7 +1181,7 @@ msgstr ""
 #: ./templates/RadioUnitTypes/view.php:20
 #: ./templates/RadioUnitTypes/view.php:197
 #: ./templates/RadioUnits/edit.php:18
-#: ./templates/RadioUnits/export.php:134
+#: ./templates/RadioUnits/export.php:133
 #: ./templates/RadioUnits/index.php:118
 #: ./templates/RadioUnits/view.php:19
 #: ./templates/RouterosDeviceInterfaces/edit.php:16
@@ -1261,11 +1261,11 @@ msgstr ""
 #: ./templates/AccessPoints/index.php:89
 #: ./templates/AccessPoints/view.php:207
 #: ./templates/AccessPoints/view.php:281
-#: ./templates/AccessPoints/view.php:351
-#: ./templates/AccessPoints/view.php:433
-#: ./templates/AccessPoints/view.php:497
-#: ./templates/AccessPoints/view.php:589
-#: ./templates/AccessPoints/view.php:650
+#: ./templates/AccessPoints/view.php:355
+#: ./templates/AccessPoints/view.php:437
+#: ./templates/AccessPoints/view.php:501
+#: ./templates/AccessPoints/view.php:593
+#: ./templates/AccessPoints/view.php:654
 #: ./templates/AntennaTypes/index.php:55
 #: ./templates/AntennaTypes/view.php:186
 #: ./templates/CustomerConnectionIps/index.php:51
@@ -1278,13 +1278,13 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:160
 #: ./templates/ElectricityMeterReadings/index.php:56
 #: ./templates/IpAddressRanges/index.php:73
-#: ./templates/LandlordPayments/index.php:64
+#: ./templates/LandlordPayments/index.php:68
 #: ./templates/Manufacturers/index.php:36
 #: ./templates/Manufacturers/view.php:125
 #: ./templates/Manufacturers/view.php:167
 #: ./templates/Manufacturers/view.php:216
 #: ./templates/PaymentPurposes/index.php:36
-#: ./templates/PaymentPurposes/view.php:124
+#: ./templates/PaymentPurposes/view.php:128
 #: ./templates/PowerSupplies/index.php:71
 #: ./templates/PowerSupplyTypes/index.php:55
 #: ./templates/PowerSupplyTypes/view.php:159
@@ -1298,7 +1298,7 @@ msgstr ""
 #: ./templates/RadioUnitBands/view.php:171
 #: ./templates/RadioUnitTypes/index.php:52
 #: ./templates/RadioUnitTypes/view.php:186
-#: ./templates/RadioUnits/export.php:123
+#: ./templates/RadioUnits/export.php:122
 #: ./templates/RadioUnits/index.php:107
 #: ./templates/RouterosDeviceInterfaces/index.php:100
 #: ./templates/RouterosDeviceIps/index.php:71
@@ -1312,7 +1312,7 @@ msgstr ""
 #: ./templates/TaskTypes/view.php:135
 #: ./templates/Tasks/index.php:111
 #: ./templates/email/html/electricity_meter_readings_report.php:52
-#: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1162
+#: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1178
 msgid "View"
 msgstr ""
 
@@ -1322,11 +1322,11 @@ msgstr ""
 #: ./templates/AccessPoints/index.php:91
 #: ./templates/AccessPoints/view.php:215
 #: ./templates/AccessPoints/view.php:289
-#: ./templates/AccessPoints/view.php:355
-#: ./templates/AccessPoints/view.php:437
-#: ./templates/AccessPoints/view.php:501
-#: ./templates/AccessPoints/view.php:593
-#: ./templates/AccessPoints/view.php:654
+#: ./templates/AccessPoints/view.php:359
+#: ./templates/AccessPoints/view.php:441
+#: ./templates/AccessPoints/view.php:505
+#: ./templates/AccessPoints/view.php:597
+#: ./templates/AccessPoints/view.php:658
 #: ./templates/AntennaTypes/index.php:59
 #: ./templates/AntennaTypes/view.php:190
 #: ./templates/CustomerConnectionIps/index.php:53
@@ -1339,13 +1339,13 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:164
 #: ./templates/ElectricityMeterReadings/index.php:60
 #: ./templates/IpAddressRanges/index.php:75
-#: ./templates/LandlordPayments/index.php:68
+#: ./templates/LandlordPayments/index.php:72
 #: ./templates/Manufacturers/index.php:40
 #: ./templates/Manufacturers/view.php:129
 #: ./templates/Manufacturers/view.php:171
 #: ./templates/Manufacturers/view.php:220
 #: ./templates/PaymentPurposes/index.php:40
-#: ./templates/PaymentPurposes/view.php:132
+#: ./templates/PaymentPurposes/view.php:136
 #: ./templates/PowerSupplies/index.php:75
 #: ./templates/PowerSupplyTypes/index.php:59
 #: ./templates/PowerSupplyTypes/view.php:163
@@ -1359,7 +1359,7 @@ msgstr ""
 #: ./templates/RadioUnitBands/view.php:175
 #: ./templates/RadioUnitTypes/index.php:56
 #: ./templates/RadioUnitTypes/view.php:190
-#: ./templates/RadioUnits/export.php:127
+#: ./templates/RadioUnits/export.php:126
 #: ./templates/RadioUnits/index.php:111
 #: ./templates/RouterosDeviceInterfaces/index.php:104
 #: ./templates/RouterosDeviceIps/index.php:75
@@ -1385,7 +1385,7 @@ msgstr ""
 #: ./templates/DeviceTypes/index.php:72
 #: ./templates/ElectricityMeterReadings/index.php:77
 #: ./templates/IpAddressRanges/index.php:92
-#: ./templates/LandlordPayments/index.php:85
+#: ./templates/LandlordPayments/index.php:89
 #: ./templates/Manufacturers/index.php:57
 #: ./templates/PaymentPurposes/index.php:57
 #: ./templates/PowerSupplies/index.php:92
@@ -1415,7 +1415,7 @@ msgstr ""
 #: ./templates/DeviceTypes/index.php:73
 #: ./templates/ElectricityMeterReadings/index.php:78
 #: ./templates/IpAddressRanges/index.php:93
-#: ./templates/LandlordPayments/index.php:86
+#: ./templates/LandlordPayments/index.php:90
 #: ./templates/Manufacturers/index.php:58
 #: ./templates/PaymentPurposes/index.php:58
 #: ./templates/PowerSupplies/index.php:93
@@ -1445,7 +1445,7 @@ msgstr ""
 #: ./templates/DeviceTypes/index.php:75
 #: ./templates/ElectricityMeterReadings/index.php:80
 #: ./templates/IpAddressRanges/index.php:95
-#: ./templates/LandlordPayments/index.php:88
+#: ./templates/LandlordPayments/index.php:92
 #: ./templates/Manufacturers/index.php:60
 #: ./templates/PaymentPurposes/index.php:60
 #: ./templates/PowerSupplies/index.php:95
@@ -1475,7 +1475,7 @@ msgstr ""
 #: ./templates/DeviceTypes/index.php:76
 #: ./templates/ElectricityMeterReadings/index.php:81
 #: ./templates/IpAddressRanges/index.php:96
-#: ./templates/LandlordPayments/index.php:89
+#: ./templates/LandlordPayments/index.php:93
 #: ./templates/Manufacturers/index.php:61
 #: ./templates/PaymentPurposes/index.php:61
 #: ./templates/PowerSupplies/index.php:96
@@ -1505,7 +1505,7 @@ msgstr ""
 #: ./templates/DeviceTypes/index.php:79
 #: ./templates/ElectricityMeterReadings/index.php:84
 #: ./templates/IpAddressRanges/index.php:99
-#: ./templates/LandlordPayments/index.php:92
+#: ./templates/LandlordPayments/index.php:96
 #: ./templates/Manufacturers/index.php:64
 #: ./templates/PaymentPurposes/index.php:64
 #: ./templates/PowerSupplies/index.php:99
@@ -1571,7 +1571,7 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:70
 #: ./templates/ElectricityMeterReadings/view.php:76
 #: ./templates/IpAddressRanges/view.php:121
-#: ./templates/LandlordPayments/view.php:81
+#: ./templates/LandlordPayments/view.php:89
 #: ./templates/Manufacturers/view.php:51
 #: ./templates/PaymentPurposes/view.php:51
 #: ./templates/PowerSupplies/view.php:103
@@ -1601,7 +1601,7 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:74
 #: ./templates/ElectricityMeterReadings/view.php:80
 #: ./templates/IpAddressRanges/view.php:125
-#: ./templates/LandlordPayments/view.php:85
+#: ./templates/LandlordPayments/view.php:93
 #: ./templates/Manufacturers/view.php:55
 #: ./templates/PaymentPurposes/view.php:55
 #: ./templates/PowerSupplies/view.php:107
@@ -1631,7 +1631,7 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:78
 #: ./templates/ElectricityMeterReadings/view.php:84
 #: ./templates/IpAddressRanges/view.php:129
-#: ./templates/LandlordPayments/view.php:89
+#: ./templates/LandlordPayments/view.php:97
 #: ./templates/Manufacturers/view.php:59
 #: ./templates/PaymentPurposes/view.php:59
 #: ./templates/PowerSupplies/view.php:111
@@ -1661,7 +1661,7 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:89
 #: ./templates/ElectricityMeterReadings/view.php:95
 #: ./templates/IpAddressRanges/view.php:140
-#: ./templates/LandlordPayments/view.php:100
+#: ./templates/LandlordPayments/view.php:108
 #: ./templates/Manufacturers/view.php:70
 #: ./templates/PaymentPurposes/view.php:70
 #: ./templates/PowerSupplies/view.php:122
@@ -1691,7 +1691,7 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:93
 #: ./templates/ElectricityMeterReadings/view.php:99
 #: ./templates/IpAddressRanges/view.php:144
-#: ./templates/LandlordPayments/view.php:104
+#: ./templates/LandlordPayments/view.php:112
 #: ./templates/Manufacturers/view.php:74
 #: ./templates/PaymentPurposes/view.php:74
 #: ./templates/PowerSupplies/view.php:126
@@ -1716,9 +1716,9 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:161
 #: ./templates/AccessPoints/view.php:182
 #: ./templates/AccessPoints/view.php:259
-#: ./templates/AccessPoints/view.php:330
-#: ./templates/AccessPoints/view.php:472
-#: ./templates/AccessPoints/view.php:545
+#: ./templates/AccessPoints/view.php:332
+#: ./templates/AccessPoints/view.php:476
+#: ./templates/AccessPoints/view.php:549
 #: ./templates/AntennaTypes/view.php:114
 #: ./templates/AntennaTypes/view.php:142
 #: ./templates/CustomerConnectionIps/view.php:105
@@ -1729,13 +1729,13 @@ msgstr ""
 #: ./templates/DeviceTypes/view.php:107
 #: ./templates/ElectricityMeterReadings/view.php:113
 #: ./templates/IpAddressRanges/view.php:158
-#: ./templates/LandlordPayments/view.php:119
+#: ./templates/LandlordPayments/view.php:193
 #: ./templates/Manufacturers/view.php:89
 #: ./templates/Manufacturers/view.php:104
 #: ./templates/Manufacturers/view.php:155
 #: ./templates/Manufacturers/view.php:196
 #: ./templates/PaymentPurposes/view.php:89
-#: ./templates/PaymentPurposes/view.php:103
+#: ./templates/PaymentPurposes/view.php:105
 #: ./templates/PowerSupplies/view.php:140
 #: ./templates/PowerSupplyTypes/view.php:115
 #: ./templates/PowerSupplyTypes/view.php:134
@@ -1973,17 +1973,29 @@ msgstr ""
 msgid "Amount Paid"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:382
+#: ./templates/AccessPoints/view.php:330
+#: ./templates/LandlordPayments/view.php:77
+#: ./templates/PaymentPurposes/view.php:103
+msgid "Period From"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:331
+#: ./templates/LandlordPayments/view.php:81
+#: ./templates/PaymentPurposes/view.php:104
+msgid "Period Until"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:386
 #: ./templates/IpAddressRanges/index.php:21
 #: ./templates/IpAddressRanges/view.php:25
 msgid "New IP Address Range"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:386
+#: ./templates/AccessPoints/view.php:390
 msgid "Related IP Address Ranges"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:392
+#: ./templates/AccessPoints/view.php:396
 #: ./templates/IpAddressRanges/add.php:24
 #: ./templates/IpAddressRanges/edit.php:32
 #: ./templates/IpAddressRanges/index.php:31
@@ -1991,7 +2003,7 @@ msgstr ""
 msgid "IP Network"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:393
+#: ./templates/AccessPoints/view.php:397
 #: ./templates/IpAddressRanges/add.php:27
 #: ./templates/IpAddressRanges/edit.php:35
 #: ./templates/IpAddressRanges/index.php:32
@@ -1999,7 +2011,7 @@ msgstr ""
 msgid "IP Gateway"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:394
+#: ./templates/AccessPoints/view.php:398
 #: ./templates/IpAddressRanges/add.php:36
 #: ./templates/IpAddressRanges/edit.php:44
 #: ./templates/IpAddressRanges/index.php:34
@@ -2007,48 +2019,48 @@ msgstr ""
 msgid "Parent IP Address Range"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:395
+#: ./templates/AccessPoints/view.php:399
 #: ./templates/IpAddressRanges/view.php:71
 msgid "For Subnets"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:396
+#: ./templates/AccessPoints/view.php:400
 #: ./templates/IpAddressRanges/view.php:78
 msgid "For Customer Addresses Set Via Radius"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:397
+#: ./templates/AccessPoints/view.php:401
 #: ./templates/IpAddressRanges/view.php:84
 msgid "For Customer Addresses Set Manually"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:398
+#: ./templates/AccessPoints/view.php:402
 #: ./templates/IpAddressRanges/view.php:90
 msgid "For Technology Addresses Set Manually"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:399
+#: ./templates/AccessPoints/view.php:403
 #: ./templates/IpAddressRanges/view.php:99
 msgid "For Customer Networks Set Via Radius"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:400
+#: ./templates/AccessPoints/view.php:404
 #: ./templates/IpAddressRanges/view.php:105
 msgid "For Customer Networks Set Manually"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:401
+#: ./templates/AccessPoints/view.php:405
 #: ./templates/IpAddressRanges/view.php:111
 msgid "For Technology Networks Set Manually"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:418
-#: ./templates/AccessPoints/view.php:420
 #: ./templates/AccessPoints/view.php:422
 #: ./templates/AccessPoints/view.php:424
 #: ./templates/AccessPoints/view.php:426
 #: ./templates/AccessPoints/view.php:428
 #: ./templates/AccessPoints/view.php:430
+#: ./templates/AccessPoints/view.php:432
+#: ./templates/AccessPoints/view.php:434
 #: ./templates/DeviceTypes/index.php:45
 #: ./templates/DeviceTypes/index.php:46
 #: ./templates/DeviceTypes/index.php:47
@@ -2080,13 +2092,13 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:418
-#: ./templates/AccessPoints/view.php:420
 #: ./templates/AccessPoints/view.php:422
 #: ./templates/AccessPoints/view.php:424
 #: ./templates/AccessPoints/view.php:426
 #: ./templates/AccessPoints/view.php:428
 #: ./templates/AccessPoints/view.php:430
+#: ./templates/AccessPoints/view.php:432
+#: ./templates/AccessPoints/view.php:434
 #: ./templates/DeviceTypes/index.php:45
 #: ./templates/DeviceTypes/index.php:46
 #: ./templates/DeviceTypes/index.php:47
@@ -2118,25 +2130,25 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:455
+#: ./templates/AccessPoints/view.php:459
 #: ./templates/PowerSupplies/index.php:20
 #: ./templates/PowerSupplies/view.php:30
 msgid "New Power Supply"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:459
+#: ./templates/AccessPoints/view.php:463
 #: ./templates/PowerSupplyTypes/view.php:121
 msgid "Related Power Supplies"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:465
+#: ./templates/AccessPoints/view.php:469
 #: ./templates/PowerSupplies/view.php:47
 msgid "Power Supply Type"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:466
-#: ./templates/AccessPoints/view.php:541
-#: ./templates/AccessPoints/view.php:625
+#: ./templates/AccessPoints/view.php:470
+#: ./templates/AccessPoints/view.php:545
+#: ./templates/AccessPoints/view.php:629
 #: ./templates/AntennaTypes/view.php:138
 #: ./templates/CustomerConnections/view.php:199
 #: ./templates/DeviceTypes/view.php:124
@@ -2152,51 +2164,51 @@ msgstr ""
 msgid "Serial Number"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:467
+#: ./templates/AccessPoints/view.php:471
 #: ./templates/PowerSupplies/view.php:76
 #: ./templates/PowerSupplyTypes/view.php:129
 msgid "Battery Count"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:468
+#: ./templates/AccessPoints/view.php:472
 #: ./templates/PowerSupplies/view.php:81
 #: ./templates/PowerSupplyTypes/view.php:130
 msgid "Battery Voltage"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:469
+#: ./templates/AccessPoints/view.php:473
 #: ./templates/PowerSupplies/view.php:86
 #: ./templates/PowerSupplyTypes/view.php:131
 msgid "Battery Capacity"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:470
+#: ./templates/AccessPoints/view.php:474
 #: ./templates/PowerSupplies/view.php:91
 #: ./templates/PowerSupplyTypes/view.php:132
 msgid "Battery Replacement"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:471
+#: ./templates/AccessPoints/view.php:475
 #: ./templates/PowerSupplies/view.php:95
 #: ./templates/PowerSupplyTypes/view.php:133
 msgid "Battery Duration"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:519
+#: ./templates/AccessPoints/view.php:523
 #: ./templates/RadioLinks/view.php:101
 #: ./templates/RadioUnits/index.php:27
 #: ./templates/RadioUnits/view.php:27
 msgid "New Radio Unit"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:523
+#: ./templates/AccessPoints/view.php:527
 #: ./templates/AntennaTypes/view.php:120
 #: ./templates/RadioLinks/view.php:105
 #: ./templates/RadioUnitTypes/view.php:124
 msgid "Related Radio Units"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:529
+#: ./templates/AccessPoints/view.php:533
 #: ./templates/AntennaTypes/view.php:128
 #: ./templates/RadioLinks/index.php:36
 #: ./templates/RadioLinks/view.php:112
@@ -2205,7 +2217,7 @@ msgstr ""
 msgid "Radio Unit Type"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:530
+#: ./templates/AccessPoints/view.php:534
 #: ./templates/AntennaTypes/view.php:127
 #: ./templates/RadioUnitTypes/view.php:131
 #: ./templates/RadioUnits/export.php:18
@@ -2213,7 +2225,7 @@ msgstr ""
 msgid "Radio Link"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:531
+#: ./templates/AccessPoints/view.php:535
 #: ./templates/RadioLinks/index.php:37
 #: ./templates/RadioLinks/view.php:113
 #: ./templates/RadioUnitTypes/view.php:132
@@ -2222,7 +2234,7 @@ msgstr ""
 msgid "Antenna Type"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:532
+#: ./templates/AccessPoints/view.php:536
 #: ./templates/AntennaTypes/view.php:129
 #: ./templates/RadioLinks/index.php:38
 #: ./templates/RadioLinks/view.php:114
@@ -2232,7 +2244,7 @@ msgstr ""
 msgid "Polarization"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:533
+#: ./templates/AccessPoints/view.php:537
 #: ./templates/AntennaTypes/view.php:130
 #: ./templates/RadioLinks/index.php:39
 #: ./templates/RadioLinks/view.php:115
@@ -2242,7 +2254,7 @@ msgstr ""
 msgid "Channel Width"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:534
+#: ./templates/AccessPoints/view.php:538
 #: ./templates/AntennaTypes/view.php:131
 #: ./templates/RadioLinks/index.php:40
 #: ./templates/RadioLinks/view.php:116
@@ -2252,7 +2264,7 @@ msgstr ""
 msgid "Tx Frequency"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:535
+#: ./templates/AccessPoints/view.php:539
 #: ./templates/AntennaTypes/view.php:132
 #: ./templates/RadioLinks/index.php:41
 #: ./templates/RadioLinks/view.php:117
@@ -2262,7 +2274,7 @@ msgstr ""
 msgid "Rx Frequency"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:536
+#: ./templates/AccessPoints/view.php:540
 #: ./templates/AntennaTypes/view.php:133
 #: ./templates/RadioLinks/index.php:42
 #: ./templates/RadioLinks/view.php:118
@@ -2272,7 +2284,7 @@ msgstr ""
 msgid "Tx Power"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:537
+#: ./templates/AccessPoints/view.php:541
 #: ./templates/AntennaTypes/view.php:134
 #: ./templates/RadioLinks/index.php:43
 #: ./templates/RadioLinks/view.php:119
@@ -2282,7 +2294,7 @@ msgstr ""
 msgid "Rx Signal"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:538
+#: ./templates/AccessPoints/view.php:542
 #: ./templates/AntennaTypes/view.php:135
 #: ./templates/RadioLinks/index.php:44
 #: ./templates/RadioLinks/view.php:120
@@ -2292,7 +2304,7 @@ msgstr ""
 msgid "Operating Speed"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:539
+#: ./templates/AccessPoints/view.php:543
 #: ./templates/AntennaTypes/view.php:136
 #: ./templates/RadioLinks/index.php:45
 #: ./templates/RadioLinks/view.php:121
@@ -2302,8 +2314,8 @@ msgstr ""
 msgid "Maximal Speed"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:540
-#: ./templates/AccessPoints/view.php:627
+#: ./templates/AccessPoints/view.php:544
+#: ./templates/AccessPoints/view.php:631
 #: ./templates/AntennaTypes/view.php:137
 #: ./templates/CustomerConnections/view.php:201
 #: ./templates/DeviceTypes/view.php:126
@@ -2316,7 +2328,7 @@ msgstr ""
 msgid "Firmware Version"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:542
+#: ./templates/AccessPoints/view.php:546
 #: ./templates/AntennaTypes/view.php:139
 #: ./templates/RadioLinks/index.php:47
 #: ./templates/RadioLinks/view.php:124
@@ -2326,7 +2338,7 @@ msgstr ""
 msgid "Station Address"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:543
+#: ./templates/AccessPoints/view.php:547
 #: ./templates/AntennaTypes/view.php:140
 #: ./templates/RadioLinks/view.php:125
 #: ./templates/RadioUnitTypes/view.php:144
@@ -2335,8 +2347,8 @@ msgstr ""
 msgid "Expiration Date"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:544
-#: ./templates/AccessPoints/view.php:622
+#: ./templates/AccessPoints/view.php:548
+#: ./templates/AccessPoints/view.php:626
 #: ./templates/AntennaTypes/view.php:141
 #: ./templates/CustomerConnectionIps/add.php:31
 #: ./templates/CustomerConnectionIps/edit.php:39
@@ -2366,28 +2378,28 @@ msgstr ""
 msgid "IP Address"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:611
+#: ./templates/AccessPoints/view.php:615
 #: ./templates/RouterosDevices/index.php:35
 #: ./templates/RouterosDevices/view.php:29
 msgid "New RouterOS Device"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:615
+#: ./templates/AccessPoints/view.php:619
 #: ./templates/CustomerConnections/view.php:188
 #: ./templates/DeviceTypes/view.php:113
 msgid "Related RouterOS Devices"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:621
-#: ./templates/AccessPoints/view.php:678
-#: ./templates/AccessPoints/view.php:784
+#: ./templates/AccessPoints/view.php:625
+#: ./templates/AccessPoints/view.php:682
+#: ./templates/AccessPoints/view.php:788
 #: ./templates/CustomerConnections/view.php:195
 #: ./templates/RouterosDevices/export.php:45
 #: ./templates/RouterosDevices/view.php:72
 msgid "Device Type"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:623
+#: ./templates/AccessPoints/view.php:627
 #: ./templates/CustomerConnections/view.php:197
 #: ./templates/DeviceTypes/view.php:122
 #: ./templates/RouterosDevices/export.php:47
@@ -2395,7 +2407,7 @@ msgstr ""
 msgid "System Description"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:624
+#: ./templates/AccessPoints/view.php:628
 #: ./templates/CustomerConnections/view.php:198
 #: ./templates/DeviceTypes/view.php:123
 #: ./templates/RouterosDevices/export.php:48
@@ -2403,7 +2415,7 @@ msgstr ""
 msgid "Board Name"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:626
+#: ./templates/AccessPoints/view.php:630
 #: ./templates/CustomerConnections/view.php:200
 #: ./templates/DeviceTypes/view.php:125
 #: ./templates/RouterosDevices/export.php:50
@@ -2411,53 +2423,53 @@ msgstr ""
 msgid "Software Version"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:672
+#: ./templates/AccessPoints/view.php:676
 #: ./templates/RouterosDevices/view.php:279
 msgid "Related RouterOS Wireless Links"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:679
+#: ./templates/AccessPoints/view.php:683
 #: ./templates/RouterosDevices/view.php:284
 msgid "Local Wireless Interface"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:680
+#: ./templates/AccessPoints/view.php:684
 #: ./templates/RouterosDevices/view.php:285
 msgid "Neighbouring Wireless Interface"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:681
-#: ./templates/AccessPoints/view.php:787
+#: ./templates/AccessPoints/view.php:685
+#: ./templates/AccessPoints/view.php:791
 #: ./templates/RouterosDevices/view.php:286
 #: ./templates/RouterosDevices/view.php:374
 msgid "Neighbouring RouterOS Device"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:682
-#: ./templates/AccessPoints/view.php:788
+#: ./templates/AccessPoints/view.php:686
+#: ./templates/AccessPoints/view.php:792
 #: ./templates/RouterosDevices/view.php:287
 #: ./templates/RouterosDevices/view.php:375
 msgid "Neighbouring Access Point"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:683
-#: ./templates/AccessPoints/view.php:789
+#: ./templates/AccessPoints/view.php:687
+#: ./templates/AccessPoints/view.php:793
 #: ./templates/RouterosDevices/view.php:288
 #: ./templates/RouterosDevices/view.php:376
 msgid "Neighbouring Customer Connection"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:778
+#: ./templates/AccessPoints/view.php:782
 #: ./templates/RouterosDevices/view.php:367
 msgid "Related RouterOS IP Links"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:785
+#: ./templates/AccessPoints/view.php:789
 #: ./templates/RouterosDevices/view.php:372
 msgid "Local IP Address"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:786
+#: ./templates/AccessPoints/view.php:790
 #: ./templates/RouterosDevices/view.php:373
 msgid "Neighbouring IP address"
 msgstr ""
@@ -2760,6 +2772,35 @@ msgstr ""
 msgid "Add Landlord Payment"
 msgstr ""
 
+#: ./templates/LandlordPayments/add.php:38
+#: ./templates/LandlordPayments/edit.php:46
+msgid "Electricity Details"
+msgstr ""
+
+#: ./templates/LandlordPayments/add.php:43
+#: ./templates/LandlordPayments/edit.php:51
+#: ./templates/LandlordPayments/view.php:132
+msgid "Low Rate - Used kWh"
+msgstr ""
+
+#: ./templates/LandlordPayments/add.php:46
+#: ./templates/LandlordPayments/edit.php:54
+#: ./templates/LandlordPayments/view.php:139
+msgid "Low Rate - Price per kWh"
+msgstr ""
+
+#: ./templates/LandlordPayments/add.php:53
+#: ./templates/LandlordPayments/edit.php:61
+#: ./templates/LandlordPayments/view.php:162
+msgid "High Rate - Used kWh"
+msgstr ""
+
+#: ./templates/LandlordPayments/add.php:56
+#: ./templates/LandlordPayments/edit.php:64
+#: ./templates/LandlordPayments/view.php:169
+msgid "High Rate - Price per kWh"
+msgstr ""
+
 #: ./templates/LandlordPayments/edit.php:32
 #: ./templates/LandlordPayments/view.php:12
 msgid "Edit Landlord Payment"
@@ -2772,6 +2813,14 @@ msgstr ""
 
 #: ./templates/LandlordPayments/view.php:17
 msgid "Delete Landlord Payment"
+msgstr ""
+
+#: ./templates/LandlordPayments/view.php:144
+msgid "Low Rate - Total Price"
+msgstr ""
+
+#: ./templates/LandlordPayments/view.php:174
+msgid "High Rate - Total Price"
 msgstr ""
 
 #: ./templates/Manufacturers/add.php:11
