@@ -713,6 +713,7 @@ class RouterosDevicesController extends AppController
      * @param string $hex text encoded in hexa format
      * @return string
      */
+    /*
     private function hexToSetString(string $hex)
     {
         $chars = 'abcdefghijklmnopqrstuwvxyzABCDEFGHIJKLMNOPQRSTUWVXYZ0123456789';
@@ -743,6 +744,32 @@ class RouterosDevicesController extends AppController
 
             $answer = $chars[$dec_remain] . $answer;
             $hex = $hex_result;
+        }
+
+        return $answer;
+    }
+    */
+
+    /**
+     * Converts a hexadecimal string to a custom character set string.
+     *
+     * @param string $hex Input string in hexadecimal format (e.g., "1a2b3c").
+     * @return string Encoded string in the custom character set.
+     */
+    private function hexToSetString(string $hex): string
+    {
+        $chars = 'abcdefghijklmnopqrstuwvxyzABCDEFGHIJKLMNOPQRSTUWVXYZ0123456789';
+        $setbase = strlen($chars);
+
+        // Convert hex to decimal
+        $decimal = hexdec($hex);
+
+        // Convert decimal to custom base
+        $answer = '';
+        while ($decimal > 0) {
+            $remainder = $decimal % $setbase;
+            $answer = $chars[$remainder] . $answer;
+            $decimal = intdiv($decimal, $setbase);
         }
 
         return $answer;
