@@ -761,18 +761,34 @@ class RouterosDevicesController extends AppController
         $chars = 'abcdefghijklmnopqrstuwvxyzABCDEFGHIJKLMNOPQRSTUWVXYZ0123456789';
         $setbase = strlen($chars);
 
-        // Convert hex to decimal
-        $decimal = hexdec($hex);
-
-        // Convert decimal to custom base
         $answer = '';
-        while ($decimal > 0) {
-            $remainder = $decimal % $setbase;
-            $answer = $chars[$remainder] . $answer;
-            $decimal = intdiv($decimal, $setbase);
+
+        // Iterate until the hex string is empty
+        while ($hex !== '' && $hex !== '0') {
+            $hex_result = ''; // Result of division in hex
+            $dec_remain = 0; // Decimal remainder
+
+            // Divide hex by base (custom charset length)
+            foreach (str_split($hex) as $char) {
+                // Combine remainder with the current hex digit
+                $dec_remain = $dec_remain * 16 + hexdec($char);
+
+                // Perform integer division
+                $hex_digit = (int)($dec_remain / $setbase);
+                $dec_remain %= $setbase;
+
+                // Build the new hex string (excluding leading zeros)
+                $hex_result .= $hex_digit > 0 || $hex_result !== '' ? dechex($hex_digit) : '';
+            }
+
+            // Prepend the corresponding character to the answer
+            $answer = $chars[$dec_remain] . $answer;
+
+            // Update hex for the next iteration
+            $hex = $hex_result;
         }
 
-        return $answer;
+        return $answer ?: $chars[0]; // Return first char if input is zero
     }
 
     /**
