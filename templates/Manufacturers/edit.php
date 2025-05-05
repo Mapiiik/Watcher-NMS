@@ -14,7 +14,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $manufacturer->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List Manufacturers'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>

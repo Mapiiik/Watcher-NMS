@@ -41,7 +41,7 @@ class RadioUnitTypesController extends AppController
                 'Manufacturers',
                 'RadioUnitBands',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('radioUnitTypes'));

@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit IP Address Range'),
                 ['action' => 'edit', $ipAddressRange->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete IP Address Range'),
@@ -19,7 +19,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List IP Address Ranges'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New IP Address Range'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
@@ -52,7 +52,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $ipAddressRange->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <tr>
@@ -64,7 +64,7 @@
                                         'controller' => 'IpAddressRanges',
                                         'action' => 'view',
                                         $ipAddressRange->parent_ip_address_range->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <tr>
@@ -133,7 +133,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $ipAddressRange->creator->id,
-                                ]
+                                ],
                             ) : h($ipAddressRange->created_by) ?></td>
                         </tr>
                         <tr>
@@ -148,7 +148,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $ipAddressRange->modifier->id,
-                                ]
+                                ],
                             ) : h($ipAddressRange->modified_by) ?></td>
                         </tr>
                     </table>

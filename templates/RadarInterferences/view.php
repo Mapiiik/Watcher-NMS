@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Radar Interference'),
                 ['action' => 'edit', $radarInterference->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Radar Interference'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Radar Interferences'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Radar Interference'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -80,7 +80,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $radarInterference->creator->id,
-                                ]
+                                ],
                             ) : h($radarInterference->created_by) ?></td>
                         </tr>
                         <tr>
@@ -95,7 +95,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $radarInterference->modifier->id,
-                                ]
+                                ],
                             ) : h($radarInterference->modified_by) ?></td>
                         </tr>
                     </table>
@@ -133,7 +133,7 @@
                                         'controller' => 'RouterosDevices',
                                         'action' => 'view',
                                         $routerosDeviceInterfaces->routeros_device->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td><?= h($routerosDeviceInterfaces->name) ?></td>
@@ -157,7 +157,7 @@
                                         'controller' => 'RouterosDeviceInterfaces',
                                         'action' => 'view',
                                         $routerosDeviceInterfaces->id,
-                                    ]
+                                    ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
@@ -166,7 +166,7 @@
                                         'action' => 'edit',
                                         $routerosDeviceInterfaces->id,
                                     ],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
@@ -177,8 +177,8 @@
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $routerosDeviceInterfaces->id
-                                    )]
+                                        $routerosDeviceInterfaces->id,
+                                    )],
                                 ) ?>
                             </td>
                         </tr>

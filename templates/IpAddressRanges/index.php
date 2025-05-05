@@ -20,7 +20,7 @@
     <?= $this->AuthLink->link(
         __('New IP Address Range'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <h3><?= __('IP Address Ranges') ?></h3>
     <div class="table-responsive">
@@ -51,7 +51,7 @@
                     <td><?= $ipAddressRange->__isset('access_point') ?
                         $this->Html->link(
                             $ipAddressRange->access_point->name,
-                            ['controller' => 'AccessPoints', 'action' => 'view', $ipAddressRange->access_point->id]
+                            ['controller' => 'AccessPoints', 'action' => 'view', $ipAddressRange->access_point->id],
                         ) : '' ?></td>
                     <td><?= $ipAddressRange->__isset('parent_ip_address_range') ?
                         $this->Html->link(
@@ -60,7 +60,7 @@
                                 'controller' => 'IpAddressRanges',
                                 'action' => 'view',
                                 $ipAddressRange->parent_ip_address_range->id,
-                            ]
+                            ],
                         ) : '' ?></td>
                     <td><?= $ipAddressRange->for_subnets ? __('Yes') : __('No'); ?></td>
                     <td><?= $ipAddressRange->for_customer_addresses_set_via_radius ? __('Yes') : __('No'); ?></td>
@@ -74,12 +74,12 @@
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $ipAddressRange->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $ipAddressRange->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -96,7 +96,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

@@ -43,7 +43,7 @@
                     <td>
                         <?= $powerSupply->__isset('access_point') ? $this->Html->link(
                             $powerSupply->access_point->name,
-                            ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]
+                            ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id],
                         ) : '' ?>
                     </td>
                     <td>
@@ -53,7 +53,7 @@
                                 'controller' => 'PowerSupplyTypes',
                                 'action' => 'view',
                                 $powerSupply->power_supply_type->id,
-                            ]
+                            ],
                         ) : '' ?>
                     </td>
                     <td><?= h($powerSupply->serial_number) ?></td>
@@ -69,17 +69,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $powerSupply->id]
+                            ['action' => 'view', $powerSupply->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $powerSupply->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $powerSupply->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupply->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupply->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -96,7 +96,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

@@ -36,7 +36,7 @@ class DeviceTypesController extends AppController
 
         $deviceTypes = $this->paginate($this->DeviceTypes->find(
             'all',
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('deviceTypes'));

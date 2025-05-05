@@ -63,7 +63,7 @@ table {
                             'action' => 'view',
                             $task->access_point->id,
                             '_full' => true,
-                        ]
+                        ],
                     ) : '' ?></td>
                 </tr>
             </table>
@@ -112,7 +112,7 @@ table {
 </table>
 <?= $this->Html->link(
     __('View Task'),
-    ['controller' => 'Tasks', 'action' => 'view', $task->id, '_full' => true]
+    ['controller' => 'Tasks', 'action' => 'view', $task->id, '_full' => true],
 ) ?>
 <div class="text">
     <strong><?= __('Subject') ?></strong>

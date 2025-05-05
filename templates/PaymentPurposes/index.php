@@ -34,17 +34,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $paymentPurpose->id]
+                            ['action' => 'view', $paymentPurpose->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $paymentPurpose->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $paymentPurpose->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $paymentPurpose->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $paymentPurpose->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -61,7 +61,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

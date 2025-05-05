@@ -16,7 +16,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RadioUnitType newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnitType[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnitType get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\RadioUnitType findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\RadioUnitType findOrCreate($search, callable|array|null $callback = null, $options = [])
  * @method \App\Model\Entity\RadioUnitType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnitType[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\RadioUnitType|false save(\Cake\Datasource\EntityInterface $entity, $options = [])

@@ -77,7 +77,7 @@ class RouterosDevicesController extends AppController
                 'CustomerConnections',
                 'DeviceTypes',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('routerosDevices'));
@@ -427,7 +427,7 @@ class RouterosDevicesController extends AppController
         string $community,
         string $device_type_id,
         bool $assign_access_point_by_device_name = false,
-        bool $assign_customer_connection_by_ip = false
+        bool $assign_customer_connection_by_ip = false,
     ) {
         $result = null;
 
@@ -519,8 +519,8 @@ class RouterosDevicesController extends AppController
                         'interface_type' => $ifTable['3.' . $ifIndex]->value ?? null,
                         'mac_address' => $this->nullIfEmptyString(
                             $this->strToHex(
-                                $ifTable['6.' . $ifIndex]->value ?? ''
-                            )
+                                $ifTable['6.' . $ifIndex]->value ?? '',
+                            ),
                         ),
                     ];
 
@@ -530,8 +530,8 @@ class RouterosDevicesController extends AppController
                             'ssid' => $mtxrWlApTable['4.' . $ifIndex]->text ?? null,
                             'bssid' => $this->nullIfEmptyString(
                                 $this->strToHex(
-                                    $mtxrWlApTable['5.' . $ifIndex]->value ?? ''
-                                )
+                                    $mtxrWlApTable['5.' . $ifIndex]->value ?? '',
+                                ),
                             ),
                             'band' => $mtxrWlApTable['8.' . $ifIndex]->text ?? null,
                             'frequency' => $mtxrWlApTable['7.' . $ifIndex]->value ?? null,
@@ -546,8 +546,8 @@ class RouterosDevicesController extends AppController
                             'ssid' => $mtxrWlStatTable['5.' . $ifIndex]->text ?? null,
                             'bssid' => $this->nullIfEmptyString(
                                 $this->strToHex(
-                                    $mtxrWlStatTable['6.' . $ifIndex]->value ?? ''
-                                )
+                                    $mtxrWlStatTable['6.' . $ifIndex]->value ?? '',
+                                ),
                             ),
                             'band' => $mtxrWlStatTable['8.' . $ifIndex]->text ?? null,
                             'frequency' => $mtxrWlStatTable['7.' . $ifIndex]->value ?? null,
@@ -565,8 +565,8 @@ class RouterosDevicesController extends AppController
                                 ?
                                 $this->nullIfEmptyString(
                                     $this->strToHex(
-                                        $mtxrWl60GTable['5.' . $ifIndex]->value ?? ''
-                                    )
+                                        $mtxrWl60GTable['5.' . $ifIndex]->value ?? '',
+                                    ),
                                 )
                                 :
                                 null
@@ -617,7 +617,7 @@ class RouterosDevicesController extends AppController
                     $this->RouterosDevices->RouterosDeviceInterfaces->find()->where([
                         'routeros_device_id' => $routerosDevice->id,
                         'modified <' => $start_time,
-                    ])->all()
+                    ])->all(),
                 );
             }
 
@@ -652,7 +652,7 @@ class RouterosDevicesController extends AppController
                             'routeros_device_id' => $routerosDevice->id,
                             'interface_index' => $ipIfIndexes[$ipAddressKey]->value,
                             'ip_address' => $ipAddress->value . '/' . $this->mask2cidr(
-                                $ipNetMasks[$ipAddressKey]->value
+                                $ipNetMasks[$ipAddressKey]->value,
                             ),
                         ])->first()
                         ??
@@ -660,7 +660,7 @@ class RouterosDevicesController extends AppController
                             'routeros_device_id' => $routerosDevice->id,
                             'interface_index' => $ipIfIndexes[$ipAddressKey]->value,
                             'ip_address' => $ipAddress->value . '/' . $this->mask2cidr(
-                                $ipNetMasks[$ipAddressKey]->value
+                                $ipNetMasks[$ipAddressKey]->value,
                             ),
                         ]);
 
@@ -678,7 +678,7 @@ class RouterosDevicesController extends AppController
                     $this->RouterosDevices->RouterosDeviceIps->find()->where([
                         'routeros_device_id' => $routerosDevice->id,
                         'modified <' => $start_time,
-                    ])->all()
+                    ])->all(),
                 );
             }
 
@@ -686,17 +686,17 @@ class RouterosDevicesController extends AppController
             $this->RouterosDevices->deleteMany(
                 $this->RouterosDevices->find()->where([
                     'modified <' => new DateTime('-365 days'),
-                ])->all()
+                ])->all(),
             );
             $this->RouterosDevices->RouterosDeviceInterfaces->deleteMany(
                 $this->RouterosDevices->RouterosDeviceInterfaces->find()->where([
                     'modified <' => new DateTime('-365 days'),
-                ])->all()
+                ])->all(),
             );
             $this->RouterosDevices->RouterosDeviceIps->deleteMany(
                 $this->RouterosDevices->RouterosDeviceIps->find()->where([
                     'modified <' => new DateTime('-365 days'),
-                ])->all()
+                ])->all(),
             );
 
             $result = $routerosDevice;
@@ -829,7 +829,7 @@ class RouterosDevicesController extends AppController
         if ($deviceType) {
             $routerosDeviceSerialNumber = $this->loadSerialNumberViaSNMP(
                 $_SERVER['REMOTE_ADDR'],
-                $deviceType->snmp_community
+                $deviceType->snmp_community,
             );
 
             if ($routerosDeviceSerialNumber) {
@@ -842,7 +842,7 @@ class RouterosDevicesController extends AppController
                         $deviceType->snmp_community,
                         $deviceType->id,
                         $deviceType->assign_access_point_by_device_name,
-                        $deviceType->assign_customer_connection_by_ip
+                        $deviceType->assign_customer_connection_by_ip,
                     );
 
                     if ($routerosDevice) {
@@ -941,7 +941,7 @@ class RouterosDevicesController extends AppController
                 'AccessPoints.name' => 'ASC',
                 'RouterosDevices.name' => 'ASC',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         );
 
         $this->set(compact('routerosDevices'));

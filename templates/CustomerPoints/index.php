@@ -44,36 +44,36 @@
                             [
                                 'controller' => 'https:////maps.google.com',
                                 'action' => 'maps?q=' . htmlspecialchars(
-                                    "{$customerPoint->gps_y},{$customerPoint->gps_x}"
+                                    "{$customerPoint->gps_y},{$customerPoint->gps_x}",
                                 ),
                             ],
-                            ['target' => '_blank']
+                            ['target' => '_blank'],
                         ) ?>
                         <?= $this->Html->link(
                             __('Mapy.cz'),
                             [
                                 'controller' => 'https:////mapy.cz',
                                 'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                    "{$customerPoint->gps_x},{$customerPoint->gps_y}"
+                                    "{$customerPoint->gps_x},{$customerPoint->gps_y}",
                                 ),
                             ],
-                            ['target' => '_blank']
+                            ['target' => '_blank'],
                         ) ?>
                     </td>
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $customerPoint->id]
+                            ['action' => 'view', $customerPoint->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $customerPoint->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $customerPoint->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $customerPoint->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $customerPoint->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -90,7 +90,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

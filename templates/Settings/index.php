@@ -12,12 +12,12 @@
                 <?= $this->AuthLink->link(
                     __('User Profile'),
                     ['controller' => 'AppUsers', 'action' => 'profile'],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
                     __('List Users'),
                     ['controller' => 'AppUsers', 'action' => 'index'],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
             </div>
         </div>
@@ -28,12 +28,12 @@
                 <?= $this->AuthLink->link(
                     __('List Access Point Types'),
                     ['controller' => 'AccessPointTypes', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
                     __('List Payment Purposes'),
                     ['controller' => 'PaymentPurposes', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <?= $this->AuthLink->link(
                     __('Device Types'),
                     ['controller' => 'DeviceTypes', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
             </div>
         </div>
@@ -55,22 +55,22 @@
                 <?= $this->AuthLink->link(
                     __('Radio Unit Types'),
                     ['controller' => 'RadioUnitTypes', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
                     __('Radio Unit Bands'),
                     ['controller' => 'RadioUnitBands', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
                     __('Antenna Types'),
                     ['controller' => 'AntennaTypes', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
                     __('Manufacturers'),
                     ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
             </div>
         </div>
@@ -81,12 +81,12 @@
                 <?= $this->AuthLink->link(
                     __('Power Supply Types'),
                     ['controller' => 'PowerSupplyTypes', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
                     __('Manufacturers'),
                     ['controller' => 'Manufacturers', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
             </div>
         </div>
@@ -97,12 +97,12 @@
                 <?= $this->AuthLink->link(
                     __('List Task States'),
                     ['controller' => 'TaskStates', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
                     __('List Task Types'),
                     ['controller' => 'TaskTypes', 'action' => 'index', 'plugin' => null],
-                    ['class' => 'side-nav-item']
+                    ['class' => 'side-nav-item'],
                 ) ?>
             </div>
         </div>

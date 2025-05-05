@@ -20,7 +20,7 @@
     <?= $this->AuthLink->link(
         __('New Power Supply Type'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <h3><?= __('Power Supply Types') ?></h3>
     <div class="table-responsive">
@@ -42,7 +42,7 @@
                     <td>
                         <?= $powerSupplyType->__isset('manufacturer') ? $this->Html->link(
                             $powerSupplyType->manufacturer->name,
-                            ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id]
+                            ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id],
                         ) : '' ?>
                     </td>
                     <td><?= $powerSupplyType->voltage === null ?
@@ -53,17 +53,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $powerSupplyType->id]
+                            ['action' => 'view', $powerSupplyType->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $powerSupplyType->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $powerSupplyType->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplyType->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplyType->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -80,7 +80,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

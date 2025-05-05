@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Customer Point'),
                 ['action' => 'edit', $customerPoint->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Customer Point'),
@@ -19,7 +19,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $customerPoint->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List Customer Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New Customer Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
@@ -53,10 +53,10 @@
                                     [
                                         'controller' => 'https:////maps.google.com',
                                         'action' => 'maps?q=' . htmlspecialchars(
-                                            "{$customerPoint->gps_y},{$customerPoint->gps_x}"
+                                            "{$customerPoint->gps_y},{$customerPoint->gps_x}",
                                         ),
                                     ],
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) ?>
                                 ,
                                 <?= $this->Html->link(
@@ -64,10 +64,10 @@
                                     [
                                         'controller' => 'https:////mapy.cz',
                                         'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                            "{$customerPoint->gps_x},{$customerPoint->gps_y}"
+                                            "{$customerPoint->gps_x},{$customerPoint->gps_y}",
                                         ),
                                     ],
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) ?>
                             </td>
                         </tr>
@@ -91,7 +91,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerPoint->creator->id,
-                                ]
+                                ],
                             ) : h($customerPoint->created_by) ?></td>
                         </tr>
                         <tr>
@@ -106,7 +106,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerPoint->modifier->id,
-                                ]
+                                ],
                             ) : h($customerPoint->modified_by) ?></td>
                         </tr>
                     </table>
@@ -143,7 +143,7 @@
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',
                                         $customerConnections->id,
-                                    ]
+                                    ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
@@ -152,7 +152,7 @@
                                         'action' => 'edit',
                                         $customerConnections->id,
                                     ],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
@@ -163,8 +163,8 @@
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $customerConnections->id
-                                    )]
+                                        $customerConnections->id,
+                                    )],
                                 ) ?>
                             </td>
                         </tr>

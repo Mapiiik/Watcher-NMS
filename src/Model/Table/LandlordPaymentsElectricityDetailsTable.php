@@ -14,7 +14,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\LandlordPaymentsElectricityDetail newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\LandlordPaymentsElectricityDetail> newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\LandlordPaymentsElectricityDetail get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\LandlordPaymentsElectricityDetail findOrCreate($search, ?callable $callback = null, array $options = [])
+ * @method \App\Model\Entity\LandlordPaymentsElectricityDetail findOrCreate($search, callable|array|null $callback = null, $options = [])
  * @method \App\Model\Entity\LandlordPaymentsElectricityDetail patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\App\Model\Entity\LandlordPaymentsElectricityDetail> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\LandlordPaymentsElectricityDetail|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
@@ -101,7 +101,7 @@ class LandlordPaymentsElectricityDetailsTable extends AppTable
     {
         $rules->add(
             $rules->existsIn(['landlord_payment_id'], 'LandlordPayments'),
-            ['errorField' => 'landlord_payment_id']
+            ['errorField' => 'landlord_payment_id'],
         );
 
         return $rules;

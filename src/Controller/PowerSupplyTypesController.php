@@ -40,7 +40,7 @@ class PowerSupplyTypesController extends AppController
             contain: [
                 'Manufacturers',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('powerSupplyTypes'));

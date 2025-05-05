@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Customer Connection'),
                 ['action' => 'edit', $customerConnection->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Customer Connection'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $customerConnection->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Customer Connections'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Customer Connection'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -52,7 +52,7 @@
                                         'controller' => 'CustomerPoints',
                                         'action' => 'view',
                                         $customerConnection->customer_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <tr>
@@ -64,7 +64,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $customerConnection->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         <tr>
                             <th><?= __('Customer Number') ?></th>
@@ -72,7 +72,7 @@
                                 $this->Html->link(
                                     $customerConnection->customer_number,
                                     env('WATCHER_CRM_URL') . $customerConnection->customer_url,
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) : h($customerConnection->customer_number) ?></td>
                         </tr>
                         <tr>
@@ -81,7 +81,7 @@
                                 $this->Html->link(
                                     $customerConnection->contract_number,
                                     env('WATCHER_CRM_URL') . $customerConnection->contract_url,
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) : h($customerConnection->contract_number) ?></td>
                         </tr>
                     </table>
@@ -104,7 +104,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerConnection->creator->id,
-                                ]
+                                ],
                             ) : h($customerConnection->created_by) ?></td>
                         </tr>
                         <tr>
@@ -119,7 +119,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerConnection->modifier->id,
-                                ]
+                                ],
                             ) : h($customerConnection->modified_by) ?></td>
                         </tr>
                     </table>
@@ -154,7 +154,7 @@
                                         'controller' => 'CustomerConnectionIps',
                                         'action' => 'view',
                                         $customerConnectionIps->id,
-                                    ]
+                                    ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
@@ -163,7 +163,7 @@
                                         'action' => 'edit',
                                         $customerConnectionIps->id,
                                     ],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
@@ -174,8 +174,8 @@
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $customerConnectionIps->id
-                                    )]
+                                        $customerConnectionIps->id,
+                                    )],
                                 ) ?>
                             </td>
                         </tr>
@@ -211,7 +211,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $routerosDevices->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td>
@@ -221,7 +221,7 @@
                                         'controller' => 'DeviceTypes',
                                         'action' => 'view',
                                         $routerosDevices->device_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
@@ -235,17 +235,17 @@
                                     __('View'),
                                     ['controller' => 'RouterosDevices',
                                     'action' => 'view',
-                                    $routerosDevices->id]
+                                    $routerosDevices->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)],
                                 ) ?>
                             </td>
                         </tr>

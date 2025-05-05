@@ -12,7 +12,7 @@
             <?= $this->AuthLink->postLink(
                 __('Delete Task'),
                 ['action' => 'delete', $task->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $task->number), 'class' => 'side-nav-item']
+                ['confirm' => __('Are you sure you want to delete # {0}?', $task->number), 'class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(__('List Tasks'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New Task'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
@@ -28,7 +28,7 @@
                             <th><?= __('Task Type') ?></th>
                             <td><?= $task->__isset('task_type') ? $this->Html->link(
                                 $task->task_type->name,
-                                ['controller' => 'TaskTypes', 'action' => 'view', $task->task_type->id]
+                                ['controller' => 'TaskTypes', 'action' => 'view', $task->task_type->id],
                             ) : '' ?></td>
                         </tr>
                         <tr>
@@ -39,14 +39,14 @@
                             <th><?= __('Task State') ?></th>
                             <td><?= $task->__isset('task_state') ? $this->Html->link(
                                 $task->task_state->name,
-                                ['controller' => 'TaskStates', 'action' => 'view', $task->task_state->id]
+                                ['controller' => 'TaskStates', 'action' => 'view', $task->task_state->id],
                             ) : '' ?></td>
                         </tr>
                         <tr>
                             <th><?= __('User') ?></th>
                             <td><?= $task->__isset('user') ? $this->Html->link(
                                 $task->user->name,
-                                ['controller' => 'AppUsers', 'action' => 'view', $task->user->id]
+                                ['controller' => 'AppUsers', 'action' => 'view', $task->user->id],
                             ) : '' ?></td>
                         </tr>
                     </table>
@@ -67,7 +67,7 @@
                                     'controller' => 'AccessPoints',
                                     'action' => 'view',
                                     $task->access_point->id,
-                                ]
+                                ],
                             ) : '' ?></td>
                         </tr>
                     </table>
@@ -108,7 +108,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $task->creator->id,
-                                ]
+                                ],
                             ) : h($task->created_by) ?></td>
                         </tr>
                         <tr>
@@ -123,7 +123,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $task->modifier->id,
-                                ]
+                                ],
                             ) : h($task->modified_by) ?></td>
                         </tr>
                     </table>

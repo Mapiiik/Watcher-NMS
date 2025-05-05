@@ -62,7 +62,7 @@ class RadioUnitsController extends AppController
                     'RadioUnitBands',
                 ],
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $radioUnitBands = $this->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', order: ['name']);
@@ -215,7 +215,7 @@ class RadioUnitsController extends AppController
             order: [
                 'RadioLinks.name' => 'ASC',
                 'RadioUnits.name' => 'ASC',
-            ]
+            ],
         );
 
         $this->set(compact('radioUnits'));

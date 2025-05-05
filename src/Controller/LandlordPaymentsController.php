@@ -46,7 +46,7 @@ class LandlordPaymentsController extends AppController
                 'AccessPoints',
                 'PaymentPurposes',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('landlordPayments'));

@@ -36,7 +36,7 @@ class CustomerPointsController extends AppController
 
         $customerPoints = $this->paginate($this->CustomerPoints->find(
             'all',
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('customerPoints'));

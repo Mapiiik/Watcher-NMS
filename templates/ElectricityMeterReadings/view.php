@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Electricity Meter Reading'),
                 ['action' => 'edit', $electricityMeterReading->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Electricity Meter Reading'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $electricityMeterReading->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Electricity Meter Readings'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Electricity Meter Reading'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -52,7 +52,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $electricityMeterReading->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -65,7 +65,7 @@
                             <td><?= $electricityMeterReading->reading_value === null ?
                                 '' : $this->Number->format(
                                     $electricityMeterReading->reading_value,
-                                    ['after' => ' kWh']
+                                    ['after' => ' kWh'],
                                 ) ?></td>
                         </tr>
                     </table>
@@ -88,7 +88,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $electricityMeterReading->creator->id,
-                                ]
+                                ],
                             ) : h($electricityMeterReading->created_by) ?></td>
                         </tr>
                         <tr>
@@ -103,7 +103,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $electricityMeterReading->modifier->id,
-                                ]
+                                ],
                             ) : h($electricityMeterReading->modified_by) ?></td>
                         </tr>
                     </table>

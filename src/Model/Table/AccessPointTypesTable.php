@@ -14,7 +14,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\AccessPointType newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\AccessPointType[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\AccessPointType get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\AccessPointType findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\AccessPointType findOrCreate($search, callable|array|null $callback = null, $options = [])
  * @method \App\Model\Entity\AccessPointType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\AccessPointType[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\AccessPointType|false save(\Cake\Datasource\EntityInterface $entity, $options = [])

@@ -36,7 +36,7 @@ class ManufacturersController extends AppController
 
         $manufacturers = $this->paginate($this->Manufacturers->find(
             'all',
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('manufacturers'));

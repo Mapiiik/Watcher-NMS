@@ -58,7 +58,7 @@ class RouterosDeviceInterfacesController extends AppController
             contain: [
                 'RouterosDevices',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('routerosDeviceInterfaces'));

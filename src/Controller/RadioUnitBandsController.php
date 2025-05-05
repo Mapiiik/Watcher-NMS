@@ -36,7 +36,7 @@ class RadioUnitBandsController extends AppController
 
         $radioUnitBands = $this->paginate($this->RadioUnitBands->find(
             'all',
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('radioUnitBands'));

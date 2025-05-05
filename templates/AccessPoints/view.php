@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Access Point'),
                 ['action' => 'edit', $accessPoint->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Access Point'),
@@ -19,7 +19,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New Access Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
@@ -48,7 +48,7 @@
                                         'controller' => 'AccessPointTypes',
                                         'action' => 'view',
                                         $accessPoint->access_point_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <tr>
@@ -60,7 +60,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $accessPoint->parent_access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <tr>
@@ -88,10 +88,10 @@
                                     [
                                         'controller' => 'https:////maps.google.com',
                                         'action' => 'maps?q=' . htmlspecialchars(
-                                            "{$accessPoint->gps_y},{$accessPoint->gps_x}"
+                                            "{$accessPoint->gps_y},{$accessPoint->gps_x}",
                                         ),
                                     ],
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) ?>
                                 ,
                                 <?= $this->Html->link(
@@ -99,10 +99,10 @@
                                     [
                                         'controller' => 'https:////mapy.cz',
                                         'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                            "{$accessPoint->gps_x},{$accessPoint->gps_y}"
+                                            "{$accessPoint->gps_x},{$accessPoint->gps_y}",
                                         ),
                                     ],
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) ?>
                             </td>
                         </tr>
@@ -130,7 +130,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPoint->creator->id,
-                                ]
+                                ],
                             ) : h($accessPoint->created_by) ?></td>
                         </tr>
                         <tr>
@@ -145,7 +145,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPoint->modifier->id,
-                                ]
+                                ],
                             ) : h($accessPoint->modified_by) ?></td>
                         </tr>
                     </table>
@@ -167,7 +167,7 @@
                 <?= $this->AuthLink->link(
                     __('New Access Point Contact'),
                     ['controller' => 'AccessPointContacts', 'action' => 'add'],
-                    ['class' => 'button button-small float-right win-link']
+                    ['class' => 'button button-small float-right win-link'],
                 ) ?>
                 <h4><?= __('Related Access Point Contacts') ?></h4>
                 <?php if (!empty($accessPoint->access_point_contacts)) : ?>
@@ -192,14 +192,14 @@
                                     $accessPointContact->customer_number,
                                     env('WATCHER_CRM_URL')
                                         . '/customers?search=' . $accessPointContact->customer_number,
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) : h($accessPointContact->customer_number) ?></td>
                             <td><?= $accessPointContact->__isset('contract_number') && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $accessPointContact->contract_number,
                                     env('WATCHER_CRM_URL')
                                         . '/customers?search=' . $accessPointContact->contract_number,
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) : h($accessPointContact->contract_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($accessPointContact->note)); ?></td>
                             <td class="actions">
@@ -209,7 +209,7 @@
                                         'controller' => 'AccessPointContacts',
                                         'action' => 'view',
                                         $accessPointContact->id,
-                                    ]
+                                    ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
@@ -218,7 +218,7 @@
                                         'action' => 'edit',
                                         $accessPointContact->id,
                                     ],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
@@ -229,8 +229,8 @@
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $accessPointContact->id
-                                    )]
+                                        $accessPointContact->id,
+                                    )],
                                 ) ?>
                             </td>
                         </tr>
@@ -244,7 +244,7 @@
                 <?= $this->AuthLink->link(
                     __('New Electricity Meter Reading'),
                     ['controller' => 'ElectricityMeterReadings', 'action' => 'add'],
-                    ['class' => 'button button-small float-right win-link']
+                    ['class' => 'button button-small float-right win-link'],
                 ) ?>
                 <h4><?= __('Related Electricity Meter Readings') ?></h4>
                 <?php if (!empty($accessPoint->electricity_meter_readings)) : ?>
@@ -283,7 +283,7 @@
                                         'controller' => 'ElectricityMeterReadings',
                                         'action' => 'view',
                                         $electricityMeterReadings->id,
-                                    ]
+                                    ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
@@ -292,7 +292,7 @@
                                         'action' => 'edit',
                                         $electricityMeterReadings->id,
                                     ],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
@@ -303,8 +303,8 @@
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $electricityMeterReadings->id
-                                    )]
+                                        $electricityMeterReadings->id,
+                                    )],
                                 ) ?>
                             </td>
                         </tr>
@@ -317,7 +317,7 @@
                 <?= $this->AuthLink->link(
                     __('New Landlord Payment'),
                     ['controller' => 'LandlordPayments', 'action' => 'add'],
-                    ['class' => 'button button-small float-right win-link']
+                    ['class' => 'button button-small float-right win-link'],
                 ) ?>
                 <h4><?= __('Related Landlord Payments') ?></h4>
                 <?php if (!empty($accessPoint->landlord_payments)) : ?>
@@ -341,7 +341,7 @@
                                         'controller' => 'PaymentPurposes',
                                         'action' => 'view',
                                         $landlordPayment->payment_purpose->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?= h($landlordPayment->payment_date) ?></td>
                             <td><?= $landlordPayment->amount_paid === null ?
@@ -353,7 +353,7 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'LandlordPayments', 'action' => 'view', $landlordPayment->id]
+                                    ['controller' => 'LandlordPayments', 'action' => 'view', $landlordPayment->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
@@ -362,7 +362,7 @@
                                         'action' => 'edit',
                                         $landlordPayment->id,
                                     ],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
@@ -371,7 +371,7 @@
                                         'action' => 'delete',
                                         $landlordPayment->id,
                                     ],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id)],
                                 ) ?>
                             </td>
                         </tr>
@@ -385,7 +385,7 @@
                 <?= $this->AuthLink->link(
                     __('New IP Address Range'),
                     ['controller' => 'IpAddressRanges', 'action' => 'add'],
-                    ['class' => 'button button-small float-right win-link']
+                    ['class' => 'button button-small float-right win-link'],
                 ) ?>
                 <h4><?= __('Related IP Address Ranges') ?></h4>
                 <?php if (!empty($accessPoint->ip_address_ranges)) : ?>
@@ -417,7 +417,7 @@
                                         'controller' => 'IpAddressRanges',
                                         'action' => 'view',
                                         $ipAddressRange->parent_ip_address_range->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?= $ipAddressRange->for_subnets ? __('Yes') : __('No'); ?></td>
                             <td><?= $ipAddressRange->for_customer_addresses_set_via_radius ?
@@ -435,17 +435,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'IpAddressRanges', 'action' => 'view', $ipAddressRange->id]
+                                    ['controller' => 'IpAddressRanges', 'action' => 'view', $ipAddressRange->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'IpAddressRanges', 'action' => 'edit', $ipAddressRange->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'IpAddressRanges', 'action' => 'delete', $ipAddressRange->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id)],
                                 ) ?>
                             </td>
                         </tr>
@@ -458,7 +458,7 @@
                 <?= $this->AuthLink->link(
                     __('New Power Supply'),
                     ['controller' => 'PowerSupplies', 'action' => 'add'],
-                    ['class' => 'button button-small float-right win-link']
+                    ['class' => 'button button-small float-right win-link'],
                 ) ?>
                 <h4><?= __('Related Power Supplies') ?></h4>
                 <?php if (!empty($accessPoint->power_supplies)) : ?>
@@ -486,7 +486,7 @@
                                         'controller' => 'PowerSupplyTypes',
                                         'action' => 'view',
                                         $powerSupplies->power_supply_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
@@ -499,17 +499,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]
+                                    ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'PowerSupplies', 'action' => 'delete', $powerSupplies->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)],
                                 ) ?>
                             </td>
                         </tr>
@@ -522,7 +522,7 @@
                 <?= $this->AuthLink->link(
                     __('New Radio Unit'),
                     ['controller' => 'RadioUnits', 'action' => 'add'],
-                    ['class' => 'button button-small float-right win-link']
+                    ['class' => 'button button-small float-right win-link'],
                 ) ?>
                 <h4><?= __('Related Radio Units') ?></h4>
                 <?php if (!empty($accessPoint->radio_units)) : ?>
@@ -559,19 +559,19 @@
                                         'controller' => 'RadioUnitTypes',
                                         'action' => 'view',
                                         $radioUnits->radio_unit_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td>
                                 <?= $radioUnits->__isset('radio_link') ? $this->Html->link(
                                     $radioUnits->radio_link->name,
-                                    ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id]
+                                    ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id],
                                 ) : '' ?>
                             </td>
                             <td>
                                 <?= $radioUnits->__isset('antenna_type') ? $this->Html->link(
                                     $radioUnits->antenna_type->name,
-                                    ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id]
+                                    ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id],
                                 ) : '' ?>
                             </td>
                             <td><?= h($radioUnits->polarization) ?></td>
@@ -591,17 +591,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id]
+                                    ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RadioUnits', 'action' => 'delete', $radioUnits->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)],
                                 ) ?>
                             </td>
                         </tr>
@@ -614,7 +614,7 @@
                 <?= $this->AuthLink->link(
                     __('New RouterOS Device'),
                     ['controller' => 'RouterosDevices', 'action' => 'add'],
-                    ['class' => 'button button-small float-right win-link']
+                    ['class' => 'button button-small float-right win-link'],
                 ) ?>
                 <h4><?= __('Related RouterOS Devices') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
@@ -641,7 +641,7 @@
                                         'controller' => 'DeviceTypes',
                                         'action' => 'view',
                                         $routerosDevices->device_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
                             <td><?= h($routerosDevices->system_description) ?></td>
@@ -652,17 +652,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]
+                                    ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)],
                                 ) ?>
                             </td>
                         </tr>
@@ -692,7 +692,7 @@
                                 <td><?=
                                     $this->Html->link(
                                         $routerosDevice->name,
-                                        ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
+                                        ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
                                     ) ?></td>
                                 <td>
                                     <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
@@ -701,7 +701,7 @@
                                             'controller' => 'DeviceTypes',
                                             'action' => 'view',
                                             $routerosDevice->device_type->id,
-                                        ]
+                                        ],
                                     ) : '' ?></td>
                                 <td><?= h($routerosWirelessLink->name) ?></td>
                                 <td><?= h($routerosWirelessLink->neighbouring_interface->name) ?></td>
@@ -709,7 +709,7 @@
                                     isset(
                                         $routerosWirelessLink
                                             ->neighbouring_interface
-                                            ->routeros_device
+                                            ->routeros_device,
                                     ) ?
                                     $this->Html->link(
                                         $routerosWirelessLink
@@ -723,14 +723,14 @@
                                                 ->neighbouring_interface
                                                 ->routeros_device
                                                 ->id,
-                                        ]
+                                        ],
                                     ) : '' ?></td>
                                 <td><?=
                                     isset(
                                         $routerosWirelessLink
                                             ->neighbouring_interface
                                             ->routeros_device
-                                            ->access_point
+                                            ->access_point,
                                     ) ?
                                     $this->Html->link(
                                         $routerosWirelessLink
@@ -746,14 +746,14 @@
                                                 ->routeros_device
                                                 ->access_point
                                                 ->id,
-                                        ]
+                                        ],
                                     ) : '' ?></td>
                                 <td><?=
                                     isset(
                                         $routerosWirelessLink
                                             ->neighbouring_interface
                                             ->routeros_device
-                                            ->customer_connection
+                                            ->customer_connection,
                                     ) ?
                                     $this->Html->link(
                                         $routerosWirelessLink
@@ -769,7 +769,7 @@
                                                 ->routeros_device
                                                 ->customer_connection
                                                 ->id,
-                                        ]
+                                        ],
                                     ) : '' ?></td>
                             </tr>
                             <?php endforeach; ?>
@@ -809,7 +809,7 @@
                                 <td><?=
                                     $this->Html->link(
                                         $routerosDevice->name,
-                                        ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id]
+                                        ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
                                     ) ?></td>
                                 <td>
                                     <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
@@ -818,7 +818,7 @@
                                             'controller' => 'DeviceTypes',
                                             'action' => 'view',
                                             $routerosDevice->device_type->id,
-                                        ]
+                                        ],
                                     ) : '' ?></td>
                                 <td><?= h($routerosIpLink->ip_address) ?></td>
                                 <td><?= h($routerosIpLink->neighbouring_ip_address->ip_address) ?></td>
@@ -826,7 +826,7 @@
                                     isset(
                                         $routerosIpLink
                                             ->neighbouring_ip_address
-                                            ->routeros_device
+                                            ->routeros_device,
                                     ) ?
                                     $this->Html->link(
                                         $routerosIpLink->neighbouring_ip_address->routeros_device->name,
@@ -834,14 +834,14 @@
                                             'controller' => 'RouterosDevices',
                                             'action' => 'view',
                                             $routerosIpLink->neighbouring_ip_address->routeros_device->id,
-                                        ]
+                                        ],
                                     ) : '' ?></td>
                                 <td><?=
                                     isset(
                                         $routerosIpLink
                                             ->neighbouring_ip_address
                                             ->routeros_device
-                                            ->access_point
+                                            ->access_point,
                                     ) ?
                                     $this->Html->link(
                                         $routerosIpLink
@@ -857,14 +857,14 @@
                                                 ->routeros_device
                                                 ->access_point
                                                 ->id,
-                                        ]
+                                        ],
                                     ) : '' ?></td>
                                 <td><?=
                                     isset(
                                         $routerosIpLink
                                             ->neighbouring_ip_address
                                             ->routeros_device
-                                            ->customer_connection
+                                            ->customer_connection,
                                     ) ?
                                     $this->Html->link(
                                         $routerosIpLink
@@ -880,7 +880,7 @@
                                                 ->routeros_device
                                                 ->customer_connection
                                                 ->id,
-                                        ]
+                                        ],
                                     ) : '' ?></td>
                             </tr>
                             <?php endforeach; ?>

@@ -48,7 +48,7 @@ class PowerSuppliesController extends AppController
                 'AccessPoints',
                 'PowerSupplyTypes',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('powerSupplies'));

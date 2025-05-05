@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit RouterOS Device'),
                 ['action' => 'edit', $routerosDevice->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete RouterOS Device'),
@@ -23,12 +23,12 @@
             <?= $this->AuthLink->link(
                 __('List RouterOS Devices'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New RouterOS Device'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -51,7 +51,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $routerosDevice->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -64,7 +64,7 @@
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',
                                         $routerosDevice->customer_connection->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -77,7 +77,7 @@
                                         'controller' => 'DeviceTypes',
                                         'action' => 'view',
                                         $routerosDevice->device_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -140,7 +140,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $routerosDevice->creator->id,
-                                ]
+                                ],
                             ) : h($routerosDevice->created_by) ?></td>
                         </tr>
                         <tr>
@@ -155,7 +155,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $routerosDevice->modifier->id,
-                                ]
+                                ],
                             ) : h($routerosDevice->modified_by) ?></td>
                         </tr>
                     </table>
@@ -206,7 +206,7 @@
                                         'controller' => 'RouterosDeviceInterfaces',
                                         'action' => 'view',
                                         $routerosDeviceInterfaces->id,
-                                    ]
+                                    ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
@@ -215,7 +215,7 @@
                                         'action' => 'edit',
                                         $routerosDeviceInterfaces->id,
                                     ],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
@@ -226,8 +226,8 @@
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $routerosDeviceInterfaces->id
-                                    )]
+                                        $routerosDeviceInterfaces->id,
+                                    )],
                                 ) ?>
                             </td>
                         </tr>
@@ -255,17 +255,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'RouterosDeviceIps', 'action' => 'view', $routerosDeviceIps->id]
+                                    ['controller' => 'RouterosDeviceIps', 'action' => 'view', $routerosDeviceIps->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RouterosDeviceIps', 'action' => 'edit', $routerosDeviceIps->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RouterosDeviceIps', 'action' => 'delete', $routerosDeviceIps->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIps->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIps->id)],
                                 ) ?>
                             </td>
                         </tr>
@@ -295,7 +295,7 @@
                                 isset(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
-                                        ->routeros_device
+                                        ->routeros_device,
                                 ) ?
                                 $this->Html->link(
                                     $routerosWirelessLink
@@ -309,14 +309,14 @@
                                             ->neighbouring_interface
                                             ->routeros_device
                                             ->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?=
                                 isset(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
                                         ->routeros_device
-                                        ->access_point
+                                        ->access_point,
                                 ) ?
                                 $this->Html->link(
                                     $routerosWirelessLink
@@ -332,14 +332,14 @@
                                             ->routeros_device
                                             ->access_point
                                             ->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?=
                                     isset(
                                         $routerosWirelessLink
                                             ->neighbouring_interface
                                             ->routeros_device
-                                            ->customer_connection
+                                            ->customer_connection,
                                     ) ?
                                 $this->Html->link(
                                     $routerosWirelessLink
@@ -355,7 +355,7 @@
                                             ->routeros_device
                                             ->customer_connection
                                             ->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <?php endforeach; ?>
@@ -383,7 +383,7 @@
                                 isset(
                                     $routerosIpLink
                                         ->neighbouring_ip_address
-                                        ->routeros_device
+                                        ->routeros_device,
                                 ) ?
                                 $this->Html->link(
                                     $routerosIpLink->neighbouring_ip_address->routeros_device->name,
@@ -391,14 +391,14 @@
                                         'controller' => 'RouterosDevices',
                                         'action' => 'view',
                                         $routerosIpLink->neighbouring_ip_address->routeros_device->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?=
                                 isset(
                                     $routerosIpLink
                                         ->neighbouring_ip_address
                                         ->routeros_device
-                                        ->access_point
+                                        ->access_point,
                                 ) ?
                                 $this->Html->link(
                                     $routerosIpLink
@@ -414,14 +414,14 @@
                                             ->routeros_device
                                             ->access_point
                                             ->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?=
                                 isset(
                                     $routerosIpLink
                                         ->neighbouring_ip_address
                                         ->routeros_device
-                                        ->customer_connection
+                                        ->customer_connection,
                                 ) ?
                                 $this->Html->link(
                                     $routerosIpLink
@@ -437,7 +437,7 @@
                                             ->routeros_device
                                             ->customer_connection
                                             ->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <?php endforeach; ?>

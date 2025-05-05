@@ -17,7 +17,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\CustomerConnection newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\CustomerConnection[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\CustomerConnection get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\CustomerConnection findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\CustomerConnection findOrCreate($search, callable|array|null $callback = null, $options = [])
  * @method \App\Model\Entity\CustomerConnection patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\CustomerConnection[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\CustomerConnection|false save(\Cake\Datasource\EntityInterface $entity, $options = [])

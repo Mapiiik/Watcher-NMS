@@ -11,6 +11,7 @@ use Cake\ORM\Table;
  *
  * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Creators
  * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Modifiers
+ * @template TBehaviors of array<string, \Cake\ORM\Behavior> = array{}
  */
 class AppTable extends Table
 {

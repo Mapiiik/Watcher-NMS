@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Access Point Contact'),
                 ['action' => 'edit', $accessPointContact->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Access Point Contact'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $accessPointContact->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Access Point Contacts'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Access Point Contact'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -51,7 +51,7 @@
                                     'controller' => 'AccessPoints',
                                     'action' => 'view',
                                     $accessPointContact->access_point->id,
-                                ]
+                                ],
                             ) : '' ?></td>
                         </tr>
                         <tr>
@@ -69,7 +69,7 @@
                                     $accessPointContact->customer_number,
                                     env('WATCHER_CRM_URL')
                                         . '/customers?search=' . $accessPointContact->customer_number,
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) : h($accessPointContact->customer_number) ?></td>
                         </tr>
                         <tr>
@@ -79,7 +79,7 @@
                                     $accessPointContact->contract_number,
                                     env('WATCHER_CRM_URL')
                                         . '/customers?search=' . $accessPointContact->contract_number,
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) : h($accessPointContact->contract_number) ?></td>
                         </tr>
                     </table>
@@ -102,7 +102,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPointContact->creator->id,
-                                ]
+                                ],
                             ) : h($accessPointContact->created_by) ?></td>
                         </tr>
                         <tr>
@@ -117,7 +117,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPointContact->modifier->id,
-                                ]
+                                ],
                             ) : h($accessPointContact->modified_by) ?></td>
                         </tr>
                     </table>

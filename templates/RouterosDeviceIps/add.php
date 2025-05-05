@@ -12,7 +12,7 @@
             <?= $this->AuthLink->link(
                 __('List RouterOS Device Ips'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>

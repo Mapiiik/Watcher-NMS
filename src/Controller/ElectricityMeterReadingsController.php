@@ -45,7 +45,7 @@ class ElectricityMeterReadingsController extends AppController
             contain: [
                 'AccessPoints',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('electricityMeterReadings'));

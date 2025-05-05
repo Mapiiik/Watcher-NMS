@@ -17,7 +17,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Task newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Task[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\Task get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\Task findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Task findOrCreate($search, callable|array|null $callback = null, $options = [])
  * @method \App\Model\Entity\Task patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Task[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\Task|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
@@ -159,7 +159,7 @@ class TasksTable extends AppTable
             [
                 'errorField' => 'access_point_id',
                 'message' => __('The specified task type requires the assignment of an access point.'),
-            ]
+            ],
         );
 
         return $rules;

@@ -16,7 +16,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $radioUnitType->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List Radio Unit Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>

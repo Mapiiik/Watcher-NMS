@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit RouterOS Device Interface'),
                 ['action' => 'edit', $routerosDeviceInterface->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete RouterOS Device Interface'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterface->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List RouterOS Device Interfaces'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New RouterOS Device Interface'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -48,7 +48,7 @@
                                         'controller' => 'RouterosDevices',
                                         'action' => 'view',
                                         $routerosDeviceInterface->routeros_device->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -141,7 +141,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $routerosDeviceInterface->creator->id,
-                                ]
+                                ],
                             ) : h($routerosDeviceInterface->created_by) ?></td>
                         </tr>
                         <tr>
@@ -156,7 +156,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $routerosDeviceInterface->modifier->id,
-                                ]
+                                ],
                             ) : h($routerosDeviceInterface->modified_by) ?></td>
                         </tr>
                     </table>

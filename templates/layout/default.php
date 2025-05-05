@@ -40,7 +40,7 @@ $buttonSelected = function ($haystack = []) use ($controller, $action) {
 
 $urlWithQuery = function ($query = []) use ($request) {
     return $this->Url->build(
-        ['?' => $query + $request->getQueryParams()] + $request->getParam('pass')
+        ['?' => $query + $request->getQueryParams()] + $request->getParam('pass'),
     );
 };
 ?>
@@ -101,7 +101,7 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'AccessPointContacts',
                     'ElectricityMeterReadings',
                     'LandlordPayments',
-                ])]
+                ])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Tasks'),
@@ -110,7 +110,7 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'Tasks',
                     'TaskStates',
                     'TaskTypes',
-                ])]
+                ])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Customer Points'),
@@ -119,14 +119,14 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'CustomerPoints',
                     'CustomerConnections',
                     'CustomerConnectionIps',
-                ])]
+                ])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('IP Address Ranges'),
                 ['controller' => 'IpAddressRanges', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([
                     'IpAddressRanges',
-                ])]
+                ])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('RouterOS Devices'),
@@ -136,7 +136,7 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'RouterosDeviceIps',
                     'RouterosDeviceInterfaces',
                     'RadarInterferences',
-                ])]
+                ])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Radio Links'),
@@ -144,14 +144,14 @@ $urlWithQuery = function ($query = []) use ($request) {
                 ['class' => 'button button-small' . $buttonSelected([
                     'RadioLinks',
                     'RadioUnits',
-                ])]
+                ])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Power Supplies'),
                 ['controller' => 'PowerSupplies', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([
                     'PowerSupplies',
-                ])]
+                ])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Settings'),
@@ -167,14 +167,14 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'RadioUnitBands',
                     'Settings',
                     'AppUsers',
-                ])]
+                ])],
             ) ?>
 
             <?= env('WATCHER_CRM_URL') ?
                 $this->Html->link(
                     __('Customer Relationship Management'),
                     env('WATCHER_CRM_URL'),
-                    ['class' => 'button button-small']
+                    ['class' => 'button button-small'],
                 ) : '' ?>
 
             <?= $request->getParam('action') == 'index' ? $this->Form->select(
@@ -193,7 +193,7 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'escape' => false,
                     'onchange' => 'location = this.value;',
                     'class' => 'button button-small button-outline',
-                ]
+                ],
             ) : '' ?>
 
             <?= $this->Form->select(
@@ -209,7 +209,7 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'escape' => false,
                     'onchange' => 'location = this.value;',
                     'class' => 'button button-small button-outline',
-                ]
+                ],
             ) ?>
 
             <?= $this->Form->select(
@@ -223,13 +223,13 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'escape' => false,
                     'onchange' => 'location = this.value;',
                     'class' => 'button button-small button-outline',
-                ]
+                ],
             ) ?>
 
             <?= $request->getAttribute('identity') != null ? $this->AuthLink->link(
                 __('Logout'),
                 ['controller' => 'AppUsers', 'action' => 'logout', 'plugin' => null],
-                ['class' => 'button button-small button-outline']
+                ['class' => 'button button-small button-outline'],
             ) : '' ?>
         </div>
         <?php endif; ?>
@@ -249,22 +249,22 @@ $urlWithQuery = function ($query = []) use ($request) {
             <?= $this->AuthLink->link(
                 __('Access Points'),
                 ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['AccessPoints'])]
+                ['class' => 'button button-small' . $buttonSelected(['AccessPoints'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Access Point Contacts'),
                 ['controller' => 'AccessPointContacts', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['AccessPointContacts'])]
+                ['class' => 'button button-small' . $buttonSelected(['AccessPointContacts'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Electricity Meter Readings'),
                 ['controller' => 'ElectricityMeterReadings', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['ElectricityMeterReadings'])]
+                ['class' => 'button button-small' . $buttonSelected(['ElectricityMeterReadings'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Landlord Payments'),
                 ['controller' => 'LandlordPayments', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['LandlordPayments'])]
+                ['class' => 'button button-small' . $buttonSelected(['LandlordPayments'])],
             ) ?>
         <?php endif; ?>
         <?php
@@ -278,17 +278,17 @@ $urlWithQuery = function ($query = []) use ($request) {
             <?= $this->AuthLink->link(
                 __('Customer Points'),
                 ['controller' => 'CustomerPoints', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['CustomerPoints'])]
+                ['class' => 'button button-small' . $buttonSelected(['CustomerPoints'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Customer Connections'),
                 ['controller' => 'CustomerConnections', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['CustomerConnections'])]
+                ['class' => 'button button-small' . $buttonSelected(['CustomerConnections'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Customer Connection Ips'),
                 ['controller' => 'CustomerConnectionIps', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['CustomerConnectionIps'])]
+                ['class' => 'button button-small' . $buttonSelected(['CustomerConnectionIps'])],
             ) ?>
         <?php endif; ?>
         <?php
@@ -303,22 +303,22 @@ $urlWithQuery = function ($query = []) use ($request) {
             <?= $this->AuthLink->link(
                 __('RouterOS Devices'),
                 ['controller' => 'RouterosDevices', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['RouterosDevices'])]
+                ['class' => 'button button-small' . $buttonSelected(['RouterosDevices'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('RouterOS Device Interfaces'),
                 ['controller' => 'RouterosDeviceInterfaces', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['RouterosDeviceInterfaces'])]
+                ['class' => 'button button-small' . $buttonSelected(['RouterosDeviceInterfaces'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('RouterOS Device Ips'),
                 ['controller' => 'RouterosDeviceIps', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['RouterosDeviceIps'])]
+                ['class' => 'button button-small' . $buttonSelected(['RouterosDeviceIps'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Radar Interferences'),
                 ['controller' => 'RadarInterferences', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['RadarInterferences'])]
+                ['class' => 'button button-small' . $buttonSelected(['RadarInterferences'])],
             ) ?>
         <?php endif; ?>
         <?php
@@ -331,12 +331,12 @@ $urlWithQuery = function ($query = []) use ($request) {
             <?= $this->AuthLink->link(
                 __('Radio Links'),
                 ['controller' => 'RadioLinks', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['RadioLinks'])]
+                ['class' => 'button button-small' . $buttonSelected(['RadioLinks'])],
             ) ?>
             <?= $this->AuthLink->link(
                 __('Radio Units'),
                 ['controller' => 'RadioUnits', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected(['RadioUnits'])]
+                ['class' => 'button button-small' . $buttonSelected(['RadioUnits'])],
             ) ?>
         <?php endif; ?>
     </div>

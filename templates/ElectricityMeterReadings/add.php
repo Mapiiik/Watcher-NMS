@@ -12,7 +12,7 @@
             <?= $this->AuthLink->link(
                 __('List Electricity Meter Readings'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>

@@ -117,7 +117,7 @@ class RadarInterferencesReportCommand extends Command
                 $mailer->deliver(
                     __(
                         'Devices that interfere with radar ({count}) found.',
-                        ['count' => $radarInterferences->count()]
+                        ['count' => $radarInterferences->count()],
                     ) . PHP_EOL
                     . PHP_EOL
                     . __(
@@ -128,8 +128,8 @@ class RadarInterferencesReportCommand extends Command
                                 'action' => 'devices',
                                 '_full' => true,
                             ], true),
-                        ]
-                    ) . PHP_EOL
+                        ],
+                    ) . PHP_EOL,
                 );
 
                 Log::write('debug', 'Devices that interfere with radar found and reported.');
@@ -137,7 +137,7 @@ class RadarInterferencesReportCommand extends Command
             } catch (Exception $e) {
                 Log::write(
                     'warning',
-                    'Devices that interfere with radar found but cannot be reported. (' . $e->getMessage() . ')'
+                    'Devices that interfere with radar found but cannot be reported. (' . $e->getMessage() . ')',
                 );
                 $io->abort(__('Devices that interfere with radar found but cannot be reported.'));
             }

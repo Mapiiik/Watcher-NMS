@@ -11,22 +11,22 @@
             <?= $this->AuthLink->link(
                 __('Edit Radio Unit'),
                 ['action' => 'edit', $radioUnit->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Radio Unit'),
                 ['action' => 'delete', $radioUnit->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id), 'class' => 'side-nav-item']
+                ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id), 'class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Radio Units'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Radio Unit'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -49,7 +49,7 @@
                                         'controller' => 'RadioUnitTypes',
                                         'action' => 'view',
                                         $radioUnit->radio_unit_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $radioUnit->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -75,7 +75,7 @@
                                         'controller' => 'RadioLinks',
                                         'action' => 'view',
                                         $radioUnit->radio_link->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -88,7 +88,7 @@
                                         'controller' => 'AntennaTypes',
                                         'action' => 'view',
                                         $radioUnit->antenna_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -202,7 +202,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $radioUnit->creator->id,
-                                ]
+                                ],
                             ) : h($radioUnit->created_by) ?></td>
                         </tr>
                         <tr>
@@ -217,7 +217,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $radioUnit->modifier->id,
-                                ]
+                                ],
                             ) : h($radioUnit->modified_by) ?></td>
                         </tr>
                     </table>

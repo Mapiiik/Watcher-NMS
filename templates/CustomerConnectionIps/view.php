@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Customer Connection IP'),
                 ['action' => 'edit', $customerConnectionIp->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Customer Connection IP'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $customerConnectionIp->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Customer Connection Ips'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Customer Connection IP'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -52,7 +52,7 @@
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',
                                         $customerConnectionIp->customer_connection->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -80,7 +80,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerConnectionIp->creator->id,
-                                ]
+                                ],
                             ) : h($customerConnectionIp->created_by) ?></td>
                         </tr>
                         <tr>
@@ -95,7 +95,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $customerConnectionIp->modifier->id,
-                                ]
+                                ],
                             ) : h($customerConnectionIp->modified_by) ?></td>
                         </tr>
                     </table>

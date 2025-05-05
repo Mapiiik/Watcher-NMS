@@ -11,12 +11,12 @@
             <?= $this->AuthLink->link(
                 __('Edit Task Type'),
                 ['action' => 'edit', $taskType->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Task Type'),
                 ['action' => 'delete', $taskType->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $taskType->id), 'class' => 'side-nav-item']
+                ['confirm' => __('Are you sure you want to delete # {0}?', $taskType->id), 'class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(__('List Task Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New Task Type'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
@@ -56,7 +56,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $taskType->creator->id,
-                                ]
+                                ],
                             ) : h($taskType->created_by) ?></td>
                         </tr>
                         <tr>
@@ -71,7 +71,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $taskType->modifier->id,
-                                ]
+                                ],
                             ) : h($taskType->modified_by) ?></td>
                         </tr>
                     </table>
@@ -105,13 +105,13 @@
                             <td><?= $task->__isset('task_state') ?
                                 $this->Html->link(
                                     $task->task_state->name,
-                                    ['controller' => 'TaskStates', 'action' => 'view', $task->task_state->id]
+                                    ['controller' => 'TaskStates', 'action' => 'view', $task->task_state->id],
                                 ) : '' ?>
                             </td>
                             <td><?= $task->__isset('user') ?
                                 $this->Html->link(
                                     $task->user->name,
-                                    ['controller' => 'AppUsers', 'action' => 'view', $task->user->id]
+                                    ['controller' => 'AppUsers', 'action' => 'view', $task->user->id],
                                 ) : '' ?>
                             </td>
                             <td><?= h($task->subject) ?></td>
@@ -123,7 +123,7 @@
                             <td><?= $task->__isset('access_points') ?
                                 $this->Html->link(
                                     $task->access_point->name,
-                                    ['controller' => 'AccessPoints', 'action' => 'view', $task->access_point->id]
+                                    ['controller' => 'AccessPoints', 'action' => 'view', $task->access_point->id],
                                 ) : '' ?>
                             </td>
                             <td><?= h($task->start_date) ?></td>
@@ -133,17 +133,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'Tasks', 'action' => 'view', $task->id]
+                                    ['controller' => 'Tasks', 'action' => 'view', $task->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'Tasks', 'action' => 'edit', $task->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'Tasks', 'action' => 'delete', $task->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $task->number)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $task->number)],
                                 ) ?>
                             </td>
                         </tr>

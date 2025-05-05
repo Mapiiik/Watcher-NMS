@@ -12,7 +12,7 @@
             <?= $this->AuthLink->link(
                 __('List Customer Connection Ips'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>

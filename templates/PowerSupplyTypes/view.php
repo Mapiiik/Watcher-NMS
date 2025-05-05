@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Power Supply Type'),
                 ['action' => 'edit', $powerSupplyType->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Power Supply Type'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $powerSupplyType->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Power Supply Types'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Power Supply Type'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -52,7 +52,7 @@
                                         'controller' => 'Manufacturers',
                                         'action' => 'view',
                                         $powerSupplyType->manufacturer->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -90,7 +90,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $powerSupplyType->creator->id,
-                                ]
+                                ],
                             ) : h($powerSupplyType->created_by) ?></td>
                         </tr>
                         <tr>
@@ -105,7 +105,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $powerSupplyType->modifier->id,
-                                ]
+                                ],
                             ) : h($powerSupplyType->modified_by) ?></td>
                         </tr>
                     </table>
@@ -144,7 +144,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $powerSupplies->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
@@ -157,17 +157,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]
+                                    ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'PowerSupplies', 'action' => 'delete', $powerSupplies->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)],
                                 ) ?>
                             </td>
                         </tr>

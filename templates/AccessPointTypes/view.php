@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Access Point Type'),
                 ['action' => 'edit', $accessPointType->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Access Point Type'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $accessPointType->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Access Point Types'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Access Point Type'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -69,7 +69,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPointType->creator->id,
-                                ]
+                                ],
                             ) : h($accessPointType->created_by) ?></td>
                         </tr>
                         <tr>
@@ -84,7 +84,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $accessPointType->modifier->id,
-                                ]
+                                ],
                             ) : h($accessPointType->modified_by) ?></td>
                         </tr>
                     </table>
@@ -122,7 +122,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $accessPoint->parent_access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
                             <td><?= $accessPoint->gps_y === null ?
@@ -135,36 +135,36 @@
                                     [
                                         'controller' => 'https:////maps.google.com',
                                         'action' => 'maps?q=' . htmlspecialchars(
-                                            "{$accessPoint->gps_y},{$accessPoint->gps_x}"
+                                            "{$accessPoint->gps_y},{$accessPoint->gps_x}",
                                         ),
                                     ],
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) ?>
                                 <?= $this->Html->link(
                                     __('Mapy.cz'),
                                     [
                                         'controller' => 'https:////mapy.cz',
                                         'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                            "{$accessPoint->gps_x},{$accessPoint->gps_y}"
+                                            "{$accessPoint->gps_x},{$accessPoint->gps_y}",
                                         ),
                                     ],
-                                    ['target' => '_blank']
+                                    ['target' => '_blank'],
                                 ) ?>
                             </td>
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id]
+                                    ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'AccessPoints', 'action' => 'edit', $accessPoint->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'AccessPoints', 'action' => 'delete', $accessPoint->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id)],
                                 ) ?>
                             </td>
                         </tr>

@@ -20,17 +20,17 @@
     <?= $this->AuthLink->link(
         __('New Radar Interference'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <?= $this->AuthLink->link(
         __('Devices That Interfere'),
         ['action' => 'devices'],
-        ['class' => 'button float-right']
+        ['class' => 'button float-right'],
     ) ?>
     <?= $this->AuthLink->link(
         __('Update Online'),
         ['action' => 'updateOnline'],
-        ['class' => 'button float-right']
+        ['class' => 'button float-right'],
     ) ?>
     <h3><?= __('Radar Interferences') ?></h3>
     <div class="table-responsive">
@@ -57,17 +57,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $radarInterference->id]
+                            ['action' => 'view', $radarInterference->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radarInterference->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radarInterference->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -84,7 +84,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

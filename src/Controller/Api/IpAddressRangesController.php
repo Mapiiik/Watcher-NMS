@@ -33,7 +33,7 @@ class IpAddressRangesController extends AppController
             contain: [
                 'AccessPoints',
                 'ParentIpAddressRanges',
-            ]
+            ],
         )->all();
 
         $this->set(compact('ipAddressRanges'));

@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Power Supply'),
                 ['action' => 'edit', $powerSupply->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Power Supply'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $powerSupply->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Power Supplies'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Power Supply'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -52,7 +52,7 @@
                                         'controller' => 'PowerSupplyTypes',
                                         'action' => 'view',
                                         $powerSupply->power_supply_type->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -61,7 +61,7 @@
                             <td>
                                 <?= $powerSupply->__isset('access_point') ? $this->Html->link(
                                     $powerSupply->access_point->name,
-                                    ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id]
+                                    ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -115,7 +115,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $powerSupply->creator->id,
-                                ]
+                                ],
                             ) : h($powerSupply->created_by) ?></td>
                         </tr>
                         <tr>
@@ -130,7 +130,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $powerSupply->modifier->id,
-                                ]
+                                ],
                             ) : h($powerSupply->modified_by) ?></td>
                         </tr>
                     </table>

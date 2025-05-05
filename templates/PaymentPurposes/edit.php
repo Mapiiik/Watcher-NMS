@@ -14,7 +14,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $paymentPurpose->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List Payment Purposes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>

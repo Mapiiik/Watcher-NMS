@@ -48,26 +48,26 @@ $this->setLayout('clean');
                     <td>
                         <?= $radioUnit->__isset('access_point') ? $this->Html->link(
                             $radioUnit->access_point->name,
-                            ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id]
+                            ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id],
                         ) : '' ?>
                     </td>
                     <td><?= h($radioUnit->name) ?></td>
                     <td>
                         <?= $radioUnit->__isset('radio_unit_type') ? $this->Html->link(
                             $radioUnit->radio_unit_type->name,
-                            ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]
+                            ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id],
                         ) : '' ?>
                     </td>
                     <td>
                         <?= $radioUnit->__isset('radio_link') ? $this->Html->link(
                             $radioUnit->radio_link->name,
-                            ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id]
+                            ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id],
                         ) : '' ?>
                     </td>
                     <td>
                         <?= $radioUnit->__isset('antenna_type') ? $this->Html->link(
                             $radioUnit->antenna_type->name,
-                            ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]
+                            ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id],
                         ) : '' ?>
                     </td>
                     <td>
@@ -77,7 +77,7 @@ $this->setLayout('clean');
                                 'controller' => 'Manufacturers',
                                 'action' => 'view',
                                 $radioUnit->radio_unit_type->manufacturer->id,
-                            ]
+                            ],
                         ) : '' ?>
                     </td>
                     <td>
@@ -87,7 +87,7 @@ $this->setLayout('clean');
                                 'controller' => 'RadioUnitBands',
                                 'action' => 'view',
                                 $radioUnit->radio_unit_type->radio_unit_band->id,
-                            ]
+                            ],
                         ) : '' ?>
                     </td>
                     <td><?= h($radioUnit->polarization) ?></td>
@@ -120,17 +120,17 @@ $this->setLayout('clean');
                     <td>
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $radioUnit->id]
+                            ['action' => 'view', $radioUnit->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radioUnit->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radioUnit->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)],
                         ) ?>
                     </td>
                 </tr>

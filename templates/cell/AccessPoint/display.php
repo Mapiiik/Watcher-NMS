@@ -11,7 +11,7 @@
             <h4><?= $this->AuthLink->link(
                 __('Access Point') . ': ' . h($accessPoint->name),
                 ['plugin' => null, 'controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
-                ['escape' => false, 'class' => '']
+                ['escape' => false, 'class' => ''],
             ) ?></h4>
         </div>
         <div class="nav-content-right">
@@ -22,7 +22,7 @@
                         'access_point_id' => false,
                         '?' => $this->getRequest()->getQueryParams(),
                     ] + $this->getRequest()->getParam('pass'),
-                    ['class' => 'button button-small']
+                    ['class' => 'button button-small'],
                 ) :
                 ''
             ?>

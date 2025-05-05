@@ -23,7 +23,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\AccessPoint newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\AccessPoint[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\AccessPoint get(mixed $primaryKey, array|string $finder = 'all', null|\Psr\SimpleCache\CacheInterface|string $cache = null, null|\Closure|string $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\AccessPoint findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\AccessPoint findOrCreate($search, callable|array|null $callback = null, $options = [])
  * @method \App\Model\Entity\AccessPoint patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\AccessPoint[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\AccessPoint|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
@@ -157,11 +157,11 @@ class AccessPointsTable extends AppTable
     {
         $rules->add(
             $rules->existsIn('access_point_type_id', 'AccessPointTypes'),
-            ['errorField' => 'access_point_type_id']
+            ['errorField' => 'access_point_type_id'],
         );
         $rules->add(
             $rules->existsIn('parent_access_point_id', 'ParentAccessPoints'),
-            ['errorField' => 'parent_access_point_id']
+            ['errorField' => 'parent_access_point_id'],
         );
 
         $rules->addDelete($rules->isNotLinkedTo('AccessPointContacts'));

@@ -114,15 +114,15 @@ class AccessPoint extends Entity
                 $geocoder = new GoogleMaps(
                     new Psr18Client(),
                     null,
-                    env('GOOLE_MAP_API_KEY', null)
+                    env('GOOLE_MAP_API_KEY', null),
                 );
 
                 return $geocoder->reverseQuery(
                     ReverseQuery::fromCoordinates($this->gps_y, $this->gps_x)
-                        ->withLocale(env('APP_DEFAULT_LOCALE', 'en_US'))
+                        ->withLocale(env('APP_DEFAULT_LOCALE', 'en_US')),
                 );
             },
-            'default'
+            'default',
         );
 
         /** @var \Geocoder\Provider\GoogleMaps\Model\GoogleAddress $address */

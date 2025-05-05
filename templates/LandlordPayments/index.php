@@ -20,7 +20,7 @@
     <?= $this->AuthLink->link(
         __('New Landlord Payment'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <h3><?= __('Landlord Payments') ?></h3>
     <div class="table-responsive">
@@ -46,7 +46,7 @@
                                 'controller' => 'AccessPoints',
                                 'action' => 'view',
                                 $landlordPayment->access_point->id,
-                            ]
+                            ],
                         ) : '' ?></td>
                     <td><?= $landlordPayment->__isset('payment_purpose') ?
                         $this->Html->link(
@@ -55,7 +55,7 @@
                                 'controller' => 'PaymentPurposes',
                                 'action' => 'view',
                                 $landlordPayment->payment_purpose->id,
-                            ]
+                            ],
                         ) : '' ?></td>
                     <td><?= h($landlordPayment->payment_date) ?></td>
                     <td><?= $landlordPayment->amount_paid === null ?
@@ -66,17 +66,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $landlordPayment->id]
+                            ['action' => 'view', $landlordPayment->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $landlordPayment->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $landlordPayment->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -93,7 +93,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

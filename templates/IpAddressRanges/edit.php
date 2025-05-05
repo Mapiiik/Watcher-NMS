@@ -16,7 +16,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List IP Address Ranges'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>

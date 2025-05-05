@@ -113,7 +113,7 @@ class CustomerPointsUpdateCommand extends Command
                     if (!$this->fetchTable('CustomerConnections')->save($customerConnection)) {
                         Log::warning(
                             'The customer connection could not be saved.'
-                            . ' (' . $importCustomerConnection->contract_number . ')'
+                            . ' (' . $importCustomerConnection->contract_number . ')',
                         );
                     } else {
                         // save customer connection IP addresses
@@ -142,7 +142,7 @@ class CustomerPointsUpdateCommand extends Command
                             if (!$this->fetchTable('CustomerConnectionIps')->save($customerConnectionIp)) {
                                 Log::warning(
                                     'The customer connection IP address could not be saved.'
-                                    . ' (' . $importCustomerConnectionIp->ip_address . ')'
+                                    . ' (' . $importCustomerConnectionIp->ip_address . ')',
                                 );
                             }
                         }
@@ -152,13 +152,13 @@ class CustomerPointsUpdateCommand extends Command
 
             // delete old records
             $this->fetchTable()->deleteMany(
-                $this->fetchTable()->find()->where(['modified <' => $start_time])->all()
+                $this->fetchTable()->find()->where(['modified <' => $start_time])->all(),
             );
             $this->fetchTable('CustomerConnections')->deleteMany(
-                $this->fetchTable('CustomerConnections')->find()->where(['modified <' => $start_time])->all()
+                $this->fetchTable('CustomerConnections')->find()->where(['modified <' => $start_time])->all(),
             );
             $this->fetchTable('CustomerConnectionIps')->deleteMany(
-                $this->fetchTable('CustomerConnectionIps')->find()->where(['modified <' => $start_time])->all()
+                $this->fetchTable('CustomerConnectionIps')->find()->where(['modified <' => $start_time])->all(),
             );
 
             Log::debug('The customer points data have been updated.');

@@ -35,7 +35,7 @@
     <?= $this->AuthLink->link(
         __('New RouterOS Device Interface'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <h3><?= __('RouterOS Device Interfaces') ?></h3>
     <div class="table-responsive">
@@ -71,7 +71,7 @@
                                 'controller' => 'RouterosDevices',
                                 'action' => 'view',
                                 $routerosDeviceInterface->routeros_device->id,
-                            ]
+                            ],
                         ) : '' ?>
                     </td>
                     <td><?= h($routerosDeviceInterface->comment) ?></td>
@@ -98,17 +98,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $routerosDeviceInterface->id]
+                            ['action' => 'view', $routerosDeviceInterface->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $routerosDeviceInterface->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $routerosDeviceInterface->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterface->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterface->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -125,7 +125,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

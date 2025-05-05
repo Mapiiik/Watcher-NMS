@@ -16,7 +16,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $antennaType->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List Antenna Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>

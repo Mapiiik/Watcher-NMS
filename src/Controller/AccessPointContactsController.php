@@ -49,7 +49,7 @@ class AccessPointContactsController extends AppController
             contain: [
                 'AccessPoints',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('accessPointContacts'));

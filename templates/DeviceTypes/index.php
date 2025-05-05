@@ -29,7 +29,7 @@
                     <th><?= $this->Paginator->sort('assign_access_point_by_device_name') ?></th>
                     <th><?= $this->Paginator->sort(
                         'assign_customer_connection_by_ip',
-                        __('Assign Customer Connection By IP')
+                        __('Assign Customer Connection By IP'),
                     ) ?></th>
                     <th><?= $this->Paginator->sort('allow_technicians_access') ?></th>
                     <th><?= $this->Paginator->sort('automatically_set_a_unique_password') ?></th>
@@ -49,17 +49,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $deviceType->id]
+                            ['action' => 'view', $deviceType->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $deviceType->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $deviceType->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $deviceType->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $deviceType->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -76,7 +76,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

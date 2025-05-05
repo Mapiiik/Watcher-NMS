@@ -36,7 +36,7 @@ class PaymentPurposesController extends AppController
 
         $paymentPurposes = $this->paginate($this->PaymentPurposes->find(
             'all',
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('paymentPurposes'));

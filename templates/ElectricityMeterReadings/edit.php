@@ -15,12 +15,12 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $electricityMeterReading->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Electricity Meter Readings'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>

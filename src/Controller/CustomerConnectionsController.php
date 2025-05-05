@@ -44,7 +44,7 @@ class CustomerConnectionsController extends AppController
                 'AccessPoints',
                 'CustomerPoints',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('customerConnections'));

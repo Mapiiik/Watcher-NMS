@@ -38,13 +38,13 @@
                     <td>
                         <?= $antennaType->__isset('radio_unit_band') ? $this->Html->link(
                             $antennaType->radio_unit_band->name,
-                            ['controller' => 'RadioUnitBands', 'action' => 'view', $antennaType->radio_unit_band->id]
+                            ['controller' => 'RadioUnitBands', 'action' => 'view', $antennaType->radio_unit_band->id],
                         ) : '' ?>
                     </td>
                     <td>
                         <?= $antennaType->__isset('manufacturer') ? $this->Html->link(
                             $antennaType->manufacturer->name,
-                            ['controller' => 'Manufacturers', 'action' => 'view', $antennaType->manufacturer->id]
+                            ['controller' => 'Manufacturers', 'action' => 'view', $antennaType->manufacturer->id],
                         ) : '' ?>
                     </td>
                     <td><?= $antennaType->antenna_gain === null ?
@@ -53,17 +53,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $antennaType->id]
+                            ['action' => 'view', $antennaType->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $antennaType->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $antennaType->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $antennaType->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $antennaType->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -80,7 +80,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

@@ -58,19 +58,19 @@
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
                         echo $this->Html->link(
                             $radioUnit->name,
-                            ['controller' => 'RadioUnits', 'action' => 'view', $radioUnit->id]
+                            ['controller' => 'RadioUnits', 'action' => 'view', $radioUnit->id],
                         ) . '<br>';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
                         echo $radioUnit->__isset('radio_unit_type') ? $this->Html->link(
                             $radioUnit->radio_unit_type->name,
-                            ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id]
+                            ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id],
                         ) . '<br>' : '<br>';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
                         echo $radioUnit->__isset('antenna_type') ? $this->Html->link(
                             $radioUnit->antenna_type->name,
-                            ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id]
+                            ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id],
                         ) . '<br>' : '<br>';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
@@ -123,17 +123,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $radioLink->id]
+                            ['action' => 'view', $radioLink->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radioLink->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radioLink->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $radioLink->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $radioLink->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -150,7 +150,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

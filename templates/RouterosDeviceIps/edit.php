@@ -15,12 +15,12 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIp->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List RouterOS Device Ips'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>

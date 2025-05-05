@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Manufacturer'),
                 ['action' => 'edit', $manufacturer->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Manufacturer'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $manufacturer->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Manufacturers'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Manufacturer'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -63,7 +63,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $manufacturer->creator->id,
-                                ]
+                                ],
                             ) : h($manufacturer->created_by) ?></td>
                         </tr>
                         <tr>
@@ -78,7 +78,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $manufacturer->modifier->id,
-                                ]
+                                ],
                             ) : h($manufacturer->modified_by) ?></td>
                         </tr>
                     </table>
@@ -114,7 +114,7 @@
                                         'controller' => 'RadioUnitBands',
                                         'action' => 'view',
                                         $antennaTypes->radio_unit_band->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td><?= h($antennaTypes->antenna_gain) ?></td>
@@ -123,17 +123,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'AntennaTypes', 'action' => 'view', $antennaTypes->id]
+                                    ['controller' => 'AntennaTypes', 'action' => 'view', $antennaTypes->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'AntennaTypes', 'action' => 'edit', $antennaTypes->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'AntennaTypes', 'action' => 'delete', $antennaTypes->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $antennaTypes->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $antennaTypes->id)],
                                 ) ?>
                             </td>
                         </tr>
@@ -165,17 +165,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupplyTypes->id]
+                                    ['controller' => 'PowerSupplyTypes', 'action' => 'view', $powerSupplyTypes->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'PowerSupplyTypes', 'action' => 'edit', $powerSupplyTypes->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'PowerSupplyTypes', 'action' => 'delete', $powerSupplyTypes->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplyTypes->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplyTypes->id)],
                                 ) ?>
                             </td>
                         </tr>
@@ -206,7 +206,7 @@
                                         'controller' => 'RadioUnitBands',
                                         'action' => 'view',
                                         $radioUnitTypes->radio_unit_band->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td><?= h($radioUnitTypes->part_number) ?></td>
@@ -214,17 +214,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnitTypes->id]
+                                    ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnitTypes->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RadioUnitTypes', 'action' => 'edit', $radioUnitTypes->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RadioUnitTypes', 'action' => 'delete', $radioUnitTypes->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitTypes->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitTypes->id)],
                                 ) ?>
                             </td>
                         </tr>

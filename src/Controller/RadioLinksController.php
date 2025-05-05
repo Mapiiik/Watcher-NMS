@@ -31,7 +31,7 @@ class RadioLinksController extends AppController
                         'RadioUnitBands',
                     ],
                 ],
-            ]
+            ],
         );
         // filter
         $radio_unit_band_id = $this->getRequest()->getQuery('radio_unit_band_id');
@@ -43,7 +43,7 @@ class RadioLinksController extends AppController
                         return $q->where([
                             'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
                         ]);
-                    }
+                    },
                 )
                 ->groupBy([
                     'RadioLinks.id',

@@ -66,7 +66,7 @@ $this->setLayout('clean');
                         <td>
                             <?= $routerosDevice->__isset('access_point') ? $this->Html->link(
                                 $routerosDevice->access_point->name,
-                                ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id]
+                                ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id],
                             ) : '' ?>
                         </td>
                         <td>
@@ -76,14 +76,14 @@ $this->setLayout('clean');
                                     'controller' => 'CustomerConnections',
                                     'action' => 'view',
                                     $routerosDevice->customer_connection->id,
-                                ]
+                                ],
                             ) : '' ?>
                         </td>
                         <td><?= h($routerosDevice->name) ?></td>
                         <td>
                             <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
                                 $routerosDevice->device_type->name,
-                                ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id]
+                                ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id],
                             ) : '' ?>
                         </td>
                         <td><?= h($routerosDevice->ip_address) ?></td>
@@ -136,17 +136,17 @@ $this->setLayout('clean');
                         <td class="actions">
                             <?= $this->AuthLink->link(
                                 __('View'),
-                                ['action' => 'view', $routerosDevice->id]
+                                ['action' => 'view', $routerosDevice->id],
                             ) ?>
                             <?= $this->AuthLink->link(
                                 __('Edit'),
                                 ['action' => 'edit', $routerosDevice->id],
-                                ['class' => 'win-link']
+                                ['class' => 'win-link'],
                             ) ?>
                             <?= $this->AuthLink->postLink(
                                 __('Delete'),
                                 ['action' => 'delete', $routerosDevice->id],
-                                ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id)]
+                                ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id)],
                             ) ?>
                         </td>
                     </tr>

@@ -108,7 +108,7 @@ class ElectricityMeterReadingsReportCommand extends Command
             $mailer->setViewVars([
                 'title' => __(
                     'These electricity meter readings should take place in {month}.',
-                    ['month' => $now->i18nFormat('LLLL YYYY')]
+                    ['month' => $now->i18nFormat('LLLL YYYY')],
                 ),
                 'accessPoints' => $accessPoints,
             ]);
@@ -120,7 +120,7 @@ class ElectricityMeterReadingsReportCommand extends Command
             } catch (Exception $e) {
                 Log::write(
                     'warning',
-                    'The electricity meter readings to be made cannot be reported. (' . $e->getMessage() . ')'
+                    'The electricity meter readings to be made cannot be reported. (' . $e->getMessage() . ')',
                 );
                 $io->abort(__('The electricity meter readings to be made cannot be reported.'));
             }

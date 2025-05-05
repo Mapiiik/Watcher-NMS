@@ -32,7 +32,7 @@ class AccessPointsController extends AppController
             contain: [
                 'AccessPointTypes',
                 'ParentAccessPoints',
-            ]
+            ],
         );
 
         // search
@@ -430,7 +430,7 @@ class AccessPointsController extends AppController
                                 'controller' => 'RouterosDevices',
                                 'action' => 'view',
                                 $routerosDevice->id,
-                            ]
+                            ],
                         ) . '<br>';
 
                     $content .= '<ul>';
@@ -445,7 +445,7 @@ class AccessPointsController extends AppController
                                     isset(
                                         $routerosIpLink
                                             ->neighbouring_ip_address
-                                            ->routeros_device
+                                            ->routeros_device,
                                     ) ? $html->link(
                                         $routerosIpLink
                                             ->neighbouring_ip_address
@@ -458,7 +458,7 @@ class AccessPointsController extends AppController
                                                 ->neighbouring_ip_address
                                                 ->routeros_device
                                                 ->id,
-                                        ]
+                                        ],
                                     ) : ''
                                 )
                                 . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ')' . '</li>';
@@ -469,7 +469,7 @@ class AccessPointsController extends AppController
                                     $routerosIpLink
                                         ->neighbouring_ip_address
                                         ->routeros_device
-                                        ->access_point
+                                        ->access_point,
                                 )
                                 && (
                                     $routerosIpLink
@@ -518,15 +518,14 @@ class AccessPointsController extends AppController
                                             title: $neighbouringAccessPoint->name,
                                             color: $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
                                             locked: false,
-                                            content:
-                                                '<b>'
+                                            content: '<b>'
                                                 . $html->link(
                                                     $neighbouringAccessPoint->name,
                                                     [
                                                         'controller' => 'AccessPoints',
                                                         'action' => 'view',
                                                         $neighbouringAccessPoint->id,
-                                                    ]
+                                                    ],
                                                 )
                                                 . '</b>'
                                                 . '<br>',
@@ -549,7 +548,7 @@ class AccessPointsController extends AppController
                                                         ->neighbouring_ip_address
                                                         ->routeros_device
                                                         ->id,
-                                                ]
+                                                ],
                                             )
                                             . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
                                             . $html->link(
@@ -558,7 +557,7 @@ class AccessPointsController extends AppController
                                                     'controller' => 'RouterosDevices',
                                                     'action' => 'view',
                                                     $routerosDevice->id,
-                                                ]
+                                                ],
                                             )
                                             . ' (' . $routerosIpLink->ip_address . ')'
                                             . '<br>';
@@ -574,7 +573,7 @@ class AccessPointsController extends AppController
                                         ->neighbouring_ip_address
                                         ->routeros_device
                                         ->customer_connection
-                                        ->customer_point
+                                        ->customer_point,
                                 )
                             ) {
                                 $neighbouringCustomerPoint = $routerosIpLink
@@ -615,15 +614,14 @@ class AccessPointsController extends AppController
                                             title: $neighbouringCustomerPoint->name,
                                             color: '#65ba4a',
                                             locked: false,
-                                            content:
-                                                '<b>'
+                                            content: '<b>'
                                                 . $html->link(
                                                     $neighbouringCustomerPoint->name,
                                                     [
                                                         'controller' => 'CustomerPoints',
                                                         'action' => 'view',
                                                         $neighbouringCustomerPoint->id,
-                                                    ]
+                                                    ],
                                                 )
                                                 . '</b>'
                                                 . '<br>',
@@ -648,7 +646,7 @@ class AccessPointsController extends AppController
                                                     ->routeros_device
                                                     ->customer_connection
                                                     ->id,
-                                            ]
+                                            ],
                                         )
                                         . '</b>'
                                         . '<br>'
@@ -664,7 +662,7 @@ class AccessPointsController extends AppController
                                                     ->neighbouring_ip_address
                                                     ->routeros_device
                                                     ->id,
-                                            ]
+                                            ],
                                         )
                                         . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
                                         . $html->link(
@@ -673,7 +671,7 @@ class AccessPointsController extends AppController
                                                 'controller' => 'RouterosDevices',
                                                 'action' => 'view',
                                                 $routerosDevice->id,
-                                            ]
+                                            ],
                                         )
                                         . ' (' . $routerosIpLink->ip_address . ')'
                                         . '<br>';
@@ -692,7 +690,7 @@ class AccessPointsController extends AppController
                                     isset(
                                         $routerosWirelessLink
                                             ->neighbouring_interface
-                                            ->routeros_device
+                                            ->routeros_device,
                                     ) ? $html->link(
                                         $routerosWirelessLink
                                             ->neighbouring_interface
@@ -705,7 +703,7 @@ class AccessPointsController extends AppController
                                                 ->neighbouring_interface
                                                 ->routeros_device
                                                 ->id,
-                                        ]
+                                        ],
                                     ) : ''
                                 )
                                 . ' (' . $routerosWirelessLink->neighbouring_interface->name . ')'
@@ -717,7 +715,7 @@ class AccessPointsController extends AppController
                                     $routerosWirelessLink
                                         ->neighbouring_interface
                                         ->routeros_device
-                                        ->access_point
+                                        ->access_point,
                                 )
                                 && (
                                     $routerosWirelessLink
@@ -766,15 +764,14 @@ class AccessPointsController extends AppController
                                             title: $neighbouringAccessPoint->name,
                                             color: $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
                                             locked: false,
-                                            content:
-                                                '<b>'
+                                            content: '<b>'
                                                 . $html->link(
                                                     $neighbouringAccessPoint->name,
                                                     [
                                                         'controller' => 'AccessPoints',
                                                         'action' => 'view',
                                                         $neighbouringAccessPoint->id,
-                                                    ]
+                                                    ],
                                                 )
                                                 . '</b>'
                                                 . '<br>',
@@ -797,7 +794,7 @@ class AccessPointsController extends AppController
                                                         ->neighbouring_interface
                                                         ->routeros_device
                                                         ->id,
-                                                ]
+                                                ],
                                             )
                                             . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
                                             . $html->link(
@@ -806,7 +803,7 @@ class AccessPointsController extends AppController
                                                     'controller' => 'RouterosDevices',
                                                     'action' => 'view',
                                                     $routerosDevice->id,
-                                                ]
+                                                ],
                                             )
                                             . ' (' . $routerosWirelessLink->name . ')'
                                             . '<br>';
@@ -822,7 +819,7 @@ class AccessPointsController extends AppController
                                         ->neighbouring_interface
                                         ->routeros_device
                                         ->customer_connection
-                                        ->customer_point
+                                        ->customer_point,
                                 )
                             ) {
                                 $neighbouringCustomerPoint = $routerosWirelessLink
@@ -863,15 +860,14 @@ class AccessPointsController extends AppController
                                             title: $neighbouringCustomerPoint->name,
                                             color: '#65ba4a',
                                             locked: false,
-                                            content:
-                                                '<b>'
+                                            content: '<b>'
                                                 . $html->link(
                                                     $neighbouringCustomerPoint->name,
                                                     [
                                                         'controller' => 'CustomerPoints',
                                                         'action' => 'view',
                                                         $neighbouringCustomerPoint->id,
-                                                    ]
+                                                    ],
                                                 )
                                                 . '</b>'
                                                 . '<br>',
@@ -896,7 +892,7 @@ class AccessPointsController extends AppController
                                                     ->routeros_device
                                                     ->customer_connection
                                                     ->id,
-                                            ]
+                                            ],
                                         )
                                         . '</b>'
                                         . '<br>'
@@ -912,7 +908,7 @@ class AccessPointsController extends AppController
                                                     ->neighbouring_interface
                                                     ->routeros_device
                                                     ->id,
-                                            ]
+                                            ],
                                         )
                                         . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
                                         . $html->link(
@@ -921,7 +917,7 @@ class AccessPointsController extends AppController
                                                 'controller' => 'RouterosDevices',
                                                 'action' => 'view',
                                                 $routerosDevice->id,
-                                            ]
+                                            ],
                                         )
                                         . ' (' . $routerosWirelessLink->name . ')'
                                         . '<br>';

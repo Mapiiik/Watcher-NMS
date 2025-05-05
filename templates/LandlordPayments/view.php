@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Landlord Payment'),
                 ['action' => 'edit', $landlordPayment->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Landlord Payment'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Landlord Payments'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Landlord Payment'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -48,7 +48,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $landlordPayment->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <tr>
@@ -60,7 +60,7 @@
                                         'controller' => 'PaymentPurposes',
                                         'action' => 'view',
                                         $landlordPayment->payment_purpose->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                         </tr>
                         <tr>
@@ -101,7 +101,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $landlordPayment->creator->id,
-                                ]
+                                ],
                             ) : h($landlordPayment->created_by) ?></td>
                         </tr>
                         <tr>
@@ -116,7 +116,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $landlordPayment->modifier->id,
-                                ]
+                                ],
                             ) : h($landlordPayment->modified_by) ?></td>
                         </tr>
                     </table>
@@ -150,7 +150,7 @@
                                     :
                                         $this->Number->currency(
                                             (float)$electricityDetail->low_rate_kwh_used
-                                            * (float)$electricityDetail->low_rate_price_per_kwh
+                                            * (float)$electricityDetail->low_rate_price_per_kwh,
                                         )
                                     ?></td>
                             </tr>
@@ -180,7 +180,7 @@
                                     :
                                         $this->Number->currency(
                                             (float)$electricityDetail->high_rate_kwh_used
-                                            * (float)$electricityDetail->high_rate_price_per_kwh
+                                            * (float)$electricityDetail->high_rate_price_per_kwh,
                                         )
                                     ?></td>
                             </tr>

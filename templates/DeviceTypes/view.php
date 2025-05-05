@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Device Type'),
                 ['action' => 'edit', $deviceType->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Device Type'),
@@ -19,7 +19,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $deviceType->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List Device Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New Device Type'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
@@ -82,7 +82,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $deviceType->creator->id,
-                                ]
+                                ],
                             ) : h($deviceType->created_by) ?></td>
                         </tr>
                         <tr>
@@ -97,7 +97,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $deviceType->modifier->id,
-                                ]
+                                ],
                             ) : h($deviceType->modified_by) ?></td>
                         </tr>
                     </table>
@@ -136,7 +136,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $routerosDevices->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td>
@@ -146,7 +146,7 @@
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',
                                         $routerosDevices->customer_connection->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td><?= h($routerosDevices->ip_address) ?></td>
@@ -158,17 +158,17 @@
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
-                                    ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]
+                                    ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)],
                                 ) ?>
                             </td>
                         </tr>

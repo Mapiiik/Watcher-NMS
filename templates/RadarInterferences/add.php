@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('List Radar Interferences'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>

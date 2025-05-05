@@ -14,12 +14,12 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Radar Interferences'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>

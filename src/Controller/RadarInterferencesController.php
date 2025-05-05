@@ -42,7 +42,7 @@ class RadarInterferencesController extends AppController
 
         $radarInterferences = $this->paginate($this->RadarInterferences->find(
             'all',
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('radarInterferences'));

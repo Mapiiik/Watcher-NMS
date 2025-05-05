@@ -20,7 +20,7 @@
     <?= $this->AuthLink->link(
         __('New Access Point Contact'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <h3><?= __('Access Point Contacts') ?></h3>
     <div class="table-responsive">
@@ -43,7 +43,7 @@
                     <td>
                         <?= $accessPointContact->__isset('access_point') ? $this->Html->link(
                             $accessPointContact->access_point->name,
-                            ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id]
+                            ['controller' => 'AccessPoints', 'action' => 'view', $accessPointContact->access_point->id],
                         ) : '' ?>
                     </td>
                     <td><?= h($accessPointContact->phone) ?></td>
@@ -55,12 +55,12 @@
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $accessPointContact->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $accessPointContact->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointContact->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointContact->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -77,7 +77,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

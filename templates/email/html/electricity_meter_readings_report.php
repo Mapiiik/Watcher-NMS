@@ -55,7 +55,7 @@ table {
                         'action' => 'view',
                         $accessPoint->id,
                         '_full' => true,
-                    ]
+                    ],
                 ) ?>
             </td>
         </tr>

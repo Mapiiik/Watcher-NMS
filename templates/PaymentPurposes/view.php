@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit Payment Purpose'),
                 ['action' => 'edit', $paymentPurpose->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Payment Purpose'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $paymentPurpose->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List Payment Purposes'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New Payment Purpose'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -63,7 +63,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $paymentPurpose->creator->id,
-                                ]
+                                ],
                             ) : h($paymentPurpose->created_by) ?></td>
                         </tr>
                         <tr>
@@ -78,7 +78,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $paymentPurpose->modifier->id,
-                                ]
+                                ],
                             ) : h($paymentPurpose->modified_by) ?></td>
                         </tr>
                     </table>
@@ -114,7 +114,7 @@
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
                                         $landlordPayment->access_point->id,
-                                    ]
+                                    ],
                                 ) : '' ?></td>
                             <td><?= h($landlordPayment->payment_date) ?></td>
                             <td><?= $landlordPayment->amount_paid === null ?
@@ -130,7 +130,7 @@
                                         'controller' => 'LandlordPayments',
                                         'action' => 'view',
                                         $landlordPayment->id,
-                                    ]
+                                    ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
                                     __('Edit'),
@@ -139,7 +139,7 @@
                                         'action' => 'edit',
                                         $landlordPayment->id,
                                     ],
-                                    ['class' => 'win-link']
+                                    ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
                                     __('Delete'),
@@ -148,7 +148,7 @@
                                         'action' => 'delete',
                                         $landlordPayment->id,
                                     ],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id)]
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id)],
                                 ) ?>
                             </td>
                         </tr>

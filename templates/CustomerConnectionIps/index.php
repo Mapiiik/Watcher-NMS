@@ -20,7 +20,7 @@
     <?= $this->AuthLink->link(
         __('New Customer Connection IP'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <h3><?= __('Customer Connection Ips') ?></h3>
     <div class="table-responsive">
@@ -44,7 +44,7 @@
                                 'controller' => 'CustomerConnections',
                                 'action' => 'view',
                                 $customerConnectionIp->customer_connection->id,
-                            ]
+                            ],
                         ) : '' ?></td>
                     <td><?= h($customerConnectionIp->ip_address) ?></td>
                     <td class="actions">
@@ -52,12 +52,12 @@
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $customerConnectionIp->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $customerConnectionIp->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnectionIp->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnectionIp->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -74,7 +74,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

@@ -17,7 +17,7 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(__('List RouterOS Devices'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>

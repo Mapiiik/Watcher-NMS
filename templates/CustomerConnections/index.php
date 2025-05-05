@@ -20,7 +20,7 @@
     <?= $this->AuthLink->link(
         __('New Customer Connection'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <h3><?= __('Customer Connections') ?></h3>
     <div class="table-responsive">
@@ -46,7 +46,7 @@
                                 'controller' => 'CustomerPoints',
                                 'action' => 'view',
                                 $customerConnection->customer_point->id,
-                            ]
+                            ],
                         ) : '' ?></td>
                     <td>
                         <?= $customerConnection->__isset('access_point') ? $this->Html->link(
@@ -55,24 +55,24 @@
                                 'controller' => 'AccessPoints',
                                 'action' => 'view',
                                 $customerConnection->access_point->id,
-                            ]
+                            ],
                         ) : '' ?></td>
                     <td><?= h($customerConnection->customer_number) ?></td>
                     <td><?= h($customerConnection->contract_number) ?></td>
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $customerConnection->id]
+                            ['action' => 'view', $customerConnection->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $customerConnection->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $customerConnection->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnection->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnection->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -89,7 +89,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

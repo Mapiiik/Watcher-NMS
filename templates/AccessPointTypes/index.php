@@ -20,7 +20,7 @@
     <?= $this->AuthLink->link(
         __('New Access Point Type'),
         ['action' => 'add'],
-        ['class' => 'button float-right win-link']
+        ['class' => 'button float-right win-link'],
     ) ?>
     <h3><?= __('Access Point Types') ?></h3>
     <div class="table-responsive">
@@ -42,17 +42,17 @@
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
-                            ['action' => 'view', $accessPointType->id]
+                            ['action' => 'view', $accessPointType->id],
                         ) ?>
                         <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $accessPointType->id],
-                            ['class' => 'win-link']
+                            ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $accessPointType->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointType->id)]
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointType->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -69,7 +69,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')
+            __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>

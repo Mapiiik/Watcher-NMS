@@ -42,7 +42,7 @@ class CustomerConnectionIpsController extends AppController
             contain: [
                 'CustomerConnections',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('customerConnectionIps'));

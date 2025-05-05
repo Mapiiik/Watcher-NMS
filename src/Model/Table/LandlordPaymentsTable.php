@@ -18,7 +18,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\LandlordPayment newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\LandlordPayment> newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\LandlordPayment get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\LandlordPayment findOrCreate($search, ?callable $callback = null, array $options = [])
+ * @method \App\Model\Entity\LandlordPayment findOrCreate($search, callable|array|null $callback = null, $options = [])
  * @method \App\Model\Entity\LandlordPayment patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\App\Model\Entity\LandlordPayment> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\LandlordPayment|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
@@ -121,11 +121,11 @@ class LandlordPaymentsTable extends AppTable
     {
         $rules->add(
             $rules->existsIn(['access_point_id'], 'AccessPoints'),
-            ['errorField' => 'access_point_id']
+            ['errorField' => 'access_point_id'],
         );
         $rules->add(
             $rules->existsIn(['payment_purpose_id'], 'PaymentPurposes'),
-            ['errorField' => 'payment_purpose_id']
+            ['errorField' => 'payment_purpose_id'],
         );
 
         return $rules;

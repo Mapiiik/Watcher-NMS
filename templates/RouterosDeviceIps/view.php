@@ -11,7 +11,7 @@
             <?= $this->AuthLink->link(
                 __('Edit RouterOS Device IP'),
                 ['action' => 'edit', $routerosDeviceIp->id],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete RouterOS Device IP'),
@@ -19,17 +19,17 @@
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIp->id),
                     'class' => 'side-nav-item',
-                ]
+                ],
             ) ?>
             <?= $this->AuthLink->link(
                 __('List RouterOS Device Ips'),
                 ['action' => 'index'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
                 __('New RouterOS Device IP'),
                 ['action' => 'add'],
-                ['class' => 'side-nav-item']
+                ['class' => 'side-nav-item'],
             ) ?>
         </div>
     </aside>
@@ -48,7 +48,7 @@
                                         'controller' => 'RouterosDevices',
                                         'action' => 'view',
                                         $routerosDeviceIp->routeros_device->id,
-                                    ]
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
@@ -85,7 +85,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $routerosDeviceIp->creator->id,
-                                ]
+                                ],
                             ) : h($routerosDeviceIp->created_by) ?></td>
                         </tr>
                         <tr>
@@ -100,7 +100,7 @@
                                     'controller' => 'AppUsers',
                                     'action' => 'view',
                                     $routerosDeviceIp->modifier->id,
-                                ]
+                                ],
                             ) : h($routerosDeviceIp->modified_by) ?></td>
                         </tr>
                     </table>

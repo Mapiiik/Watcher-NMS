@@ -48,7 +48,7 @@ class IpAddressRangesController extends AppController
                 'AccessPoints',
                 'ParentIpAddressRanges',
             ],
-            conditions: $conditions
+            conditions: $conditions,
         ));
 
         $this->set(compact('ipAddressRanges'));
