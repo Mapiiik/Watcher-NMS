@@ -318,6 +318,7 @@ $permissions = [
             ],
             'plugin' => null,
             'controller' => [
+                'AccessPoints',
                 'AccessPointContacts',
                 'ElectricityMeterReadings',
                 'LandlordPayments',
