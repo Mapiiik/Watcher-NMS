@@ -8,12 +8,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit Customer Connection'),
                 ['action' => 'edit', $customerConnection->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete Customer Connection'),
                 ['action' => 'delete', $customerConnection->id],
                 [
@@ -21,12 +21,12 @@
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('List Customer Connections'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('New Customer Connection'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']
@@ -148,7 +148,7 @@
                             <td><?= h($customerConnectionIps->ip_address) ?></td>
                             <td><?= $this->Text->autoParagraph(h($customerConnectionIps->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     [
                                         'controller' => 'CustomerConnectionIps',
@@ -156,7 +156,7 @@
                                         $customerConnectionIps->id,
                                     ]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     [
                                         'controller' => 'CustomerConnectionIps',
@@ -165,7 +165,7 @@
                                     ],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     [
                                         'controller' => 'CustomerConnectionIps',
@@ -231,18 +231,18 @@
                             <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'RouterosDevices',
                                     'action' => 'view',
                                     $routerosDevices->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]

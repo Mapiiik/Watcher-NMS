@@ -8,12 +8,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit Radar Interference'),
                 ['action' => 'edit', $radarInterference->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete Radar Interference'),
                 ['action' => 'delete', $radarInterference->id],
                 [
@@ -21,12 +21,12 @@
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('List Radar Interferences'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('New Radar Interference'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']
@@ -151,7 +151,7 @@
                             <td><?= h($routerosDeviceInterfaces->interface_admin_status) ?></td>
                             <td><?= h($routerosDeviceInterfaces->interface_oper_status) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     [
                                         'controller' => 'RouterosDeviceInterfaces',
@@ -159,7 +159,7 @@
                                         $routerosDeviceInterfaces->id,
                                     ]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     [
                                         'controller' => 'RouterosDeviceInterfaces',
@@ -168,7 +168,7 @@
                                     ],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     [
                                         'controller' => 'RouterosDeviceInterfaces',

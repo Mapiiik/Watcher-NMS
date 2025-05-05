@@ -8,12 +8,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit Access Point'),
                 ['action' => 'edit', $accessPoint->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete Access Point'),
                 ['action' => 'delete', $accessPoint->id],
                 [
@@ -21,8 +21,8 @@
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(__('New Access Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-90">
@@ -164,7 +164,7 @@
                 </blockquote>
             </div>
             <div class="related">
-                <?= $this->Html->link(
+                <?= $this->AuthLink->link(
                     __('New Access Point Contact'),
                     ['controller' => 'AccessPointContacts', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
@@ -203,7 +203,7 @@
                                 ) : h($accessPointContact->contract_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($accessPointContact->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     [
                                         'controller' => 'AccessPointContacts',
@@ -211,7 +211,7 @@
                                         $accessPointContact->id,
                                     ]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     [
                                         'controller' => 'AccessPointContacts',
@@ -220,7 +220,7 @@
                                     ],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     [
                                         'controller' => 'AccessPointContacts',
@@ -241,7 +241,7 @@
             </div>
             <hr>
             <div class="related">
-                <?= $this->Html->link(
+                <?= $this->AuthLink->link(
                     __('New Electricity Meter Reading'),
                     ['controller' => 'ElectricityMeterReadings', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
@@ -277,7 +277,7 @@
                                 ]) : '' ?></td>
                             <td><?= $this->Text->autoParagraph(h($electricityMeterReadings->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     [
                                         'controller' => 'ElectricityMeterReadings',
@@ -285,7 +285,7 @@
                                         $electricityMeterReadings->id,
                                     ]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     [
                                         'controller' => 'ElectricityMeterReadings',
@@ -294,7 +294,7 @@
                                     ],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     [
                                         'controller' => 'ElectricityMeterReadings',
@@ -314,7 +314,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(
+                <?= $this->AuthLink->link(
                     __('New Landlord Payment'),
                     ['controller' => 'LandlordPayments', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
@@ -351,11 +351,11 @@
                             <td><?= h($landlordPayment->period_until) ?></td>
                             <td><?= $this->Text->autoParagraph(h($landlordPayment->note)) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'LandlordPayments', 'action' => 'view', $landlordPayment->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     [
                                         'controller' => 'LandlordPayments',
@@ -364,7 +364,7 @@
                                     ],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     [
                                         'controller' => 'LandlordPayments',
@@ -382,7 +382,7 @@
             </div>
             <hr>
             <div class="related">
-                <?= $this->Html->link(
+                <?= $this->AuthLink->link(
                     __('New IP Address Range'),
                     ['controller' => 'IpAddressRanges', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
@@ -433,16 +433,16 @@
                             <td><?= $ipAddressRange->for_technology_networks_set_manually ?
                                 __('Yes') : __('No'); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'IpAddressRanges', 'action' => 'view', $ipAddressRange->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'IpAddressRanges', 'action' => 'edit', $ipAddressRange->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'IpAddressRanges', 'action' => 'delete', $ipAddressRange->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id)]
@@ -455,7 +455,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(
+                <?= $this->AuthLink->link(
                     __('New Power Supply'),
                     ['controller' => 'PowerSupplies', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
@@ -497,16 +497,16 @@
                             <td><?= h($powerSupplies->battery_duration) ?></td>
                             <td><?= $this->Text->autoParagraph(h($powerSupplies->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'PowerSupplies', 'action' => 'view', $powerSupplies->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'PowerSupplies', 'action' => 'edit', $powerSupplies->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'PowerSupplies', 'action' => 'delete', $powerSupplies->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplies->id)]
@@ -519,7 +519,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(
+                <?= $this->AuthLink->link(
                     __('New Radio Unit'),
                     ['controller' => 'RadioUnits', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
@@ -589,16 +589,16 @@
                             <td><?= h($radioUnits->ip_address) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RadioUnits', 'action' => 'delete', $radioUnits->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)]
@@ -611,7 +611,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <?= $this->Html->link(
+                <?= $this->AuthLink->link(
                     __('New RouterOS Device'),
                     ['controller' => 'RouterosDevices', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link']
@@ -650,16 +650,16 @@
                             <td><?= h($routerosDevices->software_version) ?></td>
                             <td><?= h($routerosDevices->firmware_version) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevices->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)]

@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="radioUnitBands index content">
-    <?= $this->Html->link(__('New Radio Unit Band'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(__('New Radio Unit Band'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Radio Unit Bands') ?></h3>
     <div class="table-responsive">
         <table>
@@ -34,16 +34,16 @@
                     <td><?= h($radioUnitBand->name) ?></td>
                     <td style="background-color: <?= h($radioUnitBand->color) ?>;"><?= h($radioUnitBand->color) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $radioUnitBand->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radioUnitBand->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radioUnitBand->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitBand->id)]

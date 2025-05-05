@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="powerSupplyTypes index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New Power Supply Type'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -51,16 +51,16 @@
                         '' : $this->Number->format($powerSupplyType->current) ?></td>
                     <td><?= h($powerSupplyType->part_number) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $powerSupplyType->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $powerSupplyType->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $powerSupplyType->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupplyType->id)]

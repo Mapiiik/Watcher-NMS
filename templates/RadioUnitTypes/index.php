@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="radioUnitTypes index content">
-    <?= $this->Html->link(__('New Radio Unit Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(__('New Radio Unit Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Radio Unit Types') ?></h3>
     <div class="table-responsive">
         <table>
@@ -48,16 +48,16 @@
                     </td>
                     <td><?= h($radioUnitType->part_number) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $radioUnitType->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radioUnitType->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radioUnitType->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitType->id)]

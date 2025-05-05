@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="ipAddressRanges index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New IP Address Range'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -70,13 +70,13 @@
                     <td><?= $ipAddressRange->for_customer_networks_set_manually ? __('Yes') : __('No'); ?></td>
                     <td><?= $ipAddressRange->for_technology_networks_set_manually ? __('Yes') : __('No'); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $ipAddressRange->id]) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(__('View'), ['action' => 'view', $ipAddressRange->id]) ?>
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $ipAddressRange->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $ipAddressRange->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $ipAddressRange->id)]

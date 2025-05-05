@@ -24,8 +24,8 @@
 <?= $this->Form->end() ?>
 
 <div class="radioUnits index content">
-    <?= $this->Html->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
-    <?= $this->Html->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
+    <?= $this->AuthLink->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
     <h3><?= __('Radio Units') ?></h3>
     <div class="table-responsive">
         <table>
@@ -103,16 +103,16 @@
                     <td><?= h($radioUnit->ip_address) ?></td>
                     <td><?= h($radioUnit->authorization_number) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $radioUnit->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radioUnit->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radioUnit->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)]

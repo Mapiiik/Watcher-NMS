@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="accessPointContacts index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New Access Point Contact'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -51,13 +51,13 @@
                     <td><?= h($accessPointContact->customer_number) ?></td>
                     <td><?= h($accessPointContact->contract_number) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $accessPointContact->id]) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(__('View'), ['action' => 'view', $accessPointContact->id]) ?>
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $accessPointContact->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $accessPointContact->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointContact->id)]

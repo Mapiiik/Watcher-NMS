@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="customerConnectionIps index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New Customer Connection IP'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -48,13 +48,13 @@
                         ) : '' ?></td>
                     <td><?= h($customerConnectionIp->ip_address) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $customerConnectionIp->id]) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(__('View'), ['action' => 'view', $customerConnectionIp->id]) ?>
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $customerConnectionIp->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $customerConnectionIp->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnectionIp->id)]

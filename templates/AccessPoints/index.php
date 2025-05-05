@@ -17,8 +17,8 @@
 <?= $this->Form->end() ?>
 
 <div class="accessPoints index content">
-    <?= $this->Html->link(__('New Access Point'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
-    <?= $this->Html->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
+    <?= $this->AuthLink->link(__('New Access Point'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
     <h3><?= __('Access Points') ?></h3>
     <div class="table-responsive">
         <table>
@@ -86,13 +86,13 @@
                         ) ?>
                     </td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $accessPoint->id]) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(__('View'), ['action' => 'view', $accessPoint->id]) ?>
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $accessPoint->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $accessPoint->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id)]

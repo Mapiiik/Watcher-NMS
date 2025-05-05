@@ -8,24 +8,24 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit RouterOS Device'),
                 ['action' => 'edit', $routerosDevice->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete RouterOS Device'),
                 ['action' => 'delete', $routerosDevice->id],
                 [
                     'confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id),
                     'class' => 'side-nav-item'],
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('List RouterOS Devices'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('New RouterOS Device'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']
@@ -200,7 +200,7 @@
                             <td><?= h($routerosDeviceInterfaces->interface_admin_status) ?></td>
                             <td><?= h($routerosDeviceInterfaces->interface_oper_status) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     [
                                         'controller' => 'RouterosDeviceInterfaces',
@@ -208,7 +208,7 @@
                                         $routerosDeviceInterfaces->id,
                                     ]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     [
                                         'controller' => 'RouterosDeviceInterfaces',
@@ -217,7 +217,7 @@
                                     ],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     [
                                         'controller' => 'RouterosDeviceInterfaces',
@@ -253,16 +253,16 @@
                             <td><?= h($routerosDeviceIps->ip_address) ?></td>
                             <td><?= h($routerosDeviceIps->interface_index) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'RouterosDeviceIps', 'action' => 'view', $routerosDeviceIps->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RouterosDeviceIps', 'action' => 'edit', $routerosDeviceIps->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RouterosDeviceIps', 'action' => 'delete', $routerosDeviceIps->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceIps->id)]

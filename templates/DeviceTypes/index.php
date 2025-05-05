@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="deviceTypes index content">
-    <?= $this->Html->link(__('New Device Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(__('New Device Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Device Types') ?></h3>
     <div class="table-responsive">
         <table>
@@ -47,16 +47,16 @@
                     <td><?= $deviceType->allow_technicians_access ? __('Yes') : __('No'); ?></td>
                     <td><?= $deviceType->automatically_set_a_unique_password ? __('Yes') : __('No'); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $deviceType->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $deviceType->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $deviceType->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $deviceType->id)]

@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="customerConnections index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New Customer Connection'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -60,16 +60,16 @@
                     <td><?= h($customerConnection->customer_number) ?></td>
                     <td><?= h($customerConnection->contract_number) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $customerConnection->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $customerConnection->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $customerConnection->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $customerConnection->id)]

@@ -17,17 +17,17 @@
 <?= $this->Form->end() ?>
 
 <div class="radarInterferences index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New Radar Interference'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
     ) ?>
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('Devices That Interfere'),
         ['action' => 'devices'],
         ['class' => 'button float-right']
     ) ?>
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('Update Online'),
         ['action' => 'updateOnline'],
         ['class' => 'button float-right']
@@ -55,16 +55,16 @@
                         '' : $this->Number->format($radarInterference->signal) ?></td>
                     <td><?= h($radarInterference->radio_name) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $radarInterference->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radarInterference->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radarInterference->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id)]

@@ -8,12 +8,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit Payment Purpose'),
                 ['action' => 'edit', $paymentPurpose->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete Payment Purpose'),
                 ['action' => 'delete', $paymentPurpose->id],
                 [
@@ -21,12 +21,12 @@
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('List Payment Purposes'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('New Payment Purpose'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']
@@ -124,7 +124,7 @@
                             <td><?= h($landlordPayment->period_until) ?></td>
                             <td><?= h($landlordPayment->note) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     [
                                         'controller' => 'LandlordPayments',
@@ -132,7 +132,7 @@
                                         $landlordPayment->id,
                                     ]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     [
                                         'controller' => 'LandlordPayments',
@@ -141,7 +141,7 @@
                                     ],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     [
                                         'controller' => 'LandlordPayments',

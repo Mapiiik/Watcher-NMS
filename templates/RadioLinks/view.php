@@ -8,22 +8,22 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit Radio Link'),
                 ['action' => 'edit', $radioLink->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete Radio Link'),
                 ['action' => 'delete', $radioLink->id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $radioLink->id), 'class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('List Radio Links'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('New Radio Link'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']
@@ -97,7 +97,7 @@
                 </blockquote>
             </div>
             <div class="related">
-                <?= $this->Html->link(
+                <?= $this->AuthLink->link(
                     __('New Radio Unit'),
                     ['controller' => 'RadioUnits', 'action' => 'add', '?' => ['radio_link_id' => $radioLink->id]],
                     ['class' => 'button button-small float-right win-link']
@@ -169,16 +169,16 @@
                             <td><?= h($radioUnits->authorization_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RadioUnits', 'action' => 'delete', $radioUnits->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)]

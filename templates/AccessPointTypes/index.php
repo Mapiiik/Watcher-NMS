@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="accessPointTypes index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New Access Point Type'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -40,16 +40,16 @@
                         h($accessPointType->color)
                     ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $accessPointType->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $accessPointType->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $accessPointType->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $accessPointType->id)]

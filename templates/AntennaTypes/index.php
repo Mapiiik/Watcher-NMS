@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="antennaTypes index content">
-    <?= $this->Html->link(__('New Antenna Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(__('New Antenna Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Antenna Types') ?></h3>
     <div class="table-responsive">
         <table>
@@ -51,16 +51,16 @@
                         '' : $this->Number->format($antennaType->antenna_gain) ?></td>
                     <td><?= h($antennaType->part_number) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $antennaType->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $antennaType->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $antennaType->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $antennaType->id)]

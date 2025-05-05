@@ -8,12 +8,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit Access Point Type'),
                 ['action' => 'edit', $accessPointType->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete Access Point Type'),
                 ['action' => 'delete', $accessPointType->id],
                 [
@@ -21,12 +21,12 @@
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('List Access Point Types'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('New Access Point Type'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']
@@ -152,16 +152,16 @@
                                 ) ?>
                             </td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'AccessPoints', 'action' => 'edit', $accessPoint->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'AccessPoints', 'action' => 'delete', $accessPoint->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $accessPoint->id)]

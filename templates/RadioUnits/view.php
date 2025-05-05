@@ -8,22 +8,22 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit Radio Unit'),
                 ['action' => 'edit', $radioUnit->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete Radio Unit'),
                 ['action' => 'delete', $radioUnit->id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id), 'class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('List Radio Units'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('New Radio Unit'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item']

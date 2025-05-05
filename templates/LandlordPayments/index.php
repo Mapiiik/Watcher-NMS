@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="landlordPayments index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New Landlord Payment'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -64,16 +64,16 @@
                     <td><?= h($landlordPayment->period_from) ?></td>
                     <td><?= h($landlordPayment->period_until) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $landlordPayment->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $landlordPayment->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $landlordPayment->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $landlordPayment->id)]

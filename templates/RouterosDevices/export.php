@@ -33,7 +33,7 @@ $this->setLayout('clean');
 <?= $this->Form->end() ?>
 
 <div class="routerosDevices index content" style="clear: both;">
-    <?= $this->Html->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
+    <?= $this->AuthLink->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
     <h3><?= __('RouterOS Devices') ?></h3>
     <div class="table-responsive">
         <table>
@@ -134,16 +134,16 @@ $this->setLayout('clean');
                                 h($routerosDevice->customer_connection->customer_point->gps_x ?? '') . '<br>' : '' ?>
                         </td>
                         <td class="actions">
-                            <?= $this->Html->link(
+                            <?= $this->AuthLink->link(
                                 __('View'),
                                 ['action' => 'view', $routerosDevice->id]
                             ) ?>
-                            <?= $this->Html->link(
+                            <?= $this->AuthLink->link(
                                 __('Edit'),
                                 ['action' => 'edit', $routerosDevice->id],
                                 ['class' => 'win-link']
                             ) ?>
-                            <?= $this->Form->postLink(
+                            <?= $this->AuthLink->postLink(
                                 __('Delete'),
                                 ['action' => 'delete', $routerosDevice->id],
                                 ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevice->id)]

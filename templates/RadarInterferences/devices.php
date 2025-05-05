@@ -5,7 +5,7 @@
  */
 ?>
 <div class="radarInterferences index content">
-    <?= $this->Html->link(__('Update Online'), ['action' => 'updateOnline'], ['class' => 'button float-right']) ?>
+    <?= $this->AuthLink->link(__('Update Online'), ['action' => 'updateOnline'], ['class' => 'button float-right']) ?>
     <h3><?= __('Radar Interferences - Devices') ?></h3>
     <div class="table-responsive">
         <table>
@@ -53,16 +53,16 @@
                         ) ?>
                     </td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $radarInterference->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radarInterference->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radarInterference->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $radarInterference->id)]

@@ -9,7 +9,7 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('List Access Point Contacts'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item']

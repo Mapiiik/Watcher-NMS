@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="powerSupplies index content">
-    <?= $this->Html->link(__('New Power Supply'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(__('New Power Supply'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Power Supplies') ?></h3>
     <div class="table-responsive">
         <table>
@@ -67,16 +67,16 @@
                     <td><?= h($powerSupply->battery_duration) ?></td>
                     <td><?= $this->Text->autoParagraph(h($powerSupply->note)); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $powerSupply->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $powerSupply->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $powerSupply->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $powerSupply->id)]

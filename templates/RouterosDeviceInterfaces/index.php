@@ -32,7 +32,7 @@
 <?= $this->Form->end() ?>
 
 <div class="routerosDeviceInterfaces index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New RouterOS Device Interface'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -96,16 +96,16 @@
                     <td><?= $routerosDeviceInterface->interface_oper_status === null ?
                         '' : $this->Number->format($routerosDeviceInterface->interface_oper_status) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $routerosDeviceInterface->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $routerosDeviceInterface->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $routerosDeviceInterface->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDeviceInterface->id)]

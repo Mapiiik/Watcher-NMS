@@ -17,7 +17,7 @@
 <?= $this->Form->end() ?>
 
 <div class="electricityMeterReadings index content">
-    <?= $this->Html->link(
+    <?= $this->AuthLink->link(
         __('New Electricity Meter Reading'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link']
@@ -52,16 +52,16 @@
                     <td><?= $electricityMeterReading->reading_value === null ?
                         '' : $this->Number->format($electricityMeterReading->reading_value, ['after' => ' kWh']) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $electricityMeterReading->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $electricityMeterReading->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $electricityMeterReading->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $electricityMeterReading->id)]

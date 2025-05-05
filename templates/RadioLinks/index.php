@@ -23,7 +23,7 @@
 <?= $this->Form->end() ?>
 
 <div class="radioLinks index content">
-    <?= $this->Html->link(__('New Radio Link'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(__('New Radio Link'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <h3><?= __('Radio Links') ?></h3>
     <div class="table-responsive">
         <table>
@@ -121,16 +121,16 @@
                         echo h($radioUnit->ip_address) . '<br>';
                         endforeach ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $radioLink->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radioLink->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radioLink->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $radioLink->id)]

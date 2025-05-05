@@ -8,12 +8,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(
+            <?= $this->AuthLink->link(
                 __('Edit Radio Unit Band'),
                 ['action' => 'edit', $radioUnitBand->id],
                 ['class' => 'side-nav-item']
             ) ?>
-            <?= $this->Form->postLink(
+            <?= $this->AuthLink->postLink(
                 __('Delete Radio Unit Band'),
                 ['action' => 'delete', $radioUnitBand->id],
                 [
@@ -21,8 +21,8 @@
                     'class' => 'side-nav-item',
                 ]
             ) ?>
-            <?= $this->Html->link(__('List Radio Unit Bands'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Radio Unit Band'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(__('List Radio Unit Bands'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(__('New Radio Unit Band'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-90">
@@ -118,16 +118,16 @@
                             <td><?= h($antennaTypes->part_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($antennaTypes->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'AntennaTypes', 'action' => 'view', $antennaTypes->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'AntennaTypes', 'action' => 'edit', $antennaTypes->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'AntennaTypes', 'action' => 'delete', $antennaTypes->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $antennaTypes->id)]
@@ -167,16 +167,16 @@
                             <td><?= h($radioUnitTypes->part_number) ?></td>
                             <td><?= $this->Text->autoParagraph(h($radioUnitTypes->note)); ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('View'),
                                     ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnitTypes->id]
                                 ) ?>
-                                <?= $this->Html->link(
+                                <?= $this->AuthLink->link(
                                     __('Edit'),
                                     ['controller' => 'RadioUnitTypes', 'action' => 'edit', $radioUnitTypes->id],
                                     ['class' => 'win-link']
                                 ) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->AuthLink->postLink(
                                     __('Delete'),
                                     ['controller' => 'RadioUnitTypes', 'action' => 'delete', $radioUnitTypes->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnitTypes->id)]

@@ -6,7 +6,7 @@
 $this->setLayout('clean');
 ?>
 <div class="radioUnits index content">
-    <?= $this->Html->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
+    <?= $this->AuthLink->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
     <h3><?= __('Radio Units') ?></h3>
     <div class="table-responsive">
         <table>
@@ -118,16 +118,16 @@ $this->setLayout('clean');
                     <td><?= $radioUnit->__isset('access_point') ? h($radioUnit->access_point->gps_y ?? '') : '' ?></td>
                     <td><?= $radioUnit->__isset('access_point') ? h($radioUnit->access_point->gps_x ?? '') : '' ?></td>
                     <td>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('View'),
                             ['action' => 'view', $radioUnit->id]
                         ) ?>
-                        <?= $this->Html->link(
+                        <?= $this->AuthLink->link(
                             __('Edit'),
                             ['action' => 'edit', $radioUnit->id],
                             ['class' => 'win-link']
                         ) ?>
-                        <?= $this->Form->postLink(
+                        <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $radioUnit->id],
                             ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnit->id)]
