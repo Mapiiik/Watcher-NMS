@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c56dfd9d806be7458e6881d5333f9039",
+    "content-hash": "a57a7c9780daf58365c4c0afb697afa3",
     "packages": [
         {
             "name": "cakedc/auth",
@@ -77,20 +77,20 @@
         },
         {
             "name": "cakedc/users",
-            "version": "14.3.4",
+            "version": "15.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CakeDC/users.git",
-                "reference": "dfb1b4c1cb6d2cb1bc22c398225e496343599a9d"
+                "reference": "43ca719e9b3eff20cad21546166a1a7bcf52f8e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/users/zipball/dfb1b4c1cb6d2cb1bc22c398225e496343599a9d",
-                "reference": "dfb1b4c1cb6d2cb1bc22c398225e496343599a9d",
+                "url": "https://api.github.com/repos/CakeDC/users/zipball/43ca719e9b3eff20cad21546166a1a7bcf52f8e7",
+                "reference": "43ca719e9b3eff20cad21546166a1a7bcf52f8e7",
                 "shasum": ""
             },
             "require": {
-                "cakedc/auth": "^10.0",
+                "cakedc/auth": "^10.1",
                 "cakephp/authentication": "^3.0",
                 "cakephp/authorization": "^3.0",
                 "cakephp/cakephp": "^5.0",
@@ -98,6 +98,7 @@
             },
             "require-dev": {
                 "cakephp/cakephp-codesniffer": "^5.0",
+                "endroid/qr-code": "^6.0 || ^5.0",
                 "google/recaptcha": "@stable",
                 "league/oauth1-client": "^1.7",
                 "league/oauth2-facebook": "@stable",
@@ -106,7 +107,7 @@
                 "league/oauth2-linkedin": "@stable",
                 "luchianenco/oauth2-amazon": "^1.1",
                 "phpunit/phpunit": "^10.0",
-                "robthree/twofactorauth": "^2.0",
+                "robthree/twofactorauth": "^3.0 || ^2.0",
                 "thenetworg/oauth2-azure": "^2.1",
                 "web-auth/webauthn-lib": "^4.4"
             },
@@ -156,7 +157,7 @@
                 "issues": "https://github.com/CakeDC/users/issues",
                 "source": "https://github.com/CakeDC/users"
             },
-            "time": "2025-01-20T12:18:51+00:00"
+            "time": "2025-04-25T15:18:51+00:00"
         },
         {
             "name": "cakephp/authentication",
