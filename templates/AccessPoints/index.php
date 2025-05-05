@@ -17,7 +17,11 @@
 <?= $this->Form->end() ?>
 
 <div class="accessPoints index content">
-    <?= $this->AuthLink->link(__('New Access Point'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(
+        __('New Access Point'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link'],
+    ) ?>
     <?= $this->AuthLink->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
     <h3><?= __('Access Points') ?></h3>
     <div class="table-responsive">

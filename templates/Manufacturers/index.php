@@ -17,7 +17,11 @@
 <?= $this->Form->end() ?>
 
 <div class="manufacturers index content">
-    <?= $this->AuthLink->link(__('New Manufacturer'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(
+        __('New Manufacturer'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link'],
+    ) ?>
     <h3><?= __('Manufacturers') ?></h3>
     <div class="table-responsive">
         <table>

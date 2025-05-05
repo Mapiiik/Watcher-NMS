@@ -21,8 +21,16 @@
                     'class' => 'side-nav-item',
                 ],
             ) ?>
-            <?= $this->AuthLink->link(__('List IP Address Ranges'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->AuthLink->link(__('New IP Address Range'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(
+                __('List IP Address Ranges'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('New IP Address Range'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item'],
+            ) ?>
         </div>
     </aside>
     <div class="column column-90">

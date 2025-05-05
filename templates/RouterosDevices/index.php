@@ -32,7 +32,11 @@
 <?= $this->Form->end() ?>
 
 <div class="routerosDevices index content">
-    <?= $this->AuthLink->link(__('New RouterOS Device'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(
+        __('New RouterOS Device'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link'],
+    ) ?>
     <?= $this->AuthLink->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
     <h3><?= __('RouterOS Devices') ?></h3>
     <div class="table-responsive">

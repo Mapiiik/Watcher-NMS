@@ -21,8 +21,16 @@
                     'class' => 'side-nav-item',
                 ],
             ) ?>
-            <?= $this->AuthLink->link(__('List Customer Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->AuthLink->link(__('New Customer Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(
+                __('List Customer Points'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('New Customer Point'),
+                ['action' => 'add'],
+                ['class' => 'side-nav-item'],
+            ) ?>
         </div>
     </aside>
     <div class="column column-90">

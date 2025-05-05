@@ -17,7 +17,11 @@
 <?= $this->Form->end() ?>
 
 <div class="radioUnitTypes index content">
-    <?= $this->AuthLink->link(__('New Radio Unit Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(
+        __('New Radio Unit Type'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link'],
+    ) ?>
     <h3><?= __('Radio Unit Types') ?></h3>
     <div class="table-responsive">
         <table>

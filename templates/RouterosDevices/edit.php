@@ -19,7 +19,11 @@
                     'class' => 'side-nav-item',
                 ],
             ) ?>
-            <?= $this->AuthLink->link(__('List RouterOS Devices'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(
+                __('List RouterOS Devices'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item'],
+            ) ?>
         </div>
     </aside>
     <div class="column column-90">

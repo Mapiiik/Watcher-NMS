@@ -21,7 +21,11 @@
                     'class' => 'side-nav-item',
                 ],
             ) ?>
-            <?= $this->AuthLink->link(__('List Radio Unit Bands'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(
+                __('List Radio Unit Bands'),
+                ['action' => 'index'],
+                ['class' => 'side-nav-item'],
+            ) ?>
             <?= $this->AuthLink->link(__('New Radio Unit Band'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>

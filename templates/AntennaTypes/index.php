@@ -17,7 +17,11 @@
 <?= $this->Form->end() ?>
 
 <div class="antennaTypes index content">
-    <?= $this->AuthLink->link(__('New Antenna Type'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
+    <?= $this->AuthLink->link(
+        __('New Antenna Type'),
+        ['action' => 'add'],
+        ['class' => 'button float-right win-link'],
+    ) ?>
     <h3><?= __('Antenna Types') ?></h3>
     <div class="table-responsive">
         <table>

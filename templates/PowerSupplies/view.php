@@ -61,7 +61,11 @@
                             <td>
                                 <?= $powerSupply->__isset('access_point') ? $this->Html->link(
                                     $powerSupply->access_point->name,
-                                    ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id],
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $powerSupply->access_point->id,
+                                    ],
                                 ) : '' ?>
                             </td>
                         </tr>
