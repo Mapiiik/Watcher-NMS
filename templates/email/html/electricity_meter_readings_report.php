@@ -48,7 +48,7 @@ table {
             <td><?= h($lastReading->__isset('reading_date') ?
                 $lastReading->reading_date->diffInDays(null, false) : __('Never')) ?></td>
             <td class="actions">
-                <?= $this->AuthLink->link(
+                <?= $this->Html->link(
                     __('View'),
                     [
                         'controller' => 'AccessPoints',
