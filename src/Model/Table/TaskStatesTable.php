@@ -23,6 +23,7 @@ use Cake\Validation\Validator;
  * @method iterable<\App\Model\Entity\TaskState> saveManyOrFail(iterable $entities, $options = [])
  * @method iterable<\App\Model\Entity\TaskState>|false deleteMany(iterable $entities, $options = [])
  * @method iterable<\App\Model\Entity\TaskState> deleteManyOrFail(iterable $entities, $options = [])
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class TaskStatesTable extends AppTable
 {
