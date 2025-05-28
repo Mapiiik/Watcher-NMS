@@ -44,6 +44,7 @@ class LandlordPaymentsController extends AppController
             'all',
             contain: [
                 'AccessPoints',
+                'LandlordPaymentsElectricityDetails',
                 'PaymentPurposes',
             ],
             conditions: $conditions,

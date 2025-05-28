@@ -47,21 +47,21 @@
                 <div class="row">
                     <div class="column">
                         <?php
-                        echo $this->Form->control('landlord_payments_electricity_detail.low_rate_kwh_used', [
-                            'label' => __('Low Rate - Used kWh'),
-                        ]);
-                        echo $this->Form->control('landlord_payments_electricity_detail.low_rate_price_per_kwh', [
-                            'label' => __('Low Rate - Price per kWh'),
-                        ]);
-                        ?>
-                    </div>
-                    <div class="column">
-                        <?php
                         echo $this->Form->control('landlord_payments_electricity_detail.high_rate_kwh_used', [
                             'label' => __('High Rate - Used kWh'),
                         ]);
                         echo $this->Form->control('landlord_payments_electricity_detail.high_rate_price_per_kwh', [
                             'label' => __('High Rate - Price per kWh'),
+                        ]);
+                        ?>
+                    </div>
+                    <div class="column">
+                        <?php
+                        echo $this->Form->control('landlord_payments_electricity_detail.low_rate_kwh_used', [
+                            'label' => __('Low Rate - Used kWh'),
+                        ]);
+                        echo $this->Form->control('landlord_payments_electricity_detail.low_rate_price_per_kwh', [
+                            'label' => __('Low Rate - Price per kWh'),
                         ]);
                         ?>
                     </div>

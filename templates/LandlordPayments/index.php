@@ -33,6 +33,7 @@
                     <th><?= $this->Paginator->sort('amount_paid') ?></th>
                     <th><?= $this->Paginator->sort('period_from') ?></th>
                     <th><?= $this->Paginator->sort('period_until') ?></th>
+                    <th><?= __('Used kWh') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -63,6 +64,14 @@
                     ?></td>
                     <td><?= h($landlordPayment->period_from) ?></td>
                     <td><?= h($landlordPayment->period_until) ?></td>
+                    <td><?=
+                        empty($landlordPayment->landlord_payments_electricity_detail)
+                        || $landlordPayment->landlord_payments_electricity_detail->getKwhUsed() === null
+                        ? ''
+                        : $this->Number->format(
+                            $landlordPayment->landlord_payments_electricity_detail->getKwhUsed(),
+                            ['after' => ' kWh'],
+                        ) ?></td>
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),

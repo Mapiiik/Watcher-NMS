@@ -83,6 +83,7 @@ class AccessPointsController extends AppController
                     'payment_date' => 'DESC',
                     'PaymentPurposes.name' => 'ASC',
                 ],
+                'LandlordPaymentsElectricityDetails',
                 'PaymentPurposes',
             ],
             'PowerSupplies' => [

@@ -329,6 +329,7 @@
                             <th><?= __('Amount Paid') ?></th>
                             <th><?= __('Period From') ?></th>
                             <th><?= __('Period Until') ?></th>
+                            <th><?= __('Used kWh') ?></th>
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -349,6 +350,14 @@
                             ?></td>
                             <td><?= h($landlordPayment->period_from) ?></td>
                             <td><?= h($landlordPayment->period_until) ?></td>
+                            <td><?=
+                                empty($landlordPayment->landlord_payments_electricity_detail)
+                                || $landlordPayment->landlord_payments_electricity_detail->getKwhUsed() === null
+                                ? ''
+                                : $this->Number->format(
+                                    $landlordPayment->landlord_payments_electricity_detail->getKwhUsed(),
+                                    ['after' => ' kWh'],
+                                ) ?></td>
                             <td><?= $this->Text->autoParagraph(h($landlordPayment->note)) ?></td>
                             <td class="actions">
                                 <?= $this->AuthLink->link(

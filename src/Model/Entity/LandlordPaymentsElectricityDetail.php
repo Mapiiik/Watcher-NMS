@@ -44,4 +44,15 @@ class LandlordPaymentsElectricityDetail extends Entity
         'modified_by' => true,
         'landlord_payment' => true,
     ];
+
+    /**
+     * get kWh used
+     *
+     * @return float|null
+     */
+    public function getKwhUsed(): ?float
+    {
+        return $this->high_rate_kwh_used !== null || $this->low_rate_kwh_used !== null ?
+            (float)($this->high_rate_kwh_used ?? 0) + (float)($this->low_rate_kwh_used ?? 0) : null;
+    }
 }
