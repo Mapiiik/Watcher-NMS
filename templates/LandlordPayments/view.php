@@ -123,8 +123,16 @@
                     <tr>
                 </div>
             </div>
+            <div class="text">
+                <strong><?= __('Note') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($landlordPayment->note)); ?>
+                </blockquote>
+            </div>
+            <div class="related">
             <?php if (!empty($landlordPayment->landlord_payments_electricity_detail)) : ?>
                 <?php $electricityDetail = $landlordPayment->landlord_payments_electricity_detail; ?>
+                <h4><?= __('Electricity Details') ?></h4>
                 <div class="row">
                     <div class="column">
                         <table>
@@ -189,11 +197,6 @@
                     </div>
                 </div>
             <?php endif; ?>
-            <div class="text">
-                <strong><?= __('Note') ?></strong>
-                <blockquote>
-                    <?= $this->Text->autoParagraph(h($landlordPayment->note)); ?>
-                </blockquote>
             </div>
         </div>
     </div>
