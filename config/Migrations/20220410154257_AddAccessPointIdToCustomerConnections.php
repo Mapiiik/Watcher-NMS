@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddAccessPointIdToCustomerConnections extends AbstractMigration
+class AddAccessPointIdToCustomerConnections extends BaseMigration
 {
     /**
      * Change Method.

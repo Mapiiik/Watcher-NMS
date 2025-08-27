@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddCustomerConnectionIdIdToRouterosDevices extends AbstractMigration
+class AddCustomerConnectionIdIdToRouterosDevices extends BaseMigration
 {
     /**
      * Change Method.

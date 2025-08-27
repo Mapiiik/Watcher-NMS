@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-use Migrations\AbstractMigration;
-use Phinx\Util\Literal;
+use Migrations\BaseMigration;
+use Migrations\Db\Literal;
 
-class CreateAccessPointTypes extends AbstractMigration
+class CreateAccessPointTypes extends BaseMigration
 {
     /**
      * Change Method.

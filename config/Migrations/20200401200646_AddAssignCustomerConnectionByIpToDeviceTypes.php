@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddAssignCustomerConnectionByIpToDeviceTypes extends AbstractMigration
+class AddAssignCustomerConnectionByIpToDeviceTypes extends BaseMigration
 {
     /**
      * Change Method.

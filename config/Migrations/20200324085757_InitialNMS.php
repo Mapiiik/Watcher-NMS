@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/Seeds/UsersSeed.php';
 
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
+use Migrations\Db\Literal;
 use Migrations\UsersSeed;
-use Phinx\Util\Literal;
 
-class InitialNMS extends AbstractMigration
+class InitialNMS extends BaseMigration
 {
     /**
      * Up Method.
@@ -948,8 +948,6 @@ class InitialNMS extends AbstractMigration
 
         (new UsersSeed())
             ->setAdapter($this->getAdapter())
-            ->setInput($this->getInput())
-            ->setOutput($this->getOutput())
             ->run();
     }
 

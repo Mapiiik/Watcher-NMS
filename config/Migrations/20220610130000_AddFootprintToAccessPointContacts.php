@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddFootprintToAccessPointContacts extends AbstractMigration
+class AddFootprintToAccessPointContacts extends BaseMigration
 {
     /**
      * Change Method.

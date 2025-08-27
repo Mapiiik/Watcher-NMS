@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddForeignKeysToRouterosDeviceInterfaces extends AbstractMigration
+class AddForeignKeysToRouterosDeviceInterfaces extends BaseMigration
 {
     /**
      * Change Method.

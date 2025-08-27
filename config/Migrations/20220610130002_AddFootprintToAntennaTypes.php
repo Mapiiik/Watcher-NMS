@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddFootprintToAntennaTypes extends AbstractMigration
+class AddFootprintToAntennaTypes extends BaseMigration
 {
     /**
      * Change Method.
