@@ -948,6 +948,7 @@ class InitialNMS extends BaseMigration
 
         (new UsersSeed())
             ->setAdapter($this->getAdapter())
+            ->setIo($this->getIo())
             ->run();
     }
 
