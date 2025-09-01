@@ -53,7 +53,7 @@ class CreateIpAddressRanges extends BaseMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('ip_network', 'cidr', [
+            ->addColumn('ip_network', Literal::from('cidr'), [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
