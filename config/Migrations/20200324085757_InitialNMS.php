@@ -401,7 +401,7 @@ class InitialNMS extends BaseMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('mac_address', 'macaddr', [
+            ->addColumn('mac_address', Literal::from('macaddr'), [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -726,7 +726,7 @@ class InitialNMS extends BaseMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('mac_address', 'macaddr', [
+            ->addColumn('mac_address', Literal::from('macaddr'), [
                 'default' => null,
                 'limit' => null,
                 'null' => true,

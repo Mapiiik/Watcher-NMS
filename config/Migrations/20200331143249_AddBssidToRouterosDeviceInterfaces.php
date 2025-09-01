@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Migrations\BaseMigration;
+use Migrations\Db\Literal;
 
 class AddBssidToRouterosDeviceInterfaces extends BaseMigration
 {
@@ -16,7 +17,7 @@ class AddBssidToRouterosDeviceInterfaces extends BaseMigration
     public function change(): void
     {
         $table = $this->table('routeros_device_interfaces');
-        $table->addColumn('bssid', 'macaddr', [
+        $table->addColumn('bssid', Literal::from('macaddr'), [
             'default' => null,
             'limit' => null,
             'null' => true,
