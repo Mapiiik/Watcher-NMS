@@ -667,7 +667,7 @@ class InitialNMS extends BaseMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('ip_address', 'inet', [
+            ->addColumn('ip_address', Literal::from('inet'), [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -815,7 +815,7 @@ class InitialNMS extends BaseMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('ip_address', 'inet', [
+            ->addColumn('ip_address', Literal::from('inet'), [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -864,7 +864,7 @@ class InitialNMS extends BaseMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('ip_address', 'inet', [
+            ->addColumn('ip_address', Literal::from('inet'), [
                 'default' => null,
                 'limit' => null,
                 'null' => true,

@@ -58,7 +58,7 @@ class CreateIpAddressRanges extends BaseMigration
                 'limit' => null,
                 'null' => false,
             ])
-            ->addColumn('ip_gateway', 'inet', [
+            ->addColumn('ip_gateway', Literal::from('inet'), [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
