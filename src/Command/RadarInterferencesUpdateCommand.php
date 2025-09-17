@@ -55,7 +55,7 @@ class RadarInterferencesUpdateCommand extends Command
         if ($csv) {
             $start_time = new DateTime();
             foreach ($csv as $line) {
-                $data = str_getcsv($line, ';');
+                $data = str_getcsv($line, ';', '"', '\\');
 
                 /** @var \App\Model\Entity\RadarInterference $radarInterference */
                 $radarInterference = $this->fetchTable()->findOrCreate(
