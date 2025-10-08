@@ -335,12 +335,12 @@
                                     ],
                                 ) : '' ?></td>
                             <td><?=
-                                    isset(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
-                                            ->routeros_device
-                                            ->customer_connection,
-                                    ) ?
+                                isset(
+                                    $routerosWirelessLink
+                                        ->neighbouring_interface
+                                        ->routeros_device
+                                        ->customer_connection,
+                                ) ?
                                 $this->Html->link(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
