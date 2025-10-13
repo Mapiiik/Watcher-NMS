@@ -30,6 +30,7 @@ use Cake\Event\EventManager;
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\I18n;
 use Cake\Routing\Router;
+use Override;
 
 /**
  * Application Controller
@@ -61,6 +62,7 @@ class AppController extends Controller
      *
      * @return void
      */
+    #[Override]
     public function initialize(): void
     {
         parent::initialize();
@@ -77,6 +79,7 @@ class AppController extends Controller
     /**
      * @inheritDoc
      */
+    #[Override]
     public function paginate( // @phpstan-ignore missingType.generics
         RepositoryInterface|QueryInterface|string|null $object = null,
         array $settings = [],
@@ -118,6 +121,7 @@ class AppController extends Controller
      * @link https://book.cakephp.org/5/en/controllers.html#request-life-cycle-callbacks
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
      */
+    #[Override]
     public function beforeFilter(EventInterface $event)
     {
         # Load current user

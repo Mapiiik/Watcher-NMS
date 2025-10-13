@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\RouterosDevicesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Override;
 
 /**
  * App\Model\Table\RouterosDevicesTable Test Case
@@ -41,6 +42,7 @@ class RouterosDevicesTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -53,6 +55,7 @@ class RouterosDevicesTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function tearDown(): void
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */

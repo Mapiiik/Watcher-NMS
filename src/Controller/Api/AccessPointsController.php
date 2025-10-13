@@ -5,6 +5,7 @@ namespace App\Controller\Api;
 
 use App\Controller\AppController;
 use Cake\View\JsonView;
+use Override;
 
 /**
  * AccessPoints Controller
@@ -16,6 +17,7 @@ class AccessPointsController extends AppController
     /**
      * Returns supported output types
      */
+    #[Override]
     public function viewClasses(): array
     {
         return [JsonView::class];

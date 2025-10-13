@@ -5,6 +5,7 @@ namespace App\Model\Table;
 
 use AuditLog\Persister\TablePersister;
 use Cake\ORM\Table;
+use Override;
 
 /**
  * Single database table
@@ -21,6 +22,7 @@ class AppTable extends Table
      * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
+    #[Override]
     public function initialize(array $config): void
     {
         parent::initialize($config);

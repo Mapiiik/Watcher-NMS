@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\CustomerConnectionsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Override;
 
 /**
  * App\Model\Table\CustomerConnectionsTable Test Case
@@ -40,6 +41,7 @@ class CustomerConnectionsTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -52,6 +54,7 @@ class CustomerConnectionsTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function tearDown(): void
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */

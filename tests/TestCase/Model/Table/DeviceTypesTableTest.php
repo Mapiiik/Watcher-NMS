@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\DeviceTypesTable;
 use Cake\TestSuite\TestCase;
+use Override;
 
 /**
  * App\Model\Table\DeviceTypesTable Test Case
@@ -38,6 +39,7 @@ class DeviceTypesTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -50,6 +52,7 @@ class DeviceTypesTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function tearDown(): void
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */

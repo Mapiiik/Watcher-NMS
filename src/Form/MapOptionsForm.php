@@ -6,6 +6,7 @@ namespace App\Form;
 use Cake\Form\Form;
 use Cake\Form\Schema;
 use Cake\Validation\Validator;
+use Override;
 
 /**
  * MapOptions Form.
@@ -18,6 +19,7 @@ class MapOptionsForm extends Form
      * @param \Cake\Form\Schema $schema From schema
      * @return \Cake\Form\Schema
      */
+    #[Override]
     protected function _buildSchema(Schema $schema): Schema
     {
         return $schema->addField('routeros_ip_links', 'boolean')
@@ -34,6 +36,7 @@ class MapOptionsForm extends Form
      * @param \Cake\Validation\Validator $validator to use against the form
      * @return \Cake\Validation\Validator
      */
+    #[Override]
     public function validationDefault(Validator $validator): Validator
     {
         return $validator;
@@ -45,6 +48,7 @@ class MapOptionsForm extends Form
      * @param array<mixed> $data Form data.
      * @return bool
      */
+    #[Override]
     protected function _execute(array $data): bool
     {
         $this->setData($data);

@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\LandlordPaymentsElectricityDetailsTable;
 use Cake\TestSuite\TestCase;
+use Override;
 
 /**
  * App\Model\Table\LandlordPaymentsElectricityDetailsTable Test Case
@@ -37,6 +38,7 @@ class LandlordPaymentsElectricityDetailsTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -49,6 +51,7 @@ class LandlordPaymentsElectricityDetailsTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function tearDown(): void
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */

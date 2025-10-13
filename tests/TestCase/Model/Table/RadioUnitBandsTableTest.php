@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\RadioUnitBandsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Override;
 
 /**
  * App\Model\Table\RadioUnitBandsTable Test Case
@@ -41,6 +42,7 @@ class RadioUnitBandsTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -53,6 +55,7 @@ class RadioUnitBandsTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function tearDown(): void
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */

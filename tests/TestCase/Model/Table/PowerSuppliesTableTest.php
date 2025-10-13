@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\PowerSuppliesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Override;
 
 /**
  * App\Model\Table\PowerSuppliesTable Test Case
@@ -38,6 +39,7 @@ class PowerSuppliesTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -50,6 +52,7 @@ class PowerSuppliesTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function tearDown(): void
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */

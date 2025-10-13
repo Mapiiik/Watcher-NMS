@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\IpAddressRangesTable;
 use Cake\TestSuite\TestCase;
+use Override;
 
 /**
  * App\Model\Table\IpAddressRangesTable Test Case
@@ -35,6 +36,7 @@ class IpAddressRangesTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -47,6 +49,7 @@ class IpAddressRangesTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function tearDown(): void
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */

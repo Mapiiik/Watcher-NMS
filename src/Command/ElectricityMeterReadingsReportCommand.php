@@ -13,6 +13,7 @@ use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use Cake\ORM\Query\SelectQuery;
 use Exception;
+use Override;
 
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
@@ -28,6 +29,7 @@ class ElectricityMeterReadingsReportCommand extends Command
      * @param \Cake\Console\ConsoleOptionParser $parser The parser to update
      * @return \Cake\Console\ConsoleOptionParser
      */
+    #[Override]
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser->addArgument('emails', [
@@ -45,6 +47,7 @@ class ElectricityMeterReadingsReportCommand extends Command
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
      */
+    #[Override]
     public function execute(Arguments $args, ConsoleIo $io)
     {
         $emails = $args->getArgument('emails');

@@ -9,6 +9,7 @@ use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
+use Override;
 
 /**
  * @property \App\Model\Table\CustomerPointsTable $CustomerPoints
@@ -24,6 +25,7 @@ class CustomerPointsUpdateCommand extends Command
      * @param \Cake\Console\ConsoleOptionParser $parser The parser to update
      * @return \Cake\Console\ConsoleOptionParser
      */
+    #[Override]
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser->addArgument('url', [
@@ -41,6 +43,7 @@ class CustomerPointsUpdateCommand extends Command
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
      */
+    #[Override]
     public function execute(Arguments $args, ConsoleIo $io)
     {
         $url = $args->getArgument('url');

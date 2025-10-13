@@ -11,6 +11,7 @@ use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use Cake\Routing\Router;
 use Exception;
+use Override;
 
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
@@ -26,6 +27,7 @@ class RadarInterferencesReportCommand extends Command
      * @param \Cake\Console\ConsoleOptionParser $parser The parser to update
      * @return \Cake\Console\ConsoleOptionParser
      */
+    #[Override]
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser->addArgument('names', [
@@ -47,6 +49,7 @@ class RadarInterferencesReportCommand extends Command
      * @param \Cake\Console\ConsoleIo $io The console io
      * @return int|null|void The exit code or null for success
      */
+    #[Override]
     public function execute(Arguments $args, ConsoleIo $io)
     {
         $names = $args->getArgument('names');

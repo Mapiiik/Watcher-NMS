@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use Cake\Validation\Validator;
+use Override;
 
 /**
  * RadarInterferences Model
@@ -31,6 +32,7 @@ class RadarInterferencesTable extends AppTable
      * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
+    #[Override]
     public function initialize(array $config): void
     {
         parent::initialize($config);
@@ -54,6 +56,7 @@ class RadarInterferencesTable extends AppTable
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
+    #[Override]
     public function validationDefault(Validator $validator): Validator
     {
         $validator

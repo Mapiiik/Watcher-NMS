@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\AccessPointsTable;
 use Cake\TestSuite\TestCase;
+use Override;
 
 /**
  * App\Model\Table\AccessPointsTable Test Case
@@ -47,6 +48,7 @@ class AccessPointsTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -59,6 +61,7 @@ class AccessPointsTableTest extends TestCase
      *
      * @return void
      */
+    #[Override]
     protected function tearDown(): void
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */

@@ -17,6 +17,7 @@ namespace App\View;
 
 use Cake\View\View;
 use IntlDateFormatter;
+use Override;
 
 /**
  * Application View
@@ -38,6 +39,7 @@ class AppView extends View
      *
      * @return void
      */
+    #[Override]
     public function initialize(): void
     {
         parent::initialize();
