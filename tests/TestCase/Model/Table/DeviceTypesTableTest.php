@@ -38,7 +38,7 @@ class DeviceTypesTableTest extends TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('DeviceTypes') ? [] : ['className' => DeviceTypesTable::class];
@@ -50,8 +50,9 @@ class DeviceTypesTableTest extends TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
+        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->DeviceTypes);
 
         parent::tearDown();

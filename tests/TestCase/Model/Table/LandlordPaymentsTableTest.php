@@ -51,6 +51,7 @@ class LandlordPaymentsTableTest extends TestCase
      */
     protected function tearDown(): void
     {
+        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->LandlordPayments);
 
         parent::tearDown();

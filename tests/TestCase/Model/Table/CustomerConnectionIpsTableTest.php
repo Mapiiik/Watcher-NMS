@@ -36,7 +36,7 @@ class CustomerConnectionIpsTableTest extends TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $config = TableRegistry::getTableLocator()->exists('CustomerConnectionIps') ? [] : ['className' => CustomerConnectionIpsTable::class];
@@ -48,8 +48,9 @@ class CustomerConnectionIpsTableTest extends TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
+        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->CustomerConnectionIps);
 
         parent::tearDown();

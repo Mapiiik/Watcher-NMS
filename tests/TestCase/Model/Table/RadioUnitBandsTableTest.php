@@ -41,7 +41,7 @@ class RadioUnitBandsTableTest extends TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $config = TableRegistry::getTableLocator()->exists('RadioUnitBands') ? [] : ['className' => RadioUnitBandsTable::class];
@@ -53,8 +53,9 @@ class RadioUnitBandsTableTest extends TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
+        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->RadioUnitBands);
 
         parent::tearDown();
