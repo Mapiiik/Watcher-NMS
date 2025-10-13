@@ -18,7 +18,7 @@ class PaymentPurposesControllerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
@@ -32,7 +32,7 @@ class PaymentPurposesControllerTest extends TestCase
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\PaymentPurposesController::index()
+     * @link \App\Controller\PaymentPurposesController::index()
      */
     public function testIndex(): void
     {
@@ -43,7 +43,7 @@ class PaymentPurposesControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\PaymentPurposesController::view()
+     * @link \App\Controller\PaymentPurposesController::view()
      */
     public function testView(): void
     {
@@ -54,7 +54,7 @@ class PaymentPurposesControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\PaymentPurposesController::add()
+     * @link \App\Controller\PaymentPurposesController::add()
      */
     public function testAdd(): void
     {
@@ -65,7 +65,7 @@ class PaymentPurposesControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\PaymentPurposesController::edit()
+     * @link \App\Controller\PaymentPurposesController::edit()
      */
     public function testEdit(): void
     {
@@ -76,7 +76,7 @@ class PaymentPurposesControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\PaymentPurposesController::delete()
+     * @link \App\Controller\PaymentPurposesController::delete()
      */
     public function testDelete(): void
     {

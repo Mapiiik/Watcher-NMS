@@ -18,7 +18,7 @@ class AccessPointsControllerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
@@ -43,7 +43,7 @@ class AccessPointsControllerTest extends TestCase
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\Api\AccessPointsController::index()
+     * @link \App\Controller\Api\AccessPointsController::index()
      */
     public function testIndex(): void
     {
@@ -54,7 +54,7 @@ class AccessPointsControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\Api\AccessPointsController::view()
+     * @link \App\Controller\Api\AccessPointsController::view()
      */
     public function testView(): void
     {
@@ -65,7 +65,7 @@ class AccessPointsControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\Api\AccessPointsController::add()
+     * @link \App\Controller\Api\AccessPointsController::add()
      */
     public function testAdd(): void
     {
@@ -76,7 +76,7 @@ class AccessPointsControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\Api\AccessPointsController::edit()
+     * @link \App\Controller\Api\AccessPointsController::edit()
      */
     public function testEdit(): void
     {
@@ -87,7 +87,7 @@ class AccessPointsControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\Api\AccessPointsController::delete()
+     * @link \App\Controller\Api\AccessPointsController::delete()
      */
     public function testDelete(): void
     {

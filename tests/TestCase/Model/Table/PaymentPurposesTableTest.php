@@ -21,7 +21,7 @@ class PaymentPurposesTableTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
@@ -59,7 +59,7 @@ class PaymentPurposesTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\PaymentPurposesTable::validationDefault()
+     * @link \App\Model\Table\PaymentPurposesTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

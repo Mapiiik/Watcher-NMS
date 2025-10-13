@@ -18,7 +18,7 @@ class LandlordPaymentsControllerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
@@ -32,7 +32,7 @@ class LandlordPaymentsControllerTest extends TestCase
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\LandlordPaymentsController::index()
+     * @link \App\Controller\LandlordPaymentsController::index()
      */
     public function testIndex(): void
     {
@@ -43,7 +43,7 @@ class LandlordPaymentsControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\LandlordPaymentsController::view()
+     * @link \App\Controller\LandlordPaymentsController::view()
      */
     public function testView(): void
     {
@@ -54,7 +54,7 @@ class LandlordPaymentsControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\LandlordPaymentsController::add()
+     * @link \App\Controller\LandlordPaymentsController::add()
      */
     public function testAdd(): void
     {
@@ -65,7 +65,7 @@ class LandlordPaymentsControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\LandlordPaymentsController::edit()
+     * @link \App\Controller\LandlordPaymentsController::edit()
      */
     public function testEdit(): void
     {
@@ -76,7 +76,7 @@ class LandlordPaymentsControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\LandlordPaymentsController::delete()
+     * @link \App\Controller\LandlordPaymentsController::delete()
      */
     public function testDelete(): void
     {

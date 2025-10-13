@@ -18,7 +18,7 @@ class RouterosDevicesControllerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
@@ -36,7 +36,7 @@ class RouterosDevicesControllerTest extends TestCase
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\Api\RouterosDevicesController::index()
+     * @link \App\Controller\Api\RouterosDevicesController::index()
      */
     public function testIndex(): void
     {
@@ -47,7 +47,7 @@ class RouterosDevicesControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\Api\RouterosDevicesController::view()
+     * @link \App\Controller\Api\RouterosDevicesController::view()
      */
     public function testView(): void
     {
@@ -58,7 +58,7 @@ class RouterosDevicesControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\Api\RouterosDevicesController::add()
+     * @link \App\Controller\Api\RouterosDevicesController::add()
      */
     public function testAdd(): void
     {
@@ -69,7 +69,7 @@ class RouterosDevicesControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\Api\RouterosDevicesController::edit()
+     * @link \App\Controller\Api\RouterosDevicesController::edit()
      */
     public function testEdit(): void
     {
@@ -80,7 +80,7 @@ class RouterosDevicesControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\Api\RouterosDevicesController::delete()
+     * @link \App\Controller\Api\RouterosDevicesController::delete()
      */
     public function testDelete(): void
     {

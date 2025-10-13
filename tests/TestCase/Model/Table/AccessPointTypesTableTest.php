@@ -21,7 +21,7 @@ class AccessPointTypesTableTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
@@ -57,7 +57,7 @@ class AccessPointTypesTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\AccessPointTypesTable::validationDefault()
+     * @link \App\Model\Table\AccessPointTypesTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

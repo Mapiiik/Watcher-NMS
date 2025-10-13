@@ -18,7 +18,7 @@ class IpAddressRangesControllerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
@@ -31,7 +31,7 @@ class IpAddressRangesControllerTest extends TestCase
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\IpAddressRangesController::index()
+     * @link \App\Controller\IpAddressRangesController::index()
      */
     public function testIndex(): void
     {
@@ -42,7 +42,7 @@ class IpAddressRangesControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\IpAddressRangesController::view()
+     * @link \App\Controller\IpAddressRangesController::view()
      */
     public function testView(): void
     {
@@ -53,7 +53,7 @@ class IpAddressRangesControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\IpAddressRangesController::add()
+     * @link \App\Controller\IpAddressRangesController::add()
      */
     public function testAdd(): void
     {
@@ -64,7 +64,7 @@ class IpAddressRangesControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\IpAddressRangesController::edit()
+     * @link \App\Controller\IpAddressRangesController::edit()
      */
     public function testEdit(): void
     {
@@ -75,7 +75,7 @@ class IpAddressRangesControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\IpAddressRangesController::delete()
+     * @link \App\Controller\IpAddressRangesController::delete()
      */
     public function testDelete(): void
     {

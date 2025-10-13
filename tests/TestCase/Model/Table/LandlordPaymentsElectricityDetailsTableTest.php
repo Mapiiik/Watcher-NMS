@@ -21,7 +21,7 @@ class LandlordPaymentsElectricityDetailsTableTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected array $fixtures = [
         'app.AppUsers',
@@ -60,7 +60,7 @@ class LandlordPaymentsElectricityDetailsTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\LandlordPaymentsElectricityDetailsTable::validationDefault()
+     * @link \App\Model\Table\LandlordPaymentsElectricityDetailsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -71,7 +71,7 @@ class LandlordPaymentsElectricityDetailsTableTest extends TestCase
      * Test buildRules method
      *
      * @return void
-     * @uses \App\Model\Table\LandlordPaymentsElectricityDetailsTable::buildRules()
+     * @link \App\Model\Table\LandlordPaymentsElectricityDetailsTable::buildRules()
      */
     public function testBuildRules(): void
     {
