@@ -3,8 +3,8 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\AccessPoint> $accessPoints
  * @var \App\Form\MapOptionsForm $mapOptions
- * @var \Cake\Collection\CollectionInterface|array<string> $accessPointsFilter
- * @var \Cake\Collection\CollectionInterface|array<string> $routerosDevicesFilter
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPointsFilter
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $routerosDevicesFilter
  * @var array<string, \App\Maps\Marker> $mapMarkers
  * @var array<string, \App\Maps\Polyline> $mapPolylines
  */

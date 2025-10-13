@@ -2,8 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\AccessPoint $accessPoint
- * @var \Cake\Collection\CollectionInterface|array<string> $accessPointTypes
- * @var \Cake\Collection\CollectionInterface|array<string> $parentAccessPoints
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPointTypes
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $parentAccessPoints
  */
 ?>
 <div class="row">

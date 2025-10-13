@@ -2,8 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\PowerSupply $powerSupply
- * @var \Cake\Collection\CollectionInterface|array<string> $accessPoints
- * @var \Cake\Collection\CollectionInterface|array<string> $powerSupplyTypes
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPoints
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $powerSupplyTypes
  */
 ?>
 <div class="row">

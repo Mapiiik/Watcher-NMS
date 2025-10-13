@@ -2,8 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\IpAddressRange $ipAddressRange
- * @var \Cake\Collection\CollectionInterface|array<string> $accessPoints
- * @var \Cake\Collection\CollectionInterface|array<string> $parentIpAddressRanges
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPoints
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $parentIpAddressRanges
  */
 ?>
 <div class="row">

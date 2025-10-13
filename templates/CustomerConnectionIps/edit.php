@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp
- * @var \Cake\Collection\CollectionInterface|array<string> $customerConnections
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $customerConnections
  */
 ?>
 <div class="row">

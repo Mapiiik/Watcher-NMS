@@ -2,10 +2,10 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Task $task
- * @var \Cake\Collection\CollectionInterface|array<string> $taskTypes
- * @var \Cake\Collection\CollectionInterface|array<string> $taskStates
- * @var \Cake\Collection\CollectionInterface|array<string> $users
- * @var \Cake\Collection\CollectionInterface|array<string> $accessPoints
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $taskTypes
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $taskStates
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $users
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPoints
  */
 ?>
 <div class="row">

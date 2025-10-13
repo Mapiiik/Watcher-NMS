@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\AccessPointContact $accessPointContact
- * @var \Cake\Collection\CollectionInterface|array<string> $accessPoints
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPoints
  */
 ?>
 <div class="row">
