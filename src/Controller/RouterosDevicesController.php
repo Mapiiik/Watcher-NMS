@@ -252,7 +252,7 @@ class RouterosDevicesController extends AppController
          $long = ip2long($mask);
          $base = ip2long('255.255.255.255');
 
-         return (int)(32 - log(($long ^ $base) + 1, 2));
+         return (int)(32.0 - log(($long ^ $base) + 1, 2));
     }
 
     /**
@@ -796,6 +796,7 @@ class RouterosDevicesController extends AppController
      *
      * @param \App\Model\Entity\RouterosDevice $routerosDevice Entity
      * @return string
+     * @psalm-suppress UnusedParam
      */
     private function getUsername(RouterosDevice $routerosDevice)
     {
@@ -824,7 +825,10 @@ class RouterosDevicesController extends AppController
      */
     public function configurationScript(?string $deviceTypeIdentifier = null, ?string $serialNumber = null): void
     {
-        $deviceType = $this->RouterosDevices->DeviceTypes->findByIdentifier($deviceTypeIdentifier)->first();
+        $deviceType = $this->RouterosDevices->DeviceTypes
+            ->find()
+            ->where(['identifier' => $deviceTypeIdentifier])
+            ->first();
 
         if ($deviceType) {
             $routerosDeviceSerialNumber = $this->loadSerialNumberViaSNMP(

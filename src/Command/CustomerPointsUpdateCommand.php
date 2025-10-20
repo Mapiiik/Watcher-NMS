@@ -48,7 +48,10 @@ class CustomerPointsUpdateCommand extends Command
     {
         $url = $args->getArgument('url');
         if (!isset($url)) {
-            $url = env('WATCHER_CRM_URL') . '/api/customers/customer-points.json?api_key=' . env('WATCHER_CRM_KEY');
+            $url =
+                (string)env('WATCHER_CRM_URL')
+                . '/api/customers/customer-points.json?api_key='
+                . (string)env('WATCHER_CRM_KEY');
         }
 
         $json = file_get_contents($url);

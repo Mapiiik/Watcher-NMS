@@ -58,10 +58,7 @@ $this->setLayout('clean');
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($routerosDevices as $routerosDevice) :
-                    /** @var \App\Model\Entity\RouterosDevice $routerosDevice */
-                    ?>
+                <?php foreach ($routerosDevices as $routerosDevice) : ?>
                     <tr>
                         <td>
                             <?= $routerosDevice->__isset('access_point') ? $this->Html->link(

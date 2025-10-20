@@ -14,11 +14,12 @@
  */
 
 /**
+ * @psalm-suppress UnnecessaryVarAnnotation
  * @var \App\View\AppView $this
  * @psalm-scope-this \App\View\AppView
  */
 
-$cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
+$cakeDescription = 'Watcher NMS | ' . (string)env('APP_COMPANY', 'ISP');
 ?>
 <!DOCTYPE html>
 <html>

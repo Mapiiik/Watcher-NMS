@@ -17,11 +17,12 @@ use App\Versioning;
 use Cake\Core\Configure;
 
 /**
+ * @psalm-suppress UnnecessaryVarAnnotation
  * @var \App\View\AppView $this
  * @psalm-scope-this \App\View\AppView
  */
 
-$cakeDescription = 'Watcher NMS | ' . env('APP_COMPANY', 'ISP');
+$cakeDescription = 'Watcher NMS | ' . (string)env('APP_COMPANY', 'ISP');
 
 $request = $this->getRequest();
 
@@ -173,7 +174,7 @@ $urlWithQuery = function ($query = []) use ($request) {
             <?= env('WATCHER_CRM_URL') ?
                 $this->Html->link(
                     __('Customer Relationship Management'),
-                    env('WATCHER_CRM_URL'),
+                    (string)env('WATCHER_CRM_URL'),
                     ['class' => 'button button-small'],
                 ) : '' ?>
 

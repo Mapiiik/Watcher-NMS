@@ -190,14 +190,14 @@
                             <td><?= $accessPointContact->__isset('customer_number') && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $accessPointContact->customer_number,
-                                    env('WATCHER_CRM_URL')
+                                    (string)env('WATCHER_CRM_URL')
                                         . '/customers?search=' . $accessPointContact->customer_number,
                                     ['target' => '_blank'],
                                 ) : h($accessPointContact->customer_number) ?></td>
                             <td><?= $accessPointContact->__isset('contract_number') && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $accessPointContact->contract_number,
-                                    env('WATCHER_CRM_URL')
+                                    (string)env('WATCHER_CRM_URL')
                                         . '/customers?search=' . $accessPointContact->contract_number,
                                     ['target' => '_blank'],
                                 ) : h($accessPointContact->contract_number) ?></td>

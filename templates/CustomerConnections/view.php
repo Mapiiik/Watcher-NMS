@@ -71,7 +71,7 @@
                             <td><?= $customerConnection->__isset('customer_url') && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $customerConnection->customer_number,
-                                    env('WATCHER_CRM_URL') . $customerConnection->customer_url,
+                                    (string)env('WATCHER_CRM_URL') . $customerConnection->customer_url,
                                     ['target' => '_blank'],
                                 ) : h($customerConnection->customer_number) ?></td>
                         </tr>
@@ -80,7 +80,7 @@
                             <td><?= $customerConnection->__isset('contract_url') && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $customerConnection->contract_number,
-                                    env('WATCHER_CRM_URL') . $customerConnection->contract_url,
+                                    (string)env('WATCHER_CRM_URL') . $customerConnection->contract_url,
                                     ['target' => '_blank'],
                                 ) : h($customerConnection->contract_number) ?></td>
                         </tr>

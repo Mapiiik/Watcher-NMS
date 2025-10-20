@@ -139,6 +139,7 @@ class LandlordPaymentsTable extends AppTable
      * Removal of electricity details if not filled in
      *
      * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event Event
+     * @psalm-suppress PossiblyUnusedParam
      */
     public function afterMarshal(
         EventInterface $event,

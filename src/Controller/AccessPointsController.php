@@ -160,7 +160,7 @@ class AccessPointsController extends AppController
             }
 
             $new['daily_consumption'] =
-                ($new->reading_value - $old->reading_value) / $new->reading_date->diffInDays($old->reading_date);
+                ($new->reading_value - $old->reading_value) / (float)$new->reading_date->diffInDays($old->reading_date);
 
             $accessPoint->electricity_meter_readings[$i] = $new;
 

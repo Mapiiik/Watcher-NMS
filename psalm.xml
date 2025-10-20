@@ -19,13 +19,26 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
+        <UnevaluatedCode>
+            <errorLevel type="suppress">
+                <file name="config/bootstrap.php"/>
+            </errorLevel>
+        </UnevaluatedCode>
         <UnusedClass>
             <errorLevel type="suppress">
+                <directory name="config/Migrations/"/>
+                <directory name="config/Seeds/"/>
+                <directory name="src/Controller/"/>
+                <directory name="src/Command/"/>
+                <directory name="src/Console/"/>
+                <directory name="src/Model/"/>
+                <directory name="src/View/"/>
                 <directory name="tests/"/>
             </errorLevel>
         </UnusedClass>
         <PossiblyUnusedMethod>
             <errorLevel type="suppress">
+                <directory name="src/Model/"/>
                 <directory name="tests/"/>
             </errorLevel>
         </PossiblyUnusedMethod>
