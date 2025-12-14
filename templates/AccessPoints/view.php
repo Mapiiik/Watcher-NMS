@@ -259,30 +259,30 @@
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($accessPoint->electricity_meter_readings as $electricityMeterReadings) : ?>
+                        <?php foreach ($accessPoint->electricity_meter_readings as $electricityMeterReading) : ?>
                         <tr>
-                            <td><?= h($electricityMeterReadings->name) ?></td>
-                            <td><?= h($electricityMeterReadings->reading_date) ?></td>
-                            <td><?= $electricityMeterReadings->reading_value === null ?
-                                '' : $this->Number->format($electricityMeterReadings->reading_value, [
+                            <td><?= h($electricityMeterReading->name) ?></td>
+                            <td><?= h($electricityMeterReading->reading_date) ?></td>
+                            <td><?= $electricityMeterReading->reading_value === null ?
+                                '' : $this->Number->format($electricityMeterReading->reading_value, [
                                     'after' => ' kWh',
                                 ]) ?></td>
-                            <td><?= $electricityMeterReadings['daily_consumption'] ?
-                                $this->Number->format($electricityMeterReadings['daily_consumption'], [
+                            <td><?= $electricityMeterReading->daily_consumption ?
+                                $this->Number->format($electricityMeterReading->daily_consumption, [
                                     'after' => ' kWh',
                                 ]) : '' ?></td>
-                            <td><?= $electricityMeterReadings['daily_consumption'] ?
-                                $this->Number->format($electricityMeterReadings['daily_consumption'] * 365, [
+                            <td><?= $electricityMeterReading->daily_consumption ?
+                                $this->Number->format($electricityMeterReading->daily_consumption * 365, [
                                     'after' => ' kWh',
                                 ]) : '' ?></td>
-                            <td><?= $this->Text->autoParagraph(h($electricityMeterReadings->note)); ?></td>
+                            <td><?= $this->Text->autoParagraph(h($electricityMeterReading->note)); ?></td>
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
                                     [
                                         'controller' => 'ElectricityMeterReadings',
                                         'action' => 'view',
-                                        $electricityMeterReadings->id,
+                                        $electricityMeterReading->id,
                                     ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
@@ -290,7 +290,7 @@
                                     [
                                         'controller' => 'ElectricityMeterReadings',
                                         'action' => 'edit',
-                                        $electricityMeterReadings->id,
+                                        $electricityMeterReading->id,
                                     ],
                                     ['class' => 'win-link'],
                                 ) ?>
@@ -299,11 +299,11 @@
                                     [
                                         'controller' => 'ElectricityMeterReadings',
                                         'action' => 'delete',
-                                        $electricityMeterReadings->id,
+                                        $electricityMeterReading->id,
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $electricityMeterReadings->id,
+                                        $electricityMeterReading->id,
                                     )],
                                 ) ?>
                             </td>
