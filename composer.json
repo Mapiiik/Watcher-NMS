@@ -24,7 +24,7 @@
         "dereuromark/cakephp-geo": "^3.0.0",
         "geocoder-php/google-maps-provider": "^4.7.1",
         "league/oauth2-google": "^4.0",
-        "mapik/audit-log": "^5.0",
+        "mapik/audit-log": "^6.0@DEV",
         "mobiledetect/mobiledetectlib": "^4.8"
     },
     "require-dev": {
