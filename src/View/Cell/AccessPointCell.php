@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\View\Cell;
 
+use App\Model\Table\AccessPointsTable;
 use Cake\View\Cell;
 use Override;
 
@@ -39,7 +40,7 @@ class AccessPointCell extends Cell
         $access_point_id = $this->request->getParam('access_point_id');
 
         if ($access_point_id) {
-            $accessPoint = $this->fetchTable('AccessPoints')->get($access_point_id);
+            $accessPoint = $this->fetchTable(AccessPointsTable::class)->get($access_point_id);
 
             $this->set(compact('accessPoint'));
         }
