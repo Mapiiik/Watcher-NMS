@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Model\Table\RadarInterferencesTable;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -18,9 +19,6 @@ use SplObjectStorage;
  */
 class RadarInterferencesUpdateCommand extends Command
 {
-    // Define the default table. This allows you to use `fetchTable()` without any argument.
-    protected ?string $defaultTable = 'RadarInterferences';
-
     /**
      * Set available arguments
      *
@@ -60,8 +58,7 @@ class RadarInterferencesUpdateCommand extends Command
             foreach ($csv as $line) {
                 $data = str_getcsv($line, ';', '"', '\\');
 
-                /** @var \App\Model\Entity\RadarInterference $radarInterference */
-                $radarInterference = $this->fetchTable()->findOrCreate(
+                $radarInterference = $this->fetchTable(RadarInterferencesTable::class)->findOrCreate(
                     [
                         'name' => trim($data[0]),
                         'mac_address' => trim($data[1]),
@@ -78,12 +75,12 @@ class RadarInterferencesUpdateCommand extends Command
 
                 $radarInterference->modified = new DateTime();
 
-                $this->fetchTable()->save($radarInterference);
+                $this->fetchTable(RadarInterferencesTable::class)->save($radarInterference);
             }
 
             // delete old records
-            $this->fetchTable()->deleteMany(
-                $this->fetchTable()->find()->where(['modified <' => $start_time])->all(),
+            $this->fetchTable(RadarInterferencesTable::class)->deleteMany(
+                $this->fetchTable(RadarInterferencesTable::class)->find()->where(['modified <' => $start_time])->all(),
             );
 
             Log::write('debug', 'The radar interferences table has been updated.');

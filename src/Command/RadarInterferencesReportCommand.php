@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Model\Table\RadarInterferencesTable;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -18,9 +19,6 @@ use Override;
  */
 class RadarInterferencesReportCommand extends Command
 {
-    // Define the default table. This allows you to use `fetchTable()` without any argument.
-    protected ?string $defaultTable = 'RadarInterferences';
-
     /**
      * Set available arguments
      *
@@ -61,7 +59,7 @@ class RadarInterferencesReportCommand extends Command
             $emails = (string)env('REPORT_EMAILS');
         }
 
-        $radarInterferences = $this->fetchTable()->find();
+        $radarInterferences = $this->fetchTable(RadarInterferencesTable::class)->find();
 
         $radarInterferences->join([
             'RouterosDeviceInterfaces' => [
@@ -79,7 +77,7 @@ class RadarInterferencesReportCommand extends Command
             ],
         ]);
 
-        $radarInterferences->select($this->fetchTable());
+        $radarInterferences->select($this->fetchTable(RadarInterferencesTable::class));
         $radarInterferences->select(['routeros_device_id' => 'RouterosDevices.id']);
         $radarInterferences->select(['routeros_device_name' => 'RouterosDevices.name']);
         $radarInterferences->select(['routeros_device_interface_id' => 'RouterosDeviceInterfaces.id']);

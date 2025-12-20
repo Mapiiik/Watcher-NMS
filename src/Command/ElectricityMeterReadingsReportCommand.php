@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\Model\Entity\ElectricityMeterReading;
+use App\Model\Table\AccessPointsTable;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -20,9 +21,6 @@ use Override;
  */
 class ElectricityMeterReadingsReportCommand extends Command
 {
-    // Define the default table. This allows you to use `fetchTable()` without any argument.
-    protected ?string $defaultTable = 'AccessPoints';
-
     /**
      * Set available arguments
      *
@@ -57,7 +55,7 @@ class ElectricityMeterReadingsReportCommand extends Command
 
         $now = new Date();
 
-        $accessPoints = $this->fetchTable()
+        $accessPoints = $this->fetchTable(AccessPointsTable::class)
             ->find('all', conditions: [
                 'month_of_electricity_meter_reading' => (int)$now->i18nFormat('L'),
             ])

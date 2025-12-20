@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Model\Table\CustomerConnectionIpsTable;
+use App\Model\Table\CustomerConnectionsTable;
+use App\Model\Table\CustomerPointsTable;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -16,9 +19,6 @@ use Override;
  */
 class CustomerPointsUpdateCommand extends Command
 {
-    // Define the default table. This allows you to use `fetchTable()` without any argument.
-    protected ?string $defaultTable = 'CustomerPoints';
-
     /**
      * Set available arguments
      *
@@ -58,31 +58,25 @@ class CustomerPointsUpdateCommand extends Command
 
         if ($json) {
             $start_time = new DateTime();
+            // TODO: implement DTO class
             $importCustomerPoints = json_decode($json);
 
             foreach ($importCustomerPoints as $importCustomerPoint) {
                 if (!empty($importCustomerPoint->gps_x) && !empty($importCustomerPoint->gps_y)) {
-                    /** @var \App\Model\Entity\CustomerPoint $customerPoint */
                     $customerPoint =
-                        $this->fetchTable()->find()->where([
-                            'gps_x' => $importCustomerPoint->gps_x,
-                            'gps_y' => $importCustomerPoint->gps_y,
-                        ])->first()
-                        ??
-                        $this->fetchTable()->newEntity([
-                            'gps_x' => $importCustomerPoint->gps_x,
-                            'gps_y' => $importCustomerPoint->gps_y,
+                        $this->fetchTable(CustomerPointsTable::class)->findOrNewEntity([
+                                'gps_x' => $importCustomerPoint->gps_x,
+                                'gps_y' => $importCustomerPoint->gps_y,
                         ]);
 
                     // update data
-                    /** @var \App\Model\Entity\CustomerPoint $customerPoint */
-                    $customerPoint = $this->fetchTable()->patchEntity($customerPoint, [
+                    $customerPoint = $this->fetchTable(CustomerPointsTable::class)->patchEntity($customerPoint, [
                         'name' => $importCustomerPoint->name ?? null,
                         'note' => $importCustomerPoint->note ?? null,
                     ]);
                     $customerPoint->modified = DateTime::now();
 
-                    if (!$this->fetchTable()->save($customerPoint)) {
+                    if (!$this->fetchTable(CustomerPointsTable::class)->save($customerPoint)) {
                         Log::warning('The customer point could not be saved.');
                     }
                 } else {
@@ -91,31 +85,25 @@ class CustomerPointsUpdateCommand extends Command
 
                 // save customer connections
                 foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
-                    /** @var \App\Model\Entity\CustomerConnection $customerConnection */
                     $customerConnection =
-                        $this->fetchTable('CustomerConnections')->find()->where([
-                            'customer_number' => $importCustomerConnection->customer_number,
-                            'contract_number' => $importCustomerConnection->contract_number,
-                        ])->first()
-                        ??
-                        $this->fetchTable('CustomerConnections')->newEntity([
+                        $this->fetchTable(CustomerConnectionsTable::class)->findOrNewEntity([
                             'customer_number' => $importCustomerConnection->customer_number,
                             'contract_number' => $importCustomerConnection->contract_number,
                         ]);
 
                     // update data
-                    /** @var \App\Model\Entity\CustomerConnection $customerConnection */
-                    $customerConnection = $this->fetchTable('CustomerConnections')->patchEntity($customerConnection, [
-                        'customer_point_id' => $customerPoint->id ?? null,
-                        'access_point_id' => $importCustomerConnection->access_point_id ?? null,
-                        'customer_url' => $importCustomerConnection->customer_url ?? null,
-                        'contract_url' => $importCustomerConnection->contract_url ?? null,
-                        'name' => $importCustomerConnection->name ?? null,
-                        'note' => $importCustomerConnection->note ?? null,
-                    ]);
+                    $customerConnection = $this->fetchTable(CustomerConnectionsTable::class)
+                        ->patchEntity($customerConnection, [
+                            'customer_point_id' => $customerPoint->id ?? null,
+                            'access_point_id' => $importCustomerConnection->access_point_id ?? null,
+                            'customer_url' => $importCustomerConnection->customer_url ?? null,
+                            'contract_url' => $importCustomerConnection->contract_url ?? null,
+                            'name' => $importCustomerConnection->name ?? null,
+                            'note' => $importCustomerConnection->note ?? null,
+                        ]);
                     $customerConnection->modified = DateTime::now();
 
-                    if (!$this->fetchTable('CustomerConnections')->save($customerConnection)) {
+                    if (!$this->fetchTable(CustomerConnectionsTable::class)->save($customerConnection)) {
                         Log::warning(
                             'The customer connection could not be saved.'
                             . ' (' . $importCustomerConnection->contract_number . ')',
@@ -123,28 +111,21 @@ class CustomerPointsUpdateCommand extends Command
                     } else {
                         // save customer connection IP addresses
                         foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
-                            /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
                             $customerConnectionIp =
-                                $this->fetchTable('CustomerConnectionIps')->find()->where([
-                                    'customer_connection_id' => $customerConnection->id,
-                                    'ip_address' => $importCustomerConnectionIp->ip_address,
-                                ])->first()
-                                ??
-                                $this->fetchTable('CustomerConnectionIps')->newEntity([
+                                $this->fetchTable(CustomerConnectionIpsTable::class)->findOrNewEntity([
                                     'customer_connection_id' => $customerConnection->id,
                                     'ip_address' => $importCustomerConnectionIp->ip_address,
                                 ]);
 
                             // update data
-                            /** @var \App\Model\Entity\CustomerConnectionIp $customerConnectionIp */
-                            $customerConnectionIp = $this->fetchTable('CustomerConnectionIps')
+                            $customerConnectionIp = $this->fetchTable(CustomerConnectionIpsTable::class)
                                 ->patchEntity($customerConnectionIp, [
                                     'name' => $importCustomerConnectionIp->name ?? null,
                                     'note' => $importCustomerConnectionIp->note ?? null,
                                 ]);
                             $customerConnectionIp->modified = DateTime::now();
 
-                            if (!$this->fetchTable('CustomerConnectionIps')->save($customerConnectionIp)) {
+                            if (!$this->fetchTable(CustomerConnectionIpsTable::class)->save($customerConnectionIp)) {
                                 Log::warning(
                                     'The customer connection IP address could not be saved.'
                                     . ' (' . $importCustomerConnectionIp->ip_address . ')',
@@ -156,14 +137,14 @@ class CustomerPointsUpdateCommand extends Command
             }
 
             // delete old records
-            $this->fetchTable()->deleteMany(
-                $this->fetchTable()->find()->where(['modified <' => $start_time])->all(),
+            $this->fetchTable(CustomerPointsTable::class)->deleteMany(
+                $this->fetchTable(CustomerPointsTable::class)->find()->where(['modified <' => $start_time])->all(),
             );
-            $this->fetchTable('CustomerConnections')->deleteMany(
-                $this->fetchTable('CustomerConnections')->find()->where(['modified <' => $start_time])->all(),
+            $this->fetchTable(CustomerConnectionsTable::class)->deleteMany(
+                $this->fetchTable(CustomerConnectionsTable::class)->find()->where(['modified <' => $start_time])->all(),
             );
-            $this->fetchTable('CustomerConnectionIps')->deleteMany(
-                $this->fetchTable('CustomerConnectionIps')->find()->where(['modified <' => $start_time])->all(),
+            $this->fetchTable(CustomerConnectionIpsTable::class)->deleteMany(
+                $this->fetchTable(CustomerConnectionIpsTable::class)->find()->where(['modified <' => $start_time])->all(),
             );
 
             Log::debug('The customer points data have been updated.');

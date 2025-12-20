@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use AuditLog\Persister\TablePersister;
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\Table;
 use Override;
 
@@ -50,5 +51,21 @@ class AppTable extends Table
                 'foreignKey' => 'modified_by',
             ]);
         }
+    }
+
+    /**
+     * Finds an existing record or prepare a new entity.
+     *
+     * @param array<string, mixed> $search Data to be searched in existing records or added to new entity
+     * @return \Cake\Datasource\EntityInterface An entity.
+     */
+    public function findOrNewEntity(array $search): EntityInterface
+    {
+        $row = $this->find()->where($search)->first();
+        if ($row instanceof EntityInterface) {
+            return $row;
+        }
+
+        return $this->newEntity($search);
     }
 }
