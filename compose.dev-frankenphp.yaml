@@ -2,7 +2,7 @@ services:
   webserver-dev:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.dev-frankenphp
       args:
         - buildno
         - gitcommithash
@@ -19,7 +19,10 @@ services:
     environment:
       DATABASE_URL: postgres://postgres@database-dev/watcher_nms
     ports:
-      - 80:80/tcp
+      - 80:80/tcp # HTTP
+      - 443:443/tcp # HTTPS
+      - 443:443/udp # HTTP/3
+    tty: true
 
   database-dev:
     image: postgres:16
