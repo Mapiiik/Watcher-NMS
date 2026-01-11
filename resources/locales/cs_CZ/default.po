@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2025-05-28 10:10+0200\n"
-"PO-Revision-Date: 2025-05-28 10:10+0200\n"
+"POT-Creation-Date: 2026-01-11 17:10+0100\n"
+"PO-Revision-Date: 2026-01-11 17:11+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -13,13 +13,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
-#: src/Command/CustomerPointsUpdateCommand.php:165
+#: src/Command/CustomerPointsUpdateCommand.php:150
 msgid "The customer points data have been updated."
 msgstr "Data zákaznických bodů byla aktualizována."
 
-#: src/Command/CustomerPointsUpdateCommand.php:168
+#: src/Command/CustomerPointsUpdateCommand.php:153
 msgid "The customer points data could not be updated. Please, try again."
 msgstr "Data zákaznických bodů nelze aktualizovat. Zkuste to prosím znovu."
 
@@ -71,7 +71,7 @@ msgstr "Nikdy"
 
 #: src/Command/ElectricityMeterReadingsReportCommand.php:101
 #: templates/ElectricityMeterReadings/index.php:25
-#: templates/layout/default.php:260
+#: templates/layout/default.php:262
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
@@ -200,12 +200,12 @@ msgstr "Zařízení, která ruší radar, byla nalezena, ale nelze je nahlásit.
 msgid "No devices that interfere with radar found."
 msgstr "Nebyla nalezena žádná zařízení, která ruší radar."
 
-#: src/Command/RadarInterferencesUpdateCommand.php:88
+#: src/Command/RadarInterferencesUpdateCommand.php:87
 #: src/Controller/RadarInterferencesController.php:145
 msgid "The radar interferences table has been updated."
 msgstr "Tabulka radarových rušení byla aktualizována."
 
-#: src/Command/RadarInterferencesUpdateCommand.php:91
+#: src/Command/RadarInterferencesUpdateCommand.php:90
 #: src/Controller/RadarInterferencesController.php:147
 msgid "The radar interferences table could not be updated. Please, try again."
 msgstr "Tabulku radarových rušení nelze aktualizovat. Opakujte akci."
@@ -282,7 +282,7 @@ msgstr "Typ antény byl odstraněn."
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr "Typ antény nelze odstranit. Opakujte akci."
 
-#: src/Controller/AppController.php:93
+#: src/Controller/AppController.php:97
 msgid "Unable to find results on page {0}. Redirect to page 1."
 msgstr "Nelze najít výsledky na stránce {0}. Přesměrování na stranu 1."
 
@@ -778,7 +778,7 @@ msgstr "Vysoká"
 msgid "Urgent"
 msgstr "Naléhavé"
 
-#: src/Model/Table/TasksTable.php:161
+#: src/Model/Table/TasksTable.php:165
 msgid "The specified task type requires the assignment of an access point."
 msgstr "Zadaný typ úkolu vyžaduje přiřazení přístupového bodu."
 
@@ -972,7 +972,7 @@ msgstr "Potvrdit"
 #: templates/RouterosDeviceIps/edit.php:13
 #: templates/RouterosDeviceIps/index.php:80
 #: templates/RouterosDevices/edit.php:15
-#: templates/RouterosDevices/export.php:147
+#: templates/RouterosDevices/export.php:144
 #: templates/RouterosDevices/index.php:102
 #: templates/RouterosDevices/view.php:221
 #: templates/RouterosDevices/view.php:266 templates/TaskStates/edit.php:12
@@ -1045,7 +1045,7 @@ msgstr "Odstranit"
 #: templates/RouterosDeviceIps/index.php:82
 #: templates/RouterosDeviceIps/view.php:20
 #: templates/RouterosDevices/edit.php:18
-#: templates/RouterosDevices/export.php:149
+#: templates/RouterosDevices/export.php:146
 #: templates/RouterosDevices/index.php:104
 #: templates/RouterosDevices/view.php:20 templates/RouterosDevices/view.php:227
 #: templates/RouterosDevices/view.php:268 templates/TaskStates/edit.php:14
@@ -1090,7 +1090,7 @@ msgstr "Hledat"
 msgid "New Access Point Contact"
 msgstr "Nový kontakt přístupového bodu"
 
-#: templates/AccessPointContacts/index.php:25 templates/layout/default.php:255
+#: templates/AccessPointContacts/index.php:25 templates/layout/default.php:257
 msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
@@ -1125,14 +1125,14 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RadioUnits/export.php:122 templates/RadioUnits/index.php:107
 #: templates/RouterosDeviceInterfaces/index.php:100
 #: templates/RouterosDeviceIps/index.php:71
-#: templates/RouterosDevices/export.php:138
+#: templates/RouterosDevices/export.php:135
 #: templates/RouterosDevices/index.php:93
 #: templates/RouterosDevices/view.php:204
 #: templates/RouterosDevices/view.php:257 templates/TaskStates/index.php:41
 #: templates/TaskStates/view.php:143 templates/TaskTypes/index.php:37
 #: templates/TaskTypes/view.php:135 templates/Tasks/index.php:111
 #: templates/email/html/electricity_meter_readings_report.php:52
-#: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1178
+#: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1223
 msgid "View"
 msgstr "Zobrazit"
 
@@ -1167,7 +1167,7 @@ msgstr "Zobrazit"
 #: templates/RadioUnits/export.php:126 templates/RadioUnits/index.php:111
 #: templates/RouterosDeviceInterfaces/index.php:104
 #: templates/RouterosDeviceIps/index.php:75
-#: templates/RouterosDevices/export.php:142
+#: templates/RouterosDevices/export.php:139
 #: templates/RouterosDevices/index.php:97
 #: templates/RouterosDevices/view.php:212
 #: templates/RouterosDevices/view.php:261 templates/TaskStates/index.php:43
@@ -1557,7 +1557,7 @@ msgid "Map"
 msgstr "Mapa"
 
 #: templates/AccessPoints/index.php:26 templates/AccessPoints/map.php:15
-#: templates/layout/default.php:97 templates/layout/default.php:250
+#: templates/layout/default.php:98 templates/layout/default.php:252
 msgid "Access Points"
 msgstr "Přístupové body"
 
@@ -2085,19 +2085,19 @@ msgstr "Číslo dílu"
 msgid "Antenna Gain"
 msgstr "Zisk antény"
 
-#: templates/AppUsers/user_settings.php:52 templates/layout/default.php:202
+#: templates/AppUsers/user_settings.php:53 templates/layout/default.php:203
 msgid "Default"
 msgstr "Výchozí"
 
-#: templates/AppUsers/user_settings.php:53 templates/layout/default.php:203
+#: templates/AppUsers/user_settings.php:54 templates/layout/default.php:204
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: templates/AppUsers/user_settings.php:54 templates/layout/default.php:204
+#: templates/AppUsers/user_settings.php:55 templates/layout/default.php:205
 msgid "Legacy"
 msgstr "Starší"
 
-#: templates/AppUsers/user_settings.php:55 templates/layout/default.php:205
+#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:206
 msgid "Dark"
 msgstr "Tmavý"
 
@@ -2122,7 +2122,7 @@ msgid "New Customer Connection IP"
 msgstr "Nová IP připojení zákazníka"
 
 #: templates/CustomerConnectionIps/index.php:25
-#: templates/layout/default.php:289
+#: templates/layout/default.php:291
 msgid "Customer Connection Ips"
 msgstr "IP připojení zákazníků"
 
@@ -2156,7 +2156,7 @@ msgstr "Upravit připojení zákazníka"
 msgid "New Customer Connection"
 msgstr "Nové připojení zákazníka"
 
-#: templates/CustomerConnections/index.php:25 templates/layout/default.php:284
+#: templates/CustomerConnections/index.php:25 templates/layout/default.php:286
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
 
@@ -2189,8 +2189,8 @@ msgstr "Upravit zákaznický bod"
 msgid "New Customer Point"
 msgstr "Nový zákaznický bod"
 
-#: templates/CustomerPoints/index.php:25 templates/layout/default.php:116
-#: templates/layout/default.php:279
+#: templates/CustomerPoints/index.php:25 templates/layout/default.php:117
+#: templates/layout/default.php:281
 msgid "Customer Points"
 msgstr "Zákaznické body"
 
@@ -2284,7 +2284,7 @@ msgstr "Přidat rozsah IP adres"
 msgid "Edit IP Address Range"
 msgstr "Upravit rozsah IP adres"
 
-#: templates/IpAddressRanges/index.php:25 templates/layout/default.php:125
+#: templates/IpAddressRanges/index.php:25 templates/layout/default.php:126
 msgid "IP Address Ranges"
 msgstr "Rozsahy IP adres"
 
@@ -2331,7 +2331,7 @@ msgstr "Vysoká sazba - Cena za kWh"
 msgid "Edit Landlord Payment"
 msgstr "Upravit platbu pronajímateli"
 
-#: templates/LandlordPayments/index.php:25 templates/layout/default.php:265
+#: templates/LandlordPayments/index.php:25 templates/layout/default.php:267
 msgid "Landlord Payments"
 msgstr "Platby pronajímateli"
 
@@ -2431,7 +2431,7 @@ msgstr "Přidat napájecí zdroj"
 msgid "Edit Power Supply"
 msgstr "Upravit napájecí zdroj"
 
-#: templates/PowerSupplies/index.php:25 templates/layout/default.php:150
+#: templates/PowerSupplies/index.php:25 templates/layout/default.php:151
 msgid "Power Supplies"
 msgstr "Napájecí zdroje"
 
@@ -2499,7 +2499,7 @@ msgstr "Nové rušení radaru"
 msgid "Devices That Interfere"
 msgstr "Zařízení, která ruší"
 
-#: templates/RadarInterferences/index.php:35 templates/layout/default.php:319
+#: templates/RadarInterferences/index.php:35 templates/layout/default.php:321
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
@@ -2601,13 +2601,13 @@ msgstr "Upravit rádiový spoj"
 msgid "New Radio Link"
 msgstr "Nový rádiový spoj"
 
-#: templates/RadioLinks/index.php:27 templates/layout/default.php:142
-#: templates/layout/default.php:332
+#: templates/RadioLinks/index.php:27 templates/layout/default.php:143
+#: templates/layout/default.php:334
 msgid "Radio Links"
 msgstr "Rádiové spoje"
 
 #: templates/RadioLinks/index.php:35 templates/RadioUnits/export.php:10
-#: templates/RadioUnits/index.php:29 templates/layout/default.php:337
+#: templates/RadioUnits/index.php:29 templates/layout/default.php:339
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
@@ -2744,7 +2744,7 @@ msgid "New RouterOS Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:40
-#: templates/layout/default.php:309
+#: templates/layout/default.php:311
 msgid "RouterOS Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
 
@@ -2802,7 +2802,7 @@ msgstr "Upravit IP zařízení RouterOS"
 msgid "New RouterOS Device IP"
 msgstr "Nová IP zařízení RouterOS"
 
-#: templates/RouterosDeviceIps/index.php:40 templates/layout/default.php:314
+#: templates/RouterosDeviceIps/index.php:40 templates/layout/default.php:316
 msgid "RouterOS Device Ips"
 msgstr "IP zařízení RouterOS"
 
@@ -2824,8 +2824,8 @@ msgid "Edit RouterOS Device"
 msgstr "Upravit zařízení RouterOS"
 
 #: templates/RouterosDevices/export.php:37
-#: templates/RouterosDevices/index.php:41 templates/layout/default.php:132
-#: templates/layout/default.php:304
+#: templates/RouterosDevices/index.php:41 templates/layout/default.php:133
+#: templates/layout/default.php:306
 msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
 
@@ -2845,7 +2845,7 @@ msgstr "Heslo"
 msgid "Related RouterOS Device Ips"
 msgstr "Související IP zařízení RouterOS"
 
-#: templates/Settings/index.php:7 templates/layout/default.php:157
+#: templates/Settings/index.php:7 templates/layout/default.php:158
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -3015,7 +3015,7 @@ msgstr "Zobrazit dokončené"
 msgid "New Task"
 msgstr "Nový úkol"
 
-#: templates/Tasks/index.php:51 templates/layout/default.php:107
+#: templates/Tasks/index.php:51 templates/layout/default.php:108
 msgid "Tasks"
 msgstr "Úkoly"
 
@@ -3040,19 +3040,19 @@ msgstr "Hledat na mapě"
 msgid "View Task"
 msgstr "Zobrazit úkol"
 
-#: templates/layout/default.php:175
+#: templates/layout/default.php:176
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
 
-#: templates/layout/default.php:230
+#: templates/layout/default.php:232
 msgid "Logout"
 msgstr "Odhlášení"
 
-#: templates/layout/default.php:356
+#: templates/layout/default.php:358
 msgid "Changelog"
 msgstr "Seznam změn"
 
-#: templates/layout/default.php:357
+#: templates/layout/default.php:359
 msgid "Version"
 msgstr "Verze"
 
