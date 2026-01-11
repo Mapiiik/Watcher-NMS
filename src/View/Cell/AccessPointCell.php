@@ -9,6 +9,8 @@ use Override;
 
 /**
  * Access Point cell
+ *
+ * @extends \Cake\View\Cell<\App\View\AppView>
  */
 class AccessPointCell extends Cell
 {

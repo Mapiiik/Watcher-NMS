@@ -2,7 +2,7 @@
 use App\Model\Entity\ElectricityMeterReading;
 
 /**
- * @var \Cake\View\View $this
+ * @var \App\View\AppView $this
  * @var string $title
  * @var iterable<\App\Model\Entity\AccessPoint> $accessPoints
  */
