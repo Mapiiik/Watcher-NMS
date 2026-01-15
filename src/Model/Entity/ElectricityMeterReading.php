@@ -20,6 +20,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $modified
  * @property string|null $modified_by
  * @property \App\Model\Entity\AppUser|null $modifier
+ * @property float|null $daily_consumption
  *
  * @property \App\Model\Entity\AccessPoint $access_point
  *

@@ -28,6 +28,8 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'paths.php';
  *
  * - Registering the CakePHP autoloader.
  * - Setting the default application paths.
+ *
+ * @phpstan-ignore-next-line require.fileNotFound
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
@@ -48,6 +50,8 @@ use josegonzalez\Dotenv\Loader;
 
 /**
  * Load global functions.
+ *
+ * @phpstan-ignore-next-line require.fileNotFound
  */
 require CAKE . 'functions.php';
 

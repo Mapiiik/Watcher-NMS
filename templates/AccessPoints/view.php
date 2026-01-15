@@ -267,12 +267,12 @@
                                 '' : $this->Number->format($electricityMeterReadings->reading_value, [
                                     'after' => ' kWh',
                                 ]) ?></td>
-                            <td><?= $electricityMeterReadings['daily_consumption'] ?
-                                $this->Number->format($electricityMeterReadings['daily_consumption'], [
+                            <td><?= $electricityMeterReadings->get('daily_consumption') ?
+                                $this->Number->format($electricityMeterReadings->get('daily_consumption'), [
                                     'after' => ' kWh',
                                 ]) : '' ?></td>
-                            <td><?= $electricityMeterReadings['daily_consumption'] ?
-                                $this->Number->format($electricityMeterReadings['daily_consumption'] * 365, [
+                            <td><?= $electricityMeterReadings->get('daily_consumption') ?
+                                $this->Number->format($electricityMeterReadings->get('daily_consumption') * 365, [
                                     'after' => ' kWh',
                                 ]) : '' ?></td>
                             <td><?= $this->Text->autoParagraph(h($electricityMeterReadings->note)); ?></td>
