@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-01-11 17:10+0100\n"
-"PO-Revision-Date: 2026-01-11 17:11+0100\n"
+"POT-Creation-Date: 2026-01-19 10:32+0100\n"
+"PO-Revision-Date: 2026-01-19 10:33+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -1132,7 +1132,7 @@ msgstr "Kontakty přístupových bodů"
 #: templates/TaskStates/view.php:143 templates/TaskTypes/index.php:37
 #: templates/TaskTypes/view.php:135 templates/Tasks/index.php:111
 #: templates/email/html/electricity_meter_readings_report.php:52
-#: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1223
+#: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
 msgid "View"
 msgstr "Zobrazit"
 
@@ -3053,6 +3053,10 @@ msgid "Changelog"
 msgstr "Seznam změn"
 
 #: templates/layout/default.php:359
+msgid "Source Code"
+msgstr "Zdrojový kód"
+
+#: templates/layout/default.php:361
 msgid "Version"
 msgstr "Verze"
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-01-11 17:10+0100\n"
+"POT-Creation-Date: 2026-01-19 10:32+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1312,7 +1312,7 @@ msgstr ""
 #: ./templates/TaskTypes/view.php:135
 #: ./templates/Tasks/index.php:111
 #: ./templates/email/html/electricity_meter_readings_report.php:52
-#: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1223
+#: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
 msgid "View"
 msgstr ""
 
@@ -3615,6 +3615,10 @@ msgid "Changelog"
 msgstr ""
 
 #: ./templates/layout/default.php:359
+msgid "Source Code"
+msgstr ""
+
+#: ./templates/layout/default.php:361
 msgid "Version"
 msgstr ""
 
