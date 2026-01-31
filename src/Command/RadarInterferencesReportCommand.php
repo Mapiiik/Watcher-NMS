@@ -13,6 +13,7 @@ use Cake\Mailer\Mailer;
 use Cake\Routing\Router;
 use Exception;
 use Override;
+use Throwable;
 
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
@@ -50,100 +51,132 @@ class RadarInterferencesReportCommand extends Command
     #[Override]
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        $names = $args->getArgument('names');
-        if (!isset($names)) {
-            $names = (string)env('RADAR_INTERFERENCES_REPORT_NAMES');
-        }
-        $emails = $args->getArgument('emails');
-        if (!isset($emails)) {
-            $emails = (string)env('REPORT_EMAILS');
-        }
+        try {
+            $names = $args->getArgument('names');
+            if (!isset($names)) {
+                $names = (string)env('RADAR_INTERFERENCES_REPORT_NAMES');
+            }
+            $emails = $args->getArgument('emails');
+            if (!isset($emails)) {
+                $emails = (string)env('REPORT_EMAILS');
+            }
 
-        $radarInterferences = $this->fetchTable(RadarInterferencesTable::class)->find();
+            $radarInterferences = $this->fetchTable(RadarInterferencesTable::class)->find();
 
-        $radarInterferences->join([
-            'RouterosDeviceInterfaces' => [
-                'table' => 'routeros_device_interfaces',
-                'type' => 'INNER',
-                'conditions' => 'RadarInterferences.mac_address = RouterosDeviceInterfaces.mac_address'
-                    . " AND to_tsvector(RadarInterferences.name) @@ to_tsquery('"
-                    . mb_ereg_replace('\s{1,}', '|', $names)
-                    . "')",
-            ],
-            'RouterosDevices' => [
-                'table' => 'routeros_devices',
-                'type' => 'INNER',
-                'conditions' => 'RouterosDeviceInterfaces.routeros_device_id = RouterosDevices.id',
-            ],
-        ]);
+            $radarInterferences->join([
+                'RouterosDeviceInterfaces' => [
+                    'table' => 'routeros_device_interfaces',
+                    'type' => 'INNER',
+                    'conditions' => 'RadarInterferences.mac_address = RouterosDeviceInterfaces.mac_address'
+                        . " AND to_tsvector(RadarInterferences.name) @@ to_tsquery('"
+                        . mb_ereg_replace('\s{1,}', '|', $names)
+                        . "')",
+                ],
+                'RouterosDevices' => [
+                    'table' => 'routeros_devices',
+                    'type' => 'INNER',
+                    'conditions' => 'RouterosDeviceInterfaces.routeros_device_id = RouterosDevices.id',
+                ],
+            ]);
 
-        $radarInterferences->select($this->fetchTable(RadarInterferencesTable::class));
-        $radarInterferences->select(['routeros_device_id' => 'RouterosDevices.id']);
-        $radarInterferences->select(['routeros_device_name' => 'RouterosDevices.name']);
-        $radarInterferences->select(['routeros_device_interface_id' => 'RouterosDeviceInterfaces.id']);
-        $radarInterferences->select(['routeros_device_interface_name' => 'RouterosDeviceInterfaces.name']);
+            $radarInterferences->select($this->fetchTable(RadarInterferencesTable::class));
+            $radarInterferences->select(['routeros_device_id' => 'RouterosDevices.id']);
+            $radarInterferences->select(['routeros_device_name' => 'RouterosDevices.name']);
+            $radarInterferences->select(['routeros_device_interface_id' => 'RouterosDeviceInterfaces.id']);
+            $radarInterferences->select(['routeros_device_interface_name' => 'RouterosDeviceInterfaces.name']);
 
-        if ($radarInterferences->count() > 0) {
-            $table[] = [
-                __('Name'),
-                __('MAC Address'),
-                __('SSID'),
-                __('Radio Name'),
-                __('Signal'),
-                __('Device Name'),
-                __('Interface Name'),
-            ];
-            foreach ($radarInterferences as $radarInterference) {
+            if ($radarInterferences->count() > 0) {
                 $table[] = [
-                    $radarInterference['name'],
-                    $radarInterference['mac_address'],
-                    $radarInterference['ssid'],
-                    $radarInterference['radio_name'],
-                    (string)$radarInterference['signal'],
-                    $radarInterference['routeros_device_name'],
-                    $radarInterference['routeros_device_interface_name'],
+                    __('Name'),
+                    __('MAC Address'),
+                    __('SSID'),
+                    __('Radio Name'),
+                    __('Signal'),
+                    __('Device Name'),
+                    __('Interface Name'),
                 ];
+                foreach ($radarInterferences as $radarInterference) {
+                    $table[] = [
+                        $radarInterference['name'],
+                        $radarInterference['mac_address'],
+                        $radarInterference['ssid'],
+                        $radarInterference['radio_name'],
+                        (string)$radarInterference['signal'],
+                        $radarInterference['routeros_device_name'],
+                        $radarInterference['routeros_device_interface_name'],
+                    ];
+                }
+                $io->helper('Table')->output($table);
+
+                $mailer = new Mailer('default');
+
+                foreach (explode(' ', $emails) as $email) {
+                    $mailer->addTo($email);
+                }
+                $mailer->setSubject(__('Devices that interfere with radar found'));
+
+                try {
+                    $mailer->deliver(
+                        __(
+                            'Devices that interfere with radar ({count}) found.',
+                            ['count' => $radarInterferences->count()],
+                        ) . PHP_EOL
+                        . PHP_EOL
+                        . __(
+                            'For more informations go here: {url}',
+                            [
+                                'url' => Router::url([
+                                    'controller' => 'RadarInterferences',
+                                    'action' => 'devices',
+                                    '_full' => true,
+                                ], true),
+                            ],
+                        ) . PHP_EOL,
+                    );
+
+                    Log::write('debug', 'Devices that interfere with radar found and reported.');
+                    $io->info(__('Devices that interfere with radar found and reported.'));
+                } catch (Exception $e) {
+                    Log::write(
+                        'warning',
+                        'Devices that interfere with radar found but cannot be reported. (' . $e->getMessage() . ')',
+                    );
+                    $io->abort(__('Devices that interfere with radar found but cannot be reported.'));
+                }
+            } else {
+                Log::write('debug', 'No devices that interfere with radar found.');
+                $io->success(__('No devices that interfere with radar found.'));
             }
-            $io->helper('Table')->output($table);
 
-            $mailer = new Mailer('default');
+            return static::CODE_SUCCESS;
+        } catch (Throwable $e) {
+            Log::error(
+                'Error during radar interferences report: ' . PHP_EOL . $e->getMessage(),
+            );
 
-            foreach (explode(' ', $emails) as $email) {
-                $mailer->addTo($email);
+            $io->error(__(
+                'Error during radar interferences report: {0}',
+                $e->getMessage(),
+            ));
+
+            // notify by email (if it fails, let it crash)
+            $errorMailer = new Mailer('default');
+
+            foreach (explode(' ', (string)env('REPORT_EMAILS')) as $email) {
+                $errorMailer->addTo($email);
             }
-            $mailer->setSubject(__('Devices that interfere with radar found'));
 
-            try {
-                $mailer->deliver(
-                    __(
-                        'Devices that interfere with radar ({count}) found.',
-                        ['count' => $radarInterferences->count()],
-                    ) . PHP_EOL
-                    . PHP_EOL
-                    . __(
-                        'For more informations go here: {url}',
-                        [
-                            'url' => Router::url([
-                                'controller' => 'RadarInterferences',
-                                'action' => 'devices',
-                                '_full' => true,
-                            ], true),
-                        ],
-                    ) . PHP_EOL,
-                );
+            $errorMailer->setSubject(__('Radar interferences report failed'));
 
-                Log::write('debug', 'Devices that interfere with radar found and reported.');
-                $io->info(__('Devices that interfere with radar found and reported.'));
-            } catch (Exception $e) {
-                Log::write(
-                    'warning',
-                    'Devices that interfere with radar found but cannot be reported. (' . $e->getMessage() . ')',
-                );
-                $io->abort(__('Devices that interfere with radar found but cannot be reported.'));
-            }
-        } else {
-            Log::write('debug', 'No devices that interfere with radar found.');
-            $io->success(__('No devices that interfere with radar found.'));
+            $errorMailer->deliver(__(
+                'Radar interferences report failed.' . PHP_EOL . PHP_EOL
+                . 'Error: {0}',
+                [$e->getMessage()],
+            ));
+
+            unset($errorMailer);
+
+            return static::CODE_ERROR;
         }
     }
 }

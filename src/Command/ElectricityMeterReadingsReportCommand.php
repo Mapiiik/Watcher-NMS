@@ -15,6 +15,7 @@ use Cake\Mailer\Mailer;
 use Cake\ORM\Query\SelectQuery;
 use Exception;
 use Override;
+use Throwable;
 
 /**
  * @property \App\Model\Table\RadarInterferencesTable $RadarInterferences
@@ -48,85 +49,117 @@ class ElectricityMeterReadingsReportCommand extends Command
     #[Override]
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        $emails = $args->getArgument('emails');
-        if (!isset($emails)) {
-            $emails = (string)env('REPORT_EMAILS');
-        }
+        try {
+            $emails = $args->getArgument('emails');
+            if (!isset($emails)) {
+                $emails = (string)env('REPORT_EMAILS');
+            }
 
-        $now = new Date();
+            $now = new Date();
 
-        $accessPoints = $this->fetchTable(AccessPointsTable::class)
-            ->find('all', conditions: [
-                'month_of_electricity_meter_reading' => (int)$now->i18nFormat('L'),
-            ])
-            ->contain('ElectricityMeterReadings', function (SelectQuery $q) {
-                return $q->orderBy(['reading_date' => 'DESC']);
-            })
-            ->all();
+            $accessPoints = $this->fetchTable(AccessPointsTable::class)
+                ->find('all', conditions: [
+                    'month_of_electricity_meter_reading' => (int)$now->i18nFormat('L'),
+                ])
+                ->contain('ElectricityMeterReadings', function (SelectQuery $q) {
+                    return $q->orderBy(['reading_date' => 'DESC']);
+                })
+                ->all();
 
-        if ($accessPoints->count() > 0) {
-            // display the table on the console
-            $table[] = [
-                __('Access Point'),
-                __('Contract Conditions'),
-                __('Last Reading Date'),
-                __('Last Reading Value'),
-                __('Number of days since last'),
-            ];
-            foreach ($accessPoints as $accessPoint) {
-                if (isset($accessPoint->electricity_meter_readings[0])) {
-                    $lastReading = $accessPoint->electricity_meter_readings[0];
-                } else {
-                    $lastReading = new ElectricityMeterReading(['reading_date' => null, 'reading_value' => null]);
+            if ($accessPoints->count() > 0) {
+                // display the table on the console
+                $table[] = [
+                    __('Access Point'),
+                    __('Contract Conditions'),
+                    __('Last Reading Date'),
+                    __('Last Reading Value'),
+                    __('Number of days since last'),
+                ];
+                foreach ($accessPoints as $accessPoint) {
+                    if (isset($accessPoint->electricity_meter_readings[0])) {
+                        $lastReading = $accessPoint->electricity_meter_readings[0];
+                    } else {
+                        $lastReading = new ElectricityMeterReading(['reading_date' => null, 'reading_value' => null]);
+                    }
+
+                    $table[] = [
+                        $accessPoint->name,
+                        $accessPoint->contract_conditions,
+                        $lastReading->reading_date,
+                        $lastReading->reading_value,
+                        $lastReading->__isset('reading_date') ?
+                            $lastReading->reading_date->diffInDays(null, false) : __('Never'),
+                    ];
+                }
+                $io->helper('Table')->output($table);
+
+                // send table to mail
+                $mailer = new Mailer('default');
+
+                foreach (explode(' ', $emails) as $email) {
+                    $mailer->addTo($email);
                 }
 
-                $table[] = [
-                    $accessPoint->name,
-                    $accessPoint->contract_conditions,
-                    $lastReading->reading_date,
-                    $lastReading->reading_value,
-                    $lastReading->__isset('reading_date') ?
-                        $lastReading->reading_date->diffInDays(null, false) : __('Never'),
-                ];
+                $mailer->setSubject(__('Electricity Meter Readings') . ' - ' . $now->i18nFormat('LLLL YYYY'));
+                $mailer->setEmailFormat('html');
+
+                $mailer->viewBuilder()
+                    ->setLayout('default')
+                    ->setTemplate('electricity-meter-readings-report');
+
+                $mailer->setViewVars([
+                    'title' => __(
+                        'These electricity meter readings should take place in {month}.',
+                        ['month' => $now->i18nFormat('LLLL YYYY')],
+                    ),
+                    'accessPoints' => $accessPoints,
+                ]);
+
+                try {
+                    $mailer->deliver();
+                    Log::write('debug', 'The electricity meter readings to be made have been reported.');
+                    $io->info(__('The electricity meter readings to be made have been reported.'));
+                } catch (Exception $e) {
+                    Log::write(
+                        'warning',
+                        'The electricity meter readings to be made cannot be reported. (' . $e->getMessage() . ')',
+                    );
+                    $io->abort(__('The electricity meter readings to be made cannot be reported.'));
+                }
+            } else {
+                Log::write('debug', 'There is no need to take any electricity meter readings this month.');
+                $io->success(__('There is no need to take any electricity meter readings this month.'));
             }
-            $io->helper('Table')->output($table);
 
-            // send table to mail
-            $mailer = new Mailer('default');
+            return static::CODE_SUCCESS;
+        } catch (Throwable $e) {
+            Log::error(
+                'Error during electricity meter readings report: ' . PHP_EOL . $e->getMessage(),
+            );
 
-            foreach (explode(' ', $emails) as $email) {
-                $mailer->addTo($email);
+            $io->error(__(
+                'Error during electricity meter readings report: {0}',
+                $e->getMessage(),
+            ));
+
+            // notify by email (if it fails, let it crash)
+            $errorMailer = new Mailer('default');
+
+            foreach (explode(' ', (string)env('REPORT_EMAILS')) as $email) {
+                $errorMailer->addTo($email);
             }
 
-            $mailer->setSubject(__('Electricity Meter Readings') . ' - ' . $now->i18nFormat('LLLL YYYY'));
-            $mailer->setEmailFormat('html');
+            $errorMailer->setSubject(__('Electricity meter readings report failed'));
 
-            $mailer->viewBuilder()
-                ->setLayout('default')
-                ->setTemplate('electricity-meter-readings-report');
+            $errorMailer->deliver(__(
+                'Electricity meter readings report failed.' . PHP_EOL . PHP_EOL
+                . 'Error: {0}',
+                [$e->getMessage()],
+            ));
 
-            $mailer->setViewVars([
-                'title' => __(
-                    'These electricity meter readings should take place in {month}.',
-                    ['month' => $now->i18nFormat('LLLL YYYY')],
-                ),
-                'accessPoints' => $accessPoints,
-            ]);
+            unset($errorMailer);
 
-            try {
-                $mailer->deliver();
-                Log::write('debug', 'The electricity meter readings to be made have been reported.');
-                $io->info(__('The electricity meter readings to be made have been reported.'));
-            } catch (Exception $e) {
-                Log::write(
-                    'warning',
-                    'The electricity meter readings to be made cannot be reported. (' . $e->getMessage() . ')',
-                );
-                $io->abort(__('The electricity meter readings to be made cannot be reported.'));
-            }
-        } else {
-            Log::write('debug', 'There is no need to take any electricity meter readings this month.');
-            $io->success(__('There is no need to take any electricity meter readings this month.'));
+            return static::CODE_ERROR;
         }
     }
 }
