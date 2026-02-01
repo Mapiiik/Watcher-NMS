@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-01-19 10:32+0100\n"
-"PO-Revision-Date: 2026-01-19 10:33+0100\n"
+"POT-Creation-Date: 2026-02-01 09:09+0100\n"
+"PO-Revision-Date: 2026-02-01 09:13+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -15,15 +15,27 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 "X-Generator: Poedit 3.8\n"
 
-#: src/Command/CustomerPointsUpdateCommand.php:150
+#: src/Command/CustomerPointsUpdateCommand.php:154
 msgid "The customer points data have been updated."
 msgstr "Data zákaznických bodů byla aktualizována."
 
-#: src/Command/CustomerPointsUpdateCommand.php:153
+#: src/Command/CustomerPointsUpdateCommand.php:157
 msgid "The customer points data could not be updated. Please, try again."
 msgstr "Data zákaznických bodů nelze aktualizovat. Zkuste to prosím znovu."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:70
+#: src/Command/CustomerPointsUpdateCommand.php:166
+msgid "Error during customer points update: {0}"
+msgstr "Chyba při aktualizaci zákaznických bodů: {0}"
+
+#: src/Command/CustomerPointsUpdateCommand.php:178
+msgid "Customer points update failed"
+msgstr "Aktualizace zákaznických bodů se nezdařila"
+
+#: src/Command/CustomerPointsUpdateCommand.php:180
+msgid "Customer points update failed."
+msgstr "Aktualizace zákaznických bodů se nezdařila."
+
+#: src/Command/ElectricityMeterReadingsReportCommand.php:72
 #: templates/AccessPointContacts/view.php:47
 #: templates/AntennaTypes/view.php:126
 #: templates/CustomerConnections/view.php:59
@@ -43,55 +55,67 @@ msgstr "Data zákaznických bodů nelze aktualizovat. Zkuste to prosím znovu."
 msgid "Access Point"
 msgstr "Přístupový bod"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:71
+#: src/Command/ElectricityMeterReadingsReportCommand.php:73
 #: templates/AccessPoints/view.php:155
 #: templates/email/html/electricity_meter_readings_report.php:28
 msgid "Contract Conditions"
 msgstr "Podmínky smlouvy"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:72
+#: src/Command/ElectricityMeterReadingsReportCommand.php:74
 #: templates/email/html/electricity_meter_readings_report.php:29
 msgid "Last Reading Date"
 msgstr "Datum posledního čtení"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:73
+#: src/Command/ElectricityMeterReadingsReportCommand.php:75
 #: templates/email/html/electricity_meter_readings_report.php:30
 msgid "Last Reading Value"
 msgstr "Hodnota posledního čtení"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:74
+#: src/Command/ElectricityMeterReadingsReportCommand.php:76
 #: templates/email/html/electricity_meter_readings_report.php:31
 msgid "Number of days since last"
 msgstr "Počet dní od posledního"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:89
+#: src/Command/ElectricityMeterReadingsReportCommand.php:91
 #: templates/email/html/electricity_meter_readings_report.php:49
 msgid "Never"
 msgstr "Nikdy"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:101
+#: src/Command/ElectricityMeterReadingsReportCommand.php:103
 #: templates/ElectricityMeterReadings/index.php:25
 #: templates/layout/default.php:262
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:109
+#: src/Command/ElectricityMeterReadingsReportCommand.php:111
 msgid "These electricity meter readings should take place in {month}."
 msgstr "Tyto odečty elektroměrů by měly probíhat v {month}."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:119
+#: src/Command/ElectricityMeterReadingsReportCommand.php:121
 msgid "The electricity meter readings to be made have been reported."
 msgstr "Byly nahlášeny odečty elektroměrů, které mají být provedeny."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:125
+#: src/Command/ElectricityMeterReadingsReportCommand.php:127
 msgid "The electricity meter readings to be made cannot be reported."
 msgstr "Odečty elektroměrů, které mají být provedeny, nelze nahlásit."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:129
+#: src/Command/ElectricityMeterReadingsReportCommand.php:131
 msgid "There is no need to take any electricity meter readings this month."
 msgstr "Tento měsíc není třeba provádět žádné odečty elektroměrů."
 
-#: src/Command/RadarInterferencesReportCommand.php:88
+#: src/Command/ElectricityMeterReadingsReportCommand.php:140
+msgid "Error during electricity meter readings report: {0}"
+msgstr "Chyba při hlášení odečtu elektroměru: {0}"
+
+#: src/Command/ElectricityMeterReadingsReportCommand.php:152
+msgid "Electricity meter readings report failed"
+msgstr "Hlášení odečtu elektroměru se nezdařilo"
+
+#: src/Command/ElectricityMeterReadingsReportCommand.php:154
+msgid "Electricity meter readings report failed."
+msgstr "Hlášení odečtu elektroměru se nezdařilo."
+
+#: src/Command/RadarInterferencesReportCommand.php:90
 #: templates/AccessPointContacts/view.php:43
 #: templates/AccessPointTypes/view.php:43
 #: templates/AccessPointTypes/view.php:105 templates/AccessPoints/view.php:35
@@ -127,7 +151,7 @@ msgstr "Tento měsíc není třeba provádět žádné odečty elektroměrů."
 msgid "Name"
 msgstr "Jméno"
 
-#: src/Command/RadarInterferencesReportCommand.php:89
+#: src/Command/RadarInterferencesReportCommand.php:91
 #: templates/RadarInterferences/add.php:26
 #: templates/RadarInterferences/edit.php:34
 #: templates/RadarInterferences/index.php:41
@@ -142,7 +166,7 @@ msgstr "Jméno"
 msgid "MAC Address"
 msgstr "MAC adresa"
 
-#: src/Command/RadarInterferencesReportCommand.php:90
+#: src/Command/RadarInterferencesReportCommand.php:92
 #: templates/RadarInterferences/add.php:29
 #: templates/RadarInterferences/edit.php:37
 #: templates/RadarInterferences/index.php:42
@@ -157,58 +181,82 @@ msgstr "MAC adresa"
 msgid "SSID"
 msgstr "SSID"
 
-#: src/Command/RadarInterferencesReportCommand.php:91
+#: src/Command/RadarInterferencesReportCommand.php:93
 #: templates/RadarInterferences/view.php:55
 msgid "Radio Name"
 msgstr "Název rádia"
 
-#: src/Command/RadarInterferencesReportCommand.php:92
+#: src/Command/RadarInterferencesReportCommand.php:94
 #: templates/RadarInterferences/view.php:59
 msgid "Signal"
 msgstr "Signál"
 
-#: src/Command/RadarInterferencesReportCommand.php:93
+#: src/Command/RadarInterferencesReportCommand.php:95
 #: templates/AccessPointTypes/view.php:106 templates/AccessPoints/view.php:39
 msgid "Device Name"
 msgstr "Název zařízení"
 
-#: src/Command/RadarInterferencesReportCommand.php:94
+#: src/Command/RadarInterferencesReportCommand.php:96
 msgid "Interface Name"
 msgstr "Název rozhraní"
 
-#: src/Command/RadarInterferencesReportCommand.php:114
+#: src/Command/RadarInterferencesReportCommand.php:116
 msgid "Devices that interfere with radar found"
 msgstr "Nalezena zařízení, která ruší radar"
 
-#: src/Command/RadarInterferencesReportCommand.php:118
+#: src/Command/RadarInterferencesReportCommand.php:120
 msgid "Devices that interfere with radar ({count}) found."
 msgstr "Byla nalezena zařízení, která ruší radar ({count})."
 
-#: src/Command/RadarInterferencesReportCommand.php:123
+#: src/Command/RadarInterferencesReportCommand.php:125
 msgid "For more informations go here: {url}"
 msgstr "Pro více informací přejděte sem: {url}"
 
-#: src/Command/RadarInterferencesReportCommand.php:136
+#: src/Command/RadarInterferencesReportCommand.php:138
 msgid "Devices that interfere with radar found and reported."
 msgstr "Zařízení, která ruší radar, byla nalezena a nahlášena."
 
-#: src/Command/RadarInterferencesReportCommand.php:142
+#: src/Command/RadarInterferencesReportCommand.php:144
 msgid "Devices that interfere with radar found but cannot be reported."
 msgstr "Zařízení, která ruší radar, byla nalezena, ale nelze je nahlásit."
 
-#: src/Command/RadarInterferencesReportCommand.php:146
+#: src/Command/RadarInterferencesReportCommand.php:148
 msgid "No devices that interfere with radar found."
 msgstr "Nebyla nalezena žádná zařízení, která ruší radar."
 
-#: src/Command/RadarInterferencesUpdateCommand.php:87
+#: src/Command/RadarInterferencesReportCommand.php:157
+msgid "Error during radar interferences report: {0}"
+msgstr "Chyba při hlášení radarových interferencí: {0}"
+
+#: src/Command/RadarInterferencesReportCommand.php:169
+msgid "Radar interferences report failed"
+msgstr "Hlášení o radarových interferencích se nezdařilo"
+
+#: src/Command/RadarInterferencesReportCommand.php:171
+msgid "Radar interferences report failed."
+msgstr "Hlášení o radarových interferencích se nezdařilo."
+
+#: src/Command/RadarInterferencesUpdateCommand.php:93
 #: src/Controller/RadarInterferencesController.php:145
 msgid "The radar interferences table has been updated."
 msgstr "Tabulka radarových rušení byla aktualizována."
 
-#: src/Command/RadarInterferencesUpdateCommand.php:90
+#: src/Command/RadarInterferencesUpdateCommand.php:96
 #: src/Controller/RadarInterferencesController.php:147
 msgid "The radar interferences table could not be updated. Please, try again."
 msgstr "Tabulku radarových rušení nelze aktualizovat. Opakujte akci."
+
+#: src/Command/RadarInterferencesUpdateCommand.php:105
+msgid "Error during radar interferences update: {0}"
+msgstr "Chyba při aktualizaci radarových interferencí: {0}"
+
+#: src/Command/RadarInterferencesUpdateCommand.php:117
+msgid "Radar interferences update failed"
+msgstr "Aktualizace radarových interferencí se nezdařila"
+
+#: src/Command/RadarInterferencesUpdateCommand.php:119
+msgid "Radar interferences update failed."
+msgstr "Aktualizace radarových interferencí se nezdařila."
 
 #: src/Controller/AccessPointContactsController.php:94
 #: src/Controller/AccessPointContactsController.php:119
@@ -3171,9 +3219,6 @@ msgstr "Zpět"
 
 #~ msgid "Customer Connection Id"
 #~ msgstr "ID připojení zákazníka"
-
-#~ msgid "Customer Point Id"
-#~ msgstr "ID zákaznického bodu"
 
 #~ msgid "Radio Unit Band Id"
 #~ msgstr "ID pásma rádiové jednotky"
