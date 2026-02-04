@@ -898,6 +898,72 @@
                 </div>
                 <?php endif; ?>
             </div>
+            <hr>
+            <div class="related">
+                <h4><?= __('Related Customer Connections') ?></h4>
+                <?php if (!empty($accessPoint->customer_connections)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('Customer Point') ?></th>
+                            <th><?= __('Customer Number') ?></th>
+                            <th><?= __('Contract Number') ?></th>
+                            <th><?= __('Note') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($accessPoint->customer_connections as $customerConnection) : ?>
+                        <tr>
+                            <td><?= h($customerConnection->name) ?></td>
+                            <td>
+                                <?= $customerConnection->__isset('customer_point') ? $this->Html->link(
+                                    $customerConnection->customer_point->name,
+                                    [
+                                        'controller' => 'CustomerPoints',
+                                        'action' => 'view',
+                                        $customerConnection->customer_point->id,
+                                    ],
+                                ) : '' ?></td>
+                            <td><?= h($customerConnection->customer_number) ?></td>
+                            <td><?= h($customerConnection->contract_number) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($customerConnection->note)); ?></td>
+                            <td class="actions">
+                                <?= $this->AuthLink->link(
+                                    __('View'),
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'view',
+                                        $customerConnection->id,
+                                    ],
+                                ) ?>
+                                <?= $this->AuthLink->link(
+                                    __('Edit'),
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'edit',
+                                        $customerConnection->id,
+                                    ],
+                                    ['class' => 'win-link'],
+                                ) ?>
+                                <?= $this->AuthLink->postLink(
+                                    __('Delete'),
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'delete',
+                                        $customerConnection->id,
+                                    ],
+                                    ['confirm' => __(
+                                        'Are you sure you want to delete # {0}?',
+                                        $customerConnection->id,
+                                    )],
+                                ) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

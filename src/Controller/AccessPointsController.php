@@ -73,6 +73,10 @@ class AccessPointsController extends AppController
             'AccessPointTypes',
             'ParentAccessPoints',
             'AccessPointContacts',
+            'CustomerConnections' => [
+                'sort' => ['CustomerConnections.name' => 'ASC'],
+                'CustomerPoints',
+            ],
             'ElectricityMeterReadings' => [
                 'sort' => [
                     'reading_date' => 'DESC',
