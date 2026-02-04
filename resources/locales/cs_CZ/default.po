@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-02-01 09:09+0100\n"
-"PO-Revision-Date: 2026-02-01 09:13+0100\n"
+"POT-Creation-Date: 2026-02-04 10:16+0100\n"
+"PO-Revision-Date: 2026-02-04 10:17+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -123,7 +123,8 @@ msgstr "Hlášení odečtu elektroměru se nezdařilo."
 #: templates/AccessPoints/view.php:404 templates/AccessPoints/view.php:477
 #: templates/AccessPoints/view.php:541 templates/AccessPoints/view.php:633
 #: templates/AccessPoints/view.php:690 templates/AccessPoints/view.php:796
-#: templates/AntennaTypes/view.php:35 templates/AntennaTypes/view.php:125
+#: templates/AccessPoints/view.php:908 templates/AntennaTypes/view.php:35
+#: templates/AntennaTypes/view.php:125
 #: templates/CustomerConnectionIps/view.php:43
 #: templates/CustomerConnections/view.php:43
 #: templates/CustomerConnections/view.php:140
@@ -294,21 +295,21 @@ msgstr "Typ přístupového bodu byl odstraněn."
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:186
-#: src/Controller/AccessPointsController.php:210
+#: src/Controller/AccessPointsController.php:190
+#: src/Controller/AccessPointsController.php:214
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:190
-#: src/Controller/AccessPointsController.php:214
+#: src/Controller/AccessPointsController.php:194
+#: src/Controller/AccessPointsController.php:218
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:235
+#: src/Controller/AccessPointsController.php:239
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:238
+#: src/Controller/AccessPointsController.php:242
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
@@ -847,9 +848,9 @@ msgstr "Není nainstalováno přes Git"
 #: templates/AccessPoints/view.php:260 templates/AccessPoints/view.php:334
 #: templates/AccessPoints/view.php:415 templates/AccessPoints/view.php:486
 #: templates/AccessPoints/view.php:559 templates/AccessPoints/view.php:641
-#: templates/AntennaTypes/add.php:12 templates/AntennaTypes/edit.php:12
-#: templates/AntennaTypes/index.php:35 templates/AntennaTypes/view.php:10
-#: templates/AntennaTypes/view.php:143
+#: templates/AccessPoints/view.php:913 templates/AntennaTypes/add.php:12
+#: templates/AntennaTypes/edit.php:12 templates/AntennaTypes/index.php:35
+#: templates/AntennaTypes/view.php:10 templates/AntennaTypes/view.php:143
 #: templates/CustomerConnectionIps/add.php:11
 #: templates/CustomerConnectionIps/edit.php:11
 #: templates/CustomerConnectionIps/index.php:33
@@ -982,8 +983,8 @@ msgstr "Potvrdit"
 #: templates/AccessPoints/view.php:298 templates/AccessPoints/view.php:377
 #: templates/AccessPoints/view.php:455 templates/AccessPoints/view.php:519
 #: templates/AccessPoints/view.php:611 templates/AccessPoints/view.php:672
-#: templates/AntennaTypes/edit.php:14 templates/AntennaTypes/index.php:68
-#: templates/AntennaTypes/view.php:195
+#: templates/AccessPoints/view.php:949 templates/AntennaTypes/edit.php:14
+#: templates/AntennaTypes/index.php:68 templates/AntennaTypes/view.php:195
 #: templates/CustomerConnectionIps/edit.php:13
 #: templates/CustomerConnectionIps/index.php:58
 #: templates/CustomerConnections/edit.php:14
@@ -1041,9 +1042,9 @@ msgstr "Odstranit"
 #: templates/AccessPoints/view.php:230 templates/AccessPoints/view.php:304
 #: templates/AccessPoints/view.php:383 templates/AccessPoints/view.php:457
 #: templates/AccessPoints/view.php:521 templates/AccessPoints/view.php:613
-#: templates/AccessPoints/view.php:674 templates/AntennaTypes/edit.php:17
-#: templates/AntennaTypes/index.php:70 templates/AntennaTypes/view.php:20
-#: templates/AntennaTypes/view.php:197
+#: templates/AccessPoints/view.php:674 templates/AccessPoints/view.php:955
+#: templates/AntennaTypes/edit.php:17 templates/AntennaTypes/index.php:70
+#: templates/AntennaTypes/view.php:20 templates/AntennaTypes/view.php:197
 #: templates/CustomerConnectionIps/edit.php:16
 #: templates/CustomerConnectionIps/index.php:60
 #: templates/CustomerConnectionIps/view.php:20
@@ -1148,8 +1149,8 @@ msgstr "Kontakty přístupových bodů"
 #: templates/AccessPoints/view.php:207 templates/AccessPoints/view.php:281
 #: templates/AccessPoints/view.php:364 templates/AccessPoints/view.php:446
 #: templates/AccessPoints/view.php:510 templates/AccessPoints/view.php:602
-#: templates/AccessPoints/view.php:663 templates/AntennaTypes/index.php:59
-#: templates/AntennaTypes/view.php:186
+#: templates/AccessPoints/view.php:663 templates/AccessPoints/view.php:932
+#: templates/AntennaTypes/index.php:59 templates/AntennaTypes/view.php:186
 #: templates/CustomerConnectionIps/index.php:51
 #: templates/CustomerConnections/index.php:64
 #: templates/CustomerConnections/view.php:152
@@ -1190,8 +1191,8 @@ msgstr "Zobrazit"
 #: templates/AccessPoints/view.php:215 templates/AccessPoints/view.php:289
 #: templates/AccessPoints/view.php:368 templates/AccessPoints/view.php:450
 #: templates/AccessPoints/view.php:514 templates/AccessPoints/view.php:606
-#: templates/AccessPoints/view.php:667 templates/AntennaTypes/index.php:63
-#: templates/AntennaTypes/view.php:190
+#: templates/AccessPoints/view.php:667 templates/AccessPoints/view.php:940
+#: templates/AntennaTypes/index.php:63 templates/AntennaTypes/view.php:190
 #: templates/CustomerConnectionIps/index.php:53
 #: templates/CustomerConnections/index.php:68
 #: templates/CustomerConnections/view.php:160
@@ -1359,14 +1360,14 @@ msgid "Email"
 msgstr "E-mail"
 
 #: templates/AccessPointContacts/view.php:66
-#: templates/AccessPoints/view.php:180
+#: templates/AccessPoints/view.php:180 templates/AccessPoints/view.php:910
 #: templates/CustomerConnections/view.php:70
 #: templates/CustomerPoints/view.php:136
 msgid "Customer Number"
 msgstr "Číslo zákazníka"
 
 #: templates/AccessPointContacts/view.php:76
-#: templates/AccessPoints/view.php:181
+#: templates/AccessPoints/view.php:181 templates/AccessPoints/view.php:911
 #: templates/CustomerConnections/view.php:79
 #: templates/CustomerPoints/view.php:137
 msgid "Contract Number"
@@ -1486,8 +1487,8 @@ msgstr "Upravil"
 #: templates/AccessPointTypes/view.php:94 templates/AccessPoints/view.php:161
 #: templates/AccessPoints/view.php:182 templates/AccessPoints/view.php:259
 #: templates/AccessPoints/view.php:333 templates/AccessPoints/view.php:485
-#: templates/AccessPoints/view.php:558 templates/AntennaTypes/view.php:114
-#: templates/AntennaTypes/view.php:142
+#: templates/AccessPoints/view.php:558 templates/AccessPoints/view.php:912
+#: templates/AntennaTypes/view.php:114 templates/AntennaTypes/view.php:142
 #: templates/CustomerConnectionIps/view.php:105
 #: templates/CustomerConnections/view.php:129
 #: templates/CustomerConnections/view.php:142
@@ -2085,6 +2086,15 @@ msgstr "Místní IP adresa"
 msgid "Neighbouring IP address"
 msgstr "Sousední IP adresa"
 
+#: templates/AccessPoints/view.php:903 templates/CustomerPoints/view.php:130
+msgid "Related Customer Connections"
+msgstr "Související připojení zákazníků"
+
+#: templates/AccessPoints/view.php:909
+#: templates/CustomerConnections/view.php:47
+msgid "Customer Point"
+msgstr "Zákaznický bod"
+
 #: templates/AntennaTypes/add.php:13 templates/AntennaTypes/edit.php:21
 #: templates/AntennaTypes/view.php:24
 msgid "List Antenna Types"
@@ -2212,10 +2222,6 @@ msgstr "Připojení zákazníků"
 msgid "Delete Customer Connection"
 msgstr "Odstranit připojení zákazníka"
 
-#: templates/CustomerConnections/view.php:47
-msgid "Customer Point"
-msgstr "Zákaznický bod"
-
 #: templates/CustomerConnections/view.php:135
 msgid "Related Customer Connection Ips"
 msgstr "Související IP připojení zákazníků"
@@ -2245,10 +2251,6 @@ msgstr "Zákaznické body"
 #: templates/CustomerPoints/view.php:17
 msgid "Delete Customer Point"
 msgstr "Odstranit zákaznický bod"
-
-#: templates/CustomerPoints/view.php:130
-msgid "Related Customer Connections"
-msgstr "Související připojení zákazníků"
 
 #: templates/DeviceTypes/add.php:11 templates/DeviceTypes/edit.php:19
 #: templates/DeviceTypes/view.php:24

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-02-01 09:09+0100\n"
+"POT-Creation-Date: 2026-02-04 10:16+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -134,6 +134,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:633
 #: ./templates/AccessPoints/view.php:690
 #: ./templates/AccessPoints/view.php:796
+#: ./templates/AccessPoints/view.php:908
 #: ./templates/AntennaTypes/view.php:35
 #: ./templates/AntennaTypes/view.php:125
 #: ./templates/CustomerConnectionIps/view.php:43
@@ -320,21 +321,21 @@ msgstr ""
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:186
-#: ./src/Controller/AccessPointsController.php:210
+#: ./src/Controller/AccessPointsController.php:190
+#: ./src/Controller/AccessPointsController.php:214
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:190
-#: ./src/Controller/AccessPointsController.php:214
+#: ./src/Controller/AccessPointsController.php:194
+#: ./src/Controller/AccessPointsController.php:218
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:235
+#: ./src/Controller/AccessPointsController.php:239
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:238
+#: ./src/Controller/AccessPointsController.php:242
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
@@ -879,6 +880,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:486
 #: ./templates/AccessPoints/view.php:559
 #: ./templates/AccessPoints/view.php:641
+#: ./templates/AccessPoints/view.php:913
 #: ./templates/AntennaTypes/add.php:12
 #: ./templates/AntennaTypes/edit.php:12
 #: ./templates/AntennaTypes/index.php:35
@@ -1077,6 +1079,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:519
 #: ./templates/AccessPoints/view.php:611
 #: ./templates/AccessPoints/view.php:672
+#: ./templates/AccessPoints/view.php:949
 #: ./templates/AntennaTypes/edit.php:14
 #: ./templates/AntennaTypes/index.php:68
 #: ./templates/AntennaTypes/view.php:195
@@ -1164,6 +1167,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:521
 #: ./templates/AccessPoints/view.php:613
 #: ./templates/AccessPoints/view.php:674
+#: ./templates/AccessPoints/view.php:955
 #: ./templates/AntennaTypes/edit.php:17
 #: ./templates/AntennaTypes/index.php:70
 #: ./templates/AntennaTypes/view.php:20
@@ -1314,6 +1318,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:510
 #: ./templates/AccessPoints/view.php:602
 #: ./templates/AccessPoints/view.php:663
+#: ./templates/AccessPoints/view.php:932
 #: ./templates/AntennaTypes/index.php:59
 #: ./templates/AntennaTypes/view.php:186
 #: ./templates/CustomerConnectionIps/index.php:51
@@ -1375,6 +1380,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:514
 #: ./templates/AccessPoints/view.php:606
 #: ./templates/AccessPoints/view.php:667
+#: ./templates/AccessPoints/view.php:940
 #: ./templates/AntennaTypes/index.php:63
 #: ./templates/AntennaTypes/view.php:190
 #: ./templates/CustomerConnectionIps/index.php:53
@@ -1597,6 +1603,7 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:66
 #: ./templates/AccessPoints/view.php:180
+#: ./templates/AccessPoints/view.php:910
 #: ./templates/CustomerConnections/view.php:70
 #: ./templates/CustomerPoints/view.php:136
 msgid "Customer Number"
@@ -1604,6 +1611,7 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:76
 #: ./templates/AccessPoints/view.php:181
+#: ./templates/AccessPoints/view.php:911
 #: ./templates/CustomerConnections/view.php:79
 #: ./templates/CustomerPoints/view.php:137
 msgid "Contract Number"
@@ -1767,6 +1775,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:333
 #: ./templates/AccessPoints/view.php:485
 #: ./templates/AccessPoints/view.php:558
+#: ./templates/AccessPoints/view.php:912
 #: ./templates/AntennaTypes/view.php:114
 #: ./templates/AntennaTypes/view.php:142
 #: ./templates/CustomerConnectionIps/view.php:105
@@ -2527,6 +2536,16 @@ msgstr ""
 msgid "Neighbouring IP address"
 msgstr ""
 
+#: ./templates/AccessPoints/view.php:903
+#: ./templates/CustomerPoints/view.php:130
+msgid "Related Customer Connections"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:909
+#: ./templates/CustomerConnections/view.php:47
+msgid "Customer Point"
+msgstr ""
+
 #: ./templates/AntennaTypes/add.php:13
 #: ./templates/AntennaTypes/edit.php:21
 #: ./templates/AntennaTypes/view.php:24
@@ -2674,10 +2693,6 @@ msgstr ""
 msgid "Delete Customer Connection"
 msgstr ""
 
-#: ./templates/CustomerConnections/view.php:47
-msgid "Customer Point"
-msgstr ""
-
 #: ./templates/CustomerConnections/view.php:135
 msgid "Related Customer Connection Ips"
 msgstr ""
@@ -2710,10 +2725,6 @@ msgstr ""
 
 #: ./templates/CustomerPoints/view.php:17
 msgid "Delete Customer Point"
-msgstr ""
-
-#: ./templates/CustomerPoints/view.php:130
-msgid "Related Customer Connections"
 msgstr ""
 
 #: ./templates/DeviceTypes/add.php:11
