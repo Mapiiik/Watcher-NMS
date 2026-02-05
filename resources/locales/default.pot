@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-02-04 10:16+0100\n"
+"POT-Creation-Date: 2026-02-05 20:05+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -739,45 +739,45 @@ msgstr ""
 msgid "The task type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:195
+#: ./src/Controller/TasksController.php:209
 msgid "none"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:297
-#: ./src/Controller/TasksController.php:372
+#: ./src/Controller/TasksController.php:311
+#: ./src/Controller/TasksController.php:386
 msgid "The task has been saved."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:301
-#: ./src/Controller/TasksController.php:376
+#: ./src/Controller/TasksController.php:315
+#: ./src/Controller/TasksController.php:390
 msgid "The task could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:425
+#: ./src/Controller/TasksController.php:439
 msgid "The task has been deleted."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:428
+#: ./src/Controller/TasksController.php:442
 msgid "The task could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:477
+#: ./src/Controller/TasksController.php:491
 msgid "You have a new task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:479
+#: ./src/Controller/TasksController.php:493
 msgid "You have changes in task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:493
+#: ./src/Controller/TasksController.php:507
 msgid "Notification email sent."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:497
+#: ./src/Controller/TasksController.php:511
 msgid "The notification email could not be sent."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:215
+#: ./src/Controller/TasksController.php:229
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural "There were {0} unfinished tasks found that do not have a user assigned."
 msgstr[0] ""

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-02-04 10:16+0100\n"
-"PO-Revision-Date: 2026-02-04 10:17+0100\n"
+"POT-Creation-Date: 2026-02-05 20:05+0100\n"
+"PO-Revision-Date: 2026-02-05 20:07+0100\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -713,45 +713,45 @@ msgstr "Typ úkolu byl odstraněn."
 msgid "The task type could not be deleted. Please, try again."
 msgstr "Typ úkolu nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:195
+#: src/Controller/TasksController.php:209
 msgid "none"
 msgstr "žádný"
 
-#: src/Controller/TasksController.php:297
-#: src/Controller/TasksController.php:372
+#: src/Controller/TasksController.php:311
+#: src/Controller/TasksController.php:386
 msgid "The task has been saved."
 msgstr "Úkol byl uložen."
 
-#: src/Controller/TasksController.php:301
-#: src/Controller/TasksController.php:376
+#: src/Controller/TasksController.php:315
+#: src/Controller/TasksController.php:390
 msgid "The task could not be saved. Please, try again."
 msgstr "Úkol nelze uložit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:425
+#: src/Controller/TasksController.php:439
 msgid "The task has been deleted."
 msgstr "Úkol byl odstraněn."
 
-#: src/Controller/TasksController.php:428
+#: src/Controller/TasksController.php:442
 msgid "The task could not be deleted. Please, try again."
 msgstr "Úkol nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:477
+#: src/Controller/TasksController.php:491
 msgid "You have a new task # {0}"
 msgstr "Máte nový úkol č. {0}"
 
-#: src/Controller/TasksController.php:479
+#: src/Controller/TasksController.php:493
 msgid "You have changes in task # {0}"
 msgstr "Máte změny v úkolu č. {0}"
 
-#: src/Controller/TasksController.php:493
+#: src/Controller/TasksController.php:507
 msgid "Notification email sent."
 msgstr "E-mail s oznámením odeslán."
 
-#: src/Controller/TasksController.php:497
+#: src/Controller/TasksController.php:511
 msgid "The notification email could not be sent."
 msgstr "E-mail s oznámením se nepodařilo odeslat."
 
-#: src/Controller/TasksController.php:215
+#: src/Controller/TasksController.php:229
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural ""
 "There were {0} unfinished tasks found that do not have a user assigned."
