@@ -75,6 +75,7 @@ class TasksController extends AppController
             ];
         }
 
+        // filter by completed
         $show_completed = $filter['show_completed'] ?? null;
         if (empty($show_completed)) {
             $conditions[] = [
@@ -82,6 +83,7 @@ class TasksController extends AppController
             ];
         }
 
+        // filter by user
         if (Hash::get($this->user_settings, 'tasks.all_by_default', false)) {
             $user_id = $filter['user_id'] ?? null;
         } else {
@@ -98,34 +100,43 @@ class TasksController extends AppController
                 ];
             }
         }
+
+        // filter by task type
         $task_type_id = $filter['task_type_id'] ?? null;
         if (Validation::uuid($task_type_id)) {
             $conditions[] = [
                 'Tasks.task_type_id' => $task_type_id,
             ];
         }
+
+        // filter by task state
         $task_state_id = $filter['task_state_id'] ?? null;
         if (Validation::uuid($task_state_id)) {
             $conditions[] = [
                 'Tasks.task_state_id' => $task_state_id,
             ];
         }
+
+        // filter by access point
         $access_point_id = $filter['access_point_id'] ?? null;
         if (Validation::uuid($access_point_id)) {
             $conditions[] = [
                 'Tasks.access_point_id' => $access_point_id,
             ];
         }
+
+        // search
         $search = $filter['search'] ?? null;
         if (!empty($search)) {
+            $search = trim((string)$search);
             $conditions[] = [
                 'OR' => [
-                    'Tasks.subject ILIKE' => '%' . trim($search) . '%',
-                    'Tasks.text ILIKE' => '%' . trim($search) . '%',
+                    'Tasks.subject ILIKE' => '%' . $search . '%',
+                    'Tasks.text ILIKE' => '%' . $search . '%',
                 ] + (
-                    is_numeric($search) ?
+                    ctype_digit($search) && strlen($search) <= 10 ? // strlen($search) <= 19 for BIGINT
                     [
-                        'Tasks.nid' => (int)trim($search),
+                        'Tasks.nid' => (int)$search,
                     ] : []
                 ),
             ];
@@ -143,6 +154,7 @@ class TasksController extends AppController
         ]);
         $this->set('filterForm', $filterForm);
 
+        // pagination settings
         $this->paginate = [
             'sortableFields' => [
                 'nid',
@@ -165,6 +177,7 @@ class TasksController extends AppController
             ],
         ];
 
+        // paginate results
         $tasks = $this->paginate($this->Tasks->find(
             'all',
             contain: [
@@ -175,6 +188,7 @@ class TasksController extends AppController
             ],
             conditions: $conditions,
         ));
+
         $users = $this->Tasks->Users
             ->find()
             ->orderBy([
