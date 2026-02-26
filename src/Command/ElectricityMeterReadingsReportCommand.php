@@ -57,6 +57,7 @@ class ElectricityMeterReadingsReportCommand extends Command
 
             $now = new Date();
 
+            /** @var \Cake\Datasource\ResultSetInterface<array-key, \App\Model\Entity\AccessPoint> $accessPoints */
             $accessPoints = $this->fetchTable(AccessPointsTable::class)
                 ->find('all', conditions: [
                     'month_of_electricity_meter_reading' => (int)$now->i18nFormat('L'),
