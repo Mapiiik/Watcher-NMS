@@ -21,10 +21,10 @@
         "cakephp/migrations": "^5.0.1",
         "cakephp/plugin-installer": "^2.0",
         "composer/composer": "^2.6.6",
+        "dereuromark/cakephp-audit-stash": "^1.0",
         "dereuromark/cakephp-geo": "^3.0.0",
         "geocoder-php/google-maps-provider": "^4.7.1",
         "league/oauth2-google": "^4.0",
-        "mapik/audit-log": "^6.0",
         "mobiledetect/mobiledetectlib": "^4.8"
     },
     "require-dev": {

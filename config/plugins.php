@@ -33,7 +33,7 @@ return [
     'CakeDC/Users' => [],
 
     // Persisting audit log
-    'AuditLog' => [],
+    'AuditStash' => [],
 
     // dereuromark/cakephp-geo
     'Geo' => [],
