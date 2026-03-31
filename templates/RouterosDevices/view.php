@@ -34,6 +34,13 @@
     </aside>
     <div class="column column-90">
         <div class="routerosDevices view content">
+            <?= $this->AuthLink->postLink(
+                __('Update Data Now'),
+                ['action' => 'updateDataNow', $routerosDevice->id],
+                [
+                    'confirm' => __('Are you sure you want to update data for # {0}?', $routerosDevice->id),
+                    'class' => 'button float-right'],
+            ) ?>
             <h3><?= h($routerosDevice->name) ?></h3>
             <div class="row">
                 <div class="column">
