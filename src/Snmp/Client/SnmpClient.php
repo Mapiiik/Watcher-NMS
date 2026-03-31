@@ -100,6 +100,7 @@ final class SnmpClient implements SnmpClientInterface
             if ($e->getCode() !== 8) {
                 Log::warning('SNMP WALK failed: ' . $e->getMessage());
             }
+
             return null;
         }
 

@@ -257,7 +257,7 @@ class RouterosDevicesController extends AppController
             empty($deviceType->snmp_community)
         ) {
             $this->Flash->error(
-                __('Cannot update RouterOS device data via SNMP. Missing IP address or SNMP community.')
+                __('Cannot update RouterOS device data via SNMP. Missing IP address or SNMP community.'),
             );
 
             return $this->afterEditRedirect(['action' => 'view', $routerosDevice->id]);
@@ -269,7 +269,7 @@ class RouterosDevicesController extends AppController
                 $provider = new AgentRouterosSnmpProvider();
             } else {
                 $provider = new LocalRouterosSnmpProvider(
-                    new SnmpClient()
+                    new SnmpClient(),
                 );
             }
 
@@ -291,11 +291,11 @@ class RouterosDevicesController extends AppController
                 'SNMP update failed for RouterOS device %d (%s): %s',
                 $routerosDevice->id,
                 $routerosDevice->ip_address,
-                $e->getMessage()
+                $e->getMessage(),
             ));
 
             $this->Flash->error(
-                __('Failed to update RouterOS device data via SNMP: {0}', $e->getMessage())
+                __('Failed to update RouterOS device data via SNMP: {0}', $e->getMessage()),
             );
 
             return $this->afterEditRedirect(['action' => 'view', $routerosDevice->id]);
@@ -421,8 +421,8 @@ class RouterosDevicesController extends AppController
                     try {
                         $service = new RouterosSnmpUpdateService(
                             new LocalRouterosSnmpProvider(
-                                new SnmpClient()
-                            )
+                                new SnmpClient(),
+                            ),
                         );
 
                         $routerosDevice = $service->updateNow(

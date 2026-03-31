@@ -15,7 +15,6 @@ final class LocalRouterosSnmpProvider implements RouterosSnmpProviderInterface
     public function __construct(
         private readonly SnmpClientInterface $snmp,
     ) {
-        // No initialization needed here
     }
 
     /**
@@ -32,7 +31,7 @@ final class LocalRouterosSnmpProvider implements RouterosSnmpProviderInterface
 
         try {
             $serialNumber = $this->snmp->getText('.1.3.6.1.4.1.14988.1.1.7.3.0');
-            if (empty($serialNumber)) {
+            if ($serialNumber === null || $serialNumber === '') {
                 throw new RuntimeException(__('SNMP serial number not found'));
             }
 
@@ -66,9 +65,9 @@ final class LocalRouterosSnmpProvider implements RouterosSnmpProviderInterface
                     'interface_index' => $ifIndex,
                     'name' => $ifTable['2.' . $ifIndex]->text ?? null,
                     'comment' => $this->snmp->getText('.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex),
-                    'interface_admin_status' => isset($ifTable['7.' . $ifIndex]->value) ? (int)$ifTable['7.' . $ifIndex]->value : null,
-                    'interface_oper_status' => isset($ifTable['8.' . $ifIndex]->value) ? (int)$ifTable['8.' . $ifIndex]->value : null,
-                    'interface_type' => isset($ifTable['3.' . $ifIndex]->value) ? (int)$ifTable['3.' . $ifIndex]->value : null,
+                    'interface_admin_status' => $this->snmpInt($ifTable, '7.' . $ifIndex),
+                    'interface_oper_status' => $this->snmpInt($ifTable, '8.' . $ifIndex),
+                    'interface_type' => $this->snmpInt($ifTable, '3.' . $ifIndex),
                     'mac_address' => $this->normalizeMac($ifTable['6.' . $ifIndex]->value ?? null),
                     'ssid' => null,
                     'bssid' => null,
@@ -84,24 +83,25 @@ final class LocalRouterosSnmpProvider implements RouterosSnmpProviderInterface
                     $iface['ssid'] = $mtxrWlApTable['4.' . $ifIndex]->text ?? null;
                     $iface['bssid'] = $this->normalizeMac($mtxrWlApTable['5.' . $ifIndex]->value ?? null);
                     $iface['band'] = $mtxrWlApTable['8.' . $ifIndex]->text ?? null;
-                    $iface['frequency'] = isset($mtxrWlApTable['7.' . $ifIndex]->value) ? (int)$mtxrWlApTable['7.' . $ifIndex]->value : null;
-                    $iface['noise_floor'] = isset($mtxrWlApTable['9.' . $ifIndex]->value) ? (int)$mtxrWlApTable['9.' . $ifIndex]->value : null;
-                    $iface['client_count'] = isset($mtxrWlApTable['6.' . $ifIndex]->value) ? (int)$mtxrWlApTable['6.' . $ifIndex]->value : null;
-                    $iface['overall_tx_ccq'] = isset($mtxrWlApTable['10.' . $ifIndex]->value) ? (int)$mtxrWlApTable['10.' . $ifIndex]->value : null;
-
+                    $iface['frequency'] = $this->snmpInt($mtxrWlApTable, '7.' . $ifIndex);
+                    $iface['noise_floor'] = $this->snmpInt($mtxrWlApTable, '9.' . $ifIndex);
+                    $iface['client_count'] = $this->snmpInt($mtxrWlApTable, '6.' . $ifIndex);
+                    $iface['overall_tx_ccq'] = $this->snmpInt($mtxrWlApTable, '10.' . $ifIndex);
                 // Wireless station
                 } elseif (isset($mtxrWlStatTable['5.' . $ifIndex])) {
                     $iface['ssid'] = $mtxrWlStatTable['5.' . $ifIndex]->text ?? null;
                     $iface['bssid'] = $this->normalizeMac($mtxrWlStatTable['6.' . $ifIndex]->value ?? null);
                     $iface['band'] = $mtxrWlStatTable['8.' . $ifIndex]->text ?? null;
-                    $iface['frequency'] = isset($mtxrWlStatTable['7.' . $ifIndex]->value) ? (int)$mtxrWlStatTable['7.' . $ifIndex]->value : null;
-
+                    $iface['frequency'] = $this->snmpInt($mtxrWlStatTable, '7.' . $ifIndex);
                 // Wireless 60G
                 } elseif (isset($mtxrWl60GTable['3.' . $ifIndex])) {
                     $iface['ssid'] = $mtxrWl60GTable['3.' . $ifIndex]->text ?? null;
-                    $iface['frequency'] = isset($mtxrWl60GTable['6.' . $ifIndex]->value) ? (int)$mtxrWl60GTable['6.' . $ifIndex]->value : null;
+                    $iface['frequency'] = $this->snmpInt($mtxrWl60GTable, '6.' . $ifIndex);
 
-                    $bssidOnlyForStations = isset($mtxrWl60GTable['2.' . $ifIndex]->value) && (int)$mtxrWl60GTable['2.' . $ifIndex]->value === 1;
+                    $bssidOnlyForStations =
+                        isset($mtxrWl60GTable['2.' . $ifIndex]->value)
+                        && (int)$mtxrWl60GTable['2.' . $ifIndex]->value === 1;
+
                     $iface['bssid'] = $bssidOnlyForStations
                         ? $this->normalizeMac($mtxrWl60GTable['5.' . $ifIndex]->value ?? null)
                         : null;
@@ -121,9 +121,11 @@ final class LocalRouterosSnmpProvider implements RouterosSnmpProviderInterface
                 if (!is_string($ip) || filter_var($ip, FILTER_VALIDATE_IP) === false) {
                     continue;
                 }
+
                 if (!isset($ipMask[$key]->value, $ipIfIndex[$key]->value)) {
                     continue;
                 }
+
                 $mask = $ipMask[$key]->value;
                 if (!is_string($mask) || filter_var($mask, FILTER_VALIDATE_IP) === false) {
                     continue;
@@ -149,9 +151,21 @@ final class LocalRouterosSnmpProvider implements RouterosSnmpProviderInterface
     }
 
     /**
+     * Extracts an integer value from an SNMP table entry.
+     *
+     * @param array $table The SNMP table.
+     * @param string $key The key to look up.
+     * @return int|null The integer value or null if not found.
+     */
+    private function snmpInt(array $table, string $key): ?int
+    {
+        return isset($table[$key]->value) ? (int)$table[$key]->value : null;
+    }
+
+    /**
      * Normalizes a MAC address to the format "xx:xx:xx:xx:xx:xx".
      *
-     * @param int|string|null $raw The raw MAC address.
+     * @param string|int|null $raw The raw MAC address.
      * @return string|null The normalized MAC address or null if invalid.
      */
     private function normalizeMac(int|string|null $raw): ?string

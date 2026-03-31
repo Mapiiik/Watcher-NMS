@@ -40,7 +40,6 @@ final class AgentRouterosSnmpProvider implements RouterosSnmpProviderInterface
 
         /** @var array $device */
         $device = $data['device'];
-        $device['ip_address'] = $device['ip_address'] ?? $host;
 
         /** @var array $interfaces */
         $interfaces = $data['interfaces'];
@@ -51,38 +50,46 @@ final class AgentRouterosSnmpProvider implements RouterosSnmpProviderInterface
         return new RouterosSnmpData(
             device: [
                 'serial_number' => (string)($device['serial_number'] ?? ''),
-                'ip_address' => (string)($device['ip_address'] ?? ''),
+                'ip_address' => (string)($device['ip_address'] ?? $host),
                 'name' => $device['name'] ?? null,
                 'system_description' => $device['system_description'] ?? null,
                 'board_name' => $device['board_name'] ?? null,
                 'software_version' => $device['software_version'] ?? null,
                 'firmware_version' => $device['firmware_version'] ?? null,
             ],
-            interfaces: array_map(static function (array $i): array {
-                return [
-                    'interface_index' => (int)($i['interface_index'] ?? 0),
-                    'name' => $i['name'] ?? null,
-                    'comment' => $i['comment'] ?? null,
-                    'interface_admin_status' => isset($i['interface_admin_status']) ? (int)$i['interface_admin_status'] : null,
-                    'interface_oper_status' => isset($i['interface_oper_status']) ? (int)$i['interface_oper_status'] : null,
-                    'interface_type' => isset($i['interface_type']) ? (int)$i['interface_type'] : null,
-                    'mac_address' => $i['mac_address'] ?? null,
-                    'ssid' => $i['ssid'] ?? null,
-                    'bssid' => $i['bssid'] ?? null,
-                    'band' => $i['band'] ?? null,
-                    'frequency' => isset($i['frequency']) ? (int)$i['frequency'] : null,
-                    'noise_floor' => isset($i['noise_floor']) ? (int)$i['noise_floor'] : null,
-                    'client_count' => isset($i['client_count']) ? (int)$i['client_count'] : null,
-                    'overall_tx_ccq' => isset($i['overall_tx_ccq']) ? (int)$i['overall_tx_ccq'] : null,
-                ];
-            }, $interfaces),
-            ipAddresses: array_map(static function (array $ip): array {
-                return [
-                    'interface_index' => (int)($ip['interface_index'] ?? 0),
-                    'ip_address' => (string)($ip['ip_address'] ?? ''),
-                    'name' => $ip['name'] ?? null,
-                ];
-            }, $ipAddresses),
+            interfaces: array_map(fn(array $i): array => [
+                'interface_index' => (int)($i['interface_index'] ?? 0),
+                'name' => $i['name'] ?? null,
+                'comment' => $i['comment'] ?? null,
+                'interface_admin_status' => $this->intOrNull($i, 'interface_admin_status'),
+                'interface_oper_status' => $this->intOrNull($i, 'interface_oper_status'),
+                'interface_type' => $this->intOrNull($i, 'interface_type'),
+                'mac_address' => $i['mac_address'] ?? null,
+                'ssid' => $i['ssid'] ?? null,
+                'bssid' => $i['bssid'] ?? null,
+                'band' => $i['band'] ?? null,
+                'frequency' => $this->intOrNull($i, 'frequency'),
+                'noise_floor' => $this->intOrNull($i, 'noise_floor'),
+                'client_count' => $this->intOrNull($i, 'client_count'),
+                'overall_tx_ccq' => $this->intOrNull($i, 'overall_tx_ccq'),
+            ], $interfaces),
+            ipAddresses: array_map(fn(array $ip): array => [
+                'interface_index' => (int)($ip['interface_index'] ?? 0),
+                'ip_address' => (string)($ip['ip_address'] ?? ''),
+                'name' => $ip['name'] ?? null,
+            ], $ipAddresses),
         );
+    }
+
+    /**
+     * Returns integer value from array or null if missing.
+     *
+     * @param array<string, mixed> $source
+     * @param string $key
+     * @return int|null
+     */
+    private function intOrNull(array $source, string $key): ?int
+    {
+        return isset($source[$key]) ? (int)$source[$key] : null;
     }
 }

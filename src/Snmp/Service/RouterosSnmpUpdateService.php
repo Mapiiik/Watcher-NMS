@@ -23,7 +23,8 @@ final class RouterosSnmpUpdateService
      */
     public function __construct(
         private readonly RouterosSnmpProviderInterface $provider,
-    ) {}
+    ) {
+    }
 
     /**
      * Performs an immediate SNMP synchronization for a RouterOS device.
@@ -86,7 +87,8 @@ final class RouterosSnmpUpdateService
 
         // 1b) Assign customer connection by IP
         if ($assignCustomerConnectionByIp && !empty($devicePatch['ip_address'])) {
-            $ccIps = $routerosDevices->CustomerConnections->CustomerConnectionIps->find('all',
+            $ccIps = $routerosDevices->CustomerConnections->CustomerConnectionIps->find(
+                'all',
                 conditions: ['ip_address' => $devicePatch['ip_address']],
                 order: ['modified' => 'DESC'],
             );
@@ -144,7 +146,7 @@ final class RouterosSnmpUpdateService
             $routerosDeviceInterfaces->find()->where([
                 'routeros_device_id' => $routerosDevice->id,
                 'modified <' => $startTime,
-            ])->all()
+            ])->all(),
         );
 
         // 3) IPs upsert
@@ -178,20 +180,20 @@ final class RouterosSnmpUpdateService
             $routerosDeviceIps->find()->where([
                 'routeros_device_id' => $routerosDevice->id,
                 'modified <' => $startTime,
-            ])->all()
+            ])->all(),
         );
 
         // 4) Cleanup old data
         $threshold = DateTime::now()->subDays($cleanupDays);
 
         $routerosDevices->deleteMany(
-            $routerosDevices->find()->where(['modified <' => $threshold])->all()
+            $routerosDevices->find()->where(['modified <' => $threshold])->all(),
         );
         $routerosDeviceInterfaces->deleteMany(
-            $routerosDeviceInterfaces->find()->where(['modified <' => $threshold])->all()
+            $routerosDeviceInterfaces->find()->where(['modified <' => $threshold])->all(),
         );
         $routerosDeviceIps->deleteMany(
-            $routerosDeviceIps->find()->where(['modified <' => $threshold])->all()
+            $routerosDeviceIps->find()->where(['modified <' => $threshold])->all(),
         );
 
         return $routerosDevice;
