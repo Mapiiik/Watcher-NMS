@@ -7,7 +7,7 @@ use App\Snmp\Client\SnmpClientInterface;
 use App\Snmp\Dto\RouterosSnmpData;
 use RuntimeException;
 
-final class LocalRouterosSnmpProvider implements RouterosSnmpProviderInterface
+final class RouterosSnmpProviderLocal implements RouterosSnmpProviderInterface
 {
     /**
      * @param \App\Snmp\Client\SnmpClientInterface $snmp

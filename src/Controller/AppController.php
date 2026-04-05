@@ -124,6 +124,11 @@ class AppController extends Controller
     #[Override]
     public function beforeFilter(EventInterface $event)
     {
+        // Skip URL filters for Agent API requests to avoid unintended side effects
+        if ($this->getRequest()->getParam('prefix') === 'Api/Agent') {
+            return;
+        }
+
         # Load current user
         /** @var \Authorization\Identity|null $identity */
         $identity = $this->getRequest()->getAttribute('identity');

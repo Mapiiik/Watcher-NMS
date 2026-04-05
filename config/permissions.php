@@ -103,6 +103,16 @@ $permissions = [
             ],
             'bypassAuth' => true,
         ],
+        // Watcher Agent provisioning access (custom authentication)
+        [
+            'prefix' => 'Api/Agent',
+            'plugin' => null,
+            'controller' => 'Provision',
+            'action' => [
+                'routeros',
+            ],
+            'bypassAuth' => true,
+        ],
         //admin role allowed to all the things
         [
             'role' => 'admin',

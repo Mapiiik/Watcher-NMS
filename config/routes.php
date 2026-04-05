@@ -129,6 +129,7 @@ return function (RouteBuilder $routes): void {
     * ```
     */
 
+    // API access
     $routes->prefix('Api', function (RouteBuilder $builder): void {
         $builder->setExtensions(['json']);
 
@@ -149,6 +150,16 @@ return function (RouteBuilder $routes): void {
                 ],
             ],
         ]);
+
+        // Agent API endpoints
+        $builder->prefix('Agent', function (RouteBuilder $agentBuilder): void {
+            $agentBuilder->setExtensions(['json']);
+
+            $agentBuilder->post(
+                '/provision/routeros',
+                ['controller' => 'Provision', 'action' => 'routeros'],
+            );
+        });
     });
 
     //apply URL filters only if not called from console

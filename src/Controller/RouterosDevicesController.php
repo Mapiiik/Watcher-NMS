@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Entity\RouterosDevice;
+use App\Provisioning\RouterOS\CredentialsGenerator;
+use App\Provisioning\RouterOS\ProvisionScriptBuilder;
 use App\Snmp\Client\SnmpClient;
-use App\Snmp\Provider\AgentRouterosSnmpProvider;
-use App\Snmp\Provider\LocalRouterosSnmpProvider;
+use App\Snmp\Provider\RouterosSnmpProviderAgentPull;
+use App\Snmp\Provider\RouterosSnmpProviderLocal;
 use App\Snmp\Service\RouterosSnmpUpdateService;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
-use Cake\Utility\Security;
 use RuntimeException;
 
 /**
@@ -145,8 +145,8 @@ class RouterosDevicesController extends AppController
                 'network-manager',
             ])
         ) {
-            $routerosDevice->username = $this->getUsername($routerosDevice);
-            $routerosDevice->password = $this->getPassword($routerosDevice);
+            $routerosDevice->username = CredentialsGenerator::getUsername($routerosDevice);
+            $routerosDevice->password = CredentialsGenerator::getPassword($routerosDevice);
         }
 
         if (
@@ -156,8 +156,8 @@ class RouterosDevicesController extends AppController
             ])
             && $routerosDevice->device_type->allow_technicians_access
         ) {
-            $routerosDevice->username = $this->getUsername($routerosDevice);
-            $routerosDevice->password = $this->getPassword($routerosDevice);
+            $routerosDevice->username = CredentialsGenerator::getUsername($routerosDevice);
+            $routerosDevice->password = CredentialsGenerator::getPassword($routerosDevice);
         }
 
         $this->set('routerosDevice', $routerosDevice);
@@ -266,9 +266,9 @@ class RouterosDevicesController extends AppController
         try {
             // Provider selection (Agent / Local)
             if (filter_var(env('WATCHER_AGENT_ENABLED', false), FILTER_VALIDATE_BOOLEAN)) {
-                $provider = new AgentRouterosSnmpProvider();
+                $provider = new RouterosSnmpProviderAgentPull();
             } else {
-                $provider = new LocalRouterosSnmpProvider(
+                $provider = new RouterosSnmpProviderLocal(
                     new SnmpClient(),
                 );
             }
@@ -320,157 +320,72 @@ class RouterosDevicesController extends AppController
     }
 
     /**
-     * Converts a hexadecimal string to a custom character set string.
-     *
-     * @param string $hex Input string in hexadecimal format (e.g., "1a2b3c").
-     * @return string Encoded string in the custom character set.
-     */
-    private function hexToSetString(string $hex): string
-    {
-        $chars = 'abcdefghijklmnopqrstuwvxyzABCDEFGHIJKLMNOPQRSTUWVXYZ0123456789';
-        $setbase = strlen($chars);
-
-        $answer = '';
-
-        // Iterate until the hex string is empty
-        while ($hex !== '' && $hex !== '0') {
-            $hex_result = ''; // Result of division in hex
-            $dec_remain = 0; // Decimal remainder
-
-            // Divide hex by base (custom charset length)
-            foreach (str_split($hex) as $char) {
-                // Combine remainder with the current hex digit
-                $dec_remain = $dec_remain * 16 + hexdec($char);
-
-                // Perform integer division
-                $hex_digit = (int)($dec_remain / $setbase);
-                $dec_remain %= $setbase;
-
-                // Build the new hex string (excluding leading zeros)
-                $hex_result .= $hex_digit > 0 || $hex_result !== '' ? dechex($hex_digit) : '';
-            }
-
-            // Prepend the corresponding character to the answer
-            $answer = $chars[$dec_remain] . $answer;
-
-            // Update hex for the next iteration
-            $hex = $hex_result;
-        }
-
-        return $answer ?: $chars[0]; // Return first char if input is zero
-    }
-
-    /**
-     * get RouterOS device username
-     *
-     * @param \App\Model\Entity\RouterosDevice $routerosDevice Entity
-     * @return string
-     * @psalm-suppress UnusedParam
-     */
-    private function getUsername(RouterosDevice $routerosDevice)
-    {
-        if (empty($routerosDevice->serial_number)) {
-            return '';
-        }
-
-        return 'admin';
-    }
-
-    /**
-     * get RouterOS device password
-     *
-     * @param \App\Model\Entity\RouterosDevice $routerosDevice Entity
-     * @return string
-     */
-    private function getPassword(RouterosDevice $routerosDevice)
-    {
-        if (empty($routerosDevice->serial_number)) {
-            return '';
-        }
-
-        $hash = Security::hash($routerosDevice->serial_number, 'sha256', true);
-
-        return $this->hexToSetString(substr($hash, 0, 20));
-    }
-
-    /**
      * get configuration script for RouterOS device
      *
      * @param string $deviceTypeIdentifier device type
      * @param string $serialNumber serial number
      * @return void
      */
-    public function configurationScript(?string $deviceTypeIdentifier = null, ?string $serialNumber = null): void
-    {
+    public function configurationScript(
+        ?string $deviceTypeIdentifier = null,
+        ?string $serialNumber = null,
+    ): void {
+        /** @var \App\Model\Entity\DeviceType $deviceType */
         $deviceType = $this->RouterosDevices->DeviceTypes
             ->find()
             ->where(['identifier' => $deviceTypeIdentifier])
             ->first();
 
-        if ($deviceType) {
-            $routerosDeviceSerialNumber = $this->loadSerialNumberViaSNMP(
-                $_SERVER['REMOTE_ADDR'],
-                $deviceType->snmp_community,
+        if (!$deviceType) {
+            echo ':log error "Watcher NMS: Unknown device type identifier. Ignoring request."' . "\n";
+            exit;
+        }
+
+        $routerosDeviceSerialNumber = $this->loadSerialNumberViaSNMP(
+            $_SERVER['REMOTE_ADDR'],
+            $deviceType->snmp_community,
+        );
+
+        if (!$routerosDeviceSerialNumber) {
+            echo ':log error "Watcher NMS: Unable to read serial number via SNMP. Ignoring request."' . "\n";
+            exit;
+        }
+
+        if ($routerosDeviceSerialNumber !== $serialNumber) {
+            echo ':log error "Watcher NMS: The retrieved serial number does not match the request.'
+                . ' Ignoring request."' . "\n";
+            exit;
+        }
+
+        echo ':log warning "Watcher NMS: The retrieved serial number matches the request.'
+            . ' Loading and updating data."' . "\n";
+
+        try {
+            $service = new RouterosSnmpUpdateService(
+                new RouterosSnmpProviderLocal(
+                    new SnmpClient(),
+                ),
             );
 
-            if ($routerosDeviceSerialNumber) {
-                if ($routerosDeviceSerialNumber == $serialNumber) {
-                    echo ':log warning "Watcher NMS: The retrieved serial number matches the request.'
-                        . ' Loading and updating data."' . "\n";
-
-                    try {
-                        $service = new RouterosSnmpUpdateService(
-                            new LocalRouterosSnmpProvider(
-                                new SnmpClient(),
-                            ),
-                        );
-
-                        $routerosDevice = $service->updateNow(
-                            host: $_SERVER['REMOTE_ADDR'],
-                            community: $deviceType->snmp_community,
-                            deviceTypeId: $deviceType->id,
-                            assignAccessPointByDeviceName: $deviceType->assign_access_point_by_device_name,
-                            assignCustomerConnectionByIp: $deviceType->assign_customer_connection_by_ip,
-                        );
-                    } catch (RuntimeException $e) {
-                        echo ':log error "Watcher NMS: Unable to read data via SNMP."' . "\n";
-
-                        return;
-                    }
-
-                    echo ':log warning "Watcher NMS: The data was successfully retrieved via SNMP."' . "\n";
-
-                    if ($deviceType->automatically_set_a_unique_password) {
-                        echo ':log warning "Watcher NMS: The unique password should be set automatically.'
-                            . ' Sending configuration."' . "\n";
-
-                        echo "\n";
-
-                        echo '/user' . "\n";
-                        echo ':if ([:len [find name="' . $this->getUsername($routerosDevice) . '"]] = 0) do={'
-                            . "\n";
-                        echo '    :log warning "Watcher NMS: Adding '
-                        . $this->getUsername($routerosDevice) . ' user"' . "\n";
-                        echo '    add name="' . $this->getUsername($routerosDevice)
-                        . '" group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";
-                        echo '} else={' . "\n";
-                        echo '    :log warning "Watcher NMS: Updating '
-                        . $this->getUsername($routerosDevice) . ' user"' . "\n";
-                        echo '    set [find name="' . $this->getUsername($routerosDevice)
-                        . '"] group=full password="' . $this->getPassword($routerosDevice) . '"' . "\n";
-                        echo '}' . "\n";
-                        echo ':log warning "Watcher NMS: OK"' . "\n";
-                    }
-                } else {
-                    echo ':log error "Watcher NMS: The retrieved serial number does not match the request.'
-                        . ' Ignoring request."' . "\n";
-                }
-            } else {
-                echo ':log error "Watcher NMS: Unable to read serial number via SNMP. Ignoring request."' . "\n";
-            }
-        } else {
-            echo ':log error "Watcher NMS: Unknown device type identifier. Ignoring request."' . "\n";
+            $routerosDevice = $service->updateNow(
+                host: $_SERVER['REMOTE_ADDR'],
+                community: $deviceType->snmp_community,
+                deviceTypeId: $deviceType->id,
+                assignAccessPointByDeviceName: $deviceType->assign_access_point_by_device_name,
+                assignCustomerConnectionByIp: $deviceType->assign_customer_connection_by_ip,
+            );
+        } catch (RuntimeException $e) {
+            echo ':log error "Watcher NMS: Unable to read data via SNMP."' . "\n";
+            exit;
         }
+
+        echo ':log warning "Watcher NMS: The data was successfully retrieved via SNMP."' . "\n";
+
+        $builder = new ProvisionScriptBuilder();
+        echo $builder->build($routerosDevice, $deviceType);
+
+        echo ':log warning "Watcher NMS: OK"' . "\n";
+
         exit;
     }
 
