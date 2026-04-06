@@ -99,12 +99,12 @@ class ProvisionController extends AppController
         // 4) Provisioning script generation
         $builder = new ProvisionScriptBuilder();
 
-        $script = implode("\n", array_filter([
+        $script = implode("\n", [
             ':log warning "Watcher NMS: The retrieved serial number matches the request. Loading and updating data."',
             ':log warning "Watcher NMS: The data was successfully retrieved via SNMP."',
             $builder->build($routerosDevice, $deviceType),
             ':log warning "Watcher NMS: OK"',
-        ]));
+        ]) . "\n";
 
         // 5) Response
         $this->set('script', $script);

@@ -39,7 +39,7 @@ final class ProvisionScriptBuilder
             $script[] = $this->userBlock($device);
         }
 
-        return implode("\n", array_filter($script));
+        return implode("\n", $script) . "\n";
     }
 
     /**
@@ -70,6 +70,7 @@ final class ProvisionScriptBuilder
             '    :log warning "Watcher NMS: Updating ' . $user . ' user"',
             '    set [find name="' . $user . '"] group=full password="' . $pass . '"',
             '}',
-        ]);
+            '',
+        ]) . "\n";
     }
 }
