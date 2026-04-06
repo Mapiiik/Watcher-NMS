@@ -101,7 +101,7 @@ class ProvisionController extends AppController
 
         $script = implode("\n", [
             ':log warning "Watcher NMS: Watcher Agent '
-                . (is_string($data['agent_id']) ? '(' . $data['agent_id'] . ')' : '')
+                . (is_string($data['agent_id']) ? '(' . $data['agent_id'] . ') ' : '')
                 . 'successfully handed over the data.'
                 . ' Loading and updating device inventory."',
             ':log warning "Watcher NMS: The data was successfully retrieved via SNMP."',
