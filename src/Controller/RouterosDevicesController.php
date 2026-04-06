@@ -358,7 +358,7 @@ class RouterosDevicesController extends AppController
         }
 
         echo ':log warning "Watcher NMS: The retrieved serial number matches the request.'
-            . ' Loading and updating data."' . "\n";
+            . ' Loading and updating device inventory"' . "\n";
 
         try {
             $service = new RouterosSnmpUpdateService(
