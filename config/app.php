@@ -480,7 +480,7 @@ return [
     'GoogleMap' => [
         'autoCenter' => true,
         'autoScript' => true,
-        'key' => env('GOOLE_MAP_API_KEY', null),
+        'key' => env('GOOGLE_MAP_API_KEY', null),
         'type' => 'H',
         'map' => [
             'navOptions' => ['style' => 'SMALL'],

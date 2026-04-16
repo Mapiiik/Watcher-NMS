@@ -99,7 +99,7 @@ class AccessPoint extends Entity
      */
     protected function _getNearestFoundAddress(): ?string
     {
-        if (env('GOOLE_MAP_API_KEY') === null) {
+        if (env('GOOGLE_MAP_API_KEY') === null) {
             return '(' . __('You must provide an Google Map API key.') . ')';
         }
 
@@ -107,7 +107,7 @@ class AccessPoint extends Entity
             return '(' . __('You need to set the correct GPS coordinates.') . ')';
         }
 
-        $apiKey = env('GOOLE_MAP_API_KEY');
+        $apiKey = env('GOOGLE_MAP_API_KEY');
         $apiKey = is_string($apiKey) ? $apiKey : null;
 
         $locale = env('APP_DEFAULT_LOCALE');
