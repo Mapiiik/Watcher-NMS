@@ -53,7 +53,8 @@
                             <th><?= __('Access Point') ?></th>
                             <td>
                                 <?= $routerosDevice->__isset('access_point') ? $this->Html->link(
-                                    $routerosDevice->access_point->name,
+                                    $routerosDevice->access_point->name
+                                        ?? '(' . $routerosDevice->access_point->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
@@ -66,7 +67,8 @@
                             <th><?= __('Customer Connection') ?></th>
                             <td>
                                 <?= $routerosDevice->__isset('customer_connection') ? $this->Html->link(
-                                    $routerosDevice->customer_connection->name,
+                                    $routerosDevice->customer_connection->name
+                                        ?? '(' . $routerosDevice->customer_connection->id . ')',
                                     [
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',
@@ -79,7 +81,8 @@
                             <th><?= __('Device Type') ?></th>
                             <td>
                                 <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
-                                    $routerosDevice->device_type->name,
+                                    $routerosDevice->device_type->name
+                                        ?? '(' . $routerosDevice->device_type->id . ')',
                                     [
                                         'controller' => 'DeviceTypes',
                                         'action' => 'view',
@@ -308,7 +311,11 @@
                                     $routerosWirelessLink
                                         ->neighbouring_interface
                                         ->routeros_device
-                                        ->name,
+                                        ->name
+                                            ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->id . ')',
                                     [
                                         'controller' => 'RouterosDevices',
                                         'action' => 'view',
@@ -330,7 +337,12 @@
                                         ->neighbouring_interface
                                         ->routeros_device
                                         ->access_point
-                                        ->name,
+                                        ->name
+                                            ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->access_point
+                                                ->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
@@ -353,7 +365,12 @@
                                         ->neighbouring_interface
                                         ->routeros_device
                                         ->customer_connection
-                                        ->name,
+                                        ->name
+                                            ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id . ')',
                                     [
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',
@@ -393,7 +410,11 @@
                                         ->routeros_device,
                                 ) ?
                                 $this->Html->link(
-                                    $routerosIpLink->neighbouring_ip_address->routeros_device->name,
+                                    $routerosIpLink->neighbouring_ip_address->routeros_device->name
+                                        ?? '(' . $routerosIpLink
+                                            ->neighbouring_ip_address
+                                            ->routeros_device
+                                            ->id . ')',
                                     [
                                         'controller' => 'RouterosDevices',
                                         'action' => 'view',
@@ -412,7 +433,12 @@
                                         ->neighbouring_ip_address
                                         ->routeros_device
                                         ->access_point
-                                        ->name,
+                                        ->name
+                                            ?? '(' . $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->access_point
+                                                ->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
@@ -435,7 +461,12 @@
                                         ->neighbouring_ip_address
                                         ->routeros_device
                                         ->customer_connection
-                                        ->name,
+                                        ->name
+                                            ?? '(' . $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id . ')',
                                     [
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',

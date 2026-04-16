@@ -62,13 +62,15 @@ $this->setLayout('clean');
                     <tr>
                         <td>
                             <?= $routerosDevice->__isset('access_point') ? $this->Html->link(
-                                $routerosDevice->access_point->name,
+                                $routerosDevice->access_point->name
+                                    ?? '(' . $routerosDevice->access_point->id . ')',
                                 ['controller' => 'AccessPoints', 'action' => 'view', $routerosDevice->access_point->id],
                             ) : '' ?>
                         </td>
                         <td>
                             <?= $routerosDevice->__isset('customer_connection') ? $this->Html->link(
-                                $routerosDevice->customer_connection->name,
+                                $routerosDevice->customer_connection->name
+                                    ?? '(' . $routerosDevice->customer_connection->id . ')',
                                 [
                                     'controller' => 'CustomerConnections',
                                     'action' => 'view',
@@ -79,7 +81,8 @@ $this->setLayout('clean');
                         <td><?= h($routerosDevice->name) ?></td>
                         <td>
                             <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
-                                $routerosDevice->device_type->name,
+                                $routerosDevice->device_type->name
+                                    ?? '(' . $routerosDevice->device_type->id . ')',
                                 ['controller' => 'DeviceTypes', 'action' => 'view', $routerosDevice->device_type->id],
                             ) : '' ?>
                         </td>
