@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * DeviceType Entity
  *
@@ -13,12 +11,6 @@ use Cake\ORM\Entity;
  * @property string|null $identifier
  * @property string|null $snmp_community
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  * @property bool $assign_access_point_by_device_name
  * @property bool $assign_customer_connection_by_ip
  * @property bool $allow_technicians_access
@@ -28,7 +20,7 @@ use Cake\ORM\Entity;
  *
  * @property string $name_for_lists
  */
-class DeviceType extends Entity
+class DeviceType extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * CustomerConnectionIp Entity
  *
@@ -13,18 +11,12 @@ use Cake\ORM\Entity;
  * @property string|null $customer_connection_id
  * @property string|null $ip_address
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property \App\Model\Entity\CustomerConnection $customer_connection
  *
  * @property string $name_for_lists
  */
-class CustomerConnectionIp extends Entity
+class CustomerConnectionIp extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

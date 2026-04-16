@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * ElectricityMeterReading Entity
  *
@@ -14,19 +12,13 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Date $reading_date
  * @property float|null $reading_value
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  * @property float|null $daily_consumption
  *
  * @property \App\Model\Entity\AccessPoint $access_point
  *
  * @property string $name_for_lists
  */
-class ElectricityMeterReading extends Entity
+class ElectricityMeterReading extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * LandlordPaymentsElectricityDetail Entity
  *
@@ -14,14 +12,10 @@ use Cake\ORM\Entity;
  * @property string|null $low_rate_price_per_kwh
  * @property string|null $high_rate_kwh_used
  * @property string|null $high_rate_price_per_kwh
- * @property \Cake\I18n\DateTime $created
- * @property string|null $created_by
- * @property \Cake\I18n\DateTime $modified
- * @property string|null $modified_by
  *
  * @property \App\Model\Entity\LandlordPayment $landlord_payment
  */
-class LandlordPaymentsElectricityDetail extends Entity
+class LandlordPaymentsElectricityDetail extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

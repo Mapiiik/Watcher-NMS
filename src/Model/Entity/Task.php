@@ -3,17 +3,9 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * Task Entity
  *
- * @property \Cake\I18n\DateTime $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  * @property string $id
  * @property int $nid
  * @property string $task_state_id
@@ -38,7 +30,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\AppUser|null $user
  * @property \App\Model\Entity\AccessPoint|null $access_point
  */
-class Task extends Entity
+class Task extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

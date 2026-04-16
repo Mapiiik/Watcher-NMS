@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * LandlordPayment Entity
  *
@@ -14,15 +12,9 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Date $payment_date
  * @property string|null $amount_paid
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
  * @property \Cake\I18n\Date|null $period_from
  * @property \Cake\I18n\Date|null $period_until
  *
- * @property \App\Model\Entity\AppUser $creator
- * @property \App\Model\Entity\AppUser $modifier
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\PaymentPurpose $payment_purpose
  * @property \App\Model\Entity\LandlordPaymentsElectricityDetail|null $landlord_payments_electricity_detail
@@ -30,7 +22,7 @@ use Cake\ORM\Entity;
  * @property string $name_for_lists
  * @property string $name
  */
-class LandlordPayment extends Entity
+class LandlordPayment extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

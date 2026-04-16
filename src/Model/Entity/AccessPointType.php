@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * AccessPointType Entity
  *
@@ -12,19 +10,13 @@ use Cake\ORM\Entity;
  * @property string|null $name
  * @property string $color
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
  *
- * @property \App\Model\Entity\AppUser $creator
- * @property \App\Model\Entity\AppUser $modifier
  * @property \App\Model\Entity\AccessPoint[] $access_points
  *
  * @property string $name_for_lists
  * @property string $style
  */
-class AccessPointType extends Entity
+class AccessPointType extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

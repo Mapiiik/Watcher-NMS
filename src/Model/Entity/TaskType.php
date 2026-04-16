@@ -3,24 +3,16 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * TaskType Entity
  *
- * @property \Cake\I18n\DateTime $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  * @property string $id
  * @property string|null $name
  * @property bool $access_point_required
  *
  * @property \App\Model\Entity\Task[] $tasks
  */
-class TaskType extends Entity
+class TaskType extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

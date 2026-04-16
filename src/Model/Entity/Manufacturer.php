@@ -3,20 +3,12 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * Manufacturer Entity
  *
  * @property string $id
  * @property string|null $name
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property \App\Model\Entity\AntennaType[] $antenna_types
  * @property \App\Model\Entity\PowerSupplyType[] $power_supply_types
@@ -24,7 +16,7 @@ use Cake\ORM\Entity;
  *
  * @property string $name_for_lists
  */
-class Manufacturer extends Entity
+class Manufacturer extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

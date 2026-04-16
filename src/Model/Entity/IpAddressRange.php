@@ -3,18 +3,10 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * IpAddressRange Entity
  *
  * @property string $id
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  * @property string|null $name
  * @property string $ip_network
  * @property string|null $ip_gateway
@@ -34,7 +26,7 @@ use Cake\ORM\Entity;
  *
  * @property string $name_for_lists
  */
-class IpAddressRange extends Entity
+class IpAddressRange extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

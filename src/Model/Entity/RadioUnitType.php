@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * RadioUnitType Entity
  *
@@ -14,12 +12,6 @@ use Cake\ORM\Entity;
  * @property string|null $manufacturer_id
  * @property string|null $part_number
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property \App\Model\Entity\RadioUnitBand $radio_unit_band
  * @property \App\Model\Entity\Manufacturer $manufacturer
@@ -28,7 +20,7 @@ use Cake\ORM\Entity;
  * @property string $name_for_lists
  * @property string $style
  */
-class RadioUnitType extends Entity
+class RadioUnitType extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

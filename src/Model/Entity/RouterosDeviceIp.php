@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * RouterosDeviceIp Entity
  *
@@ -14,19 +12,13 @@ use Cake\ORM\Entity;
  * @property string|null $ip_address
  * @property string|null $ip_network
  * @property int|null $interface_index
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property \App\Model\Entity\RouterosDevice $routeros_device
  * @property \App\Model\Entity\RouterosDeviceIp $neighbouring_ip_address
  *
  * @property string $name_for_lists
  */
-class RouterosDeviceIp extends Entity
+class RouterosDeviceIp extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

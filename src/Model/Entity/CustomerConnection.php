@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * CustomerConnection Entity
  *
@@ -17,12 +15,6 @@ use Cake\ORM\Entity;
  * @property string|null $customer_url
  * @property string|null $contract_url
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property \App\Model\Entity\CustomerPoint $customer_point
  * @property \App\Model\Entity\AccessPoint $access_point
@@ -31,7 +23,7 @@ use Cake\ORM\Entity;
  *
  * @property string $name_for_lists
  */
-class CustomerConnection extends Entity
+class CustomerConnection extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

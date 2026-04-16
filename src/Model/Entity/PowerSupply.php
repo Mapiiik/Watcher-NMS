@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * PowerSupply Entity
  *
@@ -19,19 +17,13 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Date|null $battery_replacement
  * @property float|null $battery_duration
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property \App\Model\Entity\PowerSupplyType $power_supply_type
  * @property \App\Model\Entity\AccessPoint $access_point
  *
  * @property string $name_for_lists
  */
-class PowerSupply extends Entity
+class PowerSupply extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * RadioLink Entity
  *
@@ -13,19 +11,13 @@ use Cake\ORM\Entity;
  * @property int|null $distance
  * @property string|null $authorization_number
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property \App\Model\Entity\RadioUnit[] $radio_units
  *
  * @property string $name_for_lists
  * @property string $style
  */
-class RadioLink extends Entity
+class RadioLink extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

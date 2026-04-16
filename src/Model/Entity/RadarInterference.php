@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * RadarInterference Entity
  *
@@ -14,16 +12,10 @@ use Cake\ORM\Entity;
  * @property string|null $ssid
  * @property int|null $signal
  * @property string|null $radio_name
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  *
  * @property string $name_for_lists
  */
-class RadarInterference extends Entity
+class RadarInterference extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

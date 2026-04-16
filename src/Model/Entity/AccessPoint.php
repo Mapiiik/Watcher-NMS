@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\Cache\Cache;
-use Cake\ORM\Entity;
 use Geocoder\Provider\GoogleMaps\GoogleMaps;
 use Geocoder\Query\ReverseQuery;
 use Http\Discovery\Psr18Client;
@@ -18,17 +17,11 @@ use Http\Discovery\Psr18Client;
  * @property float|null $gps_x
  * @property float|null $gps_y
  * @property string|null $note
- * @property \Cake\I18n\DateTime|null $created
- * @property \Cake\I18n\DateTime|null $modified
  * @property int|null $month_of_electricity_meter_reading
  * @property string|null $parent_access_point_id
  * @property string|null $contract_conditions
- * @property string|null $created_by
- * @property string|null $modified_by
  * @property string|null $access_point_type_id
  *
- * @property \App\Model\Entity\AppUser $creator
- * @property \App\Model\Entity\AppUser $modifier
  * @property \App\Model\Entity\AccessPointType $access_point_type
  * @property \App\Model\Entity\AccessPoint $parent_access_point
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
@@ -43,7 +36,7 @@ use Http\Discovery\Psr18Client;
  * @property string $name_for_lists
  * @property string|null $nearest_found_address
  */
-class AccessPoint extends Entity
+class AccessPoint extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * RouterosDevice Entity
  *
@@ -18,12 +16,6 @@ use Cake\ORM\Entity;
  * @property string|null $serial_number
  * @property string|null $software_version
  * @property string|null $firmware_version
- * @property \Cake\I18n\DateTime|null $created
- * @property string|null $created_by
- * @property \App\Model\Entity\AppUser|null $creator
- * @property \Cake\I18n\DateTime|null $modified
- * @property string|null $modified_by
- * @property \App\Model\Entity\AppUser|null $modifier
  * @property string|null $customer_connection_id
  * @property string|null $username
  * @property string|null $password
@@ -38,7 +30,7 @@ use Cake\ORM\Entity;
  *
  * @property string $name_for_lists
  */
-class RouterosDevice extends Entity
+class RouterosDevice extends AppEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
