@@ -31,33 +31,33 @@ final class RouterosSnmpPayloadNormalizer
                 'software_version' => $device['software_version'] ?? null,
                 'firmware_version' => $device['firmware_version'] ?? null,
             ],
-            interfaces: array_map(
+            interfaces: array_values(array_map(
                 fn(array $i): array => [
                     'interface_index' => (int)($i['interface_index'] ?? 0),
-                    'name' => $i['name'] ?? null,
-                    'comment' => $i['comment'] ?? null,
+                    'name' => self::stringOrNull($i, 'name'),
+                    'comment' => self::stringOrNull($i, 'comment'),
                     'interface_admin_status' => self::intOrNull($i, 'interface_admin_status'),
                     'interface_oper_status' => self::intOrNull($i, 'interface_oper_status'),
                     'interface_type' => self::intOrNull($i, 'interface_type'),
-                    'mac_address' => $i['mac_address'] ?? null,
-                    'ssid' => $i['ssid'] ?? null,
-                    'bssid' => $i['bssid'] ?? null,
-                    'band' => $i['band'] ?? null,
+                    'mac_address' => self::stringOrNull($i, 'mac_address'),
+                    'ssid' => self::stringOrNull($i, 'ssid'),
+                    'bssid' => self::stringOrNull($i, 'bssid'),
+                    'band' => self::stringOrNull($i, 'band'),
                     'frequency' => self::intOrNull($i, 'frequency'),
                     'noise_floor' => self::intOrNull($i, 'noise_floor'),
                     'client_count' => self::intOrNull($i, 'client_count'),
                     'overall_tx_ccq' => self::intOrNull($i, 'overall_tx_ccq'),
                 ],
                 $interfaces,
-            ),
-            ipAddresses: array_map(
+            )),
+            ipAddresses: array_values(array_map(
                 fn(array $ip): array => [
                     'interface_index' => (int)($ip['interface_index'] ?? 0),
                     'ip_address' => (string)($ip['ip_address'] ?? ''),
-                    'name' => $ip['name'] ?? null,
+                    'name' => self::stringOrNull($ip, 'name'),
                 ],
                 $ipAddresses,
-            ),
+            )),
         );
     }
 
@@ -67,5 +67,13 @@ final class RouterosSnmpPayloadNormalizer
     private static function intOrNull(array $source, string $key): ?int
     {
         return isset($source[$key]) ? (int)$source[$key] : null;
+    }
+
+    /**
+     * @param array<string, mixed> $source
+     */
+    private static function stringOrNull(array $source, string $key): ?string
+    {
+        return isset($source[$key]) ? (string)$source[$key] : null;
     }
 }

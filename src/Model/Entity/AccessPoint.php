@@ -107,19 +107,25 @@ class AccessPoint extends Entity
             return '(' . __('You need to set the correct GPS coordinates.') . ')';
         }
 
+        $apiKey = env('GOOLE_MAP_API_KEY');
+        $apiKey = is_string($apiKey) ? $apiKey : null;
+
+        $locale = env('APP_DEFAULT_LOCALE');
+        $locale = is_string($locale) ? $locale : 'en_US';
+
         /** @var \Geocoder\Model\AddressCollection $address_collection */
         $address_collection = Cache::remember(
             'access_point__address_lookup_' . $this->id,
-            function () {
+            function () use ($apiKey, $locale) {
                 $geocoder = new GoogleMaps(
                     new Psr18Client(),
                     null,
-                    env('GOOLE_MAP_API_KEY', null),
+                    $apiKey,
                 );
 
                 return $geocoder->reverseQuery(
                     ReverseQuery::fromCoordinates($this->gps_y, $this->gps_x)
-                        ->withLocale(env('APP_DEFAULT_LOCALE', 'en_US')),
+                        ->withLocale($locale),
                 );
             },
             'default',

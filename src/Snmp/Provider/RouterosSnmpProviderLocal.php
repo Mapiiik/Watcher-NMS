@@ -20,8 +20,8 @@ final class RouterosSnmpProviderLocal implements RouterosSnmpProviderInterface
     /**
      * Reads SNMP data from a RouterOS device directly.
      *
-     * @param string $host Hostname or IP address of the RouterOS device
-     * @param string $community SNMP community string
+     * @param non-empty-string $host Hostname or IP address of the RouterOS device
+     * @param non-empty-string $community SNMP community string
      * @return \App\Snmp\Dto\RouterosSnmpData The retrieved SNMP data
      * @throws \RuntimeException if the SNMP read operation fails or returns invalid data
      */

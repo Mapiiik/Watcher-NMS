@@ -77,8 +77,11 @@ class ProvisionController extends AppController
             ->where(['identifier' => $data['device_type']])
             ->first();
 
-        if (!$deviceType) {
+        if (empty($deviceType)) {
             throw new BadRequestException('Unsupported device type');
+        }
+        if (empty($deviceType->snmp_community)) {
+            throw new BadRequestException('Device type has no SNMP community configured');
         }
 
         // 3) SNMP inventory update (Watcher Agent push)

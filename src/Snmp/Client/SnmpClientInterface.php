@@ -10,8 +10,8 @@ interface SnmpClientInterface
     /**
      * Opens an SNMP session to the specified host with the given community string.
      *
-     * @param string $host The target host for SNMP operations.
-     * @param string $community The SNMP community string for authentication.
+     * @param non-empty-string $host The target host for SNMP operations.
+     * @param non-empty-string $community The SNMP community string for authentication.
      */
     public function open(string $host, string $community): void;
 

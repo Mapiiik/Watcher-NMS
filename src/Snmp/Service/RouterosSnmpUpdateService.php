@@ -33,8 +33,8 @@ final class RouterosSnmpUpdateService
      * the RouterOS device record, synchronizes interfaces and IP addresses,
      * optionally assigns related entities, and removes stale records.
      *
-     * @param string $host Hostname or IP address of the RouterOS device
-     * @param string $community SNMP community string
+     * @param non-empty-string $host Hostname or IP address of the RouterOS device
+     * @param non-empty-string $community SNMP community string
      * @param string $deviceTypeId Device type identifier
      * @param bool $assignAccessPointByDeviceName Whether to assign an access point by device name
      * @param bool $assignCustomerConnectionByIp Whether to assign a customer connection by IP address

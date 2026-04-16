@@ -19,8 +19,8 @@ final class RouterosSnmpProviderAgentPush implements RouterosSnmpProviderInterfa
     /**
      * Reads SNMP data from the provided payload.
      *
-     * @param string $host Hostname or IP address of the RouterOS device
-     * @param string $community SNMP community string (not used in this implementation)
+     * @param non-empty-string $host Hostname or IP address of the RouterOS device
+     * @param non-empty-string $community SNMP community string (not used in this implementation)
      * @return \App\Snmp\Dto\RouterosSnmpData The retrieved SNMP data
      * @throws \RuntimeException if the SNMP read operation fails or returns invalid data
      */

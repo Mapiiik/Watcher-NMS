@@ -305,8 +305,8 @@ class RouterosDevicesController extends AppController
     /**
      * load serial number via SNMP
      *
-     * @param string $host SNMP host
-     * @param string $community SNMP reading community
+     * @param non-empty-string $host SNMP host
+     * @param non-empty-string $community SNMP reading community
      * @return string|null
      */
     private function loadSerialNumberViaSNMP(string $host, string $community)
@@ -338,6 +338,11 @@ class RouterosDevicesController extends AppController
 
         if (!$deviceType) {
             echo ':log error "Watcher NMS: Unknown device type identifier. Ignoring request."' . "\n";
+            exit;
+        }
+
+        if (empty($deviceType->snmp_community)) {
+            echo ':log error "Watcher NMS: Device type has no SNMP community configured. Ignoring request."' . "\n";
             exit;
         }
 

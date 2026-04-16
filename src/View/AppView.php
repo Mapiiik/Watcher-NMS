@@ -16,8 +16,10 @@ declare(strict_types=1);
 namespace App\View;
 
 use Cake\View\View;
+use IntlCalendar;
 use IntlDateFormatter;
 use Override;
+use RuntimeException;
 
 /**
  * Application View
@@ -50,14 +52,34 @@ class AppView extends View
     /**
      * Months method
      *
-     * @return array<string> Months names
+     * @return array<int, string> Months names
      */
     public static function months(): array
     {
-        $formatter = new IntlDateFormatter(null, IntlDateFormatter::FULL, IntlDateFormatter::FULL);
+        $formatter = new IntlDateFormatter(
+            locale: null,
+            dateType: IntlDateFormatter::FULL,
+            timeType: IntlDateFormatter::NONE,
+        );
+
         $formatter->setPattern('LLLL');
+
+        $calendar = IntlCalendar::createInstance();
+
+        $months = [];
+
         for ($m = 1; $m <= 12; $m++) {
-            $months[$m] = $formatter->format(mktime(0, 0, 0, $m, 12));
+            $calendar->set(
+                IntlCalendar::FIELD_MONTH,
+                $m - 1, // IntlCalendar months are 0-based
+            );
+
+            $month = $formatter->format($calendar);
+
+            if ($month === false) {
+                throw new RuntimeException('Failed to format month name: ' . $formatter->getErrorMessage());
+            }
+            $months[$m] = $month;
         }
 
         return $months;

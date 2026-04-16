@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Snmp\Client;
 
 use Cake\Log\Log;
+use InvalidArgumentException;
 use LogicException;
 use SNMP;
 use SNMPException;
@@ -19,11 +20,18 @@ final class SnmpClient implements SnmpClientInterface
     /**
      * Opens an SNMP session to the specified host with the given community string.
      *
-     * @param string $host The target host for SNMP operations.
-     * @param string $community The SNMP community string for authentication.
+     * @param non-empty-string $host The target host for SNMP operations.
+     * @param non-empty-string $community The SNMP community string for authentication.
      */
     public function open(string $host, string $community): void
     {
+        if ($host === '') {
+            throw new InvalidArgumentException('SNMP host cannot be empty.');
+        }
+        if ($community === '') {
+            throw new InvalidArgumentException('SNMP community cannot be empty.');
+        }
+
         $this->snmp = new SNMP(SNMP::VERSION_2C, $host, $community);
         $this->snmp->valueretrieval = SNMP_VALUE_OBJECT | SNMP_VALUE_PLAIN;
         $this->snmp->oid_output_format = SNMP_OID_OUTPUT_NUMERIC;
@@ -101,6 +109,10 @@ final class SnmpClient implements SnmpClientInterface
                 Log::warning('SNMP WALK failed: ' . $e->getMessage());
             }
 
+            return null;
+        }
+
+        if (!is_array($result)) {
             return null;
         }
 
