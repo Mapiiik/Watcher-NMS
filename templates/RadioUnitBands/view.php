@@ -48,42 +48,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($radioUnitBand->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($radioUnitBand->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $radioUnitBand->__isset('creator') ? $this->Html->link(
-                                $radioUnitBand->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $radioUnitBand->creator->id,
-                                ],
-                            ) : h($radioUnitBand->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($radioUnitBand->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $radioUnitBand->__isset('modifier') ? $this->Html->link(
-                                $radioUnitBand->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $radioUnitBand->modifier->id,
-                                ],
-                            ) : h($radioUnitBand->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $radioUnitBand]) ?>
                 </div>
             </div>
             <div class="text">

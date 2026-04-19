@@ -73,42 +73,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($powerSupplyType->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($powerSupplyType->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $powerSupplyType->__isset('creator') ? $this->Html->link(
-                                $powerSupplyType->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $powerSupplyType->creator->id,
-                                ],
-                            ) : h($powerSupplyType->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($powerSupplyType->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $powerSupplyType->__isset('modifier') ? $this->Html->link(
-                                $powerSupplyType->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $powerSupplyType->modifier->id,
-                                ],
-                            ) : h($powerSupplyType->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $powerSupplyType]) ?>
                 </div>
             </div>
             <div class="text">

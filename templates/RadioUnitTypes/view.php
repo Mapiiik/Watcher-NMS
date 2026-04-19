@@ -76,42 +76,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($radioUnitType->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($radioUnitType->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $radioUnitType->__isset('creator') ? $this->Html->link(
-                                $radioUnitType->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $radioUnitType->creator->id,
-                                ],
-                            ) : h($radioUnitType->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($radioUnitType->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $radioUnitType->__isset('modifier') ? $this->Html->link(
-                                $radioUnitType->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $radioUnitType->modifier->id,
-                                ],
-                            ) : h($radioUnitType->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $radioUnitType]) ?>
                 </div>
             </div>
             <div class="text">

@@ -63,42 +63,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($customerConnectionIp->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($customerConnectionIp->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $customerConnectionIp->__isset('creator') ? $this->Html->link(
-                                $customerConnectionIp->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $customerConnectionIp->creator->id,
-                                ],
-                            ) : h($customerConnectionIp->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($customerConnectionIp->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $customerConnectionIp->__isset('modifier') ? $this->Html->link(
-                                $customerConnectionIp->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $customerConnectionIp->modifier->id,
-                                ],
-                            ) : h($customerConnectionIp->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $customerConnectionIp]) ?>
                 </div>
             </div>
             <div class="text">

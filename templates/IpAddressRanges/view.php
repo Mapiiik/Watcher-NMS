@@ -124,42 +124,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($ipAddressRange->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($ipAddressRange->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $ipAddressRange->__isset('creator') ? $this->Html->link(
-                                $ipAddressRange->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $ipAddressRange->creator->id,
-                                ],
-                            ) : h($ipAddressRange->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($ipAddressRange->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $ipAddressRange->__isset('modifier') ? $this->Html->link(
-                                $ipAddressRange->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $ipAddressRange->modifier->id,
-                                ],
-                            ) : h($ipAddressRange->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $ipAddressRange]) ?>
                 </div>
             </div>
             <div class="text">

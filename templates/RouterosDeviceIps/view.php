@@ -68,42 +68,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($routerosDeviceIp->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($routerosDeviceIp->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $routerosDeviceIp->__isset('creator') ? $this->Html->link(
-                                $routerosDeviceIp->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $routerosDeviceIp->creator->id,
-                                ],
-                            ) : h($routerosDeviceIp->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($routerosDeviceIp->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $routerosDeviceIp->__isset('modifier') ? $this->Html->link(
-                                $routerosDeviceIp->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $routerosDeviceIp->modifier->id,
-                                ],
-                            ) : h($routerosDeviceIp->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $routerosDeviceIp]) ?>
                 </div>
             </div>
         </div>

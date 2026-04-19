@@ -71,42 +71,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($electricityMeterReading->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($electricityMeterReading->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $electricityMeterReading->__isset('creator') ? $this->Html->link(
-                                $electricityMeterReading->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $electricityMeterReading->creator->id,
-                                ],
-                            ) : h($electricityMeterReading->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($electricityMeterReading->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $electricityMeterReading->__isset('modifier') ? $this->Html->link(
-                                $electricityMeterReading->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $electricityMeterReading->modifier->id,
-                                ],
-                            ) : h($electricityMeterReading->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $electricityMeterReading]) ?>
                 </div>
             </div>
             <div class="text">

@@ -85,42 +85,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($accessPointContact->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($accessPointContact->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $accessPointContact->__isset('creator') ? $this->Html->link(
-                                $accessPointContact->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $accessPointContact->creator->id,
-                                ],
-                            ) : h($accessPointContact->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($accessPointContact->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $accessPointContact->__isset('modifier') ? $this->Html->link(
-                                $accessPointContact->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $accessPointContact->modifier->id,
-                                ],
-                            ) : h($accessPointContact->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $accessPointContact]) ?>
                 </div>
             </div>
             <div class="text">

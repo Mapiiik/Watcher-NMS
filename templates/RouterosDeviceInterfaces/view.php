@@ -124,42 +124,7 @@
                                 '' : $this->Number->format($routerosDeviceInterface->interface_oper_status); ?></td>
                         </tr>
                     </table>
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($routerosDeviceInterface->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($routerosDeviceInterface->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $routerosDeviceInterface->__isset('creator') ? $this->Html->link(
-                                $routerosDeviceInterface->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $routerosDeviceInterface->creator->id,
-                                ],
-                            ) : h($routerosDeviceInterface->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($routerosDeviceInterface->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $routerosDeviceInterface->__isset('modifier') ? $this->Html->link(
-                                $routerosDeviceInterface->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $routerosDeviceInterface->modifier->id,
-                                ],
-                            ) : h($routerosDeviceInterface->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $routerosDeviceInterface]) ?>
                 </div>
             </div>
         </div>

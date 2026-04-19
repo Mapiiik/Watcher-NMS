@@ -46,43 +46,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($manufacturer->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($manufacturer->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $manufacturer->__isset('creator') ? $this->Html->link(
-                                $manufacturer->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $manufacturer->creator->id,
-                                ],
-                            ) : h($manufacturer->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($manufacturer->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $manufacturer->__isset('modifier') ? $this->Html->link(
-                                $manufacturer->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $manufacturer->modifier->id,
-                                ],
-                            ) : h($manufacturer->modified_by) ?></td>
-                        </tr>
-                    </table>
-                    <tr>
+                    <?= $this->element('common/audit', ['entity' => $manufacturer]) ?>
                 </div>
             </div>
             <div class="text">

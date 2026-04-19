@@ -185,42 +185,7 @@
                             <td><?= h($radioUnit->authorization_number) ?></td>
                         </tr>
                     </table>
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($radioUnit->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($radioUnit->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $radioUnit->__isset('creator') ? $this->Html->link(
-                                $radioUnit->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $radioUnit->creator->id,
-                                ],
-                            ) : h($radioUnit->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($radioUnit->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $radioUnit->__isset('modifier') ? $this->Html->link(
-                                $radioUnit->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $radioUnit->modifier->id,
-                                ],
-                            ) : h($radioUnit->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $radioUnit]) ?>
                 </div>
             </div>
             <div class="text">

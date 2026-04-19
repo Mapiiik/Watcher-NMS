@@ -46,43 +46,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($paymentPurpose->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($paymentPurpose->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $paymentPurpose->__isset('creator') ? $this->Html->link(
-                                $paymentPurpose->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $paymentPurpose->creator->id,
-                                ],
-                            ) : h($paymentPurpose->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($paymentPurpose->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $paymentPurpose->__isset('modifier') ? $this->Html->link(
-                                $paymentPurpose->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $paymentPurpose->modifier->id,
-                                ],
-                            ) : h($paymentPurpose->modified_by) ?></td>
-                        </tr>
-                    </table>
-                    <tr>
+                    <?= $this->element('common/audit', ['entity' => $paymentPurpose]) ?>
                 </div>
             </div>
             <div class="text">

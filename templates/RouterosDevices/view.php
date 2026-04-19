@@ -133,42 +133,7 @@
                             <td><?= h($routerosDevice->firmware_version) ?></td>
                         </tr>
                     </table>
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($routerosDevice->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($routerosDevice->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $routerosDevice->__isset('creator') ? $this->Html->link(
-                                $routerosDevice->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $routerosDevice->creator->id,
-                                ],
-                            ) : h($routerosDevice->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($routerosDevice->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $routerosDevice->__isset('modifier') ? $this->Html->link(
-                                $routerosDevice->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $routerosDevice->modifier->id,
-                                ],
-                            ) : h($routerosDevice->modified_by) ?></td>
-                        </tr>
-                    </table>
+                    <?= $this->element('common/audit', ['entity' => $routerosDevice]) ?>
                 </div>
             </div>
             <div class="related">

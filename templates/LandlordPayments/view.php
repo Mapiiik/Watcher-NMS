@@ -84,43 +84,7 @@
                     </table>
                 </div>
                 <div class="column">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <td><?= h($landlordPayment->id) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created') ?></th>
-                            <td><?= h($landlordPayment->created) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Created By') ?></th>
-                            <td><?= $landlordPayment->__isset('creator') ? $this->Html->link(
-                                $landlordPayment->creator->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $landlordPayment->creator->id,
-                                ],
-                            ) : h($landlordPayment->created_by) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified') ?></th>
-                            <td><?= h($landlordPayment->modified) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= __('Modified By') ?></th>
-                            <td><?= $landlordPayment->__isset('modifier') ? $this->Html->link(
-                                $landlordPayment->modifier->username,
-                                [
-                                    'controller' => 'AppUsers',
-                                    'action' => 'view',
-                                    $landlordPayment->modifier->id,
-                                ],
-                            ) : h($landlordPayment->modified_by) ?></td>
-                        </tr>
-                    </table>
-                    <tr>
+                    <?= $this->element('common/audit', ['entity' => $landlordPayment]) ?>
                 </div>
             </div>
             <div class="text">
