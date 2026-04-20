@@ -483,6 +483,14 @@ class TasksController extends AppController
             'Users',
         ]);
 
+        if (!is_object($task->user) || empty($task->user->email)) {
+            $this->Flash->error(__(
+                'The notification email could not be sent because the user does not have an email address.',
+            ));
+
+            return false;
+        }
+
         $mailer = new Mailer('default');
 
         $mailer->setTo($task->user->email, $task->user->name);

@@ -424,13 +424,16 @@ class AccessPointsController extends AppController
             if (is_numeric($accessPoint->gps_y) && is_numeric($accessPoint->gps_x)) {
                 $content =
                     '<b>'
-                    . $html->link($accessPoint->name, ['action' => 'view', $accessPoint->id])
+                    . $html->link(
+                        $accessPoint->name ?? '(' . $accessPoint->id . ')',
+                        ['action' => 'view', $accessPoint->id],
+                    )
                     . '</b>' . '<br>' . '<br>';
 
                 foreach ($accessPoint->routeros_devices as $routerosDevice) {
                     $content .=
                         $html->link(
-                            $routerosDevice->name,
+                            $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
                             [
                                 'controller' => 'RouterosDevices',
                                 'action' => 'view',
@@ -455,7 +458,11 @@ class AccessPointsController extends AppController
                                         $routerosIpLink
                                             ->neighbouring_ip_address
                                             ->routeros_device
-                                            ->name,
+                                            ->name
+                                            ?? '(' . $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->id . ')',
                                         [
                                             'controller' => 'RouterosDevices',
                                             'action' => 'view',
@@ -520,12 +527,14 @@ class AccessPointsController extends AppController
                                                 lat: $neighbouringAccessPoint->gps_y,
                                                 lng: $neighbouringAccessPoint->gps_x,
                                             ),
-                                            title: $neighbouringAccessPoint->name,
+                                            title: $neighbouringAccessPoint->name
+                                                ?? '(' . $neighbouringAccessPoint->id . ')',
                                             color: $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
                                             locked: false,
                                             content: '<b>'
                                                 . $html->link(
-                                                    $neighbouringAccessPoint->name,
+                                                    $neighbouringAccessPoint->name
+                                                        ?? '(' . $neighbouringAccessPoint->id . ')',
                                                     [
                                                         'controller' => 'AccessPoints',
                                                         'action' => 'view',
@@ -545,7 +554,11 @@ class AccessPointsController extends AppController
                                                 $routerosIpLink
                                                     ->neighbouring_ip_address
                                                     ->routeros_device
-                                                    ->name,
+                                                    ->name
+                                                    ?? '(' . $routerosIpLink
+                                                        ->neighbouring_ip_address
+                                                        ->routeros_device
+                                                        ->id . ')',
                                                 [
                                                     'controller' => 'RouterosDevices',
                                                     'action' => 'view',
@@ -557,7 +570,7 @@ class AccessPointsController extends AppController
                                             )
                                             . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
                                             . $html->link(
-                                                $routerosDevice->name,
+                                                $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
                                                 [
                                                     'controller' => 'RouterosDevices',
                                                     'action' => 'view',
@@ -616,12 +629,14 @@ class AccessPointsController extends AppController
                                                 lat: $neighbouringCustomerPoint->gps_y,
                                                 lng: $neighbouringCustomerPoint->gps_x,
                                             ),
-                                            title: $neighbouringCustomerPoint->name,
+                                            title: $neighbouringCustomerPoint->name
+                                                ?? '(' . $neighbouringCustomerPoint->id . ')',
                                             color: '#65ba4a',
                                             locked: false,
                                             content: '<b>'
                                                 . $html->link(
-                                                    $neighbouringCustomerPoint->name,
+                                                    $neighbouringCustomerPoint->name
+                                                        ?? '(' . $neighbouringCustomerPoint->id . ')',
                                                     [
                                                         'controller' => 'CustomerPoints',
                                                         'action' => 'view',
@@ -642,7 +657,11 @@ class AccessPointsController extends AppController
                                                 ->neighbouring_ip_address
                                                 ->routeros_device
                                                 ->customer_connection
-                                                ->name,
+                                                ->name
+                                                ?? '(' . $routerosIpLink
+                                                    ->neighbouring_ip_address
+                                                    ->routeros_device
+                                                    ->customer_connection->id . ')',
                                             [
                                                 'controller' => 'CustomerConnections',
                                                 'action' => 'view',
@@ -659,7 +678,11 @@ class AccessPointsController extends AppController
                                             $routerosIpLink
                                                 ->neighbouring_ip_address
                                                 ->routeros_device
-                                                ->name,
+                                                ->name
+                                                ?? '(' . $routerosIpLink
+                                                    ->neighbouring_ip_address
+                                                    ->routeros_device
+                                                    ->id . ')',
                                             [
                                                 'controller' => 'RouterosDevices',
                                                 'action' => 'view',
@@ -671,7 +694,7 @@ class AccessPointsController extends AppController
                                         )
                                         . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
                                         . $html->link(
-                                            $routerosDevice->name,
+                                            $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
                                             [
                                                 'controller' => 'RouterosDevices',
                                                 'action' => 'view',
@@ -700,7 +723,11 @@ class AccessPointsController extends AppController
                                         $routerosWirelessLink
                                             ->neighbouring_interface
                                             ->routeros_device
-                                            ->name,
+                                            ->name
+                                            ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->id . ')',
                                         [
                                             'controller' => 'RouterosDevices',
                                             'action' => 'view',
@@ -766,12 +793,14 @@ class AccessPointsController extends AppController
                                                 lat: $neighbouringAccessPoint->gps_y,
                                                 lng: $neighbouringAccessPoint->gps_x,
                                             ),
-                                            title: $neighbouringAccessPoint->name,
+                                            title: $neighbouringAccessPoint->name
+                                                ?? '(' . $neighbouringAccessPoint->id . ')',
                                             color: $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
                                             locked: false,
                                             content: '<b>'
                                                 . $html->link(
-                                                    $neighbouringAccessPoint->name,
+                                                    $neighbouringAccessPoint->name
+                                                        ?? '(' . $neighbouringAccessPoint->id . ')',
                                                     [
                                                         'controller' => 'AccessPoints',
                                                         'action' => 'view',
@@ -791,7 +820,11 @@ class AccessPointsController extends AppController
                                                 $routerosWirelessLink
                                                     ->neighbouring_interface
                                                     ->routeros_device
-                                                    ->name,
+                                                    ->name
+                                                    ?? '(' . $routerosWirelessLink
+                                                        ->neighbouring_interface
+                                                        ->routeros_device
+                                                        ->id . ')',
                                                 [
                                                     'controller' => 'RouterosDevices',
                                                     'action' => 'view',
@@ -803,7 +836,8 @@ class AccessPointsController extends AppController
                                             )
                                             . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
                                             . $html->link(
-                                                $routerosDevice->name,
+                                                $routerosDevice->name
+                                                    ?? '(' . $routerosDevice->id . ')',
                                                 [
                                                     'controller' => 'RouterosDevices',
                                                     'action' => 'view',
@@ -862,12 +896,14 @@ class AccessPointsController extends AppController
                                                 lat: $neighbouringCustomerPoint->gps_y,
                                                 lng: $neighbouringCustomerPoint->gps_x,
                                             ),
-                                            title: $neighbouringCustomerPoint->name,
+                                            title: $neighbouringCustomerPoint->name
+                                                ?? '(' . $neighbouringCustomerPoint->id . ')',
                                             color: '#65ba4a',
                                             locked: false,
                                             content: '<b>'
                                                 . $html->link(
-                                                    $neighbouringCustomerPoint->name,
+                                                    $neighbouringCustomerPoint->name
+                                                        ?? '(' . $neighbouringCustomerPoint->id . ')',
                                                     [
                                                         'controller' => 'CustomerPoints',
                                                         'action' => 'view',
@@ -888,7 +924,12 @@ class AccessPointsController extends AppController
                                                 ->neighbouring_interface
                                                 ->routeros_device
                                                 ->customer_connection
-                                                ->name,
+                                                ->name
+                                                ?? '(' . $routerosWirelessLink
+                                                    ->neighbouring_interface
+                                                    ->routeros_device
+                                                    ->customer_connection
+                                                    ->id . ')',
                                             [
                                                 'controller' => 'CustomerConnections',
                                                 'action' => 'view',
@@ -905,7 +946,11 @@ class AccessPointsController extends AppController
                                             $routerosWirelessLink
                                                 ->neighbouring_interface
                                                 ->routeros_device
-                                                ->name,
+                                                ->name
+                                                ?? '(' . $routerosWirelessLink
+                                                    ->neighbouring_interface
+                                                    ->routeros_device
+                                                    ->id . ')',
                                             [
                                                 'controller' => 'RouterosDevices',
                                                 'action' => 'view',
@@ -917,7 +962,7 @@ class AccessPointsController extends AppController
                                         )
                                         . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
                                         . $html->link(
-                                            $routerosDevice->name,
+                                            $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
                                             [
                                                 'controller' => 'RouterosDevices',
                                                 'action' => 'view',
@@ -939,7 +984,7 @@ class AccessPointsController extends AppController
                         lat: $accessPoint->gps_y,
                         lng: $accessPoint->gps_x,
                     ),
-                    title: $accessPoint->name,
+                    title: $accessPoint->name ?? '(' . $accessPoint->id . ')',
                     content: $content,
                     color: $accessPoint->access_point_type->color ?? '#d33c43',
                     locked: true,
