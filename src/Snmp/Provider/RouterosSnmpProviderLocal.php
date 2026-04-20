@@ -32,7 +32,7 @@ final class RouterosSnmpProviderLocal implements RouterosSnmpProviderInterface
         try {
             $serialNumber = $this->snmp->getText('.1.3.6.1.4.1.14988.1.1.7.3.0');
             if ($serialNumber === null || $serialNumber === '') {
-                throw new RuntimeException(__('SNMP serial number not found'));
+                throw new RuntimeException(__('SNMP - serial number not found'));
             }
 
             $device = [
