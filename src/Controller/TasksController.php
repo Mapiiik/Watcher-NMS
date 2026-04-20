@@ -94,7 +94,7 @@ class TasksController extends AppController
                 $conditions[] = [
                     'Users.id IS' => null,
                 ];
-            } elseif (Validation::uuid($user_id)) {
+            } elseif (is_string($user_id) && Validation::uuid($user_id)) {
                 $conditions[] = [
                     'Users.id' => $user_id,
                 ];
@@ -103,7 +103,7 @@ class TasksController extends AppController
 
         // filter by task type
         $task_type_id = $filter['task_type_id'] ?? null;
-        if (Validation::uuid($task_type_id)) {
+        if (is_string($task_type_id) && Validation::uuid($task_type_id)) {
             $conditions[] = [
                 'Tasks.task_type_id' => $task_type_id,
             ];
@@ -111,7 +111,7 @@ class TasksController extends AppController
 
         // filter by task state
         $task_state_id = $filter['task_state_id'] ?? null;
-        if (Validation::uuid($task_state_id)) {
+        if (is_string($task_state_id) && Validation::uuid($task_state_id)) {
             $conditions[] = [
                 'Tasks.task_state_id' => $task_state_id,
             ];
@@ -119,7 +119,7 @@ class TasksController extends AppController
 
         // filter by access point
         $access_point_id = $filter['access_point_id'] ?? null;
-        if (Validation::uuid($access_point_id)) {
+        if (is_string($access_point_id) && Validation::uuid($access_point_id)) {
             $conditions[] = [
                 'Tasks.access_point_id' => $access_point_id,
             ];
