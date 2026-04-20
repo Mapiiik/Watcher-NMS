@@ -13,6 +13,7 @@ use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use Cake\Utility\Text;
 use Override;
+use RuntimeException;
 use SplObjectStorage;
 use Throwable;
 
@@ -60,6 +61,17 @@ class RadarInterferencesUpdateCommand extends Command
                 $start_time = new DateTime();
                 foreach ($csv as $line) {
                     $data = str_getcsv($line, ';', '"', '\\');
+
+                    // validate data
+                    if (
+                        !is_string($data[0])
+                        || !is_string($data[1])
+                        || !is_string($data[2])
+                        || !is_string($data[3])
+                        || !is_string($data[4])
+                    ) {
+                        throw new RuntimeException('Invalid data in CSV on line: ' . $line);
+                    }
 
                     $radarInterference = $this->fetchTable(RadarInterferencesTable::class)->findOrCreate(
                         [

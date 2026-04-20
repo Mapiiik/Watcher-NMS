@@ -117,7 +117,7 @@ class AccessPoint extends AppEntity
                 );
 
                 return $geocoder->reverseQuery(
-                    ReverseQuery::fromCoordinates($this->gps_y, $this->gps_x)
+                    ReverseQuery::fromCoordinates((float)$this->gps_y, (float)$this->gps_x)
                         ->withLocale($locale),
                 );
             },

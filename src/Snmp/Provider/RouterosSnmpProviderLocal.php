@@ -32,7 +32,7 @@ final class RouterosSnmpProviderLocal implements RouterosSnmpProviderInterface
         try {
             $serialNumber = $this->snmp->getText('.1.3.6.1.4.1.14988.1.1.7.3.0');
             if ($serialNumber === null || $serialNumber === '') {
-                throw new RuntimeException(__('SNMP - serial number not found'));
+                throw new RuntimeException(__('SNMP - serial number cannot be retrieved'));
             }
 
             $device = [
@@ -54,6 +54,11 @@ final class RouterosSnmpProviderLocal implements RouterosSnmpProviderInterface
             // ifIndex list
             $ifIndexes = $this->snmp->walk('.1.3.6.1.2.1.2.2.1.1', true);
 
+            // Validate that we have the necessary data to proceed
+            if ($ifIndexes === null || $ifTable === null) {
+                throw new RuntimeException(__('SNMP - interface list cannot be retrieved'));
+            }
+
             $interfaces = [];
             foreach ($ifIndexes as $row) {
                 $ifIndex = (int)($row->value ?? 0);
@@ -61,14 +66,17 @@ final class RouterosSnmpProviderLocal implements RouterosSnmpProviderInterface
                     continue;
                 }
 
+                $nameRow = $ifTable['2.' . $ifIndex] ?? null;
+                $macRow = $ifTable['6.' . $ifIndex] ?? null;
+
                 $iface = [
                     'interface_index' => $ifIndex,
-                    'name' => $ifTable['2.' . $ifIndex]->text ?? null,
+                    'name' => $nameRow?->text,
                     'comment' => $this->snmp->getText('.1.3.6.1.2.1.31.1.1.1.18.' . $ifIndex),
                     'interface_admin_status' => $this->snmpInt($ifTable, '7.' . $ifIndex),
                     'interface_oper_status' => $this->snmpInt($ifTable, '8.' . $ifIndex),
                     'interface_type' => $this->snmpInt($ifTable, '3.' . $ifIndex),
-                    'mac_address' => $this->normalizeMac($ifTable['6.' . $ifIndex]->value ?? null),
+                    'mac_address' => $this->normalizeMac($macRow?->value),
                     'ssid' => null,
                     'bssid' => null,
                     'band' => null,
@@ -115,6 +123,10 @@ final class RouterosSnmpProviderLocal implements RouterosSnmpProviderInterface
             $ipAddr = $this->snmp->walk('.1.3.6.1.2.1.4.20.1.1', true);
             $ipMask = $this->snmp->walk('.1.3.6.1.2.1.4.20.1.3', true);
             $ipIfIndex = $this->snmp->walk('.1.3.6.1.2.1.4.20.1.2', true);
+
+            if ($ipAddr === null || $ipMask === null || $ipIfIndex === null) {
+                throw new RuntimeException(__('SNMP - IP address list cannot be retrieved'));
+            }
 
             foreach ($ipAddr as $key => $row) {
                 $ip = $row->value ?? null;
