@@ -48,12 +48,12 @@
                     <td><?= h($ipAddressRange->name) ?></td>
                     <td><?= h($ipAddressRange->ip_network) ?></td>
                     <td><?= h($ipAddressRange->ip_gateway) ?></td>
-                    <td><?= $ipAddressRange->__isset('access_point') ?
+                    <td><?= $ipAddressRange->access_point !== null ?
                         $this->Html->link(
                             $ipAddressRange->access_point->name,
                             ['controller' => 'AccessPoints', 'action' => 'view', $ipAddressRange->access_point->id],
                         ) : '' ?></td>
-                    <td><?= $ipAddressRange->__isset('parent_ip_address_range') ?
+                    <td><?= $ipAddressRange->parent_ip_address_range !== null ?
                         $this->Html->link(
                             $ipAddressRange->parent_ip_address_range->name,
                             [

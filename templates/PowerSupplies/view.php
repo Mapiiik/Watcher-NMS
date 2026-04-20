@@ -46,7 +46,7 @@
                         <tr>
                             <th><?= __('Power Supply Type') ?></th>
                             <td>
-                                <?= $powerSupply->__isset('power_supply_type') ? $this->Html->link(
+                                <?= $powerSupply->power_supply_type !== null ? $this->Html->link(
                                     $powerSupply->power_supply_type->name,
                                     [
                                         'controller' => 'PowerSupplyTypes',
@@ -59,7 +59,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td>
-                                <?= $powerSupply->__isset('access_point') ? $this->Html->link(
+                                <?= $powerSupply->access_point !== null ? $this->Html->link(
                                     $powerSupply->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',

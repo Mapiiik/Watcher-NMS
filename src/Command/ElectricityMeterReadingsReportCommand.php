@@ -88,7 +88,7 @@ class ElectricityMeterReadingsReportCommand extends Command
                         $accessPoint->contract_conditions,
                         $lastReading->reading_date,
                         $lastReading->reading_value,
-                        $lastReading->__isset('reading_date') ?
+                        $lastReading->reading_date !== null ?
                             $lastReading->reading_date->diffInDays(null, false) : __('Never'),
                     ];
                 }

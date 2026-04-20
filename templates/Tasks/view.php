@@ -26,7 +26,7 @@
                     <table>
                         <tr>
                             <th><?= __('Task Type') ?></th>
-                            <td><?= $task->__isset('task_type') ? $this->Html->link(
+                            <td><?= $task->task_type !== null ? $this->Html->link(
                                 $task->task_type->name,
                                 ['controller' => 'TaskTypes', 'action' => 'view', $task->task_type->id],
                             ) : '' ?></td>
@@ -37,14 +37,14 @@
                         </tr>
                         <tr>
                             <th><?= __('Task State') ?></th>
-                            <td><?= $task->__isset('task_state') ? $this->Html->link(
+                            <td><?= $task->task_state !== null ? $this->Html->link(
                                 $task->task_state->name,
                                 ['controller' => 'TaskStates', 'action' => 'view', $task->task_state->id],
                             ) : '' ?></td>
                         </tr>
                         <tr>
                             <th><?= __('User') ?></th>
-                            <td><?= $task->__isset('user') ? $this->Html->link(
+                            <td><?= $task->user !== null ? $this->Html->link(
                                 $task->user->name,
                                 ['controller' => 'AppUsers', 'action' => 'view', $task->user->id],
                             ) : '' ?></td>
@@ -61,7 +61,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td><?= $task->__isset('access_point') ? $this->Html->link(
+                            <td><?= $task->access_point !== null ? $this->Html->link(
                                 $task->access_point->name,
                                 [
                                     'controller' => 'AccessPoints',

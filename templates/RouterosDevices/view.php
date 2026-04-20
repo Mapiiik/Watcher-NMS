@@ -52,7 +52,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td>
-                                <?= $routerosDevice->__isset('access_point') ? $this->Html->link(
+                                <?= $routerosDevice->access_point !== null ? $this->Html->link(
                                     $routerosDevice->access_point->name
                                         ?? '(' . $routerosDevice->access_point->id . ')',
                                     [
@@ -66,7 +66,7 @@
                         <tr>
                             <th><?= __('Customer Connection') ?></th>
                             <td>
-                                <?= $routerosDevice->__isset('customer_connection') ? $this->Html->link(
+                                <?= $routerosDevice->customer_connection !== null ? $this->Html->link(
                                     $routerosDevice->customer_connection->name
                                         ?? '(' . $routerosDevice->customer_connection->id . ')',
                                     [
@@ -80,7 +80,7 @@
                         <tr>
                             <th><?= __('Device Type') ?></th>
                             <td>
-                                <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
+                                <?= $routerosDevice->device_type !== null ? $this->Html->link(
                                     $routerosDevice->device_type->name
                                         ?? '(' . $routerosDevice->device_type->id . ')',
                                     [

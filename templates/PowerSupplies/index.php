@@ -45,13 +45,13 @@
                 <tr>
                     <td><?= h($powerSupply->name) ?></td>
                     <td>
-                        <?= $powerSupply->__isset('access_point') ? $this->Html->link(
+                        <?= $powerSupply->access_point !== null ? $this->Html->link(
                             $powerSupply->access_point->name,
                             ['controller' => 'AccessPoints', 'action' => 'view', $powerSupply->access_point->id],
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $powerSupply->__isset('power_supply_type') ? $this->Html->link(
+                        <?= $powerSupply->power_supply_type !== null ? $this->Html->link(
                             $powerSupply->power_supply_type->name,
                             [
                                 'controller' => 'PowerSupplyTypes',

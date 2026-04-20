@@ -92,7 +92,7 @@
                         <?php foreach ($radarInterference->routeros_device_interfaces as $routerosDeviceInterfaces) : ?>
                         <tr>
                             <td>
-                                <?= $routerosDeviceInterfaces->__isset('routeros_device') ? $this->Html->link(
+                                <?= $routerosDeviceInterfaces->routeros_device !== null ? $this->Html->link(
                                     $routerosDeviceInterfaces->routeros_device->name,
                                     [
                                         'controller' => 'RouterosDevices',

@@ -60,7 +60,7 @@ class PowerSupply extends AppEntity
      */
     protected function _getNameForLists(): string
     {
-        return $this->__isset('serial_number') ?
+        return $this->serial_number !== null ?
             strval($this->name) . ' (' . strval($this->serial_number) . ')' :
             strval($this->name);
     }

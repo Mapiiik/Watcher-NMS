@@ -46,7 +46,7 @@
                         <tr>
                             <th><?= __('Manufacturer') ?></th>
                             <td>
-                                <?= $powerSupplyType->__isset('manufacturer') ? $this->Html->link(
+                                <?= $powerSupplyType->manufacturer !== null ? $this->Html->link(
                                     $powerSupplyType->manufacturer->name,
                                     [
                                         'controller' => 'Manufacturers',
@@ -103,7 +103,7 @@
                         <tr>
                             <td><?= h($powerSupplies->name) ?></td>
                             <td>
-                                <?= $powerSupplies->__isset('access_point') ? $this->Html->link(
+                                <?= $powerSupplies->access_point !== null ? $this->Html->link(
                                     $powerSupplies->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',

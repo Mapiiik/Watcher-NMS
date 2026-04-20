@@ -42,7 +42,7 @@
                         <tr>
                             <th><?= __('RouterOS Device') ?></th>
                             <td>
-                                <?= $routerosDeviceIp->__isset('routeros_device') ? $this->Html->link(
+                                <?= $routerosDeviceIp->routeros_device !== null ? $this->Html->link(
                                     $routerosDeviceIp->routeros_device->name,
                                     [
                                         'controller' => 'RouterosDevices',

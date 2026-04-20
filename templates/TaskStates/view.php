@@ -74,14 +74,14 @@
                         <?php foreach ($taskState->tasks as $task) : ?>
                         <tr style="<?= $task->style ?>">
                             <td><?= h($task->number) ?></td>
-                            <td><?= $task->__isset('task_type') ?
+                            <td><?= $task->task_type !== null ?
                                 $this->Html->link(
                                     $task->task_type->name,
                                     ['controller' => 'TaskTypes', 'action' => 'view', $task->task_type->id],
                                 ) : '' ?>
                             </td>
                             <td><?= h($task->getPriorityName()) ?></td>
-                            <td><?= $task->__isset('user') ?
+                            <td><?= $task->user !== null ?
                                 $this->Html->link(
                                     $task->user->name,
                                     ['controller' => 'AppUser', 'action' => 'view', $task->user->id],
@@ -93,7 +93,7 @@
                             </td>
                             <td><?= h($task->email) ?></td>
                             <td><?= h($task->phone) ?></td>
-                            <td><?= $task->__isset('access_point') ?
+                            <td><?= $task->access_point !== null ?
                                 $this->Html->link(
                                     $task->access_point->name,
                                     ['controller' => 'AccessPoints', 'action' => 'view', $task->access_point->id],

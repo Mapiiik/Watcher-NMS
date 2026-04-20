@@ -43,7 +43,7 @@
                         <tr>
                             <th><?= __('Radio Unit Type') ?></th>
                             <td>
-                                <?= $radioUnit->__isset('radio_unit_type') ? $this->Html->link(
+                                <?= $radioUnit->radio_unit_type !== null ? $this->Html->link(
                                     $radioUnit->radio_unit_type->name,
                                     [
                                         'controller' => 'RadioUnitTypes',
@@ -56,7 +56,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td>
-                                <?= $radioUnit->__isset('access_point') ? $this->Html->link(
+                                <?= $radioUnit->access_point !== null ? $this->Html->link(
                                     $radioUnit->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
@@ -69,7 +69,7 @@
                         <tr>
                             <th><?= __('Radio Link') ?></th>
                             <td>
-                                <?= $radioUnit->__isset('radio_link') ? $this->Html->link(
+                                <?= $radioUnit->radio_link !== null ? $this->Html->link(
                                     $radioUnit->radio_link->name,
                                     [
                                         'controller' => 'RadioLinks',
@@ -82,7 +82,7 @@
                         <tr>
                             <th><?= __('Antenna Type') ?></th>
                             <td>
-                                <?= $radioUnit->__isset('antenna_type') ? $this->Html->link(
+                                <?= $radioUnit->antenna_type !== null ? $this->Html->link(
                                     $radioUnit->antenna_type->name,
                                     [
                                         'controller' => 'AntennaTypes',

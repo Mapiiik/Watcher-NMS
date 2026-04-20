@@ -74,7 +74,7 @@
                         <tr>
                             <td><?= h($antennaTypes->name) ?></td>
                             <td>
-                                <?= $antennaTypes->__isset('manufacturer') ? $this->Html->link(
+                                <?= $antennaTypes->manufacturer !== null ? $this->Html->link(
                                     $antennaTypes->manufacturer->name,
                                     [
                                         'controller' => 'Manufacturers',
@@ -124,7 +124,7 @@
                         <tr>
                             <td><?= h($radioUnitTypes->name) ?></td>
                             <td>
-                                <?= $radioUnitTypes->__isset('manufacturer') ? $this->Html->link(
+                                <?= $radioUnitTypes->manufacturer !== null ? $this->Html->link(
                                     $radioUnitTypes->manufacturer->name,
                                     [
                                         'controller' => 'Manufacturers',

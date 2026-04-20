@@ -53,7 +53,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td><?= $ipAddressRange->__isset('access_point') ?
+                            <td><?= $ipAddressRange->access_point !== null ?
                                 $this->Html->link(
                                     $ipAddressRange->access_point->name,
                                     [
@@ -65,7 +65,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Parent IP Address Range') ?></th>
-                            <td><?= $ipAddressRange->__isset('parent_ip_address_range') ?
+                            <td><?= $ipAddressRange->parent_ip_address_range !== null ?
                                 $this->Html->link(
                                     $ipAddressRange->parent_ip_address_range->name,
                                     [

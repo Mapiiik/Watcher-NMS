@@ -39,13 +39,13 @@
                 <tr style="<?= $radioUnitType->style ?>">
                     <td><?= h($radioUnitType->name) ?></td>
                     <td>
-                        <?= $radioUnitType->__isset('radio_unit_band') ? $this->Html->link(
+                        <?= $radioUnitType->radio_unit_band !== null ? $this->Html->link(
                             $radioUnitType->radio_unit_band->name,
                             ['controller' => 'RadioUnitBands', 'action' => 'view', $radioUnitType->radio_unit_band->id],
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnitType->__isset('manufacturer') ? $this->Html->link(
+                        <?= $radioUnitType->manufacturer !== null ? $this->Html->link(
                             $radioUnitType->manufacturer->name,
                             ['controller' => 'Manufacturers', 'action' => 'view', $radioUnitType->manufacturer->id],
                         ) : '' ?>

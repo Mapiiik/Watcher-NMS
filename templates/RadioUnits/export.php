@@ -46,32 +46,32 @@ $this->setLayout('clean');
                 <?php foreach ($radioUnits as $radioUnit) : ?>
                 <tr>
                     <td>
-                        <?= $radioUnit->__isset('access_point') ? $this->Html->link(
+                        <?= $radioUnit->access_point !== null ? $this->Html->link(
                             $radioUnit->access_point->name,
                             ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id],
                         ) : '' ?>
                     </td>
                     <td><?= h($radioUnit->name) ?></td>
                     <td>
-                        <?= $radioUnit->__isset('radio_unit_type') ? $this->Html->link(
+                        <?= $radioUnit->radio_unit_type !== null ? $this->Html->link(
                             $radioUnit->radio_unit_type->name,
                             ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id],
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->__isset('radio_link') ? $this->Html->link(
+                        <?= $radioUnit->radio_link !== null ? $this->Html->link(
                             $radioUnit->radio_link->name,
                             ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id],
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->__isset('antenna_type') ? $this->Html->link(
+                        <?= $radioUnit->antenna_type !== null ? $this->Html->link(
                             $radioUnit->antenna_type->name,
                             ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id],
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->radio_unit_type->__isset('manufacturer') ? $this->Html->link(
+                        <?= $radioUnit->radio_unit_type->manufacturer !== null ? $this->Html->link(
                             $radioUnit->radio_unit_type->manufacturer->name,
                             [
                                 'controller' => 'Manufacturers',
@@ -81,7 +81,7 @@ $this->setLayout('clean');
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->radio_unit_type->__isset('radio_unit_band') ? $this->Html->link(
+                        <?= $radioUnit->radio_unit_type->radio_unit_band !== null ? $this->Html->link(
                             $radioUnit->radio_unit_type->radio_unit_band->name,
                             [
                                 'controller' => 'RadioUnitBands',
@@ -115,8 +115,8 @@ $this->setLayout('clean');
                     <td><?= h($radioUnit->device_login) ?></td>
                     <td><?= h($radioUnit->device_password) ?></td>
                     <td><?= h($radioUnit->authorization_number) ?></td>
-                    <td><?= $radioUnit->__isset('access_point') ? h($radioUnit->access_point->gps_y ?? '') : '' ?></td>
-                    <td><?= $radioUnit->__isset('access_point') ? h($radioUnit->access_point->gps_x ?? '') : '' ?></td>
+                    <td><?= $radioUnit->access_point !== null ? h($radioUnit->access_point->gps_y ?? '') : '' ?></td>
+                    <td><?= $radioUnit->access_point !== null ? h($radioUnit->access_point->gps_x ?? '') : '' ?></td>
                     <td>
                         <?= $this->AuthLink->link(
                             __('View'),

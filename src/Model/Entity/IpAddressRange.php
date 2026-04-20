@@ -66,7 +66,7 @@ class IpAddressRange extends AppEntity
      */
     protected function _getNameForLists(): string
     {
-        return $this->__isset('ip_network') ?
+        return $this->ip_network !== null ?
             strval($this->name) . ' (' . strval($this->ip_network) . ')' :
             strval($this->name);
     }

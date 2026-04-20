@@ -45,7 +45,7 @@ table {
             <td><?= h($accessPoint->contract_conditions) ?></td>
             <td><?= h($lastReading->reading_date) ?></td>
             <td><?= h($lastReading->reading_value) ?></td>
-            <td><?= h($lastReading->__isset('reading_date') ?
+            <td><?= h($lastReading->reading_date !== null ?
                 $lastReading->reading_date->diffInDays(null, false) : __('Never')) ?></td>
             <td class="actions">
                 <?= $this->Html->link(

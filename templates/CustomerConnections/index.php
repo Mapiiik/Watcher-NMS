@@ -40,7 +40,7 @@
                 <tr>
                     <td><?= h($customerConnection->name) ?></td>
                     <td>
-                        <?= $customerConnection->__isset('customer_point') ? $this->Html->link(
+                        <?= $customerConnection->customer_point !== null ? $this->Html->link(
                             $customerConnection->customer_point->name,
                             [
                                 'controller' => 'CustomerPoints',
@@ -49,7 +49,7 @@
                             ],
                         ) : '' ?></td>
                     <td>
-                        <?= $customerConnection->__isset('access_point') ? $this->Html->link(
+                        <?= $customerConnection->access_point !== null ? $this->Html->link(
                             $customerConnection->access_point->name,
                             [
                                 'controller' => 'AccessPoints',

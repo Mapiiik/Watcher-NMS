@@ -67,13 +67,13 @@
                         <tr style="<?= $task->style ?>">
                             <td><?= h($task->number) ?></td>
                             <td><?= h($task->getPriorityName()) ?></td>
-                            <td><?= $task->__isset('task_state') ?
+                            <td><?= $task->task_state !== null ?
                                 $this->Html->link(
                                     $task->task_state->name,
                                     ['controller' => 'TaskStates', 'action' => 'view', $task->task_state->id],
                                 ) : '' ?>
                             </td>
-                            <td><?= $task->__isset('user') ?
+                            <td><?= $task->user !== null ?
                                 $this->Html->link(
                                     $task->user->name,
                                     ['controller' => 'AppUsers', 'action' => 'view', $task->user->id],
@@ -85,7 +85,7 @@
                             </td>
                             <td><?= h($task->email) ?></td>
                             <td><?= h($task->phone) ?></td>
-                            <td><?= $task->__isset('access_points') ?
+                            <td><?= $task->access_points !== null ?
                                 $this->Html->link(
                                     $task->access_point->name,
                                     ['controller' => 'AccessPoints', 'action' => 'view', $task->access_point->id],

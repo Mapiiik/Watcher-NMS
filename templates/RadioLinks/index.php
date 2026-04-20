@@ -62,13 +62,13 @@
                         ) . '<br>';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
-                        echo $radioUnit->__isset('radio_unit_type') ? $this->Html->link(
+                        echo $radioUnit->radio_unit_type !== null ? $this->Html->link(
                             $radioUnit->radio_unit_type->name,
                             ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id],
                         ) . '<br>' : '<br>';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
-                        echo $radioUnit->__isset('antenna_type') ? $this->Html->link(
+                        echo $radioUnit->antenna_type !== null ? $this->Html->link(
                             $radioUnit->antenna_type->name,
                             ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id],
                         ) . '<br>' : '<br>';

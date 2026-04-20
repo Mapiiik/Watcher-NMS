@@ -71,7 +71,7 @@
                         </tr>
                         <?php foreach ($paymentPurpose->landlord_payments as $landlordPayment) : ?>
                         <tr>
-                            <td><?= $landlordPayment->__isset('access_point') ?
+                            <td><?= $landlordPayment->access_point !== null ?
                                 $this->Html->link(
                                     $landlordPayment->access_point->name,
                                     [

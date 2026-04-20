@@ -44,18 +44,18 @@
                 <tr>
                     <td><?= h($accessPoint->name) ?></td>
                     <td><?= h($accessPoint->device_name) ?></td>
-                    <td><?= $accessPoint->__isset('access_point_type') ?
+                    <td><?= $accessPoint->access_point_type !== null ?
                         $this->Html->link(
-                            $accessPoint->access_point_type->name,
+                            $accessPoint->access_point_type->name ?? '(' . $accessPoint->access_point_type->id . ')',
                             [
                                 'controller' => 'AccessPointTypes',
                                 'action' => 'view',
                                 $accessPoint->access_point_type->id,
                             ],
                         ) : '' ?></td>
-                    <td><?= $accessPoint->__isset('parent_access_point') ?
+                    <td><?= $accessPoint->parent_access_point !== null ?
                         $this->Html->link(
-                            $accessPoint->parent_access_point->name,
+                            $accessPoint->parent_access_point->name ?? '(' . $accessPoint->parent_access_point->id . ')',
                             [
                                 'controller' => 'AccessPoints',
                                 'action' => 'view',

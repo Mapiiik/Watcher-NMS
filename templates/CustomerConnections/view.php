@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Customer Point') ?></th>
-                            <td><?= $customerConnection->__isset('customer_point') ?
+                            <td><?= $customerConnection->customer_point !== null ?
                                 $this->Html->link(
                                     $customerConnection->customer_point->name,
                                     [
@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td><?= $customerConnection->__isset('access_point') ?
+                            <td><?= $customerConnection->access_point !== null ?
                                 $this->Html->link(
                                     $customerConnection->access_point->name,
                                     [
@@ -68,7 +68,7 @@
                                 ) : '' ?></td>
                         <tr>
                             <th><?= __('Customer Number') ?></th>
-                            <td><?= $customerConnection->__isset('customer_url') && env('WATCHER_CRM_URL') ?
+                            <td><?= $customerConnection->customer_url !== null && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $customerConnection->customer_number,
                                     (string)env('WATCHER_CRM_URL') . $customerConnection->customer_url,
@@ -77,7 +77,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Contract Number') ?></th>
-                            <td><?= $customerConnection->__isset('contract_url') && env('WATCHER_CRM_URL') ?
+                            <td><?= $customerConnection->contract_url !== null && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $customerConnection->contract_number,
                                     (string)env('WATCHER_CRM_URL') . $customerConnection->contract_url,
@@ -170,7 +170,7 @@
                         <tr>
                             <td><?= h($routerosDevices->name) ?></td>
                             <td>
-                                <?= $routerosDevices->__isset('access_point') ? $this->Html->link(
+                                <?= $routerosDevices->access_point !== null ? $this->Html->link(
                                     $routerosDevices->access_point->name,
                                     [
                                         'controller' => 'AccessPoints',
@@ -180,7 +180,7 @@
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $routerosDevices->__isset('device_type') ? $this->Html->link(
+                                <?= $routerosDevices->device_type !== null ? $this->Html->link(
                                     $routerosDevices->device_type->name,
                                     [
                                         'controller' => 'DeviceTypes',

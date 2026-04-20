@@ -39,7 +39,7 @@
                 <tr>
                     <td><?= h($electricityMeterReading->name) ?></td>
                     <td>
-                        <?= $electricityMeterReading->__isset('access_point') ? $this->Html->link(
+                        <?= $electricityMeterReading->access_point !== null ? $this->Html->link(
                             $electricityMeterReading->access_point->name,
                             [
                                 'controller' => 'AccessPoints',

@@ -32,7 +32,7 @@ table {
             <table>
                 <tr>
                     <th><?= __('Task Type') ?></th>
-                    <td><?= $task->__isset('task_type') ? h($task->task_type->name) : '' ?></td>
+                    <td><?= $task->task_type !== null ? h($task->task_type->name) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Priority') ?></th>
@@ -40,11 +40,11 @@ table {
                 </tr>
                 <tr>
                     <th><?= __('Task State') ?></th>
-                    <td><?= $task->__isset('task_state') ? h($task->task_state->name) : '' ?></td>
+                    <td><?= $task->task_state !== null ? h($task->task_state->name) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('User') ?></th>
-                    <td><?= $task->__isset('user') ? h($task->user->name) : '' ?></td>
+                    <td><?= $task->user !== null ? h($task->user->name) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Email') ?></th>
@@ -56,7 +56,7 @@ table {
                 </tr>
                 <tr>
                     <th><?= __('Access Point') ?></th>
-                    <td><?= $task->__isset('access_point') ? $this->Html->link(
+                    <td><?= $task->access_point !== null ? $this->Html->link(
                         $task->access_point->name,
                         [
                             'controller' => 'AccessPoints',
@@ -96,7 +96,7 @@ table {
                 </tr>
                 <tr>
                     <th><?= __('Created By') ?></th>
-                    <td><?= $task->__isset('creator') ? h($task->creator->username) : h($task->created_by) ?></td>
+                    <td><?= $task->creator !== null ? h($task->creator->username) : h($task->created_by) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Modified') ?></th>
@@ -104,7 +104,7 @@ table {
                 </tr>
                 <tr>
                     <th><?= __('Modified By') ?></th>
-                    <td><?= $task->__isset('modifier') ? h($task->modifier->username) : h($task->modified_by) ?></td>
+                    <td><?= $task->modifier !== null ? h($task->modifier->username) : h($task->modified_by) ?></td>
                 </tr>
             </table>
         </td>

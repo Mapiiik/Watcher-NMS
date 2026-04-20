@@ -302,7 +302,7 @@ class TasksController extends AppController
                 if ($this->Tasks->save($task)) {
                     // send email notification
                     if (
-                        $task->__isset('user_id')
+                        $task->user_id !== null
                         && $task->user_id != ($this->getRequest()->getAttribute('identity')['id'] ?? null)
                     ) {
                         $this->sendNotificationEmail($task->id, true);
@@ -377,7 +377,7 @@ class TasksController extends AppController
                 if ($this->Tasks->save($task)) {
                     // send email notification
                     if (
-                        $task->__isset('user_id')
+                        $task->user_id !== null
                         && $task->user_id != ($this->getRequest()->getAttribute('identity')['id'] ?? null)
                     ) {
                         $this->sendNotificationEmail($task->id, false);

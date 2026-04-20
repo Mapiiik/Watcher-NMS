@@ -71,7 +71,7 @@ class RouterosDeviceInterface extends AppEntity
      */
     protected function _getNameForLists(): string
     {
-        return $this->__isset('mac_address') ?
+        return $this->mac_address !== null ?
             strval($this->name) . ' (' . strval($this->mac_address) . ')' :
             strval($this->name);
     }

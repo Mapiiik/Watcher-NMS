@@ -45,8 +45,8 @@
                         </tr>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td><?= $accessPointContact->__isset('access_point') ? $this->Html->link(
-                                $accessPointContact->access_point->name,
+                            <td><?= $accessPointContact->access_point !== null ? $this->Html->link(
+                                $accessPointContact->access_point->name ?? '(' . $accessPointContact->access_point->id . ')',
                                 [
                                     'controller' => 'AccessPoints',
                                     'action' => 'view',
@@ -64,7 +64,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Customer Number') ?></th>
-                            <td><?= $accessPointContact->__isset('customer_number') && env('WATCHER_CRM_URL') ?
+                            <td><?= $accessPointContact->customer_number !== null && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $accessPointContact->customer_number,
                                     (string)env('WATCHER_CRM_URL')
@@ -74,7 +74,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Contract Number') ?></th>
-                            <td><?= $accessPointContact->__isset('contract_number') && env('WATCHER_CRM_URL') ?
+                            <td><?= $accessPointContact->contract_number !== null && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $accessPointContact->contract_number,
                                     (string)env('WATCHER_CRM_URL')

@@ -59,7 +59,7 @@ class CustomerConnection extends AppEntity
      */
     protected function _getNameForLists(): string
     {
-        return $this->__isset('contract_number') ?
+        return $this->contract_number !== null ?
             strval($this->name) . ' (' . strval($this->contract_number) . ')' :
             strval($this->name);
     }

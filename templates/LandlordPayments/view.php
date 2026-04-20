@@ -41,7 +41,7 @@
                     <table>
                         <tr>
                             <th><?= __('Access Point') ?></th>
-                            <td><?= $landlordPayment->__isset('access_point') ?
+                            <td><?= $landlordPayment->access_point !== null ?
                                 $this->Html->link(
                                     $landlordPayment->access_point->name,
                                     [
@@ -53,7 +53,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Payment Purpose') ?></th>
-                            <td><?= $landlordPayment->__isset('payment_purpose') ?
+                            <td><?= $landlordPayment->payment_purpose !== null ?
                                 $this->Html->link(
                                     $landlordPayment->payment_purpose->name,
                                     [

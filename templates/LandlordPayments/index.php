@@ -40,7 +40,7 @@
             <tbody>
                 <?php foreach ($landlordPayments as $landlordPayment) : ?>
                 <tr>
-                    <td><?= $landlordPayment->__isset('access_point') ?
+                    <td><?= $landlordPayment->access_point !== null ?
                         $this->Html->link(
                             $landlordPayment->access_point->name,
                             [
@@ -49,7 +49,7 @@
                                 $landlordPayment->access_point->id,
                             ],
                         ) : '' ?></td>
-                    <td><?= $landlordPayment->__isset('payment_purpose') ?
+                    <td><?= $landlordPayment->payment_purpose !== null ?
                         $this->Html->link(
                             $landlordPayment->payment_purpose->name,
                             [

@@ -41,9 +41,9 @@
                         </tr>
                         <tr>
                             <th><?= __('Access Point Type') ?></th>
-                            <td><?= $accessPoint->__isset('access_point_type') ?
+                            <td><?= $accessPoint->access_point_type !== null ?
                                 $this->Html->link(
-                                    $accessPoint->access_point_type->name,
+                                    $accessPoint->access_point_type->name ?? '(' . $accessPoint->access_point_type->id . ')',
                                     [
                                         'controller' => 'AccessPointTypes',
                                         'action' => 'view',
@@ -53,9 +53,9 @@
                         </tr>
                         <tr>
                             <th><?= __('Parent Access Point') ?></th>
-                            <td><?= $accessPoint->__isset('parent_access_point') ?
+                            <td><?= $accessPoint->parent_access_point !== null ?
                                 $this->Html->link(
-                                    $accessPoint->parent_access_point->name,
+                                    $accessPoint->parent_access_point->name ?? '(' . $accessPoint->parent_access_point->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
@@ -152,14 +152,14 @@
                             <td><?= h($accessPointContact->name) ?></td>
                             <td><?= h($accessPointContact->phone) ?></td>
                             <td><?= h($accessPointContact->email) ?></td>
-                            <td><?= $accessPointContact->__isset('customer_number') && env('WATCHER_CRM_URL') ?
+                            <td><?= $accessPointContact->customer_number !== null && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $accessPointContact->customer_number,
                                     (string)env('WATCHER_CRM_URL')
                                         . '/customers?search=' . $accessPointContact->customer_number,
                                     ['target' => '_blank'],
                                 ) : h($accessPointContact->customer_number) ?></td>
-                            <td><?= $accessPointContact->__isset('contract_number') && env('WATCHER_CRM_URL') ?
+                            <td><?= $accessPointContact->contract_number !== null && env('WATCHER_CRM_URL') ?
                                 $this->Html->link(
                                     $accessPointContact->contract_number,
                                     (string)env('WATCHER_CRM_URL')
@@ -300,9 +300,9 @@
                         </tr>
                         <?php foreach ($accessPoint->landlord_payments as $landlordPayment) : ?>
                         <tr>
-                            <td><?= $landlordPayment->__isset('payment_purpose') ?
+                            <td><?= $landlordPayment->payment_purpose !== null ?
                                 $this->Html->link(
-                                    $landlordPayment->payment_purpose->name,
+                                    $landlordPayment->payment_purpose->name ?? '(' . $landlordPayment->payment_purpose->id . ')',
                                     [
                                         'controller' => 'PaymentPurposes',
                                         'action' => 'view',
@@ -384,7 +384,7 @@
                             <td><?= h($ipAddressRange->name) ?></td>
                             <td><?= h($ipAddressRange->ip_network) ?></td>
                             <td><?= h($ipAddressRange->ip_gateway) ?></td>
-                            <td><?= $ipAddressRange->__isset('parent_ip_address_range') ?
+                            <td><?= $ipAddressRange->parent_ip_address_range !== null ?
                                 $this->Html->link(
                                     $ipAddressRange->parent_ip_address_range->name,
                                     [
@@ -454,7 +454,7 @@
                         <tr>
                             <td><?= h($powerSupplies->name) ?></td>
                             <td>
-                                <?= $powerSupplies->__isset('power_supply_type') ? $this->Html->link(
+                                <?= $powerSupplies->power_supply_type !== null ? $this->Html->link(
                                     $powerSupplies->power_supply_type->name,
                                     [
                                         'controller' => 'PowerSupplyTypes',
@@ -527,7 +527,7 @@
                         <tr>
                             <td><?= h($radioUnits->name) ?></td>
                             <td>
-                                <?= $radioUnits->__isset('radio_unit_type') ? $this->Html->link(
+                                <?= $radioUnits->radio_unit_type !== null ? $this->Html->link(
                                     $radioUnits->radio_unit_type->name,
                                     [
                                         'controller' => 'RadioUnitTypes',
@@ -537,13 +537,13 @@
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $radioUnits->__isset('radio_link') ? $this->Html->link(
+                                <?= $radioUnits->radio_link !== null ? $this->Html->link(
                                     $radioUnits->radio_link->name,
                                     ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id],
                                 ) : '' ?>
                             </td>
                             <td>
-                                <?= $radioUnits->__isset('antenna_type') ? $this->Html->link(
+                                <?= $radioUnits->antenna_type !== null ? $this->Html->link(
                                     $radioUnits->antenna_type->name,
                                     ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id],
                                 ) : '' ?>
@@ -609,7 +609,7 @@
                         <tr>
                             <td><?= h($routerosDevices->name) ?></td>
                             <td>
-                                <?= $routerosDevices->__isset('device_type') ? $this->Html->link(
+                                <?= $routerosDevices->device_type !== null ? $this->Html->link(
                                     $routerosDevices->device_type->name,
                                     [
                                         'controller' => 'DeviceTypes',
@@ -669,7 +669,7 @@
                                         ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
                                     ) ?></td>
                                 <td>
-                                    <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
+                                    <?= $routerosDevice->device_type !== null ? $this->Html->link(
                                         $routerosDevice->device_type->name,
                                         [
                                             'controller' => 'DeviceTypes',
@@ -786,7 +786,7 @@
                                         ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
                                     ) ?></td>
                                 <td>
-                                    <?= $routerosDevice->__isset('device_type') ? $this->Html->link(
+                                    <?= $routerosDevice->device_type !== null ? $this->Html->link(
                                         $routerosDevice->device_type->name,
                                         [
                                             'controller' => 'DeviceTypes',
@@ -881,7 +881,7 @@
                         <tr>
                             <td><?= h($customerConnection->name) ?></td>
                             <td>
-                                <?= $customerConnection->__isset('customer_point') ? $this->Html->link(
+                                <?= $customerConnection->customer_point !== null ? $this->Html->link(
                                     $customerConnection->customer_point->name,
                                     [
                                         'controller' => 'CustomerPoints',

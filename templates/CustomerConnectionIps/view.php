@@ -46,7 +46,7 @@
                         <tr>
                             <th><?= __('Customer Connection') ?></th>
                             <td>
-                                <?= $customerConnectionIp->__isset('customer_connection') ? $this->Html->link(
+                                <?= $customerConnectionIp->customer_connection !== null ? $this->Html->link(
                                     $customerConnectionIp->customer_connection->name,
                                     [
                                         'controller' => 'CustomerConnections',
