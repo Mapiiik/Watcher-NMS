@@ -41,7 +41,7 @@
                     <td><?= h($powerSupplyType->name) ?></td>
                     <td>
                         <?= $powerSupplyType->manufacturer !== null ? $this->Html->link(
-                            $powerSupplyType->manufacturer->name,
+                            $powerSupplyType->manufacturer->name ?? '(' . $powerSupplyType->manufacturer->id . ')',
                             ['controller' => 'Manufacturers', 'action' => 'view', $powerSupplyType->manufacturer->id],
                         ) : '' ?>
                     </td>

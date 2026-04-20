@@ -43,7 +43,8 @@
                             <th><?= __('Access Point') ?></th>
                             <td><?= $landlordPayment->access_point !== null ?
                                 $this->Html->link(
-                                    $landlordPayment->access_point->name,
+                                    $landlordPayment->access_point->name
+                                    ?? '(' . $landlordPayment->access_point->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
@@ -55,7 +56,8 @@
                             <th><?= __('Payment Purpose') ?></th>
                             <td><?= $landlordPayment->payment_purpose !== null ?
                                 $this->Html->link(
-                                    $landlordPayment->payment_purpose->name,
+                                    $landlordPayment->payment_purpose->name
+                                    ?? '(' . $landlordPayment->payment_purpose->id . ')',
                                     [
                                         'controller' => 'PaymentPurposes',
                                         'action' => 'view',

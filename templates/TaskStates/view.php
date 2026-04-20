@@ -76,14 +76,14 @@
                             <td><?= h($task->number) ?></td>
                             <td><?= $task->task_type !== null ?
                                 $this->Html->link(
-                                    $task->task_type->name,
+                                    $task->task_type->name ?? '(' . $task->task_type->id . ')',
                                     ['controller' => 'TaskTypes', 'action' => 'view', $task->task_type->id],
                                 ) : '' ?>
                             </td>
                             <td><?= h($task->getPriorityName()) ?></td>
                             <td><?= $task->user !== null ?
                                 $this->Html->link(
-                                    $task->user->name,
+                                    $task->user->name ?? '(' . $task->user->id . ')',
                                     ['controller' => 'AppUser', 'action' => 'view', $task->user->id],
                                 ) : '' ?>
                             </td>
@@ -95,7 +95,7 @@
                             <td><?= h($task->phone) ?></td>
                             <td><?= $task->access_point !== null ?
                                 $this->Html->link(
-                                    $task->access_point->name,
+                                    $task->access_point->name ?? '(' . $task->access_point->id . ')',
                                     ['controller' => 'AccessPoints', 'action' => 'view', $task->access_point->id],
                                 ) : '' ?>
                             </td>

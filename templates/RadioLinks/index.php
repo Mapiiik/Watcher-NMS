@@ -57,19 +57,19 @@
                     <td><?= h($radioLink->authorization_number) ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
                         echo $this->Html->link(
-                            $radioUnit->name,
+                            $radioUnit->name ?? '(' . $radioUnit->id . ')',
                             ['controller' => 'RadioUnits', 'action' => 'view', $radioUnit->id],
                         ) . '<br>';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
                         echo $radioUnit->radio_unit_type !== null ? $this->Html->link(
-                            $radioUnit->radio_unit_type->name,
+                            $radioUnit->radio_unit_type->name ?? '(' . $radioUnit->radio_unit_type->id . ')',
                             ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id],
                         ) . '<br>' : '<br>';
                         endforeach ?></td>
                     <td><?php foreach ($radioLink->radio_units as $radioUnit) :
                         echo $radioUnit->antenna_type !== null ? $this->Html->link(
-                            $radioUnit->antenna_type->name,
+                            $radioUnit->antenna_type->name ?? '(' . $radioUnit->antenna_type->id . ')',
                             ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id],
                         ) . '<br>' : '<br>';
                         endforeach ?></td>

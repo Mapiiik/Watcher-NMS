@@ -27,7 +27,7 @@
                         <tr>
                             <th><?= __('Task Type') ?></th>
                             <td><?= $task->task_type !== null ? $this->Html->link(
-                                $task->task_type->name,
+                                $task->task_type->name ?? '(' . $task->task_type->id . ')',
                                 ['controller' => 'TaskTypes', 'action' => 'view', $task->task_type->id],
                             ) : '' ?></td>
                         </tr>
@@ -38,14 +38,14 @@
                         <tr>
                             <th><?= __('Task State') ?></th>
                             <td><?= $task->task_state !== null ? $this->Html->link(
-                                $task->task_state->name,
+                                $task->task_state->name ?? '(' . $task->task_state->id . ')',
                                 ['controller' => 'TaskStates', 'action' => 'view', $task->task_state->id],
                             ) : '' ?></td>
                         </tr>
                         <tr>
                             <th><?= __('User') ?></th>
                             <td><?= $task->user !== null ? $this->Html->link(
-                                $task->user->name,
+                                $task->user->name ?? '(' . $task->user->id . ')',
                                 ['controller' => 'AppUsers', 'action' => 'view', $task->user->id],
                             ) : '' ?></td>
                         </tr>
@@ -62,7 +62,7 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td><?= $task->access_point !== null ? $this->Html->link(
-                                $task->access_point->name,
+                                $task->access_point->name ?? '(' . $task->access_point->id . ')',
                                 [
                                     'controller' => 'AccessPoints',
                                     'action' => 'view',

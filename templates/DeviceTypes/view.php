@@ -96,7 +96,8 @@
                             <td><?= h($routerosDevices->name) ?></td>
                             <td>
                                 <?= $routerosDevices->access_point !== null ? $this->Html->link(
-                                    $routerosDevices->access_point->name,
+                                    $routerosDevices->access_point->name
+                                    ?? '(' . $routerosDevices->access_point->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
@@ -106,7 +107,8 @@
                             </td>
                             <td>
                                 <?= $routerosDevices->customer_connection !== null ? $this->Html->link(
-                                    $routerosDevices->customer_connection->name,
+                                    $routerosDevices->customer_connection->name
+                                    ?? '(' . $routerosDevices->customer_connection->id . ')',
                                     [
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',

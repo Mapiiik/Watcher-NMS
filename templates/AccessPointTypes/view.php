@@ -82,7 +82,8 @@
                             <td><?= h($accessPoint->device_name) ?></td>
                             <td><?= $accessPoint->parent_access_point !== null ?
                                 $this->Html->link(
-                                    $accessPoint->parent_access_point->name ?? '(' . $accessPoint->parent_access_point->id . ')',
+                                    $accessPoint->parent_access_point->name
+                                    ?? '(' . $accessPoint->parent_access_point->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',

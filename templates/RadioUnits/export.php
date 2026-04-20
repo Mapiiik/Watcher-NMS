@@ -47,32 +47,33 @@ $this->setLayout('clean');
                 <tr>
                     <td>
                         <?= $radioUnit->access_point !== null ? $this->Html->link(
-                            $radioUnit->access_point->name,
+                            $radioUnit->access_point->name ?? '(' . $radioUnit->access_point->id . ')',
                             ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id],
                         ) : '' ?>
                     </td>
                     <td><?= h($radioUnit->name) ?></td>
                     <td>
                         <?= $radioUnit->radio_unit_type !== null ? $this->Html->link(
-                            $radioUnit->radio_unit_type->name,
+                            $radioUnit->radio_unit_type->name ?? '(' . $radioUnit->radio_unit_type->id . ')',
                             ['controller' => 'RadioUnitTypes', 'action' => 'view', $radioUnit->radio_unit_type->id],
                         ) : '' ?>
                     </td>
                     <td>
                         <?= $radioUnit->radio_link !== null ? $this->Html->link(
-                            $radioUnit->radio_link->name,
+                            $radioUnit->radio_link->name ?? '(' . $radioUnit->radio_link->id . ')',
                             ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id],
                         ) : '' ?>
                     </td>
                     <td>
                         <?= $radioUnit->antenna_type !== null ? $this->Html->link(
-                            $radioUnit->antenna_type->name,
+                            $radioUnit->antenna_type->name ?? '(' . $radioUnit->antenna_type->id . ')',
                             ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnit->antenna_type->id],
                         ) : '' ?>
                     </td>
                     <td>
                         <?= $radioUnit->radio_unit_type->manufacturer !== null ? $this->Html->link(
-                            $radioUnit->radio_unit_type->manufacturer->name,
+                            $radioUnit->radio_unit_type->manufacturer->name
+                            ?? '(' . $radioUnit->radio_unit_type->manufacturer->id . ')',
                             [
                                 'controller' => 'Manufacturers',
                                 'action' => 'view',
@@ -82,7 +83,8 @@ $this->setLayout('clean');
                     </td>
                     <td>
                         <?= $radioUnit->radio_unit_type->radio_unit_band !== null ? $this->Html->link(
-                            $radioUnit->radio_unit_type->radio_unit_band->name,
+                            $radioUnit->radio_unit_type->radio_unit_band->name
+                            ?? '(' . $radioUnit->radio_unit_type->radio_unit_band->id . ')',
                             [
                                 'controller' => 'RadioUnitBands',
                                 'action' => 'view',

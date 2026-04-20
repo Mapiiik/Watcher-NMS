@@ -73,7 +73,8 @@
                             <td><?= h($antennaTypes->name) ?></td>
                             <td>
                                 <?= $antennaTypes->radio_unit_band !== null ? $this->Html->link(
-                                    $antennaTypes->radio_unit_band->name,
+                                    $antennaTypes->radio_unit_band->name
+                                    ?? '(' . $antennaTypes->radio_unit_band->id . ')',
                                     [
                                         'controller' => 'RadioUnitBands',
                                         'action' => 'view',
@@ -165,7 +166,8 @@
                             <td><?= h($radioUnitTypes->name) ?></td>
                             <td>
                                 <?= $radioUnitTypes->radio_unit_band !== null ? $this->Html->link(
-                                    $radioUnitTypes->radio_unit_band->name,
+                                    $radioUnitTypes->radio_unit_band->name
+                                    ?? '(' . $radioUnitTypes->radio_unit_band->id . ')',
                                     [
                                         'controller' => 'RadioUnitBands',
                                         'action' => 'view',

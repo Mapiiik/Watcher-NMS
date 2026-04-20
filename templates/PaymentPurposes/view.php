@@ -73,7 +73,8 @@
                         <tr>
                             <td><?= $landlordPayment->access_point !== null ?
                                 $this->Html->link(
-                                    $landlordPayment->access_point->name,
+                                    $landlordPayment->access_point->name
+                                    ?? '(' . $landlordPayment->access_point->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',

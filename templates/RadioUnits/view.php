@@ -44,7 +44,7 @@
                             <th><?= __('Radio Unit Type') ?></th>
                             <td>
                                 <?= $radioUnit->radio_unit_type !== null ? $this->Html->link(
-                                    $radioUnit->radio_unit_type->name,
+                                    $radioUnit->radio_unit_type->name ?? '(' . $radioUnit->radio_unit_type->id . ')',
                                     [
                                         'controller' => 'RadioUnitTypes',
                                         'action' => 'view',
@@ -57,7 +57,7 @@
                             <th><?= __('Access Point') ?></th>
                             <td>
                                 <?= $radioUnit->access_point !== null ? $this->Html->link(
-                                    $radioUnit->access_point->name,
+                                    $radioUnit->access_point->name ?? '(' . $radioUnit->access_point->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
@@ -70,7 +70,7 @@
                             <th><?= __('Radio Link') ?></th>
                             <td>
                                 <?= $radioUnit->radio_link !== null ? $this->Html->link(
-                                    $radioUnit->radio_link->name,
+                                    $radioUnit->radio_link->name ?? '(' . $radioUnit->radio_link->id . ')',
                                     [
                                         'controller' => 'RadioLinks',
                                         'action' => 'view',
@@ -83,7 +83,7 @@
                             <th><?= __('Antenna Type') ?></th>
                             <td>
                                 <?= $radioUnit->antenna_type !== null ? $this->Html->link(
-                                    $radioUnit->antenna_type->name,
+                                    $radioUnit->antenna_type->name ?? '(' . $radioUnit->antenna_type->id . ')',
                                     [
                                         'controller' => 'AntennaTypes',
                                         'action' => 'view',

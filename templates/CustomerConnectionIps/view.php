@@ -47,7 +47,8 @@
                             <th><?= __('Customer Connection') ?></th>
                             <td>
                                 <?= $customerConnectionIp->customer_connection !== null ? $this->Html->link(
-                                    $customerConnectionIp->customer_connection->name,
+                                    $customerConnectionIp->customer_connection->name
+                                    ?? '(' . $customerConnectionIp->customer_connection->id . ')',
                                     [
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',

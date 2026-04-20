@@ -55,7 +55,8 @@
                     <td><?= h($routerosDeviceIp->name) ?></td>
                     <td>
                         <?= $routerosDeviceIp->routeros_device !== null ? $this->Html->link(
-                            $routerosDeviceIp->routeros_device->name,
+                            $routerosDeviceIp->routeros_device->name
+                            ?? '(' . $routerosDeviceIp->routeros_device->id . ')',
                             [
                                 'controller' => 'RouterosDevices',
                                 'action' => 'view',

@@ -43,7 +43,8 @@
                             <th><?= __('Access Point Type') ?></th>
                             <td><?= $accessPoint->access_point_type !== null ?
                                 $this->Html->link(
-                                    $accessPoint->access_point_type->name ?? '(' . $accessPoint->access_point_type->id . ')',
+                                    $accessPoint->access_point_type->name
+                                    ?? '(' . $accessPoint->access_point_type->id . ')',
                                     [
                                         'controller' => 'AccessPointTypes',
                                         'action' => 'view',
@@ -55,7 +56,8 @@
                             <th><?= __('Parent Access Point') ?></th>
                             <td><?= $accessPoint->parent_access_point !== null ?
                                 $this->Html->link(
-                                    $accessPoint->parent_access_point->name ?? '(' . $accessPoint->parent_access_point->id . ')',
+                                    $accessPoint->parent_access_point->name
+                                    ?? '(' . $accessPoint->parent_access_point->id . ')',
                                     [
                                         'controller' => 'AccessPoints',
                                         'action' => 'view',
@@ -302,7 +304,8 @@
                         <tr>
                             <td><?= $landlordPayment->payment_purpose !== null ?
                                 $this->Html->link(
-                                    $landlordPayment->payment_purpose->name ?? '(' . $landlordPayment->payment_purpose->id . ')',
+                                    $landlordPayment->payment_purpose->name
+                                    ?? '(' . $landlordPayment->payment_purpose->id . ')',
                                     [
                                         'controller' => 'PaymentPurposes',
                                         'action' => 'view',
@@ -386,7 +389,8 @@
                             <td><?= h($ipAddressRange->ip_gateway) ?></td>
                             <td><?= $ipAddressRange->parent_ip_address_range !== null ?
                                 $this->Html->link(
-                                    $ipAddressRange->parent_ip_address_range->name,
+                                    $ipAddressRange->parent_ip_address_range->name
+                                    ?? '(' . $ipAddressRange->parent_ip_address_range->id . ')',
                                     [
                                         'controller' => 'IpAddressRanges',
                                         'action' => 'view',
@@ -455,7 +459,8 @@
                             <td><?= h($powerSupplies->name) ?></td>
                             <td>
                                 <?= $powerSupplies->power_supply_type !== null ? $this->Html->link(
-                                    $powerSupplies->power_supply_type->name,
+                                    $powerSupplies->power_supply_type->name
+                                    ?? '(' . $powerSupplies->power_supply_type->id . ')',
                                     [
                                         'controller' => 'PowerSupplyTypes',
                                         'action' => 'view',
@@ -528,7 +533,8 @@
                             <td><?= h($radioUnits->name) ?></td>
                             <td>
                                 <?= $radioUnits->radio_unit_type !== null ? $this->Html->link(
-                                    $radioUnits->radio_unit_type->name,
+                                    $radioUnits->radio_unit_type->name
+                                    ?? '(' . $radioUnits->radio_unit_type->id . ')',
                                     [
                                         'controller' => 'RadioUnitTypes',
                                         'action' => 'view',
@@ -538,13 +544,15 @@
                             </td>
                             <td>
                                 <?= $radioUnits->radio_link !== null ? $this->Html->link(
-                                    $radioUnits->radio_link->name,
+                                    $radioUnits->radio_link->name
+                                    ?? '(' . $radioUnits->radio_link->id . ')',
                                     ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id],
                                 ) : '' ?>
                             </td>
                             <td>
                                 <?= $radioUnits->antenna_type !== null ? $this->Html->link(
-                                    $radioUnits->antenna_type->name,
+                                    $radioUnits->antenna_type->name
+                                    ?? '(' . $radioUnits->antenna_type->id . ')',
                                     ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id],
                                 ) : '' ?>
                             </td>
@@ -610,7 +618,8 @@
                             <td><?= h($routerosDevices->name) ?></td>
                             <td>
                                 <?= $routerosDevices->device_type !== null ? $this->Html->link(
-                                    $routerosDevices->device_type->name,
+                                    $routerosDevices->device_type->name
+                                    ?? '(' . $routerosDevices->device_type->id . ')',
                                     [
                                         'controller' => 'DeviceTypes',
                                         'action' => 'view',
@@ -665,12 +674,14 @@
                             <tr>
                                 <td><?=
                                     $this->Html->link(
-                                        $routerosDevice->name,
+                                        $routerosDevice->name
+                                        ?? '(' . $routerosDevice->id . ')',
                                         ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
                                     ) ?></td>
                                 <td>
                                     <?= $routerosDevice->device_type !== null ? $this->Html->link(
-                                        $routerosDevice->device_type->name,
+                                        $routerosDevice->device_type->name
+                                        ?? '(' . $routerosDevice->device_type->id . ')',
                                         [
                                             'controller' => 'DeviceTypes',
                                             'action' => 'view',
@@ -689,7 +700,10 @@
                                         $routerosWirelessLink
                                             ->neighbouring_interface
                                             ->routeros_device
-                                            ->name,
+                                            ->name ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->id . ')',
                                         [
                                             'controller' => 'RouterosDevices',
                                             'action' => 'view',
@@ -711,7 +725,11 @@
                                             ->neighbouring_interface
                                             ->routeros_device
                                             ->access_point
-                                            ->name,
+                                            ->name ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->access_point
+                                                ->id . ')',
                                         [
                                             'controller' => 'AccessPoints',
                                             'action' => 'view',
@@ -734,7 +752,11 @@
                                             ->neighbouring_interface
                                             ->routeros_device
                                             ->customer_connection
-                                            ->name,
+                                            ->name ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id . ')',
                                         [
                                             'controller' => 'CustomerConnections',
                                             'action' => 'view',
@@ -782,12 +804,13 @@
                             <tr>
                                 <td><?=
                                     $this->Html->link(
-                                        $routerosDevice->name,
+                                        $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
                                         ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
                                     ) ?></td>
                                 <td>
                                     <?= $routerosDevice->device_type !== null ? $this->Html->link(
-                                        $routerosDevice->device_type->name,
+                                        $routerosDevice->device_type->name
+                                        ?? '(' . $routerosDevice->device_type->id . ')',
                                         [
                                             'controller' => 'DeviceTypes',
                                             'action' => 'view',
@@ -803,7 +826,8 @@
                                             ->routeros_device,
                                     ) ?
                                     $this->Html->link(
-                                        $routerosIpLink->neighbouring_ip_address->routeros_device->name,
+                                        $routerosIpLink->neighbouring_ip_address->routeros_device->name
+                                        ?? '(' . $routerosIpLink->neighbouring_ip_address->routeros_device->id . ')',
                                         [
                                             'controller' => 'RouterosDevices',
                                             'action' => 'view',
@@ -822,7 +846,11 @@
                                             ->neighbouring_ip_address
                                             ->routeros_device
                                             ->access_point
-                                            ->name,
+                                            ->name ?? '(' . $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->access_point
+                                                ->id . ')',
                                         [
                                             'controller' => 'AccessPoints',
                                             'action' => 'view',
@@ -845,7 +873,11 @@
                                             ->neighbouring_ip_address
                                             ->routeros_device
                                             ->customer_connection
-                                            ->name,
+                                            ->name ?? '(' . $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id . ')',
                                         [
                                             'controller' => 'CustomerConnections',
                                             'action' => 'view',
@@ -882,7 +914,8 @@
                             <td><?= h($customerConnection->name) ?></td>
                             <td>
                                 <?= $customerConnection->customer_point !== null ? $this->Html->link(
-                                    $customerConnection->customer_point->name,
+                                    $customerConnection->customer_point->name
+                                    ?? '(' . $customerConnection->customer_point->id . ')',
                                     [
                                         'controller' => 'CustomerPoints',
                                         'action' => 'view',

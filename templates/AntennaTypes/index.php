@@ -41,13 +41,13 @@
                     <td><?= h($antennaType->name) ?></td>
                     <td>
                         <?= $antennaType->radio_unit_band !== null ? $this->Html->link(
-                            $antennaType->radio_unit_band->name,
+                            $antennaType->radio_unit_band->name ?? '(' . $antennaType->radio_unit_band->id . ')',
                             ['controller' => 'RadioUnitBands', 'action' => 'view', $antennaType->radio_unit_band->id],
                         ) : '' ?>
                     </td>
                     <td>
                         <?= $antennaType->manufacturer !== null ? $this->Html->link(
-                            $antennaType->manufacturer->name,
+                            $antennaType->manufacturer->name ?? '(' . $antennaType->manufacturer->id . ')',
                             ['controller' => 'Manufacturers', 'action' => 'view', $antennaType->manufacturer->id],
                         ) : '' ?>
                     </td>

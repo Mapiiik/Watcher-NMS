@@ -41,7 +41,8 @@
                     <td><?= h($customerConnection->name) ?></td>
                     <td>
                         <?= $customerConnection->customer_point !== null ? $this->Html->link(
-                            $customerConnection->customer_point->name,
+                            $customerConnection->customer_point->name
+                            ?? '(' . $customerConnection->customer_point->id . ')',
                             [
                                 'controller' => 'CustomerPoints',
                                 'action' => 'view',
@@ -50,7 +51,8 @@
                         ) : '' ?></td>
                     <td>
                         <?= $customerConnection->access_point !== null ? $this->Html->link(
-                            $customerConnection->access_point->name,
+                            $customerConnection->access_point->name
+                            ?? '(' . $customerConnection->access_point->id . ')',
                             [
                                 'controller' => 'AccessPoints',
                                 'action' => 'view',

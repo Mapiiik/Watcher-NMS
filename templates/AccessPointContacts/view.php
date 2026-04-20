@@ -46,7 +46,8 @@
                         <tr>
                             <th><?= __('Access Point') ?></th>
                             <td><?= $accessPointContact->access_point !== null ? $this->Html->link(
-                                $accessPointContact->access_point->name ?? '(' . $accessPointContact->access_point->id . ')',
+                                $accessPointContact->access_point->name
+                                ?? '(' . $accessPointContact->access_point->id . ')',
                                 [
                                     'controller' => 'AccessPoints',
                                     'action' => 'view',

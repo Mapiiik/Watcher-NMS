@@ -12,7 +12,9 @@ $this->assign('title', $title);
 
 // temporarily remove query parameters in Router
 $request = Router::getRequest();
-Router::setRequest($request->withQueryParams([]));
+if ($request !== null) {
+    Router::setRequest($request->withQueryParams([]));
+}
 ?>
 
 <style>
@@ -57,7 +59,7 @@ table {
                 <tr>
                     <th><?= __('Access Point') ?></th>
                     <td><?= $task->access_point !== null ? $this->Html->link(
-                        $task->access_point->name,
+                        $task->access_point->name ?? '(' . $task->access_point->id . ')',
                         [
                             'controller' => 'AccessPoints',
                             'action' => 'view',
@@ -132,5 +134,7 @@ table {
 </div>
 <?php
 // put query parameters back to Router
-Router::setRequest($request);
+if ($request !== null) {
+    Router::setRequest($request);
+}
 ?>

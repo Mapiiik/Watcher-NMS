@@ -93,7 +93,8 @@
                         <tr>
                             <td>
                                 <?= $routerosDeviceInterfaces->routeros_device !== null ? $this->Html->link(
-                                    $routerosDeviceInterfaces->routeros_device->name,
+                                    $routerosDeviceInterfaces->routeros_device->name
+                                    ?? '(' . $routerosDeviceInterfaces->routeros_device->id . ')',
                                     [
                                         'controller' => 'RouterosDevices',
                                         'action' => 'view',

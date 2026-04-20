@@ -50,12 +50,13 @@
                     <td><?= h($ipAddressRange->ip_gateway) ?></td>
                     <td><?= $ipAddressRange->access_point !== null ?
                         $this->Html->link(
-                            $ipAddressRange->access_point->name,
+                            $ipAddressRange->access_point->name ?? '(' . $ipAddressRange->access_point->id . ')',
                             ['controller' => 'AccessPoints', 'action' => 'view', $ipAddressRange->access_point->id],
                         ) : '' ?></td>
                     <td><?= $ipAddressRange->parent_ip_address_range !== null ?
                         $this->Html->link(
-                            $ipAddressRange->parent_ip_address_range->name,
+                            $ipAddressRange->parent_ip_address_range->name
+                            ?? '(' . $ipAddressRange->parent_ip_address_range->id . ')',
                             [
                                 'controller' => 'IpAddressRanges',
                                 'action' => 'view',

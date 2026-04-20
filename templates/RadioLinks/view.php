@@ -98,13 +98,13 @@
                             <td><?= h($radioUnits->name) ?></td>
                             <td>
                                 <?= $radioUnits->access_point !== null ? $this->Html->link(
-                                    $radioUnits->access_point->name,
+                                    $radioUnits->access_point->name ?? '(' . $radioUnits->access_point->id . ')',
                                     ['controller' => 'AccessPoints', 'action' => 'view', $radioUnits->access_point->id],
                                 ) : '' ?>
                             </td>
                             <td>
                                 <?= $radioUnits->radio_unit_type !== null ? $this->Html->link(
-                                    $radioUnits->radio_unit_type->name,
+                                    $radioUnits->radio_unit_type->name ?? '(' . $radioUnits->radio_unit_type->id . ')',
                                     [
                                         'controller' => 'RadioUnitTypes',
                                         'action' => 'view',
@@ -114,7 +114,7 @@
                             </td>
                             <td>
                                 <?= $radioUnits->antenna_type !== null ? $this->Html->link(
-                                    $radioUnits->antenna_type->name,
+                                    $radioUnits->antenna_type->name ?? '(' . $radioUnits->antenna_type->id . ')',
                                     ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id],
                                 ) : '' ?>
                             </td>
