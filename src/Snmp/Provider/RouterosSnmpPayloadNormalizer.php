@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Snmp\Provider;
 
 use App\Snmp\Dto\RouterosSnmpData;
+use Cake\Log\Log;
 use RuntimeException;
 
 final class RouterosSnmpPayloadNormalizer
@@ -14,6 +15,9 @@ final class RouterosSnmpPayloadNormalizer
     public static function normalize(array $data, string $fallbackHost): RouterosSnmpData
     {
         if (!isset($data['device'], $data['interfaces'], $data['ip_addresses'])) {
+            // Log the error with the payload for debugging purposes
+            Log::error('Invalid SNMP payload structure', ['snmp_payload' => $data]);
+            // Throw an exception to indicate the issue
             throw new RuntimeException(__('Unexpected SNMP payload structure'));
         }
 
