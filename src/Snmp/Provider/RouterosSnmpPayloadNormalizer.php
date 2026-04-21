@@ -16,7 +16,10 @@ final class RouterosSnmpPayloadNormalizer
     {
         if (!isset($data['device'], $data['interfaces'], $data['ip_addresses'])) {
             // Log the error with the payload for debugging purposes
-            Log::error('Invalid SNMP payload structure', ['snmp_payload' => $data]);
+            Log::error(
+                'Invalid SNMP payload structure: '
+                    . json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
+            );
             // Throw an exception to indicate the issue
             throw new RuntimeException(__('Unexpected SNMP payload structure'));
         }
