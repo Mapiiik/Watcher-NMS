@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use App\Colors\ColorThemeSelector;
+use Cake\Core\Configure;
+
 /**
  * RadioLink Entity
  *
@@ -57,12 +60,19 @@ class RadioLink extends AppEntity
      */
     protected function _getStyle(): string
     {
-        $style = '';
-
-        if (isset($this->radio_units[0]->radio_unit_type->radio_unit_band->color)) {
-            $style = 'background-color: ' . $this->radio_units[0]->radio_unit_type->radio_unit_band->color . ';';
+        if (!isset($this->radio_units[0]->radio_unit_type->radio_unit_band->color)) {
+            // no dynamic style
+            return '';
         }
 
-        return $style;
+        $theme = Configure::read('UI.theme');
+        $theme = is_string($theme) ? $theme : null;
+
+        $backgroundColor = ColorThemeSelector::forTheme(
+            $this->radio_units[0]->radio_unit_type->radio_unit_band->color,
+            $theme,
+        );
+
+        return 'background-color: ' . $backgroundColor . ';';
     }
 }

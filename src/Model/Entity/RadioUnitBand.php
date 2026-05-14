@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use App\Colors\ColorThemeSelector;
+use Cake\Core\Configure;
+
 /**
  * RadioUnitBand Entity
  *
@@ -57,12 +60,19 @@ class RadioUnitBand extends AppEntity
      */
     protected function _getStyle(): string
     {
-        $style = '';
-
-        if (isset($this->color)) {
-            $style = 'background-color: ' . $this->color . ';';
+        if (!isset($this->color)) {
+            // no dynamic style
+            return '';
         }
 
-        return $style;
+        $theme = Configure::read('UI.theme');
+        $theme = is_string($theme) ? $theme : null;
+
+        $backgroundColor = ColorThemeSelector::forTheme(
+            $this->color,
+            $theme,
+        );
+
+        return 'background-color: ' . $backgroundColor . ';';
     }
 }

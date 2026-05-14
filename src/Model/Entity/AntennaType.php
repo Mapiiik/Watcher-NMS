@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use App\Colors\ColorThemeSelector;
+use Cake\Core\Configure;
+
 /**
  * AntennaType Entity
  *
@@ -65,12 +68,19 @@ class AntennaType extends AppEntity
      */
     protected function _getStyle(): string
     {
-        $style = '';
-
-        if (isset($this->radio_unit_band->color)) {
-            $style = 'background-color: ' . $this->radio_unit_band->color . ';';
+        if (!isset($this->radio_unit_band->color)) {
+            // no dynamic style
+            return '';
         }
 
-        return $style;
+        $theme = Configure::read('UI.theme');
+        $theme = is_string($theme) ? $theme : null;
+
+        $backgroundColor = ColorThemeSelector::forTheme(
+            $this->radio_unit_band->color,
+            $theme,
+        );
+
+        return 'background-color: ' . $backgroundColor . ';';
     }
 }
