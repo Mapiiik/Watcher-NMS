@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-04-22 20:16+0200\n"
+"POT-Creation-Date: 2026-05-14 19:56+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -772,49 +772,49 @@ msgstr ""
 msgid "The task type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:209
+#: ./src/Controller/TasksController.php:227
 msgid "none"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:311
-#: ./src/Controller/TasksController.php:386
+#: ./src/Controller/TasksController.php:329
+#: ./src/Controller/TasksController.php:404
 msgid "The task has been saved."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:315
-#: ./src/Controller/TasksController.php:390
+#: ./src/Controller/TasksController.php:333
+#: ./src/Controller/TasksController.php:408
 msgid "The task could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:439
+#: ./src/Controller/TasksController.php:457
 msgid "The task has been deleted."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:442
+#: ./src/Controller/TasksController.php:460
 msgid "The task could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:487
+#: ./src/Controller/TasksController.php:505
 msgid "The notification email could not be sent because the user does not have an email address."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:499
+#: ./src/Controller/TasksController.php:517
 msgid "You have a new task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:501
+#: ./src/Controller/TasksController.php:519
 msgid "You have changes in task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:515
+#: ./src/Controller/TasksController.php:533
 msgid "Notification email sent."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:519
+#: ./src/Controller/TasksController.php:537
 msgid "The notification email could not be sent."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:229
+#: ./src/Controller/TasksController.php:247
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural "There were {0} unfinished tasks found that do not have a user assigned."
 msgstr[0] ""
@@ -872,19 +872,19 @@ msgstr ""
 msgid "API"
 msgstr ""
 
-#: ./src/Model/Entity/Task.php:124
+#: ./src/Model/Entity/Task.php:134
 msgid "Low"
 msgstr ""
 
-#: ./src/Model/Entity/Task.php:125
+#: ./src/Model/Entity/Task.php:135
 msgid "Normal"
 msgstr ""
 
-#: ./src/Model/Entity/Task.php:126
+#: ./src/Model/Entity/Task.php:136
 msgid "High"
 msgstr ""
 
-#: ./src/Model/Entity/Task.php:127
+#: ./src/Model/Entity/Task.php:137
 msgid "Urgent"
 msgstr ""
 
@@ -1070,7 +1070,7 @@ msgstr ""
 #: ./templates/TaskTypes/view.php:64
 #: ./templates/Tasks/add.php:14
 #: ./templates/Tasks/edit.php:14
-#: ./templates/Tasks/index.php:68
+#: ./templates/Tasks/index.php:77
 #: ./templates/Tasks/view.php:10
 #: ./templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
@@ -1369,7 +1369,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:11
 #: ./templates/TaskStates/index.php:11
 #: ./templates/TaskTypes/index.php:11
-#: ./templates/Tasks/index.php:41
+#: ./templates/Tasks/index.php:45
 msgid "Search"
 msgstr ""
 
@@ -1440,7 +1440,7 @@ msgstr ""
 #: ./templates/TaskStates/view.php:108
 #: ./templates/TaskTypes/index.php:37
 #: ./templates/TaskTypes/view.php:100
-#: ./templates/Tasks/index.php:111
+#: ./templates/Tasks/index.php:127
 #: ./templates/email/html/electricity_meter_readings_report.php:52
 #: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1226
 msgid "View"
@@ -1502,7 +1502,7 @@ msgstr ""
 #: ./templates/TaskStates/view.php:112
 #: ./templates/TaskTypes/index.php:39
 #: ./templates/TaskTypes/view.php:104
-#: ./templates/Tasks/index.php:115
+#: ./templates/Tasks/index.php:131
 msgid "Edit"
 msgstr ""
 
@@ -1532,7 +1532,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:117
 #: ./templates/TaskStates/index.php:60
 #: ./templates/TaskTypes/index.php:56
-#: ./templates/Tasks/index.php:127
+#: ./templates/Tasks/index.php:143
 msgid "first"
 msgstr ""
 
@@ -1562,7 +1562,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:118
 #: ./templates/TaskStates/index.php:61
 #: ./templates/TaskTypes/index.php:57
-#: ./templates/Tasks/index.php:128
+#: ./templates/Tasks/index.php:144
 msgid "previous"
 msgstr ""
 
@@ -1592,7 +1592,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:120
 #: ./templates/TaskStates/index.php:63
 #: ./templates/TaskTypes/index.php:59
-#: ./templates/Tasks/index.php:130
+#: ./templates/Tasks/index.php:146
 msgid "next"
 msgstr ""
 
@@ -1622,7 +1622,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:121
 #: ./templates/TaskStates/index.php:64
 #: ./templates/TaskTypes/index.php:60
-#: ./templates/Tasks/index.php:131
+#: ./templates/Tasks/index.php:147
 msgid "last"
 msgstr ""
 
@@ -1652,7 +1652,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:124
 #: ./templates/TaskStates/index.php:67
 #: ./templates/TaskTypes/index.php:63
-#: ./templates/Tasks/index.php:134
+#: ./templates/Tasks/index.php:150
 msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
 
@@ -3460,7 +3460,7 @@ msgstr ""
 
 #: ./templates/TaskStates/view.php:59
 #: ./templates/TaskTypes/view.php:51
-#: ./templates/Tasks/index.php:56
+#: ./templates/Tasks/index.php:65
 msgid "Number"
 msgstr ""
 
@@ -3539,7 +3539,7 @@ msgid "Access Point Required"
 msgstr ""
 
 #: ./templates/TaskTypes/view.php:53
-#: ./templates/Tasks/index.php:59
+#: ./templates/Tasks/index.php:68
 #: ./templates/Tasks/view.php:39
 #: ./templates/email/html/task_notification.php:44
 msgid "Task State"
@@ -3560,21 +3560,25 @@ msgstr ""
 msgid "Edit Task"
 msgstr ""
 
-#: ./templates/Tasks/index.php:16
+#: ./templates/Tasks/index.php:20
 msgid "Show Completed"
 msgstr ""
 
 #: ./templates/Tasks/index.php:50
+msgid "Expandable Text"
+msgstr ""
+
+#: ./templates/Tasks/index.php:59
 #: ./templates/Tasks/view.php:18
 msgid "New Task"
 msgstr ""
 
-#: ./templates/Tasks/index.php:51
+#: ./templates/Tasks/index.php:60
 #: ./templates/layout/default.php:108
 msgid "Tasks"
 msgstr ""
 
-#: ./templates/Tasks/index.php:61
+#: ./templates/Tasks/index.php:70
 #: ./templates/Tasks/view.php:102
 #: ./templates/email/html/task_notification.php:124
 msgid "Summary Text"
@@ -3615,6 +3619,32 @@ msgstr ""
 #: ./templates/element/common/audit.php:38
 #: ./templates/email/html/task_notification.php:108
 msgid "Modified By"
+msgstr ""
+
+#: ./templates/element/common/audit.php:53
+msgid "Removed"
+msgstr ""
+
+#: ./templates/element/common/audit.php:58
+msgid "Removed By"
+msgstr ""
+
+#: ./templates/element/common/audit.php:74
+msgid "Revoked"
+msgstr ""
+
+#: ./templates/element/common/audit.php:79
+msgid "Revoked By"
+msgstr ""
+
+#: ./templates/element/common/expandable_text.php:16
+#: ./templates/element/common/expandable_text.php:19
+msgid "more"
+msgstr ""
+
+#: ./templates/element/common/expandable_text.php:17
+#: ./templates/element/common/expandable_text.php:20
+msgid "less"
 msgstr ""
 
 #: ./templates/email/html/task_notification.php:116
