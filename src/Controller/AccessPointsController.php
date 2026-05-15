@@ -529,7 +529,7 @@ class AccessPointsController extends AppController
                                             ),
                                             title: $neighbouringAccessPoint->name
                                                 ?? '(' . $neighbouringAccessPoint->id . ')',
-                                            color: $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
+                                            color: $neighbouringAccessPoint->access_point_type->color ?? '#d02f37',
                                             locked: false,
                                             content: '<b>'
                                                 . $html->link(
@@ -795,7 +795,7 @@ class AccessPointsController extends AppController
                                             ),
                                             title: $neighbouringAccessPoint->name
                                                 ?? '(' . $neighbouringAccessPoint->id . ')',
-                                            color: $neighbouringAccessPoint->access_point_type->color ?? '#d33c43',
+                                            color: $neighbouringAccessPoint->access_point_type->color ?? '#d02f37',
                                             locked: false,
                                             content: '<b>'
                                                 . $html->link(
@@ -986,7 +986,7 @@ class AccessPointsController extends AppController
                     ),
                     title: $accessPoint->name ?? '(' . $accessPoint->id . ')',
                     content: $content,
-                    color: $accessPoint->access_point_type->color ?? '#d33c43',
+                    color: $accessPoint->access_point_type->color ?? '#d02f37',
                     locked: true,
                 );
 
