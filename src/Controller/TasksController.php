@@ -264,15 +264,12 @@ class TasksController extends AppController
             );
         }
 
-        $taskTypes = $this->Tasks->TaskTypes->find('list', order: [
-            'name',
-        ]);
-        $taskStates = $this->Tasks->TaskStates->find('list', order: [
-            'name',
-        ]);
-        $accessPoints = $this->Tasks->AccessPoints->find('list', order: [
-            'name',
-        ]);
+        $taskTypes = $this->Tasks->TaskTypes->find('list', order: ['name'])->all();
+        $taskStates = $this->Tasks->TaskStates->find('list', order: ['name'])->all();
+        $accessPoints = $this->Tasks->AccessPoints
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
 
         $this->set(compact('tasks', 'taskTypes', 'taskStates', 'users', 'accessPoints'));
     }
@@ -333,15 +330,13 @@ class TasksController extends AppController
                 $this->Flash->error(__('The task could not be saved. Please, try again.'));
             }
         }
-        $taskTypes = $this->Tasks->TaskTypes->find('list', order: [
-            'name',
-        ]);
-        $taskStates = $this->Tasks->TaskStates->find('list', order: [
-            'name',
-        ]);
-        $accessPoints = $this->Tasks->AccessPoints->find('list', order: [
-            'name',
-        ]);
+        $taskTypes = $this->Tasks->TaskTypes->find('list', order: ['name'])->all();
+        $taskStates = $this->Tasks->TaskStates->find('list', order: ['name'])->all();
+        $accessPoints = $this->Tasks->AccessPoints
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
+
         $users = $this->Tasks->Users
             ->find()
             ->where([
@@ -408,15 +403,13 @@ class TasksController extends AppController
                 $this->Flash->error(__('The task could not be saved. Please, try again.'));
             }
         }
-        $taskStates = $this->Tasks->TaskStates->find('list', order: [
-            'name',
-        ]);
-        $taskTypes = $this->Tasks->TaskTypes->find('list', order: [
-            'name',
-        ]);
-        $accessPoints = $this->Tasks->AccessPoints->find('list', order: [
-            'name',
-        ]);
+        $taskTypes = $this->Tasks->TaskTypes->find('list', order: ['name'])->all();
+        $taskStates = $this->Tasks->TaskStates->find('list', order: ['name'])->all();
+        $accessPoints = $this->Tasks->AccessPoints
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
+
         $users = $this->Tasks->Users
             ->find()
             ->orderBy([

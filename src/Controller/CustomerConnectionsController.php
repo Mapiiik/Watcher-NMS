@@ -94,7 +94,11 @@ class CustomerConnectionsController extends AppController
             $this->Flash->error(__('The customer connection could not be saved. Please, try again.'));
         }
         $customerPoints = $this->CustomerConnections->CustomerPoints->find('list', order: ['name']);
-        $accessPoints = $this->CustomerConnections->AccessPoints->find('list', order: ['name']);
+        $accessPoints = $this->CustomerConnections->AccessPoints
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
+
         $this->set(compact('customerConnection', 'customerPoints', 'accessPoints'));
     }
 
@@ -120,7 +124,11 @@ class CustomerConnectionsController extends AppController
             $this->Flash->error(__('The customer connection could not be saved. Please, try again.'));
         }
         $customerPoints = $this->CustomerConnections->CustomerPoints->find('list', order: ['name']);
-        $accessPoints = $this->CustomerConnections->AccessPoints->find('list', order: ['name']);
+        $accessPoints = $this->CustomerConnections->AccessPoints
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
+
         $this->set(compact('customerConnection', 'customerPoints', 'accessPoints'));
     }
 

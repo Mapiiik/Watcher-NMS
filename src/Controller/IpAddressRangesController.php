@@ -96,6 +96,7 @@ class IpAddressRangesController extends AppController
             $this->Flash->error(__('The IP address range could not be saved. Please, try again.'));
         }
         $accessPoints = $this->IpAddressRanges->AccessPoints
+            ->find('active')
             ->find('list', order: ['name'])
             ->all();
         $parentIpAddressRanges = $this->IpAddressRanges->ParentIpAddressRanges
@@ -124,6 +125,7 @@ class IpAddressRangesController extends AppController
             $this->Flash->error(__('The IP address range could not be saved. Please, try again.'));
         }
         $accessPoints = $this->IpAddressRanges->AccessPoints
+            ->find('active')
             ->find('list', order: ['name'])
             ->all();
         $parentIpAddressRanges = $this->IpAddressRanges->ParentIpAddressRanges

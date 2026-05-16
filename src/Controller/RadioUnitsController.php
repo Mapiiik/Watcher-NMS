@@ -118,9 +118,13 @@ class RadioUnitsController extends AppController
                 $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
             }
         }
-        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', order: ['name']);
-        $accessPoints = $this->RadioUnits->AccessPoints->find('list', order: ['name']);
-        $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name']);
+        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', order: ['name'])->all();
+        $accessPoints = $this->RadioUnits->AccessPoints
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
+        $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name'])->all();
+
         $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', order: ['name']);
 
         if (isset($radioUnit->radio_unit_type_id)) {
@@ -157,9 +161,13 @@ class RadioUnitsController extends AppController
                 $this->Flash->error(__('The radio unit could not be saved. Please, try again.'));
             }
         }
-        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', order: ['name']);
-        $accessPoints = $this->RadioUnits->AccessPoints->find('list', order: ['name']);
-        $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name']);
+        $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', order: ['name'])->all();
+        $accessPoints = $this->RadioUnits->AccessPoints
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
+        $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name'])->all();
+
         $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', order: ['name']);
 
         if (isset($radioUnit->radio_unit_type_id)) {

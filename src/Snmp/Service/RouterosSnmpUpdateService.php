@@ -76,7 +76,7 @@ final class RouterosSnmpUpdateService
 
         // 1a) Assign access point by device name
         if ($assignAccessPointByDeviceName && !empty($devicePatch['name'])) {
-            $accessPoints = $routerosDevices->AccessPoints->find('all', conditions: [
+            $accessPoints = $routerosDevices->AccessPoints->find('active', conditions: [
                 '\'' . $devicePatch['name'] . '\' ILIKE AccessPoints.device_name || \'%\'',
             ]);
             $ap = $accessPoints->first();
