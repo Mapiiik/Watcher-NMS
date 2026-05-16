@@ -14,6 +14,9 @@ use Override;
  * @extends \Cake\ORM\Table<array<string, \Cake\ORM\Behavior>>
  * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Creators
  * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Modifiers
+ * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Removers
+ * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Revokers
+ * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Archivers
  */
 class AppTable extends Table
 {
@@ -49,6 +52,24 @@ class AppTable extends Table
             $this->belongsTo('Modifiers', [
                 'className' => 'AppUsers',
                 'foreignKey' => 'modified_by',
+            ]);
+        }
+        if ($this->hasField('removed_by')) {
+            $this->belongsTo('Removers', [
+                'className' => 'AppUsers',
+                'foreignKey' => 'removed_by',
+            ]);
+        }
+        if ($this->hasField('revoked_by')) {
+            $this->belongsTo('Revokers', [
+                'className' => 'AppUsers',
+                'foreignKey' => 'revoked_by',
+            ]);
+        }
+        if ($this->hasField('archived_by')) {
+            $this->belongsTo('Archivers', [
+                'className' => 'AppUsers',
+                'foreignKey' => 'archived_by',
             ]);
         }
     }

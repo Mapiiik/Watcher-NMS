@@ -157,6 +157,7 @@ class AccessPointsController extends AppController
             'IpAddressRanges' => ['ParentIpAddressRanges'],
             'Creators',
             'Modifiers',
+            'Archivers',
         ]);
 
         // Calculation of daily consumption
