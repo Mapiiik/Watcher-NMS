@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use Cake\ORM\RulesChecker;
+use Cake\Validation\Validation;
 use Cake\Validation\Validator;
 use Override;
+use Settings\Utility\Settings;
 
 /**
  * RouterosDeviceIps Model
@@ -52,16 +54,31 @@ class RouterosDeviceIpsTable extends AppTable
             'foreignKey' => 'routeros_device_id',
         ]);
 
+        // RouterOS IP Links
+        $ipLinkConditions = [
+            'NeighbouringIpAddresses.id <> RouterosIpLinks.id',
+            'NeighbouringIpAddresses.routeros_device_id <> RouterosIpLinks.routeros_device_id',
+        ];
+
+        $ignoredIpLinkRanges = Settings::get('core.devices.ignored_ip_link_ranges_list');
+
+        if (is_array($ignoredIpLinkRanges)) {
+            foreach ($ignoredIpLinkRanges as $ignoredIpLinkRange) {
+                if (Validation::ipOrRange($ignoredIpLinkRange)) {
+                    $ipLinkConditions[] = [
+                        'NOT RouterosIpLinks.ip_network <<=' => $ignoredIpLinkRange,
+                    ];
+                }
+            }
+        }
+
         if ($this->getRegistryAlias() == 'RouterosIpLinks') {
             $this->belongsTo('NeighbouringIpAddresses', [
                 'className' => 'RouterosDeviceIps',
                 'foreignKey' => 'ip_network',
                 'bindingKey' => 'ip_network',
                 'joinType' => 'INNER',
-                'conditions' => [
-                    'NeighbouringIpAddresses.id <> RouterosIpLinks.id',
-                    'NeighbouringIpAddresses.routeros_device_id <> RouterosIpLinks.routeros_device_id',
-                ],
+                'conditions' => $ipLinkConditions,
             ]);
         }
     }

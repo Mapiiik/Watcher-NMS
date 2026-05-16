@@ -35,6 +35,9 @@ return [
     // Persisting audit log
     'AuditStash' => [],
 
+    // Settings
+    'Settings' => [],
+
     // dereuromark/cakephp-geo
     'Geo' => [],
 ];

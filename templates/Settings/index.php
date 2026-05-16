@@ -23,6 +23,17 @@
         </div>
 
         <div class="related">
+            <h4><?= __('Application Settings') ?></h4>
+            <div>
+                <?= $this->AuthLink->link(
+                    __('Devices'),
+                    ['controller' => 'Settings', 'action' => 'edit', 'core.devices'],
+                    ['class' => 'side-nav-item'],
+                ) ?>
+            </div>
+        </div>
+
+        <div class="related">
             <h4><?= __('Access Point Related') ?></h4>
             <div>
                 <?= $this->AuthLink->link(
