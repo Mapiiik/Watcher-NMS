@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-05-16 15:43+0200\n"
+"POT-Creation-Date: 2026-05-16 18:01+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -110,7 +110,7 @@ msgstr ""
 
 #: ./src/Command/ElectricityMeterReadingsReportCommand.php:104
 #: ./templates/ElectricityMeterReadings/index.php:25
-#: ./templates/layout/default.php:273
+#: ./templates/layout/default.php:274
 msgid "Electricity Meter Readings"
 msgstr ""
 
@@ -1058,6 +1058,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:10
 #: ./templates/RouterosDevices/view.php:159
 #: ./templates/RouterosDevices/view.php:223
+#: ./templates/Settings/edit.php:13
 #: ./templates/TaskStates/add.php:10
 #: ./templates/TaskStates/edit.php:10
 #: ./templates/TaskStates/index.php:30
@@ -1133,6 +1134,7 @@ msgstr ""
 #: ./templates/RouterosDeviceIps/edit.php:45
 #: ./templates/RouterosDevices/add.php:60
 #: ./templates/RouterosDevices/edit.php:68
+#: ./templates/Settings/edit.php:38
 #: ./templates/TaskStates/add.php:26
 #: ./templates/TaskStates/edit.php:31
 #: ./templates/TaskTypes/add.php:24
@@ -1380,7 +1382,7 @@ msgid "New Access Point Contact"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:25
-#: ./templates/layout/default.php:268
+#: ./templates/layout/default.php:269
 msgid "Access Point Contacts"
 msgstr ""
 
@@ -1737,7 +1739,7 @@ msgstr ""
 #: ./templates/AccessPointTypes/add.php:12
 #: ./templates/AccessPointTypes/edit.php:20
 #: ./templates/AccessPointTypes/view.php:25
-#: ./templates/Settings/index.php:29
+#: ./templates/Settings/index.php:40
 msgid "List Access Point Types"
 msgstr ""
 
@@ -1851,8 +1853,8 @@ msgstr ""
 
 #: ./templates/AccessPoints/index.php:26
 #: ./templates/AccessPoints/map.php:15
-#: ./templates/layout/default.php:106
-#: ./templates/layout/default.php:263
+#: ./templates/layout/default.php:107
+#: ./templates/layout/default.php:264
 msgid "Access Points"
 msgstr ""
 
@@ -2494,7 +2496,7 @@ msgid "New Antenna Type"
 msgstr ""
 
 #: ./templates/AntennaTypes/index.php:25
-#: ./templates/Settings/index.php:66
+#: ./templates/Settings/index.php:77
 msgid "Antenna Types"
 msgstr ""
 
@@ -2536,22 +2538,22 @@ msgid "Antenna Gain"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:53
-#: ./templates/layout/default.php:214
+#: ./templates/layout/default.php:215
 msgid "Light"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:54
-#: ./templates/layout/default.php:215
+#: ./templates/layout/default.php:216
 msgid "Dark"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:55
-#: ./templates/layout/default.php:216
+#: ./templates/layout/default.php:217
 msgid "Contrast"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:56
-#: ./templates/layout/default.php:217
+#: ./templates/layout/default.php:218
 msgid "Legacy"
 msgstr ""
 
@@ -2576,7 +2578,7 @@ msgid "New Customer Connection IP"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/index.php:25
-#: ./templates/layout/default.php:302
+#: ./templates/layout/default.php:303
 msgid "Customer Connection Ips"
 msgstr ""
 
@@ -2612,7 +2614,7 @@ msgid "New Customer Connection"
 msgstr ""
 
 #: ./templates/CustomerConnections/index.php:25
-#: ./templates/layout/default.php:297
+#: ./templates/layout/default.php:298
 msgid "Customer Connections"
 msgstr ""
 
@@ -2645,8 +2647,8 @@ msgid "New Customer Point"
 msgstr ""
 
 #: ./templates/CustomerPoints/index.php:25
-#: ./templates/layout/default.php:125
-#: ./templates/layout/default.php:292
+#: ./templates/layout/default.php:126
+#: ./templates/layout/default.php:293
 msgid "Customer Points"
 msgstr ""
 
@@ -2682,7 +2684,7 @@ msgid "New Device Type"
 msgstr ""
 
 #: ./templates/DeviceTypes/index.php:21
-#: ./templates/Settings/index.php:45
+#: ./templates/Settings/index.php:56
 msgid "Device Types"
 msgstr ""
 
@@ -2745,7 +2747,7 @@ msgid "Edit IP Address Range"
 msgstr ""
 
 #: ./templates/IpAddressRanges/index.php:25
-#: ./templates/layout/default.php:134
+#: ./templates/layout/default.php:135
 msgid "IP Address Ranges"
 msgstr ""
 
@@ -2799,7 +2801,7 @@ msgid "Edit Landlord Payment"
 msgstr ""
 
 #: ./templates/LandlordPayments/index.php:25
-#: ./templates/layout/default.php:278
+#: ./templates/layout/default.php:279
 msgid "Landlord Payments"
 msgstr ""
 
@@ -2836,8 +2838,8 @@ msgid "New Manufacturer"
 msgstr ""
 
 #: ./templates/Manufacturers/index.php:25
-#: ./templates/Settings/index.php:71
-#: ./templates/Settings/index.php:87
+#: ./templates/Settings/index.php:82
+#: ./templates/Settings/index.php:98
 msgid "Manufacturers"
 msgstr ""
 
@@ -2872,7 +2874,7 @@ msgstr ""
 #: ./templates/PaymentPurposes/add.php:12
 #: ./templates/PaymentPurposes/edit.php:20
 #: ./templates/PaymentPurposes/view.php:25
-#: ./templates/Settings/index.php:34
+#: ./templates/Settings/index.php:45
 msgid "List Payment Purposes"
 msgstr ""
 
@@ -2914,7 +2916,7 @@ msgid "Edit Power Supply"
 msgstr ""
 
 #: ./templates/PowerSupplies/index.php:25
-#: ./templates/layout/default.php:159
+#: ./templates/layout/default.php:160
 msgid "Power Supplies"
 msgstr ""
 
@@ -2943,7 +2945,7 @@ msgid "New Power Supply Type"
 msgstr ""
 
 #: ./templates/PowerSupplyTypes/index.php:25
-#: ./templates/Settings/index.php:82
+#: ./templates/Settings/index.php:93
 msgid "Power Supply Types"
 msgstr ""
 
@@ -2985,7 +2987,7 @@ msgid "Devices That Interfere"
 msgstr ""
 
 #: ./templates/RadarInterferences/index.php:35
-#: ./templates/layout/default.php:332
+#: ./templates/layout/default.php:333
 msgid "Radar Interferences"
 msgstr ""
 
@@ -3092,15 +3094,15 @@ msgid "New Radio Link"
 msgstr ""
 
 #: ./templates/RadioLinks/index.php:27
-#: ./templates/layout/default.php:151
-#: ./templates/layout/default.php:345
+#: ./templates/layout/default.php:152
+#: ./templates/layout/default.php:346
 msgid "Radio Links"
 msgstr ""
 
 #: ./templates/RadioLinks/index.php:35
 #: ./templates/RadioUnits/export.php:10
 #: ./templates/RadioUnits/index.php:29
-#: ./templates/layout/default.php:350
+#: ./templates/layout/default.php:351
 msgid "Radio Units"
 msgstr ""
 
@@ -3140,7 +3142,7 @@ msgid "New Radio Unit Band"
 msgstr ""
 
 #: ./templates/RadioUnitBands/index.php:25
-#: ./templates/Settings/index.php:61
+#: ./templates/Settings/index.php:72
 msgid "Radio Unit Bands"
 msgstr ""
 
@@ -3169,7 +3171,7 @@ msgid "New Radio Unit Type"
 msgstr ""
 
 #: ./templates/RadioUnitTypes/index.php:25
-#: ./templates/Settings/index.php:56
+#: ./templates/Settings/index.php:67
 msgid "Radio Unit Types"
 msgstr ""
 
@@ -3256,7 +3258,7 @@ msgid "New RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/index.php:40
-#: ./templates/layout/default.php:322
+#: ./templates/layout/default.php:323
 msgid "RouterOS Device Interfaces"
 msgstr ""
 
@@ -3314,7 +3316,7 @@ msgid "New RouterOS Device IP"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/index.php:40
-#: ./templates/layout/default.php:327
+#: ./templates/layout/default.php:328
 msgid "RouterOS Device Ips"
 msgstr ""
 
@@ -3339,8 +3341,8 @@ msgstr ""
 
 #: ./templates/RouterosDevices/export.php:37
 #: ./templates/RouterosDevices/index.php:41
-#: ./templates/layout/default.php:141
-#: ./templates/layout/default.php:317
+#: ./templates/layout/default.php:142
+#: ./templates/layout/default.php:318
 msgid "RouterOS Devices"
 msgstr ""
 
@@ -3368,8 +3370,25 @@ msgstr ""
 msgid "Related RouterOS Device Ips"
 msgstr ""
 
+#: ./templates/Settings/edit.php:14
+msgid "List Settings"
+msgstr ""
+
+#: ./templates/Settings/edit.php:21
+msgid "Edit Setting"
+msgstr ""
+
+#: ./templates/Settings/edit.php:22
+msgid "If you leave the field blank, it will not be saved in the DB and the default value will be used."
+msgstr ""
+
+#: ./templates/Settings/edit.php:28
+#: ./templates/element/Settings/FormFields.php:22
+msgid "Setting: {path}"
+msgstr ""
+
 #: ./templates/Settings/index.php:7
-#: ./templates/layout/default.php:166
+#: ./templates/layout/default.php:167
 msgid "Settings"
 msgstr ""
 
@@ -3386,33 +3405,41 @@ msgid "List Users"
 msgstr ""
 
 #: ./templates/Settings/index.php:26
+msgid "Application Settings"
+msgstr ""
+
+#: ./templates/Settings/index.php:29
+msgid "Devices"
+msgstr ""
+
+#: ./templates/Settings/index.php:37
 msgid "Access Point Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:42
+#: ./templates/Settings/index.php:53
 msgid "RouterOS Device Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:53
+#: ./templates/Settings/index.php:64
 msgid "Radio Link Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:79
+#: ./templates/Settings/index.php:90
 msgid "Power Supply Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:95
+#: ./templates/Settings/index.php:106
 msgid "Task Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:98
+#: ./templates/Settings/index.php:109
 #: ./templates/TaskStates/add.php:11
 #: ./templates/TaskStates/edit.php:16
 #: ./templates/TaskStates/view.php:21
 msgid "List Task States"
 msgstr ""
 
-#: ./templates/Settings/index.php:103
+#: ./templates/Settings/index.php:114
 #: ./templates/TaskTypes/add.php:11
 #: ./templates/TaskTypes/edit.php:16
 #: ./templates/TaskTypes/view.php:21
@@ -3574,7 +3601,7 @@ msgid "New Task"
 msgstr ""
 
 #: ./templates/Tasks/index.php:60
-#: ./templates/layout/default.php:116
+#: ./templates/layout/default.php:117
 msgid "Tasks"
 msgstr ""
 
@@ -3594,6 +3621,10 @@ msgstr ""
 
 #: ./templates/element/GoogleMaps/map-with-search.php:113
 msgid "Search on the Map"
+msgstr ""
+
+#: ./templates/element/Settings/FormFields.php:48
+msgid "Default value:"
 msgstr ""
 
 #: ./templates/element/common/audit.php:9
@@ -3651,27 +3682,27 @@ msgstr ""
 msgid "View Task"
 msgstr ""
 
-#: ./templates/layout/default.php:184
+#: ./templates/layout/default.php:185
 msgid "Customer Relationship Management"
 msgstr ""
 
-#: ./templates/layout/default.php:212
+#: ./templates/layout/default.php:213
 msgid "Default"
 msgstr ""
 
-#: ./templates/layout/default.php:243
+#: ./templates/layout/default.php:244
 msgid "Logout"
 msgstr ""
 
-#: ./templates/layout/default.php:369
+#: ./templates/layout/default.php:370
 msgid "Changelog"
 msgstr ""
 
-#: ./templates/layout/default.php:370
+#: ./templates/layout/default.php:371
 msgid "Source Code"
 msgstr ""
 
-#: ./templates/layout/default.php:372
+#: ./templates/layout/default.php:373
 msgid "Version"
 msgstr ""
 
