@@ -10,6 +10,7 @@ use App\Maps\Position;
 use Cake\I18n\DateTime;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
+use Exception;
 
 /**
  * AccessPoints Controller
@@ -22,42 +23,53 @@ class AccessPointsController extends AppController
     /**
      * Index method
      *
+     * Displays either active or archived access points based on the given filter.
+     *
+     * @param string|null $param Filter for the listing:
+     *   - 'active' (default): shows only non-archived records
+     *   - 'archived': shows only archived records
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index()
+    public function index(?string $param = 'active')
     {
-        // access points query
-        $accessPointsQuery = $this->AccessPoints->find(
-            'all',
-            contain: [
+        // normalize param
+        $finder = $param === 'archived' ? 'archived' : 'active';
+
+        // base query
+        $accessPointsQuery = $this->AccessPoints
+            ->find($finder)
+            ->contain([
                 'AccessPointTypes',
                 'ParentAccessPoints',
-            ],
-        );
+            ]);
 
         // search
         $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
-            $accessPointsQuery->where([
-                'OR' => [
-                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
-                    'AccessPoints.device_name ILIKE' => '%' . trim($search) . '%',
-                    'to_tsvector('
-                        . "COALESCE(AccessPoints.name, '') || ' ' || "
-                        . "COALESCE(AccessPoints.device_name, '')"
-                    . ') @@ websearch_to_tsquery(:search)',
-                ],
-            ]);
-            $accessPointsQuery->bind(':search', trim($search), 'string');
+            $search = trim($search);
+
+            $accessPointsQuery
+                ->where([
+                    'OR' => [
+                        'AccessPoints.name ILIKE' => "%$search%",
+                        'AccessPoints.device_name ILIKE' => "%$search%",
+                        'to_tsvector('
+                            . "COALESCE(AccessPoints.name, '') || ' ' || "
+                            . "COALESCE(AccessPoints.device_name, '')"
+                        . ') @@ websearch_to_tsquery(:search)',
+                    ],
+                ])
+                ->bind(':search', $search, 'string');
         }
 
+        // pagination
         $this->paginate = [
             'order' => ['name' => 'ASC'],
         ];
 
         $accessPoints = $this->paginate($accessPointsQuery);
 
-        $this->set(compact('accessPoints'));
+        $this->set(compact('accessPoints', 'finder'));
     }
 
     /**
@@ -225,6 +237,69 @@ class AccessPointsController extends AppController
     }
 
     /**
+     * Archive method
+     *
+     * Marks the access point as archived (soft-delete) by setting archived timestamp
+     * and archived_by user ID. Does not remove the record from the database.
+     *
+     * @param string|null $id Access Point ID
+     * @return \Cake\Http\Response|null|void Redirects to index
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function archive(?string $id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+
+        $accessPoint = $this->AccessPoints->get($id);
+
+        try {
+            $this->AccessPoints->archive(
+                $accessPoint,
+                $this->getRequest()->getAttribute('identity')['id'] ?? null,
+            );
+
+            $this->Flash->success(__('The access point has been archived.'));
+        } catch (Exception $e) {
+            $this->Flash->error(
+                __('The access point could not be archived. Please try again.'),
+            );
+        }
+
+        return $this->afterEditRedirect(['action' => 'view', $accessPoint->id]);
+    }
+
+    /**
+     * Restore method
+     *
+     * Reverts an archived access point back to active state by clearing the
+     * archived timestamp and archived_by user ID.
+     *
+     * @param string|null $id Access Point ID
+     * @return \Cake\Http\Response|null|void Redirects to index
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function restore(?string $id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+
+        $accessPoint = $this->AccessPoints->get($id);
+
+        try {
+            $this->AccessPoints->restore($accessPoint);
+
+            $this->Flash->success(
+                __('The access point has been restored.'),
+            );
+        } catch (Exception $e) {
+            $this->Flash->error(
+                __('The access point could not be restored. Please try again.'),
+            );
+        }
+
+        return $this->afterEditRedirect(['action' => 'view', $accessPoint->id]);
+    }
+
+    /**
      * Delete method
      *
      * @param string|null $id Access Point id.
@@ -262,7 +337,7 @@ class AccessPointsController extends AppController
         }
         $this->set('mapOptions', $mapOptions);
 
-        $accessPointsQuery = $this->AccessPoints->find();
+        $accessPointsQuery = $this->AccessPoints->find('active');
 
         $accessPointsQuery->contain([
             'AccessPointTypes',
@@ -382,7 +457,7 @@ class AccessPointsController extends AppController
             ]);
         }
 
-        $accessPointsFilter = $this->AccessPoints->find('list', order: ['name']);
+        $accessPointsFilter = $this->AccessPoints->find('active')->find('list', order: ['name']);
         $routerosDevicesFilter = $this->AccessPoints->RouterosDevices->find('list', order: ['name']);
 
         if ($mapOptions->getData('access_point_id') <> '') {
