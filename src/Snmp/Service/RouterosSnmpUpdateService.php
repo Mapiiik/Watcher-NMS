@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace App\Snmp\Service;
 
 use App\Model\Entity\RouterosDevice;
+use App\Model\Table\RouterosDeviceInterfacesTable;
+use App\Model\Table\RouterosDeviceIpsTable;
+use App\Model\Table\RouterosDevicesTable;
 use App\Snmp\Provider\RouterosSnmpProviderInterface;
 use Cake\I18n\DateTime;
-use Cake\ORM\TableRegistry;
+use Cake\ORM\Locator\LocatorAwareTrait;
 use RuntimeException;
 
 /**
@@ -18,6 +21,8 @@ use RuntimeException;
  */
 final class RouterosSnmpUpdateService
 {
+    use LocatorAwareTrait;
+
     /**
      * @param \App\Snmp\Provider\RouterosSnmpProviderInterface $provider The SNMP data provider to use for reading RouterOS data
      */
@@ -54,12 +59,14 @@ final class RouterosSnmpUpdateService
 
         $data = $this->provider->read($host, $community);
 
-        $routerosDevices = TableRegistry::getTableLocator()->get('RouterosDevices');
-        $routerosDeviceInterfaces = TableRegistry::getTableLocator()->get('RouterosDeviceInterfaces');
-        $routerosDeviceIps = TableRegistry::getTableLocator()->get('RouterosDeviceIps');
+        $routerosDevices = $this->fetchTable(RouterosDevicesTable::class);
+        $routerosDeviceInterfaces = $this->fetchTable(RouterosDeviceInterfacesTable::class);
+        $routerosDeviceIps = $this->fetchTable(RouterosDeviceIpsTable::class);
 
         // 1) Device entity
-        $routerosDevice = $routerosDevices->find()
+        /** @var \App\Model\Entity\RouterosDevice $routerosDevice */
+        $routerosDevice = $routerosDevices
+            ->find()
             ->where(['serial_number' => $data->device['serial_number']])
             ->first()
             ?? $routerosDevices->newEntity(['serial_number' => $data->device['serial_number']]);
@@ -76,25 +83,31 @@ final class RouterosSnmpUpdateService
 
         // 1a) Assign access point by device name
         if ($assignAccessPointByDeviceName && !empty($devicePatch['name'])) {
-            $accessPoints = $routerosDevices->AccessPoints->find('active', conditions: [
-                '\'' . $devicePatch['name'] . '\' ILIKE AccessPoints.device_name || \'%\'',
-            ]);
-            $ap = $accessPoints->first();
-            if ($ap) {
-                $devicePatch['access_point_id'] = $ap['id'];
+            /** @var \App\Model\Entity\AccessPoint|null $accessPoint */
+            $accessPoint = $routerosDevices->AccessPoints
+                ->find('active')
+                ->where([
+                    ':rosName ILIKE AccessPoints.device_name || \'%\'',
+                ])
+                ->bind(':rosName', $devicePatch['name'], 'string')
+                ->first();
+
+            if ($accessPoint) {
+                $devicePatch['access_point_id'] = $accessPoint->id;
             }
         }
 
         // 1b) Assign customer connection by IP
         if ($assignCustomerConnectionByIp && !empty($devicePatch['ip_address'])) {
-            $ccIps = $routerosDevices->CustomerConnections->CustomerConnectionIps->find(
-                'all',
-                conditions: ['ip_address' => $devicePatch['ip_address']],
-                order: ['modified' => 'DESC'],
-            );
-            $ccIp = $ccIps->first();
-            if ($ccIp) {
-                $devicePatch['customer_connection_id'] = $ccIp['customer_connection_id'];
+            /** @var \App\Model\Entity\CustomerConnectionIp|null $customerConnectionIp */
+            $customerConnectionIp = $routerosDevices->CustomerConnections->CustomerConnectionIps
+                ->find()
+                ->where(['ip_address' => $devicePatch['ip_address']])
+                ->orderBy(['modified' => 'DESC'])
+                ->first();
+
+            if ($customerConnectionIp) {
+                $devicePatch['customer_connection_id'] = $customerConnectionIp->customer_connection_id;
             }
         }
 
@@ -107,7 +120,8 @@ final class RouterosSnmpUpdateService
 
         // 2) Interfaces upsert
         foreach ($data->interfaces as $iface) {
-            $entity = $routerosDeviceInterfaces->find()
+            /** @var \App\Model\Entity\RouterosDeviceInterface $routerosDeviceInterface */
+            $routerosDeviceInterface = $routerosDeviceInterfaces->find()
                 ->where([
                     'routeros_device_id' => $routerosDevice->id,
                     'interface_index' => $iface['interface_index'],
@@ -118,7 +132,7 @@ final class RouterosSnmpUpdateService
                     'interface_index' => $iface['interface_index'],
                 ]);
 
-            $entity = $routerosDeviceInterfaces->patchEntity($entity, [
+            $routerosDeviceInterface = $routerosDeviceInterfaces->patchEntity($routerosDeviceInterface, [
                 'name' => $iface['name'],
                 'comment' => $iface['comment'],
                 'interface_admin_status' => $iface['interface_admin_status'],
@@ -134,9 +148,9 @@ final class RouterosSnmpUpdateService
                 'overall_tx_ccq' => $iface['overall_tx_ccq'],
             ]);
 
-            $entity->modified = $startTime;
+            $routerosDeviceInterface->modified = $startTime;
 
-            if (!$routerosDeviceInterfaces->save($entity)) {
+            if (!$routerosDeviceInterfaces->save($routerosDeviceInterface)) {
                 throw new RuntimeException(__('Failed to save RouterOS device interface'));
             }
         }
@@ -151,7 +165,8 @@ final class RouterosSnmpUpdateService
 
         // 3) IPs upsert
         foreach ($data->ipAddresses as $ip) {
-            $entity = $routerosDeviceIps->find()
+            /** @var \App\Model\Entity\RouterosDeviceIp $routerosDeviceIp */
+            $routerosDeviceIp = $routerosDeviceIps->find()
                 ->where([
                     'routeros_device_id' => $routerosDevice->id,
                     'interface_index' => $ip['interface_index'],
@@ -164,13 +179,13 @@ final class RouterosSnmpUpdateService
                     'ip_address' => $ip['ip_address'],
                 ]);
 
-            $entity = $routerosDeviceIps->patchEntity($entity, [
+            $routerosDeviceIp = $routerosDeviceIps->patchEntity($routerosDeviceIp, [
                 'name' => $ip['name'],
             ]);
 
-            $entity->modified = $startTime;
+            $routerosDeviceIp->modified = $startTime;
 
-            if (!$routerosDeviceIps->save($entity)) {
+            if (!$routerosDeviceIps->save($routerosDeviceIp)) {
                 throw new RuntimeException(__('Failed to save RouterOS device IP'));
             }
         }
