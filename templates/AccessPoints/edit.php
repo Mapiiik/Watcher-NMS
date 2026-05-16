@@ -18,6 +18,23 @@
                     'class' => 'side-nav-item',
                 ],
             ) ?>
+            <?= $accessPoint->isArchived() ?
+                $this->AuthLink->postLink(
+                    __('Restore'),
+                    ['action' => 'restore', $accessPoint->id],
+                    [
+                        'confirm' => __('Are you sure you want to restore # {0}?', $accessPoint->id),
+                        'class' => 'side-nav-item',
+                    ],
+                ) :
+                $this->AuthLink->postLink(
+                    __('Archive'),
+                    ['action' => 'archive', $accessPoint->id],
+                    [
+                        'confirm' => __('Are you sure you want to archive # {0}?', $accessPoint->id),
+                        'class' => 'side-nav-item',
+                    ],
+                ) ?>
             <?= $this->AuthLink->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
@@ -25,7 +42,8 @@
         <div class="accessPoints form content">
             <?= $this->Form->create($accessPoint) ?>
             <fieldset>
-                <legend><?= __('Edit Access Point') ?></legend>
+                <legend><?= __('Edit Access Point')
+                    . ($accessPoint->isArchived() ? ' (' . __('archived') . ')' : '') ?></legend>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('device_name');

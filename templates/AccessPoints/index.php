@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\AccessPoint> $accessPoints
+ * @var string $finder Normalized filter for the listing (active|archived)
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
@@ -22,8 +23,13 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
+    <?= $this->Html->link(
+        $finder === 'archived' ? __('Show Active') : __('Show Archived'),
+        ['action' => 'index', $finder === 'archived' ? 'active' : 'archived'],
+        ['class' => 'button float-right'],
+    ) ?>
     <?= $this->AuthLink->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Access Points') ?></h3>
+    <h3><?= __('Access Points') . ($finder === 'archived' ? ' (' . __('archived') . ')' : '') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
@@ -97,6 +103,17 @@
                             ['action' => 'edit', $accessPoint->id],
                             ['class' => 'win-link'],
                         ) ?>
+                        <?= $accessPoint->isArchived() ?
+                            $this->AuthLink->postLink(
+                                __('Restore'),
+                                ['action' => 'restore', $accessPoint->id],
+                                ['confirm' => __('Are you sure you want to restore # {0}?', $accessPoint->id)],
+                            ) :
+                            $this->AuthLink->postLink(
+                                __('Archive'),
+                                ['action' => 'archive', $accessPoint->id],
+                                ['confirm' => __('Are you sure you want to archive # {0}?', $accessPoint->id)],
+                            ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $accessPoint->id],

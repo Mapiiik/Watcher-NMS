@@ -13,6 +13,23 @@
                 ['action' => 'edit', $accessPoint->id],
                 ['class' => 'side-nav-item'],
             ) ?>
+            <?= $accessPoint->isArchived() ?
+                $this->AuthLink->postLink(
+                    __('Restore Access Point'),
+                    ['action' => 'restore', $accessPoint->id],
+                    [
+                        'confirm' => __('Are you sure you want to restore # {0}?', $accessPoint->id),
+                        'class' => 'side-nav-item',
+                    ],
+                ) :
+                $this->AuthLink->postLink(
+                    __('Archive Access Point'),
+                    ['action' => 'archive', $accessPoint->id],
+                    [
+                        'confirm' => __('Are you sure you want to archive # {0}?', $accessPoint->id),
+                        'class' => 'side-nav-item',
+                    ],
+                ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Access Point'),
                 ['action' => 'delete', $accessPoint->id],
@@ -27,7 +44,8 @@
     </aside>
     <div class="column column-90">
         <div class="accessPoints view content">
-            <h3><?= h($accessPoint->name) ?></h3>
+            <h3><?= h($accessPoint->name)
+                . ($accessPoint->isArchived() ? ' (' . __('archived') . ')' : '') ?></h3>
             <div class="row">
                 <div class="column">
                     <table>

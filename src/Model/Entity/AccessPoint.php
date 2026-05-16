@@ -132,4 +132,17 @@ class AccessPoint extends AppEntity
 
         return $address->getFormattedAddress();
     }
+
+    /**
+     * Indicates whether the entity is archived.
+     *
+     * Returns true when the `archived` timestamp is set, meaning the record
+     * has been soft‑archived and is no longer considered active.
+     *
+     * @return bool True if the entity is archived, false otherwise.
+     */
+    public function isArchived(): bool
+    {
+        return $this->archived !== null;
+    }
 }
