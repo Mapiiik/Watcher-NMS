@@ -127,7 +127,6 @@ class AccessPointContactsController extends AppController
             $this->Flash->error(__('The access point contact could not be saved. Please, try again.'));
         }
         $accessPoints = $this->AccessPointContacts->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
 

@@ -127,7 +127,6 @@ class LandlordPaymentsController extends AppController
             $this->Flash->error(__('The landlord payment could not be saved. Please, try again.'));
         }
         $accessPoints = $this->LandlordPayments->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
         $paymentPurposes = $this->LandlordPayments->PaymentPurposes->find('list', order: ['name'])->all();

@@ -125,7 +125,6 @@ class CustomerConnectionsController extends AppController
         }
         $customerPoints = $this->CustomerConnections->CustomerPoints->find('list', order: ['name']);
         $accessPoints = $this->CustomerConnections->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
 

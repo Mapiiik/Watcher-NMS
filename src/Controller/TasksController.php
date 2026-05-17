@@ -267,7 +267,6 @@ class TasksController extends AppController
         $taskTypes = $this->Tasks->TaskTypes->find('list', order: ['name'])->all();
         $taskStates = $this->Tasks->TaskStates->find('list', order: ['name'])->all();
         $accessPoints = $this->Tasks->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
 
@@ -406,7 +405,6 @@ class TasksController extends AppController
         $taskTypes = $this->Tasks->TaskTypes->find('list', order: ['name'])->all();
         $taskStates = $this->Tasks->TaskStates->find('list', order: ['name'])->all();
         $accessPoints = $this->Tasks->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
 

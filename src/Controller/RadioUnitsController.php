@@ -163,7 +163,6 @@ class RadioUnitsController extends AppController
         }
         $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', order: ['name'])->all();
         $accessPoints = $this->RadioUnits->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name'])->all();

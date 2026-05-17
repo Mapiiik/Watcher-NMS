@@ -85,7 +85,7 @@ class AccessPoint extends AppEntity
      */
     protected function _getNameForLists(): string
     {
-        return strval($this->name);
+        return strval($this->name) . ($this->archived === null ? '' : ' (' . __('archived') . ')');
     }
 
     /**

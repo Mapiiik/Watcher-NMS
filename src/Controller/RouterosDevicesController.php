@@ -214,7 +214,6 @@ class RouterosDevicesController extends AppController
             $this->Flash->error(__('The RouterOS device could not be saved. Please, try again.'));
         }
         $accessPoints = $this->RouterosDevices->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
         $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', order: ['name'])->all();

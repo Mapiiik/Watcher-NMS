@@ -123,7 +123,6 @@ class ElectricityMeterReadingsController extends AppController
             $this->Flash->error(__('The electricity meter reading could not be saved. Please, try again.'));
         }
         $accessPoints = $this->ElectricityMeterReadings->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
 

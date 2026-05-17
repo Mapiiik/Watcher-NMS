@@ -124,7 +124,6 @@ class PowerSuppliesController extends AppController
         }
         $powerSupplyTypes = $this->PowerSupplies->PowerSupplyTypes->find('list', order: ['name'])->all();
         $accessPoints = $this->PowerSupplies->AccessPoints
-            ->find('active')
             ->find('list', order: ['name'])
             ->all();
         $this->set(compact('powerSupply', 'powerSupplyTypes', 'accessPoints'));
