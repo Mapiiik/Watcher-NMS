@@ -78,6 +78,7 @@ class RouterosDevicesController extends AppController
         $this->set('routerosDevices', $routerosDevices);
         $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
     }
+
     /**
      * View method
      *
