@@ -66,7 +66,7 @@ class RouterosDevicesController extends AppController
         if ($this->getRequest()->is(['get']) && ($this->getRequest()->getQuery('some_ip_address')) !== null) {
             $subquery = $this->RouterosDevices->RouterosDeviceIps->find()
                 ->select(['RouterosDeviceIps.routeros_device_id'])
-                ->where(['RouterosDeviceIps.ip_address' => $this->getRequest()->getQuery('some_ip_address')]);
+                ->where(['host(RouterosDeviceIps.ip_address)' => $this->getRequest()->getQuery('some_ip_address')]);
 
             $routerosDevicesQuery->where([
                 'RouterosDevices.id IN' => $subquery,
