@@ -59,7 +59,17 @@ class RouterosDevicesController extends AppController
 
         if ($this->getRequest()->is(['get']) && ($this->getRequest()->getQuery('ip_address')) !== null) {
             $routerosDevicesQuery->where([
-                'ip_address' => $this->getRequest()->getQuery('ip_address'),
+                'RouterosDevices.ip_address' => $this->getRequest()->getQuery('ip_address'),
+            ]);
+        }
+
+        if ($this->getRequest()->is(['get']) && ($this->getRequest()->getQuery('some_ip_address')) !== null) {
+            $subquery = $this->RouterosDevices->RouterosDeviceIps->find()
+                ->select(['RouterosDeviceIps.routeros_device_id'])
+                ->where(['RouterosDeviceIps.ip_address' => $this->getRequest()->getQuery('some_ip_address')]);
+
+            $routerosDevicesQuery->where([
+                'RouterosDevices.id IN' => $subquery,
             ]);
         }
 
@@ -68,7 +78,6 @@ class RouterosDevicesController extends AppController
         $this->set('routerosDevices', $routerosDevices);
         $this->viewBuilder()->setOption('serialize', ['routerosDevices']);
     }
-
     /**
      * View method
      *
