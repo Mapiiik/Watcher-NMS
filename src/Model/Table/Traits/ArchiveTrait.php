@@ -29,10 +29,10 @@ trait ArchiveTrait
      *   $this->AccessPoints->archive($entity, $userId);
      *
      * @param \App\Model\Entity\AppEntity $entity The entity to archive.
-     * @param string $userId UUID of the user performing the archive action.
+     * @param string|null $userId UUID of the user performing the archive action or null if not applicable.
      * @return \App\Model\Entity\AppEntity The saved entity.
      */
-    public function archive(AppEntity $entity, string $userId): AppEntity
+    public function archive(AppEntity $entity, ?string $userId): AppEntity
     {
         $entity->archived = DateTime::now();
         $entity->archived_by = $userId;
