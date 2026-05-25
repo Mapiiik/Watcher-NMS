@@ -163,14 +163,14 @@ class CustomerPointsUpdateCommand extends Command
             }
 
             // delete old records
-            $customerPointsTable->deleteMany(
-                $customerPointsTable->find()->where(['modified <' => $startTime])->all(),
+            $customerConnectionIpsTable->deleteManyOrFail(
+                $customerConnectionIpsTable->find()->where(['modified <' => $startTime])->all(),
             );
-            $customerConnectionsTable->deleteMany(
+            $customerConnectionsTable->deleteManyOrFail(
                 $customerConnectionsTable->find()->where(['modified <' => $startTime])->all(),
             );
-            $customerConnectionIpsTable->deleteMany(
-                $customerConnectionIpsTable->find()->where(['modified <' => $startTime])->all(),
+            $customerPointsTable->deleteManyOrFail(
+                $customerPointsTable->find()->where(['modified <' => $startTime])->all(),
             );
 
             Log::debug('The customer points data have been updated.');
