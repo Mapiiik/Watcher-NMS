@@ -45,8 +45,13 @@ class CustomerConnection extends AppEntity
         'note' => true,
         'created' => true,
         'created_by' => true,
+        'creator' => true,
         'modified' => true,
         'modified_by' => true,
+        'modifier' => true,
+        'archived' => true,
+        'archived_by' => true,
+        'archiver' => true,
         'customer_point' => true,
         'customer_connection_ips' => true,
         'routeros_devices' => true,
@@ -59,8 +64,23 @@ class CustomerConnection extends AppEntity
      */
     protected function _getNameForLists(): string
     {
-        return $this->contract_number !== null ?
-            strval($this->name) . ' (' . strval($this->contract_number) . ')' :
-            strval($this->name);
+        return (
+            $this->contract_number !== null ?
+                strval($this->name) . ' (' . strval($this->contract_number) . ')' :
+                strval($this->name)
+        ) . ($this->isArchived() ? ' (' . __('archived') . ')' : '');
+    }
+
+    /**
+     * Indicates whether the entity is archived.
+     *
+     * Returns true when the `archived` timestamp is set, meaning the record
+     * has been soft‑archived and is no longer considered active.
+     *
+     * @return bool True if the entity is archived, false otherwise.
+     */
+    public function isArchived(): bool
+    {
+        return $this->archived !== null;
     }
 }
