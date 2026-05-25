@@ -18,6 +18,23 @@
                     'class' => 'side-nav-item',
                 ],
             ) ?>
+            <?= $customerConnection->isArchived() ?
+                $this->AuthLink->postLink(
+                    __('Restore'),
+                    ['action' => 'restore', $customerConnection->id],
+                    [
+                        'confirm' => __('Are you sure you want to restore # {0}?', $customerConnection->id),
+                        'class' => 'side-nav-item',
+                    ],
+                ) :
+                $this->AuthLink->postLink(
+                    __('Archive'),
+                    ['action' => 'archive', $customerConnection->id],
+                    [
+                        'confirm' => __('Are you sure you want to archive # {0}?', $customerConnection->id),
+                        'class' => 'side-nav-item',
+                    ],
+                ) ?>
             <?= $this->AuthLink->link(
                 __('List Customer Connections'),
                 ['action' => 'index'],
@@ -29,7 +46,8 @@
         <div class="customerConnections form content">
             <?= $this->Form->create($customerConnection) ?>
             <fieldset>
-                <legend><?= __('Edit Customer Connection') ?></legend>
+                <legend><?= __('Edit Customer Connection')
+                    . ($customerConnection->isArchived() ? ' (' . __('archived') . ')' : '') ?></legend>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('customer_point_id', ['options' => $customerPoints, 'empty' => true]);

@@ -190,7 +190,11 @@ class RouterosDevicesController extends AppController
             ->find('list', order: ['name'])
             ->all();
         $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', order: ['name'])->all();
-        $customerConnections = $this->RouterosDevices->CustomerConnections->find('list', order: ['name'])->all();
+        $customerConnections = $this->RouterosDevices->CustomerConnections
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
+
         $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes', 'customerConnections'));
     }
 
@@ -217,7 +221,10 @@ class RouterosDevicesController extends AppController
             ->find('list', order: ['name'])
             ->all();
         $deviceTypes = $this->RouterosDevices->DeviceTypes->find('list', order: ['name'])->all();
-        $customerConnections = $this->RouterosDevices->CustomerConnections->find('list', order: ['name'])->all();
+        $customerConnections = $this->RouterosDevices->CustomerConnections
+            ->find('list', order: ['name'])
+            ->all();
+
         $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes', 'customerConnections'));
     }
 

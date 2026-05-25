@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Log\Log;
+use Exception;
+
 /**
  * CustomerConnections Controller
  *
@@ -13,41 +16,49 @@ class CustomerConnectionsController extends AppController
     /**
      * Index method
      *
+     * Displays either active or archived customer connections based on the given filter.
+     *
+     * @param string|null $param Filter for the listing:
+     *   - 'active' (default): shows only non-archived records
+     *   - 'archived': shows only archived records
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index()
+    public function index(?string $param = 'active')
     {
-        // filter
-        $conditions = [];
+        // normalize param
+        $finder = $param === 'archived' ? 'archived' : 'active';
+
+        //base query
+        $customerConnectionsQuery = $this->CustomerConnections
+            ->find($finder)
+            ->contain([
+                'AccessPoints',
+                'CustomerPoints',
+            ]);
 
         // search
         $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
-            $conditions[] = [
+            $search = trim($search);
+
+            $customerConnectionsQuery->where([
                 'OR' => [
-                    'CustomerConnections.name ILIKE' => '%' . trim($search) . '%',
-                    'CustomerConnections.customer_number ILIKE' => '%' . trim($search) . '%',
-                    'CustomerConnections.contract_number ILIKE' => '%' . trim($search) . '%',
-                    'CustomerPoints.name ILIKE' => '%' . trim($search) . '%',
-                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . $search . '%',
+                    'CustomerConnections.customer_number ILIKE' => '%' . $search . '%',
+                    'CustomerConnections.contract_number ILIKE' => '%' . $search . '%',
+                    'CustomerPoints.name ILIKE' => '%' . $search . '%',
+                    'AccessPoints.name ILIKE' => '%' . $search . '%',
                 ],
-            ];
+            ]);
         }
 
         $this->paginate = [
             'order' => ['name' => 'ASC'],
         ];
 
-        $customerConnections = $this->paginate($this->CustomerConnections->find(
-            'all',
-            contain: [
-                'AccessPoints',
-                'CustomerPoints',
-            ],
-            conditions: $conditions,
-        ));
+        $customerConnections = $this->paginate($customerConnectionsQuery);
 
-        $this->set(compact('customerConnections'));
+        $this->set(compact('customerConnections', 'finder'));
     }
 
     /**
@@ -129,6 +140,71 @@ class CustomerConnectionsController extends AppController
             ->all();
 
         $this->set(compact('customerConnection', 'customerPoints', 'accessPoints'));
+    }
+
+    /**
+     * Archive method
+     *
+     * Marks the customer connection as archived (soft-delete) by setting archived timestamp
+     * and archived_by user ID. Does not remove the record from the database.
+     *
+     * @param string|null $id Customer Connection ID
+     * @return \Cake\Http\Response|null|void Redirects to index
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function archive(?string $id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+
+        $customerConnection = $this->CustomerConnections->get($id);
+
+        try {
+            $this->CustomerConnections->archive(
+                $customerConnection,
+                $this->getRequest()->getAttribute('identity')['id'] ?? null,
+            );
+
+            $this->Flash->success(__('The customer connection has been archived.'));
+        } catch (Exception $e) {
+            Log::error('Failed to archive customer connection: ' . $e->getMessage());
+            $this->Flash->error(
+                __('The customer connection could not be archived. Please try again.'),
+            );
+        }
+
+        return $this->afterEditRedirect(['action' => 'view', $customerConnection->id]);
+    }
+
+    /**
+     * Restore method
+     *
+     * Reverts an archived customer connection back to active state by clearing the
+     * archived timestamp and archived_by user ID.
+     *
+     * @param string|null $id Customer Connection ID
+     * @return \Cake\Http\Response|null|void Redirects to index
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function restore(?string $id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+
+        $customerConnection = $this->CustomerConnections->get($id);
+
+        try {
+            $this->CustomerConnections->restore($customerConnection);
+
+            $this->Flash->success(
+                __('The customer connection has been restored.'),
+            );
+        } catch (Exception $e) {
+            Log::error('Failed to restore customer connection: ' . $e->getMessage());
+            $this->Flash->error(
+                __('The customer connection could not be restored. Please try again.'),
+            );
+        }
+
+        return $this->afterEditRedirect(['action' => 'view', $customerConnection->id]);
     }
 
     /**

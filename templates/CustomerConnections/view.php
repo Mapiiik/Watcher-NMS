@@ -13,6 +13,23 @@
                 ['action' => 'edit', $customerConnection->id],
                 ['class' => 'side-nav-item'],
             ) ?>
+            <?= $customerConnection->isArchived() ?
+                $this->AuthLink->postLink(
+                    __('Restore Customer Connection'),
+                    ['action' => 'restore', $customerConnection->id],
+                    [
+                        'confirm' => __('Are you sure you want to restore # {0}?', $customerConnection->id),
+                        'class' => 'side-nav-item',
+                    ],
+                ) :
+                $this->AuthLink->postLink(
+                    __('Archive Customer Connection'),
+                    ['action' => 'archive', $customerConnection->id],
+                    [
+                        'confirm' => __('Are you sure you want to archive # {0}?', $customerConnection->id),
+                        'class' => 'side-nav-item',
+                    ],
+                ) ?>
             <?= $this->AuthLink->postLink(
                 __('Delete Customer Connection'),
                 ['action' => 'delete', $customerConnection->id],
@@ -35,7 +52,8 @@
     </aside>
     <div class="column column-90">
         <div class="customerConnections view content">
-            <h3><?= h($customerConnection->name) ?></h3>
+            <h3><?= h($customerConnection->name)
+                . ($customerConnection->isArchived() ? ' (' . __('archived') . ')' : '') ?></h3>
             <div class="row">
                 <div class="column">
                     <table>

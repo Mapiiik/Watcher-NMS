@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\CustomerConnection> $customerConnections
+ * @var string $finder Normalized filter for the listing (active|archived)
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
@@ -22,7 +23,12 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __('Customer Connections') ?></h3>
+    <?= $this->Html->link(
+        $finder === 'archived' ? __('Show Active') : __('Show Archived'),
+        ['action' => 'index', $finder === 'archived' ? 'active' : 'archived'],
+        ['class' => 'button float-right'],
+    ) ?>
+    <h3><?= __('Customer Connections') . ($finder === 'archived' ? ' (' . __('archived') . ')' : '') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
@@ -71,6 +77,17 @@
                             ['action' => 'edit', $customerConnection->id],
                             ['class' => 'win-link'],
                         ) ?>
+                        <?= $customerConnection->isArchived() ?
+                            $this->AuthLink->postLink(
+                                __('Restore'),
+                                ['action' => 'restore', $customerConnection->id],
+                                ['confirm' => __('Are you sure you want to restore # {0}?', $customerConnection->id)],
+                            ) :
+                            $this->AuthLink->postLink(
+                                __('Archive'),
+                                ['action' => 'archive', $customerConnection->id],
+                                ['confirm' => __('Are you sure you want to archive # {0}?', $customerConnection->id)],
+                            ) ?>
                         <?= $this->AuthLink->postLink(
                             __('Delete'),
                             ['action' => 'delete', $customerConnection->id],
