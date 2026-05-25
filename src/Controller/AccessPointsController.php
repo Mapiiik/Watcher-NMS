@@ -8,6 +8,7 @@ use App\Maps\Marker;
 use App\Maps\Polyline;
 use App\Maps\Position;
 use Cake\I18n\DateTime;
+use Cake\Log\Log;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
 use Exception;
@@ -261,6 +262,7 @@ class AccessPointsController extends AppController
 
             $this->Flash->success(__('The access point has been archived.'));
         } catch (Exception $e) {
+            Log::error('Failed to archive access point: ' . $e->getMessage());
             $this->Flash->error(
                 __('The access point could not be archived. Please try again.'),
             );
@@ -292,6 +294,7 @@ class AccessPointsController extends AppController
                 __('The access point has been restored.'),
             );
         } catch (Exception $e) {
+            Log::error('Failed to restore access point: ' . $e->getMessage());
             $this->Flash->error(
                 __('The access point could not be restored. Please try again.'),
             );
