@@ -6,15 +6,18 @@ namespace App\Command;
 use App\Model\Table\CustomerConnectionIpsTable;
 use App\Model\Table\CustomerConnectionsTable;
 use App\Model\Table\CustomerPointsTable;
+use App\Model\Table\RouterosDevicesTable;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
+use Cake\Database\Expression\QueryExpression;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use InvalidArgumentException;
 use Override;
+use RuntimeException;
 use Throwable;
 
 /**
@@ -65,8 +68,9 @@ class CustomerPointsUpdateCommand extends Command
             $json = file_get_contents($url);
 
             if ($json === false) {
-                Log::error('The customer points data could not be downloaded. Please, try again.');
-                $io->abort(__('The customer points data could not be downloaded. Please, try again.'));
+                throw new RuntimeException(
+                    __('The customer points data could not be downloaded. Please, try again.'),
+                );
             }
 
             $startTime = new DateTime();
@@ -74,8 +78,9 @@ class CustomerPointsUpdateCommand extends Command
             $importCustomerPoints = json_decode($json);
 
             if (!is_array($importCustomerPoints)) {
-                Log::error('The customer points data could not be decoded. Please, check the source data.');
-                $io->abort(__('The customer points data could not be decoded. Please, check the source data.'));
+                throw new RuntimeException(
+                    __('The customer points data could not be decoded. Please, check the source data.'),
+                );
             }
 
             foreach ($importCustomerPoints as $importCustomerPoint) {
@@ -124,6 +129,8 @@ class CustomerPointsUpdateCommand extends Command
                         'contract_url' => $importCustomerConnection->contract_url ?? null,
                         'name' => $importCustomerConnection->name ?? null,
                         'note' => $importCustomerConnection->note ?? null,
+                        'archived' => null, // unarchive if it was archived before
+                        'archived_by' => null, // unarchive if it was archived before
                     ]);
                     $customerConnection->modified = DateTime::now();
 
@@ -162,15 +169,12 @@ class CustomerPointsUpdateCommand extends Command
                 }
             }
 
-            // delete old records
-            $customerConnectionIpsTable->deleteManyOrFail(
-                $customerConnectionIpsTable->find()->where(['modified <' => $startTime])->all(),
-            );
-            $customerConnectionsTable->deleteManyOrFail(
-                $customerConnectionsTable->find()->where(['modified <' => $startTime])->all(),
-            );
-            $customerPointsTable->deleteManyOrFail(
-                $customerPointsTable->find()->where(['modified <' => $startTime])->all(),
+            // delete / archive stale records
+            $this->cleanupStaleRecords(
+                $customerPointsTable,
+                $customerConnectionsTable,
+                $customerConnectionIpsTable,
+                $startTime,
             );
 
             Log::debug('The customer points data have been updated.');
@@ -291,5 +295,125 @@ class CustomerPointsUpdateCommand extends Command
         if (!property_exists($ip, 'ip_address')) {
             throw new InvalidArgumentException('ip_address is missing.');
         }
+    }
+
+    /**
+     * Cleans up stale records left over after the import (those not refreshed
+     * in this run, i.e. modified before $startTime).
+     *
+     * Order matters: each delete can orphan parents above it, so we go
+     * bottom-up (IPs → connections → points). Connections that still have
+     * RouterOS devices are NOT deleted — they carry live NMS data — so they
+     * are archived instead (archived_by stays null = archived by system).
+     *
+     * @param \App\Model\Table\CustomerPointsTable $customerPointsTable
+     * @param \App\Model\Table\CustomerConnectionsTable $customerConnectionsTable
+     * @param \App\Model\Table\CustomerConnectionIpsTable $customerConnectionIpsTable
+     * @param \Cake\I18n\DateTime $startTime
+     * @return void
+     */
+    private function cleanupStaleRecords(
+        CustomerPointsTable $customerPointsTable,
+        CustomerConnectionsTable $customerConnectionsTable,
+        CustomerConnectionIpsTable $customerConnectionIpsTable,
+        DateTime $startTime,
+    ): void {
+        // fetch RouterOS devices table for use in multiple places below
+        $routerosDevicesTable = $this->fetchTable(RouterosDevicesTable::class);
+
+        /**
+         * Customer connetion IP addresses - no special handling, just delete if stale.
+         */
+        $customerConnectionIpsTable->deleteManyOrFail(
+            $customerConnectionIpsTable->find()
+                ->where(['CustomerConnectionIps.modified <' => $startTime])
+                ->all(),
+        );
+
+        /**
+         * Customer connections - first find those with RouterOS devices, then archive them, then delete the rest.
+         */
+
+        // 1. archive stale connections that still have RouterOS devices.
+        /** @var \Cake\Datasource\ResultSetInterface<array-key, \App\Model\Entity\CustomerConnection> $connectionsToArchive */
+        $connectionsToArchive = $customerConnectionsTable->find()
+            ->where(function (QueryExpression $exp) use (
+                $startTime,
+                $routerosDevicesTable,
+            ) {
+                $hasDevice = $routerosDevicesTable->find()
+                    ->select(['RouterosDevices.id'])
+                    ->where(fn(QueryExpression $e) => $e->equalFields(
+                        'RouterosDevices.customer_connection_id',
+                        'CustomerConnections.id',
+                    ));
+
+                return $exp
+                    ->exists($hasDevice)
+                    ->lt('CustomerConnections.modified', $startTime)
+                    ->isNull('CustomerConnections.archived');
+            })
+            ->all();
+
+        foreach ($connectionsToArchive as $connection) {
+            $connection->archived = DateTime::now();
+        }
+
+        if (!$connectionsToArchive->isEmpty()) {
+            $customerConnectionsTable->saveManyOrFail($connectionsToArchive);
+        }
+
+        // 2. delete stale connections with no RouterOS devices and no IPs.
+        $customerConnectionsTable->deleteManyOrFail(
+            $customerConnectionsTable->find()
+                ->where(function (QueryExpression $exp) use (
+                    $startTime,
+                    $routerosDevicesTable,
+                    $customerConnectionIpsTable,
+                ) {
+                    $hasDevice = $routerosDevicesTable->find()
+                        ->select(['RouterosDevices.id'])
+                        ->where(fn(QueryExpression $e) => $e->equalFields(
+                            'RouterosDevices.customer_connection_id',
+                            'CustomerConnections.id',
+                        ));
+
+                    $hasIp = $customerConnectionIpsTable->find()
+                        ->select(['CustomerConnectionIps.id'])
+                        ->where(fn(QueryExpression $e) => $e->equalFields(
+                            'CustomerConnectionIps.customer_connection_id',
+                            'CustomerConnections.id',
+                        ));
+
+                    return $exp
+                        ->lt('CustomerConnections.modified', $startTime)
+                        ->notExists($hasDevice)
+                        ->notExists($hasIp);
+                })
+                ->all(),
+        );
+
+        /**
+         * Customer points - delete if stale and no connections (archived or not).
+         */
+        $customerPointsTable->deleteManyOrFail(
+            $customerPointsTable->find()
+                ->where(function (QueryExpression $exp) use (
+                    $startTime,
+                    $customerConnectionsTable,
+                ) {
+                    $hasConnection = $customerConnectionsTable->find()
+                        ->select(['CustomerConnections.id'])
+                        ->where(fn(QueryExpression $e) => $e->equalFields(
+                            'CustomerConnections.customer_point_id',
+                            'CustomerPoints.id',
+                        ));
+
+                    return $exp
+                        ->lt('CustomerPoints.modified', $startTime)
+                        ->notExists($hasConnection);
+                })
+                ->all(),
+        );
     }
 }
