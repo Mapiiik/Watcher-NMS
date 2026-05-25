@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-05-16 23:03+0200\n"
-"PO-Revision-Date: 2026-05-16 23:09+0200\n"
+"POT-Creation-Date: 2026-05-25 20:41+0200\n"
+"PO-Revision-Date: 2026-05-25 20:47+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -35,30 +35,37 @@ msgstr "Neznámá chyba"
 msgid "Watcher Agent returned an unexpected response: {0}"
 msgstr "Watcher Agent vrátil neočekávanou odpověď: {0}"
 
-#: src/Command/CustomerPointsUpdateCommand.php:154
+#: src/Command/CustomerPointsUpdateCommand.php:72
+msgid "The customer points data could not be downloaded. Please, try again."
+msgstr "Data zákaznických bodů se nepodařilo stáhnout. Zkuste to prosím znovu."
+
+#: src/Command/CustomerPointsUpdateCommand.php:82
+msgid ""
+"The customer points data could not be decoded. Please, check the source data."
+msgstr ""
+"Data zákaznických bodů se nepodařilo dekódovat. Zkontrolujte prosím zdrojová "
+"data."
+
+#: src/Command/CustomerPointsUpdateCommand.php:181
 msgid "The customer points data have been updated."
 msgstr "Data zákaznických bodů byla aktualizována."
 
-#: src/Command/CustomerPointsUpdateCommand.php:157
-msgid "The customer points data could not be updated. Please, try again."
-msgstr "Data zákaznických bodů nelze aktualizovat. Zkuste to prosím znovu."
-
-#: src/Command/CustomerPointsUpdateCommand.php:166
+#: src/Command/CustomerPointsUpdateCommand.php:189
 msgid "Error during customer points update: {0}"
 msgstr "Chyba při aktualizaci zákaznických bodů: {0}"
 
-#: src/Command/CustomerPointsUpdateCommand.php:178
+#: src/Command/CustomerPointsUpdateCommand.php:201
 msgid "Customer points update failed"
 msgstr "Aktualizace zákaznických bodů se nezdařila"
 
-#: src/Command/CustomerPointsUpdateCommand.php:180
+#: src/Command/CustomerPointsUpdateCommand.php:203
 msgid "Customer points update failed."
 msgstr "Aktualizace zákaznických bodů se nezdařila."
 
 #: src/Command/ElectricityMeterReadingsReportCommand.php:73
 #: templates/AccessPointContacts/view.php:47 templates/AntennaTypes/view.php:92
-#: templates/CustomerConnections/view.php:60
-#: templates/CustomerConnections/view.php:161 templates/DeviceTypes/view.php:84
+#: templates/CustomerConnections/view.php:78
+#: templates/CustomerConnections/view.php:179 templates/DeviceTypes/view.php:84
 #: templates/ElectricityMeterReadings/view.php:47
 #: templates/IpAddressRanges/view.php:55 templates/LandlordPayments/view.php:43
 #: templates/PaymentPurposes/view.php:64 templates/PowerSupplies/view.php:61
@@ -144,9 +151,9 @@ msgstr "Hlášení odečtu elektroměru se nezdařilo."
 #: templates/AccessPoints/view.php:923 templates/AntennaTypes/view.php:35
 #: templates/AntennaTypes/view.php:91
 #: templates/CustomerConnectionIps/view.php:43
-#: templates/CustomerConnections/view.php:43
-#: templates/CustomerConnections/view.php:107
-#: templates/CustomerConnections/view.php:160
+#: templates/CustomerConnections/view.php:61
+#: templates/CustomerConnections/view.php:125
+#: templates/CustomerConnections/view.php:178
 #: templates/CustomerPoints/view.php:43 templates/CustomerPoints/view.php:100
 #: templates/DeviceTypes/view.php:35 templates/DeviceTypes/view.php:83
 #: templates/ElectricityMeterReadings/view.php:43
@@ -287,11 +294,11 @@ msgstr "Kontakt přístupového bodu byl uložen."
 msgid "The access point contact could not be saved. Please, try again."
 msgstr "Kontakt přístupového bodu nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointContactsController.php:149
+#: src/Controller/AccessPointContactsController.php:148
 msgid "The access point contact has been deleted."
 msgstr "Kontakt přístupového bodu byl odstraněn."
 
-#: src/Controller/AccessPointContactsController.php:152
+#: src/Controller/AccessPointContactsController.php:151
 msgid "The access point contact could not be deleted. Please, try again."
 msgstr "Kontakt přístupového bodu nelze odstranit. Opakujte akci."
 
@@ -313,37 +320,37 @@ msgstr "Typ přístupového bodu byl odstraněn."
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:202
-#: src/Controller/AccessPointsController.php:226
+#: src/Controller/AccessPointsController.php:204
+#: src/Controller/AccessPointsController.php:228
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:206
-#: src/Controller/AccessPointsController.php:230
+#: src/Controller/AccessPointsController.php:208
+#: src/Controller/AccessPointsController.php:232
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:261
+#: src/Controller/AccessPointsController.php:263
 msgid "The access point has been archived."
 msgstr "Přístupový bod byl archivován."
 
-#: src/Controller/AccessPointsController.php:264
+#: src/Controller/AccessPointsController.php:267
 msgid "The access point could not be archived. Please try again."
 msgstr "Přístupový bod se nepodařilo archivovat. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:291
+#: src/Controller/AccessPointsController.php:294
 msgid "The access point has been restored."
 msgstr "Přístupový bod byl obnoven."
 
-#: src/Controller/AccessPointsController.php:295
+#: src/Controller/AccessPointsController.php:299
 msgid "The access point could not be restored. Please try again."
 msgstr "Přístupový bod se nepodařilo obnovit. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:314
+#: src/Controller/AccessPointsController.php:318
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:317
+#: src/Controller/AccessPointsController.php:321
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
@@ -370,38 +377,54 @@ msgid "Unable to find results on page {0}. Redirect to page 1."
 msgstr "Nelze najít výsledky na stránce {0}. Přesměrování na stranu 1."
 
 #: src/Controller/CustomerConnectionIpsController.php:82
-#: src/Controller/CustomerConnectionIpsController.php:107
+#: src/Controller/CustomerConnectionIpsController.php:111
 msgid "The customer connection IP has been saved."
 msgstr "IP adresa připojení zákazníka byla uložena."
 
 #: src/Controller/CustomerConnectionIpsController.php:86
-#: src/Controller/CustomerConnectionIpsController.php:111
+#: src/Controller/CustomerConnectionIpsController.php:115
 msgid "The customer connection IP could not be saved. Please, try again."
 msgstr "IP adresu připojení zákazníka nelze uložit. Opakujte akci."
 
-#: src/Controller/CustomerConnectionIpsController.php:129
+#: src/Controller/CustomerConnectionIpsController.php:136
 msgid "The customer connection IP has been deleted."
 msgstr "IP adresa připojení zákazníka byla odstraněna."
 
-#: src/Controller/CustomerConnectionIpsController.php:132
+#: src/Controller/CustomerConnectionIpsController.php:139
 msgid "The customer connection IP could not be deleted. Please, try again."
 msgstr "IP adresu připojení zákazníka nelze odstranit. Opakujte akci."
 
-#: src/Controller/CustomerConnectionsController.php:90
-#: src/Controller/CustomerConnectionsController.php:120
+#: src/Controller/CustomerConnectionsController.php:101
+#: src/Controller/CustomerConnectionsController.php:131
 msgid "The customer connection has been saved."
 msgstr "Připojení zákazníka bylo uloženo."
 
-#: src/Controller/CustomerConnectionsController.php:94
-#: src/Controller/CustomerConnectionsController.php:124
+#: src/Controller/CustomerConnectionsController.php:105
+#: src/Controller/CustomerConnectionsController.php:135
 msgid "The customer connection could not be saved. Please, try again."
 msgstr "Připojení zákazníka nelze uložit. Opakujte akci."
 
-#: src/Controller/CustomerConnectionsController.php:147
+#: src/Controller/CustomerConnectionsController.php:167
+msgid "The customer connection has been archived."
+msgstr "Připojení zákazníka bylo archivováno."
+
+#: src/Controller/CustomerConnectionsController.php:171
+msgid "The customer connection could not be archived. Please try again."
+msgstr "Připojení zákazníka nelze archivovat. Opakujte akci."
+
+#: src/Controller/CustomerConnectionsController.php:198
+msgid "The customer connection has been restored."
+msgstr "Připojení zákazníka bylo obnoveno."
+
+#: src/Controller/CustomerConnectionsController.php:203
+msgid "The customer connection could not be restored. Please try again."
+msgstr "Připojení zákazníka nelze obnovit. Opakujte akci."
+
+#: src/Controller/CustomerConnectionsController.php:222
 msgid "The customer connection has been deleted."
 msgstr "Připojení zákazníka bylo odstraněno."
 
-#: src/Controller/CustomerConnectionsController.php:150
+#: src/Controller/CustomerConnectionsController.php:225
 msgid "The customer connection could not be deleted. Please, try again."
 msgstr "Připojení zákazníka nelze odstranit. Opakujte akci."
 
@@ -451,11 +474,11 @@ msgstr "Odečet elektroměru byl uložen."
 msgid "The electricity meter reading could not be saved. Please, try again."
 msgstr "Odečet elektroměru nelze uložit. Opakujte akci."
 
-#: src/Controller/ElectricityMeterReadingsController.php:145
+#: src/Controller/ElectricityMeterReadingsController.php:144
 msgid "The electricity meter reading has been deleted."
 msgstr "Odečet elektroměru byl odstraněn."
 
-#: src/Controller/ElectricityMeterReadingsController.php:148
+#: src/Controller/ElectricityMeterReadingsController.php:147
 msgid "The electricity meter reading could not be deleted. Please, try again."
 msgstr "Odečet elektroměru nelze odstranit. Opakujte akci."
 
@@ -469,11 +492,11 @@ msgstr "Rozsah IP adres byl uložen."
 msgid "The IP address range could not be saved. Please, try again."
 msgstr "Rozsah IP adres nelze uložit. Zkuste to prosím znovu."
 
-#: src/Controller/IpAddressRangesController.php:150
+#: src/Controller/IpAddressRangesController.php:149
 msgid "The IP address range has been deleted."
 msgstr "Rozsah IP adres byl odstraněn."
 
-#: src/Controller/IpAddressRangesController.php:153
+#: src/Controller/IpAddressRangesController.php:152
 msgid "The IP address range could not be deleted. Please, try again."
 msgstr "Rozsah IP adres nelze odstranit. Zkuste to prosím znovu."
 
@@ -487,11 +510,11 @@ msgstr "Platba pronajímateli byla uložena."
 msgid "The landlord payment could not be saved. Please, try again."
 msgstr "Platbu pronajímateli nebylo možné uložit. Zkuste to prosím znovu."
 
-#: src/Controller/LandlordPaymentsController.php:149
+#: src/Controller/LandlordPaymentsController.php:148
 msgid "The landlord payment has been deleted."
 msgstr "Platba pronajímateli byla odstraněna."
 
-#: src/Controller/LandlordPaymentsController.php:152
+#: src/Controller/LandlordPaymentsController.php:151
 msgid "The landlord payment could not be deleted. Please, try again."
 msgstr "Platbu pronajímateli nebylo možné smazat. Zkuste to prosím znovu."
 
@@ -541,11 +564,11 @@ msgstr "Napájecí zdroj byl uložen."
 msgid "The power supply could not be saved. Please, try again."
 msgstr "Napájecí zdroj nelze uložit. Opakujte akci."
 
-#: src/Controller/PowerSuppliesController.php:145
+#: src/Controller/PowerSuppliesController.php:144
 msgid "The power supply has been deleted."
 msgstr "Napájecí zdroj byl odstraněn."
 
-#: src/Controller/PowerSuppliesController.php:148
+#: src/Controller/PowerSuppliesController.php:147
 msgid "The power supply could not be deleted. Please, try again."
 msgstr "Napájecí zdroj nelze odstranit. Opakujte akci."
 
@@ -649,11 +672,11 @@ msgstr "Rádiová jednotka byla uložena."
 msgid "The radio unit could not be saved. Please, try again."
 msgstr "Rádiovou jednotku nelze uložit. Opakujte akci."
 
-#: src/Controller/RadioUnitsController.php:196
+#: src/Controller/RadioUnitsController.php:195
 msgid "The radio unit has been deleted."
 msgstr "Rádiová jednotka byla odstraněna."
 
-#: src/Controller/RadioUnitsController.php:199
+#: src/Controller/RadioUnitsController.php:198
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr "Rádiovou jednotku nelze odstranit. Opakujte akci."
 
@@ -694,24 +717,24 @@ msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr "IP adresu zařízení RouterOS nelze odstranit. Opakujte akci."
 
 #: src/Controller/RouterosDevicesController.php:182
-#: src/Controller/RouterosDevicesController.php:210
+#: src/Controller/RouterosDevicesController.php:214
 msgid "The RouterOS device has been saved."
 msgstr "Zařízení RouterOS bylo uloženo."
 
 #: src/Controller/RouterosDevicesController.php:186
-#: src/Controller/RouterosDevicesController.php:214
+#: src/Controller/RouterosDevicesController.php:218
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr "Zařízení RouterOS nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:237
+#: src/Controller/RouterosDevicesController.php:243
 msgid "The RouterOS device has been deleted."
 msgstr "Zařízení RouterOS bylo odstraněno."
 
-#: src/Controller/RouterosDevicesController.php:240
+#: src/Controller/RouterosDevicesController.php:246
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr "Zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:266
+#: src/Controller/RouterosDevicesController.php:272
 msgid ""
 "Cannot update RouterOS device data via SNMP. Missing IP address or SNMP "
 "community."
@@ -719,12 +742,12 @@ msgstr ""
 "Nelze aktualizovat data zařízení RouterOS prostřednictvím protokolu SNMP. "
 "Chybí IP adresa nebo SNMP komunita."
 
-#: src/Controller/RouterosDevicesController.php:292
+#: src/Controller/RouterosDevicesController.php:298
 msgid "The RouterOS device data has been updated via SNMP."
 msgstr ""
 "Údaje o zařízení RouterOS byly aktualizovány prostřednictvím protokolu SNMP."
 
-#: src/Controller/RouterosDevicesController.php:304
+#: src/Controller/RouterosDevicesController.php:310
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr "Nepodařilo se aktualizovat data zařízení RouterOS přes SNMP: {0}"
 
@@ -768,25 +791,25 @@ msgstr "Typ úkolu nelze odstranit. Prosím, zkuste to znovu."
 msgid "none"
 msgstr "žádný"
 
-#: src/Controller/TasksController.php:326
-#: src/Controller/TasksController.php:399
+#: src/Controller/TasksController.php:325
+#: src/Controller/TasksController.php:398
 msgid "The task has been saved."
 msgstr "Úkol byl uložen."
 
-#: src/Controller/TasksController.php:330
-#: src/Controller/TasksController.php:403
+#: src/Controller/TasksController.php:329
+#: src/Controller/TasksController.php:402
 msgid "The task could not be saved. Please, try again."
 msgstr "Úkol nelze uložit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:450
+#: src/Controller/TasksController.php:448
 msgid "The task has been deleted."
 msgstr "Úkol byl odstraněn."
 
-#: src/Controller/TasksController.php:453
+#: src/Controller/TasksController.php:451
 msgid "The task could not be deleted. Please, try again."
 msgstr "Úkol nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:498
+#: src/Controller/TasksController.php:496
 msgid ""
 "The notification email could not be sent because the user does not have an "
 "email address."
@@ -794,19 +817,19 @@ msgstr ""
 "Oznamovací e-mail nebylo možné odeslat, protože uživatel nemá e-mailovou "
 "adresu."
 
-#: src/Controller/TasksController.php:510
+#: src/Controller/TasksController.php:508
 msgid "You have a new task # {0}"
 msgstr "Máte nový úkol č. {0}"
 
-#: src/Controller/TasksController.php:512
+#: src/Controller/TasksController.php:510
 msgid "You have changes in task # {0}"
 msgstr "Máte změny v úkolu č. {0}"
 
-#: src/Controller/TasksController.php:526
+#: src/Controller/TasksController.php:524
 msgid "Notification email sent."
 msgstr "E-mail s oznámením odeslán."
 
-#: src/Controller/TasksController.php:530
+#: src/Controller/TasksController.php:528
 msgid "The notification email could not be sent."
 msgstr "E-mail s oznámením se nepodařilo odeslat."
 
@@ -824,11 +847,20 @@ msgstr[2] ""
 msgid "Errors"
 msgstr "Chyby"
 
-#: src/Model/Entity/AccessPoint.php:99
+#: src/Model/Entity/AccessPoint.php:89
+#: src/Model/Entity/CustomerConnection.php:72
+#: templates/AccessPoints/edit.php:46 templates/AccessPoints/index.php:32
+#: templates/AccessPoints/view.php:48 templates/CustomerConnections/edit.php:50
+#: templates/CustomerConnections/index.php:31
+#: templates/CustomerConnections/view.php:56
+msgid "archived"
+msgstr "archivováno"
+
+#: src/Model/Entity/AccessPoint.php:100
 msgid "You must provide an Google Map API key."
 msgstr "Musíte zadat klíč Google Map API."
 
-#: src/Model/Entity/AccessPoint.php:103
+#: src/Model/Entity/AccessPoint.php:104
 msgid "You need to set the correct GPS coordinates."
 msgstr "Je třeba nastavit správné souřadnice GPS."
 
@@ -956,10 +988,10 @@ msgstr "Není nainstalováno přes Git"
 #: templates/CustomerConnectionIps/view.php:10
 #: templates/CustomerConnections/add.php:12
 #: templates/CustomerConnections/edit.php:12
-#: templates/CustomerConnections/index.php:35
+#: templates/CustomerConnections/index.php:41
 #: templates/CustomerConnections/view.php:10
-#: templates/CustomerConnections/view.php:110
-#: templates/CustomerConnections/view.php:169
+#: templates/CustomerConnections/view.php:128
+#: templates/CustomerConnections/view.php:187
 #: templates/CustomerPoints/add.php:10 templates/CustomerPoints/edit.php:10
 #: templates/CustomerPoints/index.php:34 templates/CustomerPoints/view.php:10
 #: templates/CustomerPoints/view.php:104 templates/DeviceTypes/add.php:10
@@ -1045,7 +1077,7 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/CustomerConnectionIps/add.php:36
 #: templates/CustomerConnectionIps/edit.php:44
 #: templates/CustomerConnections/add.php:34
-#: templates/CustomerConnections/edit.php:42
+#: templates/CustomerConnections/edit.php:60
 #: templates/CustomerPoints/add.php:40 templates/CustomerPoints/edit.php:48
 #: templates/DeviceTypes/add.php:32 templates/DeviceTypes/edit.php:40
 #: templates/ElectricityMeterReadings/add.php:34
@@ -1087,9 +1119,9 @@ msgstr "Potvrdit"
 #: templates/CustomerConnectionIps/edit.php:13
 #: templates/CustomerConnectionIps/index.php:59
 #: templates/CustomerConnections/edit.php:14
-#: templates/CustomerConnections/index.php:75
-#: templates/CustomerConnections/view.php:136
-#: templates/CustomerConnections/view.php:215
+#: templates/CustomerConnections/index.php:92
+#: templates/CustomerConnections/view.php:154
+#: templates/CustomerConnections/view.php:233
 #: templates/CustomerPoints/edit.php:12 templates/CustomerPoints/index.php:78
 #: templates/CustomerPoints/view.php:131 templates/DeviceTypes/edit.php:12
 #: templates/DeviceTypes/index.php:60 templates/DeviceTypes/view.php:136
@@ -1148,10 +1180,10 @@ msgstr "Odstranit"
 #: templates/CustomerConnectionIps/index.php:61
 #: templates/CustomerConnectionIps/view.php:20
 #: templates/CustomerConnections/edit.php:17
-#: templates/CustomerConnections/index.php:77
-#: templates/CustomerConnections/view.php:20
-#: templates/CustomerConnections/view.php:142
-#: templates/CustomerConnections/view.php:217
+#: templates/CustomerConnections/index.php:94
+#: templates/CustomerConnections/view.php:37
+#: templates/CustomerConnections/view.php:160
+#: templates/CustomerConnections/view.php:235
 #: templates/CustomerPoints/edit.php:15 templates/CustomerPoints/index.php:80
 #: templates/CustomerPoints/view.php:20 templates/CustomerPoints/view.php:137
 #: templates/DeviceTypes/edit.php:15 templates/DeviceTypes/index.php:62
@@ -1214,7 +1246,7 @@ msgstr "Upravit kontakt přístupového bodu"
 #: templates/AccessPointTypes/index.php:11 templates/AccessPoints/index.php:12
 #: templates/AntennaTypes/index.php:11
 #: templates/CustomerConnectionIps/index.php:11
-#: templates/CustomerConnections/index.php:11
+#: templates/CustomerConnections/index.php:12
 #: templates/CustomerPoints/index.php:11 templates/DeviceTypes/index.php:11
 #: templates/ElectricityMeterReadings/index.php:11
 #: templates/IpAddressRanges/index.php:11
@@ -1251,9 +1283,9 @@ msgstr "Kontakty přístupových bodů"
 #: templates/AccessPoints/view.php:655 templates/AccessPoints/view.php:948
 #: templates/AntennaTypes/index.php:59 templates/AntennaTypes/view.php:152
 #: templates/CustomerConnectionIps/index.php:52
-#: templates/CustomerConnections/index.php:66
-#: templates/CustomerConnections/view.php:119
-#: templates/CustomerConnections/view.php:204
+#: templates/CustomerConnections/index.php:72
+#: templates/CustomerConnections/view.php:137
+#: templates/CustomerConnections/view.php:222
 #: templates/CustomerPoints/index.php:69 templates/CustomerPoints/view.php:114
 #: templates/DeviceTypes/index.php:51 templates/DeviceTypes/view.php:127
 #: templates/ElectricityMeterReadings/index.php:57
@@ -1293,9 +1325,9 @@ msgstr "Zobrazit"
 #: templates/AccessPoints/view.php:659 templates/AccessPoints/view.php:956
 #: templates/AntennaTypes/index.php:63 templates/AntennaTypes/view.php:156
 #: templates/CustomerConnectionIps/index.php:54
-#: templates/CustomerConnections/index.php:70
-#: templates/CustomerConnections/view.php:127
-#: templates/CustomerConnections/view.php:210
+#: templates/CustomerConnections/index.php:76
+#: templates/CustomerConnections/view.php:145
+#: templates/CustomerConnections/view.php:228
 #: templates/CustomerPoints/index.php:73 templates/CustomerPoints/view.php:122
 #: templates/DeviceTypes/index.php:55 templates/DeviceTypes/view.php:131
 #: templates/ElectricityMeterReadings/index.php:61
@@ -1328,7 +1360,7 @@ msgstr "Upravit"
 #: templates/AccessPointTypes/index.php:65 templates/AccessPoints/index.php:130
 #: templates/AntennaTypes/index.php:80
 #: templates/CustomerConnectionIps/index.php:71
-#: templates/CustomerConnections/index.php:87
+#: templates/CustomerConnections/index.php:104
 #: templates/CustomerPoints/index.php:90 templates/DeviceTypes/index.php:72
 #: templates/ElectricityMeterReadings/index.php:78
 #: templates/IpAddressRanges/index.php:93
@@ -1350,7 +1382,7 @@ msgstr "první"
 #: templates/AccessPointTypes/index.php:66 templates/AccessPoints/index.php:131
 #: templates/AntennaTypes/index.php:81
 #: templates/CustomerConnectionIps/index.php:72
-#: templates/CustomerConnections/index.php:88
+#: templates/CustomerConnections/index.php:105
 #: templates/CustomerPoints/index.php:91 templates/DeviceTypes/index.php:73
 #: templates/ElectricityMeterReadings/index.php:79
 #: templates/IpAddressRanges/index.php:94
@@ -1372,7 +1404,7 @@ msgstr "předchozí"
 #: templates/AccessPointTypes/index.php:68 templates/AccessPoints/index.php:133
 #: templates/AntennaTypes/index.php:83
 #: templates/CustomerConnectionIps/index.php:74
-#: templates/CustomerConnections/index.php:90
+#: templates/CustomerConnections/index.php:107
 #: templates/CustomerPoints/index.php:93 templates/DeviceTypes/index.php:75
 #: templates/ElectricityMeterReadings/index.php:81
 #: templates/IpAddressRanges/index.php:96
@@ -1394,7 +1426,7 @@ msgstr "další"
 #: templates/AccessPointTypes/index.php:69 templates/AccessPoints/index.php:134
 #: templates/AntennaTypes/index.php:84
 #: templates/CustomerConnectionIps/index.php:75
-#: templates/CustomerConnections/index.php:91
+#: templates/CustomerConnections/index.php:108
 #: templates/CustomerPoints/index.php:94 templates/DeviceTypes/index.php:76
 #: templates/ElectricityMeterReadings/index.php:82
 #: templates/IpAddressRanges/index.php:97
@@ -1417,7 +1449,7 @@ msgstr "poslední"
 #: templates/AccessPointTypes/index.php:72 templates/AccessPoints/index.php:137
 #: templates/AntennaTypes/index.php:87
 #: templates/CustomerConnectionIps/index.php:78
-#: templates/CustomerConnections/index.php:94
+#: templates/CustomerConnections/index.php:111
 #: templates/CustomerPoints/index.php:97 templates/DeviceTypes/index.php:79
 #: templates/ElectricityMeterReadings/index.php:85
 #: templates/IpAddressRanges/index.php:100
@@ -1460,14 +1492,14 @@ msgstr "E-mail"
 
 #: templates/AccessPointContacts/view.php:67
 #: templates/AccessPoints/view.php:165 templates/AccessPoints/view.php:925
-#: templates/CustomerConnections/view.php:72
+#: templates/CustomerConnections/view.php:90
 #: templates/CustomerPoints/view.php:101
 msgid "Customer Number"
 msgstr "Číslo zákazníka"
 
 #: templates/AccessPointContacts/view.php:77
 #: templates/AccessPoints/view.php:166 templates/AccessPoints/view.php:926
-#: templates/CustomerConnections/view.php:81
+#: templates/CustomerConnections/view.php:99
 #: templates/CustomerPoints/view.php:102
 msgid "Contract Number"
 msgstr "Číslo smlouvy"
@@ -1479,8 +1511,8 @@ msgstr "Číslo smlouvy"
 #: templates/AccessPoints/view.php:546 templates/AccessPoints/view.php:927
 #: templates/AntennaTypes/view.php:80 templates/AntennaTypes/view.php:108
 #: templates/CustomerConnectionIps/view.php:71
-#: templates/CustomerConnections/view.php:96
-#: templates/CustomerConnections/view.php:109
+#: templates/CustomerConnections/view.php:114
+#: templates/CustomerConnections/view.php:127
 #: templates/CustomerPoints/view.php:89 templates/CustomerPoints/view.php:103
 #: templates/DeviceTypes/view.php:72
 #: templates/ElectricityMeterReadings/view.php:79
@@ -1582,20 +1614,28 @@ msgid "Add Access Point"
 msgstr "Přidat přístupový bod"
 
 #: templates/AccessPoints/edit.php:23 templates/AccessPoints/index.php:108
+#: templates/CustomerConnections/edit.php:23
+#: templates/CustomerConnections/index.php:82
 msgid "Restore"
 msgstr "Obnovit"
 
 #: templates/AccessPoints/edit.php:26 templates/AccessPoints/index.php:110
-#: templates/AccessPoints/view.php:21
+#: templates/AccessPoints/view.php:21 templates/CustomerConnections/edit.php:26
+#: templates/CustomerConnections/index.php:84
+#: templates/CustomerConnections/view.php:21
 msgid "Are you sure you want to restore # {0}?"
 msgstr "Opravdu chcete obnovit # {0}?"
 
 #: templates/AccessPoints/edit.php:31 templates/AccessPoints/index.php:113
+#: templates/CustomerConnections/edit.php:31
+#: templates/CustomerConnections/index.php:87
 msgid "Archive"
 msgstr "Archivovat"
 
 #: templates/AccessPoints/edit.php:34 templates/AccessPoints/index.php:115
-#: templates/AccessPoints/view.php:29
+#: templates/AccessPoints/view.php:29 templates/CustomerConnections/edit.php:34
+#: templates/CustomerConnections/index.php:89
+#: templates/CustomerConnections/view.php:29
 msgid "Are you sure you want to archive # {0}?"
 msgstr "Opravdu chcete archivovat # {0}?"
 
@@ -1603,21 +1643,18 @@ msgstr "Opravdu chcete archivovat # {0}?"
 msgid "Edit Access Point"
 msgstr "Upravit přístupový bod"
 
-#: templates/AccessPoints/edit.php:46 templates/AccessPoints/index.php:32
-#: templates/AccessPoints/view.php:48
-msgid "archived"
-msgstr "archivováno"
-
 #: templates/AccessPoints/index.php:22 templates/AccessPoints/map.php:13
 #: templates/AccessPoints/view.php:42
 msgid "New Access Point"
 msgstr "Nový přístupový bod"
 
 #: templates/AccessPoints/index.php:27
+#: templates/CustomerConnections/index.php:27
 msgid "Show Active"
 msgstr "Zobrazit aktivní"
 
 #: templates/AccessPoints/index.php:27
+#: templates/CustomerConnections/index.php:27
 msgid "Show Archived"
 msgstr "Zobrazit archivované"
 
@@ -1867,7 +1904,7 @@ msgstr "Typ napájecího zdroje"
 
 #: templates/AccessPoints/view.php:466 templates/AccessPoints/view.php:542
 #: templates/AccessPoints/view.php:629 templates/AntennaTypes/view.php:104
-#: templates/CustomerConnections/view.php:166 templates/DeviceTypes/view.php:89
+#: templates/CustomerConnections/view.php:184 templates/DeviceTypes/view.php:89
 #: templates/PowerSupplies/view.php:74 templates/PowerSupplyTypes/view.php:94
 #: templates/RadioLinks/index.php:46 templates/RadioLinks/view.php:88
 #: templates/RadioUnitTypes/view.php:108 templates/RadioUnits/export.php:33
@@ -1987,7 +2024,7 @@ msgstr "Maximální rychlost"
 
 #: templates/AccessPoints/view.php:541 templates/AccessPoints/view.php:631
 #: templates/AntennaTypes/view.php:103
-#: templates/CustomerConnections/view.php:168 templates/DeviceTypes/view.php:91
+#: templates/CustomerConnections/view.php:186 templates/DeviceTypes/view.php:91
 #: templates/RadioLinks/view.php:87 templates/RadioUnitTypes/view.php:107
 #: templates/RadioUnits/export.php:32 templates/RadioUnits/view.php:153
 #: templates/RouterosDevices/export.php:51
@@ -2014,8 +2051,8 @@ msgstr "Datum vypršení platnosti"
 #: templates/CustomerConnectionIps/edit.php:39
 #: templates/CustomerConnectionIps/index.php:32
 #: templates/CustomerConnectionIps/view.php:61
-#: templates/CustomerConnections/view.php:108
-#: templates/CustomerConnections/view.php:163 templates/DeviceTypes/view.php:86
+#: templates/CustomerConnections/view.php:126
+#: templates/CustomerConnections/view.php:181 templates/DeviceTypes/view.php:86
 #: templates/RadioLinks/index.php:48 templates/RadioLinks/view.php:91
 #: templates/RadioUnitTypes/view.php:111 templates/RadioUnits/add.php:68
 #: templates/RadioUnits/edit.php:73 templates/RadioUnits/export.php:36
@@ -2037,34 +2074,34 @@ msgid "New RouterOS Device"
 msgstr "Nové zařízení RouterOS"
 
 #: templates/AccessPoints/view.php:619
-#: templates/CustomerConnections/view.php:155 templates/DeviceTypes/view.php:78
+#: templates/CustomerConnections/view.php:173 templates/DeviceTypes/view.php:78
 msgid "Related RouterOS Devices"
 msgstr "Související zařízení RouterOS"
 
 #: templates/AccessPoints/view.php:625 templates/AccessPoints/view.php:683
 #: templates/AccessPoints/view.php:802
-#: templates/CustomerConnections/view.php:162
+#: templates/CustomerConnections/view.php:180
 #: templates/RouterosDevices/export.php:45
 #: templates/RouterosDevices/view.php:81
 msgid "Device Type"
 msgstr "Typ zařízení"
 
 #: templates/AccessPoints/view.php:627
-#: templates/CustomerConnections/view.php:164 templates/DeviceTypes/view.php:87
+#: templates/CustomerConnections/view.php:182 templates/DeviceTypes/view.php:87
 #: templates/RouterosDevices/export.php:47
 #: templates/RouterosDevices/view.php:116
 msgid "System Description"
 msgstr "Popis systému"
 
 #: templates/AccessPoints/view.php:628
-#: templates/CustomerConnections/view.php:165 templates/DeviceTypes/view.php:88
+#: templates/CustomerConnections/view.php:183 templates/DeviceTypes/view.php:88
 #: templates/RouterosDevices/export.php:48
 #: templates/RouterosDevices/view.php:120
 msgid "Board Name"
 msgstr "Název desky"
 
 #: templates/AccessPoints/view.php:630
-#: templates/CustomerConnections/view.php:167 templates/DeviceTypes/view.php:90
+#: templates/CustomerConnections/view.php:185 templates/DeviceTypes/view.php:90
 #: templates/RouterosDevices/export.php:50
 #: templates/RouterosDevices/view.php:128
 msgid "Software Version"
@@ -2117,7 +2154,7 @@ msgid "Related Customer Connections"
 msgstr "Související připojení zákazníků"
 
 #: templates/AccessPoints/view.php:924
-#: templates/CustomerConnections/view.php:47
+#: templates/CustomerConnections/view.php:65
 msgid "Customer Point"
 msgstr "Zákaznický bod"
 
@@ -2221,8 +2258,8 @@ msgid "Customer Connection"
 msgstr "Připojení zákazníka"
 
 #: templates/CustomerConnections/add.php:14
-#: templates/CustomerConnections/edit.php:22
-#: templates/CustomerConnections/view.php:25
+#: templates/CustomerConnections/edit.php:39
+#: templates/CustomerConnections/view.php:42
 msgid "List Customer Connections"
 msgstr "Seznam připojení zákazníků"
 
@@ -2230,25 +2267,33 @@ msgstr "Seznam připojení zákazníků"
 msgid "Add Customer Connection"
 msgstr "Přidat připojení zákazníka"
 
-#: templates/CustomerConnections/edit.php:32
+#: templates/CustomerConnections/edit.php:49
 #: templates/CustomerConnections/view.php:12
 msgid "Edit Customer Connection"
 msgstr "Upravit připojení zákazníka"
 
-#: templates/CustomerConnections/index.php:21
-#: templates/CustomerConnections/view.php:30
+#: templates/CustomerConnections/index.php:22
+#: templates/CustomerConnections/view.php:47
 msgid "New Customer Connection"
 msgstr "Nové připojení zákazníka"
 
-#: templates/CustomerConnections/index.php:25 templates/layout/default.php:298
+#: templates/CustomerConnections/index.php:31 templates/layout/default.php:298
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
 
-#: templates/CustomerConnections/view.php:17
+#: templates/CustomerConnections/view.php:18
+msgid "Restore Customer Connection"
+msgstr "Obnovit připojení zákazníka"
+
+#: templates/CustomerConnections/view.php:26
+msgid "Archive Customer Connection"
+msgstr "Archivovat připojení zákazníka"
+
+#: templates/CustomerConnections/view.php:34
 msgid "Delete Customer Connection"
 msgstr "Odstranit připojení zákazníka"
 
-#: templates/CustomerConnections/view.php:102
+#: templates/CustomerConnections/view.php:120
 msgid "Related Customer Connection Ips"
 msgstr "Související IP připojení zákazníků"
 
