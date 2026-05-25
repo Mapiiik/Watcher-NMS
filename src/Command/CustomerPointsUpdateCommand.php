@@ -15,9 +15,11 @@ use Cake\Database\Expression\QueryExpression;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
+use Cake\Utility\Text;
 use InvalidArgumentException;
 use Override;
 use RuntimeException;
+use SplObjectStorage;
 use Throwable;
 
 /**
@@ -328,6 +330,10 @@ class CustomerPointsUpdateCommand extends Command
             $customerConnectionIpsTable->find()
                 ->where(['CustomerConnectionIps.modified <' => $startTime])
                 ->all(),
+            [
+                '_auditQueue' => new SplObjectStorage(),
+                '_auditTransaction' => Text::uuid(),
+            ],
         );
 
         /**
@@ -360,7 +366,13 @@ class CustomerPointsUpdateCommand extends Command
         }
 
         if (!$connectionsToArchive->isEmpty()) {
-            $customerConnectionsTable->saveManyOrFail($connectionsToArchive);
+            $customerConnectionsTable->saveManyOrFail(
+                $connectionsToArchive,
+                [
+                    '_auditQueue' => new SplObjectStorage(),
+                    '_auditTransaction' => Text::uuid(),
+                ],
+            );
         }
 
         // 2. delete stale connections with no RouterOS devices and no IPs.
@@ -391,6 +403,10 @@ class CustomerPointsUpdateCommand extends Command
                         ->notExists($hasIp);
                 })
                 ->all(),
+            [
+                '_auditQueue' => new SplObjectStorage(),
+                '_auditTransaction' => Text::uuid(),
+            ],
         );
 
         /**
@@ -414,6 +430,10 @@ class CustomerPointsUpdateCommand extends Command
                         ->notExists($hasConnection);
                 })
                 ->all(),
+            [
+                '_auditQueue' => new SplObjectStorage(),
+                '_auditTransaction' => Text::uuid(),
+            ],
         );
     }
 }

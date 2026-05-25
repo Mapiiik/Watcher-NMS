@@ -10,7 +10,9 @@ use App\Model\Table\RouterosDevicesTable;
 use App\Snmp\Provider\RouterosSnmpProviderInterface;
 use Cake\I18n\DateTime;
 use Cake\ORM\Locator\LocatorAwareTrait;
+use Cake\Utility\Text;
 use RuntimeException;
+use SplObjectStorage;
 
 /**
  * Service responsible for synchronizing RouterOS SNMP data
@@ -161,6 +163,10 @@ final class RouterosSnmpUpdateService
                 'routeros_device_id' => $routerosDevice->id,
                 'modified <' => $startTime,
             ])->all(),
+            [
+                '_auditQueue' => new SplObjectStorage(),
+                '_auditTransaction' => Text::uuid(),
+            ],
         );
 
         // 3) IPs upsert
@@ -196,6 +202,10 @@ final class RouterosSnmpUpdateService
                 'routeros_device_id' => $routerosDevice->id,
                 'modified <' => $startTime,
             ])->all(),
+            [
+                '_auditQueue' => new SplObjectStorage(),
+                '_auditTransaction' => Text::uuid(),
+            ],
         );
 
         // 4) Cleanup old data
@@ -203,12 +213,24 @@ final class RouterosSnmpUpdateService
 
         $routerosDevices->deleteMany(
             $routerosDevices->find()->where(['modified <' => $threshold])->all(),
+            [
+                '_auditQueue' => new SplObjectStorage(),
+                '_auditTransaction' => Text::uuid(),
+            ],
         );
         $routerosDeviceInterfaces->deleteMany(
             $routerosDeviceInterfaces->find()->where(['modified <' => $threshold])->all(),
+            [
+                '_auditQueue' => new SplObjectStorage(),
+                '_auditTransaction' => Text::uuid(),
+            ],
         );
         $routerosDeviceIps->deleteMany(
             $routerosDeviceIps->find()->where(['modified <' => $threshold])->all(),
+            [
+                '_auditQueue' => new SplObjectStorage(),
+                '_auditTransaction' => Text::uuid(),
+            ],
         );
 
         return $routerosDevice;
