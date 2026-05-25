@@ -21,6 +21,7 @@ use Http\Discovery\Psr18Client;
  * @property string|null $parent_access_point_id
  * @property string|null $contract_conditions
  * @property string|null $access_point_type_id
+ * @property string $style
  *
  * @property \App\Model\Entity\AccessPointType $access_point_type
  * @property \App\Model\Entity\AccessPoint $parent_access_point
@@ -144,5 +145,15 @@ class AccessPoint extends AppEntity
     public function isArchived(): bool
     {
         return $this->archived !== null;
+    }
+
+    /**
+     * getter for style
+     *
+     * @return string
+     */
+    protected function _getStyle(): string
+    {
+        return $this->isArchived() ? 'color: darkgray; text-decoration: line-through;' : '';
     }
 }

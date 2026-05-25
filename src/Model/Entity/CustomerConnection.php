@@ -15,6 +15,7 @@ namespace App\Model\Entity;
  * @property string|null $customer_url
  * @property string|null $contract_url
  * @property string|null $note
+ * @property string $style
  *
  * @property \App\Model\Entity\CustomerPoint $customer_point
  * @property \App\Model\Entity\AccessPoint $access_point
@@ -82,5 +83,15 @@ class CustomerConnection extends AppEntity
     public function isArchived(): bool
     {
         return $this->archived !== null;
+    }
+
+    /**
+     * getter for style
+     *
+     * @return string
+     */
+    protected function _getStyle(): string
+    {
+        return $this->isArchived() ? 'color: darkgray; text-decoration: line-through;' : '';
     }
 }

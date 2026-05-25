@@ -928,7 +928,7 @@
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($accessPoint->customer_connections as $customerConnection) : ?>
-                        <tr>
+                        <tr style="<?= $customerConnection->style ?>">
                             <td><?= h($customerConnection->name) ?></td>
                             <td>
                                 <?= $customerConnection->customer_point !== null ? $this->Html->link(

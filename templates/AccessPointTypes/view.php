@@ -77,7 +77,7 @@
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($accessPointType->access_points as $accessPoint) : ?>
-                        <tr>
+                        <tr style="<?= $accessPoint->style ?>">
                             <td><?= h($accessPoint->name) ?></td>
                             <td><?= h($accessPoint->device_name) ?></td>
                             <td><?= $accessPoint->parent_access_point !== null ?

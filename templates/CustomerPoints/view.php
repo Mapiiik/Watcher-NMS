@@ -103,19 +103,19 @@
                             <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($customerPoint->customer_connections as $customerConnections) : ?>
-                        <tr>
-                            <td><?= h($customerConnections->name) ?></td>
-                            <td><?= h($customerConnections->customer_number) ?></td>
-                            <td><?= h($customerConnections->contract_number) ?></td>
-                            <td><?= $this->Text->autoParagraph(h($customerConnections->note)); ?></td>
+                        <?php foreach ($customerPoint->customer_connections as $customerConnection) : ?>
+                        <tr style="<?= $customerConnection->style ?>">
+                            <td><?= h($customerConnection->name) ?></td>
+                            <td><?= h($customerConnection->customer_number) ?></td>
+                            <td><?= h($customerConnection->contract_number) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($customerConnection->note)); ?></td>
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
                                     [
                                         'controller' => 'CustomerConnections',
                                         'action' => 'view',
-                                        $customerConnections->id,
+                                        $customerConnection->id,
                                     ],
                                 ) ?>
                                 <?= $this->AuthLink->link(
@@ -123,7 +123,7 @@
                                     [
                                         'controller' => 'CustomerConnections',
                                         'action' => 'edit',
-                                        $customerConnections->id,
+                                        $customerConnection->id,
                                     ],
                                     ['class' => 'win-link'],
                                 ) ?>
@@ -132,11 +132,11 @@
                                     [
                                         'controller' => 'CustomerConnections',
                                         'action' => 'delete',
-                                        $customerConnections->id,
+                                        $customerConnection->id,
                                     ],
                                     ['confirm' => __(
                                         'Are you sure you want to delete # {0}?',
-                                        $customerConnections->id,
+                                        $customerConnection->id,
                                     )],
                                 ) ?>
                             </td>
