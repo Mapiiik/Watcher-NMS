@@ -365,8 +365,10 @@ class CustomerPointsUpdateCommand extends Command
             $customerConnectionsTable->saveManyOrFail(
                 $connectionsToArchive,
                 [
-                    // saveMany audit options kept intentionally: dereuromark/audit-stash 2.0.1+
-                    // handles this internally, but mapiiik/audit-log (5.x, 6.x) logs nothing without them.
+                    // saveMany audit options kept intentionally:
+                    // - mapiiik/audit-log (5.x, 6.x) logs nothing without them
+                    // - even audit-stash 2.0.1+ groups the batch under one transaction id only
+                    //   when they're passed (otherwise each record gets its own)
                     '_auditQueue' => new SplObjectStorage(),
                     '_auditTransaction' => Text::uuid(),
                 ],
