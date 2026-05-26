@@ -99,10 +99,6 @@ class RadarInterferencesUpdateCommand extends Command
                         ->find()
                         ->where(['modified <' => $start_time])
                         ->all(),
-                    [
-                        '_auditQueue' => new SplObjectStorage(),
-                        '_auditTransaction' => Text::uuid(),
-                    ],
                 );
 
                 Log::write('debug', 'The radar interferences table has been updated.');

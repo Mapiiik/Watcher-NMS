@@ -330,10 +330,6 @@ class CustomerPointsUpdateCommand extends Command
             $customerConnectionIpsTable->find()
                 ->where(['CustomerConnectionIps.modified <' => $startTime])
                 ->all(),
-            [
-                '_auditQueue' => new SplObjectStorage(),
-                '_auditTransaction' => Text::uuid(),
-            ],
         );
 
         /**
@@ -369,6 +365,8 @@ class CustomerPointsUpdateCommand extends Command
             $customerConnectionsTable->saveManyOrFail(
                 $connectionsToArchive,
                 [
+                    // saveMany audit options kept intentionally: dereuromark/audit-stash 2.0.1+
+                    // handles this internally, but mapiiik/audit-log (5.x, 6.x) logs nothing without them.
                     '_auditQueue' => new SplObjectStorage(),
                     '_auditTransaction' => Text::uuid(),
                 ],
@@ -403,10 +401,6 @@ class CustomerPointsUpdateCommand extends Command
                         ->notExists($hasIp);
                 })
                 ->all(),
-            [
-                '_auditQueue' => new SplObjectStorage(),
-                '_auditTransaction' => Text::uuid(),
-            ],
         );
 
         /**
@@ -430,10 +424,6 @@ class CustomerPointsUpdateCommand extends Command
                         ->notExists($hasConnection);
                 })
                 ->all(),
-            [
-                '_auditQueue' => new SplObjectStorage(),
-                '_auditTransaction' => Text::uuid(),
-            ],
         );
     }
 }
