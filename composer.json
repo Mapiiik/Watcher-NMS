@@ -21,7 +21,7 @@
         "cakephp/migrations": "^5.1",
         "cakephp/plugin-installer": "^2.0",
         "composer/composer": "^2.9",
-        "dereuromark/cakephp-audit-stash": "^2.0",
+        "dereuromark/cakephp-audit-stash": "^2.0.1",
         "dereuromark/cakephp-geo": "^3.8",
         "geocoder-php/google-maps-provider": "^4.8",
         "league/oauth2-google": "^5.0",
