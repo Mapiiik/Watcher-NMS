@@ -61,6 +61,7 @@ class RadarInterferencesReportCommand extends Command
                 $emails = (string)env('REPORT_EMAILS');
             }
 
+            /** @var \Cake\ORM\Query\SelectQuery<\App\Model\Entity\RadarInterference> $radarInterferences */
             $radarInterferences = $this->fetchTable(RadarInterferencesTable::class)->find();
 
             $radarInterferences->join([
@@ -85,7 +86,9 @@ class RadarInterferencesReportCommand extends Command
             $radarInterferences->select(['routeros_device_interface_id' => 'RouterosDeviceInterfaces.id']);
             $radarInterferences->select(['routeros_device_interface_name' => 'RouterosDeviceInterfaces.name']);
 
-            if ($radarInterferences->count() > 0) {
+            $radarInterferencesCount = $radarInterferences->count();
+
+            if ($radarInterferencesCount > 0) {
                 $table[] = [
                     __('Name'),
                     __('MAC Address'),
@@ -97,13 +100,14 @@ class RadarInterferencesReportCommand extends Command
                 ];
                 foreach ($radarInterferences as $radarInterference) {
                     $table[] = [
-                        $radarInterference['name'],
-                        $radarInterference['mac_address'],
-                        $radarInterference['ssid'],
-                        $radarInterference['radio_name'],
-                        (string)$radarInterference['signal'],
-                        $radarInterference['routeros_device_name'],
-                        $radarInterference['routeros_device_interface_name'],
+                        $radarInterference->name,
+                        $radarInterference->mac_address,
+                        $radarInterference->ssid,
+                        $radarInterference->radio_name,
+                        (string)$radarInterference->signal,
+                        // joined aliases (not entity columns) → get() so PHPStan doesn't flag undefined property
+                        $radarInterference->get('routeros_device_name'),
+                        $radarInterference->get('routeros_device_interface_name'),
                     ];
                 }
                 $io->helper('Table')->output($table);
@@ -119,7 +123,7 @@ class RadarInterferencesReportCommand extends Command
                     $mailer->deliver(
                         __(
                             'Devices that interfere with radar ({count}) found.',
-                            ['count' => $radarInterferences->count()],
+                            ['count' => $radarInterferencesCount],
                         ) . PHP_EOL
                         . PHP_EOL
                         . __(
