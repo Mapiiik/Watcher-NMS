@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-05-25 20:41+0200\n"
+"POT-Creation-Date: 2026-05-30 22:24+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -35,27 +35,27 @@ msgstr ""
 msgid "Watcher Agent returned an unexpected response: {0}"
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:72
+#: ./src/Command/CustomerPointsUpdateCommand.php:74
 msgid "The customer points data could not be downloaded. Please, try again."
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:82
+#: ./src/Command/CustomerPointsUpdateCommand.php:84
 msgid "The customer points data could not be decoded. Please, check the source data."
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:181
+#: ./src/Command/CustomerPointsUpdateCommand.php:183
 msgid "The customer points data have been updated."
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:189
+#: ./src/Command/CustomerPointsUpdateCommand.php:191
 msgid "Error during customer points update: {0}"
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:201
+#: ./src/Command/CustomerPointsUpdateCommand.php:203
 msgid "Customer points update failed"
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:203
+#: ./src/Command/CustomerPointsUpdateCommand.php:205
 msgid "Customer points update failed."
 msgstr ""
 
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Electricity meter readings report failed."
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:90
+#: ./src/Command/RadarInterferencesReportCommand.php:93
 #: ./templates/AccessPointContacts/view.php:43
 #: ./templates/AccessPointTypes/view.php:43
 #: ./templates/AccessPointTypes/view.php:70
@@ -202,7 +202,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:91
+#: ./src/Command/RadarInterferencesReportCommand.php:94
 #: ./templates/RadarInterferences/add.php:26
 #: ./templates/RadarInterferences/edit.php:34
 #: ./templates/RadarInterferences/index.php:41
@@ -217,7 +217,7 @@ msgstr ""
 msgid "MAC Address"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:92
+#: ./src/Command/RadarInterferencesReportCommand.php:95
 #: ./templates/RadarInterferences/add.php:29
 #: ./templates/RadarInterferences/edit.php:37
 #: ./templates/RadarInterferences/index.php:42
@@ -232,59 +232,59 @@ msgstr ""
 msgid "SSID"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:93
+#: ./src/Command/RadarInterferencesReportCommand.php:96
 #: ./templates/RadarInterferences/view.php:55
 msgid "Radio Name"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:94
+#: ./src/Command/RadarInterferencesReportCommand.php:97
 #: ./templates/RadarInterferences/view.php:59
 msgid "Signal"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:95
+#: ./src/Command/RadarInterferencesReportCommand.php:98
 #: ./templates/AccessPointTypes/view.php:71
 #: ./templates/AccessPoints/view.php:57
 msgid "Device Name"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:96
+#: ./src/Command/RadarInterferencesReportCommand.php:99
 msgid "Interface Name"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:116
+#: ./src/Command/RadarInterferencesReportCommand.php:120
 msgid "Devices that interfere with radar found"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:120
+#: ./src/Command/RadarInterferencesReportCommand.php:124
 msgid "Devices that interfere with radar ({count}) found."
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:125
+#: ./src/Command/RadarInterferencesReportCommand.php:129
 msgid "For more informations go here: {url}"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:138
+#: ./src/Command/RadarInterferencesReportCommand.php:142
 msgid "Devices that interfere with radar found and reported."
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:144
+#: ./src/Command/RadarInterferencesReportCommand.php:148
 msgid "Devices that interfere with radar found but cannot be reported."
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:148
+#: ./src/Command/RadarInterferencesReportCommand.php:152
 msgid "No devices that interfere with radar found."
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:157
+#: ./src/Command/RadarInterferencesReportCommand.php:161
 msgid "Error during radar interferences report: {0}"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:169
+#: ./src/Command/RadarInterferencesReportCommand.php:173
 msgid "Radar interferences report failed"
 msgstr ""
 
-#: ./src/Command/RadarInterferencesReportCommand.php:171
+#: ./src/Command/RadarInterferencesReportCommand.php:175
 msgid "Radar interferences report failed."
 msgstr ""
 
@@ -742,33 +742,33 @@ msgstr ""
 msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:182
-#: ./src/Controller/RouterosDevicesController.php:214
+#: ./src/Controller/RouterosDevicesController.php:179
+#: ./src/Controller/RouterosDevicesController.php:211
 msgid "The RouterOS device has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:186
-#: ./src/Controller/RouterosDevicesController.php:218
+#: ./src/Controller/RouterosDevicesController.php:183
+#: ./src/Controller/RouterosDevicesController.php:215
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:243
+#: ./src/Controller/RouterosDevicesController.php:240
 msgid "The RouterOS device has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:246
+#: ./src/Controller/RouterosDevicesController.php:243
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:272
+#: ./src/Controller/RouterosDevicesController.php:269
 msgid "Cannot update RouterOS device data via SNMP. Missing IP address or SNMP community."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:298
+#: ./src/Controller/RouterosDevicesController.php:288
 msgid "The RouterOS device data has been updated via SNMP."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:310
+#: ./src/Controller/RouterosDevicesController.php:300
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr ""
 
@@ -953,18 +953,6 @@ msgstr ""
 
 #: ./src/Snmp/Provider/RouterosSnmpProviderAgentPush.php:30
 msgid "Empty SNMP payload provided by agent"
-msgstr ""
-
-#: ./src/Snmp/Provider/RouterosSnmpProviderLocal.php:35
-msgid "SNMP - serial number cannot be retrieved"
-msgstr ""
-
-#: ./src/Snmp/Provider/RouterosSnmpProviderLocal.php:59
-msgid "SNMP - interface list cannot be retrieved"
-msgstr ""
-
-#: ./src/Snmp/Provider/RouterosSnmpProviderLocal.php:128
-msgid "SNMP - IP address list cannot be retrieved"
 msgstr ""
 
 #: ./src/Snmp/Service/RouterosSnmpUpdateService.php:118
