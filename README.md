@@ -8,23 +8,39 @@ Network Management System for ISPs, built on [CakePHP](https://github.com/cakeph
 
 - Inventory of access points, network devices, electricity-meter readings, …
 - RouterOS device auto-registration via SNMP — devices identify themselves
-  through an HTTP/S request and the matching device-type profile is applied
-  automatically.
+  through the [Watcher Agent](https://github.com/Mapiiik/Watcher-Agent), which
+  reads them over SNMP and pushes the inventory here; the matching device-type
+  profile is then applied automatically.
 - Optional checks for radio interference with Czech weather radar stations.
 
 ## RouterOS device integration
 
-Configure a scheduler on the RouterOS device to fetch and run a generated
-configuration script. The script URL embeds the device-type identifier and
-the device's serial number; the system looks both up and returns the
+RouterOS device provisioning runs through the
+[Watcher Agent](https://github.com/Mapiiik/Watcher-Agent) — a small on-site
+service that can reach customer-edge devices the NMS cannot talk to directly.
+The agent reads the device over SNMP, pushes the inventory to this NMS, and
+returns the generated configuration script back to the device.
+
+Configure a scheduler on the RouterOS device to fetch and run the script from
+the agent. The URL embeds the device-type identifier and the device's serial
+number; the agent verifies the serial over SNMP and the NMS returns the
 appropriate script response.
 
 ```routeros
-/tool fetch url=("https://nms.watcher.domain/routeros-devices/configuration-script/{device-type-identifier}/" . [/system routerboard get serial-number] . "/watcher-config.rsc")
+/tool fetch url=( \
+    "https://agent.watcher.domain/provision/routeros/{device-type-identifier}/" \
+        . [/system routerboard get serial-number] \
+        . "/\?token=***" \
+    ) dst-path=watcher-config.rsc
 /import watcher-config.rsc
 :delay 5
 /file remove watcher-config.rsc
 ```
+
+The `?token=***` must match the agent's `AGENT_ROUTEROS_QUERY_TOKEN`, and the
+device's source IP must fall within the agent's `AGENT_ROUTEROS_ALLOW_CIDRS`
+allowlist (see the [Watcher Agent](https://github.com/Mapiiik/Watcher-Agent)
+configuration).
 
 To also update the admin password (derived from the serial number and the system‑wide salt), enable this option for the device type in the web UI and ensure the script is imported after fetching.
 
@@ -37,8 +53,11 @@ Otherwise the script only logs the provisioning status and performs no changes.
 - PHP 8.2 or newer
 - PostgreSQL
 - Redis
-- PHP `snmp` extension (only when polling RouterOS devices over SNMP — already
-  bundled in the production Docker image)
+- [Watcher Agent](https://github.com/Mapiiik/Watcher-Agent) — required only for
+  SNMP reads and RouterOS provisioning. It is a separate service (run it in
+  Docker, even on the same host; it supports the PROXY protocol behind a load
+  balancer). The NMS no longer talks SNMP directly, so the PHP `snmp` extension
+  is no longer needed.
 
 The Docker Compose stack below provides PostgreSQL and Redis out of the box,
 so on a fresh host you only need Docker.
@@ -78,8 +97,10 @@ composer run-script migrations
 composer run-script schema-cache
 ```
 
-Point your webserver's document root at the `webroot/` directory. Install the
-PHP `snmp` extension if you intend to poll RouterOS devices over SNMP.
+Point your webserver's document root at the `webroot/` directory. SNMP polling
+and RouterOS provisioning are handled by the separate
+[Watcher Agent](https://github.com/Mapiiik/Watcher-Agent), so no PHP `snmp`
+extension is required here.
 
 ## Configuration
 

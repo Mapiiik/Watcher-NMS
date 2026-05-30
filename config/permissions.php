@@ -53,15 +53,6 @@ use Cake\Utility\Hash;
  */
 $permissions = [
     'CakeDC/Auth.permissions' => [
-        //RouterOS devices access to configuration script
-        [
-            'prefix' => false,
-            'controller' => 'RouterosDevices',
-            'action' => [
-                'configurationScript',
-            ],
-            'bypassAuth' => true,
-        ],
         //all bypass
         [
             'prefix' => false,

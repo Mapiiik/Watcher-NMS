@@ -4,10 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Provisioning\RouterOS\CredentialsGenerator;
-use App\Provisioning\RouterOS\ProvisionScriptBuilder;
-use App\Snmp\Client\SnmpClient;
 use App\Snmp\Provider\RouterosSnmpProviderAgentPull;
-use App\Snmp\Provider\RouterosSnmpProviderLocal;
 use App\Snmp\Service\RouterosSnmpUpdateService;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
@@ -276,16 +273,9 @@ class RouterosDevicesController extends AppController
         }
 
         try {
-            // Provider selection (Agent / Local)
-            if (filter_var(env('WATCHER_AGENT_ENABLED', false), FILTER_VALIDATE_BOOLEAN)) {
-                $provider = new RouterosSnmpProviderAgentPull();
-            } else {
-                $provider = new RouterosSnmpProviderLocal(
-                    new SnmpClient(),
-                );
-            }
-
-            $service = new RouterosSnmpUpdateService($provider);
+            $service = new RouterosSnmpUpdateService(
+                new RouterosSnmpProviderAgentPull(),
+            );
 
             $updatedDevice = $service->updateNow(
                 host: $routerosDevice->ip_address,
@@ -312,98 +302,6 @@ class RouterosDevicesController extends AppController
 
             return $this->afterEditRedirect(['action' => 'view', $routerosDevice->id]);
         }
-    }
-
-    /**
-     * load serial number via SNMP
-     *
-     * @param non-empty-string $host SNMP host
-     * @param non-empty-string $community SNMP reading community
-     * @return string|null
-     */
-    private function loadSerialNumberViaSNMP(string $host, string $community)
-    {
-        $snmp = new SnmpClient();
-        $snmp->open($host, $community);
-        $result = $snmp->get('.1.3.6.1.4.1.14988.1.1.7.3.0')->text ?? null;
-        $snmp->close();
-
-        return $result;
-    }
-
-    /**
-     * get configuration script for RouterOS device
-     *
-     * @param string $deviceTypeIdentifier device type
-     * @param string $serialNumber serial number
-     * @return void
-     */
-    public function configurationScript(
-        ?string $deviceTypeIdentifier = null,
-        ?string $serialNumber = null,
-    ): void {
-        /** @var \App\Model\Entity\DeviceType $deviceType */
-        $deviceType = $this->RouterosDevices->DeviceTypes
-            ->find()
-            ->where(['identifier' => $deviceTypeIdentifier])
-            ->first();
-
-        if (!$deviceType) {
-            echo ':log error "Watcher NMS: Unknown device type identifier. Ignoring request."' . "\n";
-            exit;
-        }
-
-        if (empty($deviceType->snmp_community)) {
-            echo ':log error "Watcher NMS: Device type has no SNMP community configured. Ignoring request."' . "\n";
-            exit;
-        }
-
-        $routerosDeviceSerialNumber = $this->loadSerialNumberViaSNMP(
-            $_SERVER['REMOTE_ADDR'],
-            $deviceType->snmp_community,
-        );
-
-        if (!$routerosDeviceSerialNumber) {
-            echo ':log error "Watcher NMS: Unable to read serial number via SNMP. Ignoring request."' . "\n";
-            exit;
-        }
-
-        if ($routerosDeviceSerialNumber !== $serialNumber) {
-            echo ':log error "Watcher NMS: The retrieved serial number does not match the request.'
-                . ' Ignoring request."' . "\n";
-            exit;
-        }
-
-        echo ':log warning "Watcher NMS: The retrieved serial number matches the request.'
-            . ' Loading and updating device inventory"' . "\n";
-
-        try {
-            $service = new RouterosSnmpUpdateService(
-                new RouterosSnmpProviderLocal(
-                    new SnmpClient(),
-                ),
-            );
-
-            $routerosDevice = $service->updateNow(
-                host: $_SERVER['REMOTE_ADDR'],
-                community: $deviceType->snmp_community,
-                deviceTypeId: $deviceType->id,
-                assignAccessPointByDeviceName: $deviceType->assign_access_point_by_device_name,
-                assignCustomerConnectionByIp: $deviceType->assign_customer_connection_by_ip,
-            );
-        } catch (RuntimeException $e) {
-            echo ':log error "Watcher NMS: Unable to read data via SNMP."' . "\n";
-            exit;
-        }
-
-        echo ':log warning "Watcher NMS: The data was successfully retrieved via SNMP."' . "\n";
-
-        $builder = new ProvisionScriptBuilder();
-        echo $builder->build($routerosDevice, $deviceType);
-
-        echo ':log warning "Watcher NMS: OK"' . "\n";
-
-        exit;
     }
 
     /**
