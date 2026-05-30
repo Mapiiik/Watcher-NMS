@@ -11,13 +11,6 @@ RUN echo "Based on commit: $gitcommithash"
 ENV DEBUG="true"
 ENV WEB_DOCUMENT_ROOT="/app/webroot"
 
-# Install PHP-SNMP extension
-RUN set -x \
- && apk add -U --no-cache net-snmp-dev \
- && docker-php-ext-configure snmp \
- && docker-php-ext-install -j$(nproc) snmp \
- && docker-run-bootstrap
-
 # Add on-start commands
 RUN cat <<'EOF' > /opt/docker/provision/entrypoint.d/99-composer.sh
 # Composer operations
