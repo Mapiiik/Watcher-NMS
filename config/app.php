@@ -2,7 +2,7 @@
 
 use Cake\Cache\Engine\FileEngine;
 use Cake\Database\Connection;
-use Cake\Database\Driver\Mysql;
+use Cake\Database\Driver\Postgres;
 use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
 use function Cake\Core\env;
@@ -290,14 +290,14 @@ return [
          */
         'default' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            'driver' => Postgres::class,
             'persistent' => false,
             'timezone' => 'UTC',
 
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
              */
-            //'encoding' => 'utf8mb4',
+            'encoding' => 'utf8',
 
             /*
              * If your MySQL server is configured with `skip-character-set-client-handshake`
@@ -333,10 +333,10 @@ return [
          */
         'test' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            'driver' => Postgres::class,
             'persistent' => false,
             'timezone' => 'UTC',
-            //'encoding' => 'utf8mb4',
+            'encoding' => 'utf8',
             'flags' => [],
             'cacheMetadata' => true,
             'quoteIdentifiers' => false,
