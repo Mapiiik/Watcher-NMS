@@ -50,7 +50,7 @@ class AppUser extends User
             $name .= $this->first_name;
         }
         if (isset($this->last_name)) {
-            if ($name <> '') {
+            if ($name !== '') {
                 $name .= ' ';
             }
             $name .= $this->last_name;
@@ -72,7 +72,7 @@ class AppUser extends User
             $name .= $this->last_name;
         }
         if (isset($this->first_name)) {
-            if ($name <> '') {
+            if ($name !== '') {
                 $name .= ' ';
             }
             $name .= $this->first_name;

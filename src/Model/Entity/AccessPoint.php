@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\Cache\Cache;
+use Geocoder\Collection;
 use Geocoder\Provider\GoogleMaps\GoogleMaps;
 use Geocoder\Query\ReverseQuery;
 use Http\Discovery\Psr18Client;
@@ -113,7 +114,7 @@ class AccessPoint extends AppEntity
         /** @var \Geocoder\Model\AddressCollection $address_collection */
         $address_collection = Cache::remember(
             'access_point__address_lookup_' . $this->id,
-            function () use ($apiKey, $locale) {
+            function () use ($apiKey, $locale): Collection {
                 $geocoder = new GoogleMaps(
                     new Psr18Client(),
                     null,

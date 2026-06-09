@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
+use App\Controller\PowerSupplyTypesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\PowerSupplyTypesController Test Case
- *
- * @uses \App\Controller\PowerSupplyTypesController
  */
+#[UsesClass(PowerSupplyTypesController::class)]
 class PowerSupplyTypesControllerTest extends TestCase
 {
     use IntegrationTestTrait;

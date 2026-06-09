@@ -82,12 +82,17 @@ final class RouterosSnmpUpdateService
         ];
 
         // 1a) Assign access point by device name
-        if ($assignAccessPointByDeviceName && !empty($devicePatch['name'])) {
+        if (
+            $assignAccessPointByDeviceName
+            && isset($devicePatch['name'])
+            && $devicePatch['name'] !== ''
+            && $devicePatch['name'] !== '0'
+        ) {
             /** @var \App\Model\Entity\AccessPoint|null $accessPoint */
             $accessPoint = $routerosDevices->AccessPoints
                 ->find('active')
                 ->where([
-                    ':rosName ILIKE AccessPoints.device_name || \'%\'',
+                    ":rosName ILIKE AccessPoints.device_name || '%'",
                 ])
                 ->bind(':rosName', $devicePatch['name'], 'string')
                 ->first();
@@ -98,7 +103,12 @@ final class RouterosSnmpUpdateService
         }
 
         // 1b) Assign customer connection by IP
-        if ($assignCustomerConnectionByIp && !empty($devicePatch['ip_address'])) {
+        if (
+            $assignCustomerConnectionByIp
+            && isset($devicePatch['ip_address'])
+            && $devicePatch['ip_address'] !== ''
+            && $devicePatch['ip_address'] !== '0'
+        ) {
             /** @var \App\Model\Entity\CustomerConnectionIp|null $customerConnectionIp */
             $customerConnectionIp = $routerosDevices->CustomerConnections->CustomerConnectionIps
                 ->find()

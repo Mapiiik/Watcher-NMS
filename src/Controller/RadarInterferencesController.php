@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Application;
 use Cake\Console\CommandRunner;
+use Cake\Http\Response;
 
 /**
  * RadarInterferences Controller
@@ -16,9 +17,9 @@ class RadarInterferencesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // filter
         $conditions = [];
@@ -28,10 +29,10 @@ class RadarInterferencesController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'RadarInterferences.name ILIKE' => '%' . trim($search) . '%',
-                    'RadarInterferences.mac_address::character varying ILIKE' => '%' . trim($search) . '%',
-                    'RadarInterferences.ssid ILIKE' => '%' . trim($search) . '%',
-                    'RadarInterferences.radio_name ILIKE' => '%' . trim($search) . '%',
+                    'RadarInterferences.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadarInterferences.mac_address::character varying ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadarInterferences.ssid ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadarInterferences.radio_name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -52,10 +53,10 @@ class RadarInterferencesController extends AppController
      * View method
      *
      * @param string|null $id Radar Interference id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $radarInterference = $this->RadarInterferences->get($id, contain: [
             'RouterosDeviceInterfaces' => ['RouterosDevices'],
@@ -69,9 +70,9 @@ class RadarInterferencesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $radarInterference = $this->RadarInterferences->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
@@ -86,16 +87,18 @@ class RadarInterferencesController extends AppController
             $this->Flash->error(__('The radar interference could not be saved. Please, try again.'));
         }
         $this->set(compact('radarInterference'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Radar Interference id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $radarInterference = $this->RadarInterferences->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -110,6 +113,8 @@ class RadarInterferencesController extends AppController
             $this->Flash->error(__('The radar interference could not be saved. Please, try again.'));
         }
         $this->set(compact('radarInterference'));
+
+        return null;
     }
 
     /**
@@ -119,7 +124,7 @@ class RadarInterferencesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $radarInterference = $this->RadarInterferences->get($id);
@@ -138,7 +143,7 @@ class RadarInterferencesController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects to index.
      */
-    public function updateOnline()
+    public function updateOnline(): ?Response
     {
         $runner = new CommandRunner(new Application(dirname(__DIR__) . '/../config'), 'cake');
         if ($runner->run(['cake', 'radar_interferences_update']) === 0) {
@@ -153,9 +158,9 @@ class RadarInterferencesController extends AppController
     /**
      * List devices which interfere
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function devices()
+    public function devices(): void
     {
         $radarInterferences = $this->RadarInterferences->find();
 

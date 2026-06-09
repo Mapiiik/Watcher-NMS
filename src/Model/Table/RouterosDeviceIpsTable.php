@@ -72,7 +72,7 @@ class RouterosDeviceIpsTable extends AppTable
             }
         }
 
-        if ($this->getRegistryAlias() == 'RouterosIpLinks') {
+        if ($this->getRegistryAlias() === 'RouterosIpLinks') {
             $this->belongsTo('NeighbouringIpAddresses', [
                 'className' => 'RouterosDeviceIps',
                 'foreignKey' => 'ip_network',

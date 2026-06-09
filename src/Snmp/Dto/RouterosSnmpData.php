@@ -5,7 +5,7 @@ namespace App\Snmp\Dto;
 
 use RuntimeException;
 
-final class RouterosSnmpData
+final readonly class RouterosSnmpData
 {
     /**
      * @param array{
@@ -40,9 +40,9 @@ final class RouterosSnmpData
      * }> $ipAddresses
      */
     public function __construct(
-        public readonly array $device,
-        public readonly array $interfaces,
-        public readonly array $ipAddresses,
+        public array $device,
+        public array $interfaces,
+        public array $ipAddresses,
     ) {
         $this->assertValid();
     }

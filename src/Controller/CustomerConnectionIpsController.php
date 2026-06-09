@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+
 /**
  * CustomerConnectionIps Controller
  *
@@ -13,9 +15,9 @@ class CustomerConnectionIpsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // filter
         $conditions = [];
@@ -25,11 +27,11 @@ class CustomerConnectionIpsController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'CustomerConnectionIps.name ILIKE' => '%' . trim($search) . '%',
-                    'CustomerConnectionIps.ip_address::character varying ILIKE' => '%' . trim($search) . '%',
-                    'CustomerConnections.name ILIKE' => '%' . trim($search) . '%',
-                    'CustomerConnections.customer_number ILIKE' => '%' . trim($search) . '%',
-                    'CustomerConnections.contract_number ILIKE' => '%' . trim($search) . '%',
+                    'CustomerConnectionIps.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnectionIps.ip_address::character varying ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.customer_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.contract_number ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -52,10 +54,10 @@ class CustomerConnectionIpsController extends AppController
      * View method
      *
      * @param string|null $id Customer Connection IP id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $customerConnectionIp = $this->CustomerConnectionIps->get($id, contain: [
             'CustomerConnections',
@@ -69,9 +71,9 @@ class CustomerConnectionIpsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $customerConnectionIp = $this->CustomerConnectionIps->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
@@ -91,16 +93,18 @@ class CustomerConnectionIpsController extends AppController
             ->all();
 
         $this->set(compact('customerConnectionIp', 'customerConnections'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Customer Connection IP id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $customerConnectionIp = $this->CustomerConnectionIps->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -119,16 +123,18 @@ class CustomerConnectionIpsController extends AppController
             ->all();
 
         $this->set(compact('customerConnectionIp', 'customerConnections'));
+
+        return null;
     }
 
     /**
      * Delete method
      *
      * @param string|null $id Customer Connection IP id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $customerConnectionIp = $this->CustomerConnectionIps->get($id);

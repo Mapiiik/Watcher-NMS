@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+
 /**
  * LandlordPayments Controller
  *
@@ -13,13 +15,13 @@ class LandlordPaymentsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // filter
         $conditions = [];
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $conditions[] = [
                 'LandlordPayments.access_point_id' => $this->access_point_id,
             ];
@@ -30,8 +32,8 @@ class LandlordPaymentsController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
-                    'PaymentPurposes.name ILIKE' => '%' . trim($search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'PaymentPurposes.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -57,10 +59,10 @@ class LandlordPaymentsController extends AppController
      * View method
      *
      * @param string|null $id Landlord Payment id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $landlordPayment = $this->LandlordPayments->get($id, contain: [
             'Creators',
@@ -76,13 +78,13 @@ class LandlordPaymentsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $landlordPayment = $this->LandlordPayments->newEmptyEntity();
 
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $landlordPayment->access_point_id = $this->access_point_id;
         }
 
@@ -103,16 +105,18 @@ class LandlordPaymentsController extends AppController
             ->all();
         $paymentPurposes = $this->LandlordPayments->PaymentPurposes->find('list', order: ['name'])->all();
         $this->set(compact('landlordPayment', 'accessPoints', 'paymentPurposes'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Landlord Payment id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $landlordPayment = $this->LandlordPayments->get($id, contain: ['LandlordPaymentsElectricityDetails']);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -131,16 +135,18 @@ class LandlordPaymentsController extends AppController
             ->all();
         $paymentPurposes = $this->LandlordPayments->PaymentPurposes->find('list', order: ['name'])->all();
         $this->set(compact('landlordPayment', 'accessPoints', 'paymentPurposes'));
+
+        return null;
     }
 
     /**
      * Delete method
      *
      * @param string|null $id Landlord Payment id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $landlordPayment = $this->LandlordPayments->get($id);

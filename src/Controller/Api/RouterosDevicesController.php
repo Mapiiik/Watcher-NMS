@@ -26,9 +26,9 @@ class RouterosDevicesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         $routerosDevices = $this->RouterosDevices->find('all')->all();
 
@@ -39,9 +39,9 @@ class RouterosDevicesController extends AppController
     /**
      * Search method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function search()
+    public function search(): void
     {
         $routerosDevicesQuery = $this->RouterosDevices->find(
             'all',
@@ -83,10 +83,10 @@ class RouterosDevicesController extends AppController
      * View method
      *
      * @param string|null $id RouterOS Device id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $routerosDevice = $this->RouterosDevices->get($id, contain: [
             'AccessPoints',
@@ -103,17 +103,13 @@ class RouterosDevicesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): void
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $routerosDevice = $this->RouterosDevices->newEntity($this->getRequest()->getData());
-        if ($this->RouterosDevices->save($routerosDevice)) {
-            $message = 'Saved';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->RouterosDevices->save($routerosDevice) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,
             'routerosDevice' => $routerosDevice,
@@ -125,19 +121,15 @@ class RouterosDevicesController extends AppController
      * Edit method
      *
      * @param string|null $id RouterOS Device id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): void
     {
         $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $routerosDevice = $this->RouterosDevices->get($id);
         $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
-        if ($this->RouterosDevices->save($routerosDevice)) {
-            $message = 'Saved';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->RouterosDevices->save($routerosDevice) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,
             'routerosDevice' => $routerosDevice,
@@ -149,18 +141,14 @@ class RouterosDevicesController extends AppController
      * Delete method
      *
      * @param string|null $id RouterOS Device id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): void
     {
         $this->getRequest()->allowMethod(['delete']);
         $routerosDevice = $this->RouterosDevices->get($id);
-        if ($this->RouterosDevices->delete($routerosDevice)) {
-            $message = 'Deleted';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->RouterosDevices->delete($routerosDevice) ? 'Deleted' : 'Error';
         $this->set('message', $message);
         $this->viewBuilder()->setOption('serialize', ['message']);
     }

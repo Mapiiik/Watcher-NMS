@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
 use Cake\Log\Log;
 use Exception;
 
@@ -21,9 +22,9 @@ class CustomerConnectionsController extends AppController
      * @param string|null $param Filter for the listing:
      *   - 'active' (default): shows only non-archived records
      *   - 'archived': shows only archived records
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index(?string $param = 'active')
+    public function index(?string $param = 'active'): void
     {
         // normalize param
         $finder = $param === 'archived' ? 'archived' : 'active';
@@ -39,7 +40,7 @@ class CustomerConnectionsController extends AppController
         // search
         $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
-            $search = trim($search);
+            $search = trim((string)$search);
 
             $customerConnectionsQuery->where([
                 'OR' => [
@@ -65,10 +66,10 @@ class CustomerConnectionsController extends AppController
      * View method
      *
      * @param string|null $id Customer Connection id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $customerConnection = $this->CustomerConnections->get($id, contain: [
             'CustomerPoints',
@@ -88,9 +89,9 @@ class CustomerConnectionsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $customerConnection = $this->CustomerConnections->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
@@ -111,16 +112,18 @@ class CustomerConnectionsController extends AppController
             ->all();
 
         $this->set(compact('customerConnection', 'customerPoints', 'accessPoints'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Customer Connection id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $customerConnection = $this->CustomerConnections->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -140,6 +143,8 @@ class CustomerConnectionsController extends AppController
             ->all();
 
         $this->set(compact('customerConnection', 'customerPoints', 'accessPoints'));
+
+        return null;
     }
 
     /**
@@ -149,10 +154,10 @@ class CustomerConnectionsController extends AppController
      * and archived_by user ID. Does not remove the record from the database.
      *
      * @param string|null $id Customer Connection ID
-     * @return \Cake\Http\Response|null|void Redirects to index
+     * @return \Cake\Http\Response|null Redirects to index
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function archive(?string $id = null)
+    public function archive(?string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
 
@@ -182,10 +187,10 @@ class CustomerConnectionsController extends AppController
      * archived timestamp and archived_by user ID.
      *
      * @param string|null $id Customer Connection ID
-     * @return \Cake\Http\Response|null|void Redirects to index
+     * @return \Cake\Http\Response|null Redirects to index
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function restore(?string $id = null)
+    public function restore(?string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
 
@@ -211,10 +216,10 @@ class CustomerConnectionsController extends AppController
      * Delete method
      *
      * @param string|null $id Customer Connection id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $customerConnection = $this->CustomerConnections->get($id);

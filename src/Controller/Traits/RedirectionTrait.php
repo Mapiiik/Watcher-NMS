@@ -24,16 +24,18 @@ trait RedirectionTrait
     public function afterAddRedirect(UriInterface|array|string $url, int $status = 302): ?Response
     {
         // other behavior if not in win-link
-        if (!($this->getRequest()->getQuery('win-link') == 'true')) {
-            # Redirect to access point card if access point ID is known
-            if (isset($this->access_point_id) && $this->getRequest()->getParam('controller') !== 'AccessPoints') {
-                return $this->redirect([
-                    'plugin' => null,
-                    'controller' => 'AccessPoints',
-                    'action' => 'view',
-                    $this->access_point_id,
-                ]);
-            }
+        if ($this->getRequest()->getQuery('win-link') == 'true') {
+            # Redirect to URL from parameter
+            return $this->redirect($url, $status);
+        }
+        # Redirect to access point card if access point ID is known
+        if (isset($this->access_point_id) && $this->getRequest()->getParam('controller') !== 'AccessPoints') {
+            return $this->redirect([
+                'plugin' => null,
+                'controller' => 'AccessPoints',
+                'action' => 'view',
+                $this->access_point_id,
+            ]);
         }
 
         # Redirect to URL from parameter
@@ -80,16 +82,18 @@ trait RedirectionTrait
         }
 
         // other behavior if not in win-link
-        if (!($this->getRequest()->getQuery('win-link') == 'true')) {
-            # Redirect to access point card if access point ID is known
-            if (isset($this->access_point_id) && $this->getRequest()->getParam('controller') !== 'AccessPoints') {
-                return $this->redirect([
-                    'plugin' => null,
-                    'controller' => 'AccessPoints',
-                    'action' => 'view',
-                    $this->access_point_id,
-                ]);
-            }
+        # Redirect to access point card if access point ID is known
+        if (
+            !($this->getRequest()->getQuery('win-link') == 'true')
+            && (isset($this->access_point_id)
+            && $this->getRequest()->getParam('controller') !== 'AccessPoints')
+        ) {
+            return $this->redirect([
+                'plugin' => null,
+                'controller' => 'AccessPoints',
+                'action' => 'view',
+                $this->access_point_id,
+            ]);
         }
 
         # Redirect to URL from parameter

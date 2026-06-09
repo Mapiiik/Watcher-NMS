@@ -149,15 +149,15 @@ class TasksTable extends AppTable
         $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'), ['errorField' => 'access_point_id']);
 
         $rules->add(
-            function ($entity, $_options) {
+            function ($entity, $_options): bool {
                 // load task type
                 $task_type = $this->TaskTypes->get($entity->task_type_id);
                 // check if access point required for this task type
                 if ($task_type->access_point_required) {
                     return !empty($entity->access_point_id);
-                } else {
-                    return true;
                 }
+
+                return true;
             },
             'isRequiredAccessPointFilled',
             [

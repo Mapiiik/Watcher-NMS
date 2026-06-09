@@ -26,9 +26,9 @@ class AccessPointsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         $accessPoints = $this->AccessPoints->find('all')->all();
 
@@ -40,10 +40,10 @@ class AccessPointsController extends AppController
      * View method
      *
      * @param string|null $id Access Point id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $accessPoint = $this->AccessPoints->get($id, contain: [
             'AccessPointContacts',
@@ -68,17 +68,13 @@ class AccessPointsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): void
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $accessPoint = $this->AccessPoints->newEntity($this->getRequest()->getData());
-        if ($this->AccessPoints->save($accessPoint)) {
-            $message = 'Saved';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->AccessPoints->save($accessPoint) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,
             'accessPoint' => $accessPoint,
@@ -90,19 +86,15 @@ class AccessPointsController extends AppController
      * Edit method
      *
      * @param string|null $id Access Point id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): void
     {
         $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $accessPoint = $this->AccessPoints->get($id);
         $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->getRequest()->getData());
-        if ($this->AccessPoints->save($accessPoint)) {
-            $message = 'Saved';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->AccessPoints->save($accessPoint) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,
             'accessPoint' => $accessPoint,
@@ -114,18 +106,14 @@ class AccessPointsController extends AppController
      * Delete method
      *
      * @param string|null $id Access Point id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): void
     {
         $this->getRequest()->allowMethod(['delete']);
         $accessPoint = $this->AccessPoints->get($id);
-        if ($this->AccessPoints->delete($accessPoint)) {
-            $message = 'Deleted';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->AccessPoints->delete($accessPoint) ? 'Deleted' : 'Error';
         $this->set('message', $message);
         $this->viewBuilder()->setOption('serialize', ['message']);
     }

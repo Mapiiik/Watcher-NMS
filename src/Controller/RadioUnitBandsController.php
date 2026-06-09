@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+
 /**
  * RadioUnitBands Controller
  *
@@ -13,9 +15,9 @@ class RadioUnitBandsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // filter
         $conditions = [];
@@ -25,7 +27,7 @@ class RadioUnitBandsController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'RadioUnitBands.name ILIKE' => '%' . trim($search) . '%',
+                    'RadioUnitBands.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -46,10 +48,10 @@ class RadioUnitBandsController extends AppController
      * View method
      *
      * @param string|null $id Radio Unit Band id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $radioUnitBand = $this->RadioUnitBands->get($id, contain: [
             'AntennaTypes' => ['Manufacturers'],
@@ -64,9 +66,9 @@ class RadioUnitBandsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $radioUnitBand = $this->RadioUnitBands->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
@@ -79,16 +81,18 @@ class RadioUnitBandsController extends AppController
             $this->Flash->error(__('The radio unit band could not be saved. Please, try again.'));
         }
         $this->set(compact('radioUnitBand'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Radio Unit Band id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $radioUnitBand = $this->RadioUnitBands->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -101,6 +105,8 @@ class RadioUnitBandsController extends AppController
             $this->Flash->error(__('The radio unit band could not be saved. Please, try again.'));
         }
         $this->set(compact('radioUnitBand'));
+
+        return null;
     }
 
     /**
@@ -110,7 +116,7 @@ class RadioUnitBandsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $radioUnitBand = $this->RadioUnitBands->get($id);

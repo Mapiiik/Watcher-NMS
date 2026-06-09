@@ -66,7 +66,7 @@ trait ArchiveTrait
     {
         $alias = $this->getAlias();
 
-        return $query->where(["$alias.archived IS" => null]);
+        return $query->where([$alias . '.archived IS' => null]);
     }
 
     /**
@@ -81,6 +81,6 @@ trait ArchiveTrait
     {
         $alias = $this->getAlias();
 
-        return $query->where(["$alias.archived IS NOT" => null]);
+        return $query->where([$alias . '.archived IS NOT' => null]);
     }
 }

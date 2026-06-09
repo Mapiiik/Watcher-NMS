@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
+use App\Controller\LandlordPaymentsController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\LandlordPaymentsController Test Case
- *
- * @uses \App\Controller\LandlordPaymentsController
  */
+#[UsesClass(LandlordPaymentsController::class)]
 class LandlordPaymentsControllerTest extends TestCase
 {
     use IntegrationTestTrait;

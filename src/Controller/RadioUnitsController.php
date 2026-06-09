@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+
 /**
  * RadioUnits Controller
  *
@@ -13,13 +15,13 @@ class RadioUnitsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // filter
         $conditions = [];
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $conditions[] = [
                 'RadioUnits.access_point_id' => $this->access_point_id,
             ];
@@ -36,14 +38,14 @@ class RadioUnitsController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'RadioUnits.name ILIKE' => '%' . trim($search) . '%',
-                    'RadioUnits.serial_number ILIKE' => '%' . trim($search) . '%',
-                    'RadioUnits.station_address ILIKE' => '%' . trim($search) . '%',
-                    'RadioUnits.authorization_number ILIKE' => '%' . trim($search) . '%',
-                    'RadioUnitTypes.name ILIKE' => '%' . trim($search) . '%',
-                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
-                    'RadioLinks.name ILIKE' => '%' . trim($search) . '%',
-                    'AntennaTypes.name ILIKE' => '%' . trim($search) . '%',
+                    'RadioUnits.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioUnits.serial_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioUnits.station_address ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioUnits.authorization_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioUnitTypes.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioLinks.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'AntennaTypes.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -74,10 +76,10 @@ class RadioUnitsController extends AppController
      * View method
      *
      * @param string|null $id Radio Unit id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $radioUnit = $this->RadioUnits->get($id, contain: [
             'RadioUnitTypes',
@@ -94,13 +96,13 @@ class RadioUnitsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $radioUnit = $this->RadioUnits->newEmptyEntity();
 
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $radioUnit->access_point_id = $this->access_point_id;
         }
 
@@ -136,16 +138,18 @@ class RadioUnitsController extends AppController
         }
 
         $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Radio Unit id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $radioUnit = $this->RadioUnits->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -178,6 +182,8 @@ class RadioUnitsController extends AppController
         }
 
         $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
+
+        return null;
     }
 
     /**
@@ -187,7 +193,7 @@ class RadioUnitsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $radioUnit = $this->RadioUnits->get($id);
@@ -204,9 +210,9 @@ class RadioUnitsController extends AppController
     /**
      * Export radio units
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function export()
+    public function export(): void
     {
         $radioUnits = $this->RadioUnits->find(
             'all',

@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Provisioning\RouterOS\CredentialsGenerator;
 use App\Snmp\Provider\RouterosSnmpProviderAgentPull;
 use App\Snmp\Service\RouterosSnmpUpdateService;
+use Cake\Http\Response;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use RuntimeException;
@@ -20,13 +21,13 @@ class RouterosDevicesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // filter
         $conditions = [];
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $conditions[] = [
                 'RouterosDevices.access_point_id' => $this->access_point_id,
             ];
@@ -47,14 +48,14 @@ class RouterosDevicesController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'RouterosDevices.name ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.ip_address::character varying ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.system_description ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.board_name ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.serial_number ILIKE' => '%' . trim($search) . '%',
-                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
-                    'DeviceTypes.name ILIKE' => '%' . trim($search) . '%',
-                    'CustomerConnections.name ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.ip_address::character varying ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.system_description ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.board_name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.serial_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'DeviceTypes.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -80,10 +81,10 @@ class RouterosDevicesController extends AppController
      * View method
      *
      * @param string|null $id RouterOS Device id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $routerosDevice = $this->RouterosDevices->get($id, contain: [
             'AccessPoints',
@@ -163,13 +164,13 @@ class RouterosDevicesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $routerosDevice = $this->RouterosDevices->newEmptyEntity();
 
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $routerosDevice->access_point_id = $this->access_point_id;
         }
 
@@ -193,16 +194,18 @@ class RouterosDevicesController extends AppController
             ->all();
 
         $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes', 'customerConnections'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id RouterOS Device id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $routerosDevice = $this->RouterosDevices->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -223,16 +226,18 @@ class RouterosDevicesController extends AppController
             ->all();
 
         $this->set(compact('routerosDevice', 'accessPoints', 'deviceTypes', 'customerConnections'));
+
+        return null;
     }
 
     /**
      * Delete method
      *
      * @param string|null $id RouterOS Device id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDevice = $this->RouterosDevices->get($id);
@@ -250,10 +255,10 @@ class RouterosDevicesController extends AppController
      * Update RouterOS device data now
      *
      * @param string|null $id RouterOS Device id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function updateDataNow(?string $id = null)
+    public function updateDataNow(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post']);
 
@@ -307,13 +312,13 @@ class RouterosDevicesController extends AppController
     /**
      * Export RouterOS devices
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function export()
+    public function export(): void
     {
         // filter
         $conditions = [];
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $conditions[] = [
                 'RouterosDevices.access_point_id' => $this->access_point_id,
             ];
@@ -334,14 +339,14 @@ class RouterosDevicesController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'RouterosDevices.name ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.ip_address::character varying ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.system_description ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.board_name ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.serial_number ILIKE' => '%' . trim($search) . '%',
-                    'AccessPoints.name ILIKE' => '%' . trim($search) . '%',
-                    'DeviceTypes.name ILIKE' => '%' . trim($search) . '%',
-                    'CustomerConnections.name ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDevices.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.ip_address::character varying ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.system_description ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.board_name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.serial_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'DeviceTypes.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }

@@ -66,7 +66,7 @@ class ProvisionController extends AppController
 
         foreach (['agent_id', 'device_type', 'device_ip', 'snmp'] as $field) {
             if (empty($data[$field])) {
-                throw new BadRequestException("Missing field: {$field}");
+                throw new BadRequestException('Missing field: ' . $field);
             }
         }
 

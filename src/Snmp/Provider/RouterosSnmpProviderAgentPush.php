@@ -6,13 +6,13 @@ namespace App\Snmp\Provider;
 use App\Snmp\Dto\RouterosSnmpData;
 use RuntimeException;
 
-final class RouterosSnmpProviderAgentPush implements RouterosSnmpProviderInterface
+final readonly class RouterosSnmpProviderAgentPush implements RouterosSnmpProviderInterface
 {
     /**
      * @param array<string, mixed> $payload
      */
     public function __construct(
-        private readonly array $payload,
+        private array $payload,
     ) {
     }
 
@@ -26,7 +26,7 @@ final class RouterosSnmpProviderAgentPush implements RouterosSnmpProviderInterfa
      */
     public function read(string $host, string $community): RouterosSnmpData
     {
-        if (empty($this->payload)) {
+        if ($this->payload === []) {
             throw new RuntimeException(__('Empty SNMP payload provided by agent'));
         }
 

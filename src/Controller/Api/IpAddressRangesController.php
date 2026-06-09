@@ -26,9 +26,9 @@ class IpAddressRangesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         $ipAddressRanges = $this->IpAddressRanges->find(
             'all',
@@ -46,9 +46,9 @@ class IpAddressRangesController extends AppController
      * Search method
      *
      * @property \App\Model\Table\IpAddressRangesTable $IpAddressRanges
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function search()
+    public function search(): void
     {
         // search
         $conditions = [];
@@ -125,10 +125,10 @@ class IpAddressRangesController extends AppController
      * View method
      *
      * @param string|null $id IP Address Range id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $ipAddressRange = $this->IpAddressRanges->get($id, contain: ['AccessPoints', 'ParentIpAddressRanges']);
 
@@ -139,17 +139,13 @@ class IpAddressRangesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): void
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $ipAddressRange = $this->IpAddressRanges->newEntity($this->getRequest()->getData());
-        if ($this->IpAddressRanges->save($ipAddressRange)) {
-            $message = 'Saved';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->IpAddressRanges->save($ipAddressRange) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,
             'accessPoint' => $ipAddressRange,
@@ -161,19 +157,15 @@ class IpAddressRangesController extends AppController
      * Edit method
      *
      * @param string|null $id IP Address Range id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): void
     {
         $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $ipAddressRange = $this->IpAddressRanges->get($id);
         $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->getRequest()->getData());
-        if ($this->IpAddressRanges->save($ipAddressRange)) {
-            $message = 'Saved';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->IpAddressRanges->save($ipAddressRange) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,
             'accessPoint' => $ipAddressRange,
@@ -185,18 +177,14 @@ class IpAddressRangesController extends AppController
      * Delete method
      *
      * @param string|null $id IP Address Range id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): void
     {
         $this->getRequest()->allowMethod(['delete']);
         $ipAddressRange = $this->IpAddressRanges->get($id);
-        if ($this->IpAddressRanges->delete($ipAddressRange)) {
-            $message = 'Deleted';
-        } else {
-            $message = 'Error';
-        }
+        $message = $this->IpAddressRanges->delete($ipAddressRange) ? 'Deleted' : 'Error';
         $this->set('message', $message);
         $this->viewBuilder()->setOption('serialize', ['message']);
     }

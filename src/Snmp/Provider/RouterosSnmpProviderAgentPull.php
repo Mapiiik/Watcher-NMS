@@ -25,11 +25,12 @@ final class RouterosSnmpProviderAgentPull implements RouterosSnmpProviderInterfa
         } catch (Throwable $e) {
             throw new RuntimeException(
                 __('Watcher Agent SNMP read failed for {0}: {1}', $host, $e->getMessage()),
+                $e->getCode(),
                 previous: $e,
             );
         }
 
-        if (empty($data)) {
+        if ($data === []) {
             throw new RuntimeException(__('Watcher Agent returned empty SNMP data'));
         }
 

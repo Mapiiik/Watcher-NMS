@@ -7,6 +7,7 @@ use App\Form\MapOptionsForm;
 use App\Maps\Marker;
 use App\Maps\Polyline;
 use App\Maps\Position;
+use Cake\Http\Response;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\View\Helper\HtmlHelper;
@@ -29,9 +30,9 @@ class AccessPointsController extends AppController
      * @param string|null $param Filter for the listing:
      *   - 'active' (default): shows only non-archived records
      *   - 'archived': shows only archived records
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index(?string $param = 'active')
+    public function index(?string $param = 'active'): void
     {
         // normalize param
         $finder = $param === 'archived' ? 'archived' : 'active';
@@ -47,13 +48,13 @@ class AccessPointsController extends AppController
         // search
         $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
-            $search = trim($search);
+            $search = trim((string)$search);
 
             $accessPointsQuery
                 ->where([
                     'OR' => [
-                        'AccessPoints.name ILIKE' => "%$search%",
-                        'AccessPoints.device_name ILIKE' => "%$search%",
+                        'AccessPoints.name ILIKE' => sprintf('%%%s%%', $search),
+                        'AccessPoints.device_name ILIKE' => sprintf('%%%s%%', $search),
                         'to_tsvector('
                             . "COALESCE(AccessPoints.name, '') || ' ' || "
                             . "COALESCE(AccessPoints.device_name, '')"
@@ -77,10 +78,10 @@ class AccessPointsController extends AppController
      * View method
      *
      * @param string|null $id Access Point id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $accessPoint = $this->AccessPoints->get($id, contain: [
             'AccessPointTypes',
@@ -171,9 +172,11 @@ class AccessPointsController extends AppController
             if ($new->reading_date == $old->reading_date) {
                 continue;
             }
-
             // Check that reading dates are set
-            if (!isset($new->reading_date) || !isset($old->reading_date)) {
+            if (!isset($new->reading_date)) {
+                continue;
+            }
+            if (!isset($old->reading_date)) {
                 continue;
             }
 
@@ -193,9 +196,9 @@ class AccessPointsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $accessPoint = $this->AccessPoints->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
@@ -210,16 +213,18 @@ class AccessPointsController extends AppController
         $accessPointTypes = $this->AccessPoints->AccessPointTypes->find('list', order: ['name']);
         $parentAccessPoints = $this->AccessPoints->ParentAccessPoints->find('list', order: ['name']);
         $this->set(compact('accessPoint', 'accessPointTypes', 'parentAccessPoints'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Access Point id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $accessPoint = $this->AccessPoints->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -236,6 +241,8 @@ class AccessPointsController extends AppController
             ->find('list', order: ['name'])
             ->where(['ParentAccessPoints.id !=' => $id]);
         $this->set(compact('accessPoint', 'accessPointTypes', 'parentAccessPoints'));
+
+        return null;
     }
 
     /**
@@ -245,10 +252,10 @@ class AccessPointsController extends AppController
      * and archived_by user ID. Does not remove the record from the database.
      *
      * @param string|null $id Access Point ID
-     * @return \Cake\Http\Response|null|void Redirects to index
+     * @return \Cake\Http\Response|null Redirects to index
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function archive(?string $id = null)
+    public function archive(?string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
 
@@ -278,10 +285,10 @@ class AccessPointsController extends AppController
      * archived timestamp and archived_by user ID.
      *
      * @param string|null $id Access Point ID
-     * @return \Cake\Http\Response|null|void Redirects to index
+     * @return \Cake\Http\Response|null Redirects to index
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function restore(?string $id = null)
+    public function restore(?string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
 
@@ -310,7 +317,7 @@ class AccessPointsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $accessPoint = $this->AccessPoints->get($id);
@@ -327,9 +334,9 @@ class AccessPointsController extends AppController
     /**
      * Map method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function map()
+    public function map(): void
     {
         $mapOptions = new MapOptionsForm();
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -464,7 +471,7 @@ class AccessPointsController extends AppController
         $accessPointsFilter = $this->AccessPoints->find('active')->find('list', order: ['name']);
         $routerosDevicesFilter = $this->AccessPoints->RouterosDevices->find('list', order: ['name']);
 
-        if ($mapOptions->getData('access_point_id') <> '') {
+        if ($mapOptions->getData('access_point_id') != '') {
             $accessPointsQuery->where([
                 'AccessPoints.id' => $mapOptions->getData('access_point_id'),
             ]);
@@ -473,7 +480,7 @@ class AccessPointsController extends AppController
             ]);
 
             if (
-                ($mapOptions->getData('routeros_device_id') <> '')
+                ($mapOptions->getData('routeros_device_id') != '')
                 && $this->AccessPoints->RouterosDevices->exists([
                     'RouterosDevices.id' => $mapOptions->getData('routeros_device_id'),
                     'access_point_id' => $mapOptions->getData('access_point_id'),
@@ -522,237 +529,112 @@ class AccessPointsController extends AppController
 
                     $content .= '<ul>';
 
-                    if (!empty($routerosDevice->routeros_ip_links)) {
-                        foreach ($routerosDevice->routeros_ip_links as $routerosIpLink) {
-                            // add informations about IP link to map marker for access point
-                            $content .=
-                                '<li>'
-                                . ' (' . $routerosIpLink->ip_address . ') - '
-                                . (
-                                    isset(
-                                        $routerosIpLink
-                                            ->neighbouring_ip_address
-                                            ->routeros_device,
-                                    ) ? $html->link(
-                                        $routerosIpLink
-                                            ->neighbouring_ip_address
-                                            ->routeros_device
-                                            ->name
-                                            ?? '(' . $routerosIpLink
-                                                ->neighbouring_ip_address
-                                                ->routeros_device
-                                                ->id . ')',
-                                        [
-                                            'controller' => 'RouterosDevices',
-                                            'action' => 'view',
-                                            $routerosIpLink
-                                                ->neighbouring_ip_address
-                                                ->routeros_device
-                                                ->id,
-                                        ],
-                                    ) : ''
-                                )
-                                . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ')' . '</li>';
-
-                            // add map polyline and marker for IP link (to access point)
-                            if (
+                    foreach ($routerosDevice->routeros_ip_links as $routerosIpLink) {
+                        // add informations about IP link to map marker for access point
+                        $content .=
+                            '<li>'
+                            . ' (' . $routerosIpLink->ip_address . ') - '
+                            . (
                                 isset(
                                     $routerosIpLink
                                         ->neighbouring_ip_address
-                                        ->routeros_device
-                                        ->access_point,
-                                )
-                                && (
+                                        ->routeros_device,
+                                ) ? $html->link(
                                     $routerosIpLink
                                         ->neighbouring_ip_address
                                         ->routeros_device
-                                        ->access_point
-                                        ->id
-                                    <>
-                                    $accessPoint->id
-                                )
-                            ) {
-                                $neighbouringAccessPoint = $routerosIpLink
+                                        ->name
+                                        ?? '(' . $routerosIpLink
+                                            ->neighbouring_ip_address
+                                            ->routeros_device
+                                            ->id . ')',
+                                    [
+                                        'controller' => 'RouterosDevices',
+                                        'action' => 'view',
+                                        $routerosIpLink
+                                            ->neighbouring_ip_address
+                                            ->routeros_device
+                                            ->id,
+                                    ],
+                                ) : ''
+                            )
+                            . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ')' . '</li>';
+
+                        // add map polyline and marker for IP link (to access point)
+                        if (
+                            isset(
+                                $routerosIpLink
                                     ->neighbouring_ip_address
                                     ->routeros_device
-                                    ->access_point;
+                                    ->access_point,
+                            )
+                            && (
+                                $routerosIpLink
+                                    ->neighbouring_ip_address
+                                    ->routeros_device
+                                    ->access_point
+                                    ->id
+                                !=
+                                $accessPoint->id
+                            )
+                        ) {
+                            $neighbouringAccessPoint = $routerosIpLink
+                                ->neighbouring_ip_address
+                                ->routeros_device
+                                ->access_point;
 
-                                if (
-                                    is_numeric($neighbouringAccessPoint->gps_y)
-                                    && is_numeric($neighbouringAccessPoint->gps_x)
-                                ) {
-                                    // add map polyline for IP link (to access point)
-                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] =
-                                        new Polyline(
-                                            from: new Position(
-                                                lat: $accessPoint->gps_y,
-                                                lng: $accessPoint->gps_x,
-                                            ),
-                                            to: new Position(
-                                                lat: $neighbouringAccessPoint->gps_y,
-                                                lng: $neighbouringAccessPoint->gps_x,
-                                            ),
-                                            options: [
-                                                'color' => '#00dd00',
-                                                'opacity' => 0.7,
-                                                'weight' => 2,
-                                            ],
-                                        );
-
-                                    // add map marker for access point if not exists
-                                    if (!isset($mapMarkers[$neighbouringAccessPoint->id])) {
-                                        $mapMarkers[$neighbouringAccessPoint->id] = new Marker(
-                                            position: new Position(
-                                                lat: $neighbouringAccessPoint->gps_y,
-                                                lng: $neighbouringAccessPoint->gps_x,
-                                            ),
-                                            title: $neighbouringAccessPoint->name
-                                                ?? '(' . $neighbouringAccessPoint->id . ')',
-                                            color: $neighbouringAccessPoint->access_point_type->color ?? '#d02f37',
-                                            locked: false,
-                                            content: '<b>'
-                                                . $html->link(
-                                                    $neighbouringAccessPoint->name
-                                                        ?? '(' . $neighbouringAccessPoint->id . ')',
-                                                    [
-                                                        'controller' => 'AccessPoints',
-                                                        'action' => 'view',
-                                                        $neighbouringAccessPoint->id,
-                                                    ],
-                                                )
-                                                . '</b>'
-                                                . '<br>',
-                                        );
-                                    }
-
-                                    // add informations to map marker about this IP link if not locked (to access point)
-                                    if (!$mapMarkers[$neighbouringAccessPoint->id]->locked) {
-                                        $mapMarkers[$neighbouringAccessPoint->id]->content .=
-                                            '<br>'
-                                            . $html->link(
-                                                $routerosIpLink
-                                                    ->neighbouring_ip_address
-                                                    ->routeros_device
-                                                    ->name
-                                                    ?? '(' . $routerosIpLink
-                                                        ->neighbouring_ip_address
-                                                        ->routeros_device
-                                                        ->id . ')',
-                                                [
-                                                    'controller' => 'RouterosDevices',
-                                                    'action' => 'view',
-                                                    $routerosIpLink
-                                                        ->neighbouring_ip_address
-                                                        ->routeros_device
-                                                        ->id,
-                                                ],
-                                            )
-                                            . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
-                                            . $html->link(
-                                                $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
-                                                [
-                                                    'controller' => 'RouterosDevices',
-                                                    'action' => 'view',
-                                                    $routerosDevice->id,
-                                                ],
-                                            )
-                                            . ' (' . $routerosIpLink->ip_address . ')'
-                                            . '<br>';
-                                    }
-                                }
-                            }
-
-                            // add map polyline and marker for IP link (to customer point)
                             if (
-                                $mapOptions->getData('linked_customers') == 1
-                                && isset(
-                                    $routerosIpLink
-                                        ->neighbouring_ip_address
-                                        ->routeros_device
-                                        ->customer_connection
-                                        ->customer_point,
-                                )
+                                is_numeric($neighbouringAccessPoint->gps_y)
+                                && is_numeric($neighbouringAccessPoint->gps_x)
                             ) {
-                                $neighbouringCustomerPoint = $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->routeros_device
-                                    ->customer_connection
-                                    ->customer_point;
+                                // add map polyline for IP link (to access point)
+                                $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] =
+                                    new Polyline(
+                                        from: new Position(
+                                            lat: $accessPoint->gps_y,
+                                            lng: $accessPoint->gps_x,
+                                        ),
+                                        to: new Position(
+                                            lat: $neighbouringAccessPoint->gps_y,
+                                            lng: $neighbouringAccessPoint->gps_x,
+                                        ),
+                                        options: [
+                                            'color' => '#00dd00',
+                                            'opacity' => 0.7,
+                                            'weight' => 2,
+                                        ],
+                                    );
 
-                                if (
-                                    is_numeric($neighbouringCustomerPoint->gps_y)
-                                    && is_numeric($neighbouringCustomerPoint->gps_x)
-                                ) {
-                                    // add map polyline for IP link (to customer point)
-                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] =
-                                        new Polyline(
-                                            from: new Position(
-                                                lat: $accessPoint->gps_y,
-                                                lng: $accessPoint->gps_x,
-                                            ),
-                                            to: new Position(
-                                                lat: $neighbouringCustomerPoint->gps_y,
-                                                lng: $neighbouringCustomerPoint->gps_x,
-                                            ),
-                                            options: [
-                                                'color' => '#00dd00',
-                                                'opacity' => 0.7,
-                                                'weight' => 1,
-                                            ],
-                                        );
+                                // add map marker for access point if not exists
+                                if (!isset($mapMarkers[$neighbouringAccessPoint->id])) {
+                                    $mapMarkers[$neighbouringAccessPoint->id] = new Marker(
+                                        position: new Position(
+                                            lat: $neighbouringAccessPoint->gps_y,
+                                            lng: $neighbouringAccessPoint->gps_x,
+                                        ),
+                                        title: $neighbouringAccessPoint->name
+                                            ?? '(' . $neighbouringAccessPoint->id . ')',
+                                        color: $neighbouringAccessPoint->access_point_type->color ?? '#d02f37',
+                                        content: '<b>'
+                                            . $html->link(
+                                                $neighbouringAccessPoint->name
+                                                    ?? '(' . $neighbouringAccessPoint->id . ')',
+                                                [
+                                                    'controller' => 'AccessPoints',
+                                                    'action' => 'view',
+                                                    $neighbouringAccessPoint->id,
+                                                ],
+                                            )
+                                            . '</b>'
+                                            . '<br>',
+                                        locked: false,
+                                    );
+                                }
 
-                                    // add map marker for customer point if not exists
-                                    if (!isset($mapMarkers[$neighbouringCustomerPoint->id])) {
-                                        $mapMarkers[$neighbouringCustomerPoint->id] = new Marker(
-                                            position: new Position(
-                                                lat: $neighbouringCustomerPoint->gps_y,
-                                                lng: $neighbouringCustomerPoint->gps_x,
-                                            ),
-                                            title: $neighbouringCustomerPoint->name
-                                                ?? '(' . $neighbouringCustomerPoint->id . ')',
-                                            color: '#65ba4a',
-                                            locked: false,
-                                            content: '<b>'
-                                                . $html->link(
-                                                    $neighbouringCustomerPoint->name
-                                                        ?? '(' . $neighbouringCustomerPoint->id . ')',
-                                                    [
-                                                        'controller' => 'CustomerPoints',
-                                                        'action' => 'view',
-                                                        $neighbouringCustomerPoint->id,
-                                                    ],
-                                                )
-                                                . '</b>'
-                                                . '<br>',
-                                        );
-                                    }
-
-                                    // add informations to map marker about this IP link (to customer point)
-                                    $mapMarkers[$neighbouringCustomerPoint->id]->content .=
+                                // add informations to map marker about this IP link if not locked (to access point)
+                                if (!$mapMarkers[$neighbouringAccessPoint->id]->locked) {
+                                    $mapMarkers[$neighbouringAccessPoint->id]->content .=
                                         '<br>'
-                                        . '<b>'
-                                        . $html->link(
-                                            $routerosIpLink
-                                                ->neighbouring_ip_address
-                                                ->routeros_device
-                                                ->customer_connection
-                                                ->name
-                                                ?? '(' . $routerosIpLink
-                                                    ->neighbouring_ip_address
-                                                    ->routeros_device
-                                                    ->customer_connection->id . ')',
-                                            [
-                                                'controller' => 'CustomerConnections',
-                                                'action' => 'view',
-                                                $routerosIpLink
-                                                    ->neighbouring_ip_address
-                                                    ->routeros_device
-                                                    ->customer_connection
-                                                    ->id,
-                                            ],
-                                        )
-                                        . '</b>'
-                                        . '<br>'
                                         . $html->link(
                                             $routerosIpLink
                                                 ->neighbouring_ip_address
@@ -785,242 +667,238 @@ class AccessPointsController extends AppController
                                 }
                             }
                         }
-                    }
 
-                    if (!empty($routerosDevice->routeros_wireless_links)) {
-                        foreach ($routerosDevice->routeros_wireless_links as $routerosWirelessLink) {
-                            // add informations about wireless link to map marker for access point
-                            $content .=
-                                '<li>'
-                                . ' (' . $routerosWirelessLink->name . ') - '
-                                . (
-                                    isset(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
-                                            ->routeros_device,
-                                    ) ? $html->link(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
+                        // add map polyline and marker for IP link (to customer point)
+                        if (
+                            $mapOptions->getData('linked_customers') == 1
+                            && isset(
+                                $routerosIpLink
+                                    ->neighbouring_ip_address
+                                    ->routeros_device
+                                    ->customer_connection
+                                    ->customer_point,
+                            )
+                        ) {
+                            $neighbouringCustomerPoint = $routerosIpLink
+                                ->neighbouring_ip_address
+                                ->routeros_device
+                                ->customer_connection
+                                ->customer_point;
+
+                            if (
+                                is_numeric($neighbouringCustomerPoint->gps_y)
+                                && is_numeric($neighbouringCustomerPoint->gps_x)
+                            ) {
+                                // add map polyline for IP link (to customer point)
+                                $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] =
+                                    new Polyline(
+                                        from: new Position(
+                                            lat: $accessPoint->gps_y,
+                                            lng: $accessPoint->gps_x,
+                                        ),
+                                        to: new Position(
+                                            lat: $neighbouringCustomerPoint->gps_y,
+                                            lng: $neighbouringCustomerPoint->gps_x,
+                                        ),
+                                        options: [
+                                            'color' => '#00dd00',
+                                            'opacity' => 0.7,
+                                            'weight' => 1,
+                                        ],
+                                    );
+
+                                // add map marker for customer point if not exists
+                                if (!isset($mapMarkers[$neighbouringCustomerPoint->id])) {
+                                    $mapMarkers[$neighbouringCustomerPoint->id] = new Marker(
+                                        position: new Position(
+                                            lat: $neighbouringCustomerPoint->gps_y,
+                                            lng: $neighbouringCustomerPoint->gps_x,
+                                        ),
+                                        title: $neighbouringCustomerPoint->name
+                                            ?? '(' . $neighbouringCustomerPoint->id . ')',
+                                        color: '#65ba4a',
+                                        content: '<b>'
+                                            . $html->link(
+                                                $neighbouringCustomerPoint->name
+                                                    ?? '(' . $neighbouringCustomerPoint->id . ')',
+                                                [
+                                                    'controller' => 'CustomerPoints',
+                                                    'action' => 'view',
+                                                    $neighbouringCustomerPoint->id,
+                                                ],
+                                            )
+                                            . '</b>'
+                                            . '<br>',
+                                        locked: false,
+                                    );
+                                }
+
+                                // add informations to map marker about this IP link (to customer point)
+                                $mapMarkers[$neighbouringCustomerPoint->id]->content .=
+                                    '<br>'
+                                    . '<b>'
+                                    . $html->link(
+                                        $routerosIpLink
+                                            ->neighbouring_ip_address
+                                            ->routeros_device
+                                            ->customer_connection
+                                            ->name
+                                            ?? '(' . $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->customer_connection->id . ')',
+                                        [
+                                            'controller' => 'CustomerConnections',
+                                            'action' => 'view',
+                                            $routerosIpLink
+                                                ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id,
+                                        ],
+                                    )
+                                    . '</b>'
+                                    . '<br>'
+                                    . $html->link(
+                                        $routerosIpLink
+                                            ->neighbouring_ip_address
                                             ->routeros_device
                                             ->name
-                                            ?? '(' . $routerosWirelessLink
-                                                ->neighbouring_interface
+                                            ?? '(' . $routerosIpLink
+                                                ->neighbouring_ip_address
                                                 ->routeros_device
                                                 ->id . ')',
                                         [
                                             'controller' => 'RouterosDevices',
                                             'action' => 'view',
-                                            $routerosWirelessLink
-                                                ->neighbouring_interface
+                                            $routerosIpLink
+                                                ->neighbouring_ip_address
                                                 ->routeros_device
                                                 ->id,
                                         ],
-                                    ) : ''
-                                )
-                                . ' (' . $routerosWirelessLink->neighbouring_interface->name . ')'
-                                . '</li>';
+                                    )
+                                    . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
+                                    . $html->link(
+                                        $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
+                                        [
+                                            'controller' => 'RouterosDevices',
+                                            'action' => 'view',
+                                            $routerosDevice->id,
+                                        ],
+                                    )
+                                    . ' (' . $routerosIpLink->ip_address . ')'
+                                    . '<br>';
+                            }
+                        }
+                    }
 
-                            // add map polyline and marker for wireless link (to access point)
-                            if (
+                    foreach ($routerosDevice->routeros_wireless_links as $routerosWirelessLink) {
+                        // add informations about wireless link to map marker for access point
+                        $content .=
+                            '<li>'
+                            . ' (' . $routerosWirelessLink->name . ') - '
+                            . (
                                 isset(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
-                                        ->routeros_device
-                                        ->access_point,
-                                )
-                                && (
+                                        ->routeros_device,
+                                ) ? $html->link(
                                     $routerosWirelessLink
                                         ->neighbouring_interface
                                         ->routeros_device
-                                        ->access_point
-                                        ->id
-                                    <>
-                                    $accessPoint->id
-                                )
-                            ) {
-                                $neighbouringAccessPoint = $routerosWirelessLink
+                                        ->name
+                                        ?? '(' . $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->id . ')',
+                                    [
+                                        'controller' => 'RouterosDevices',
+                                        'action' => 'view',
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->id,
+                                    ],
+                                ) : ''
+                            )
+                            . ' (' . $routerosWirelessLink->neighbouring_interface->name . ')'
+                            . '</li>';
+
+                        // add map polyline and marker for wireless link (to access point)
+                        if (
+                            isset(
+                                $routerosWirelessLink
                                     ->neighbouring_interface
                                     ->routeros_device
-                                    ->access_point;
+                                    ->access_point,
+                            )
+                            && (
+                                $routerosWirelessLink
+                                    ->neighbouring_interface
+                                    ->routeros_device
+                                    ->access_point
+                                    ->id
+                                !=
+                                $accessPoint->id
+                            )
+                        ) {
+                            $neighbouringAccessPoint = $routerosWirelessLink
+                                ->neighbouring_interface
+                                ->routeros_device
+                                ->access_point;
 
-                                if (
-                                    is_numeric($neighbouringAccessPoint->gps_y)
-                                    && is_numeric($neighbouringAccessPoint->gps_x)
-                                ) {
-                                    // add map polyline for wireless link (to access point)
-                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] =
-                                        new Polyline(
-                                            from: new Position(
-                                                lat: $accessPoint->gps_y,
-                                                lng: $accessPoint->gps_x,
-                                            ),
-                                            to: new Position(
-                                                lat: $neighbouringAccessPoint->gps_y,
-                                                lng: $neighbouringAccessPoint->gps_x,
-                                            ),
-                                            options: [
-                                                'color' => '#ff0000',
-                                                'opacity' => 0.7,
-                                                'weight' => 2,
-                                            ],
-                                        );
-
-                                    // add map marker for access point if not exists
-                                    if (!isset($mapMarkers[$neighbouringAccessPoint->id])) {
-                                        $mapMarkers[$neighbouringAccessPoint->id] = new Marker(
-                                            position: new Position(
-                                                lat: $neighbouringAccessPoint->gps_y,
-                                                lng: $neighbouringAccessPoint->gps_x,
-                                            ),
-                                            title: $neighbouringAccessPoint->name
-                                                ?? '(' . $neighbouringAccessPoint->id . ')',
-                                            color: $neighbouringAccessPoint->access_point_type->color ?? '#d02f37',
-                                            locked: false,
-                                            content: '<b>'
-                                                . $html->link(
-                                                    $neighbouringAccessPoint->name
-                                                        ?? '(' . $neighbouringAccessPoint->id . ')',
-                                                    [
-                                                        'controller' => 'AccessPoints',
-                                                        'action' => 'view',
-                                                        $neighbouringAccessPoint->id,
-                                                    ],
-                                                )
-                                                . '</b>'
-                                                . '<br>',
-                                        );
-                                    }
-
-                                    // add informations to map marker about this wireless link if not locked (to access point)
-                                    if (!$mapMarkers[$neighbouringAccessPoint->id]->locked) {
-                                        $mapMarkers[$neighbouringAccessPoint->id]->content .=
-                                            '<br>'
-                                            . $html->link(
-                                                $routerosWirelessLink
-                                                    ->neighbouring_interface
-                                                    ->routeros_device
-                                                    ->name
-                                                    ?? '(' . $routerosWirelessLink
-                                                        ->neighbouring_interface
-                                                        ->routeros_device
-                                                        ->id . ')',
-                                                [
-                                                    'controller' => 'RouterosDevices',
-                                                    'action' => 'view',
-                                                    $routerosWirelessLink
-                                                        ->neighbouring_interface
-                                                        ->routeros_device
-                                                        ->id,
-                                                ],
-                                            )
-                                            . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
-                                            . $html->link(
-                                                $routerosDevice->name
-                                                    ?? '(' . $routerosDevice->id . ')',
-                                                [
-                                                    'controller' => 'RouterosDevices',
-                                                    'action' => 'view',
-                                                    $routerosDevice->id,
-                                                ],
-                                            )
-                                            . ' (' . $routerosWirelessLink->name . ')'
-                                            . '<br>';
-                                    }
-                                }
-                            }
-
-                            // add map polyline and marker for wireless link (to customer point)
                             if (
-                                $mapOptions->getData('linked_customers') == 1
-                                && isset(
-                                    $routerosWirelessLink
-                                        ->neighbouring_interface
-                                        ->routeros_device
-                                        ->customer_connection
-                                        ->customer_point,
-                                )
+                                is_numeric($neighbouringAccessPoint->gps_y)
+                                && is_numeric($neighbouringAccessPoint->gps_x)
                             ) {
-                                $neighbouringCustomerPoint = $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->routeros_device
-                                    ->customer_connection
-                                    ->customer_point;
+                                // add map polyline for wireless link (to access point)
+                                $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] =
+                                    new Polyline(
+                                        from: new Position(
+                                            lat: $accessPoint->gps_y,
+                                            lng: $accessPoint->gps_x,
+                                        ),
+                                        to: new Position(
+                                            lat: $neighbouringAccessPoint->gps_y,
+                                            lng: $neighbouringAccessPoint->gps_x,
+                                        ),
+                                        options: [
+                                            'color' => '#ff0000',
+                                            'opacity' => 0.7,
+                                            'weight' => 2,
+                                        ],
+                                    );
 
-                                if (
-                                    is_numeric($neighbouringCustomerPoint->gps_y)
-                                    && is_numeric($neighbouringCustomerPoint->gps_x)
-                                ) {
-                                    // add map polyline for wireless link (to customer point)
-                                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] =
-                                        new Polyline(
-                                            from: new Position(
-                                                lat: $accessPoint->gps_y,
-                                                lng: $accessPoint->gps_x,
-                                            ),
-                                            to: new Position(
-                                                lat: $neighbouringCustomerPoint->gps_y,
-                                                lng: $neighbouringCustomerPoint->gps_x,
-                                            ),
-                                            options: [
-                                                'color' => '#ff0000',
-                                                'opacity' => 0.7,
-                                                'weight' => 1,
-                                            ],
-                                        );
+                                // add map marker for access point if not exists
+                                if (!isset($mapMarkers[$neighbouringAccessPoint->id])) {
+                                    $mapMarkers[$neighbouringAccessPoint->id] = new Marker(
+                                        position: new Position(
+                                            lat: $neighbouringAccessPoint->gps_y,
+                                            lng: $neighbouringAccessPoint->gps_x,
+                                        ),
+                                        title: $neighbouringAccessPoint->name
+                                            ?? '(' . $neighbouringAccessPoint->id . ')',
+                                        color: $neighbouringAccessPoint->access_point_type->color ?? '#d02f37',
+                                        content: '<b>'
+                                            . $html->link(
+                                                $neighbouringAccessPoint->name
+                                                    ?? '(' . $neighbouringAccessPoint->id . ')',
+                                                [
+                                                    'controller' => 'AccessPoints',
+                                                    'action' => 'view',
+                                                    $neighbouringAccessPoint->id,
+                                                ],
+                                            )
+                                            . '</b>'
+                                            . '<br>',
+                                        locked: false,
+                                    );
+                                }
 
-                                    // add map marker for customer point if not exists
-                                    if (!isset($mapMarkers[$neighbouringCustomerPoint->id])) {
-                                        $mapMarkers[$neighbouringCustomerPoint->id] = new Marker(
-                                            position: new Position(
-                                                lat: $neighbouringCustomerPoint->gps_y,
-                                                lng: $neighbouringCustomerPoint->gps_x,
-                                            ),
-                                            title: $neighbouringCustomerPoint->name
-                                                ?? '(' . $neighbouringCustomerPoint->id . ')',
-                                            color: '#65ba4a',
-                                            locked: false,
-                                            content: '<b>'
-                                                . $html->link(
-                                                    $neighbouringCustomerPoint->name
-                                                        ?? '(' . $neighbouringCustomerPoint->id . ')',
-                                                    [
-                                                        'controller' => 'CustomerPoints',
-                                                        'action' => 'view',
-                                                        $neighbouringCustomerPoint->id,
-                                                    ],
-                                                )
-                                                . '</b>'
-                                                . '<br>',
-                                        );
-                                    }
-
-                                    // add informations to map marker about this wireless link (to customer point)
-                                    $mapMarkers[$neighbouringCustomerPoint->id]->content .=
+                                // add informations to map marker about this wireless link if not locked (to access point)
+                                if (!$mapMarkers[$neighbouringAccessPoint->id]->locked) {
+                                    $mapMarkers[$neighbouringAccessPoint->id]->content .=
                                         '<br>'
-                                        . '<b>'
-                                        . $html->link(
-                                            $routerosWirelessLink
-                                                ->neighbouring_interface
-                                                ->routeros_device
-                                                ->customer_connection
-                                                ->name
-                                                ?? '(' . $routerosWirelessLink
-                                                    ->neighbouring_interface
-                                                    ->routeros_device
-                                                    ->customer_connection
-                                                    ->id . ')',
-                                            [
-                                                'controller' => 'CustomerConnections',
-                                                'action' => 'view',
-                                                $routerosWirelessLink
-                                                    ->neighbouring_interface
-                                                    ->routeros_device
-                                                    ->customer_connection
-                                                    ->id,
-                                            ],
-                                        )
-                                        . '</b>'
-                                        . '<br>'
                                         . $html->link(
                                             $routerosWirelessLink
                                                 ->neighbouring_interface
@@ -1041,7 +919,8 @@ class AccessPointsController extends AppController
                                         )
                                         . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
                                         . $html->link(
-                                            $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
+                                            $routerosDevice->name
+                                                ?? '(' . $routerosDevice->id . ')',
                                             [
                                                 'controller' => 'RouterosDevices',
                                                 'action' => 'view',
@@ -1051,6 +930,130 @@ class AccessPointsController extends AppController
                                         . ' (' . $routerosWirelessLink->name . ')'
                                         . '<br>';
                                 }
+                            }
+                        }
+
+                        // add map polyline and marker for wireless link (to customer point)
+                        if (
+                            $mapOptions->getData('linked_customers') == 1
+                            && isset(
+                                $routerosWirelessLink
+                                    ->neighbouring_interface
+                                    ->routeros_device
+                                    ->customer_connection
+                                    ->customer_point,
+                            )
+                        ) {
+                            $neighbouringCustomerPoint = $routerosWirelessLink
+                                ->neighbouring_interface
+                                ->routeros_device
+                                ->customer_connection
+                                ->customer_point;
+
+                            if (
+                                is_numeric($neighbouringCustomerPoint->gps_y)
+                                && is_numeric($neighbouringCustomerPoint->gps_x)
+                            ) {
+                                // add map polyline for wireless link (to customer point)
+                                $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] =
+                                    new Polyline(
+                                        from: new Position(
+                                            lat: $accessPoint->gps_y,
+                                            lng: $accessPoint->gps_x,
+                                        ),
+                                        to: new Position(
+                                            lat: $neighbouringCustomerPoint->gps_y,
+                                            lng: $neighbouringCustomerPoint->gps_x,
+                                        ),
+                                        options: [
+                                            'color' => '#ff0000',
+                                            'opacity' => 0.7,
+                                            'weight' => 1,
+                                        ],
+                                    );
+
+                                // add map marker for customer point if not exists
+                                if (!isset($mapMarkers[$neighbouringCustomerPoint->id])) {
+                                    $mapMarkers[$neighbouringCustomerPoint->id] = new Marker(
+                                        position: new Position(
+                                            lat: $neighbouringCustomerPoint->gps_y,
+                                            lng: $neighbouringCustomerPoint->gps_x,
+                                        ),
+                                        title: $neighbouringCustomerPoint->name
+                                            ?? '(' . $neighbouringCustomerPoint->id . ')',
+                                        color: '#65ba4a',
+                                        content: '<b>'
+                                            . $html->link(
+                                                $neighbouringCustomerPoint->name
+                                                    ?? '(' . $neighbouringCustomerPoint->id . ')',
+                                                [
+                                                    'controller' => 'CustomerPoints',
+                                                    'action' => 'view',
+                                                    $neighbouringCustomerPoint->id,
+                                                ],
+                                            )
+                                            . '</b>'
+                                            . '<br>',
+                                        locked: false,
+                                    );
+                                }
+
+                                // add informations to map marker about this wireless link (to customer point)
+                                $mapMarkers[$neighbouringCustomerPoint->id]->content .=
+                                    '<br>'
+                                    . '<b>'
+                                    . $html->link(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->customer_connection
+                                            ->name
+                                            ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id . ')',
+                                        [
+                                            'controller' => 'CustomerConnections',
+                                            'action' => 'view',
+                                            $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id,
+                                        ],
+                                    )
+                                    . '</b>'
+                                    . '<br>'
+                                    . $html->link(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->name
+                                            ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->id . ')',
+                                        [
+                                            'controller' => 'RouterosDevices',
+                                            'action' => 'view',
+                                            $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->id,
+                                        ],
+                                    )
+                                    . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
+                                    . $html->link(
+                                        $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
+                                        [
+                                            'controller' => 'RouterosDevices',
+                                            'action' => 'view',
+                                            $routerosDevice->id,
+                                        ],
+                                    )
+                                    . ' (' . $routerosWirelessLink->name . ')'
+                                    . '<br>';
                             }
                         }
                     }
@@ -1064,8 +1067,8 @@ class AccessPointsController extends AppController
                         lng: $accessPoint->gps_x,
                     ),
                     title: $accessPoint->name ?? '(' . $accessPoint->id . ')',
-                    content: $content,
                     color: $accessPoint->access_point_type->color ?? '#d02f37',
+                    content: $content,
                     locked: true,
                 );
 

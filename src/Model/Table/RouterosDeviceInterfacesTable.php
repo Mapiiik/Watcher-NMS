@@ -53,7 +53,7 @@ class RouterosDeviceInterfacesTable extends AppTable
             'foreignKey' => 'routeros_device_id',
         ]);
 
-        if ($this->getRegistryAlias() == 'RouterosWirelessLinks') {
+        if ($this->getRegistryAlias() === 'RouterosWirelessLinks') {
             $this->belongsTo('NeighbouringStations', [
                 'className' => 'RouterosDeviceInterfaces',
                 'foreignKey' => 'mac_address',

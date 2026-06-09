@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
 use Cake\I18n\DateTime;
 
 /**
@@ -15,9 +16,9 @@ class RouterosDeviceIpsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // filter
         $conditions = [];
@@ -37,9 +38,9 @@ class RouterosDeviceIpsController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'RouterosDeviceIps.name ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDeviceIps.ip_address::character varying ILIKE' => '%' . trim($search) . '%',
-                    'RouterosDevices.name ILIKE' => '%' . trim($search) . '%',
+                    'RouterosDeviceIps.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDeviceIps.ip_address::character varying ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -63,10 +64,10 @@ class RouterosDeviceIpsController extends AppController
      * View method
      *
      * @param string|null $id RouterOS Device IP id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id, contain: [
             'RouterosDevices',
@@ -80,9 +81,9 @@ class RouterosDeviceIpsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $routerosDeviceIp = $this->RouterosDeviceIps->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
@@ -98,16 +99,18 @@ class RouterosDeviceIpsController extends AppController
         }
         $routerosDevices = $this->RouterosDeviceIps->RouterosDevices->find('list', order: ['name']);
         $this->set(compact('routerosDeviceIp', 'routerosDevices'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id RouterOS Device IP id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -123,6 +126,8 @@ class RouterosDeviceIpsController extends AppController
         }
         $routerosDevices = $this->RouterosDeviceIps->RouterosDevices->find('list', order: ['name']);
         $this->set(compact('routerosDeviceIp', 'routerosDevices'));
+
+        return null;
     }
 
     /**
@@ -132,7 +137,7 @@ class RouterosDeviceIpsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $routerosDeviceIp = $this->RouterosDeviceIps->get($id);

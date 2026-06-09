@@ -74,7 +74,7 @@ class LandlordPayment extends AppEntity
             $name .= $this->access_point->name;
         }
         if (isset($this->payment_purpose->name)) {
-            if ($name <> '') {
+            if ($name !== '') {
                 $name .= ' - ';
             }
             $name .= $this->payment_purpose->name;

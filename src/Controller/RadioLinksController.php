@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
 use Cake\ORM\Query\SelectQuery;
 
 /**
@@ -15,9 +16,9 @@ class RadioLinksController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // RadioLinks Query
         $radioLinksQuery = $this->RadioLinks->find(
@@ -55,8 +56,8 @@ class RadioLinksController extends AppController
         if (!empty($search)) {
             $radioLinksQuery->where([
                 'OR' => [
-                    'RadioLinks.name ILIKE' => '%' . trim($search) . '%',
-                    'RadioLinks.authorization_number ILIKE' => '%' . trim($search) . '%',
+                    'RadioLinks.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioLinks.authorization_number ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ]);
         }
@@ -77,10 +78,10 @@ class RadioLinksController extends AppController
      * View method
      *
      * @param string|null $id Radio Link id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $radioLink = $this->RadioLinks->get($id, contain: [
             'RadioUnits' => ['RadioUnitTypes', 'AccessPoints', 'AntennaTypes'],
@@ -94,9 +95,9 @@ class RadioLinksController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $radioLink = $this->RadioLinks->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
@@ -109,16 +110,18 @@ class RadioLinksController extends AppController
             $this->Flash->error(__('The radio link could not be saved. Please, try again.'));
         }
         $this->set(compact('radioLink'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Radio Link id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $radioLink = $this->RadioLinks->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -131,6 +134,8 @@ class RadioLinksController extends AppController
             $this->Flash->error(__('The radio link could not be saved. Please, try again.'));
         }
         $this->set(compact('radioLink'));
+
+        return null;
     }
 
     /**
@@ -140,7 +145,7 @@ class RadioLinksController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $radioLink = $this->RadioLinks->get($id);

@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller\Api;
 
+use App\Controller\Api\AccessPointsController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\Api\AccessPointsController Test Case
- *
- * @uses \App\Controller\Api\AccessPointsController
  */
+#[UsesClass(AccessPointsController::class)]
 class AccessPointsControllerTest extends TestCase
 {
     use IntegrationTestTrait;

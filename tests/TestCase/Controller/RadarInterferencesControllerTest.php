@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
+use App\Controller\RadarInterferencesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\RadarInterferencesController Test Case
- *
- * @uses \App\Controller\RadarInterferencesController
  */
+#[UsesClass(RadarInterferencesController::class)]
 class RadarInterferencesControllerTest extends TestCase
 {
     use IntegrationTestTrait;

@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
+use App\Controller\AntennaTypesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\AntennaTypesController Test Case
- *
- * @uses \App\Controller\AntennaTypesController
  */
+#[UsesClass(AntennaTypesController::class)]
 class AntennaTypesControllerTest extends TestCase
 {
     use IntegrationTestTrait;

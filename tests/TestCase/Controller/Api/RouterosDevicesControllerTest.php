@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller\Api;
 
+use App\Controller\Api\RouterosDevicesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\Api\RouterosDevicesController Test Case
- *
- * @uses \App\Controller\Api\RouterosDevicesController
  */
+#[UsesClass(RouterosDevicesController::class)]
 class RouterosDevicesControllerTest extends TestCase
 {
     use IntegrationTestTrait;

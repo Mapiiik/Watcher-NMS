@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Form\Form;
+use Cake\Http\Response;
 use Cake\I18n\Date;
 use Cake\I18n\DateTime;
 use Cake\Mailer\Mailer;
@@ -24,9 +25,9 @@ class TasksController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // persistent options
         if (!is_null($this->getRequest()->getQuery('expandable_text'))) {
@@ -86,7 +87,7 @@ class TasksController extends AppController
 
         // filter
         $conditions = [];
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $conditions[] = [
                 'Tasks.access_point_id' => $this->access_point_id,
             ];
@@ -215,7 +216,7 @@ class TasksController extends AppController
                 'first_name',
             ])
             ->all()
-            ->map(function ($user) {
+            ->map(function ($user): array {
                 return [
                     'value' => $user->id,
                     'text' => $user->name_for_lists,
@@ -277,10 +278,10 @@ class TasksController extends AppController
      * View method
      *
      * @param string|null $id Task id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $task = $this->Tasks->get($id, contain: [
             'AccessPoints',
@@ -297,13 +298,13 @@ class TasksController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $task = $this->Tasks->newEmptyEntity();
 
-        if (isset($this->access_point_id)) {
+        if ($this->access_point_id !== null) {
             $task->access_point_id = $this->access_point_id;
         }
 
@@ -347,7 +348,7 @@ class TasksController extends AppController
                 'first_name',
             ])
             ->all()
-            ->map(function ($user) {
+            ->map(function ($user): array {
                 return [
                     'value' => $user->id,
                     'text' => $user->name_for_lists,
@@ -368,16 +369,18 @@ class TasksController extends AppController
         $task->text .= $this->taskTextHeader();
 
         $this->set(compact('task', 'taskTypes', 'taskStates', 'users', 'accessPoints'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Task id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $task = $this->Tasks->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -416,7 +419,7 @@ class TasksController extends AppController
                 'first_name',
             ])
             ->all()
-            ->map(function ($user) {
+            ->map(function ($user): array {
                 return [
                     'value' => $user->id,
                     'text' => $user->name_for_lists,
@@ -431,16 +434,18 @@ class TasksController extends AppController
         $task->text .= $this->taskTextHeader();
 
         $this->set(compact('task', 'taskTypes', 'taskStates', 'users', 'accessPoints'));
+
+        return null;
     }
 
     /**
      * Delete method
      *
      * @param string|null $id Task id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $task = $this->Tasks->get($id);
@@ -459,7 +464,7 @@ class TasksController extends AppController
      *
      * @return string Task text header.
      */
-    private function taskTextHeader()
+    private function taskTextHeader(): string
     {
         $text = '';
 
@@ -504,11 +509,9 @@ class TasksController extends AppController
 
         $mailer->setTo($task->user->email, $task->user->name);
 
-        if ($new) {
-            $title = __('You have a new task # {0}', $task->number);
-        } else {
-            $title = __('You have changes in task # {0}', $task->number);
-        }
+        $title = $new ?
+            __('You have a new task # {0}', $task->number)
+            : __('You have changes in task # {0}', $task->number);
 
         $mailer->setSubject($title . ' - ' . $task->summary_text);
         $mailer->setEmailFormat('html');

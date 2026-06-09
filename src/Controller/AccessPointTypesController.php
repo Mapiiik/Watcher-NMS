@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+
 /**
  * AccessPointTypes Controller
  *
@@ -13,9 +15,9 @@ class AccessPointTypesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      */
-    public function index()
+    public function index(): void
     {
         // filter
         $conditions = [];
@@ -25,7 +27,7 @@ class AccessPointTypesController extends AppController
         if (!empty($search)) {
             $conditions[] = [
                 'OR' => [
-                    'AccessPointTypes.name ILIKE' => '%' . trim($search) . '%',
+                    'AccessPointTypes.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -45,10 +47,10 @@ class AccessPointTypesController extends AppController
      * View method
      *
      * @param string|null $id Access Point Type id.
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(?string $id = null)
+    public function view(?string $id = null): void
     {
         $accessPointType = $this->AccessPointTypes->get($id, contain: [
             'AccessPoints' => [
@@ -64,9 +66,9 @@ class AccessPointTypesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $accessPointType = $this->AccessPointTypes->newEmptyEntity();
         if ($this->getRequest()->is('post')) {
@@ -79,16 +81,18 @@ class AccessPointTypesController extends AppController
             $this->Flash->error(__('The access point type could not be saved. Please, try again.'));
         }
         $this->set(compact('accessPointType'));
+
+        return null;
     }
 
     /**
      * Edit method
      *
      * @param string|null $id Access Point Type id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit(?string $id = null)
+    public function edit(?string $id = null): ?Response
     {
         $accessPointType = $this->AccessPointTypes->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -101,16 +105,18 @@ class AccessPointTypesController extends AppController
             $this->Flash->error(__('The access point type could not be saved. Please, try again.'));
         }
         $this->set(compact('accessPointType'));
+
+        return null;
     }
 
     /**
      * Delete method
      *
      * @param string|null $id Access Point Type id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $accessPointType = $this->AccessPointTypes->get($id);

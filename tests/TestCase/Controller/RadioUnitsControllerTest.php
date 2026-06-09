@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
+use App\Controller\RadioUnitsController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\RadioUnitsController Test Case
- *
- * @uses \App\Controller\RadioUnitsController
  */
+#[UsesClass(RadioUnitsController::class)]
 class RadioUnitsControllerTest extends TestCase
 {
     use IntegrationTestTrait;

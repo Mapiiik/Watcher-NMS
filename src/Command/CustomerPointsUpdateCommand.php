@@ -62,9 +62,9 @@ class CustomerPointsUpdateCommand extends Command
             $url = $args->getArgument('url');
             if (!isset($url)) {
                 $url =
-                    (string)env('WATCHER_CRM_URL')
+                    env('WATCHER_CRM_URL')
                     . '/api/customers/customer-points.json?api_key='
-                    . (string)env('WATCHER_CRM_KEY');
+                    . env('WATCHER_CRM_KEY');
             }
 
             $json = file_get_contents($url);
@@ -308,10 +308,6 @@ class CustomerPointsUpdateCommand extends Command
      * RouterOS devices are NOT deleted — they carry live NMS data — so they
      * are archived instead (archived_by stays null = archived by system).
      *
-     * @param \App\Model\Table\CustomerPointsTable $customerPointsTable
-     * @param \App\Model\Table\CustomerConnectionsTable $customerConnectionsTable
-     * @param \App\Model\Table\CustomerConnectionIpsTable $customerConnectionIpsTable
-     * @param \Cake\I18n\DateTime $startTime
      * @return void
      */
     private function cleanupStaleRecords(
