@@ -129,6 +129,7 @@ class RouterosDevicesController extends AppController
         $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $routerosDevice = $this->RouterosDevices->get($id);
         $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
+
         $message = $this->RouterosDevices->save($routerosDevice) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,

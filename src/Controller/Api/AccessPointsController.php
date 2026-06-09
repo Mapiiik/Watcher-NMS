@@ -94,6 +94,7 @@ class AccessPointsController extends AppController
         $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $accessPoint = $this->AccessPoints->get($id);
         $accessPoint = $this->AccessPoints->patchEntity($accessPoint, $this->getRequest()->getData());
+
         $message = $this->AccessPoints->save($accessPoint) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,

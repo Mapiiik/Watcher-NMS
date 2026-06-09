@@ -165,6 +165,7 @@ class IpAddressRangesController extends AppController
         $this->getRequest()->allowMethod(['patch', 'post', 'put']);
         $ipAddressRange = $this->IpAddressRanges->get($id);
         $ipAddressRange = $this->IpAddressRanges->patchEntity($ipAddressRange, $this->getRequest()->getData());
+
         $message = $this->IpAddressRanges->save($ipAddressRange) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,

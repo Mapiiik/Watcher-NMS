@@ -84,7 +84,7 @@ trait RedirectionTrait
         // other behavior if not in win-link
         # Redirect to access point card if access point ID is known
         if (
-            !($this->getRequest()->getQuery('win-link') == 'true')
+            $this->getRequest()->getQuery('win-link') != 'true'
             && (isset($this->access_point_id)
             && $this->getRequest()->getParam('controller') !== 'AccessPoints')
         ) {
