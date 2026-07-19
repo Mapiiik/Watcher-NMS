@@ -529,7 +529,7 @@ class AccessPointsController extends AppController
 
                     $content .= '<ul>';
 
-                    foreach ($routerosDevice->routeros_ip_links as $routerosIpLink) {
+                    foreach ($routerosDevice->routeros_ip_links ?? [] as $routerosIpLink) {
                         // add informations about IP link to map marker for access point
                         $content .=
                             '<li>'
@@ -792,7 +792,7 @@ class AccessPointsController extends AppController
                         }
                     }
 
-                    foreach ($routerosDevice->routeros_wireless_links as $routerosWirelessLink) {
+                    foreach ($routerosDevice->routeros_wireless_links ?? [] as $routerosWirelessLink) {
                         // add informations about wireless link to map marker for access point
                         $content .=
                             '<li>'
