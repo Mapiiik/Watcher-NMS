@@ -55,7 +55,10 @@ class IpAddressRangesController extends AppController
 
         if ($this->getRequest()->getQuery('access_point_id') !== null) {
             $conditions[] = [
-                'IpAddressRanges.access_point_id' => $this->getRequest()->getQuery('access_point_id'),
+                'OR' => [
+                    'IpAddressRanges.access_point_id IS NULL',
+                    'IpAddressRanges.access_point_id' => $this->getRequest()->getQuery('access_point_id'),
+                ],
             ];
         }
         if ($this->getRequest()->getQuery('for_subnets') !== null) {
