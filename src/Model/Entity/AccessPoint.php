@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use App\Maps\GeocoderFactory;
+use App\Maps\MapProvider;
 use Cake\Cache\Cache;
 use Cake\Log\Log;
 use Geocoder\Collection;
 use Geocoder\Exception\Exception as GeocoderException;
-use Geocoder\Provider\GoogleMaps\GoogleMaps;
 use Geocoder\Query\ReverseQuery;
-use Http\Discovery\Psr18Client;
 use Psr\Http\Client\ClientExceptionInterface;
 
 /**
@@ -99,7 +99,7 @@ class AccessPoint extends AppEntity
      */
     public function getNearestFoundAddress(): ?string
     {
-        if (env('GOOGLE_MAP_API_KEY') === null) {
+        if (MapProvider::requiresApiKey() && env('GOOGLE_MAP_API_KEY') === null) {
             return '(' . __('You must provide an Google Map API key.') . ')';
         }
 
@@ -107,24 +107,17 @@ class AccessPoint extends AppEntity
             return '(' . __('You need to set the correct GPS coordinates.') . ')';
         }
 
-        $apiKey = env('GOOGLE_MAP_API_KEY');
-        $apiKey = is_string($apiKey) ? $apiKey : null;
-
         $locale = env('APP_DEFAULT_LOCALE');
         $locale = is_string($locale) ? $locale : 'en_US';
 
         try {
+            // The cached value is a provider specific address model, so the
+            // provider has to be part of the key.
             /** @var \Geocoder\Model\AddressCollection $address_collection */
             $address_collection = Cache::remember(
-                'access_point__address_lookup_' . $this->id,
-                function () use ($apiKey, $locale): Collection {
-                    $geocoder = new GoogleMaps(
-                        new Psr18Client(),
-                        null,
-                        $apiKey,
-                    );
-
-                    return $geocoder->reverseQuery(
+                'access_point__address_lookup_' . MapProvider::current() . '_' . $this->id,
+                function () use ($locale): Collection {
+                    return GeocoderFactory::create()->reverseQuery(
                         ReverseQuery::fromCoordinates((float)$this->gps_y, (float)$this->gps_x)
                             ->withLocale($locale),
                     );
@@ -140,14 +133,14 @@ class AccessPoint extends AppEntity
 
             return '(' . __('Address lookup failed.') . ')';
         }
-        /** @var \Geocoder\Provider\GoogleMaps\Model\GoogleAddress|null $address */
+
         $address = $address_collection->first();
 
         if ($address === null) {
             return '(' . __('No address found for these GPS coordinates.') . ')';
         }
 
-        return $address->getFormattedAddress();
+        return GeocoderFactory::formatAddress($address);
     }
 
     /**

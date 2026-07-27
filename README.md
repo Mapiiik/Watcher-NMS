@@ -111,8 +111,45 @@ read at boot). Common groups:
 - **Database / cache:** `DATABASE_URL`, `CACHE_*_URL`
 - **Server:** `APP_NAME` (used as cache prefix), `SERVER_NAME` (domain for
   ACME / TLS in the production image)
-- **Geocoding:** the app uses Google Maps via `geocoder-php/google-maps-provider`;
-  configure the key in `config/app_local.php` (or your environment file).
+- **Maps:** `MAP_PROVIDER` selects the whole mapping stack — maps, address
+  search and reverse geocoding. See below.
+
+### Map provider
+
+`MAP_PROVIDER` accepts two values:
+
+- `google` (default) — Maps JavaScript API for the maps, Places for the address
+  search box and `geocoder-php/google-maps-provider` for reverse geocoding. All
+  three need `GOOGLE_MAP_API_KEY`, and the key needs **billing enabled on the
+  Google Cloud project**; without it Google refuses the requests.
+- `osm` — Leaflet with OpenStreetMap tiles, [Photon](https://photon.komoot.io)
+  for the address search box and [Nominatim](https://nominatim.openstreetmap.org)
+  for reverse geocoding. No API key and no billing.
+
+In `osm` mode everything defaults to the public community servers. They are fine
+for a normal installation (results are cached per access point), but their usage
+policies expect low volume and a `User-Agent` identifying your installation —
+set `NOMINATIM_USER_AGENT` to something like `Watcher NMS (nms@example.com)`.
+Both services are self-hostable; point `NOMINATIM_URL`, `PHOTON_URL` and
+`MAP_TILE_URL` at your own instances to lift the public rate limits.
+
+#### Aerial imagery
+
+OpenStreetMap is map data, not photography, so `osm` mode gets its imagery from
+separate services. The maps carry a layer switcher offering:
+
+- **OpenStreetMap** — the street map, shown on load
+- **Ortofoto ČR (ČÚZK)** — the Czech national orthophoto, free and keyless, up
+  to zoom 20, Czech Republic only
+- **Satellite (Esri)** — Esri World Imagery, worldwide coverage
+
+The list lives under `Leaflet.baseLayers` in `config/app.php`. Each entry is
+either `type: xyz` (a plain `{z}/{x}/{y}` tile service) or `type: wms`; add your
+own services or drop the ones you do not need. The first entry is the layer
+shown on load. Keep the `attribution` values — displaying them is a licence
+condition of both imagery providers.
+
+See `config/.env.example` for the full list of map related variables.
 
 ### Customizing the compose stack
 

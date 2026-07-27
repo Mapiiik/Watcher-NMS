@@ -78,7 +78,7 @@
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
-            <?= $this->element('GoogleMaps/map-with-search', [
+            <?= $this->element('Maps/point-picker', [
                 'mapPoint' => $accessPoint,
             ]) ?>
         </div>

@@ -55,28 +55,11 @@
                         </tr>
                         <tr>
                             <th><?= __('Maps') ?></th>
-                            <td>
-                                <?= $this->Html->link(
-                                    __('Google Maps'),
-                                    [
-                                        'controller' => 'https:////maps.google.com',
-                                        'action' => 'maps?q=' . htmlspecialchars(
-                                            "{$customerPoint->gps_y},{$customerPoint->gps_x}",
-                                        ),
-                                    ],
-                                    ['target' => '_blank'],
-                                ) ?>
-                                ,
-                                <?= $this->Html->link(
-                                    __('Mapy.cz'),
-                                    [
-                                        'controller' => 'https:////mapy.cz',
-                                        'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                            "{$customerPoint->gps_x},{$customerPoint->gps_y}",
-                                        ),
-                                    ],
-                                    ['target' => '_blank'],
-                                ) ?>
+                            <td class="actions">
+                                <?= $this->element('Maps/links', [
+                                    'lat' => $customerPoint->gps_y,
+                                    'lng' => $customerPoint->gps_x,
+                                ]) ?>
                             </td>
                         </tr>
                     </table>

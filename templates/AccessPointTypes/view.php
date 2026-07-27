@@ -96,26 +96,10 @@
                             <td><?= $accessPoint->gps_x === null ?
                                 '' : $this->Number->format($accessPoint->gps_x, ['precision' => 15]) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(
-                                    __('Google Maps'),
-                                    [
-                                        'controller' => 'https:////maps.google.com',
-                                        'action' => 'maps?q=' . htmlspecialchars(
-                                            "{$accessPoint->gps_y},{$accessPoint->gps_x}",
-                                        ),
-                                    ],
-                                    ['target' => '_blank'],
-                                ) ?>
-                                <?= $this->Html->link(
-                                    __('Mapy.cz'),
-                                    [
-                                        'controller' => 'https:////mapy.cz',
-                                        'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                            "{$accessPoint->gps_x},{$accessPoint->gps_y}",
-                                        ),
-                                    ],
-                                    ['target' => '_blank'],
-                                ) ?>
+                                <?= $this->element('Maps/links', [
+                                    'lat' => $accessPoint->gps_y,
+                                    'lng' => $accessPoint->gps_x,
+                                ]) ?>
                             </td>
                             <td class="actions">
                                 <?= $this->AuthLink->link(

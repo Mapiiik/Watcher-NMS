@@ -102,28 +102,11 @@
                         </tr>
                         <tr>
                             <th><?= __('Maps') ?></th>
-                            <td>
-                                <?= $this->Html->link(
-                                    __('Google Maps'),
-                                    [
-                                        'controller' => 'https:////maps.google.com',
-                                        'action' => 'maps?q=' . htmlspecialchars(
-                                            "{$accessPoint->gps_y},{$accessPoint->gps_x}",
-                                        ),
-                                    ],
-                                    ['target' => '_blank'],
-                                ) ?>
-                                ,
-                                <?= $this->Html->link(
-                                    __('Mapy.cz'),
-                                    [
-                                        'controller' => 'https:////mapy.cz',
-                                        'action' => 'zakladni?source=coor&id=' . htmlspecialchars(
-                                            "{$accessPoint->gps_x},{$accessPoint->gps_y}",
-                                        ),
-                                    ],
-                                    ['target' => '_blank'],
-                                ) ?>
+                            <td class="actions">
+                                <?= $this->element('Maps/links', [
+                                    'lat' => $accessPoint->gps_y,
+                                    'lng' => $accessPoint->gps_x,
+                                ]) ?>
                             </td>
                         </tr>
                         <tr>

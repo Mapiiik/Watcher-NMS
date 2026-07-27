@@ -476,7 +476,100 @@ return [
     ],
 
     /*
-     * Google Maps
+     * Maps
+     *
+     * `provider` selects the whole mapping stack:
+     *  - `google` - Maps JavaScript API + Google Maps geocoder (needs a billed API key)
+     *  - `osm` - Leaflet with OpenStreetMap tiles + Nominatim geocoder + Photon search (no key)
+     *
+     * The `nominatim` and `photon` URLs default to the public servers. Both are
+     * self hostable; point these at your own instance to lift the public rate
+     * limits. The public Nominatim server requires a User-Agent identifying the
+     * application, ideally with a contact address.
+     */
+    'Maps' => [
+        'provider' => env('MAP_PROVIDER', 'google'),
+        'nominatim' => [
+            'url' => env('NOMINATIM_URL', null),
+            'userAgent' => env('NOMINATIM_USER_AGENT', 'Watcher NMS'),
+            'referer' => env('NOMINATIM_REFERER', ''),
+        ],
+        'photon' => [
+            'url' => env('PHOTON_URL', 'https://photon.komoot.io'),
+        ],
+    ],
+
+    /*
+     * Leaflet (used when `Maps.provider` is `osm`)
+     *
+     * `baseLayers` drives the layer switcher shown on the maps. The first entry
+     * is the one displayed on load; drop entries you do not want, or add your
+     * own tile services. `type` is either `xyz` (a plain {z}/{x}/{y} tile
+     * service) or `wms`.
+     *
+     * OpenStreetMap itself has no aerial imagery, hence the two extra layers:
+     * the Czech cadastral office publishes the national orthophoto as a free
+     * WMS with no API key, and Esri World Imagery covers the rest of the world.
+     * Their attribution is a licence requirement, do not remove it.
+     */
+    'Leaflet' => [
+        'autoCenter' => true,
+        'autoScript' => true,
+        'tileLayer' => [
+            'url' => env('MAP_TILE_URL', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
+            'options' => [
+                'attribution' => env(
+                    'MAP_TILE_ATTRIBUTION',
+                    '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                ),
+                'maxZoom' => 19,
+            ],
+        ],
+        'baseLayers' => [
+            [
+                'name' => 'OpenStreetMap',
+                'type' => 'xyz',
+                'url' => env('MAP_TILE_URL', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
+                'options' => [
+                    'attribution' => env(
+                        'MAP_TILE_ATTRIBUTION',
+                        '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    ),
+                    'maxZoom' => 19,
+                ],
+            ],
+            [
+                'name' => 'Ortofoto ČR (ČÚZK)',
+                'type' => 'wms',
+                'url' => 'https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer',
+                'options' => [
+                    'layers' => '0',
+                    'format' => 'image/jpeg',
+                    'transparent' => false,
+                    'attribution' => '&copy; <a href="https://cuzk.gov.cz">ČÚZK</a>',
+                    'maxZoom' => 20,
+                ],
+            ],
+            [
+                'name' => 'Satellite (Esri)',
+                'type' => 'xyz',
+                'url' => 'https://server.arcgisonline.com/ArcGIS/rest/services/'
+                    . 'World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                'options' => [
+                    'attribution' => 'Esri, Maxar, Earthstar Geographics',
+                    'maxZoom' => 19,
+                ],
+            ],
+        ],
+        'map' => [
+            'scrollWheelZoom' => true,
+            'zoomControl' => true,
+            'dragging' => true,
+        ],
+    ],
+
+    /*
+     * Google Maps (used when `Maps.provider` is `google`)
      */
     'GoogleMap' => [
         'autoCenter' => true,
