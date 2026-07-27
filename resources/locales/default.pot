@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-07-27 22:15+0200\n"
+"POT-Creation-Date: 2026-07-27 22:39+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -3705,8 +3705,16 @@ msgid "Task No."
 msgstr ""
 
 #: ./templates/element/Maps/google/point-picker.php:113
-#: ./templates/element/Maps/leaflet/point-picker.php:76
+#: ./templates/element/Maps/leaflet/point-picker.php:82
 msgid "Search on the Map"
+msgstr ""
+
+#: ./templates/element/Maps/leaflet/fullscreen.php:18
+msgid "Fullscreen"
+msgstr ""
+
+#: ./templates/element/Maps/leaflet/fullscreen.php:19
+msgid "Exit Fullscreen"
 msgstr ""
 
 #: ./templates/element/Maps/links.php:22

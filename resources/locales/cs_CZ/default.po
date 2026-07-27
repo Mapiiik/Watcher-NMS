@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-07-27 22:15+0200\n"
-"PO-Revision-Date: 2026-07-27 22:15+0200\n"
+"POT-Creation-Date: 2026-07-27 22:39+0200\n"
+"PO-Revision-Date: 2026-07-27 22:39+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -3178,9 +3178,17 @@ msgid "Task No."
 msgstr "Úkol č."
 
 #: templates/element/Maps/google/point-picker.php:113
-#: templates/element/Maps/leaflet/point-picker.php:76
+#: templates/element/Maps/leaflet/point-picker.php:82
 msgid "Search on the Map"
 msgstr "Hledat na mapě"
+
+#: templates/element/Maps/leaflet/fullscreen.php:18
+msgid "Fullscreen"
+msgstr "Celá obrazovka"
+
+#: templates/element/Maps/leaflet/fullscreen.php:19
+msgid "Exit Fullscreen"
+msgstr "Ukončit režim celé obrazovky"
 
 #: templates/element/Maps/links.php:22
 msgid "Google Maps"
