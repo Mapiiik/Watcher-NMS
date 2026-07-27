@@ -9,6 +9,26 @@
     border: 0;
 }
 
+/*
+ * Fullscreen control. The map div carries its height as an inline style, which
+ * would otherwise keep it at its usual size once the browser hands it the whole
+ * screen.
+ */
+.leaflet-container:fullscreen,
+.leaflet-container:-webkit-full-screen {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/*
+ * The button keeps Leaflet's own box - block level, fixed size, centred line box
+ * - so it matches the zoom buttons above it, including the larger size Leaflet
+ * switches to on touch devices. Only the inline icon needs aligning.
+ */
+.leaflet-control-fullscreen-button svg {
+    vertical-align: middle;
+}
+
 /* Photon address search dropdown */
 .photon-search-results {
     position: absolute;

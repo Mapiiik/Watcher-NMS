@@ -31,15 +31,21 @@ if ($hasPosition) {
     $options['zoom'] = 16;
 }
 
-$this->Html->css('leaflet-maps', ['block' => true]);
 $this->Html->script('leaflet-point-picker', ['block' => true]);
 
 // Generate map
 $map = $this->Leaflet->map($options);
 
+// After map(), which pulls in Leaflet's own stylesheet, so our overrides win on
+// source order rather than on specificity.
+$this->Html->css('leaflet-maps', ['block' => true]);
+
 // Street map / aerial imagery switcher. Picking a point off the orthophoto is
 // usually easier than off the street map.
 echo $this->element('Maps/leaflet/base-layers');
+
+// Fullscreen button, which Leaflet has no equivalent of built in
+echo $this->element('Maps/leaflet/fullscreen');
 
 // Add the draggable marker for the current position. A point without
 // coordinates gets its marker at the map center, so clicking the map or picking

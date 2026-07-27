@@ -18,15 +18,20 @@ $options = [
     ],
 ];
 
-$this->Html->css('leaflet-maps', ['block' => true]);
-
 $map = $this->Leaflet->map($options);
+
+// After map(), which pulls in Leaflet's own stylesheet, so our overrides win on
+// source order rather than on specificity.
+$this->Html->css('leaflet-maps', ['block' => true]);
 
 // You can echo it now anywhere, it does not matter if you add markers afterwards
 echo $map;
 
 // Street map / aerial imagery switcher
 echo $this->element('Maps/leaflet/base-layers');
+
+// Fullscreen button, which Leaflet has no equivalent of built in
+echo $this->element('Maps/leaflet/fullscreen');
 
 // Leaflet has no built in coloured pin, so build one from the same SVG shape the
 // Google variant uses. The helper JSON encodes marker options, which would turn
