@@ -4,10 +4,13 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\Cache\Cache;
+use Cake\Log\Log;
 use Geocoder\Collection;
+use Geocoder\Exception\Exception as GeocoderException;
 use Geocoder\Provider\GoogleMaps\GoogleMaps;
 use Geocoder\Query\ReverseQuery;
 use Http\Discovery\Psr18Client;
+use Psr\Http\Client\ClientExceptionInterface;
 
 /**
  * AccessPoint Entity
@@ -36,7 +39,6 @@ use Http\Discovery\Psr18Client;
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  *
  * @property string $name_for_lists
- * @property string|null $nearest_found_address
  */
 class AccessPoint extends AppEntity
 {
@@ -95,7 +97,7 @@ class AccessPoint extends AppEntity
      *
      * @return string|null
      */
-    protected function _getNearestFoundAddress(): ?string
+    public function getNearestFoundAddress(): ?string
     {
         if (env('GOOGLE_MAP_API_KEY') === null) {
             return '(' . __('You must provide an Google Map API key.') . ')';
@@ -111,26 +113,39 @@ class AccessPoint extends AppEntity
         $locale = env('APP_DEFAULT_LOCALE');
         $locale = is_string($locale) ? $locale : 'en_US';
 
-        /** @var \Geocoder\Model\AddressCollection $address_collection */
-        $address_collection = Cache::remember(
-            'access_point__address_lookup_' . $this->id,
-            function () use ($apiKey, $locale): Collection {
-                $geocoder = new GoogleMaps(
-                    new Psr18Client(),
-                    null,
-                    $apiKey,
-                );
+        try {
+            /** @var \Geocoder\Model\AddressCollection $address_collection */
+            $address_collection = Cache::remember(
+                'access_point__address_lookup_' . $this->id,
+                function () use ($apiKey, $locale): Collection {
+                    $geocoder = new GoogleMaps(
+                        new Psr18Client(),
+                        null,
+                        $apiKey,
+                    );
 
-                return $geocoder->reverseQuery(
-                    ReverseQuery::fromCoordinates((float)$this->gps_y, (float)$this->gps_x)
-                        ->withLocale($locale),
-                );
-            },
-            'default',
-        );
+                    return $geocoder->reverseQuery(
+                        ReverseQuery::fromCoordinates((float)$this->gps_y, (float)$this->gps_x)
+                            ->withLocale($locale),
+                    );
+                },
+                'default',
+            );
+        } catch (GeocoderException | ClientExceptionInterface $e) {
+            Log::warning(sprintf(
+                'Reverse geocoding for access point %s failed (%s).',
+                $this->id,
+                $e->getMessage(),
+            ));
 
-        /** @var \Geocoder\Provider\GoogleMaps\Model\GoogleAddress $address */
+            return '(' . __('Address lookup failed.') . ')';
+        }
+        /** @var \Geocoder\Provider\GoogleMaps\Model\GoogleAddress|null $address */
         $address = $address_collection->first();
+
+        if ($address === null) {
+            return '(' . __('No address found for these GPS coordinates.') . ')';
+        }
 
         return $address->getFormattedAddress();
     }

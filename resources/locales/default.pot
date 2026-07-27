@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-07-20 14:57+0200\n"
+"POT-Creation-Date: 2026-07-27 18:35+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -860,7 +860,7 @@ msgstr[1] ""
 msgid "Errors"
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:90
+#: ./src/Model/Entity/AccessPoint.php:92
 #: ./src/Model/Entity/CustomerConnection.php:72
 #: ./templates/AccessPoints/edit.php:46
 #: ./templates/AccessPoints/index.php:32
@@ -871,12 +871,20 @@ msgstr ""
 msgid "archived"
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:101
+#: ./src/Model/Entity/AccessPoint.php:103
 msgid "You must provide an Google Map API key."
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:105
+#: ./src/Model/Entity/AccessPoint.php:107
 msgid "You need to set the correct GPS coordinates."
+msgstr ""
+
+#: ./src/Model/Entity/AccessPoint.php:141
+msgid "Address lookup failed."
+msgstr ""
+
+#: ./src/Model/Entity/AccessPoint.php:147
+msgid "No address found for these GPS coordinates."
 msgstr ""
 
 #: ./src/Model/Entity/AppUser.php:92

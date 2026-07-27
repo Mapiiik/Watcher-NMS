@@ -128,7 +128,7 @@
                         </tr>
                         <tr>
                             <th><?= __('Nearest Found Address') ?></th>
-                            <td><?= h($accessPoint->nearest_found_address) ?></td>
+                            <td><?= h($accessPoint->getNearestFoundAddress()) ?></td>
                         </tr>
                     </table>
                 </div>

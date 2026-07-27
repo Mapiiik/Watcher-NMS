@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-07-20 14:57+0200\n"
-"PO-Revision-Date: 2026-07-20 15:19+0200\n"
+"POT-Creation-Date: 2026-07-27 18:35+0200\n"
+"PO-Revision-Date: 2026-07-27 18:36+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -847,7 +847,7 @@ msgstr[2] ""
 msgid "Errors"
 msgstr "Chyby"
 
-#: src/Model/Entity/AccessPoint.php:90
+#: src/Model/Entity/AccessPoint.php:92
 #: src/Model/Entity/CustomerConnection.php:72
 #: templates/AccessPoints/edit.php:46 templates/AccessPoints/index.php:32
 #: templates/AccessPoints/view.php:48 templates/CustomerConnections/edit.php:50
@@ -856,13 +856,21 @@ msgstr "Chyby"
 msgid "archived"
 msgstr "archivováno"
 
-#: src/Model/Entity/AccessPoint.php:101
+#: src/Model/Entity/AccessPoint.php:103
 msgid "You must provide an Google Map API key."
 msgstr "Musíte zadat klíč Google Map API."
 
-#: src/Model/Entity/AccessPoint.php:105
+#: src/Model/Entity/AccessPoint.php:107
 msgid "You need to set the correct GPS coordinates."
 msgstr "Je třeba nastavit správné souřadnice GPS."
+
+#: src/Model/Entity/AccessPoint.php:141
+msgid "Address lookup failed."
+msgstr "Vyhledání adresy se nezdařilo."
+
+#: src/Model/Entity/AccessPoint.php:147
+msgid "No address found for these GPS coordinates."
+msgstr "Pro tyto GPS souřadnice nebyla nalezena žádná adresa."
 
 #: src/Model/Entity/AppUser.php:92 templates/TaskStates/view.php:62
 #: templates/TaskTypes/view.php:54 templates/Tasks/view.php:46
