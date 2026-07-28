@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\AccessPointsController;
+use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -57,7 +58,45 @@ class AccessPointsControllerTest extends TestCase
      */
     public function testView(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $root = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Tree root']));
+        $child = $accessPoints->saveOrFail($accessPoints->newEntity([
+            'name' => 'Tree child',
+            'parent_access_point_id' => $root->id,
+        ]));
+
+        $this->get('/access-points/view/' . $root->id);
+
+        $this->assertResponseOk();
+        // The heading is translated, so it is looked up rather than hard coded.
+        $this->assertResponseContains(__('Subordinate Access Points'));
+        $this->assertResponseContains('<a href="/access-points/' . $child->id . '">Tree child</a>');
+
+        $this->get('/access-points/view/' . $child->id);
+
+        $this->assertResponseOk();
+        // The path leads from the root down to the access point itself.
+        $this->assertResponseContains('Tree root</a> &gt; Tree child');
+    }
+
+    /**
+     * login method
+     *
+     * @return void
+     */
+    protected function login(): void
+    {
+        /** @var \App\Model\Table\AppUsersTable $usersTable */
+        $usersTable = $this->getTableLocator()->get(Configure::read('Users.table', 'Users'));
+
+        $user = $usersTable->newEmptyEntity();
+        $user->username = 'tester';
+        $user->role = 'admin';
+        $user->active = true;
+
+        $this->session(['Auth' => $user]);
     }
 
     /**

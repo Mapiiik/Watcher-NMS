@@ -39,6 +39,11 @@ use Psr\Http\Client\ClientExceptionInterface;
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
  *
  * @property string $name_for_lists
+ *
+ * Set by \App\Model\Table\AccessPointsTable::getAncestors() and ::getSubtree() only:
+ * @property int $tree_depth
+ * @property int $customer_connections_count
+ * @property int $subtree_customer_connections_count
  */
 class AccessPoint extends AppEntity
 {

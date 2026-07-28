@@ -2,6 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\AccessPoint $accessPoint
+ * @var array<\App\Model\Entity\AccessPoint> $ancestors
+ * @var array<\App\Model\Entity\AccessPoint> $subtree
  */
 ?>
 <div class="row">
@@ -84,6 +86,15 @@
                                 ) : '' ?></td>
                         </tr>
                         <tr>
+                            <th><?= __('Path') ?></th>
+                            <td>
+                                <?= $this->element('AccessPoints/path', [
+                                    'accessPoint' => $accessPoint,
+                                    'ancestors' => $ancestors,
+                                ]) ?>
+                            </td>
+                        </tr>
+                        <tr>
                             <th><?= __('Month Of Electricity Meter Reading') ?></th>
                             <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
                         </tr>
@@ -131,6 +142,11 @@
                     <?= $this->Text->autoParagraph(h($accessPoint->note)); ?>
                 </blockquote>
             </div>
+            <?= $this->element('AccessPoints/subtree', [
+                'accessPoint' => $accessPoint,
+                'subtree' => $subtree,
+            ]) ?>
+            <hr>
             <div class="related">
                 <?= $this->AuthLink->link(
                     __('New Access Point Contact'),

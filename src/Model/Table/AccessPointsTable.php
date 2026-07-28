@@ -154,6 +154,167 @@ class AccessPointsTable extends AppTable
     }
 
     /**
+     * Returns the chain of parent access points, ordered from the root down to the direct parent.
+     *
+     * The access point itself is not part of the result. Every returned entity carries its
+     * distance from the given access point in `tree_depth` (the direct parent has a depth of 1).
+     *
+     * @param string $id Access Point id to walk up from.
+     * @return array<\App\Model\Entity\AccessPoint>
+     */
+    public function getAncestors(string $id): array
+    {
+        $sql = <<<'SQL'
+            WITH RECURSIVE ancestors AS (
+                SELECT
+                    access_points.id,
+                    access_points.parent_access_point_id,
+                    0 AS depth,
+                    ARRAY[access_points.id] AS visited
+                FROM access_points
+                WHERE access_points.id = :id
+
+                UNION ALL
+
+                SELECT
+                    parents.id,
+                    parents.parent_access_point_id,
+                    ancestors.depth + 1,
+                    ancestors.visited || parents.id
+                FROM access_points AS parents
+                INNER JOIN ancestors ON ancestors.parent_access_point_id = parents.id
+                WHERE NOT parents.id = ANY(ancestors.visited)
+            )
+            SELECT ancestors.id, ancestors.depth
+            FROM ancestors
+            WHERE ancestors.depth > 0
+            ORDER BY ancestors.depth DESC
+            SQL;
+
+        return $this->hydrateTreeRows($this->fetchTreeRows($sql, $id));
+    }
+
+    /**
+     * Returns the access point together with all its descendants, ordered depth first.
+     *
+     * Every returned entity carries its distance from the given access point in `tree_depth`
+     * (the access point itself has a depth of 0), the number of its own active customer
+     * connections in `customer_connections_count` and the number of the active customer
+     * connections of its whole subtree in `subtree_customer_connections_count`.
+     *
+     * @param string $id Access Point id of the subtree root.
+     * @return array<\App\Model\Entity\AccessPoint>
+     */
+    public function getSubtree(string $id): array
+    {
+        $sql = <<<'SQL'
+            WITH RECURSIVE subtree AS (
+                SELECT
+                    access_points.id,
+                    0 AS depth,
+                    ARRAY[access_points.id] AS visited,
+                    ARRAY[COALESCE(access_points.name, ''), access_points.id::text] AS sort_path
+                FROM access_points
+                WHERE access_points.id = :id
+
+                UNION ALL
+
+                SELECT
+                    children.id,
+                    subtree.depth + 1,
+                    subtree.visited || children.id,
+                    subtree.sort_path || COALESCE(children.name, '') || children.id::text
+                FROM access_points AS children
+                INNER JOIN subtree ON children.parent_access_point_id = subtree.id
+                WHERE NOT children.id = ANY(subtree.visited)
+            )
+            SELECT
+                subtree.id,
+                subtree.depth,
+                (
+                    SELECT COUNT(*)
+                    FROM customer_connections
+                    WHERE customer_connections.access_point_id = subtree.id
+                        AND customer_connections.archived IS NULL
+                ) AS customer_connections_count
+            FROM subtree
+            ORDER BY subtree.sort_path
+            SQL;
+
+        $subtree = $this->hydrateTreeRows($this->fetchTreeRows($sql, $id));
+
+        $indexed = [];
+        foreach ($subtree as $accessPoint) {
+            $indexed[$accessPoint->id] = $accessPoint;
+        }
+
+        // Roll the customer connection counts up. Walking the depth first order backwards means
+        // that all descendants of an access point have already been added to it when it is reached.
+        foreach (array_reverse($subtree) as $accessPoint) {
+            $parent = $indexed[$accessPoint->parent_access_point_id] ?? null;
+            if ($parent === null) {
+                continue;
+            }
+
+            $parent->subtree_customer_connections_count += $accessPoint->subtree_customer_connections_count;
+        }
+
+        return $subtree;
+    }
+
+    /**
+     * Runs one of the recursive tree queries.
+     *
+     * @param string $sql The query to run, taking the access point id as the `id` parameter.
+     * @param string $id Access Point id to pass to the query.
+     * @return array<array<string, mixed>>
+     */
+    private function fetchTreeRows(string $sql, string $id): array
+    {
+        return $this->getConnection()
+            ->execute($sql, ['id' => $id], ['id' => 'uuid'])
+            ->fetchAll('assoc');
+    }
+
+    /**
+     * Loads the access points listed by a tree query, keeping the order of the given rows.
+     *
+     * @param array<array<string, mixed>> $rows Rows holding an `id`, a `depth` and
+     *   optionally a `customer_connections_count` column.
+     * @return array<\App\Model\Entity\AccessPoint>
+     */
+    private function hydrateTreeRows(array $rows): array
+    {
+        if ($rows === []) {
+            return [];
+        }
+
+        /** @var array<string, \App\Model\Entity\AccessPoint> $accessPoints */
+        $accessPoints = $this->find()
+            ->where([$this->getAlias() . '.id IN' => array_column($rows, 'id')])
+            ->contain(['AccessPointTypes'])
+            ->all()
+            ->indexBy('id')
+            ->toArray();
+
+        $tree = [];
+        foreach ($rows as $row) {
+            $accessPoint = $accessPoints[$row['id']] ?? null;
+            if ($accessPoint === null) {
+                continue;
+            }
+
+            $accessPoint->tree_depth = (int)$row['depth'];
+            $accessPoint->customer_connections_count = (int)($row['customer_connections_count'] ?? 0);
+            $accessPoint->subtree_customer_connections_count = $accessPoint->customer_connections_count;
+
+            $tree[] = $accessPoint;
+        }
+
+        return $tree;
+    }
+
+    /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *

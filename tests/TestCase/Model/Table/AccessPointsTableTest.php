@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
+use App\Model\Entity\AccessPoint;
 use App\Model\Table\AccessPointsTable;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
 use Override;
 
@@ -90,5 +92,193 @@ class AccessPointsTableTest extends TestCase
     public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getAncestors method
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::getAncestors()
+     */
+    public function testGetAncestors(): void
+    {
+        $tree = $this->createTree();
+
+        $ancestors = $this->AccessPoints->getAncestors($tree['leaf']->id);
+
+        $this->assertSame(
+            [$tree['root']->id, $tree['branch']->id],
+            array_map(fn(AccessPoint $accessPoint): string => $accessPoint->id, $ancestors),
+        );
+        $this->assertSame(
+            [2, 1],
+            array_map(fn(AccessPoint $accessPoint): int => $accessPoint->tree_depth, $ancestors),
+        );
+    }
+
+    /**
+     * Test getAncestors method for an access point without a parent
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::getAncestors()
+     */
+    public function testGetAncestorsOfRoot(): void
+    {
+        $tree = $this->createTree();
+
+        $this->assertSame([], $this->AccessPoints->getAncestors($tree['root']->id));
+    }
+
+    /**
+     * Test getAncestors method for parent references forming a cycle
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::getAncestors()
+     */
+    public function testGetAncestorsOfCycle(): void
+    {
+        $tree = $this->createTree();
+        $tree['root']->parent_access_point_id = $tree['leaf']->id;
+        $this->AccessPoints->saveOrFail($tree['root']);
+
+        // The walk stops at the root instead of running into the leaf it started from again.
+        $this->assertSame(
+            [$tree['root']->id, $tree['branch']->id],
+            array_map(
+                fn(AccessPoint $accessPoint): string => $accessPoint->id,
+                $this->AccessPoints->getAncestors($tree['leaf']->id),
+            ),
+        );
+    }
+
+    /**
+     * Test getSubtree method
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::getSubtree()
+     */
+    public function testGetSubtree(): void
+    {
+        $tree = $this->createTree();
+
+        $subtree = $this->AccessPoints->getSubtree($tree['root']->id);
+
+        // Descendants directly follow their parent, siblings are ordered by name.
+        $this->assertSame(
+            [$tree['root']->id, $tree['branch']->id, $tree['leaf']->id, $tree['sibling']->id],
+            array_map(fn(AccessPoint $accessPoint): string => $accessPoint->id, $subtree),
+        );
+        $this->assertSame(
+            [0, 1, 2, 1],
+            array_map(fn(AccessPoint $accessPoint): int => $accessPoint->tree_depth, $subtree),
+        );
+        // The archived customer connection of the leaf is not counted.
+        $this->assertSame(
+            [0, 1, 2, 0],
+            array_map(
+                fn(AccessPoint $accessPoint): int => $accessPoint->customer_connections_count,
+                $subtree,
+            ),
+        );
+        $this->assertSame(
+            [3, 3, 2, 0],
+            array_map(
+                fn(AccessPoint $accessPoint): int => $accessPoint->subtree_customer_connections_count,
+                $subtree,
+            ),
+        );
+    }
+
+    /**
+     * Test getSubtree method for an access point without descendants
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::getSubtree()
+     */
+    public function testGetSubtreeOfLeaf(): void
+    {
+        $tree = $this->createTree();
+
+        $subtree = $this->AccessPoints->getSubtree($tree['sibling']->id);
+
+        $this->assertCount(1, $subtree);
+        $this->assertSame($tree['sibling']->id, $subtree[0]->id);
+        $this->assertSame(0, $subtree[0]->tree_depth);
+    }
+
+    /**
+     * Test getSubtree method for parent references forming a cycle
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::getSubtree()
+     */
+    public function testGetSubtreeOfCycle(): void
+    {
+        $tree = $this->createTree();
+        $tree['root']->parent_access_point_id = $tree['leaf']->id;
+        $this->AccessPoints->saveOrFail($tree['root']);
+
+        $this->assertSame(
+            [$tree['branch']->id, $tree['leaf']->id, $tree['root']->id, $tree['sibling']->id],
+            array_map(
+                fn(AccessPoint $accessPoint): string => $accessPoint->id,
+                $this->AccessPoints->getSubtree($tree['branch']->id),
+            ),
+        );
+    }
+
+    /**
+     * Creates an access point tree to run the tree finders against.
+     *
+     * The tree is `root` -> (`A branch` -> `Leaf`, `B sibling`), where the branch holds one
+     * customer connection and the leaf two active ones plus an archived one.
+     *
+     * @return array<string, \App\Model\Entity\AccessPoint>
+     */
+    private function createTree(): array
+    {
+        $root = $this->createAccessPoint('Tree root', null);
+        $branch = $this->createAccessPoint('A branch', $root->id);
+        $leaf = $this->createAccessPoint('Leaf', $branch->id);
+        $sibling = $this->createAccessPoint('B sibling', $root->id);
+
+        $this->createCustomerConnection($branch->id);
+        $this->createCustomerConnection($leaf->id);
+        $this->createCustomerConnection($leaf->id);
+        $this->createCustomerConnection($leaf->id, DateTime::now());
+
+        return compact('root', 'branch', 'leaf', 'sibling');
+    }
+
+    /**
+     * Creates a single access point.
+     *
+     * @param string $name Name of the access point.
+     * @param string|null $parentId Id of the parent access point.
+     * @return \App\Model\Entity\AccessPoint
+     */
+    private function createAccessPoint(string $name, ?string $parentId): AccessPoint
+    {
+        return $this->AccessPoints->saveOrFail($this->AccessPoints->newEntity([
+            'name' => $name,
+            'parent_access_point_id' => $parentId,
+        ]));
+    }
+
+    /**
+     * Creates a single customer connection.
+     *
+     * @param string $accessPointId Id of the access point to connect to.
+     * @param \Cake\I18n\DateTime|null $archived Timestamp making the connection archived.
+     * @return void
+     */
+    private function createCustomerConnection(string $accessPointId, ?DateTime $archived = null): void
+    {
+        $customerConnections = $this->AccessPoints->CustomerConnections;
+        $customerConnections->saveOrFail($customerConnections->newEntity([
+            'name' => 'Customer connection',
+            'access_point_id' => $accessPointId,
+            'archived' => $archived,
+        ]));
     }
 }

@@ -190,7 +190,10 @@ class AccessPointsController extends AppController
         }
         unset($readingsCount);
 
-        $this->set('accessPoint', $accessPoint);
+        $ancestors = $this->AccessPoints->getAncestors($accessPoint->id);
+        $subtree = $this->AccessPoints->getSubtree($accessPoint->id);
+
+        $this->set(compact('accessPoint', 'ancestors', 'subtree'));
     }
 
     /**
