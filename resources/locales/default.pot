@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-07-27 22:39+0200\n"
+"POT-Creation-Date: 2026-07-28 13:20+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -79,7 +79,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:53
 #: ./templates/TaskStates/view.php:67
 #: ./templates/TaskTypes/view.php:59
-#: ./templates/Tasks/view.php:63
+#: ./templates/Tasks/view.php:71
 #: ./templates/cell/AccessPoint/display.php:12
 #: ./templates/email/html/electricity_meter_readings_report.php:27
 #: ./templates/email/html/task_notification.php:60
@@ -890,7 +890,7 @@ msgstr ""
 #: ./src/Model/Entity/AppUser.php:92
 #: ./templates/TaskStates/view.php:62
 #: ./templates/TaskTypes/view.php:54
-#: ./templates/Tasks/view.php:46
+#: ./templates/Tasks/view.php:54
 #: ./templates/email/html/task_notification.php:48
 msgid "User"
 msgstr ""
@@ -1183,7 +1183,7 @@ msgstr ""
 #: ./templates/TaskTypes/add.php:24
 #: ./templates/TaskTypes/edit.php:29
 #: ./templates/Tasks/add.php:59
-#: ./templates/Tasks/edit.php:64
+#: ./templates/Tasks/edit.php:73
 msgid "Submit"
 msgstr ""
 
@@ -1709,7 +1709,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:146
 #: ./templates/TaskStates/view.php:66
 #: ./templates/TaskTypes/view.php:58
-#: ./templates/Tasks/view.php:59
+#: ./templates/Tasks/view.php:67
 #: ./templates/email/html/task_notification.php:56
 msgid "Phone"
 msgstr ""
@@ -1718,7 +1718,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:147
 #: ./templates/TaskStates/view.php:65
 #: ./templates/TaskTypes/view.php:57
-#: ./templates/Tasks/view.php:55
+#: ./templates/Tasks/view.php:63
 #: ./templates/email/html/task_notification.php:52
 msgid "Email"
 msgstr ""
@@ -3556,7 +3556,7 @@ msgstr ""
 #: ./templates/TaskStates/view.php:40
 #: ./templates/TaskStates/view.php:61
 #: ./templates/TaskTypes/view.php:52
-#: ./templates/Tasks/view.php:35
+#: ./templates/Tasks/view.php:43
 #: ./templates/email/html/task_notification.php:40
 msgid "Priority"
 msgstr ""
@@ -3577,49 +3577,49 @@ msgid "Number"
 msgstr ""
 
 #: ./templates/TaskStates/view.php:60
-#: ./templates/Tasks/view.php:28
+#: ./templates/Tasks/view.php:36
 #: ./templates/email/html/task_notification.php:36
 msgid "Task Type"
 msgstr ""
 
 #: ./templates/TaskStates/view.php:63
 #: ./templates/TaskTypes/view.php:55
-#: ./templates/Tasks/view.php:98
+#: ./templates/Tasks/view.php:106
 #: ./templates/email/html/task_notification.php:120
 msgid "Subject"
 msgstr ""
 
 #: ./templates/TaskStates/view.php:64
 #: ./templates/TaskTypes/view.php:56
-#: ./templates/Tasks/view.php:108
+#: ./templates/Tasks/view.php:116
 #: ./templates/email/html/task_notification.php:130
 msgid "Text"
 msgstr ""
 
 #: ./templates/TaskStates/view.php:68
 #: ./templates/TaskTypes/view.php:60
-#: ./templates/Tasks/view.php:78
+#: ./templates/Tasks/view.php:86
 #: ./templates/email/html/task_notification.php:76
 msgid "Start Date"
 msgstr ""
 
 #: ./templates/TaskStates/view.php:69
 #: ./templates/TaskTypes/view.php:61
-#: ./templates/Tasks/view.php:82
+#: ./templates/Tasks/view.php:90
 #: ./templates/email/html/task_notification.php:80
 msgid "Estimated Date"
 msgstr ""
 
 #: ./templates/TaskStates/view.php:70
 #: ./templates/TaskTypes/view.php:62
-#: ./templates/Tasks/view.php:86
+#: ./templates/Tasks/view.php:94
 #: ./templates/email/html/task_notification.php:84
 msgid "Critical Date"
 msgstr ""
 
 #: ./templates/TaskStates/view.php:71
 #: ./templates/TaskTypes/view.php:63
-#: ./templates/Tasks/view.php:90
+#: ./templates/Tasks/view.php:98
 #: ./templates/email/html/task_notification.php:88
 msgid "Finish Date"
 msgstr ""
@@ -3652,7 +3652,7 @@ msgstr ""
 
 #: ./templates/TaskTypes/view.php:53
 #: ./templates/Tasks/index.php:68
-#: ./templates/Tasks/view.php:39
+#: ./templates/Tasks/view.php:47
 #: ./templates/email/html/task_notification.php:44
 msgid "Task State"
 msgstr ""
@@ -3667,7 +3667,7 @@ msgstr ""
 msgid "Add Task"
 msgstr ""
 
-#: ./templates/Tasks/edit.php:27
+#: ./templates/Tasks/edit.php:36
 #: ./templates/Tasks/view.php:11
 msgid "Edit Task"
 msgstr ""
@@ -3691,7 +3691,7 @@ msgid "Tasks"
 msgstr ""
 
 #: ./templates/Tasks/index.php:70
-#: ./templates/Tasks/view.php:102
+#: ./templates/Tasks/view.php:110
 #: ./templates/email/html/task_notification.php:124
 msgid "Summary Text"
 msgstr ""
@@ -3700,7 +3700,7 @@ msgstr ""
 msgid "Delete Task"
 msgstr ""
 
-#: ./templates/Tasks/view.php:23
+#: ./templates/Tasks/view.php:31
 msgid "Task No."
 msgstr ""
 
@@ -3780,6 +3780,14 @@ msgstr ""
 
 #: ./templates/element/common/audit.php:100
 msgid "Archived By"
+msgstr ""
+
+#: ./templates/element/common/copy_url.php:18
+msgid "Copy Link"
+msgstr ""
+
+#: ./templates/element/common/copy_url.php:25
+msgid "Copied"
 msgstr ""
 
 #: ./templates/element/common/expandable_text.php:16
