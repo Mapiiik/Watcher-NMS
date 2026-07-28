@@ -21,6 +21,14 @@
 }
 
 /*
+ * Leaflet's default popup content font size is 1.08333em, which is too small for our
+ * map popups.
+ */
+.leaflet-popup-content {
+	font-size: 13px;
+}
+
+/*
  * The button keeps Leaflet's own box - block level, fixed size, centred line box
  * - so it matches the zoom buttons above it, including the larger size Leaflet
  * switches to on touch devices. Only the inline icon needs aligning.
