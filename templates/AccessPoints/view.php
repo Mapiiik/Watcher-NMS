@@ -86,15 +86,6 @@
                                 ) : '' ?></td>
                         </tr>
                         <tr>
-                            <th><?= __('Path') ?></th>
-                            <td>
-                                <?= $this->element('AccessPoints/path', [
-                                    'accessPoint' => $accessPoint,
-                                    'ancestors' => $ancestors,
-                                ]) ?>
-                            </td>
-                        </tr>
-                        <tr>
                             <th><?= __('Month Of Electricity Meter Reading') ?></th>
                             <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
                         </tr>
@@ -142,10 +133,20 @@
                     <?= $this->Text->autoParagraph(h($accessPoint->note)); ?>
                 </blockquote>
             </div>
-            <?= $this->element('AccessPoints/subtree', [
-                'accessPoint' => $accessPoint,
-                'subtree' => $subtree,
-            ]) ?>
+            <div class="related">
+                <h4><?= __('Superordinate Access Points') ?></h4>
+                <?= $this->element('AccessPoints/path', [
+                    'accessPoint' => $accessPoint,
+                    'ancestors' => $ancestors,
+                ]) ?>
+            </div>
+            <div class="related">
+                <h4><?= __('Subordinate Access Points') ?></h4>
+                <?= $this->element('AccessPoints/subtree', [
+                    'accessPoint' => $accessPoint,
+                    'subtree' => $subtree,
+                ]) ?>
+            </div>
             <hr>
             <div class="related">
                 <?= $this->AuthLink->link(
