@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-07-31 12:10+0200\n"
+"POT-Creation-Date: 2026-07-31 12:40+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -199,7 +199,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:220
 #: ./templates/TaskStates/view.php:32
 #: ./templates/TaskTypes/view.php:32
-#: ./templates/element/AccessPoints/subtree.php:55
+#: ./templates/element/AccessPoints/subtree.php:58
 msgid "Name"
 msgstr ""
 
@@ -246,7 +246,7 @@ msgstr ""
 #: ./src/Command/RadarInterferencesReportCommand.php:98
 #: ./templates/AccessPointTypes/view.php:71
 #: ./templates/AccessPoints/view.php:59
-#: ./templates/element/AccessPoints/subtree.php:56
+#: ./templates/element/AccessPoints/subtree.php:59
 msgid "Device Name"
 msgstr ""
 
@@ -348,37 +348,37 @@ msgstr ""
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:249
-#: ./src/Controller/AccessPointsController.php:275
+#: ./src/Controller/AccessPointsController.php:263
+#: ./src/Controller/AccessPointsController.php:289
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:253
-#: ./src/Controller/AccessPointsController.php:279
+#: ./src/Controller/AccessPointsController.php:267
+#: ./src/Controller/AccessPointsController.php:293
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:312
+#: ./src/Controller/AccessPointsController.php:326
 msgid "The access point has been archived."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:316
+#: ./src/Controller/AccessPointsController.php:330
 msgid "The access point could not be archived. Please try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:343
+#: ./src/Controller/AccessPointsController.php:357
 msgid "The access point has been restored."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:348
+#: ./src/Controller/AccessPointsController.php:362
 msgid "The access point could not be restored. Please try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:367
+#: ./src/Controller/AccessPointsController.php:381
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:370
+#: ./src/Controller/AccessPointsController.php:384
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
@@ -862,7 +862,7 @@ msgstr[1] ""
 msgid "Errors"
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:97
+#: ./src/Model/Entity/AccessPoint.php:100
 #: ./src/Model/Entity/CustomerConnection.php:72
 #: ./templates/AccessPoints/edit.php:46
 #: ./templates/AccessPoints/index.php:37
@@ -873,19 +873,19 @@ msgstr ""
 msgid "archived"
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:108
+#: ./src/Model/Entity/AccessPoint.php:111
 msgid "You must provide an Google Map API key."
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:112
+#: ./src/Model/Entity/AccessPoint.php:115
 msgid "You need to set the correct GPS coordinates."
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:139
+#: ./src/Model/Entity/AccessPoint.php:142
 msgid "Address lookup failed."
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:145
+#: ./src/Model/Entity/AccessPoint.php:148
 msgid "No address found for these GPS coordinates."
 msgstr ""
 
@@ -1118,7 +1118,7 @@ msgstr ""
 #: ./templates/Tasks/edit.php:14
 #: ./templates/Tasks/index.php:77
 #: ./templates/Tasks/view.php:10
-#: ./templates/element/AccessPoints/subtree.php:60
+#: ./templates/element/AccessPoints/subtree.php:63
 #: ./templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
 msgstr ""
@@ -1489,7 +1489,7 @@ msgstr ""
 #: ./templates/TaskTypes/index.php:37
 #: ./templates/TaskTypes/view.php:100
 #: ./templates/Tasks/index.php:127
-#: ./templates/element/AccessPoints/subtree.php:84
+#: ./templates/element/AccessPoints/subtree.php:87
 #: ./templates/email/html/electricity_meter_readings_report.php:52
 #: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
 msgid "View"
@@ -1552,7 +1552,7 @@ msgstr ""
 #: ./templates/TaskTypes/index.php:39
 #: ./templates/TaskTypes/view.php:104
 #: ./templates/Tasks/index.php:131
-#: ./templates/element/AccessPoints/subtree.php:88
+#: ./templates/element/AccessPoints/subtree.php:91
 msgid "Edit"
 msgstr ""
 
@@ -1860,7 +1860,7 @@ msgstr ""
 #: ./templates/AccessPoints/add.php:13
 #: ./templates/AccessPoints/edit.php:38
 #: ./templates/AccessPoints/map.php:14
-#: ./templates/AccessPoints/utilization.php:30
+#: ./templates/AccessPoints/utilization.php:46
 #: ./templates/AccessPoints/view.php:43
 msgid "List Access Points"
 msgstr ""
@@ -1928,7 +1928,7 @@ msgid "Utilization"
 msgstr ""
 
 #: ./templates/AccessPoints/index.php:36
-#: ./templates/AccessPoints/utilization.php:31
+#: ./templates/AccessPoints/utilization.php:47
 msgid "Map"
 msgstr ""
 
@@ -1973,10 +1973,18 @@ msgid "Minimum Customer Connections"
 msgstr ""
 
 #: ./templates/AccessPoints/utilization.php:20
+msgid "Maximum Customer Connections"
+msgstr ""
+
+#: ./templates/AccessPoints/utilization.php:28
 msgid "Minimum Customer Connections Including Subordinates"
 msgstr ""
 
-#: ./templates/AccessPoints/utilization.php:32
+#: ./templates/AccessPoints/utilization.php:36
+msgid "Maximum Customer Connections Including Subordinates"
+msgstr ""
+
+#: ./templates/AccessPoints/utilization.php:48
 msgid "Access Points Utilization"
 msgstr ""
 
@@ -1993,7 +2001,7 @@ msgid "Delete Access Point"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:63
-#: ./templates/element/AccessPoints/subtree.php:57
+#: ./templates/element/AccessPoints/subtree.php:60
 msgid "Access Point Type"
 msgstr ""
 
@@ -2724,7 +2732,7 @@ msgid "New Customer Connection"
 msgstr ""
 
 #: ./templates/CustomerConnections/index.php:31
-#: ./templates/element/AccessPoints/subtree.php:58
+#: ./templates/element/AccessPoints/subtree.php:61
 #: ./templates/layout/default.php:298
 msgid "Customer Connections"
 msgstr ""
@@ -3738,7 +3746,7 @@ msgstr ""
 msgid "Task No."
 msgstr ""
 
-#: ./templates/element/AccessPoints/subtree.php:59
+#: ./templates/element/AccessPoints/subtree.php:62
 msgid "Customer Connections Including Subordinates"
 msgstr ""
 

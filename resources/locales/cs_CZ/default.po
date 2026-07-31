@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-07-31 12:10+0200\n"
-"PO-Revision-Date: 2026-07-31 12:12+0200\n"
+"POT-Creation-Date: 2026-07-31 12:40+0200\n"
+"PO-Revision-Date: 2026-07-31 12:40+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -174,7 +174,7 @@ msgstr "Hlášení odečtu elektroměru se nezdařilo."
 #: templates/RouterosDevices/view.php:49 templates/RouterosDevices/view.php:145
 #: templates/RouterosDevices/view.php:220 templates/TaskStates/view.php:32
 #: templates/TaskTypes/view.php:32
-#: templates/element/AccessPoints/subtree.php:55
+#: templates/element/AccessPoints/subtree.php:58
 msgid "Name"
 msgstr "Jméno"
 
@@ -220,7 +220,7 @@ msgstr "Signál"
 
 #: src/Command/RadarInterferencesReportCommand.php:98
 #: templates/AccessPointTypes/view.php:71 templates/AccessPoints/view.php:59
-#: templates/element/AccessPoints/subtree.php:56
+#: templates/element/AccessPoints/subtree.php:59
 msgid "Device Name"
 msgstr "Název zařízení"
 
@@ -322,37 +322,37 @@ msgstr "Typ přístupového bodu byl odstraněn."
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:249
-#: src/Controller/AccessPointsController.php:275
+#: src/Controller/AccessPointsController.php:263
+#: src/Controller/AccessPointsController.php:289
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:253
-#: src/Controller/AccessPointsController.php:279
+#: src/Controller/AccessPointsController.php:267
+#: src/Controller/AccessPointsController.php:293
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:312
+#: src/Controller/AccessPointsController.php:326
 msgid "The access point has been archived."
 msgstr "Přístupový bod byl archivován."
 
-#: src/Controller/AccessPointsController.php:316
+#: src/Controller/AccessPointsController.php:330
 msgid "The access point could not be archived. Please try again."
 msgstr "Přístupový bod se nepodařilo archivovat. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:343
+#: src/Controller/AccessPointsController.php:357
 msgid "The access point has been restored."
 msgstr "Přístupový bod byl obnoven."
 
-#: src/Controller/AccessPointsController.php:348
+#: src/Controller/AccessPointsController.php:362
 msgid "The access point could not be restored. Please try again."
 msgstr "Přístupový bod se nepodařilo obnovit. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:367
+#: src/Controller/AccessPointsController.php:381
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:370
+#: src/Controller/AccessPointsController.php:384
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
@@ -849,7 +849,7 @@ msgstr[2] ""
 msgid "Errors"
 msgstr "Chyby"
 
-#: src/Model/Entity/AccessPoint.php:97
+#: src/Model/Entity/AccessPoint.php:100
 #: src/Model/Entity/CustomerConnection.php:72
 #: templates/AccessPoints/edit.php:46 templates/AccessPoints/index.php:37
 #: templates/AccessPoints/view.php:50 templates/CustomerConnections/edit.php:50
@@ -858,19 +858,19 @@ msgstr "Chyby"
 msgid "archived"
 msgstr "archivováno"
 
-#: src/Model/Entity/AccessPoint.php:108
+#: src/Model/Entity/AccessPoint.php:111
 msgid "You must provide an Google Map API key."
 msgstr "Musíte zadat klíč Google Map API."
 
-#: src/Model/Entity/AccessPoint.php:112
+#: src/Model/Entity/AccessPoint.php:115
 msgid "You need to set the correct GPS coordinates."
 msgstr "Je třeba nastavit správné souřadnice GPS."
 
-#: src/Model/Entity/AccessPoint.php:139
+#: src/Model/Entity/AccessPoint.php:142
 msgid "Address lookup failed."
 msgstr "Vyhledání adresy se nezdařilo."
 
-#: src/Model/Entity/AccessPoint.php:145
+#: src/Model/Entity/AccessPoint.php:148
 msgid "No address found for these GPS coordinates."
 msgstr "Pro tyto GPS souřadnice nebyla nalezena žádná adresa."
 
@@ -1052,7 +1052,7 @@ msgstr "Není nainstalováno přes Git"
 #: templates/TaskTypes/view.php:10 templates/TaskTypes/view.php:64
 #: templates/Tasks/add.php:14 templates/Tasks/edit.php:14
 #: templates/Tasks/index.php:77 templates/Tasks/view.php:10
-#: templates/element/AccessPoints/subtree.php:60
+#: templates/element/AccessPoints/subtree.php:63
 #: templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
 msgstr "Akce"
@@ -1310,7 +1310,7 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/view.php:232 templates/TaskStates/index.php:41
 #: templates/TaskStates/view.php:108 templates/TaskTypes/index.php:37
 #: templates/TaskTypes/view.php:100 templates/Tasks/index.php:127
-#: templates/element/AccessPoints/subtree.php:84
+#: templates/element/AccessPoints/subtree.php:87
 #: templates/email/html/electricity_meter_readings_report.php:52
 #: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
 msgid "View"
@@ -1353,7 +1353,7 @@ msgstr "Zobrazit"
 #: templates/RouterosDevices/view.php:236 templates/TaskStates/index.php:43
 #: templates/TaskStates/view.php:112 templates/TaskTypes/index.php:39
 #: templates/TaskTypes/view.php:104 templates/Tasks/index.php:131
-#: templates/element/AccessPoints/subtree.php:88
+#: templates/element/AccessPoints/subtree.php:91
 msgid "Edit"
 msgstr "Upravit"
 
@@ -1594,7 +1594,7 @@ msgid "Maps"
 msgstr "Mapy"
 
 #: templates/AccessPoints/add.php:13 templates/AccessPoints/edit.php:38
-#: templates/AccessPoints/map.php:14 templates/AccessPoints/utilization.php:30
+#: templates/AccessPoints/map.php:14 templates/AccessPoints/utilization.php:46
 #: templates/AccessPoints/view.php:43
 msgid "List Access Points"
 msgstr "Seznam přístupových bodů"
@@ -1653,7 +1653,7 @@ msgid "Utilization"
 msgstr "Využití"
 
 #: templates/AccessPoints/index.php:36
-#: templates/AccessPoints/utilization.php:31
+#: templates/AccessPoints/utilization.php:47
 msgid "Map"
 msgstr "Mapa"
 
@@ -1695,10 +1695,18 @@ msgid "Minimum Customer Connections"
 msgstr "Minimální počet připojení zákazníků"
 
 #: templates/AccessPoints/utilization.php:20
+msgid "Maximum Customer Connections"
+msgstr "Maximální počet připojení zákazníků"
+
+#: templates/AccessPoints/utilization.php:28
 msgid "Minimum Customer Connections Including Subordinates"
 msgstr "Minimální počet zákaznických připojení včetně podřazených"
 
-#: templates/AccessPoints/utilization.php:32
+#: templates/AccessPoints/utilization.php:36
+msgid "Maximum Customer Connections Including Subordinates"
+msgstr "Maximální počet připojení zákazníků včetně podřazených"
+
+#: templates/AccessPoints/utilization.php:48
 msgid "Access Points Utilization"
 msgstr "Využití přístupových bodů"
 
@@ -1715,7 +1723,7 @@ msgid "Delete Access Point"
 msgstr "Odstranit přístupový bod"
 
 #: templates/AccessPoints/view.php:63
-#: templates/element/AccessPoints/subtree.php:57
+#: templates/element/AccessPoints/subtree.php:60
 msgid "Access Point Type"
 msgstr "Typ přístupového bodu"
 
@@ -2294,7 +2302,7 @@ msgid "New Customer Connection"
 msgstr "Nové připojení zákazníka"
 
 #: templates/CustomerConnections/index.php:31
-#: templates/element/AccessPoints/subtree.php:58
+#: templates/element/AccessPoints/subtree.php:61
 #: templates/layout/default.php:298
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
@@ -3211,7 +3219,7 @@ msgstr "Odstranit úkol"
 msgid "Task No."
 msgstr "Úkol č."
 
-#: templates/element/AccessPoints/subtree.php:59
+#: templates/element/AccessPoints/subtree.php:62
 msgid "Customer Connections Including Subordinates"
 msgstr "Připojení zákazníků včetně podřazených"
 
