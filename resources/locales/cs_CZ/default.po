@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-07-29 11:51+0200\n"
-"PO-Revision-Date: 2026-07-29 11:52+0200\n"
+"POT-Creation-Date: 2026-07-31 10:13+0200\n"
+"PO-Revision-Date: 2026-07-31 10:20+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -174,7 +174,7 @@ msgstr "Hlášení odečtu elektroměru se nezdařilo."
 #: templates/RouterosDevices/view.php:49 templates/RouterosDevices/view.php:145
 #: templates/RouterosDevices/view.php:220 templates/TaskStates/view.php:32
 #: templates/TaskTypes/view.php:32
-#: templates/element/AccessPoints/subtree.php:14
+#: templates/element/AccessPoints/subtree.php:21
 msgid "Name"
 msgstr "Jméno"
 
@@ -220,7 +220,7 @@ msgstr "Signál"
 
 #: src/Command/RadarInterferencesReportCommand.php:98
 #: templates/AccessPointTypes/view.php:71 templates/AccessPoints/view.php:59
-#: templates/element/AccessPoints/subtree.php:15
+#: templates/element/AccessPoints/subtree.php:22
 msgid "Device Name"
 msgstr "Název zařízení"
 
@@ -322,37 +322,37 @@ msgstr "Typ přístupového bodu byl odstraněn."
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:210
-#: src/Controller/AccessPointsController.php:236
+#: src/Controller/AccessPointsController.php:226
+#: src/Controller/AccessPointsController.php:252
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:214
-#: src/Controller/AccessPointsController.php:240
+#: src/Controller/AccessPointsController.php:230
+#: src/Controller/AccessPointsController.php:256
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:273
+#: src/Controller/AccessPointsController.php:289
 msgid "The access point has been archived."
 msgstr "Přístupový bod byl archivován."
 
-#: src/Controller/AccessPointsController.php:277
+#: src/Controller/AccessPointsController.php:293
 msgid "The access point could not be archived. Please try again."
 msgstr "Přístupový bod se nepodařilo archivovat. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:304
+#: src/Controller/AccessPointsController.php:320
 msgid "The access point has been restored."
 msgstr "Přístupový bod byl obnoven."
 
-#: src/Controller/AccessPointsController.php:309
+#: src/Controller/AccessPointsController.php:325
 msgid "The access point could not be restored. Please try again."
 msgstr "Přístupový bod se nepodařilo obnovit. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:328
+#: src/Controller/AccessPointsController.php:344
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:331
+#: src/Controller/AccessPointsController.php:347
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
@@ -851,7 +851,7 @@ msgstr "Chyby"
 
 #: src/Model/Entity/AccessPoint.php:97
 #: src/Model/Entity/CustomerConnection.php:72
-#: templates/AccessPoints/edit.php:46 templates/AccessPoints/index.php:32
+#: templates/AccessPoints/edit.php:46 templates/AccessPoints/index.php:37
 #: templates/AccessPoints/view.php:50 templates/CustomerConnections/edit.php:50
 #: templates/CustomerConnections/index.php:31
 #: templates/CustomerConnections/view.php:56
@@ -972,7 +972,7 @@ msgstr "Není nainstalováno přes Git"
 #: templates/AccessPointTypes/index.php:32
 #: templates/AccessPointTypes/view.php:10
 #: templates/AccessPointTypes/view.php:77 templates/AccessPoints/add.php:12
-#: templates/AccessPoints/edit.php:12 templates/AccessPoints/index.php:45
+#: templates/AccessPoints/edit.php:12 templates/AccessPoints/index.php:50
 #: templates/AccessPoints/view.php:12 templates/AccessPoints/view.php:168
 #: templates/AccessPoints/view.php:245 templates/AccessPoints/view.php:319
 #: templates/AccessPoints/view.php:401 templates/AccessPoints/view.php:473
@@ -1052,7 +1052,7 @@ msgstr "Není nainstalováno přes Git"
 #: templates/TaskTypes/view.php:10 templates/TaskTypes/view.php:64
 #: templates/Tasks/add.php:14 templates/Tasks/edit.php:14
 #: templates/Tasks/index.php:77 templates/Tasks/view.php:10
-#: templates/element/AccessPoints/subtree.php:19
+#: templates/element/AccessPoints/subtree.php:26
 #: templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
 msgstr "Akce"
@@ -1071,7 +1071,7 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/AccessPointContacts/edit.php:44
 #: templates/AccessPointTypes/add.php:29 templates/AccessPointTypes/edit.php:37
 #: templates/AccessPoints/add.php:53 templates/AccessPoints/edit.php:79
-#: templates/AccessPoints/map.php:47 templates/AntennaTypes/add.php:30
+#: templates/AccessPoints/map.php:52 templates/AntennaTypes/add.php:30
 #: templates/AntennaTypes/edit.php:38
 #: templates/CustomerConnectionIps/add.php:36
 #: templates/CustomerConnectionIps/edit.php:44
@@ -1109,7 +1109,7 @@ msgstr "Potvrdit"
 #: templates/AccessPointTypes/edit.php:12
 #: templates/AccessPointTypes/index.php:53
 #: templates/AccessPointTypes/view.php:115 templates/AccessPoints/edit.php:14
-#: templates/AccessPoints/index.php:102 templates/AccessPoints/view.php:209
+#: templates/AccessPoints/index.php:107 templates/AccessPoints/view.php:209
 #: templates/AccessPoints/view.php:283 templates/AccessPoints/view.php:363
 #: templates/AccessPoints/view.php:442 templates/AccessPoints/view.php:507
 #: templates/AccessPoints/view.php:602 templates/AccessPoints/view.php:664
@@ -1168,7 +1168,7 @@ msgstr "Odstranit"
 #: templates/AccessPointTypes/index.php:55
 #: templates/AccessPointTypes/view.php:20
 #: templates/AccessPointTypes/view.php:117 templates/AccessPoints/edit.php:17
-#: templates/AccessPoints/index.php:104 templates/AccessPoints/view.php:39
+#: templates/AccessPoints/index.php:109 templates/AccessPoints/view.php:39
 #: templates/AccessPoints/view.php:215 templates/AccessPoints/view.php:289
 #: templates/AccessPoints/view.php:369 templates/AccessPoints/view.php:444
 #: templates/AccessPoints/view.php:509 templates/AccessPoints/view.php:604
@@ -1275,7 +1275,7 @@ msgstr "Kontakty přístupových bodů"
 
 #: templates/AccessPointContacts/index.php:55
 #: templates/AccessPointTypes/index.php:44
-#: templates/AccessPointTypes/view.php:106 templates/AccessPoints/index.php:84
+#: templates/AccessPointTypes/view.php:106 templates/AccessPoints/index.php:89
 #: templates/AccessPoints/view.php:192 templates/AccessPoints/view.php:266
 #: templates/AccessPoints/view.php:350 templates/AccessPoints/view.php:433
 #: templates/AccessPoints/view.php:498 templates/AccessPoints/view.php:593
@@ -1310,7 +1310,7 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/view.php:232 templates/TaskStates/index.php:41
 #: templates/TaskStates/view.php:108 templates/TaskTypes/index.php:37
 #: templates/TaskTypes/view.php:100 templates/Tasks/index.php:127
-#: templates/element/AccessPoints/subtree.php:42
+#: templates/element/AccessPoints/subtree.php:49
 #: templates/email/html/electricity_meter_readings_report.php:52
 #: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
 msgid "View"
@@ -1318,7 +1318,7 @@ msgstr "Zobrazit"
 
 #: templates/AccessPointContacts/index.php:57
 #: templates/AccessPointTypes/index.php:48
-#: templates/AccessPointTypes/view.php:110 templates/AccessPoints/index.php:86
+#: templates/AccessPointTypes/view.php:110 templates/AccessPoints/index.php:91
 #: templates/AccessPoints/view.php:200 templates/AccessPoints/view.php:274
 #: templates/AccessPoints/view.php:354 templates/AccessPoints/view.php:437
 #: templates/AccessPoints/view.php:502 templates/AccessPoints/view.php:597
@@ -1353,12 +1353,12 @@ msgstr "Zobrazit"
 #: templates/RouterosDevices/view.php:236 templates/TaskStates/index.php:43
 #: templates/TaskStates/view.php:112 templates/TaskTypes/index.php:39
 #: templates/TaskTypes/view.php:104 templates/Tasks/index.php:131
-#: templates/element/AccessPoints/subtree.php:46
+#: templates/element/AccessPoints/subtree.php:53
 msgid "Edit"
 msgstr "Upravit"
 
 #: templates/AccessPointContacts/index.php:74
-#: templates/AccessPointTypes/index.php:65 templates/AccessPoints/index.php:114
+#: templates/AccessPointTypes/index.php:65 templates/AccessPoints/index.php:119
 #: templates/AntennaTypes/index.php:80
 #: templates/CustomerConnectionIps/index.php:71
 #: templates/CustomerConnections/index.php:104
@@ -1380,7 +1380,7 @@ msgid "first"
 msgstr "první"
 
 #: templates/AccessPointContacts/index.php:75
-#: templates/AccessPointTypes/index.php:66 templates/AccessPoints/index.php:115
+#: templates/AccessPointTypes/index.php:66 templates/AccessPoints/index.php:120
 #: templates/AntennaTypes/index.php:81
 #: templates/CustomerConnectionIps/index.php:72
 #: templates/CustomerConnections/index.php:105
@@ -1402,7 +1402,7 @@ msgid "previous"
 msgstr "předchozí"
 
 #: templates/AccessPointContacts/index.php:77
-#: templates/AccessPointTypes/index.php:68 templates/AccessPoints/index.php:117
+#: templates/AccessPointTypes/index.php:68 templates/AccessPoints/index.php:122
 #: templates/AntennaTypes/index.php:83
 #: templates/CustomerConnectionIps/index.php:74
 #: templates/CustomerConnections/index.php:107
@@ -1424,7 +1424,7 @@ msgid "next"
 msgstr "další"
 
 #: templates/AccessPointContacts/index.php:78
-#: templates/AccessPointTypes/index.php:69 templates/AccessPoints/index.php:118
+#: templates/AccessPointTypes/index.php:69 templates/AccessPoints/index.php:123
 #: templates/AntennaTypes/index.php:84
 #: templates/CustomerConnectionIps/index.php:75
 #: templates/CustomerConnections/index.php:108
@@ -1447,7 +1447,7 @@ msgid "last"
 msgstr "poslední"
 
 #: templates/AccessPointContacts/index.php:81
-#: templates/AccessPointTypes/index.php:72 templates/AccessPoints/index.php:121
+#: templates/AccessPointTypes/index.php:72 templates/AccessPoints/index.php:126
 #: templates/AntennaTypes/index.php:87
 #: templates/CustomerConnectionIps/index.php:78
 #: templates/CustomerConnections/index.php:111
@@ -1587,14 +1587,15 @@ msgstr "Gps Y"
 msgid "Gps X"
 msgstr "Gps X"
 
-#: templates/AccessPointTypes/view.php:76 templates/AccessPoints/index.php:44
+#: templates/AccessPointTypes/view.php:76 templates/AccessPoints/index.php:49
 #: templates/AccessPoints/view.php:106 templates/CustomerPoints/index.php:33
 #: templates/CustomerPoints/view.php:57
 msgid "Maps"
 msgstr "Mapy"
 
 #: templates/AccessPoints/add.php:13 templates/AccessPoints/edit.php:38
-#: templates/AccessPoints/map.php:14 templates/AccessPoints/view.php:43
+#: templates/AccessPoints/map.php:14 templates/AccessPoints/utilization.php:8
+#: templates/AccessPoints/view.php:43
 msgid "List Access Points"
 msgstr "Seznam přístupových bodů"
 
@@ -1602,26 +1603,26 @@ msgstr "Seznam přístupových bodů"
 msgid "Add Access Point"
 msgstr "Přidat přístupový bod"
 
-#: templates/AccessPoints/edit.php:23 templates/AccessPoints/index.php:92
+#: templates/AccessPoints/edit.php:23 templates/AccessPoints/index.php:97
 #: templates/CustomerConnections/edit.php:23
 #: templates/CustomerConnections/index.php:82
 msgid "Restore"
 msgstr "Obnovit"
 
-#: templates/AccessPoints/edit.php:26 templates/AccessPoints/index.php:94
+#: templates/AccessPoints/edit.php:26 templates/AccessPoints/index.php:99
 #: templates/AccessPoints/view.php:23 templates/CustomerConnections/edit.php:26
 #: templates/CustomerConnections/index.php:84
 #: templates/CustomerConnections/view.php:21
 msgid "Are you sure you want to restore # {0}?"
 msgstr "Opravdu chcete obnovit # {0}?"
 
-#: templates/AccessPoints/edit.php:31 templates/AccessPoints/index.php:97
+#: templates/AccessPoints/edit.php:31 templates/AccessPoints/index.php:102
 #: templates/CustomerConnections/edit.php:31
 #: templates/CustomerConnections/index.php:87
 msgid "Archive"
 msgstr "Archivovat"
 
-#: templates/AccessPoints/edit.php:34 templates/AccessPoints/index.php:99
+#: templates/AccessPoints/edit.php:34 templates/AccessPoints/index.php:104
 #: templates/AccessPoints/view.php:31 templates/CustomerConnections/edit.php:34
 #: templates/CustomerConnections/index.php:89
 #: templates/CustomerConnections/view.php:29
@@ -1647,32 +1648,36 @@ msgstr "Zobrazit aktivní"
 msgid "Show Archived"
 msgstr "Zobrazit archivované"
 
-#: templates/AccessPoints/index.php:31
+#: templates/AccessPoints/index.php:32 templates/AccessPoints/map.php:16
+msgid "Utilization"
+msgstr "Využití"
+
+#: templates/AccessPoints/index.php:36 templates/AccessPoints/utilization.php:9
 msgid "Map"
 msgstr "Mapa"
 
-#: templates/AccessPoints/index.php:32 templates/AccessPoints/map.php:15
+#: templates/AccessPoints/index.php:37 templates/AccessPoints/map.php:20
 #: templates/layout/default.php:107 templates/layout/default.php:264
 msgid "Access Points"
 msgstr "Přístupové body"
 
-#: templates/AccessPoints/map.php:25
+#: templates/AccessPoints/map.php:30
 msgid "Map Options"
 msgstr "Možnosti mapy"
 
-#: templates/AccessPoints/map.php:28
+#: templates/AccessPoints/map.php:33
 msgid "RouterOS IP Links"
 msgstr "IP propoje RouterOS"
 
-#: templates/AccessPoints/map.php:31
+#: templates/AccessPoints/map.php:36
 msgid "RouterOS Wireless Links"
 msgstr "Bezdrátové propoje RouterOS"
 
-#: templates/AccessPoints/map.php:34
+#: templates/AccessPoints/map.php:39
 msgid "Linked Customers"
 msgstr "Propojení zákazníci"
 
-#: templates/AccessPoints/map.php:41 templates/RadarInterferences/view.php:75
+#: templates/AccessPoints/map.php:46 templates/RadarInterferences/view.php:75
 #: templates/RouterosDeviceInterfaces/add.php:28
 #: templates/RouterosDeviceInterfaces/edit.php:36
 #: templates/RouterosDeviceInterfaces/index.php:46
@@ -1683,6 +1688,10 @@ msgstr "Propojení zákazníci"
 #: templates/RouterosDeviceIps/view.php:43
 msgid "RouterOS Device"
 msgstr "Zařízení RouterOS"
+
+#: templates/AccessPoints/utilization.php:10
+msgid "Access Points Utilization"
+msgstr "Využití přístupových bodů"
 
 #: templates/AccessPoints/view.php:20
 msgid "Restore Access Point"
@@ -1697,7 +1706,7 @@ msgid "Delete Access Point"
 msgstr "Odstranit přístupový bod"
 
 #: templates/AccessPoints/view.php:63
-#: templates/element/AccessPoints/subtree.php:16
+#: templates/element/AccessPoints/subtree.php:23
 msgid "Access Point Type"
 msgstr "Typ přístupového bodu"
 
@@ -2276,7 +2285,7 @@ msgid "New Customer Connection"
 msgstr "Nové připojení zákazníka"
 
 #: templates/CustomerConnections/index.php:31
-#: templates/element/AccessPoints/subtree.php:17
+#: templates/element/AccessPoints/subtree.php:24
 #: templates/layout/default.php:298
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
@@ -3193,7 +3202,7 @@ msgstr "Odstranit úkol"
 msgid "Task No."
 msgstr "Úkol č."
 
-#: templates/element/AccessPoints/subtree.php:18
+#: templates/element/AccessPoints/subtree.php:25
 msgid "Customer Connections Including Subordinates"
 msgstr "Připojení zákazníků včetně podřazených"
 
