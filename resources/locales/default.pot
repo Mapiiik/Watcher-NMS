@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-07-31 10:13+0200\n"
+"POT-Creation-Date: 2026-07-31 12:10+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -199,7 +199,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:220
 #: ./templates/TaskStates/view.php:32
 #: ./templates/TaskTypes/view.php:32
-#: ./templates/element/AccessPoints/subtree.php:21
+#: ./templates/element/AccessPoints/subtree.php:55
 msgid "Name"
 msgstr ""
 
@@ -246,7 +246,7 @@ msgstr ""
 #: ./src/Command/RadarInterferencesReportCommand.php:98
 #: ./templates/AccessPointTypes/view.php:71
 #: ./templates/AccessPoints/view.php:59
-#: ./templates/element/AccessPoints/subtree.php:22
+#: ./templates/element/AccessPoints/subtree.php:56
 msgid "Device Name"
 msgstr ""
 
@@ -348,37 +348,37 @@ msgstr ""
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:226
-#: ./src/Controller/AccessPointsController.php:252
+#: ./src/Controller/AccessPointsController.php:249
+#: ./src/Controller/AccessPointsController.php:275
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:230
-#: ./src/Controller/AccessPointsController.php:256
+#: ./src/Controller/AccessPointsController.php:253
+#: ./src/Controller/AccessPointsController.php:279
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:289
+#: ./src/Controller/AccessPointsController.php:312
 msgid "The access point has been archived."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:293
+#: ./src/Controller/AccessPointsController.php:316
 msgid "The access point could not be archived. Please try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:320
+#: ./src/Controller/AccessPointsController.php:343
 msgid "The access point has been restored."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:325
+#: ./src/Controller/AccessPointsController.php:348
 msgid "The access point could not be restored. Please try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:344
+#: ./src/Controller/AccessPointsController.php:367
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:347
+#: ./src/Controller/AccessPointsController.php:370
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
@@ -1118,7 +1118,7 @@ msgstr ""
 #: ./templates/Tasks/edit.php:14
 #: ./templates/Tasks/index.php:77
 #: ./templates/Tasks/view.php:10
-#: ./templates/element/AccessPoints/subtree.php:26
+#: ./templates/element/AccessPoints/subtree.php:60
 #: ./templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
 msgstr ""
@@ -1489,7 +1489,7 @@ msgstr ""
 #: ./templates/TaskTypes/index.php:37
 #: ./templates/TaskTypes/view.php:100
 #: ./templates/Tasks/index.php:127
-#: ./templates/element/AccessPoints/subtree.php:49
+#: ./templates/element/AccessPoints/subtree.php:84
 #: ./templates/email/html/electricity_meter_readings_report.php:52
 #: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
 msgid "View"
@@ -1552,7 +1552,7 @@ msgstr ""
 #: ./templates/TaskTypes/index.php:39
 #: ./templates/TaskTypes/view.php:104
 #: ./templates/Tasks/index.php:131
-#: ./templates/element/AccessPoints/subtree.php:53
+#: ./templates/element/AccessPoints/subtree.php:88
 msgid "Edit"
 msgstr ""
 
@@ -1860,7 +1860,7 @@ msgstr ""
 #: ./templates/AccessPoints/add.php:13
 #: ./templates/AccessPoints/edit.php:38
 #: ./templates/AccessPoints/map.php:14
-#: ./templates/AccessPoints/utilization.php:8
+#: ./templates/AccessPoints/utilization.php:30
 #: ./templates/AccessPoints/view.php:43
 msgid "List Access Points"
 msgstr ""
@@ -1928,7 +1928,7 @@ msgid "Utilization"
 msgstr ""
 
 #: ./templates/AccessPoints/index.php:36
-#: ./templates/AccessPoints/utilization.php:9
+#: ./templates/AccessPoints/utilization.php:31
 msgid "Map"
 msgstr ""
 
@@ -1968,7 +1968,15 @@ msgstr ""
 msgid "RouterOS Device"
 msgstr ""
 
-#: ./templates/AccessPoints/utilization.php:10
+#: ./templates/AccessPoints/utilization.php:12
+msgid "Minimum Customer Connections"
+msgstr ""
+
+#: ./templates/AccessPoints/utilization.php:20
+msgid "Minimum Customer Connections Including Subordinates"
+msgstr ""
+
+#: ./templates/AccessPoints/utilization.php:32
 msgid "Access Points Utilization"
 msgstr ""
 
@@ -1985,7 +1993,7 @@ msgid "Delete Access Point"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:63
-#: ./templates/element/AccessPoints/subtree.php:23
+#: ./templates/element/AccessPoints/subtree.php:57
 msgid "Access Point Type"
 msgstr ""
 
@@ -2716,7 +2724,7 @@ msgid "New Customer Connection"
 msgstr ""
 
 #: ./templates/CustomerConnections/index.php:31
-#: ./templates/element/AccessPoints/subtree.php:24
+#: ./templates/element/AccessPoints/subtree.php:58
 #: ./templates/layout/default.php:298
 msgid "Customer Connections"
 msgstr ""
@@ -3730,7 +3738,7 @@ msgstr ""
 msgid "Task No."
 msgstr ""
 
-#: ./templates/element/AccessPoints/subtree.php:25
+#: ./templates/element/AccessPoints/subtree.php:59
 msgid "Customer Connections Including Subordinates"
 msgstr ""
 
