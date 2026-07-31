@@ -13,6 +13,37 @@ $accessPoint ??= null;
 // Rooted at an access point the table only says something once that access point
 // has descendants, without a root every single row is one the caller has not seen.
 $minimumRows = $accessPoint !== null ? 2 : 1;
+
+$nodes = array_values($subtree);
+
+// Draw the branch every access point hangs on. Access points without a parent are the
+// trees themselves rather than siblings, so no line is ever drawn down to the next one.
+$branches = [];
+$continues = [];
+foreach ($nodes as $index => $node) {
+    $depth = $node->tree_depth;
+
+    $isLast = true;
+    for ($next = $index + 1; isset($nodes[$next]) && $nodes[$next]->tree_depth >= $depth; $next++) {
+        if ($nodes[$next]->tree_depth === $depth) {
+            $isLast = false;
+            break;
+        }
+    }
+
+    $branch = '';
+    for ($above = 1; $above < $depth; $above++) {
+        // An access point above still has children coming, so its branch passes by.
+        $branch .= $continues[$above] ?? false ? '│  ' : '   ';
+    }
+    if ($depth > 0) {
+        $branch .= $isLast ? '└─ ' : '├─ ';
+    }
+
+    // The spaces of a branch would collapse into a single one, taking the alignment with them.
+    $branches[$index] = str_replace(' ', '&nbsp;', $branch);
+    $continues[$depth] = !$isLast;
+}
 ?>
 <?php if (count($subtree) >= $minimumRows) : ?>
 <div class="table-responsive">
@@ -25,10 +56,11 @@ $minimumRows = $accessPoint !== null ? 2 : 1;
             <th><?= __('Customer Connections Including Subordinates') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
-        <?php foreach ($subtree as $node) : ?>
+        <?php foreach ($nodes as $index => $node) : ?>
         <tr style="<?= $node->style ?>">
             <td>
-                <span style="display: inline-block; width: <?= $node->tree_depth * 1.5 ?>rem"></span>
+                <?php // An inline block keeps the branch out of the line through an archived row. ?>
+                <span style="display: inline-block; font-family: monospace"><?= $branches[$index] ?></span>
                 <?= $accessPoint !== null && $node->id === $accessPoint->id ?
                     h($node->name ?? '(' . $node->id . ')') :
                     $this->Html->link(
