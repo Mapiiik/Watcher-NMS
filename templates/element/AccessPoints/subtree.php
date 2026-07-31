@@ -20,6 +20,9 @@ $nodes = array_values($subtree);
 // trees themselves rather than siblings, so no line is ever drawn down to the next one.
 $branches = [];
 $continues = [];
+// Every level steps one space in, keeping the branches off the edge of the cell
+// while an access point without a parent still starts at it.
+$step = ' ';
 foreach ($nodes as $index => $node) {
     $depth = $node->tree_depth;
 
@@ -34,10 +37,10 @@ foreach ($nodes as $index => $node) {
     $branch = '';
     for ($above = 1; $above < $depth; $above++) {
         // An access point above still has children coming, so its branch passes by.
-        $branch .= $continues[$above] ?? false ? '│  ' : '   ';
+        $branch .= $step . ($continues[$above] ?? false ? '│  ' : '   ');
     }
     if ($depth > 0) {
-        $branch .= $isLast ? '└─ ' : '├─ ';
+        $branch .= $step . ($isLast ? '└─ ' : '├─ ');
     }
 
     // The spaces of a branch would collapse into a single one, taking the alignment with them.
