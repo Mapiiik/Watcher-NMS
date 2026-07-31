@@ -75,6 +75,22 @@ class AccessPointsController extends AppController
     }
 
     /**
+     * Utilization method
+     *
+     * Lists every access point as one tree, indented by depth, together with the customer
+     * connections it carries and the total for everything below it. Access points without
+     * a parent start a tree of their own, so the listing covers the whole network.
+     *
+     * @return void Renders view
+     */
+    public function utilization(): void
+    {
+        $subtree = $this->AccessPoints->getSubtree();
+
+        $this->set(compact('subtree'));
+    }
+
+    /**
      * View method
      *
      * @param string|null $id Access Point id.

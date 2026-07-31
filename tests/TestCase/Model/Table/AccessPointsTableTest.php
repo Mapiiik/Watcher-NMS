@@ -228,6 +228,88 @@ class AccessPointsTableTest extends TestCase
     }
 
     /**
+     * Test getSubtree method without an access point to start at
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::getSubtree()
+     */
+    public function testGetSubtreeOfAllRoots(): void
+    {
+        $tree = $this->createTree();
+
+        $subtree = $this->AccessPoints->getSubtree();
+
+        // Every access point is listed, the subtrees ordered by the name of their root.
+        $this->assertSame(
+            [
+                'Lorem ipsum dolor sit',
+                '- Lorem ipsum dolor sit amet',
+                'Tree root',
+                '- A branch',
+                '- - Leaf',
+                '- B sibling',
+            ],
+            $this->describeSubtree($subtree),
+        );
+        $this->assertSame(
+            [$tree['root']->id, $tree['branch']->id, $tree['leaf']->id, $tree['sibling']->id],
+            array_map(
+                fn(AccessPoint $accessPoint): string => $accessPoint->id,
+                array_slice($subtree, 2),
+            ),
+        );
+        // The counts of a subtree are the ones it carries on its own.
+        $this->assertSame(
+            [0, 0, 3, 3, 2, 0],
+            array_map(
+                fn(AccessPoint $accessPoint): int => $accessPoint->subtree_customer_connections_count,
+                $subtree,
+            ),
+        );
+    }
+
+    /**
+     * Test getSubtree method without an access point to start at for parent references forming a cycle
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::getSubtree()
+     */
+    public function testGetSubtreeOfAllRootsWithCycle(): void
+    {
+        $tree = $this->createTree();
+        $tree['root']->parent_access_point_id = $tree['leaf']->id;
+        $this->AccessPoints->saveOrFail($tree['root']);
+
+        // None of the four is reachable from an access point without a parent any more,
+        // so each of them starts a subtree of its own instead of being left out.
+        $this->assertSame(
+            [
+                'A branch',
+                'B sibling',
+                'Leaf',
+                'Lorem ipsum dolor sit',
+                '- Lorem ipsum dolor sit amet',
+                'Tree root',
+            ],
+            $this->describeSubtree($this->AccessPoints->getSubtree()),
+        );
+    }
+
+    /**
+     * Renders a subtree as one name per access point, prefixed by its depth.
+     *
+     * @param array<\App\Model\Entity\AccessPoint> $subtree Access points ordered depth first.
+     * @return array<string>
+     */
+    private function describeSubtree(array $subtree): array
+    {
+        return array_map(
+            fn(AccessPoint $accessPoint): string => str_repeat('- ', $accessPoint->tree_depth) . $accessPoint->name,
+            $subtree,
+        );
+    }
+
+    /**
      * Creates an access point tree to run the tree finders against.
      *
      * The tree is `root` -> (`A branch` -> `Leaf`, `B sibling`), where the branch holds one

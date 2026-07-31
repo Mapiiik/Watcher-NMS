@@ -82,6 +82,32 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * Test utilization method
+     *
+     * @return void
+     */
+    public function testUtilization(): void
+    {
+        $this->login();
+
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $root = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Tree root']));
+        $child = $accessPoints->saveOrFail($accessPoints->newEntity([
+            'name' => 'Tree child',
+            'parent_access_point_id' => $root->id,
+        ]));
+
+        $this->get('/access-points/utilization');
+
+        $this->assertResponseOk();
+        // The heading is translated, so it is looked up rather than hard coded.
+        $this->assertResponseContains(__('Access Points Utilization'));
+        // Unlike the subtree of a single access point, the roots are listed as links as well.
+        $this->assertResponseContains('<a href="/access-points/' . $root->id . '">Tree root</a>');
+        $this->assertResponseContains('<a href="/access-points/' . $child->id . '">Tree child</a>');
+    }
+
+    /**
      * login method
      *
      * @return void

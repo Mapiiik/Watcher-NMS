@@ -197,15 +197,18 @@ class AccessPointsTable extends AppTable
     /**
      * Returns the access point together with all its descendants, ordered depth first.
      *
-     * Every returned entity carries its distance from the given access point in `tree_depth`
-     * (the access point itself has a depth of 0), the number of its own active customer
-     * connections in `customer_connections_count` and the number of the active customer
+     * Without an access point to start at, the whole forest the subtrees are cut out of is
+     * returned instead, every access point without a parent starting a subtree of its own.
+     *
+     * Every returned entity carries its distance from the access point its subtree starts at
+     * in `tree_depth` (that access point itself has a depth of 0), the number of its own active
+     * customer connections in `customer_connections_count` and the number of the active customer
      * connections of its whole subtree in `subtree_customer_connections_count`.
      *
-     * @param string $id Access Point id of the subtree root.
+     * @param string|null $id Access Point id of the subtree root, or null for all of them.
      * @return array<\App\Model\Entity\AccessPoint>
      */
-    public function getSubtree(string $id): array
+    public function getSubtree(?string $id = null): array
     {
         $sql = <<<'SQL'
             WITH RECURSIVE subtree AS (
@@ -215,7 +218,9 @@ class AccessPointsTable extends AppTable
                     ARRAY[access_points.id] AS visited,
                     ARRAY[COALESCE(access_points.name, ''), access_points.id::text] AS sort_path
                 FROM access_points
+                -- Without an access point to start at, every root starts a subtree of its own.
                 WHERE access_points.id = :id
+                    OR (:id IS NULL AND access_points.parent_access_point_id IS NULL)
 
                 UNION ALL
 
@@ -227,29 +232,69 @@ class AccessPointsTable extends AppTable
                 FROM access_points AS children
                 INNER JOIN subtree ON children.parent_access_point_id = subtree.id
                 WHERE NOT children.id = ANY(subtree.visited)
+            ), listed AS (
+                SELECT subtree.id, subtree.depth, subtree.sort_path
+                FROM subtree
+
+                UNION ALL
+
+                -- An access point whose parents form a cycle is reachable from no root at all.
+                -- It is listed as a root of its own so that a listing of all of them stays complete.
+                SELECT
+                    access_points.id,
+                    0 AS depth,
+                    ARRAY[COALESCE(access_points.name, ''), access_points.id::text]
+                FROM access_points
+                WHERE :id IS NULL
+                    AND NOT EXISTS (
+                        SELECT 1 FROM subtree WHERE subtree.id = access_points.id
+                    )
             )
             SELECT
-                subtree.id,
-                subtree.depth,
+                listed.id,
+                listed.depth,
                 (
                     SELECT COUNT(*)
                     FROM customer_connections
-                    WHERE customer_connections.access_point_id = subtree.id
+                    WHERE customer_connections.access_point_id = listed.id
                         AND customer_connections.archived IS NULL
                 ) AS customer_connections_count
-            FROM subtree
-            ORDER BY subtree.sort_path
+            FROM listed
+            ORDER BY listed.sort_path
             SQL;
 
-        $subtree = $this->hydrateTreeRows($this->fetchTreeRows($sql, $id));
+        return $this->rollUpCustomerConnections($this->hydrateTreeRows($this->fetchTreeRows($sql, $id)));
+    }
 
+    /**
+     * Runs one of the recursive tree queries.
+     *
+     * @param string $sql The query to run, taking the access point id as the `id` parameter.
+     * @param string|null $id Access Point id to pass to the query.
+     * @return array<array<string, mixed>>
+     */
+    private function fetchTreeRows(string $sql, ?string $id): array
+    {
+        return $this->getConnection()
+            ->execute($sql, ['id' => $id], ['id' => 'uuid'])
+            ->fetchAll('assoc');
+    }
+
+    /**
+     * Adds the customer connections of every access point to all of its ancestors.
+     *
+     * @param array<\App\Model\Entity\AccessPoint> $subtree Access points ordered depth first.
+     * @return array<\App\Model\Entity\AccessPoint> The given access points, counts rolled up.
+     */
+    private function rollUpCustomerConnections(array $subtree): array
+    {
         $indexed = [];
         foreach ($subtree as $accessPoint) {
             $indexed[$accessPoint->id] = $accessPoint;
         }
 
-        // Roll the customer connection counts up. Walking the depth first order backwards means
-        // that all descendants of an access point have already been added to it when it is reached.
+        // Walking the depth first order backwards means that all descendants of an
+        // access point have already been added to it when the access point is reached.
         foreach (array_reverse($subtree) as $accessPoint) {
             $parent = $indexed[$accessPoint->parent_access_point_id] ?? null;
             if ($parent === null) {
@@ -260,20 +305,6 @@ class AccessPointsTable extends AppTable
         }
 
         return $subtree;
-    }
-
-    /**
-     * Runs one of the recursive tree queries.
-     *
-     * @param string $sql The query to run, taking the access point id as the `id` parameter.
-     * @param string $id Access Point id to pass to the query.
-     * @return array<array<string, mixed>>
-     */
-    private function fetchTreeRows(string $sql, string $id): array
-    {
-        return $this->getConnection()
-            ->execute($sql, ['id' => $id], ['id' => 'uuid'])
-            ->fetchAll('assoc');
     }
 
     /**

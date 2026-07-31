@@ -1,13 +1,20 @@
 <?php
 /**
- * Renders the given access point and all its subordinate access points as an indented tree.
+ * Renders access points as an indented tree.
  *
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\AccessPoint $accessPoint The access point the subtree is rooted at.
- * @var array<\App\Model\Entity\AccessPoint> $subtree The access point and its descendants, depth first.
+ * @var \App\Model\Entity\AccessPoint|null $accessPoint The access point the subtree is rooted at,
+ *   or null when the tree holds several roots.
+ * @var array<\App\Model\Entity\AccessPoint> $subtree The access points, depth first.
  */
+
+$accessPoint ??= null;
+
+// Rooted at an access point the table only says something once that access point
+// has descendants, without a root every single row is one the caller has not seen.
+$minimumRows = $accessPoint !== null ? 2 : 1;
 ?>
-<?php if (count($subtree) > 1) : ?>
+<?php if (count($subtree) >= $minimumRows) : ?>
 <div class="table-responsive">
     <table>
         <tr>
@@ -22,7 +29,7 @@
         <tr style="<?= $node->style ?>">
             <td>
                 <span style="display: inline-block; width: <?= $node->tree_depth * 1.5 ?>rem"></span>
-                <?= $node->id === $accessPoint->id ?
+                <?= $accessPoint !== null && $node->id === $accessPoint->id ?
                     h($node->name ?? '(' . $node->id . ')') :
                     $this->Html->link(
                         $node->name ?? '(' . $node->id . ')',

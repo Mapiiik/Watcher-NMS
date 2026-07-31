@@ -193,6 +193,7 @@ $permissions = [
                 'index',
                 'view',
                 'map',
+                'utilization',
             ],
         ],
         [

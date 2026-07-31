@@ -28,6 +28,11 @@
         ['action' => 'index', $finder === 'archived' ? 'active' : 'archived'],
         ['class' => 'button float-right'],
     ) ?>
+    <?= $this->AuthLink->link(
+        __('Utilization'),
+        ['action' => 'utilization'],
+        ['class' => 'button float-right'],
+    ) ?>
     <?= $this->AuthLink->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
     <h3><?= __('Access Points') . ($finder === 'archived' ? ' (' . __('archived') . ')' : '') ?></h3>
     <div class="table-responsive">
