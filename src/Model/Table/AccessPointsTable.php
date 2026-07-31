@@ -267,6 +267,63 @@ class AccessPointsTable extends AppTable
     }
 
     /**
+     * Drops the access points carrying fewer customer connections than asked for.
+     *
+     * An access point carrying too few connections of its own stays in as long as one of its
+     * descendants is kept: it is the path leading down to that descendant, and dropping it
+     * would leave the descendant hanging under an access point it is no child of. The number
+     * of connections of a whole subtree only grows towards the root, so an access point failing
+     * that threshold takes everything below it with it. A threshold of null filters nothing.
+     *
+     * @param array<\App\Model\Entity\AccessPoint> $subtree Access points ordered depth first.
+     * @param int|null $minCustomerConnections Fewest connections of the access point itself.
+     * @param int|null $minSubtreeCustomerConnections Fewest connections of its whole subtree.
+     * @return array<\App\Model\Entity\AccessPoint>
+     */
+    public function filterSubtree(
+        array $subtree,
+        ?int $minCustomerConnections = null,
+        ?int $minSubtreeCustomerConnections = null,
+    ): array {
+        if ($minCustomerConnections === null && $minSubtreeCustomerConnections === null) {
+            return $subtree;
+        }
+
+        /** @var array<int|string, bool> $kept */
+        $kept = [];
+        /** @var array<int, bool> $keptBelow Whether an access point of that depth was kept. */
+        $keptBelow = [];
+
+        // Descendants follow their ancestor, so walking the depth first order backwards means
+        // that everything below an access point has been decided when the access point is reached.
+        foreach (array_reverse($subtree, true) as $index => $accessPoint) {
+            $depth = $accessPoint->tree_depth;
+
+            $matches = ($minCustomerConnections === null
+                    || $accessPoint->customer_connections_count >= $minCustomerConnections)
+                && ($minSubtreeCustomerConnections === null
+                    || $accessPoint->subtree_customer_connections_count >= $minSubtreeCustomerConnections);
+
+            $kept[$index] = $matches || ($keptBelow[$depth + 1] ?? false);
+
+            // The children of the access point are done with, the ones of its sibling are not.
+            $keptBelow[$depth + 1] = false;
+            if ($kept[$index]) {
+                $keptBelow[$depth] = true;
+            }
+        }
+
+        $filtered = [];
+        foreach ($subtree as $index => $accessPoint) {
+            if ($kept[$index] ?? false) {
+                $filtered[] = $accessPoint;
+            }
+        }
+
+        return $filtered;
+    }
+
+    /**
      * Runs one of the recursive tree queries.
      *
      * @param string $sql The query to run, taking the access point id as the `id` parameter.

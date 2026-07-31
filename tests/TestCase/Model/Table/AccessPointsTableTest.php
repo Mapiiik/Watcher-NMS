@@ -296,6 +296,79 @@ class AccessPointsTableTest extends TestCase
     }
 
     /**
+     * Test filterSubtree method without a threshold
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::filterSubtree()
+     */
+    public function testFilterSubtreeWithoutThresholds(): void
+    {
+        $this->createTree();
+
+        $subtree = $this->AccessPoints->getSubtree();
+
+        $this->assertSame($subtree, $this->AccessPoints->filterSubtree($subtree));
+    }
+
+    /**
+     * Test filterSubtree method for the customer connections of the access points themselves
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::filterSubtree()
+     */
+    public function testFilterSubtreeByCustomerConnections(): void
+    {
+        $this->createTree();
+
+        $filtered = $this->AccessPoints->filterSubtree($this->AccessPoints->getSubtree(), 2);
+
+        // Only the leaf carries two connections of its own. The access points above it are the
+        // path leading down to it, the ones carrying nothing below it are gone.
+        $this->assertSame(
+            ['Tree root', '- A branch', '- - Leaf'],
+            $this->describeSubtree($filtered),
+        );
+    }
+
+    /**
+     * Test filterSubtree method for the customer connections of whole subtrees
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::filterSubtree()
+     */
+    public function testFilterSubtreeBySubtreeCustomerConnections(): void
+    {
+        $this->createTree();
+
+        $filtered = $this->AccessPoints->filterSubtree($this->AccessPoints->getSubtree(), null, 3);
+
+        // The leaf carries two connections and the sibling none, so both subtrees are cut off.
+        $this->assertSame(
+            ['Tree root', '- A branch'],
+            $this->describeSubtree($filtered),
+        );
+    }
+
+    /**
+     * Test filterSubtree method for both thresholds at once
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::filterSubtree()
+     */
+    public function testFilterSubtreeByBothThresholds(): void
+    {
+        $this->createTree();
+
+        $filtered = $this->AccessPoints->filterSubtree($this->AccessPoints->getSubtree(), 1, 3);
+
+        // The leaf carries connections enough of its own, but its subtree holds only two of them.
+        $this->assertSame(
+            ['Tree root', '- A branch'],
+            $this->describeSubtree($filtered),
+        );
+    }
+
+    /**
      * Renders a subtree as one name per access point, prefixed by its depth.
      *
      * @param array<\App\Model\Entity\AccessPoint> $subtree Access points ordered depth first.

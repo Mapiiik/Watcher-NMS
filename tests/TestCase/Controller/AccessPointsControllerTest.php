@@ -108,6 +108,38 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * Test utilization method with a filter
+     *
+     * @return void
+     */
+    public function testUtilizationFilter(): void
+    {
+        $this->login();
+
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $root = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Tree root']));
+        $child = $accessPoints->saveOrFail($accessPoints->newEntity([
+            'name' => 'Tree child',
+            'parent_access_point_id' => $root->id,
+        ]));
+        $empty = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Empty root']));
+
+        $customerConnections = $accessPoints->CustomerConnections;
+        $customerConnections->saveOrFail($customerConnections->newEntity([
+            'name' => 'Customer connection',
+            'access_point_id' => $child->id,
+        ]));
+
+        $this->get('/access-points/utilization?min_customer_connections=1');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('<a href="/access-points/' . $child->id . '">Tree child</a>');
+        // The root carries nothing of its own, it is listed as the path down to the child.
+        $this->assertResponseContains('<a href="/access-points/' . $root->id . '">Tree root</a>');
+        $this->assertResponseNotContains('<a href="/access-points/' . $empty->id . '">Empty root</a>');
+    }
+
+    /**
      * login method
      *
      * @return void

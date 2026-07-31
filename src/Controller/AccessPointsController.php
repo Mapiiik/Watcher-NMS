@@ -7,6 +7,7 @@ use App\Form\MapOptionsForm;
 use App\Maps\Marker;
 use App\Maps\Polyline;
 use App\Maps\Position;
+use Cake\Form\Form;
 use Cake\Http\Response;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
@@ -81,13 +82,35 @@ class AccessPointsController extends AppController
      * connections it carries and the total for everything below it. Access points without
      * a parent start a tree of their own, so the listing covers the whole network.
      *
+     * The listing can be narrowed down to the access points carrying at least a given number
+     * of customer connections, of their own or of their whole subtree.
+     *
      * @return void Renders view
      */
     public function utilization(): void
     {
-        $subtree = $this->AccessPoints->getSubtree();
+        // Only a number narrows the listing down, an empty field leaves the whole tree alone.
+        $minCustomerConnections = $this->getRequest()->getQuery('min_customer_connections');
+        $minCustomerConnections = is_numeric($minCustomerConnections) ? (int)$minCustomerConnections : null;
 
-        $this->set(compact('subtree'));
+        $minSubtreeCustomerConnections = $this->getRequest()->getQuery('min_subtree_customer_connections');
+        $minSubtreeCustomerConnections = is_numeric($minSubtreeCustomerConnections)
+            ? (int)$minSubtreeCustomerConnections
+            : null;
+
+        $subtree = $this->AccessPoints->filterSubtree(
+            $this->AccessPoints->getSubtree(),
+            $minCustomerConnections,
+            $minSubtreeCustomerConnections,
+        );
+
+        $filterForm = new Form();
+        $filterForm->setData([
+            'min_customer_connections' => $minCustomerConnections,
+            'min_subtree_customer_connections' => $minSubtreeCustomerConnections,
+        ]);
+
+        $this->set(compact('subtree', 'filterForm'));
     }
 
     /**
