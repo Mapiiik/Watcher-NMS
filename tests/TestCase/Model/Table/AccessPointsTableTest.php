@@ -320,7 +320,10 @@ class AccessPointsTableTest extends TestCase
     {
         $this->createTree();
 
-        $filtered = $this->AccessPoints->filterSubtree($this->AccessPoints->getSubtree(), 2);
+        $filtered = $this->AccessPoints->filterSubtree(
+            $this->AccessPoints->getSubtree(),
+            minCustomerConnections: 2,
+        );
 
         // Only the leaf carries two connections of its own. The access points above it are the
         // path leading down to it, the ones carrying nothing below it are gone.
@@ -340,7 +343,10 @@ class AccessPointsTableTest extends TestCase
     {
         $this->createTree();
 
-        $filtered = $this->AccessPoints->filterSubtree($this->AccessPoints->getSubtree(), null, 3);
+        $filtered = $this->AccessPoints->filterSubtree(
+            $this->AccessPoints->getSubtree(),
+            minSubtreeCustomerConnections: 3,
+        );
 
         // The leaf carries two connections and the sibling none, so both subtrees are cut off.
         $this->assertSame(
@@ -359,13 +365,66 @@ class AccessPointsTableTest extends TestCase
     {
         $this->createTree();
 
-        $filtered = $this->AccessPoints->filterSubtree($this->AccessPoints->getSubtree(), 1, 3);
+        $filtered = $this->AccessPoints->filterSubtree(
+            $this->AccessPoints->getSubtree(),
+            minCustomerConnections: 1,
+            minSubtreeCustomerConnections: 3,
+        );
 
         // The leaf carries connections enough of its own, but its subtree holds only two of them.
         $this->assertSame(
             ['Tree root', '- A branch'],
             $this->describeSubtree($filtered),
         );
+    }
+
+    /**
+     * Test filterSubtree method for an upper threshold
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::filterSubtree()
+     */
+    public function testFilterSubtreeByMaximumCustomerConnections(): void
+    {
+        $this->createTree();
+
+        $filtered = $this->AccessPoints->filterSubtree(
+            $this->AccessPoints->getSubtree(),
+            maxCustomerConnections: 0,
+        );
+
+        // The branch and the leaf carry customers, so nothing of that side of the tree is left.
+        $this->assertSame(
+            [
+                'Lorem ipsum dolor sit',
+                '- Lorem ipsum dolor sit amet',
+                'Tree root',
+                '- B sibling',
+            ],
+            $this->describeSubtree($filtered),
+        );
+    }
+
+    /**
+     * Test filterSubtree method marking the access points that meet the thresholds
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::filterSubtree()
+     */
+    public function testFilterSubtreeMarksTheAccessPointsFound(): void
+    {
+        $this->createTree();
+
+        $filtered = $this->AccessPoints->filterSubtree(
+            $this->AccessPoints->getSubtree(),
+            minCustomerConnections: 1,
+            maxCustomerConnections: 1,
+        );
+
+        // The root carries nothing itself and is only there as the path down to the branch.
+        $this->assertSame(['Tree root', '- A branch'], $this->describeSubtree($filtered));
+        $this->assertFalse($filtered[0]->matches_thresholds);
+        $this->assertTrue($filtered[1]->matches_thresholds);
     }
 
     /**

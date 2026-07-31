@@ -16,8 +16,24 @@
         ]) ?>
     </div>
     <div class="column">
+        <?= $this->Form->control('max_customer_connections', [
+            'label' => __('Maximum Customer Connections'),
+            'type' => 'number',
+            'min' => 0,
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+    <div class="column">
         <?= $this->Form->control('min_subtree_customer_connections', [
             'label' => __('Minimum Customer Connections Including Subordinates'),
+            'type' => 'number',
+            'min' => 0,
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+    <div class="column">
+        <?= $this->Form->control('max_subtree_customer_connections', [
+            'label' => __('Maximum Customer Connections Including Subordinates'),
             'type' => 'number',
             'min' => 0,
             'onchange' => 'this.form.submit();',

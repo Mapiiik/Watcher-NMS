@@ -267,25 +267,35 @@ class AccessPointsTable extends AppTable
     }
 
     /**
-     * Drops the access points carrying fewer customer connections than asked for.
+     * Drops the access points carrying more or fewer customer connections than asked for.
      *
-     * An access point carrying too few connections of its own stays in as long as one of its
-     * descendants is kept: it is the path leading down to that descendant, and dropping it
-     * would leave the descendant hanging under an access point it is no child of. The number
-     * of connections of a whole subtree only grows towards the root, so an access point failing
-     * that threshold takes everything below it with it. A threshold of null filters nothing.
+     * An access point outside the thresholds itself stays in as long as one of its descendants
+     * is kept: it is the path leading down to that descendant, and dropping it would leave the
+     * descendant hanging under an access point it is no child of. Only the access points that
+     * meet the thresholds themselves are marked as such in `matches_thresholds`, the ones kept
+     * as the path to them are not. Thresholds of null filter nothing.
      *
      * @param array<\App\Model\Entity\AccessPoint> $subtree Access points ordered depth first.
      * @param int|null $minCustomerConnections Fewest connections of the access point itself.
+     * @param int|null $maxCustomerConnections Most connections of the access point itself.
      * @param int|null $minSubtreeCustomerConnections Fewest connections of its whole subtree.
+     * @param int|null $maxSubtreeCustomerConnections Most connections of its whole subtree.
      * @return array<\App\Model\Entity\AccessPoint>
      */
     public function filterSubtree(
         array $subtree,
         ?int $minCustomerConnections = null,
+        ?int $maxCustomerConnections = null,
         ?int $minSubtreeCustomerConnections = null,
+        ?int $maxSubtreeCustomerConnections = null,
     ): array {
-        if ($minCustomerConnections === null && $minSubtreeCustomerConnections === null) {
+        $thresholds = [
+            $minCustomerConnections,
+            $maxCustomerConnections,
+            $minSubtreeCustomerConnections,
+            $maxSubtreeCustomerConnections,
+        ];
+        if (array_filter($thresholds, fn(?int $threshold): bool => $threshold !== null) === []) {
             return $subtree;
         }
 
@@ -299,12 +309,17 @@ class AccessPointsTable extends AppTable
         foreach (array_reverse($subtree, true) as $index => $accessPoint) {
             $depth = $accessPoint->tree_depth;
 
-            $matches = ($minCustomerConnections === null
-                    || $accessPoint->customer_connections_count >= $minCustomerConnections)
-                && ($minSubtreeCustomerConnections === null
-                    || $accessPoint->subtree_customer_connections_count >= $minSubtreeCustomerConnections);
+            $accessPoint->matches_thresholds = $this->isWithin(
+                $accessPoint->customer_connections_count,
+                $minCustomerConnections,
+                $maxCustomerConnections,
+            ) && $this->isWithin(
+                $accessPoint->subtree_customer_connections_count,
+                $minSubtreeCustomerConnections,
+                $maxSubtreeCustomerConnections,
+            );
 
-            $kept[$index] = $matches || ($keptBelow[$depth + 1] ?? false);
+            $kept[$index] = $accessPoint->matches_thresholds || ($keptBelow[$depth + 1] ?? false);
 
             // The children of the access point are done with, the ones of its sibling are not.
             $keptBelow[$depth + 1] = false;
@@ -321,6 +336,20 @@ class AccessPointsTable extends AppTable
         }
 
         return $filtered;
+    }
+
+    /**
+     * Tells whether a number of customer connections lies within the given thresholds.
+     *
+     * @param int $customerConnections The number to look at.
+     * @param int|null $minimum Fewest connections asked for, null for no lower end.
+     * @param int|null $maximum Most connections asked for, null for no upper end.
+     * @return bool
+     */
+    private function isWithin(int $customerConnections, ?int $minimum, ?int $maximum): bool
+    {
+        return ($minimum === null || $customerConnections >= $minimum)
+            && ($maximum === null || $customerConnections <= $maximum);
     }
 
     /**

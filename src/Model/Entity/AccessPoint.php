@@ -44,6 +44,9 @@ use Psr\Http\Client\ClientExceptionInterface;
  * @property int $tree_depth
  * @property int $customer_connections_count
  * @property int $subtree_customer_connections_count
+ *
+ * Set by \App\Model\Table\AccessPointsTable::filterSubtree() only:
+ * @property bool $matches_thresholds
  */
 class AccessPoint extends AppEntity
 {

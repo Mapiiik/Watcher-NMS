@@ -47,6 +47,9 @@ foreach ($nodes as $index => $node) {
     $branches[$index] = str_replace(' ', '&nbsp;', $branch);
     $continues[$depth] = !$isLast;
 }
+
+// An access point carries `matches_thresholds` only once a filter is on, and only when the
+// filter found it rather than kept it as the path down to a find. Those stand out in bold.
 ?>
 <?php if (count($subtree) >= $minimumRows) : ?>
 <div class="table-responsive">
@@ -60,7 +63,7 @@ foreach ($nodes as $index => $node) {
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
         <?php foreach ($nodes as $index => $node) : ?>
-        <tr style="<?= $node->style ?>">
+        <tr style="<?= $node->style ?><?= $node->matches_thresholds === true ? 'font-weight: bold;' : '' ?>">
             <td>
                 <?php // An inline block keeps the branch out of the line through an archived row. ?>
                 <span style="display: inline-block; font-family: monospace"><?= $branches[$index] ?></span>

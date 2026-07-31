@@ -82,35 +82,49 @@ class AccessPointsController extends AppController
      * connections it carries and the total for everything below it. Access points without
      * a parent start a tree of their own, so the listing covers the whole network.
      *
-     * The listing can be narrowed down to the access points carrying at least a given number
-     * of customer connections, of their own or of their whole subtree.
+     * The listing can be narrowed down to the access points carrying at least, or at most,
+     * a given number of customer connections, of their own or of their whole subtree.
      *
      * @return void Renders view
      */
     public function utilization(): void
     {
-        // Only a number narrows the listing down, an empty field leaves the whole tree alone.
-        $minCustomerConnections = $this->getRequest()->getQuery('min_customer_connections');
-        $minCustomerConnections = is_numeric($minCustomerConnections) ? (int)$minCustomerConnections : null;
-
-        $minSubtreeCustomerConnections = $this->getRequest()->getQuery('min_subtree_customer_connections');
-        $minSubtreeCustomerConnections = is_numeric($minSubtreeCustomerConnections)
-            ? (int)$minSubtreeCustomerConnections
-            : null;
+        $thresholds = [
+            'min_customer_connections' => $this->customerConnectionsThreshold('min_customer_connections'),
+            'max_customer_connections' => $this->customerConnectionsThreshold('max_customer_connections'),
+            'min_subtree_customer_connections' =>
+                $this->customerConnectionsThreshold('min_subtree_customer_connections'),
+            'max_subtree_customer_connections' =>
+                $this->customerConnectionsThreshold('max_subtree_customer_connections'),
+        ];
 
         $subtree = $this->AccessPoints->filterSubtree(
             $this->AccessPoints->getSubtree(),
-            $minCustomerConnections,
-            $minSubtreeCustomerConnections,
+            $thresholds['min_customer_connections'],
+            $thresholds['max_customer_connections'],
+            $thresholds['min_subtree_customer_connections'],
+            $thresholds['max_subtree_customer_connections'],
         );
 
         $filterForm = new Form();
-        $filterForm->setData([
-            'min_customer_connections' => $minCustomerConnections,
-            'min_subtree_customer_connections' => $minSubtreeCustomerConnections,
-        ]);
+        $filterForm->setData($thresholds);
 
         $this->set(compact('subtree', 'filterForm'));
+    }
+
+    /**
+     * Reads a customer connection threshold off the query string.
+     *
+     * Only a number narrows the listing down, an empty field leaves the whole tree alone.
+     *
+     * @param string $name Name of the query parameter holding the threshold.
+     * @return int|null The threshold, or null when none was given.
+     */
+    private function customerConnectionsThreshold(string $name): ?int
+    {
+        $threshold = $this->getRequest()->getQuery($name);
+
+        return is_numeric($threshold) ? (int)$threshold : null;
     }
 
     /**
