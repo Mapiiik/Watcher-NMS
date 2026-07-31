@@ -20,6 +20,7 @@ $nodes = array_values($subtree);
 // trees themselves rather than siblings, so no line is ever drawn down to the next one.
 $branches = [];
 $continues = [];
+$emphasis = [];
 // Every level steps one space in, keeping the branches off the edge of the cell
 // while an access point without a parent still starts at it.
 $step = ' ';
@@ -46,10 +47,16 @@ foreach ($nodes as $index => $node) {
     // The spaces of a branch would collapse into a single one, taking the alignment with them.
     $branches[$index] = str_replace(' ', '&nbsp;', $branch);
     $continues[$depth] = !$isLast;
-}
 
-// An access point carries `matches_thresholds` only once a filter is on, and only when the
-// filter found it rather than kept it as the path down to a find. Those stand out in bold.
+    // A filter says of every access point it kept whether it found it or whether the access
+    // point is only the path down to a find. It says nothing at all while no filter is on,
+    // and then no access point is worth any more of the eye than the next one.
+    $emphasis[$index] = match ($node->matches_thresholds) {
+        true => 'font-weight: bold;',
+        false => 'color: darkgray;',
+        default => '',
+    };
+}
 ?>
 <?php if (count($subtree) >= $minimumRows) : ?>
 <div class="table-responsive">
@@ -63,7 +70,7 @@ foreach ($nodes as $index => $node) {
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
         <?php foreach ($nodes as $index => $node) : ?>
-        <tr style="<?= $node->style ?><?= $node->matches_thresholds === true ? 'font-weight: bold;' : '' ?>">
+        <tr style="<?= $node->style . $emphasis[$index] ?>">
             <td>
                 <?php // An inline block keeps the branch out of the line through an archived row. ?>
                 <span style="display: inline-block; font-family: monospace"><?= $branches[$index] ?></span>
