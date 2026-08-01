@@ -382,6 +382,12 @@ class AccessPointsTable extends AppTable
         // Walking the depth first order backwards means that all descendants of an
         // access point have already been added to it when the access point is reached.
         foreach (array_reverse($subtree) as $accessPoint) {
+            // a root has nothing to roll up into, and looking one up would mean offering the
+            // null as an array offset, which PHP 8.5 deprecates
+            if ($accessPoint->parent_access_point_id === null) {
+                continue;
+            }
+
             $parent = $indexed[$accessPoint->parent_access_point_id] ?? null;
             if ($parent === null) {
                 continue;
