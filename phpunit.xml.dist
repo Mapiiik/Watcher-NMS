@@ -10,7 +10,9 @@
     <testsuite name="app">
       <directory>tests/TestCase/</directory>
     </testsuite>
-    <!-- Add plugin test suites here. -->
+    <testsuite name="plugins">
+      <directory>plugins/Settings/tests/TestCase/</directory>
+    </testsuite>
   </testsuites>
   <!-- Load extension for fixtures -->
   <extensions>

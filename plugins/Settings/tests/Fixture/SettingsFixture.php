@@ -24,9 +24,9 @@ class SettingsFixture extends TestFixture
                 'key' => 'Lorem ipsum dolor sit amet',
                 'value' => ['network' => 'M-Net'],
                 'created' => 1761497620,
-                'created_by' => '11edb519-be76-4d66-aea0-34188d31eae1',
+                'created_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'modified' => 1761497620,
-                'modified_by' => '11edb519-be76-4d66-aea0-34188d31eae1',
+                'modified_by' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
             ],
         ];
         parent::init();
