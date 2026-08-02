@@ -3,21 +3,21 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\RouterosDeviceInterfacesController;
+use App\Controller\TaskStatesController;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
- * App\Controller\RouterosDeviceInterfacesController Test Case
+ * App\Controller\TaskStatesController Test Case
  *
  * Smoke tests: every action is requested once and has to answer. They are deliberately shallow -
  * their job is to notice an action that stopped answering at all, which is where the query building
  * bugs turn up.
  */
-#[UsesClass(RouterosDeviceInterfacesController::class)]
-class RouterosDeviceInterfacesControllerTest extends TestCase
+#[UsesClass(TaskStatesController::class)]
+class TaskStatesControllerTest extends TestCase
 {
     use ControllerTestTrait;
     use IntegrationTestTrait;
@@ -31,23 +31,21 @@ class RouterosDeviceInterfacesControllerTest extends TestCase
         'app.AppUsers',
         'app.AccessPointTypes',
         'app.AccessPoints',
-        'app.CustomerPoints',
-        'app.CustomerConnections',
-        'app.DeviceTypes',
-        'app.RouterosDevices',
-        'app.RouterosDeviceInterfaces',
+        'app.TaskStates',
+        'app.TaskTypes',
+        'app.Tasks',
     ];
 
     /**
      * The listing renders.
      *
      * @return void
-     * @link \App\Controller\RouterosDeviceInterfacesController::index()
+     * @link \App\Controller\TaskStatesController::index()
      */
     public function testIndex(): void
     {
         $this->login();
-        $this->get('/routeros-device-interfaces');
+        $this->get('/task-states');
 
         $this->assertResponseOk();
     }
@@ -57,12 +55,12 @@ class RouterosDeviceInterfacesControllerTest extends TestCase
      * listing does and is therefore worth requesting on its own.
      *
      * @return void
-     * @link \App\Controller\RouterosDeviceInterfacesController::index()
+     * @link \App\Controller\TaskStatesController::index()
      */
     public function testIndexWithSearch(): void
     {
         $this->login();
-        $this->get('/routeros-device-interfaces?search=Lorem');
+        $this->get('/task-states?search=Lorem');
 
         $this->assertResponseOk();
     }
@@ -71,12 +69,12 @@ class RouterosDeviceInterfacesControllerTest extends TestCase
      * The detail of a record renders.
      *
      * @return void
-     * @link \App\Controller\RouterosDeviceInterfacesController::view()
+     * @link \App\Controller\TaskStatesController::view()
      */
     public function testView(): void
     {
         $this->login();
-        $this->get('/routeros-device-interfaces/view/' . $this->firstId('RouterosDeviceInterfaces'));
+        $this->get('/task-states/view/' . $this->firstId('TaskStates'));
 
         $this->assertResponseOk();
     }
@@ -85,12 +83,12 @@ class RouterosDeviceInterfacesControllerTest extends TestCase
      * The form for a new record renders.
      *
      * @return void
-     * @link \App\Controller\RouterosDeviceInterfacesController::add()
+     * @link \App\Controller\TaskStatesController::add()
      */
     public function testAdd(): void
     {
         $this->login();
-        $this->get('/routeros-device-interfaces/add');
+        $this->get('/task-states/add');
 
         $this->assertResponseOk();
     }
@@ -99,12 +97,12 @@ class RouterosDeviceInterfacesControllerTest extends TestCase
      * The form of an existing record renders.
      *
      * @return void
-     * @link \App\Controller\RouterosDeviceInterfacesController::edit()
+     * @link \App\Controller\TaskStatesController::edit()
      */
     public function testEdit(): void
     {
         $this->login();
-        $this->get('/routeros-device-interfaces/edit/' . $this->firstId('RouterosDeviceInterfaces'));
+        $this->get('/task-states/edit/' . $this->firstId('TaskStates'));
 
         $this->assertResponseOk();
     }
@@ -114,14 +112,14 @@ class RouterosDeviceInterfacesControllerTest extends TestCase
      * still references it, which is the application rules' business rather than this test's.
      *
      * @return void
-     * @link \App\Controller\RouterosDeviceInterfacesController::delete()
+     * @link \App\Controller\TaskStatesController::delete()
      */
     public function testDelete(): void
     {
         $this->login();
         $this->enableCsrfToken();
         $this->enableSecurityToken();
-        $this->post('/routeros-device-interfaces/delete/' . $this->firstId('RouterosDeviceInterfaces'));
+        $this->post('/task-states/delete/' . $this->firstId('TaskStates'));
 
         $this->assertRedirect();
     }

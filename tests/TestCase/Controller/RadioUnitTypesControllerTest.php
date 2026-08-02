@@ -4,16 +4,22 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\RadioUnitTypesController;
+use App\Test\Traits\ControllerTestTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\RadioUnitTypesController Test Case
+ *
+ * Smoke tests: every action is requested once and has to answer. They are deliberately shallow -
+ * their job is to notice an action that stopped answering at all, which is where the query building
+ * bugs turn up.
  */
 #[UsesClass(RadioUnitTypesController::class)]
 class RadioUnitTypesControllerTest extends TestCase
 {
+    use ControllerTestTrait;
     use IntegrationTestTrait;
 
     /**
@@ -34,52 +40,90 @@ class RadioUnitTypesControllerTest extends TestCase
     ];
 
     /**
-     * Test index method
+     * The listing renders.
      *
      * @return void
+     * @link \App\Controller\RadioUnitTypesController::index()
      */
     public function testIndex(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/radio-unit-types');
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test view method
+     * The listing renders with the search filled in, which builds a different query than the plain
+     * listing does and is therefore worth requesting on its own.
      *
      * @return void
+     * @link \App\Controller\RadioUnitTypesController::index()
+     */
+    public function testIndexWithSearch(): void
+    {
+        $this->login();
+        $this->get('/radio-unit-types?search=Lorem');
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * The detail of a record renders.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitTypesController::view()
      */
     public function testView(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/radio-unit-types/view/' . $this->firstId('RadioUnitTypes'));
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test add method
+     * The form for a new record renders.
      *
      * @return void
+     * @link \App\Controller\RadioUnitTypesController::add()
      */
     public function testAdd(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/radio-unit-types/add');
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test edit method
+     * The form of an existing record renders.
      *
      * @return void
+     * @link \App\Controller\RadioUnitTypesController::edit()
      */
     public function testEdit(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/radio-unit-types/edit/' . $this->firstId('RadioUnitTypes'));
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test delete method
+     * The delete action runs and redirects. Whether the record really goes depends on what else
+     * still references it, which is the application rules' business rather than this test's.
      *
      * @return void
+     * @link \App\Controller\RadioUnitTypesController::delete()
      */
     public function testDelete(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/radio-unit-types/delete/' . $this->firstId('RadioUnitTypes'));
+
+        $this->assertRedirect();
     }
 }

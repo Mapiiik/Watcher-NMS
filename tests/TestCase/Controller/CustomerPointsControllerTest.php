@@ -4,16 +4,22 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\CustomerPointsController;
+use App\Test\Traits\ControllerTestTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * App\Controller\CustomerPointsController Test Case
+ *
+ * Smoke tests: every action is requested once and has to answer. They are deliberately shallow -
+ * their job is to notice an action that stopped answering at all, which is where the query building
+ * bugs turn up.
  */
 #[UsesClass(CustomerPointsController::class)]
 class CustomerPointsControllerTest extends TestCase
 {
+    use ControllerTestTrait;
     use IntegrationTestTrait;
 
     /**
@@ -28,52 +34,90 @@ class CustomerPointsControllerTest extends TestCase
     ];
 
     /**
-     * Test index method
+     * The listing renders.
      *
      * @return void
+     * @link \App\Controller\CustomerPointsController::index()
      */
     public function testIndex(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/customer-points');
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test view method
+     * The listing renders with the search filled in, which builds a different query than the plain
+     * listing does and is therefore worth requesting on its own.
      *
      * @return void
+     * @link \App\Controller\CustomerPointsController::index()
+     */
+    public function testIndexWithSearch(): void
+    {
+        $this->login();
+        $this->get('/customer-points?search=Lorem');
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * The detail of a record renders.
+     *
+     * @return void
+     * @link \App\Controller\CustomerPointsController::view()
      */
     public function testView(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/customer-points/view/' . $this->firstId('CustomerPoints'));
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test add method
+     * The form for a new record renders.
      *
      * @return void
+     * @link \App\Controller\CustomerPointsController::add()
      */
     public function testAdd(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/customer-points/add');
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test edit method
+     * The form of an existing record renders.
      *
      * @return void
+     * @link \App\Controller\CustomerPointsController::edit()
      */
     public function testEdit(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/customer-points/edit/' . $this->firstId('CustomerPoints'));
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test delete method
+     * The delete action runs and redirects. Whether the record really goes depends on what else
+     * still references it, which is the application rules' business rather than this test's.
      *
      * @return void
+     * @link \App\Controller\CustomerPointsController::delete()
      */
     public function testDelete(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/customer-points/delete/' . $this->firstId('CustomerPoints'));
+
+        $this->assertRedirect();
     }
 }

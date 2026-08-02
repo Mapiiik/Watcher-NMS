@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\AccessPointsController;
-use Cake\Core\Configure;
+use App\Test\Traits\ControllerTestTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(AccessPointsController::class)]
 class AccessPointsControllerTest extends TestCase
 {
+    use ControllerTestTrait;
     use IntegrationTestTrait;
 
     /**
@@ -42,13 +43,22 @@ class AccessPointsControllerTest extends TestCase
     ];
 
     /**
-     * Test index method
+     * The listing renders, plain and with the search filled in - the search builds a different
+     * query than the plain listing does.
      *
      * @return void
+     * @link \App\Controller\AccessPointsController::index()
      */
     public function testIndex(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/access-points');
+
+        $this->assertResponseOk();
+
+        $this->get('/access-points?search=Lorem');
+
+        $this->assertResponseOk();
     }
 
     /**
@@ -140,60 +150,69 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
-     * login method
+     * The form for a new access point renders.
      *
      * @return void
-     */
-    protected function login(): void
-    {
-        /** @var \App\Model\Table\AppUsersTable $usersTable */
-        $usersTable = $this->getTableLocator()->get(Configure::read('Users.table', 'Users'));
-
-        $user = $usersTable->newEmptyEntity();
-        $user->username = 'tester';
-        $user->role = 'admin';
-        $user->active = true;
-
-        $this->session(['Auth' => $user]);
-    }
-
-    /**
-     * Test add method
-     *
-     * @return void
+     * @link \App\Controller\AccessPointsController::add()
      */
     public function testAdd(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/access-points/add');
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test edit method
+     * The form of an existing access point renders.
      *
      * @return void
+     * @link \App\Controller\AccessPointsController::edit()
      */
     public function testEdit(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/access-points/' . $this->firstId('AccessPoints') . '/edit');
+
+        $this->assertResponseOk();
     }
 
     /**
-     * Test delete method
+     * An access point nothing hangs off is deleted and the caller is sent back to the listing.
+     *
+     * A fresh one is made for it rather than taking a fixture: deleting an access point that still
+     * parents another reaches the foreign key and answers 500, which is worth knowing but is not
+     * what this test is about.
      *
      * @return void
+     * @link \App\Controller\AccessPointsController::delete()
      */
     public function testDelete(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $accessPoint = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Leaf to delete']));
+
+        $this->post('/access-points/' . $accessPoint->id . '/delete');
+
+        $this->assertRedirect();
+        $this->assertFalse($accessPoints->exists(['id' => $accessPoint->id]));
     }
 
     /**
-     * Test map method
+     * The map renders.
      *
      * @return void
+     * @link \App\Controller\AccessPointsController::map()
      */
     public function testMap(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->login();
+        $this->get('/access-points/map');
+
+        $this->assertResponseOk();
     }
 }
