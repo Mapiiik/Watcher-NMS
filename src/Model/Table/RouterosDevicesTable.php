@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\ORM\Association;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -68,13 +69,22 @@ class RouterosDevicesTable extends AppTable
         $this->hasMany('RouterosDeviceIps', [
             'foreignKey' => 'routeros_device_id',
         ]);
+        // Both link associations are only ever contained together with the neighbour's own device,
+        // which is this very table and is therefore reached under the alias `RouterosDevices`. The
+        // `subquery` strategy - the CakePHP 5.4 default for hasMany - filters its fetch query by
+        // joining a derived table aliased after the source, so it claims that same alias. The
+        // second join replaces the first while keeping its place at the front, which both loses the
+        // filtering and leaves the device joined ahead of the neighbour its condition reads. The
+        // `select` strategy filters with a `WHERE` instead and has no alias to collide with.
         $this->hasMany('RouterosIpLinks', [
             'className' => 'RouterosDeviceIps',
             'foreignKey' => 'routeros_device_id',
+            'strategy' => Association::STRATEGY_SELECT,
         ]);
         $this->hasMany('RouterosWirelessLinks', [
             'className' => 'RouterosDeviceInterfaces',
             'foreignKey' => 'routeros_device_id',
+            'strategy' => Association::STRATEGY_SELECT,
             'conditions' => [
                 'OR' => [
                     'NeighbouringStations.id IS NOT NULL',

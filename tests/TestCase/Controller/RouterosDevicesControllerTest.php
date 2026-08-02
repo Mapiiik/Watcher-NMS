@@ -69,30 +69,27 @@ class RouterosDevicesControllerTest extends TestCase
     }
 
     /**
-     * The detail of a record renders.
+     * The detail of a record renders, with the links it reaches the neighbouring devices through.
      *
-     * Skipped because the action does not: the contain reaches the neighbour's device as
-     * `NeighbouringIpAddresses.RouterosDevices`, but `RouterosDevices` is already the name of the
-     * ip's own device association, so the eager loader attaches it one level too high. It ends up
-     * joined ahead of `NeighbouringIpAddresses` while its condition refers to it, and PostgreSQL
-     * rejects the query with `missing FROM-clause entry for table "neighbouringipaddresses"`.
-     *
-     * Nothing about that depends on the data, so the page is broken wherever a device is opened.
-     * Giving the neighbour's device an alias of its own is what would fix it; the test is written
-     * and waiting rather than left as a stub, so it starts passing once that is done.
+     * Those two associations have to keep the `select` strategy: the `subquery` one claims the
+     * `RouterosDevices` alias for the derived table it filters by, and the neighbour's own device
+     * is contained under that same alias, so the joins collide and PostgreSQL rejects the query.
+     * See the note on the associations in {@see \App\Model\Table\RouterosDevicesTable}.
      *
      * @return void
      * @link \App\Controller\RouterosDevicesController::view()
      */
     public function testView(): void
     {
-        $this->markTestSkipped('The view action builds an invalid join, see the docblock above.');
-
-        // @phpstan-ignore-next-line deadCode.unreachable
         $this->login();
         $this->get('/routeros-devices/view/' . $this->firstId('RouterosDevices'));
 
         $this->assertResponseOk();
+
+        /** @var \App\Model\Entity\RouterosDevice $routerosDevice */
+        $routerosDevice = $this->viewVariable('routerosDevice');
+        $this->assertNotNull($routerosDevice->routeros_ip_links);
+        $this->assertNotNull($routerosDevice->routeros_wireless_links);
     }
 
     /**
