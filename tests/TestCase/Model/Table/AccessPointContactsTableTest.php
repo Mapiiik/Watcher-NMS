@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\AccessPointContactsTable;
+use App\Test\Traits\TableTestTrait;
 use Cake\TestSuite\TestCase;
 use Override;
 
@@ -12,6 +13,8 @@ use Override;
  */
 class AccessPointContactsTableTest extends TestCase
 {
+    use TableTestTrait;
+
     /**
      * Test subject
      *
@@ -59,22 +62,24 @@ class AccessPointContactsTableTest extends TestCase
     }
 
     /**
-     * Test validationDefault method
+     * A new record with nothing filled in is refused - see the trait for why that is the question
+     * worth asking here.
      *
      * @return void
      */
     public function testValidationDefault(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertEmptyRecordIsRefused($this->AccessPointContacts);
     }
 
     /**
-     * Test buildRules method
+     * The rules refuse a record whose references point nowhere - see the trait for why that is
+     * the question worth asking here.
      *
      * @return void
      */
     public function testBuildRules(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertDanglingReferencesAreRefused($this->AccessPointContacts);
     }
 }

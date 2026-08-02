@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\ManufacturersTable;
+use App\Test\Traits\TableTestTrait;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -13,6 +14,8 @@ use Override;
  */
 class ManufacturersTableTest extends TestCase
 {
+    use TableTestTrait;
+
     /**
      * Test subject
      *
@@ -62,22 +65,24 @@ class ManufacturersTableTest extends TestCase
     }
 
     /**
-     * Test initialize method
+     * Every association names a column that is really there - see the trait for why that is the
+     * question worth asking here.
      *
      * @return void
      */
     public function testInitialize(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertAssociationsMatchTheSchema($this->Manufacturers);
     }
 
     /**
-     * Test validationDefault method
+     * A new record with nothing filled in is refused - see the trait for why that is the question
+     * worth asking here.
      *
      * @return void
      */
     public function testValidationDefault(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertEmptyRecordIsRefused($this->Manufacturers);
     }
 }

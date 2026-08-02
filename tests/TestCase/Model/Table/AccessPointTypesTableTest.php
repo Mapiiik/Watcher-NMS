@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\AccessPointTypesTable;
+use App\Test\Traits\TableTestTrait;
 use Cake\TestSuite\TestCase;
 use Override;
 
@@ -12,6 +13,8 @@ use Override;
  */
 class AccessPointTypesTableTest extends TestCase
 {
+    use TableTestTrait;
+
     /**
      * Test subject
      *
@@ -58,13 +61,14 @@ class AccessPointTypesTableTest extends TestCase
     }
 
     /**
-     * Test validationDefault method
+     * A new record with nothing filled in is refused - see the trait for why that is the question
+     * worth asking here.
      *
      * @return void
      * @link \App\Model\Table\AccessPointTypesTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertEmptyRecordIsRefused($this->AccessPointTypes);
     }
 }
