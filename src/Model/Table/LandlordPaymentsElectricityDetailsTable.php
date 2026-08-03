@@ -64,6 +64,7 @@ class LandlordPaymentsElectricityDetailsTable extends AppTable
     {
         $validator
             ->uuid('landlord_payment_id')
+            ->requirePresence('landlord_payment_id', 'create')
             ->notEmptyString('landlord_payment_id');
 
         $validator
