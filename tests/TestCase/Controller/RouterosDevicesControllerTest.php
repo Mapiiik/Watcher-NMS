@@ -136,4 +136,82 @@ class RouterosDevicesControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A device filled in on the form is really stored.
+     *
+     * Rendering the form proves the page is there; this proves the way through it works.
+     * Marshalling, validation, the application rules and the save only ever run on a request that
+     * carries data.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDevicesController::add()
+     */
+    public function testAddStoresADevice(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/routeros-devices/add', [
+            'name' => 'Tower router',
+            'access_point_id' => $this->firstId('AccessPoints'),
+            'device_type_id' => $this->firstId('DeviceTypes'),
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\RouterosDevice $stored */
+        $stored = $this->getTableLocator()->get('RouterosDevices')
+            ->find()
+            ->where(['name' => 'Tower router'])
+            ->firstOrFail();
+        $this->assertSame($this->firstId('AccessPoints'), $stored->access_point_id);
+    }
+
+    /**
+     * A device pointed at an access point that is not there is not stored, and the operator is
+     * given the form back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDevicesController::add()
+     */
+    public function testAddRefusesADeviceOnAnAccessPointThatIsNotThere(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $devices = $this->getTableLocator()->get('RouterosDevices');
+        $before = $devices->find()->count();
+
+        $this->post('/routeros-devices/add', [
+            'name' => 'Tower router',
+            'access_point_id' => '3f2b1a0c-0000-4000-8000-000000000000',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $devices->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDevicesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $deviceId = $this->firstId('RouterosDevices');
+        $this->post('/routeros-devices/edit/' . $deviceId, ['name' => 'Renamed router']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed router',
+            $this->getTableLocator()->get('RouterosDevices')->get($deviceId)->name,
+        );
+    }
 }

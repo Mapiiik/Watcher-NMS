@@ -178,6 +178,125 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * An access point filled in on the form is really stored.
+     *
+     * Rendering the form proves the page is there; this proves the way through it works. Everything
+     * between the two - marshalling, validation, the application rules and the save - only ever
+     * runs on a request that carries data, and a controller test that never posts one leaves the
+     * whole of it unasked.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::add()
+     */
+    public function testAddStoresAnAccessPoint(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-points/add', [
+            'name' => 'Hilltop relay',
+            'access_point_type_id' => $this->firstId('AccessPointTypes'),
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\AccessPoint $stored */
+        $stored = $this->getTableLocator()->get('AccessPoints')
+            ->find()
+            ->where(['name' => 'Hilltop relay'])
+            ->firstOrFail();
+        $this->assertSame($this->firstId('AccessPointTypes'), $stored->access_point_type_id);
+    }
+
+    /**
+     * An access point of a type that is not there is not stored, and the operator is given the form
+     * back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::add()
+     */
+    public function testAddRefusesAnAccessPointOfATypeThatIsNotThere(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $before = $accessPoints->find()->count();
+
+        $this->post('/access-points/add', [
+            'name' => 'Hilltop relay',
+            'access_point_type_id' => '3f2b1a0c-0000-4000-8000-000000000000',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $accessPoints->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $accessPointId = $this->firstId('AccessPoints');
+        $this->post('/access-points/' . $accessPointId . '/edit', ['name' => 'Renamed relay']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed relay',
+            $this->getTableLocator()->get('AccessPoints')->get($accessPointId)->name,
+        );
+    }
+
+    /**
+     * A role that is not admin does not get to add an access point.
+     *
+     * Every other test here logs in as admin, which `config/permissions.php` lets through
+     * everything - so none of them can tell a controller that is guarded from one that is not. This
+     * asks the authorization layer the only question that matters about it: does a refusal really
+     * happen.
+     *
+     * A refusal is a redirect away rather than a status in the 400s - the middleware sends whoever
+     * is not allowed somewhere they are - so what this holds on to is that they do not arrive at
+     * the form.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::add()
+     */
+    public function testAddIsRefusedToANonAdminRole(): void
+    {
+        $this->login('api');
+
+        $this->get('/access-points/add');
+
+        $this->assertRedirect('/');
+    }
+
+    /**
+     * The same role does get to list access points, which every role is allowed. Without this the
+     * test above would pass just as well on a role that is refused everything, and would be saying
+     * nothing about the permissions at all.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::index()
+     */
+    public function testIndexIsAllowedToANonAdminRole(): void
+    {
+        $this->login('api');
+
+        $this->get('/access-points');
+
+        $this->assertResponseOk();
+    }
+
+    /**
      * An access point nothing hangs off is deleted and the caller is sent back to the listing.
      *
      * A fresh one is made for it rather than taking a fixture: deleting an access point that still
