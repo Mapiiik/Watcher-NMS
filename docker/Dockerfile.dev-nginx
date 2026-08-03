@@ -11,6 +11,18 @@ RUN echo "Based on commit: $gitcommithash"
 ENV DEBUG="true"
 ENV WEB_DOCUMENT_ROOT="/app/webroot"
 
+# Install PCOV extension
+#
+# Coverage is measured when it is asked for rather than always. pcov costs something on every
+# request it is enabled for, and this container mostly serves pages instead of measuring them:
+#   php -d pcov.enabled=1 vendor/bin/phpunit --coverage-text
+RUN set -x \
+ && apk add -U --no-cache autoconf gcc libc-dev make \
+ && pecl install pcov \
+ && docker-php-ext-enable pcov \
+ && echo "pcov.enabled = 0" > "$PHP_INI_DIR/conf.d/pcov.ini" \
+ && docker-run-bootstrap
+
 # Add on-start commands
 RUN cat <<'EOF' > /opt/docker/provision/entrypoint.d/99-composer.sh
 # Composer operations

@@ -22,6 +22,15 @@ RUN install-php-extensions \
     redis \
     sockets
 
+# add additional PHP extensions here:
+RUN install-php-extensions \
+    pcov
+
+# Coverage is measured when it is asked for rather than always. pcov costs something on every
+# request it is enabled for, and this container mostly serves pages instead of measuring them:
+#   php -d pcov.enabled=1 vendor/bin/phpunit --coverage-text
+RUN echo "pcov.enabled = 0" > $PHP_INI_DIR/conf.d/pcov.ini
+
 # Install git
 RUN set -x \
  && apk add -U --no-cache \
