@@ -23,6 +23,13 @@ class IpAddressRangesControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
+     * Access point the nested routes hang off.
+     *
+     * @var string
+     */
+    private const ACCESS_POINT_ID = '1bd5e754-e102-46ad-8488-11b1b44bf026';
+
+    /**
      * Fixtures
      *
      * @var array<string>
@@ -120,5 +127,31 @@ class IpAddressRangesControllerTest extends TestCase
         $this->post('/ip-address-ranges/delete/' . $this->firstId('IpAddressRanges'));
 
         $this->assertRedirect();
+    }
+
+    /**
+     * Added under its access point, the record is filed under it without the form saying so.
+     *
+     * The form under an access point leaves that field out - the route already says which one it
+     * is, and the controller fills it in. Posting it in the body instead, as a test reaching the
+     * flat route does, asks a different question and leaves this one unasked.
+     *
+     * @return void
+     * @link \App\Controller\IpAddressRangesController::add()
+     */
+    public function testAddUnderTheRouteFilesItUnderTheRoute(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $before = $this->idsIn('IpAddressRanges');
+        $this->post('/access-points/' . self::ACCESS_POINT_ID . '/ip-address-ranges/add', [
+            'ip_network' => '10.99.0.0/24',
+        ]);
+
+        $this->assertRedirect();
+        $added = $this->addedRecord('IpAddressRanges', $before);
+        $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
 }

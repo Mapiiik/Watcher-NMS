@@ -23,6 +23,13 @@ class LandlordPaymentsControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
+     * Access point the nested routes hang off.
+     *
+     * @var string
+     */
+    private const ACCESS_POINT_ID = '1bd5e754-e102-46ad-8488-11b1b44bf026';
+
+    /**
      * Fixtures
      *
      * @var array<string>
@@ -169,5 +176,32 @@ class LandlordPaymentsControllerTest extends TestCase
         $this->post('/landlord-payments/delete/' . $this->firstId('LandlordPayments'));
 
         $this->assertRedirect();
+    }
+
+    /**
+     * Added under its access point, the record is filed under it without the form saying so.
+     *
+     * The form under an access point leaves that field out - the route already says which one it
+     * is, and the controller fills it in. Posting it in the body instead, as a test reaching the
+     * flat route does, asks a different question and leaves this one unasked.
+     *
+     * @return void
+     * @link \App\Controller\LandlordPaymentsController::add()
+     */
+    public function testAddUnderTheRouteFilesItUnderTheRoute(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $before = $this->idsIn('LandlordPayments');
+        $this->post('/access-points/' . self::ACCESS_POINT_ID . '/landlord-payments/add', [
+            'payment_date' => '2026-08-05',
+            'amount_paid' => '500.00',
+        ]);
+
+        $this->assertRedirect();
+        $added = $this->addedRecord('LandlordPayments', $before);
+        $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
 }

@@ -23,6 +23,13 @@ class TasksControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
+     * Access point the nested routes hang off.
+     *
+     * @var string
+     */
+    private const ACCESS_POINT_ID = '1bd5e754-e102-46ad-8488-11b1b44bf026';
+
+    /**
      * Fixtures
      *
      * @var array<string>
@@ -122,5 +129,37 @@ class TasksControllerTest extends TestCase
         $this->post('/tasks/delete/' . $this->firstId('Tasks'));
 
         $this->assertRedirect();
+    }
+
+    /**
+     * Added under its access point, the record is filed under it without the form saying so.
+     *
+     * The form under an access point leaves that field out - the route already says which one it
+     * is, and the controller fills it in. Posting it in the body instead, as a test reaching the
+     * flat route does, asks a different question and leaves this one unasked.
+     *
+     * @return void
+     * @link \App\Controller\TasksController::add()
+     */
+    public function testAddUnderTheRouteFilesItUnderTheRoute(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        // the fixtures write the identity column with the values they carry, which leaves the
+        // sequence where it started
+        $this->advanceIdentity('Tasks', 'nid');
+
+        $before = $this->idsIn('Tasks');
+        $this->post('/access-points/' . self::ACCESS_POINT_ID . '/tasks/add', [
+            'task_state_id' => $this->firstId('TaskStates'),
+            'task_type_id' => $this->firstId('TaskTypes'),
+            'subject' => 'Nested task',
+        ]);
+
+        $this->assertRedirect();
+        $added = $this->addedRecord('Tasks', $before);
+        $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
 }

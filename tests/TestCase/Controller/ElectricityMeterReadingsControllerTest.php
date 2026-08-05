@@ -23,6 +23,13 @@ class ElectricityMeterReadingsControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
+     * Access point the nested routes hang off.
+     *
+     * @var string
+     */
+    private const ACCESS_POINT_ID = '1bd5e754-e102-46ad-8488-11b1b44bf026';
+
+    /**
      * Fixtures
      *
      * @var array<string>
@@ -120,5 +127,32 @@ class ElectricityMeterReadingsControllerTest extends TestCase
         $this->post('/electricity-meter-readings/delete/' . $this->firstId('ElectricityMeterReadings'));
 
         $this->assertRedirect();
+    }
+
+    /**
+     * Added under its access point, the record is filed under it without the form saying so.
+     *
+     * The form under an access point leaves that field out - the route already says which one it
+     * is, and the controller fills it in. Posting it in the body instead, as a test reaching the
+     * flat route does, asks a different question and leaves this one unasked.
+     *
+     * @return void
+     * @link \App\Controller\ElectricityMeterReadingsController::add()
+     */
+    public function testAddUnderTheRouteFilesItUnderTheRoute(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $before = $this->idsIn('ElectricityMeterReadings');
+        $this->post('/access-points/' . self::ACCESS_POINT_ID . '/electricity-meter-readings/add', [
+            'reading_date' => '2026-08-05',
+            'value' => '1234.5',
+        ]);
+
+        $this->assertRedirect();
+        $added = $this->addedRecord('ElectricityMeterReadings', $before);
+        $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
 }
