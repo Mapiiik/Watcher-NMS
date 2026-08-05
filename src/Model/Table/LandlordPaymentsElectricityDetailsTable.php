@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -64,7 +65,6 @@ class LandlordPaymentsElectricityDetailsTable extends AppTable
     {
         $validator
             ->uuid('landlord_payment_id')
-            ->requirePresence('landlord_payment_id', 'create')
             ->notEmptyString('landlord_payment_id');
 
         $validator
@@ -104,6 +104,20 @@ class LandlordPaymentsElectricityDetailsTable extends AppTable
     #[Override]
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add(
+            // Ensure that the landlord_payment_id is not empty
+            function (EntityInterface $entity, array $_options): bool {
+                $value = $entity->get('landlord_payment_id');
+
+                return $value !== null && $value !== '';
+            },
+            'isLandlordPaymentIdFilled',
+            [
+                'errorField' => 'landlord_payment_id',
+                'message' => __('This field cannot be left empty'),
+            ],
+        );
+
         $rules->add(
             $rules->existsIn(['landlord_payment_id'], 'LandlordPayments'),
             ['errorField' => 'landlord_payment_id'],
