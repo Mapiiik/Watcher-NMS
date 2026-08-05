@@ -175,7 +175,10 @@ class RouterosDevicesController extends AppController
         }
 
         if ($this->getRequest()->is('post')) {
-            $routerosDevice = $this->RouterosDevices->patchEntity($routerosDevice, $this->getRequest()->getData());
+            $routerosDevice = $this->RouterosDevices->patchEntity(
+                $routerosDevice,
+                $this->dataWithAdditionalParameters($this->RouterosDevices, $this->getRequest()->getData()),
+            );
             if ($this->RouterosDevices->save($routerosDevice)) {
                 $this->Flash->success(__('The RouterOS device has been saved.'));
 

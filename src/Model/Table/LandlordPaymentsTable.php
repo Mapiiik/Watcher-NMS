@@ -75,6 +75,7 @@ class LandlordPaymentsTable extends AppTable
     {
         $validator
             ->uuid('access_point_id')
+            ->requirePresence('access_point_id', 'create')
             ->allowEmptyString('access_point_id');
 
         $validator

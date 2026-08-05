@@ -89,8 +89,10 @@ class AccessPointContactsController extends AppController
         }
 
         if ($this->getRequest()->is('post')) {
-            $accessPointContact = $this->AccessPointContacts
-                ->patchEntity($accessPointContact, $this->getRequest()->getData());
+            $accessPointContact = $this->AccessPointContacts->patchEntity(
+                $accessPointContact,
+                $this->dataWithAdditionalParameters($this->AccessPointContacts, $this->getRequest()->getData()),
+            );
 
             if ($this->AccessPointContacts->save($accessPointContact)) {
                 $this->Flash->success(__('The access point contact has been saved.'));

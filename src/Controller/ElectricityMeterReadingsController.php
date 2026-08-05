@@ -85,8 +85,10 @@ class ElectricityMeterReadingsController extends AppController
         }
 
         if ($this->getRequest()->is('post')) {
-            $electricityMeterReading = $this->ElectricityMeterReadings
-                ->patchEntity($electricityMeterReading, $this->getRequest()->getData());
+            $electricityMeterReading = $this->ElectricityMeterReadings->patchEntity(
+                $electricityMeterReading,
+                $this->dataWithAdditionalParameters($this->ElectricityMeterReadings, $this->getRequest()->getData()),
+            );
 
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {
                 $this->Flash->success(__('The electricity meter reading has been saved.'));
