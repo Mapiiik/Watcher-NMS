@@ -86,4 +86,31 @@ class LandlordPaymentsElectricityDetailsTableTest extends TestCase
     {
         $this->assertDanglingReferencesAreRefused($this->LandlordPaymentsElectricityDetails);
     }
+
+    /**
+     * A reading that names no payment is refused by the rules, and refused as a failed save rather
+     * than as an exception out of the database.
+     *
+     * The column cannot be asked for as incoming data: the detail is written through a hasOne
+     * association and its foreign key does not exist until the payment has been saved, so asking
+     * refuses every reading submitted with a payment. The rules are asked instead, because they run
+     * once the key is there - and this is what notices if that rule goes away, since the only thing
+     * left underneath is the not-null constraint, which answers with a five hundred.
+     *
+     * @return void
+     * @link \App\Model\Table\LandlordPaymentsElectricityDetailsTable::buildRules()
+     */
+    public function testBuildRulesRefusesAReadingWithoutItsPayment(): void
+    {
+        $detail = $this->LandlordPaymentsElectricityDetails->newEntity([
+            'low_rate_kwh_used' => '10.5',
+            'low_rate_price_per_kwh' => '4.20',
+        ]);
+
+        $this->assertFalse(
+            (bool)$this->LandlordPaymentsElectricityDetails->save($detail),
+            'a reading was stored without the payment it belongs to',
+        );
+        $this->assertArrayHasKey('landlord_payment_id', $detail->getErrors());
+    }
 }

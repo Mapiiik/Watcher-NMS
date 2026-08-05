@@ -33,6 +33,7 @@ class LandlordPaymentsControllerTest extends TestCase
         'app.AccessPoints',
         'app.PaymentPurposes',
         'app.LandlordPayments',
+        'app.LandlordPaymentsElectricityDetails',
     ];
 
     /**
@@ -90,6 +91,53 @@ class LandlordPaymentsControllerTest extends TestCase
         $this->get('/landlord-payments/add');
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * A payment submitted with its electricity reading stores both.
+     *
+     * The detail is written through a hasOne association, so its foreign key does not exist until
+     * the payment it belongs to has been saved. Nothing on the form carries it, and nothing can:
+     * asking for it as incoming data refuses every payment ever submitted with a reading, which is
+     * what happened. The rule asking for it runs at save time instead, and this is the path that
+     * tells the two apart.
+     *
+     * @return void
+     * @link \App\Controller\LandlordPaymentsController::add()
+     */
+    public function testAddStoresTheElectricityDetail(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $existing = $this->getTableLocator()->get('LandlordPayments')->find()->firstOrFail();
+
+        $this->post('/landlord-payments/add', [
+            'access_point_id' => $existing->get('access_point_id'),
+            'payment_purpose_id' => $existing->get('payment_purpose_id'),
+            'amount_paid' => '1234.00',
+            'payment_date' => '2026-08-05',
+            // the shape the form posts - no landlord_payment_id anywhere, because there is none yet
+            'landlord_payments_electricity_detail' => [
+                'low_rate_kwh_used' => '10.5',
+                'low_rate_price_per_kwh' => '4.20',
+                'high_rate_kwh_used' => '3.5',
+                'high_rate_price_per_kwh' => '6.10',
+            ],
+        ]);
+
+        $this->assertRedirect();
+
+        $stored = $this->getTableLocator()->get('LandlordPayments')
+            ->find()
+            ->where(['amount_paid' => '1234.00'])
+            ->contain(['LandlordPaymentsElectricityDetails'])
+            ->firstOrFail();
+
+        $detail = $stored->get('landlord_payments_electricity_detail');
+        $this->assertNotNull($detail, 'the reading submitted with the payment was not stored');
+        $this->assertSame($stored->get('id'), $detail->get('landlord_payment_id'));
     }
 
     /**
