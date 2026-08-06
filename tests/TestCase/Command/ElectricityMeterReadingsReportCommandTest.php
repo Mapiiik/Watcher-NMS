@@ -52,6 +52,26 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
     ];
 
     /**
+     * The now the suite runs against, to be put back.
+     *
+     * @var \Cake\Chronos\Chronos|null
+     */
+    private ?Chronos $nowBefore = null;
+
+    /**
+     * setUp method
+     *
+     * @return void
+     */
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->nowBefore = Chronos::getTestNow();
+    }
+
+    /**
      * tearDown method
      *
      * @return void
@@ -59,7 +79,9 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        Chronos::setTestNow(null);
+        // the bootstrap fixes a now for the whole suite; letting go of it entirely would leave
+        // every test after this one running against a clock that moves
+        Chronos::setTestNow($this->nowBefore);
         $this->restoreEnvironment();
 
         parent::tearDown();

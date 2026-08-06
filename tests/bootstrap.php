@@ -20,6 +20,7 @@ use Cake\Core\Configure;
 use Cake\Database\Connection;
 use Cake\Database\Driver\Sqlite;
 use Cake\Datasource\ConnectionManager;
+use Cake\I18n\I18n;
 use Cake\TestSuite\ConnectionHelper;
 use Migrations\TestSuite\Migrator;
 
@@ -53,6 +54,12 @@ ConnectionManager::alias('test_debug_kit', 'debug_kit');
 
 // Fixate now to avoid one-second-leap-issues
 Chronos::setTestNow(Chronos::now());
+
+// Fixate the language, so that what a test reads back is what the source says.
+// The application runs in Czech, and a test asserting on a message would then be
+// asserting on a translation - it would go red the day somebody corrected the
+// wording in Poedit, which has nothing to do with whether the code still works.
+I18n::setLocale('en_US');
 
 // Fixate sessionid early on, as php7.2+
 // does not allow the sessionid to be set after stdout
