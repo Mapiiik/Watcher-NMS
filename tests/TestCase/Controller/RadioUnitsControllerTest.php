@@ -159,4 +159,40 @@ class RadioUnitsControllerTest extends TestCase
         $added = $this->addedRecord('RadioUnits', $before);
         $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
+
+    /**
+     * Asked for under an access point the record does not belong to, it is answered where it does.
+     *
+     * The nested routes match any id against any record, so such a URL used to render the record
+     * under a heading naming an access point it has nothing to do with. It is not an error - the
+     * record exists and the caller is welcome to it - so the caller is sent to it.
+     *
+     * @return void
+     * @link \App\Controller\AppController::beforeFilter()
+     */
+    public function testViewUnderAnotherAccessPointRedirectsToItsOwn(): void
+    {
+        $id = $this->firstId('RadioUnits');
+        $this->login();
+        $this->get('/access-points/' . self::ACCESS_POINT_ID . '/radio-units/view/' . $id);
+
+        $this->assertRedirect('/access-points/1ec58677-1213-4950-80c4-bc1de41ea133/radio-units/view/' . $id);
+    }
+
+    /**
+     * Asked for under the access point it belongs to, the record is answered there.
+     *
+     * @return void
+     * @link \App\Controller\AppController::beforeFilter()
+     */
+    public function testViewUnderItsOwnAccessPointIsAnsweredThere(): void
+    {
+        $this->login();
+        $this->get(
+            '/access-points/1ec58677-1213-4950-80c4-bc1de41ea133/radio-units/view/'
+            . $this->firstId('RadioUnits'),
+        );
+
+        $this->assertResponseOk();
+    }
 }

@@ -185,10 +185,18 @@ return function (RouteBuilder $routes): void {
             ];
             $controller = $params['controller'] ?? $request->getParam('controller');
             if (in_array($controller, $accessPointControllers)) {
-                //inject access_point_id
+                //inject access_point_id, unless the caller asked for something else -
+                //passing null opts out, for links meant to leave the nesting behind.
+                //Note isset() would not see that null.
                 $accessPointId = $request->getParam('access_point_id');
-                if ($accessPointId && !isset($params['access_point_id'])) {
+                if ($accessPointId && !array_key_exists('access_point_id', $params)) {
                     $params['access_point_id'] = $accessPointId;
+                }
+                if (
+                    array_key_exists('access_point_id', $params)
+                    && $params['access_point_id'] === null
+                ) {
+                    unset($params['access_point_id']);
                 }
             }
 
