@@ -180,6 +180,39 @@ class RadioUnitsControllerTest extends TestCase
     }
 
     /**
+     * The form for a new record under an access point that is not there drops the nesting.
+     *
+     * This is what a bookmark turns into once the access point behind it is deleted. Left alone,
+     * the form would fill the dead id in and the save fail on `existsIn`, complaining about a field
+     * the form does not render - which reads as no reason at all.
+     *
+     * @return void
+     * @link \App\Controller\AppController::beforeFilter()
+     */
+    public function testAddUnderAnAccessPointThatIsGoneDropsTheNesting(): void
+    {
+        $this->login();
+        $this->get('/access-points/00000000-0000-4000-8000-000000000000/radio-units/add');
+
+        $this->assertRedirect('/radio-units/add');
+    }
+
+    /**
+     * The listing under an access point that is not there drops the nesting as well - it is the
+     * address that is wrong, not the action asked for.
+     *
+     * @return void
+     * @link \App\Controller\AppController::beforeFilter()
+     */
+    public function testIndexUnderAnAccessPointThatIsGoneDropsTheNesting(): void
+    {
+        $this->login();
+        $this->get('/access-points/00000000-0000-4000-8000-000000000000/radio-units');
+
+        $this->assertRedirect('/radio-units');
+    }
+
+    /**
      * Asked for under the access point it belongs to, the record is answered there.
      *
      * @return void
