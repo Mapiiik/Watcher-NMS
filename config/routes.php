@@ -162,45 +162,47 @@ return function (RouteBuilder $routes): void {
         });
     });
 
-    //apply URL filters only if not called from console
-    if (PHP_SAPI !== 'cli') {
-        Router::addUrlFilter(function (array $params, ServerRequest $request) {
-            //persistent win-link parameter, unless the caller asked for something
-            //else - passing null opts out, for links meant to be followed outside
-            //the popup window. Note isset() would not see that null.
-            $winLink = $request->getQuery('win-link') == 'true';
-            if ($winLink && !array_key_exists('win-link', $params['?'] ?? [])) {
-                $params['?']['win-link'] = 'true';
-            }
+    //the filter reads the request it is generating a URL under, and a console
+    //run has none to read - every branch below asks for something a bare
+    //request does not carry, so it comes to nothing there on its own. It used
+    //to be skipped outright when PHP_SAPI was cli, which also skipped it under
+    //the test runner and built different URLs there than in a browser.
+    Router::addUrlFilter(function (array $params, ServerRequest $request) {
+        //persistent win-link parameter, unless the caller asked for something
+        //else - passing null opts out, for links meant to be followed outside
+        //the popup window. Note isset() would not see that null.
+        $winLink = $request->getQuery('win-link') == 'true';
+        if ($winLink && !array_key_exists('win-link', $params['?'] ?? [])) {
+            $params['?']['win-link'] = 'true';
+        }
 
-            //controllers related to access points
-            $accessPointControllers = [
-                'AccessPointContacts',
-                'ElectricityMeterReadings',
-                'IpAddressRanges',
-                'LandlordPayments',
-                'PowerSupplies',
-                'RadioUnits',
-                'RouterosDevices',
-            ];
-            $controller = $params['controller'] ?? $request->getParam('controller');
-            if (in_array($controller, $accessPointControllers)) {
-                //inject access_point_id, unless the caller asked for something else -
-                //passing null opts out, for links meant to leave the nesting behind.
-                //Note isset() would not see that null.
-                $accessPointId = $request->getParam('access_point_id');
-                if ($accessPointId && !array_key_exists('access_point_id', $params)) {
-                    $params['access_point_id'] = $accessPointId;
-                }
-                if (
-                    array_key_exists('access_point_id', $params)
-                    && $params['access_point_id'] === null
-                ) {
-                    unset($params['access_point_id']);
-                }
+        //controllers related to access points
+        $accessPointControllers = [
+            'AccessPointContacts',
+            'ElectricityMeterReadings',
+            'IpAddressRanges',
+            'LandlordPayments',
+            'PowerSupplies',
+            'RadioUnits',
+            'RouterosDevices',
+        ];
+        $controller = $params['controller'] ?? $request->getParam('controller');
+        if (in_array($controller, $accessPointControllers)) {
+            //inject access_point_id, unless the caller asked for something else -
+            //passing null opts out, for links meant to leave the nesting behind.
+            //Note isset() would not see that null.
+            $accessPointId = $request->getParam('access_point_id');
+            if ($accessPointId && !array_key_exists('access_point_id', $params)) {
+                $params['access_point_id'] = $accessPointId;
             }
+            if (
+                array_key_exists('access_point_id', $params)
+                && $params['access_point_id'] === null
+            ) {
+                unset($params['access_point_id']);
+            }
+        }
 
-            return $params;
-        });
-    }
+        return $params;
+    });
 };
