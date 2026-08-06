@@ -59,6 +59,12 @@ Chronos::setTestNow(Chronos::now());
 // The application runs in Czech, and a test asserting on a message would then be
 // asserting on a translation - it would go red the day somebody corrected the
 // wording in Poedit, which has nothing to do with whether the code still works.
+//
+// The default has to go with it: a request picks its language per user and falls
+// back to `I18n::getDefaultLocale()`, so a controller test would otherwise leave
+// the suite in Czech for whatever ran after it. There is no setter for that one
+// - it answers with the locale intl was left holding, once, and remembers it.
+Locale::setDefault('en_US');
 I18n::setLocale('en_US');
 
 // Fixate sessionid early on, as php7.2+
