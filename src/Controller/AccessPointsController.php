@@ -11,6 +11,7 @@ use Cake\Form\Form;
 use Cake\Http\Response;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
+use Cake\ORM\Association;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
 use Exception;
@@ -443,11 +444,11 @@ class AccessPointsController extends AppController
                                     'RouterosDevices.customer_connection_id',
                                 ],
                                 'AccessPoints' => [
-                                    'strategy' => 'select',
+                                    'strategy' => Association::STRATEGY_SELECT,
                                     'AccessPointTypes',
                                 ],
                                 'CustomerConnections' => [
-                                    'strategy' => 'select',
+                                    'strategy' => Association::STRATEGY_SELECT,
                                     'CustomerPoints',
                                 ],
                             ],
@@ -484,11 +485,11 @@ class AccessPointsController extends AppController
                                     'RouterosDevices.customer_connection_id',
                                 ],
                                 'AccessPoints' => [
-                                    'strategy' => 'select',
+                                    'strategy' => Association::STRATEGY_SELECT,
                                     'AccessPointTypes',
                                 ],
                                 'CustomerConnections' => [
-                                    'strategy' => 'select',
+                                    'strategy' => Association::STRATEGY_SELECT,
                                     'CustomerPoints',
                                 ],
                             ],
@@ -510,11 +511,11 @@ class AccessPointsController extends AppController
                                     'RouterosDevices.customer_connection_id',
                                 ],
                                 'AccessPoints' => [
-                                    'strategy' => 'select',
+                                    'strategy' => Association::STRATEGY_SELECT,
                                     'AccessPointTypes',
                                 ],
                                 'CustomerConnections' => [
-                                    'strategy' => 'select',
+                                    'strategy' => Association::STRATEGY_SELECT,
                                     'CustomerPoints',
                                 ],
                             ],
