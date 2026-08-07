@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Command;
 
 use App\Command\CustomerPointsUpdateCommand;
+use App\Test\Traits\EnvironmentTestTrait;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
@@ -22,6 +23,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
     use EmailTrait;
+    use EnvironmentTestTrait;
 
     /**
      * The connection the fixture holds, which it holds as archived.
@@ -52,6 +54,22 @@ class CustomerPointsUpdateCommandTest extends TestCase
     private array $written = [];
 
     /**
+     * setUp method
+     *
+     * @return void
+     */
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // The run reports a failure by mail, so a test of the failing path needs somebody to
+        // report it to. Left to the environment it is whatever the developer's `.env` says and
+        // nothing at all on CI, where the report then fails instead of the run.
+        $this->withEnvironment(['REPORT_EMAILS' => 'nobody@example.com']);
+    }
+
+    /**
      * tearDown method
      *
      * @return void
@@ -65,6 +83,8 @@ class CustomerPointsUpdateCommandTest extends TestCase
             }
         }
         $this->written = [];
+
+        $this->restoreEnvironment();
 
         parent::tearDown();
     }

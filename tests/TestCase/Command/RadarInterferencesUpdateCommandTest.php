@@ -50,6 +50,22 @@ class RadarInterferencesUpdateCommandTest extends TestCase
     private array $written = [];
 
     /**
+     * setUp method
+     *
+     * @return void
+     */
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // The run reports a failure by mail, so a test of the failing path needs somebody to
+        // report it to. Left to the environment it is whatever the developer's `.env` says and
+        // nothing at all on CI, where the report then fails instead of the run.
+        $this->withEnvironment(['REPORT_EMAILS' => 'nobody@example.com']);
+    }
+
+    /**
      * tearDown method
      *
      * @return void
