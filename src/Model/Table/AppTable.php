@@ -106,44 +106,52 @@ class AppTable extends Table
             return;
         }
 
-        $contain = $query->getContain();
+        $strategies = $this->selectStrategies($query->getContain(), $this);
 
-        if ($contain !== []) {
-            $query->contain($this->withSelectStrategy($contain, $this), true);
+        if ($strategies !== []) {
+            // merged into the loader rather than set on the query: `SelectQuery::contain()` with
+            // an override clears the contain first, and clearing marks the query dirty - which is
+            // not something to do to a query while it is running
+            $query->getEagerLoader()->contain($strategies);
         }
     }
 
     /**
-     * Says that the contained hasMany and belongsToMany are to be fetched with the `select`
-     * strategy, wherever the caller has not said otherwise.
+     * The contained hasMany and belongsToMany that have not been given a strategy of their own,
+     * as a contain saying `select` and nothing else.
      *
-     * @param array<mixed> $contain Contain to rewrite.
+     * @param array<mixed> $contain Contain to read.
      * @param \Cake\ORM\Table $table Table the contain is read against.
      * @return array<mixed>
      */
-    protected function withSelectStrategy(array $contain, Table $table): array
+    protected function selectStrategies(array $contain, Table $table): array
     {
-        $rewritten = [];
+        $strategies = [];
 
         foreach ($contain as $key => $options) {
             $name = is_int($key) ? $options : $key;
 
             if (!is_string($name) || !$table->hasAssociation($name)) {
-                $rewritten[$key] = $options;
                 continue;
             }
 
             $association = $table->getAssociation($name);
             $options = is_array($options) ? $options : [];
+            $nested = $this->selectStrategies($options, $association->getTarget());
 
-            if ($association instanceof HasMany || $association instanceof BelongsToMany) {
-                $options += ['strategy' => Association::STRATEGY_SELECT];
+            if (
+                !array_key_exists('strategy', $options)
+                && ($association instanceof HasMany || $association instanceof BelongsToMany)
+            ) {
+                $nested['strategy'] = Association::STRATEGY_SELECT;
             }
 
-            $rewritten[$name] = $this->withSelectStrategy($options, $association->getTarget());
+            if ($nested !== []) {
+                $strategies[$name] = $nested;
+            }
         }
 
-        return $rewritten;
+        return $strategies;
     }
 
     /**
