@@ -156,4 +156,26 @@ class PowerSuppliesControllerTest extends TestCase
         $added = $this->addedRecord('PowerSupplies', $before);
         $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\PowerSuppliesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $powerSupplyId = $this->firstId('PowerSupplies');
+        $this->post('/power-supplies/edit/' . $powerSupplyId, ['name' => 'Renamed power supply']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed power supply',
+            $this->getTableLocator()->get('PowerSupplies')->get($powerSupplyId)->name,
+        );
+    }
 }

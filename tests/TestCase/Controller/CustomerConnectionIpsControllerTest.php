@@ -121,4 +121,81 @@ class CustomerConnectionIpsControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * An address filled in on the form is really stored. Rendering the form proves the page is
+     * there; marshalling, validation, the application rules and the save only ever run on a request
+     * that carries data.
+     *
+     * @return void
+     * @link \App\Controller\CustomerConnectionIpsController::add()
+     */
+    public function testAddStoresAnAddress(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/customer-connection-ips/add', [
+            'name' => 'Village uplink address',
+            'ip_address' => '10.20.30.40',
+            'customer_connection_id' => $this->firstId('CustomerConnections'),
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\CustomerConnectionIp $stored */
+        $stored = $this->getTableLocator()->get('CustomerConnectionIps')
+            ->find()
+            ->where(['name' => 'Village uplink address'])
+            ->firstOrFail();
+        $this->assertSame($this->firstId('CustomerConnections'), $stored->customer_connection_id);
+    }
+
+    /**
+     * An address on a connection that is not there is not stored, and the operator is given the
+     * form back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\CustomerConnectionIpsController::add()
+     */
+    public function testAddRefusesAnAddressOnAConnectionThatIsNotThere(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $customerConnectionIps = $this->getTableLocator()->get('CustomerConnectionIps');
+        $before = $customerConnectionIps->find()->count();
+
+        $this->post('/customer-connection-ips/add', [
+            'name' => 'Village uplink address',
+            'ip_address' => '10.20.30.40',
+            'customer_connection_id' => '3f2b1a0c-0000-4000-8000-000000000000',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $customerConnectionIps->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\CustomerConnectionIpsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $customerConnectionIpId = $this->firstId('CustomerConnectionIps');
+        $this->post('/customer-connection-ips/edit/' . $customerConnectionIpId, ['name' => 'Renamed address']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed address',
+            $this->getTableLocator()->get('CustomerConnectionIps')->get($customerConnectionIpId)->name,
+        );
+    }
 }

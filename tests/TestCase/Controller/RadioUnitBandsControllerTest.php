@@ -126,4 +126,57 @@ class RadioUnitBandsControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A band filled in on the form is really stored. Rendering the form proves the page is there;
+     * marshalling, validation, the application rules and the save only ever run on a request that
+     * carries data.
+     *
+     * There is no counterpart refusing a band, because the model asks nothing of one - see the note
+     * on {@see \App\Test\TestCase\Model\Table\RadioUnitBandsTableTest::testValidationDefault()}.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitBandsController::add()
+     */
+    public function testAddStoresABand(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/radio-unit-bands/add', [
+            'name' => '10 GHz',
+            'color' => '#336699',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\RadioUnitBand $stored */
+        $stored = $this->getTableLocator()->get('RadioUnitBands')
+            ->find()
+            ->where(['name' => '10 GHz'])
+            ->firstOrFail();
+        $this->assertSame('#336699', $stored->color);
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitBandsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $radioUnitBandId = $this->firstId('RadioUnitBands');
+        $this->post('/radio-unit-bands/edit/' . $radioUnitBandId, ['name' => 'Renamed band']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed band',
+            $this->getTableLocator()->get('RadioUnitBands')->get($radioUnitBandId)->name,
+        );
+    }
 }

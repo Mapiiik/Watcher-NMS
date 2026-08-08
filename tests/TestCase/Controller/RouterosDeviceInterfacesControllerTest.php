@@ -125,4 +125,85 @@ class RouterosDeviceInterfacesControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * An interface filled in on the form is really stored. Rendering the form proves the page is
+     * there; marshalling, validation, the application rules and the save only ever run on a request
+     * that carries data.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDeviceInterfacesController::add()
+     */
+    public function testAddStoresAnInterface(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/routeros-device-interfaces/add', [
+            'name' => 'wlan-sector-north',
+            'routeros_device_id' => $this->firstId('RouterosDevices'),
+            'mac_address' => '00:11:22:33:44:55',
+            'frequency' => '5500',
+            'interface_index' => '7',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\RouterosDeviceInterface $stored */
+        $stored = $this->getTableLocator()->get('RouterosDeviceInterfaces')
+            ->find()
+            ->where(['name' => 'wlan-sector-north'])
+            ->firstOrFail();
+        $this->assertSame($this->firstId('RouterosDevices'), $stored->routeros_device_id);
+    }
+
+    /**
+     * An interface on a device that is not there is not stored, and the operator is given the form
+     * back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDeviceInterfacesController::add()
+     */
+    public function testAddRefusesAnInterfaceOnADeviceThatIsNotThere(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $routerosDeviceInterfaces = $this->getTableLocator()->get('RouterosDeviceInterfaces');
+        $before = $routerosDeviceInterfaces->find()->count();
+
+        $this->post('/routeros-device-interfaces/add', [
+            'name' => 'wlan-sector-north',
+            'routeros_device_id' => '3f2b1a0c-0000-4000-8000-000000000000',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $routerosDeviceInterfaces->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDeviceInterfacesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $routerosDeviceInterfaceId = $this->firstId('RouterosDeviceInterfaces');
+        $this->post(
+            '/routeros-device-interfaces/edit/' . $routerosDeviceInterfaceId,
+            ['comment' => 'Renamed interface'],
+        );
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed interface',
+            $this->getTableLocator()->get('RouterosDeviceInterfaces')->get($routerosDeviceInterfaceId)->comment,
+        );
+    }
 }

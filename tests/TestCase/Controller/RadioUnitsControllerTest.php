@@ -228,4 +228,26 @@ class RadioUnitsControllerTest extends TestCase
 
         $this->assertResponseOk();
     }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $radioUnitId = $this->firstId('RadioUnits');
+        $this->post('/radio-units/edit/' . $radioUnitId, ['name' => 'Renamed radio unit']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed radio unit',
+            $this->getTableLocator()->get('RadioUnits')->get($radioUnitId)->name,
+        );
+    }
 }

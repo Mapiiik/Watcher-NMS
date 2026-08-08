@@ -154,4 +154,26 @@ class AccessPointContactsControllerTest extends TestCase
         $added = $this->addedRecord('AccessPointContacts', $before);
         $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointContactsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $accessPointContactId = $this->firstId('AccessPointContacts');
+        $this->post('/access-point-contacts/edit/' . $accessPointContactId, ['name' => 'Renamed contact']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed contact',
+            $this->getTableLocator()->get('AccessPointContacts')->get($accessPointContactId)->name,
+        );
+    }
 }

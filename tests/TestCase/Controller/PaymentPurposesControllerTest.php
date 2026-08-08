@@ -122,4 +122,78 @@ class PaymentPurposesControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A purpose filled in on the form is really stored. Rendering the form proves the page is
+     * there; marshalling, validation, the application rules and the save only ever run on a request
+     * that carries data.
+     *
+     * @return void
+     * @link \App\Controller\PaymentPurposesController::add()
+     */
+    public function testAddStoresAPurpose(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/payment-purposes/add', [
+            'name' => 'Roof rent',
+            'note' => 'Paid to the owner of the building.',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\PaymentPurpose $stored */
+        $stored = $this->getTableLocator()->get('PaymentPurposes')
+            ->find()
+            ->where(['name' => 'Roof rent'])
+            ->firstOrFail();
+        $this->assertSame('Paid to the owner of the building.', $stored->note);
+    }
+
+    /**
+     * A purpose whose name is longer than the column takes is not stored, and the operator is given
+     * the form back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\PaymentPurposesController::add()
+     */
+    public function testAddRefusesAPurposeWithATooLongName(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $paymentPurposes = $this->getTableLocator()->get('PaymentPurposes');
+        $before = $paymentPurposes->find()->count();
+
+        $this->post('/payment-purposes/add', [
+            'name' => str_repeat('a', 256),
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $paymentPurposes->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\PaymentPurposesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $paymentPurposeId = $this->firstId('PaymentPurposes');
+        $this->post('/payment-purposes/edit/' . $paymentPurposeId, ['name' => 'Renamed purpose']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed purpose',
+            $this->getTableLocator()->get('PaymentPurposes')->get($paymentPurposeId)->name,
+        );
+    }
 }

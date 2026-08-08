@@ -120,4 +120,79 @@ class AccessPointTypesControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A type filled in on the form is really stored. Rendering the form proves the page is there;
+     * marshalling, validation, the application rules and the save only ever run on a request that
+     * carries data.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointTypesController::add()
+     */
+    public function testAddStoresAType(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-point-types/add', [
+            'name' => 'Rooftop mast',
+            'color' => '#336699',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\AccessPointType $stored */
+        $stored = $this->getTableLocator()->get('AccessPointTypes')
+            ->find()
+            ->where(['name' => 'Rooftop mast'])
+            ->firstOrFail();
+        $this->assertSame('#336699', $stored->color);
+    }
+
+    /**
+     * A type without a color is not stored, and the operator is given the form back rather than a
+     * redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointTypesController::add()
+     */
+    public function testAddRefusesATypeWithoutAColor(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $accessPointTypes = $this->getTableLocator()->get('AccessPointTypes');
+        $before = $accessPointTypes->find()->count();
+
+        $this->post('/access-point-types/add', [
+            'name' => 'Rooftop mast',
+            'color' => '',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $accessPointTypes->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointTypesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $accessPointTypeId = $this->firstId('AccessPointTypes');
+        $this->post('/access-point-types/edit/' . $accessPointTypeId, ['name' => 'Renamed type']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed type',
+            $this->getTableLocator()->get('AccessPointTypes')->get($accessPointTypeId)->name,
+        );
+    }
 }

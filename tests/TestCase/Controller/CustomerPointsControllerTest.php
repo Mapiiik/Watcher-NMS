@@ -120,4 +120,81 @@ class CustomerPointsControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A point filled in on the form is really stored. Rendering the form proves the page is there;
+     * marshalling, validation, the application rules and the save only ever run on a request that
+     * carries data.
+     *
+     * @return void
+     * @link \App\Controller\CustomerPointsController::add()
+     */
+    public function testAddStoresAPoint(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/customer-points/add', [
+            'name' => 'Hillside house',
+            'gps_x' => '14.4212',
+            'gps_y' => '50.0875',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\CustomerPoint $stored */
+        $stored = $this->getTableLocator()->get('CustomerPoints')
+            ->find()
+            ->where(['name' => 'Hillside house'])
+            ->firstOrFail();
+        $this->assertSame(14.4212, $stored->gps_x);
+    }
+
+    /**
+     * A point whose coordinates are not numbers is not stored, and the operator is given the form
+     * back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\CustomerPointsController::add()
+     */
+    public function testAddRefusesAPointWithoutNumericCoordinates(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $customerPoints = $this->getTableLocator()->get('CustomerPoints');
+        $before = $customerPoints->find()->count();
+
+        $this->post('/customer-points/add', [
+            'name' => 'Hillside house',
+            'gps_x' => 'somewhere east',
+            'gps_y' => '50.0875',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $customerPoints->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\CustomerPointsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $customerPointId = $this->firstId('CustomerPoints');
+        $this->post('/customer-points/edit/' . $customerPointId, ['name' => 'Renamed point']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed point',
+            $this->getTableLocator()->get('CustomerPoints')->get($customerPointId)->name,
+        );
+    }
 }

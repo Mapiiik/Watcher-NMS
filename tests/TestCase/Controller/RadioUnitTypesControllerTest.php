@@ -126,4 +126,81 @@ class RadioUnitTypesControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A type filled in on the form is really stored. Rendering the form proves the page is there;
+     * marshalling, validation, the application rules and the save only ever run on a request that
+     * carries data.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitTypesController::add()
+     */
+    public function testAddStoresAType(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/radio-unit-types/add', [
+            'name' => 'Backhaul 11 GHz',
+            'part_number' => 'RU-11-BH',
+            'radio_unit_band_id' => $this->firstId('RadioUnitBands'),
+            'manufacturer_id' => $this->firstId('Manufacturers'),
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\RadioUnitType $stored */
+        $stored = $this->getTableLocator()->get('RadioUnitTypes')
+            ->find()
+            ->where(['name' => 'Backhaul 11 GHz'])
+            ->firstOrFail();
+        $this->assertSame($this->firstId('RadioUnitBands'), $stored->radio_unit_band_id);
+    }
+
+    /**
+     * A type on a band that is not there is not stored, and the operator is given the form back
+     * rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitTypesController::add()
+     */
+    public function testAddRefusesATypeOnABandThatIsNotThere(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $radioUnitTypes = $this->getTableLocator()->get('RadioUnitTypes');
+        $before = $radioUnitTypes->find()->count();
+
+        $this->post('/radio-unit-types/add', [
+            'name' => 'Backhaul 11 GHz',
+            'radio_unit_band_id' => '3f2b1a0c-0000-4000-8000-000000000000',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $radioUnitTypes->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitTypesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $radioUnitTypeId = $this->firstId('RadioUnitTypes');
+        $this->post('/radio-unit-types/edit/' . $radioUnitTypeId, ['name' => 'Renamed type']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed type',
+            $this->getTableLocator()->get('RadioUnitTypes')->get($radioUnitTypeId)->name,
+        );
+    }
 }

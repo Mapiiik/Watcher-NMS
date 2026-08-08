@@ -204,4 +204,26 @@ class LandlordPaymentsControllerTest extends TestCase
         $added = $this->addedRecord('LandlordPayments', $before);
         $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\LandlordPaymentsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $landlordPaymentId = $this->firstId('LandlordPayments');
+        $this->post('/landlord-payments/edit/' . $landlordPaymentId, ['note' => 'Paid in cash.']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Paid in cash.',
+            $this->getTableLocator()->get('LandlordPayments')->get($landlordPaymentId)->note,
+        );
+    }
 }

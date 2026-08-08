@@ -126,4 +126,82 @@ class AntennaTypesControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * An antenna type filled in on the form is really stored. Rendering the form proves the page is
+     * there; marshalling, validation, the application rules and the save only ever run on a request
+     * that carries data.
+     *
+     * @return void
+     * @link \App\Controller\AntennaTypesController::add()
+     */
+    public function testAddStoresAnAntennaType(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/antenna-types/add', [
+            'name' => 'Sector 90',
+            'antenna_gain' => '17',
+            'part_number' => 'ANT-90-17',
+            'manufacturer_id' => $this->firstId('Manufacturers'),
+            'radio_unit_band_id' => $this->firstId('RadioUnitBands'),
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\AntennaType $stored */
+        $stored = $this->getTableLocator()->get('AntennaTypes')
+            ->find()
+            ->where(['name' => 'Sector 90'])
+            ->firstOrFail();
+        $this->assertSame($this->firstId('Manufacturers'), $stored->manufacturer_id);
+    }
+
+    /**
+     * An antenna type of a manufacturer that is not there is not stored, and the operator is given
+     * the form back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\AntennaTypesController::add()
+     */
+    public function testAddRefusesAnAntennaTypeOfAManufacturerThatIsNotThere(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $antennaTypes = $this->getTableLocator()->get('AntennaTypes');
+        $before = $antennaTypes->find()->count();
+
+        $this->post('/antenna-types/add', [
+            'name' => 'Sector 90',
+            'manufacturer_id' => '3f2b1a0c-0000-4000-8000-000000000000',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $antennaTypes->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\AntennaTypesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $antennaTypeId = $this->firstId('AntennaTypes');
+        $this->post('/antenna-types/edit/' . $antennaTypeId, ['name' => 'Renamed antenna type']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed antenna type',
+            $this->getTableLocator()->get('AntennaTypes')->get($antennaTypeId)->name,
+        );
+    }
 }

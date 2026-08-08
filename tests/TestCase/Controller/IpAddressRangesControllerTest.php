@@ -154,4 +154,26 @@ class IpAddressRangesControllerTest extends TestCase
         $added = $this->addedRecord('IpAddressRanges', $before);
         $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
     }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\IpAddressRangesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $ipAddressRangeId = $this->firstId('IpAddressRanges');
+        $this->post('/ip-address-ranges/edit/' . $ipAddressRangeId, ['name' => 'Renamed range']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed range',
+            $this->getTableLocator()->get('IpAddressRanges')->get($ipAddressRangeId)->name,
+        );
+    }
 }

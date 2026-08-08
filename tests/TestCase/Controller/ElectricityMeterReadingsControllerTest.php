@@ -148,11 +148,38 @@ class ElectricityMeterReadingsControllerTest extends TestCase
         $before = $this->idsIn('ElectricityMeterReadings');
         $this->post('/access-points/' . self::ACCESS_POINT_ID . '/electricity-meter-readings/add', [
             'reading_date' => '2026-08-05',
-            'value' => '1234.5',
+            'reading_value' => '1234.5',
         ]);
 
         $this->assertRedirect();
         $added = $this->addedRecord('ElectricityMeterReadings', $before);
         $this->assertSame(self::ACCESS_POINT_ID, $added->get('access_point_id'));
+        $this->assertSame(1234.5, $added->get('reading_value'));
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\ElectricityMeterReadingsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $electricityMeterReadingId = $this->firstId('ElectricityMeterReadings');
+        $this->post(
+            '/electricity-meter-readings/edit/' . $electricityMeterReadingId,
+            ['reading_value' => '2345.5'],
+        );
+
+        $this->assertRedirect();
+        $this->assertSame(
+            2345.5,
+            $this->getTableLocator()->get('ElectricityMeterReadings')
+                ->get($electricityMeterReadingId)->reading_value,
+        );
     }
 }

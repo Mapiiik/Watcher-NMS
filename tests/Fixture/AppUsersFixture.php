@@ -28,7 +28,9 @@ class AppUsersFixture extends TestFixture
             [
                 'id' => '78215c1c-54ab-4da0-a482-ffe024a065e4',
                 'username' => 'Lorem ipsum dolor sit amet',
-                'email' => 'Lorem ipsum dolor sit amet',
+                // a real address rather than filler text: the task notification hands it straight to
+                // a mailer, which refuses anything that is not one
+                'email' => 'operator@example.com',
                 'password' => 'Lorem ipsum dolor sit amet',
                 'first_name' => 'Lorem ipsum dolor sit amet',
                 'last_name' => 'Lorem ipsum dolor sit amet',

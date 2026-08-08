@@ -125,4 +125,82 @@ class RouterosDeviceIpsControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * An address filled in on the form is really stored. Rendering the form proves the page is
+     * there; marshalling, validation, the application rules and the save only ever run on a request
+     * that carries data.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDeviceIpsController::add()
+     */
+    public function testAddStoresAnAddress(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/routeros-device-ips/add', [
+            'name' => 'bridge-address',
+            'routeros_device_id' => $this->firstId('RouterosDevices'),
+            'ip_address' => '10.20.30.40',
+            'interface_index' => '7',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\RouterosDeviceIp $stored */
+        $stored = $this->getTableLocator()->get('RouterosDeviceIps')
+            ->find()
+            ->where(['name' => 'bridge-address'])
+            ->firstOrFail();
+        $this->assertSame($this->firstId('RouterosDevices'), $stored->routeros_device_id);
+    }
+
+    /**
+     * An address on a device that is not there is not stored, and the operator is given the form
+     * back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDeviceIpsController::add()
+     */
+    public function testAddRefusesAnAddressOnADeviceThatIsNotThere(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $routerosDeviceIps = $this->getTableLocator()->get('RouterosDeviceIps');
+        $before = $routerosDeviceIps->find()->count();
+
+        $this->post('/routeros-device-ips/add', [
+            'name' => 'bridge-address',
+            'routeros_device_id' => '3f2b1a0c-0000-4000-8000-000000000000',
+            'ip_address' => '10.20.30.40',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $routerosDeviceIps->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDeviceIpsController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $routerosDeviceIpId = $this->firstId('RouterosDeviceIps');
+        $this->post('/routeros-device-ips/edit/' . $routerosDeviceIpId, ['name' => 'renamed-address']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'renamed-address',
+            $this->getTableLocator()->get('RouterosDeviceIps')->get($routerosDeviceIpId)->name,
+        );
+    }
 }

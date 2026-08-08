@@ -123,4 +123,57 @@ class ManufacturersControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A manufacturer filled in on the form is really stored. Rendering the form proves the page is
+     * there; marshalling, validation, the application rules and the save only ever run on a request
+     * that carries data.
+     *
+     * There is no counterpart refusing a manufacturer, because the model asks nothing of one - see
+     * the note on {@see \App\Test\TestCase\Model\Table\ManufacturersTableTest::testValidationDefault()}.
+     *
+     * @return void
+     * @link \App\Controller\ManufacturersController::add()
+     */
+    public function testAddStoresAManufacturer(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/manufacturers/add', [
+            'name' => 'Northern Radio Works',
+            'note' => 'Supplies the sector antennas.',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\Manufacturer $stored */
+        $stored = $this->getTableLocator()->get('Manufacturers')
+            ->find()
+            ->where(['name' => 'Northern Radio Works'])
+            ->firstOrFail();
+        $this->assertSame('Supplies the sector antennas.', $stored->note);
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\ManufacturersController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $manufacturerId = $this->firstId('Manufacturers');
+        $this->post('/manufacturers/edit/' . $manufacturerId, ['name' => 'Renamed manufacturer']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed manufacturer',
+            $this->getTableLocator()->get('Manufacturers')->get($manufacturerId)->name,
+        );
+    }
 }

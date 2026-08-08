@@ -123,4 +123,82 @@ class PowerSupplyTypesControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A type filled in on the form is really stored. Rendering the form proves the page is there;
+     * marshalling, validation, the application rules and the save only ever run on a request that
+     * carries data.
+     *
+     * @return void
+     * @link \App\Controller\PowerSupplyTypesController::add()
+     */
+    public function testAddStoresAType(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/power-supply-types/add', [
+            'name' => 'Rack rectifier',
+            'voltage' => '48',
+            'current' => '20',
+            'part_number' => 'PS-48-20',
+            'manufacturer_id' => $this->firstId('Manufacturers'),
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\PowerSupplyType $stored */
+        $stored = $this->getTableLocator()->get('PowerSupplyTypes')
+            ->find()
+            ->where(['name' => 'Rack rectifier'])
+            ->firstOrFail();
+        $this->assertSame($this->firstId('Manufacturers'), $stored->manufacturer_id);
+    }
+
+    /**
+     * A type of a manufacturer that is not there is not stored, and the operator is given the form
+     * back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\PowerSupplyTypesController::add()
+     */
+    public function testAddRefusesATypeOfAManufacturerThatIsNotThere(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $powerSupplyTypes = $this->getTableLocator()->get('PowerSupplyTypes');
+        $before = $powerSupplyTypes->find()->count();
+
+        $this->post('/power-supply-types/add', [
+            'name' => 'Rack rectifier',
+            'manufacturer_id' => '3f2b1a0c-0000-4000-8000-000000000000',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $powerSupplyTypes->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\PowerSupplyTypesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $powerSupplyTypeId = $this->firstId('PowerSupplyTypes');
+        $this->post('/power-supply-types/edit/' . $powerSupplyTypeId, ['name' => 'Renamed type']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed type',
+            $this->getTableLocator()->get('PowerSupplyTypes')->get($powerSupplyTypeId)->name,
+        );
+    }
 }

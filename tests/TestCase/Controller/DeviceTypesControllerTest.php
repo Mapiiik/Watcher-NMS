@@ -124,4 +124,83 @@ class DeviceTypesControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A device type filled in on the form is really stored. Rendering the form proves the page is
+     * there; marshalling, validation, the application rules and the save only ever run on a request
+     * that carries data.
+     *
+     * @return void
+     * @link \App\Controller\DeviceTypesController::add()
+     */
+    public function testAddStoresADeviceType(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/device-types/add', [
+            'name' => 'Edge router',
+            'identifier' => 'RB5009',
+            'snmp_community' => 'public',
+            'assign_access_point_by_device_name' => '1',
+            'assign_customer_connection_by_ip' => '0',
+            'allow_technicians_access' => '0',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\DeviceType $stored */
+        $stored = $this->getTableLocator()->get('DeviceTypes')
+            ->find()
+            ->where(['name' => 'Edge router'])
+            ->firstOrFail();
+        $this->assertTrue($stored->assign_access_point_by_device_name);
+    }
+
+    /**
+     * A device type that leaves one of the switches empty is not stored, and the operator is given
+     * the form back rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\DeviceTypesController::add()
+     */
+    public function testAddRefusesADeviceTypeWithAnEmptySwitch(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $deviceTypes = $this->getTableLocator()->get('DeviceTypes');
+        $before = $deviceTypes->find()->count();
+
+        $this->post('/device-types/add', [
+            'name' => 'Edge router',
+            'assign_access_point_by_device_name' => '',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $deviceTypes->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\DeviceTypesController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $deviceTypeId = $this->firstId('DeviceTypes');
+        $this->post('/device-types/edit/' . $deviceTypeId, ['name' => 'Renamed device type']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed device type',
+            $this->getTableLocator()->get('DeviceTypes')->get($deviceTypeId)->name,
+        );
+    }
 }

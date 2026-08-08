@@ -126,4 +126,80 @@ class RadioLinksControllerTest extends TestCase
 
         $this->assertRedirect();
     }
+
+    /**
+     * A link filled in on the form is really stored. Rendering the form proves the page is there;
+     * marshalling, validation, the application rules and the save only ever run on a request that
+     * carries data.
+     *
+     * @return void
+     * @link \App\Controller\RadioLinksController::add()
+     */
+    public function testAddStoresALink(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/radio-links/add', [
+            'name' => 'Hilltop to village',
+            'distance' => '4200',
+            'authorization_number' => 'AUTH-4711',
+        ]);
+
+        $this->assertRedirect();
+        /** @var \App\Model\Entity\RadioLink $stored */
+        $stored = $this->getTableLocator()->get('RadioLinks')
+            ->find()
+            ->where(['name' => 'Hilltop to village'])
+            ->firstOrFail();
+        $this->assertSame(4200, $stored->distance);
+    }
+
+    /**
+     * A link whose distance is not a number is not stored, and the operator is given the form back
+     * rather than a redirect that would suggest it went through.
+     *
+     * @return void
+     * @link \App\Controller\RadioLinksController::add()
+     */
+    public function testAddRefusesALinkWithoutANumericDistance(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $radioLinks = $this->getTableLocator()->get('RadioLinks');
+        $before = $radioLinks->find()->count();
+
+        $this->post('/radio-links/add', [
+            'name' => 'Hilltop to village',
+            'distance' => 'quite far',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($before, $radioLinks->find()->count());
+    }
+
+    /**
+     * A change made on the form reaches the record.
+     *
+     * @return void
+     * @link \App\Controller\RadioLinksController::edit()
+     */
+    public function testEditStoresTheChange(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $radioLinkId = $this->firstId('RadioLinks');
+        $this->post('/radio-links/edit/' . $radioLinkId, ['name' => 'Renamed link']);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'Renamed link',
+            $this->getTableLocator()->get('RadioLinks')->get($radioLinkId)->name,
+        );
+    }
 }
