@@ -105,8 +105,7 @@ class RouterosDevicesTable extends AppTable
     {
         $validator
             ->uuid('access_point_id')
-            ->requirePresence('access_point_id', 'create')
-            ->notEmptyString('access_point_id');
+            ->allowEmptyString('access_point_id');
 
         $validator
             ->uuid('id')
