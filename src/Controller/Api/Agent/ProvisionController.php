@@ -8,6 +8,7 @@ use App\Model\Table\DeviceTypesTable;
 use App\Provisioning\RouterOS\ProvisionScriptBuilder;
 use App\Snmp\Provider\RouterosSnmpProviderAgentPush;
 use App\Snmp\Service\RouterosSnmpUpdateService;
+use Cake\Core\Configure;
 use Cake\Http\Exception\BadRequestException;
 use Cake\Http\Exception\UnauthorizedException;
 use Cake\View\JsonView;
@@ -32,7 +33,7 @@ class ProvisionController extends AppController
         $this->getEventManager()->off($this->FormProtection);
 
         // Authenticate agent using a pre-shared token
-        $authToken = (string)env('WATCHER_AGENT_NMS_TOKEN', '');
+        $authToken = (string)Configure::read('Agent.provisionToken');
         if ($authToken === '') {
             throw new UnauthorizedException('Watcher Agent token in Watcher NMS is not configured');
         }

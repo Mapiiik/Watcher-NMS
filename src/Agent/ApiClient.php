@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Agent;
 
+use Cake\Core\Configure;
 use Cake\Http\Client;
 use Cake\Http\Client\Response;
 use RuntimeException;
@@ -20,8 +21,8 @@ class ApiClient
      */
     private static function postRequest(string $function, array $data = [], int $timeout = 30): Response
     {
-        $agentUrl = rtrim((string)env('WATCHER_AGENT_URL'), '/');
-        $agentToken = (string)env('WATCHER_AGENT_TOKEN');
+        $agentUrl = (string)Configure::read('Agent.url');
+        $agentToken = (string)Configure::read('Agent.token');
 
         if ($agentUrl === '' || $agentToken === '') {
             throw new RuntimeException(__('Watcher Agent is not configured.'));

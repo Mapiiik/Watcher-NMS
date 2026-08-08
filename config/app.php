@@ -255,6 +255,31 @@ return [
     ],
 
     /*
+     * The services this one talks to and what it is told about itself.
+     *
+     * The environment is read here and nowhere else, so a value has one spelling, one default and
+     * one place to change. An empty address, key or token is not configured, and whoever reads it
+     * says so rather than reaching out with nothing.
+     */
+    'Crm' => [
+        'url' => rtrim((string)env('WATCHER_CRM_URL', ''), '/'),
+        'key' => (string)env('WATCHER_CRM_KEY', ''),
+    ],
+
+    'Agent' => [
+        'url' => rtrim((string)env('WATCHER_AGENT_URL', ''), '/'),
+        'token' => (string)env('WATCHER_AGENT_TOKEN', ''),
+        // what an agent has to present to be let in here, as opposed to what this one presents
+        'provisionToken' => (string)env('WATCHER_AGENT_NMS_TOKEN', ''),
+    ],
+
+    'RadarInterferences' => [
+        'url' => (string)env('RADAR_INTERFERENCES_URL', ''),
+        // names an interfering device is recognised by, any one of them enough
+        'reportNames' => (string)env('RADAR_INTERFERENCES_REPORT_NAMES', ''),
+    ],
+
+    /*
      * Email delivery profiles
      *
      * Delivery profiles allow you to predefine various properties about email
@@ -500,6 +525,7 @@ return [
      */
     'Maps' => [
         'provider' => env('MAP_PROVIDER', 'google'),
+        'googleApiKey' => (string)env('GOOGLE_MAP_API_KEY', ''),
         'nominatim' => [
             'url' => env('NOMINATIM_URL', null),
             'userAgent' => env('NOMINATIM_USER_AGENT', 'Watcher NMS'),

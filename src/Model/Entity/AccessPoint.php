@@ -6,6 +6,7 @@ namespace App\Model\Entity;
 use App\Maps\GeocoderFactory;
 use App\Maps\MapProvider;
 use Cake\Cache\Cache;
+use Cake\Core\Configure;
 use Cake\Log\Log;
 use Geocoder\Collection;
 use Geocoder\Exception\Exception as GeocoderException;
@@ -107,7 +108,7 @@ class AccessPoint extends AppEntity
      */
     public function getNearestFoundAddress(): ?string
     {
-        if (MapProvider::requiresApiKey() && env('GOOGLE_MAP_API_KEY') === null) {
+        if (MapProvider::requiresApiKey() && Configure::read('Maps.googleApiKey') === '') {
             return '(' . __('You must provide an Google Map API key.') . ')';
         }
 
@@ -115,8 +116,7 @@ class AccessPoint extends AppEntity
             return '(' . __('You need to set the correct GPS coordinates.') . ')';
         }
 
-        $locale = env('APP_DEFAULT_LOCALE');
-        $locale = is_string($locale) ? $locale : 'en_US';
+        $locale = (string)Configure::read('App.defaultLocale');
 
         try {
             // The cached value is a provider specific address model, so the

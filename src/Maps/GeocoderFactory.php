@@ -31,8 +31,7 @@ class GeocoderFactory
             return self::createNominatim();
         }
 
-        $apiKey = env('GOOGLE_MAP_API_KEY');
-        $apiKey = is_string($apiKey) ? $apiKey : null;
+        $apiKey = (string)Configure::read('Maps.googleApiKey') ?: null;
 
         return new GoogleMaps(
             new Psr18Client(),

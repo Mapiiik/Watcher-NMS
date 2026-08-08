@@ -9,6 +9,7 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
+use Cake\Core\Configure;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\Utility\Text;
@@ -50,10 +51,7 @@ class RadarInterferencesUpdateCommand extends Command
     public function execute(Arguments $args, ConsoleIo $io)
     {
         try {
-            $url = $args->getArgument('url');
-            if (!isset($url)) {
-                $url = (string)env('RADAR_INTERFERENCES_URL');
-            }
+            $url = $args->getArgument('url') ?? (string)Configure::read('RadarInterferences.url');
 
             $csv = file($url);
 

@@ -4,9 +4,8 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Command;
 
 use App\Command\RadarInterferencesReportCommand;
-use App\Test\Traits\EnvironmentTestTrait;
+use App\Test\Traits\ConfigureTestTrait;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -22,9 +21,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RadarInterferencesReportCommand::class)]
 class RadarInterferencesReportCommandTest extends TestCase
 {
+    use ConfigureTestTrait;
     use ConsoleIntegrationTestTrait;
     use EmailTrait;
-    use EnvironmentTestTrait;
 
     /**
      * A word out of the name the fixture interference carries, which is what the command matches
@@ -52,26 +51,6 @@ class RadarInterferencesReportCommandTest extends TestCase
     ];
 
     /**
-     * Whoever was configured to be told before this test named somebody else.
-     *
-     * @var mixed
-     */
-    private mixed $reportEmailsBefore = null;
-
-    /**
-     * setUp method
-     *
-     * @return void
-     */
-    #[Override]
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->reportEmailsBefore = Configure::read('Report.emails');
-    }
-
-    /**
      * tearDown method
      *
      * @return void
@@ -79,9 +58,7 @@ class RadarInterferencesReportCommandTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        $this->restoreEnvironment();
-
-        Configure::write('Report.emails', $this->reportEmailsBefore);
+        $this->restoreConfigure();
 
         parent::tearDown();
     }
@@ -123,8 +100,7 @@ class RadarInterferencesReportCommandTest extends TestCase
     }
 
     /**
-     * Named on its own, the command takes what to look for from the environment and who to tell
-     * from the configuration.
+     * Named on its own, the command takes what to look for and who to tell from the configuration.
      *
      * That is how cron calls it - the command and nothing else - so it is the argument handling
      * that actually runs.
@@ -134,8 +110,10 @@ class RadarInterferencesReportCommandTest extends TestCase
      */
     public function testExecuteWithoutArgumentsMailsWhoeverIsConfigured(): void
     {
-        $this->withEnvironment(['RADAR_INTERFERENCES_REPORT_NAMES' => self::NAME]);
-        Configure::write('Report.emails', ['watcher@example.com']);
+        $this->withConfigure([
+            'RadarInterferences.reportNames' => self::NAME,
+            'Report.emails' => ['watcher@example.com'],
+        ]);
 
         $this->exec('radar_interferences_report');
 

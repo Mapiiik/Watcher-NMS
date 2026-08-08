@@ -4,9 +4,8 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Command;
 
 use App\Command\RadarInterferencesUpdateCommand;
-use App\Test\Traits\EnvironmentTestTrait;
+use App\Test\Traits\ConfigureTestTrait;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -22,9 +21,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RadarInterferencesUpdateCommand::class)]
 class RadarInterferencesUpdateCommandTest extends TestCase
 {
+    use ConfigureTestTrait;
     use ConsoleIntegrationTestTrait;
     use EmailTrait;
-    use EnvironmentTestTrait;
 
     /**
      * The interference the fixture already holds.
@@ -51,13 +50,6 @@ class RadarInterferencesUpdateCommandTest extends TestCase
     private array $written = [];
 
     /**
-     * Whoever was configured to be told before this test named somebody else.
-     *
-     * @var mixed
-     */
-    private mixed $reportEmailsBefore = null;
-
-    /**
      * setUp method
      *
      * @return void
@@ -70,8 +62,7 @@ class RadarInterferencesUpdateCommandTest extends TestCase
         // The run reports a failure by mail, so a test of the failing path needs somebody to
         // report it to. Left to the configuration it is whatever the developer's `.env` says and
         // nothing at all on CI, where the report then goes nowhere.
-        $this->reportEmailsBefore = Configure::read('Report.emails');
-        Configure::write('Report.emails', ['nobody@example.com']);
+        $this->withConfigure(['Report.emails' => ['nobody@example.com']]);
     }
 
     /**
@@ -88,9 +79,7 @@ class RadarInterferencesUpdateCommandTest extends TestCase
             }
         }
         $this->written = [];
-        $this->restoreEnvironment();
-
-        Configure::write('Report.emails', $this->reportEmailsBefore);
+        $this->restoreConfigure();
 
         parent::tearDown();
     }
@@ -125,7 +114,7 @@ class RadarInterferencesUpdateCommandTest extends TestCase
     }
 
     /**
-     * Named on its own, the command reads the list the environment points it at.
+     * Named on its own, the command reads the list the configuration points it at.
      *
      * That is how cron calls it - the command and nothing else - so it is the argument handling
      * that actually runs.
@@ -133,10 +122,10 @@ class RadarInterferencesUpdateCommandTest extends TestCase
      * @return void
      * @link \App\Command\RadarInterferencesUpdateCommand::execute()
      */
-    public function testExecuteWithoutArgumentsReadsTheListTheEnvironmentNames(): void
+    public function testExecuteWithoutArgumentsReadsTheListTheConfigurationNames(): void
     {
-        $this->withEnvironment([
-            'RADAR_INTERFERENCES_URL' => $this->csv(
+        $this->withConfigure([
+            'RadarInterferences.url' => $this->csv(
                 'Radar one;aa:bb:cc:dd:ee:ff;Some SSID;-70;Radio one' . PHP_EOL,
             ),
         ]);

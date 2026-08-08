@@ -12,6 +12,7 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
+use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
@@ -62,9 +63,9 @@ class CustomerPointsUpdateCommand extends Command
             $url = $args->getArgument('url');
             if (!isset($url)) {
                 $url =
-                    env('WATCHER_CRM_URL')
+                    Configure::read('Crm.url')
                     . '/api/customers/customer-points.json?api_key='
-                    . env('WATCHER_CRM_KEY');
+                    . Configure::read('Crm.key');
             }
 
             $json = file_get_contents($url);

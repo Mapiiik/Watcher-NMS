@@ -9,6 +9,7 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
+use Cake\Core\Configure;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use Cake\Routing\Router;
@@ -53,10 +54,7 @@ class RadarInterferencesReportCommand extends Command
     public function execute(Arguments $args, ConsoleIo $io)
     {
         try {
-            $names = $args->getArgument('names');
-            if (!isset($names)) {
-                $names = (string)env('RADAR_INTERFERENCES_REPORT_NAMES');
-            }
+            $names = $args->getArgument('names') ?? (string)Configure::read('RadarInterferences.reportNames');
             // named on the command line for a one-off, otherwise whoever is configured to be told
             $emails = $args->getArgument('emails');
             $recipients = $emails === null

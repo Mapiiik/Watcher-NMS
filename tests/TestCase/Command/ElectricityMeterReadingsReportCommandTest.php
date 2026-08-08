@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Command;
 
 use App\Command\ElectricityMeterReadingsReportCommand;
+use App\Test\Traits\ConfigureTestTrait;
 use Cake\Chronos\Chronos;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -21,6 +21,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(ElectricityMeterReadingsReportCommand::class)]
 class ElectricityMeterReadingsReportCommandTest extends TestCase
 {
+    use ConfigureTestTrait;
     use ConsoleIntegrationTestTrait;
     use EmailTrait;
 
@@ -58,13 +59,6 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
     private ?Chronos $nowBefore = null;
 
     /**
-     * Whoever was configured to be told before this test named somebody else.
-     *
-     * @var mixed
-     */
-    private mixed $reportEmailsBefore = null;
-
-    /**
      * setUp method
      *
      * @return void
@@ -75,7 +69,6 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
         parent::setUp();
 
         $this->nowBefore = Chronos::getTestNow();
-        $this->reportEmailsBefore = Configure::read('Report.emails');
     }
 
     /**
@@ -89,7 +82,7 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
         // the bootstrap fixes a now for the whole suite; letting go of it entirely would leave
         // every test after this one running against a clock that moves
         Chronos::setTestNow($this->nowBefore);
-        Configure::write('Report.emails', $this->reportEmailsBefore);
+        $this->restoreConfigure();
 
         parent::tearDown();
     }
@@ -141,7 +134,7 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
     public function testExecuteWithoutArgumentsMailsWhoeverIsConfigured(): void
     {
         Chronos::setTestNow(new Chronos(self::MONTH_THEY_ARE_READ_IN));
-        Configure::write('Report.emails', ['meters@example.com']);
+        $this->withConfigure(['Report.emails' => ['meters@example.com']]);
 
         $this->exec('electricity_meter_readings_report');
 
