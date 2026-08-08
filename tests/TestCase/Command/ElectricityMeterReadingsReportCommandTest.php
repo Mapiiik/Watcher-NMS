@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Command;
 
 use App\Command\ElectricityMeterReadingsReportCommand;
-use App\Test\Traits\EnvironmentTestTrait;
 use Cake\Chronos\Chronos;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -23,7 +23,6 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
     use EmailTrait;
-    use EnvironmentTestTrait;
 
     /**
      * The month both fixture access points are read in.
@@ -59,6 +58,13 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
     private ?Chronos $nowBefore = null;
 
     /**
+     * Whoever was configured to be told before this test named somebody else.
+     *
+     * @var mixed
+     */
+    private mixed $reportEmailsBefore = null;
+
+    /**
      * setUp method
      *
      * @return void
@@ -69,6 +75,7 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
         parent::setUp();
 
         $this->nowBefore = Chronos::getTestNow();
+        $this->reportEmailsBefore = Configure::read('Report.emails');
     }
 
     /**
@@ -82,7 +89,7 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
         // the bootstrap fixes a now for the whole suite; letting go of it entirely would leave
         // every test after this one running against a clock that moves
         Chronos::setTestNow($this->nowBefore);
-        $this->restoreEnvironment();
+        Configure::write('Report.emails', $this->reportEmailsBefore);
 
         parent::tearDown();
     }
@@ -123,7 +130,7 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
     }
 
     /**
-     * Named on its own, the command takes who to tell from the environment.
+     * Named on its own, the command takes who to tell from the configuration.
      *
      * That is how cron calls it - the command and nothing else - so it is the argument handling
      * that actually runs.
@@ -131,10 +138,10 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
      * @return void
      * @link \App\Command\ElectricityMeterReadingsReportCommand::execute()
      */
-    public function testExecuteWithoutArgumentsTakesTheEnvironmentsWord(): void
+    public function testExecuteWithoutArgumentsMailsWhoeverIsConfigured(): void
     {
         Chronos::setTestNow(new Chronos(self::MONTH_THEY_ARE_READ_IN));
-        $this->withEnvironment(['REPORT_EMAILS' => 'meters@example.com']);
+        Configure::write('Report.emails', ['meters@example.com']);
 
         $this->exec('electricity_meter_readings_report');
 

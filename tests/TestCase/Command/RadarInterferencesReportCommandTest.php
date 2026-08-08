@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Command;
 use App\Command\RadarInterferencesReportCommand;
 use App\Test\Traits\EnvironmentTestTrait;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -51,6 +52,26 @@ class RadarInterferencesReportCommandTest extends TestCase
     ];
 
     /**
+     * Whoever was configured to be told before this test named somebody else.
+     *
+     * @var mixed
+     */
+    private mixed $reportEmailsBefore = null;
+
+    /**
+     * setUp method
+     *
+     * @return void
+     */
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->reportEmailsBefore = Configure::read('Report.emails');
+    }
+
+    /**
      * tearDown method
      *
      * @return void
@@ -59,6 +80,8 @@ class RadarInterferencesReportCommandTest extends TestCase
     protected function tearDown(): void
     {
         $this->restoreEnvironment();
+
+        Configure::write('Report.emails', $this->reportEmailsBefore);
 
         parent::tearDown();
     }
@@ -100,7 +123,8 @@ class RadarInterferencesReportCommandTest extends TestCase
     }
 
     /**
-     * Named on its own, the command takes what to look for and who to tell from the environment.
+     * Named on its own, the command takes what to look for from the environment and who to tell
+     * from the configuration.
      *
      * That is how cron calls it - the command and nothing else - so it is the argument handling
      * that actually runs.
@@ -108,12 +132,10 @@ class RadarInterferencesReportCommandTest extends TestCase
      * @return void
      * @link \App\Command\RadarInterferencesReportCommand::execute()
      */
-    public function testExecuteWithoutArgumentsTakesTheEnvironmentsWord(): void
+    public function testExecuteWithoutArgumentsMailsWhoeverIsConfigured(): void
     {
-        $this->withEnvironment([
-            'RADAR_INTERFERENCES_REPORT_NAMES' => self::NAME,
-            'REPORT_EMAILS' => 'watcher@example.com',
-        ]);
+        $this->withEnvironment(['RADAR_INTERFERENCES_REPORT_NAMES' => self::NAME]);
+        Configure::write('Report.emails', ['watcher@example.com']);
 
         $this->exec('radar_interferences_report');
 

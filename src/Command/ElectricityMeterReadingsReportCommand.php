@@ -5,6 +5,7 @@ namespace App\Command;
 
 use App\Model\Entity\ElectricityMeterReading;
 use App\Model\Table\AccessPointsTable;
+use App\Service\OperatorReport;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -50,10 +51,11 @@ class ElectricityMeterReadingsReportCommand extends Command
     public function execute(Arguments $args, ConsoleIo $io)
     {
         try {
+            // named on the command line for a one-off, otherwise whoever is configured to be told
             $emails = $args->getArgument('emails');
-            if (!isset($emails)) {
-                $emails = (string)env('REPORT_EMAILS');
-            }
+            $recipients = $emails === null
+                ? OperatorReport::recipients()
+                : (preg_split('/\s+/', trim($emails), -1, PREG_SPLIT_NO_EMPTY) ?: []);
 
             $now = new Date();
 
@@ -94,11 +96,17 @@ class ElectricityMeterReadingsReportCommand extends Command
                 }
                 $io->helper('Table')->output($table);
 
+                if ($recipients === []) {
+                    $io->warning(__('Nobody is configured to send the report to, so it stays here.'));
+
+                    return static::CODE_SUCCESS;
+                }
+
                 // send table to mail
                 $mailer = new Mailer('default');
 
-                foreach (explode(' ', $emails) as $email) {
-                    $mailer->addTo($email);
+                foreach ($recipients as $recipient) {
+                    $mailer->addTo($recipient);
                 }
 
                 $mailer->setSubject(__('Electricity Meter Readings') . ' - ' . $now->i18nFormat('LLLL YYYY'));
@@ -143,22 +151,14 @@ class ElectricityMeterReadingsReportCommand extends Command
                 $e->getMessage(),
             ));
 
-            // notify by email (if it fails, let it crash)
-            $errorMailer = new Mailer('default');
-
-            foreach (explode(' ', (string)env('REPORT_EMAILS')) as $email) {
-                $errorMailer->addTo($email);
-            }
-
-            $errorMailer->setSubject(__('Electricity meter readings report failed'));
-
-            $errorMailer->deliver(__(
-                'Electricity meter readings report failed.' . PHP_EOL . PHP_EOL
-                . 'Error: {0}',
-                [$e->getMessage()],
-            ));
-
-            unset($errorMailer);
+            OperatorReport::send(
+                __('Electricity meter readings report failed'),
+                __(
+                    'Electricity meter readings report failed.' . PHP_EOL . PHP_EOL
+                    . 'Error: {0}',
+                    [$e->getMessage()],
+                ),
+            );
 
             return static::CODE_ERROR;
         }

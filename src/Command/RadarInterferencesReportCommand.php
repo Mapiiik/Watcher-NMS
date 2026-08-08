@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\Model\Table\RadarInterferencesTable;
+use App\Service\OperatorReport;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -56,10 +57,11 @@ class RadarInterferencesReportCommand extends Command
             if (!isset($names)) {
                 $names = (string)env('RADAR_INTERFERENCES_REPORT_NAMES');
             }
+            // named on the command line for a one-off, otherwise whoever is configured to be told
             $emails = $args->getArgument('emails');
-            if (!isset($emails)) {
-                $emails = (string)env('REPORT_EMAILS');
-            }
+            $recipients = $emails === null
+                ? OperatorReport::recipients()
+                : (preg_split('/\s+/', trim($emails), -1, PREG_SPLIT_NO_EMPTY) ?: []);
 
             /** @var \Cake\ORM\Query\SelectQuery<\App\Model\Entity\RadarInterference> $radarInterferences */
             $radarInterferences = $this->fetchTable(RadarInterferencesTable::class)->find();
@@ -112,10 +114,16 @@ class RadarInterferencesReportCommand extends Command
                 }
                 $io->helper('Table')->output($table);
 
+                if ($recipients === []) {
+                    $io->warning(__('Nobody is configured to send the report to, so it stays here.'));
+
+                    return static::CODE_SUCCESS;
+                }
+
                 $mailer = new Mailer('default');
 
-                foreach (explode(' ', $emails) as $email) {
-                    $mailer->addTo($email);
+                foreach ($recipients as $recipient) {
+                    $mailer->addTo($recipient);
                 }
                 $mailer->setSubject(__('Devices that interfere with radar found'));
 
@@ -163,22 +171,14 @@ class RadarInterferencesReportCommand extends Command
                 $e->getMessage(),
             ));
 
-            // notify by email (if it fails, let it crash)
-            $errorMailer = new Mailer('default');
-
-            foreach (explode(' ', (string)env('REPORT_EMAILS')) as $email) {
-                $errorMailer->addTo($email);
-            }
-
-            $errorMailer->setSubject(__('Radar interferences report failed'));
-
-            $errorMailer->deliver(__(
-                'Radar interferences report failed.' . PHP_EOL . PHP_EOL
-                . 'Error: {0}',
-                [$e->getMessage()],
-            ));
-
-            unset($errorMailer);
+            OperatorReport::send(
+                __('Radar interferences report failed'),
+                __(
+                    'Radar interferences report failed.' . PHP_EOL . PHP_EOL
+                    . 'Error: {0}',
+                    [$e->getMessage()],
+                ),
+            );
 
             return static::CODE_ERROR;
         }

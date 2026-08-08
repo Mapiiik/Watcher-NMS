@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Command;
 
 use App\Command\CustomerPointsUpdateCommand;
-use App\Test\Traits\EnvironmentTestTrait;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -23,7 +23,6 @@ class CustomerPointsUpdateCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
     use EmailTrait;
-    use EnvironmentTestTrait;
 
     /**
      * The connection the fixture holds, which it holds as archived.
@@ -54,6 +53,13 @@ class CustomerPointsUpdateCommandTest extends TestCase
     private array $written = [];
 
     /**
+     * Whoever was configured to be told before this test named somebody else.
+     *
+     * @var mixed
+     */
+    private mixed $reportEmailsBefore = null;
+
+    /**
      * setUp method
      *
      * @return void
@@ -64,9 +70,10 @@ class CustomerPointsUpdateCommandTest extends TestCase
         parent::setUp();
 
         // The run reports a failure by mail, so a test of the failing path needs somebody to
-        // report it to. Left to the environment it is whatever the developer's `.env` says and
-        // nothing at all on CI, where the report then fails instead of the run.
-        $this->withEnvironment(['REPORT_EMAILS' => 'nobody@example.com']);
+        // report it to. Left to the configuration it is whatever the developer's `.env` says and
+        // nothing at all on CI, where the report then goes nowhere.
+        $this->reportEmailsBefore = Configure::read('Report.emails');
+        Configure::write('Report.emails', ['nobody@example.com']);
     }
 
     /**
@@ -84,7 +91,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
         }
         $this->written = [];
 
-        $this->restoreEnvironment();
+        Configure::write('Report.emails', $this->reportEmailsBefore);
 
         parent::tearDown();
     }
