@@ -203,4 +203,69 @@ class CustomerConnectionsControllerTest extends TestCase
             $this->getTableLocator()->get('CustomerConnections')->get($connectionId)->name,
         );
     }
+
+    /**
+     * A connection that was put away is brought back into use. The fixtures leave the one connection
+     * they carry archived, so this is the way round that can be asked of it first.
+     *
+     * @return void
+     * @link \App\Controller\CustomerConnectionsController::restore()
+     */
+    public function testRestoreBringsTheConnectionBackIntoUse(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $customerConnections = $this->getTableLocator()->get('CustomerConnections');
+        $connectionId = $this->firstId('CustomerConnections');
+
+        $this->post('/customer-connections/restore/' . $connectionId);
+
+        $this->assertRedirect();
+        $this->assertNull($customerConnections->get($connectionId)->get('archived'));
+    }
+
+    /**
+     * A connection that is no longer in use is put away rather than taken away: it is marked as
+     * archived, and it is still there afterwards.
+     *
+     * @return void
+     * @link \App\Controller\CustomerConnectionsController::archive()
+     */
+    public function testArchivePutsTheConnectionAwayWithoutTakingItAway(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $customerConnections = $this->getTableLocator()->get('CustomerConnections');
+        $connectionId = $this->firstId('CustomerConnections');
+        $customerConnections->restore($customerConnections->get($connectionId));
+
+        $this->post('/customer-connections/archive/' . $connectionId);
+
+        $this->assertRedirect();
+        $this->assertNotNull($customerConnections->get($connectionId)->get('archived'));
+    }
+
+    /**
+     * Neither action answers a plain visit. Putting a record away is a change like any other, and a
+     * link that could be followed by anything crawling the pages would make it one.
+     *
+     * @return void
+     * @link \App\Controller\CustomerConnectionsController::archive()
+     * @link \App\Controller\CustomerConnectionsController::restore()
+     */
+    public function testArchivingAndRestoringAreNotAnsweredToAPlainVisit(): void
+    {
+        $this->login();
+        $connectionId = $this->firstId('CustomerConnections');
+
+        $this->get('/customer-connections/archive/' . $connectionId);
+        $this->assertResponseCode(405);
+
+        $this->get('/customer-connections/restore/' . $connectionId);
+        $this->assertResponseCode(405);
+    }
 }

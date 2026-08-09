@@ -19,6 +19,20 @@ class AccessPointsControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
+     * The access point the fixtures leave in use.
+     *
+     * @var string
+     */
+    private const ACTIVE_ACCESS_POINT_ID = '1bd5e754-e102-46ad-8488-11b1b44bf026';
+
+    /**
+     * The access point the fixtures have already put away.
+     *
+     * @var string
+     */
+    private const ARCHIVED_ACCESS_POINT_ID = '1ec58677-1213-4950-80c4-bc1de41ea133';
+
+    /**
      * Fixtures
      *
      * @var array<string>
@@ -333,5 +347,65 @@ class AccessPointsControllerTest extends TestCase
         $this->get('/access-points/map');
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * An access point that is no longer in use is put away rather than taken away: it is marked as
+     * archived, and it is still there afterwards.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::archive()
+     */
+    public function testArchivePutsTheAccessPointAwayWithoutTakingItAway(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+
+        $this->post('/access-points/archive/' . self::ACTIVE_ACCESS_POINT_ID);
+
+        $this->assertRedirect();
+        $this->assertNotNull($accessPoints->get(self::ACTIVE_ACCESS_POINT_ID)->get('archived'));
+    }
+
+    /**
+     * An access point that was put away is brought back into use.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::restore()
+     */
+    public function testRestoreBringsTheAccessPointBackIntoUse(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+
+        $this->post('/access-points/restore/' . self::ARCHIVED_ACCESS_POINT_ID);
+
+        $this->assertRedirect();
+        $this->assertNull($accessPoints->get(self::ARCHIVED_ACCESS_POINT_ID)->get('archived'));
+    }
+
+    /**
+     * Neither action answers a plain visit. Putting a record away is a change like any other, and a
+     * link that could be followed by anything crawling the pages would make it one.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::archive()
+     * @link \App\Controller\AccessPointsController::restore()
+     */
+    public function testArchivingAndRestoringAreNotAnsweredToAPlainVisit(): void
+    {
+        $this->login();
+
+        $this->get('/access-points/archive/' . self::ACTIVE_ACCESS_POINT_ID);
+        $this->assertResponseCode(405);
+
+        $this->get('/access-points/restore/' . self::ARCHIVED_ACCESS_POINT_ID);
+        $this->assertResponseCode(405);
     }
 }
