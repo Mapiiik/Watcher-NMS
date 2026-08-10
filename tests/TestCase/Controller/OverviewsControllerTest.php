@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Controller;
 use App\Controller\OverviewsController;
 use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
+use App\Model\Enum\RadioUnitComparisonScope;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\Datasource\EntityInterface;
 use Cake\ORM\Table;
@@ -23,6 +24,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(OverviewsController::class)]
 #[UsesClass(RadioUnitComparison::class)]
 #[UsesClass(DeviceRadioComparison::class)]
+#[UsesClass(RadioUnitComparisonScope::class)]
 class OverviewsControllerTest extends TestCase
 {
     use ControllerTestTrait;
@@ -192,8 +194,8 @@ class OverviewsControllerTest extends TestCase
         $this->radio($device, 'wlan60-1', '11:00:00:00:00:02', 58320);
         $this->radioUnit('Agreeing unit', 'AGREES', '11:00:00:00:00:02', 58320, '10.0.0.2');
 
-        $this->assertNotContains('Agreeing unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
-        $this->assertContains('Agreeing unit', $this->namesListed(OverviewsController::SHOW_ALL));
+        $this->assertNotContains('Agreeing unit', $this->namesListed(RadioUnitComparisonScope::Differences));
+        $this->assertContains('Agreeing unit', $this->namesListed(RadioUnitComparisonScope::All));
     }
 
     /**
@@ -214,7 +216,7 @@ class OverviewsControllerTest extends TestCase
             [RadioUnitComparison::NO_DEVICE, RadioUnitComparison::NO_DEVICE, RadioUnitComparison::NO_DEVICE],
             $this->checksOf('Unread unit'),
         );
-        $this->assertNotContains('Unread unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
+        $this->assertNotContains('Unread unit', $this->namesListed(RadioUnitComparisonScope::Differences));
     }
 
     /**
@@ -233,14 +235,14 @@ class OverviewsControllerTest extends TestCase
         $this->radioUnit('Compared unit', 'HAS A DEVICE', '11:00:00:00:00:20', 64800, '10.0.0.11');
         $this->radioUnit('Uncompared unit', 'NO DEVICE CARRIES THIS', '11:00:00:00:00:21', 58320, '10.0.0.12');
 
-        $withoutDevice = $this->namesListed(OverviewsController::SHOW_WITHOUT_DEVICE);
+        $withoutDevice = $this->namesListed(RadioUnitComparisonScope::WithoutDevice);
 
         $this->assertContains('Uncompared unit', $withoutDevice);
         $this->assertNotContains('Compared unit', $withoutDevice);
 
         // and the unit that does have one is still where it was, among the differences
-        $this->assertContains('Compared unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
-        $this->assertNotContains('Uncompared unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
+        $this->assertContains('Compared unit', $this->namesListed(RadioUnitComparisonScope::Differences));
+        $this->assertNotContains('Uncompared unit', $this->namesListed(RadioUnitComparisonScope::Differences));
     }
 
     /**
@@ -256,7 +258,7 @@ class OverviewsControllerTest extends TestCase
         $this->get('/overviews/overview-of-radio-units-against-devices?show=nonsense');
 
         $this->assertResponseOk();
-        $this->assertSame(OverviewsController::SHOW_DIFFERENCES, $this->viewVariable('show'));
+        $this->assertSame(RadioUnitComparisonScope::Differences, $this->viewVariable('show'));
     }
 
     /**
@@ -342,7 +344,7 @@ class OverviewsControllerTest extends TestCase
         $this->radioUnit('Unit off the air', 'LINK DOWN', '11:00:00:00:00:09', 58320, '10.0.0.7');
 
         $this->assertSame(RadioUnitComparison::NOT_REPORTED, $this->checksOf('Unit off the air')[2]);
-        $this->assertNotContains('Unit off the air', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
+        $this->assertNotContains('Unit off the air', $this->namesListed(RadioUnitComparisonScope::Differences));
     }
 
     /**
@@ -361,7 +363,7 @@ class OverviewsControllerTest extends TestCase
         $this->radioUnit('Licensed unit', 'LICENSED', '51DDH', 58320, '10.0.0.8');
 
         $this->assertSame(RadioUnitComparison::NOT_IN_INVENTORY, $this->checksOf('Licensed unit')[1]);
-        $this->assertNotContains('Licensed unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
+        $this->assertNotContains('Licensed unit', $this->namesListed(RadioUnitComparisonScope::Differences));
     }
 
     /**
@@ -380,7 +382,7 @@ class OverviewsControllerTest extends TestCase
         $this->radioUnit('Serving unit', 'POINT TO MULTIPOINT', '11:00:00:00:00:11', 58320, '10.0.0.9');
 
         $listed = array_filter(
-            $this->namesListed(OverviewsController::SHOW_ALL),
+            $this->namesListed(RadioUnitComparisonScope::All),
             fn(string $name): bool => $name === 'Serving unit',
         );
 
@@ -555,13 +557,13 @@ class OverviewsControllerTest extends TestCase
     /**
      * The names the overview lists, as the action answers with them.
      *
-     * @param string $show Which of the units to ask for, as {@see \App\Controller\OverviewsController::SHOWN}.
+     * @param \App\Model\Enum\RadioUnitComparisonScope $show Which of the units to ask for.
      * @return array<string>
      */
-    private function namesListed(string $show): array
+    private function namesListed(RadioUnitComparisonScope $show): array
     {
         $this->login();
-        $this->get('/overviews/overview-of-radio-units-against-devices?show=' . $show);
+        $this->get('/overviews/overview-of-radio-units-against-devices?show=' . $show->value);
         $this->assertResponseOk();
 
         /** @var \Cake\Datasource\Paging\PaginatedInterface<int, \App\Model\Entity\RadioUnit> $radioUnits */

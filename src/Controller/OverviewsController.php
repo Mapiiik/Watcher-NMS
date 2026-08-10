@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
+use App\Model\Enum\RadioUnitComparisonScope;
 use App\Model\Table\RadioUnitBandsTable;
 use Cake\Validation\Validation;
 
@@ -17,33 +18,6 @@ use Cake\Validation\Validation;
  */
 class OverviewsController extends AppController
 {
-    /**
-     * Only the units something disagrees about, which is what the overview is opened for.
-     */
-    public const SHOW_DIFFERENCES = 'differences';
-
-    /**
-     * Only the units nothing was found to compare with - what a band is filtered down to when
-     * the question is which of its units the NMS has never seen a device for.
-     */
-    public const SHOW_WITHOUT_DEVICE = 'without_device';
-
-    /**
-     * Every unit the other filters allow, however it came out.
-     */
-    public const SHOW_ALL = 'all';
-
-    /**
-     * What the listing may be narrowed down to, in the order the form offers them.
-     *
-     * @var array<string>
-     */
-    public const SHOWN = [
-        self::SHOW_DIFFERENCES,
-        self::SHOW_WITHOUT_DEVICE,
-        self::SHOW_ALL,
-    ];
-
     /**
      * Index method
      *
@@ -88,20 +62,23 @@ class OverviewsController extends AppController
         }
 
         // Most of what is compared agrees, and a listing of agreements is not what anybody opens
-        // this for. The three are one field rather than two switches because they do not overlap:
-        // a unit with no device is never one the device disagrees with. The summary above the
-        // table counts all of them however this is set.
+        // this for. An address naming none of the three is answered with the differences rather
+        // than with an error. The summary above the table counts all of them however this is set.
         $show = $this->getRequest()->getQuery('show');
-        $show = in_array($show, self::SHOWN, true) ? $show : self::SHOW_DIFFERENCES;
+        $show = RadioUnitComparisonScope::tryFrom(is_string($show) ? $show : '')
+            ?? RadioUnitComparisonScope::Differences;
 
         $comparison = new RadioUnitComparison();
 
         $query = $comparison->query($conditions);
-        if ($show === self::SHOW_DIFFERENCES) {
-            $query->where($comparison->differences($query));
-        }
-        if ($show === self::SHOW_WITHOUT_DEVICE) {
-            $query->where($comparison->withoutDevice($query));
+
+        $scope = match ($show) {
+            RadioUnitComparisonScope::Differences => $comparison->differences($query),
+            RadioUnitComparisonScope::WithoutDevice => $comparison->withoutDevice($query),
+            RadioUnitComparisonScope::All => null,
+        };
+        if ($scope !== null) {
+            $query->where($scope);
         }
 
         $radioUnits = $this->paginate($query, [

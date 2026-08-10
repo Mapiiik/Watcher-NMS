@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-10 16:25+0200\n"
+"POT-Creation-Date: 2026-08-10 16:39+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -69,7 +69,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:55
 #: ./templates/LandlordPayments/view.php:43
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:96
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:103
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:99
 #: ./templates/PaymentPurposes/view.php:64
 #: ./templates/PowerSupplies/view.php:61
 #: ./templates/PowerSupplyTypes/view.php:93
@@ -213,7 +213,7 @@ msgstr ""
 #: ./src/Command/RadarInterferencesReportCommand.php:94
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:99
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:23
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:109
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:105
 #: ./templates/RadarInterferences/add.php:26
 #: ./templates/RadarInterferences/edit.php:34
 #: ./templates/RadarInterferences/index.php:41
@@ -960,6 +960,18 @@ msgstr ""
 msgid "Urgent"
 msgstr ""
 
+#: ./src/Model/Enum/RadioUnitComparisonScope.php:46
+msgid "Only Differences"
+msgstr ""
+
+#: ./src/Model/Enum/RadioUnitComparisonScope.php:47
+msgid "Only Without a Device"
+msgstr ""
+
+#: ./src/Model/Enum/RadioUnitComparisonScope.php:48
+msgid "All"
+msgstr ""
+
 #: ./src/Model/Table/LandlordPaymentsElectricityDetailsTable.php:117
 msgid "This field cannot be left empty"
 msgstr ""
@@ -1599,7 +1611,7 @@ msgstr ""
 #: ./templates/LandlordPayments/index.php:100
 #: ./templates/Manufacturers/index.php:61
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:158
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:175
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:171
 #: ./templates/PaymentPurposes/index.php:61
 #: ./templates/PowerSupplies/index.php:96
 #: ./templates/PowerSupplyTypes/index.php:76
@@ -1631,7 +1643,7 @@ msgstr ""
 #: ./templates/LandlordPayments/index.php:101
 #: ./templates/Manufacturers/index.php:62
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:159
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:176
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:172
 #: ./templates/PaymentPurposes/index.php:62
 #: ./templates/PowerSupplies/index.php:97
 #: ./templates/PowerSupplyTypes/index.php:77
@@ -1663,7 +1675,7 @@ msgstr ""
 #: ./templates/LandlordPayments/index.php:103
 #: ./templates/Manufacturers/index.php:64
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:161
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:178
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:174
 #: ./templates/PaymentPurposes/index.php:64
 #: ./templates/PowerSupplies/index.php:99
 #: ./templates/PowerSupplyTypes/index.php:79
@@ -1695,7 +1707,7 @@ msgstr ""
 #: ./templates/LandlordPayments/index.php:104
 #: ./templates/Manufacturers/index.php:65
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:162
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:179
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:175
 #: ./templates/PaymentPurposes/index.php:65
 #: ./templates/PowerSupplies/index.php:100
 #: ./templates/PowerSupplyTypes/index.php:80
@@ -1727,7 +1739,7 @@ msgstr ""
 #: ./templates/LandlordPayments/index.php:107
 #: ./templates/Manufacturers/index.php:68
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:165
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:182
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:178
 #: ./templates/PaymentPurposes/index.php:68
 #: ./templates/PowerSupplies/index.php:103
 #: ./templates/PowerSupplyTypes/index.php:83
@@ -1997,7 +2009,7 @@ msgstr ""
 
 #: ./templates/AccessPoints/map.php:46
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:95
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:106
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:102
 #: ./templates/RadarInterferences/view.php:75
 #: ./templates/RouterosDeviceInterfaces/add.php:28
 #: ./templates/RouterosDeviceInterfaces/edit.php:36
@@ -2309,7 +2321,7 @@ msgstr ""
 #: ./templates/AntennaTypes/view.php:104
 #: ./templates/CustomerConnections/view.php:184
 #: ./templates/DeviceTypes/view.php:89
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:105
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:101
 #: ./templates/PowerSupplies/view.php:74
 #: ./templates/PowerSupplyTypes/view.php:94
 #: ./templates/RadioLinks/index.php:46
@@ -2516,7 +2528,7 @@ msgstr ""
 #: ./templates/CustomerConnections/view.php:181
 #: ./templates/DeviceTypes/view.php:86
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:22
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:108
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:104
 #: ./templates/RadioLinks/index.php:48
 #: ./templates/RadioLinks/view.php:91
 #: ./templates/RadioUnitTypes/view.php:111
@@ -2677,7 +2689,7 @@ msgstr ""
 #: ./templates/Manufacturers/view.php:65
 #: ./templates/Manufacturers/view.php:159
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:101
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:104
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:100
 #: ./templates/RadioUnitTypes/view.php:47
 msgid "Radio Unit Band"
 msgstr ""
@@ -3061,7 +3073,7 @@ msgid "Radio Related"
 msgstr ""
 
 #: ./templates/Overviews/index.php:13
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:62
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:58
 msgid "Overview of Radio Units Against Devices"
 msgstr ""
 
@@ -3091,13 +3103,13 @@ msgid "No band asks for its device radios to be recorded yet."
 msgstr ""
 
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:97
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:107
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:103
 msgid "Interface"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:100
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:24
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:110
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:106
 #: ./templates/RadarInterferences/view.php:82
 #: ./templates/RouterosDeviceInterfaces/view.php:84
 #: ./templates/RouterosDevices/view.php:151
@@ -3105,12 +3117,12 @@ msgid "Frequency"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:102
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:102
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:98
 msgid "Radio Unit"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:103
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:111
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:107
 msgid "Read"
 msgstr ""
 
@@ -3146,23 +3158,11 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:48
-msgid "Only Differences"
-msgstr ""
-
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:49
-msgid "Only Without a Device"
-msgstr ""
-
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:50
-msgid "All"
-msgstr ""
-
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:65
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:61
 msgid "Each radio unit is put next to the device carrying the same serial number, and next to the radio of that device on the band the unit is recorded on. A difference is not necessarily a mistake in the records - a radio may pick its own channel and move off the one it was installed on - so nothing here is corrected, only reported."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:77
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:73
 msgid "Checked"
 msgstr ""
 

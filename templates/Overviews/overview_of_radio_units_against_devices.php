@@ -4,11 +4,11 @@
  * @var iterable<\App\Model\Entity\RadioUnit> $radioUnits
  * @var iterable<\App\Model\Entity\RadioUnitBand> $radioUnitBands
  * @var array<string, array<string, int>> $summary
- * @var string $show
+ * @var \App\Model\Enum\RadioUnitComparisonScope $show
  */
 
-use App\Controller\OverviewsController;
 use App\Devices\RadioUnitComparison;
+use App\Model\Enum\RadioUnitComparisonScope;
 
 $verdicts = [
     RadioUnitComparison::DIFFERS => __('Differs'),
@@ -44,14 +44,10 @@ $checkedFields = [
         <?= $this->Form->control('show', [
             'label' => __('Show'),
             'type' => 'select',
-            'options' => [
-                OverviewsController::SHOW_DIFFERENCES => __('Only Differences'),
-                OverviewsController::SHOW_WITHOUT_DEVICE => __('Only Without a Device'),
-                OverviewsController::SHOW_ALL => __('All'),
-            ],
+            'options' => RadioUnitComparisonScope::options(),
             // What was applied rather than what was asked for, so that an address carrying
             // something else says which of the three it was answered with.
-            'value' => $show,
+            'value' => $show->value,
             'onchange' => 'this.form.submit();',
         ]) ?>
     </div>
