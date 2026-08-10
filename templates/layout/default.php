@@ -164,6 +164,13 @@ $urlWithQuery = function ($query = []) use ($request) {
                 ])],
             ) ?>
             <?= $this->AuthLink->link(
+                __('Overviews'),
+                ['controller' => 'Overviews', 'action' => 'index', 'plugin' => null],
+                ['class' => 'button button-small' . $buttonSelected([
+                    'Overviews',
+                ])],
+            ) ?>
+            <?= $this->AuthLink->link(
                 __('Settings'),
                 ['controller' => 'Settings', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-08 15:59+0200\n"
+"POT-Creation-Date: 2026-08-10 15:10+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -68,6 +68,7 @@ msgstr ""
 #: ./templates/ElectricityMeterReadings/view.php:47
 #: ./templates/IpAddressRanges/view.php:55
 #: ./templates/LandlordPayments/view.php:43
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:97
 #: ./templates/PaymentPurposes/view.php:64
 #: ./templates/PowerSupplies/view.php:61
 #: ./templates/PowerSupplyTypes/view.php:93
@@ -119,7 +120,7 @@ msgstr ""
 
 #: ./src/Command/ElectricityMeterReadingsReportCommand.php:112
 #: ./templates/ElectricityMeterReadings/index.php:25
-#: ./templates/layout/default.php:274
+#: ./templates/layout/default.php:281
 msgid "Electricity Meter Readings"
 msgstr ""
 
@@ -209,6 +210,8 @@ msgid "Name"
 msgstr ""
 
 #: ./src/Command/RadarInterferencesReportCommand.php:94
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:22
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:103
 #: ./templates/RadarInterferences/add.php:26
 #: ./templates/RadarInterferences/edit.php:34
 #: ./templates/RadarInterferences/index.php:41
@@ -841,11 +844,11 @@ msgstr ""
 msgid "The notification email could not be sent because the user does not have an email address."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:516
+#: ./src/Controller/TasksController.php:517
 msgid "You have a new task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:517
+#: ./src/Controller/TasksController.php:518
 msgid "You have changes in task # {0}"
 msgstr ""
 
@@ -863,7 +866,7 @@ msgid_plural "There were {0} unfinished tasks found that do not have a user assi
 msgstr[0] ""
 msgstr[1] ""
 
-#: ./src/Controller/Traits/AdditionalParametersTrait.php:111
+#: ./src/Controller/Traits/AdditionalParametersTrait.php:112
 msgid "The record the address was filed under is no longer there."
 msgstr ""
 
@@ -958,7 +961,7 @@ msgstr ""
 msgid "This field cannot be left empty"
 msgstr ""
 
-#: ./src/Model/Table/TasksTable.php:175
+#: ./src/Model/Table/TasksTable.php:174
 msgid "The specified task type requires the assignment of an access point."
 msgstr ""
 
@@ -1416,6 +1419,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:11
 #: ./templates/LandlordPayments/index.php:11
 #: ./templates/Manufacturers/index.php:11
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:30
 #: ./templates/PaymentPurposes/index.php:11
 #: ./templates/PowerSupplies/index.php:11
 #: ./templates/PowerSupplyTypes/index.php:11
@@ -1441,7 +1445,7 @@ msgid "New Access Point Contact"
 msgstr ""
 
 #: ./templates/AccessPointContacts/index.php:25
-#: ./templates/layout/default.php:269
+#: ./templates/layout/default.php:276
 msgid "Access Point Contacts"
 msgstr ""
 
@@ -1581,6 +1585,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:93
 #: ./templates/LandlordPayments/index.php:100
 #: ./templates/Manufacturers/index.php:61
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:169
 #: ./templates/PaymentPurposes/index.php:61
 #: ./templates/PowerSupplies/index.php:96
 #: ./templates/PowerSupplyTypes/index.php:76
@@ -1611,6 +1616,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:94
 #: ./templates/LandlordPayments/index.php:101
 #: ./templates/Manufacturers/index.php:62
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:170
 #: ./templates/PaymentPurposes/index.php:62
 #: ./templates/PowerSupplies/index.php:97
 #: ./templates/PowerSupplyTypes/index.php:77
@@ -1641,6 +1647,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:96
 #: ./templates/LandlordPayments/index.php:103
 #: ./templates/Manufacturers/index.php:64
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:172
 #: ./templates/PaymentPurposes/index.php:64
 #: ./templates/PowerSupplies/index.php:99
 #: ./templates/PowerSupplyTypes/index.php:79
@@ -1671,6 +1678,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:97
 #: ./templates/LandlordPayments/index.php:104
 #: ./templates/Manufacturers/index.php:65
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:173
 #: ./templates/PaymentPurposes/index.php:65
 #: ./templates/PowerSupplies/index.php:100
 #: ./templates/PowerSupplyTypes/index.php:80
@@ -1701,6 +1709,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:100
 #: ./templates/LandlordPayments/index.php:107
 #: ./templates/Manufacturers/index.php:68
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:176
 #: ./templates/PaymentPurposes/index.php:68
 #: ./templates/PowerSupplies/index.php:103
 #: ./templates/PowerSupplyTypes/index.php:83
@@ -1948,7 +1957,7 @@ msgstr ""
 #: ./templates/AccessPoints/index.php:37
 #: ./templates/AccessPoints/map.php:20
 #: ./templates/layout/default.php:107
-#: ./templates/layout/default.php:264
+#: ./templates/layout/default.php:271
 msgid "Access Points"
 msgstr ""
 
@@ -1969,6 +1978,7 @@ msgid "Linked Customers"
 msgstr ""
 
 #: ./templates/AccessPoints/map.php:46
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:100
 #: ./templates/RadarInterferences/view.php:75
 #: ./templates/RouterosDeviceInterfaces/add.php:28
 #: ./templates/RouterosDeviceInterfaces/edit.php:36
@@ -2205,6 +2215,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:111
 #: ./templates/IpAddressRanges/view.php:117
 #: ./templates/IpAddressRanges/view.php:123
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:47
 #: ./templates/RadioUnits/view.php:142
 #: ./templates/RadioUnits/view.php:146
 #: ./templates/TaskStates/index.php:39
@@ -2243,6 +2254,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:111
 #: ./templates/IpAddressRanges/view.php:117
 #: ./templates/IpAddressRanges/view.php:123
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:48
 #: ./templates/RadioUnits/view.php:142
 #: ./templates/RadioUnits/view.php:146
 #: ./templates/TaskStates/index.php:39
@@ -2274,6 +2286,7 @@ msgstr ""
 #: ./templates/AntennaTypes/view.php:104
 #: ./templates/CustomerConnections/view.php:184
 #: ./templates/DeviceTypes/view.php:89
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:99
 #: ./templates/PowerSupplies/view.php:74
 #: ./templates/PowerSupplyTypes/view.php:94
 #: ./templates/RadioLinks/index.php:46
@@ -2479,6 +2492,8 @@ msgstr ""
 #: ./templates/CustomerConnections/view.php:126
 #: ./templates/CustomerConnections/view.php:181
 #: ./templates/DeviceTypes/view.php:86
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:21
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:102
 #: ./templates/RadioLinks/index.php:48
 #: ./templates/RadioLinks/view.php:91
 #: ./templates/RadioUnitTypes/view.php:111
@@ -2638,6 +2653,7 @@ msgstr ""
 #: ./templates/AntennaTypes/view.php:39
 #: ./templates/Manufacturers/view.php:65
 #: ./templates/Manufacturers/view.php:159
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:98
 #: ./templates/RadioUnitTypes/view.php:47
 msgid "Radio Unit Band"
 msgstr ""
@@ -2669,22 +2685,22 @@ msgid "Antenna Gain"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:53
-#: ./templates/layout/default.php:215
+#: ./templates/layout/default.php:222
 msgid "Light"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:54
-#: ./templates/layout/default.php:216
+#: ./templates/layout/default.php:223
 msgid "Dark"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:55
-#: ./templates/layout/default.php:217
+#: ./templates/layout/default.php:224
 msgid "Contrast"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:56
-#: ./templates/layout/default.php:218
+#: ./templates/layout/default.php:225
 msgid "Legacy"
 msgstr ""
 
@@ -2709,7 +2725,7 @@ msgid "New Customer Connection IP"
 msgstr ""
 
 #: ./templates/CustomerConnectionIps/index.php:25
-#: ./templates/layout/default.php:303
+#: ./templates/layout/default.php:310
 msgid "Customer Connection Ips"
 msgstr ""
 
@@ -2746,7 +2762,7 @@ msgstr ""
 
 #: ./templates/CustomerConnections/index.php:31
 #: ./templates/element/AccessPoints/subtree.php:68
-#: ./templates/layout/default.php:298
+#: ./templates/layout/default.php:305
 msgid "Customer Connections"
 msgstr ""
 
@@ -2788,7 +2804,7 @@ msgstr ""
 
 #: ./templates/CustomerPoints/index.php:25
 #: ./templates/layout/default.php:126
-#: ./templates/layout/default.php:293
+#: ./templates/layout/default.php:300
 msgid "Customer Points"
 msgstr ""
 
@@ -2941,7 +2957,7 @@ msgid "Edit Landlord Payment"
 msgstr ""
 
 #: ./templates/LandlordPayments/index.php:25
-#: ./templates/layout/default.php:279
+#: ./templates/layout/default.php:286
 msgid "Landlord Payments"
 msgstr ""
 
@@ -3009,6 +3025,72 @@ msgstr ""
 #: ./templates/Manufacturers/view.php:153
 #: ./templates/RadioUnitBands/view.php:112
 msgid "Related Radio Unit Types"
+msgstr ""
+
+#: ./templates/Overviews/index.php:7
+#: ./templates/layout/default.php:167
+msgid "Overviews"
+msgstr ""
+
+#: ./templates/Overviews/index.php:10
+msgid "Radio Related"
+msgstr ""
+
+#: ./templates/Overviews/index.php:13
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:58
+msgid "Overview of Radio Units Against Devices"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:13
+msgid "Differs"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:14
+msgid "Matches"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:15
+msgid "Not recorded here"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:16
+msgid "Not reported"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:17
+msgid "No device"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:23
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:104
+#: ./templates/RadarInterferences/view.php:82
+#: ./templates/RouterosDeviceInterfaces/view.php:84
+#: ./templates/RouterosDevices/view.php:151
+msgid "Frequency"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:44
+msgid "Only Differences"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:61
+msgid "Each radio unit is put next to the device carrying the same serial number, and next to the radio of that device on the band the unit is recorded on. A difference is not necessarily a mistake in the records - a radio may pick its own channel and move off the one it was installed on - so nothing here is corrected, only reported."
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:73
+msgid "Checked"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:96
+msgid "Radio Unit"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:101
+msgid "Interface"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:105
+msgid "Read"
 msgstr ""
 
 #: ./templates/PaymentPurposes/add.php:12
@@ -3127,7 +3209,7 @@ msgid "Devices That Interfere"
 msgstr ""
 
 #: ./templates/RadarInterferences/index.php:35
-#: ./templates/layout/default.php:333
+#: ./templates/layout/default.php:340
 msgid "Radar Interferences"
 msgstr ""
 
@@ -3161,12 +3243,6 @@ msgstr ""
 #: ./templates/RouterosDevices/export.php:53
 #: ./templates/RouterosDevices/view.php:150
 msgid "Band"
-msgstr ""
-
-#: ./templates/RadarInterferences/view.php:82
-#: ./templates/RouterosDeviceInterfaces/view.php:84
-#: ./templates/RouterosDevices/view.php:151
-msgid "Frequency"
 msgstr ""
 
 #: ./templates/RadarInterferences/view.php:83
@@ -3235,14 +3311,14 @@ msgstr ""
 
 #: ./templates/RadioLinks/index.php:27
 #: ./templates/layout/default.php:152
-#: ./templates/layout/default.php:346
+#: ./templates/layout/default.php:353
 msgid "Radio Links"
 msgstr ""
 
 #: ./templates/RadioLinks/index.php:35
 #: ./templates/RadioUnits/export.php:10
 #: ./templates/RadioUnits/index.php:29
-#: ./templates/layout/default.php:351
+#: ./templates/layout/default.php:358
 msgid "Radio Units"
 msgstr ""
 
@@ -3398,7 +3474,7 @@ msgid "New RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RouterosDeviceInterfaces/index.php:40
-#: ./templates/layout/default.php:323
+#: ./templates/layout/default.php:330
 msgid "RouterOS Device Interfaces"
 msgstr ""
 
@@ -3456,7 +3532,7 @@ msgid "New RouterOS Device IP"
 msgstr ""
 
 #: ./templates/RouterosDeviceIps/index.php:40
-#: ./templates/layout/default.php:328
+#: ./templates/layout/default.php:335
 msgid "RouterOS Device Ips"
 msgstr ""
 
@@ -3482,7 +3558,7 @@ msgstr ""
 #: ./templates/RouterosDevices/export.php:37
 #: ./templates/RouterosDevices/index.php:41
 #: ./templates/layout/default.php:142
-#: ./templates/layout/default.php:318
+#: ./templates/layout/default.php:325
 msgid "RouterOS Devices"
 msgstr ""
 
@@ -3528,7 +3604,7 @@ msgid "Setting: {path}"
 msgstr ""
 
 #: ./templates/Settings/index.php:7
-#: ./templates/layout/default.php:167
+#: ./templates/layout/default.php:174
 msgid "Settings"
 msgstr ""
 
@@ -3859,31 +3935,51 @@ msgstr ""
 msgid "less"
 msgstr ""
 
+#: ./templates/element/comparison_result.php:22
+msgid "The device reports something else than is recorded here."
+msgstr ""
+
+#: ./templates/element/comparison_result.php:23
+msgid "Nothing is recorded here to compare with."
+msgstr ""
+
+#: ./templates/element/comparison_result.php:24
+msgid "The device reported nothing to compare with."
+msgstr ""
+
+#: ./templates/element/comparison_result.php:25
+msgid "The device reports the same."
+msgstr ""
+
+#: ./templates/element/comparison_result.php:26
+msgid "No device carries the serial number of this radio unit."
+msgstr ""
+
 #: ./templates/email/html/task_notification.php:116
 msgid "View Task"
 msgstr ""
 
-#: ./templates/layout/default.php:185
+#: ./templates/layout/default.php:192
 msgid "Customer Relationship Management"
 msgstr ""
 
-#: ./templates/layout/default.php:213
+#: ./templates/layout/default.php:220
 msgid "Default"
 msgstr ""
 
-#: ./templates/layout/default.php:244
+#: ./templates/layout/default.php:251
 msgid "Logout"
 msgstr ""
 
-#: ./templates/layout/default.php:370
+#: ./templates/layout/default.php:377
 msgid "Changelog"
 msgstr ""
 
-#: ./templates/layout/default.php:371
+#: ./templates/layout/default.php:378
 msgid "Source Code"
 msgstr ""
 
-#: ./templates/layout/default.php:373
+#: ./templates/layout/default.php:380
 msgid "Version"
 msgstr ""
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-08 15:59+0200\n"
+"POT-Creation-Date: 2026-08-10 15:10+0200\n"
 "PO-Revision-Date: 2026-08-08 16:03+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -68,6 +68,7 @@ msgstr "Aktualizace zákaznických bodů se nezdařila."
 #: templates/CustomerConnections/view.php:179 templates/DeviceTypes/view.php:84
 #: templates/ElectricityMeterReadings/view.php:47
 #: templates/IpAddressRanges/view.php:55 templates/LandlordPayments/view.php:43
+#: templates/Overviews/overview_of_radio_units_against_devices.php:97
 #: templates/PaymentPurposes/view.php:64 templates/PowerSupplies/view.php:61
 #: templates/PowerSupplyTypes/view.php:93 templates/RadioLinks/view.php:76
 #: templates/RadioUnitTypes/view.php:96 templates/RadioUnits/export.php:15
@@ -115,7 +116,7 @@ msgstr ""
 
 #: src/Command/ElectricityMeterReadingsReportCommand.php:112
 #: templates/ElectricityMeterReadings/index.php:25
-#: templates/layout/default.php:274
+#: templates/layout/default.php:281
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
@@ -186,6 +187,8 @@ msgid "Name"
 msgstr "Jméno"
 
 #: src/Command/RadarInterferencesReportCommand.php:94
+#: templates/Overviews/overview_of_radio_units_against_devices.php:22
+#: templates/Overviews/overview_of_radio_units_against_devices.php:103
 #: templates/RadarInterferences/add.php:26
 #: templates/RadarInterferences/edit.php:34
 #: templates/RadarInterferences/index.php:41
@@ -826,11 +829,11 @@ msgstr ""
 "Oznamovací e-mail nebylo možné odeslat, protože uživatel nemá e-mailovou "
 "adresu."
 
-#: src/Controller/TasksController.php:516
+#: src/Controller/TasksController.php:517
 msgid "You have a new task # {0}"
 msgstr "Máte nový úkol č. {0}"
 
-#: src/Controller/TasksController.php:517
+#: src/Controller/TasksController.php:518
 msgid "You have changes in task # {0}"
 msgstr "Máte změny v úkolu č. {0}"
 
@@ -852,7 +855,7 @@ msgstr[1] ""
 msgstr[2] ""
 "Bylo nalezeno {0} nedokončených úkolů, které nemají přiřazeného uživatele."
 
-#: src/Controller/Traits/AdditionalParametersTrait.php:111
+#: src/Controller/Traits/AdditionalParametersTrait.php:112
 msgid "The record the address was filed under is no longer there."
 msgstr "Záznam, pod kterým byla adresa evidována, již neexistuje."
 
@@ -943,7 +946,7 @@ msgstr "Naléhavé"
 msgid "This field cannot be left empty"
 msgstr "Toto pole nelze ponechat prázdné"
 
-#: src/Model/Table/TasksTable.php:175
+#: src/Model/Table/TasksTable.php:174
 msgid "The specified task type requires the assignment of an access point."
 msgstr "Zadaný typ úkolu vyžaduje přiřazení přístupového bodu."
 
@@ -1265,6 +1268,7 @@ msgstr "Upravit kontakt přístupového bodu"
 #: templates/ElectricityMeterReadings/index.php:11
 #: templates/IpAddressRanges/index.php:11
 #: templates/LandlordPayments/index.php:11 templates/Manufacturers/index.php:11
+#: templates/Overviews/overview_of_radio_units_against_devices.php:30
 #: templates/PaymentPurposes/index.php:11 templates/PowerSupplies/index.php:11
 #: templates/PowerSupplyTypes/index.php:11
 #: templates/RadarInterferences/index.php:11 templates/RadioLinks/index.php:11
@@ -1284,7 +1288,7 @@ msgstr "Hledat"
 msgid "New Access Point Contact"
 msgstr "Nový kontakt přístupového bodu"
 
-#: templates/AccessPointContacts/index.php:25 templates/layout/default.php:269
+#: templates/AccessPointContacts/index.php:25 templates/layout/default.php:276
 msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
@@ -1381,8 +1385,10 @@ msgstr "Upravit"
 #: templates/ElectricityMeterReadings/index.php:78
 #: templates/IpAddressRanges/index.php:93
 #: templates/LandlordPayments/index.php:100
-#: templates/Manufacturers/index.php:61 templates/PaymentPurposes/index.php:61
-#: templates/PowerSupplies/index.php:96 templates/PowerSupplyTypes/index.php:76
+#: templates/Manufacturers/index.php:61
+#: templates/Overviews/overview_of_radio_units_against_devices.php:169
+#: templates/PaymentPurposes/index.php:61 templates/PowerSupplies/index.php:96
+#: templates/PowerSupplyTypes/index.php:76
 #: templates/RadarInterferences/devices.php:78
 #: templates/RadarInterferences/index.php:80 templates/RadioLinks/index.php:146
 #: templates/RadioUnitBands/index.php:63 templates/RadioUnitTypes/index.php:77
@@ -1403,8 +1409,10 @@ msgstr "první"
 #: templates/ElectricityMeterReadings/index.php:79
 #: templates/IpAddressRanges/index.php:94
 #: templates/LandlordPayments/index.php:101
-#: templates/Manufacturers/index.php:62 templates/PaymentPurposes/index.php:62
-#: templates/PowerSupplies/index.php:97 templates/PowerSupplyTypes/index.php:77
+#: templates/Manufacturers/index.php:62
+#: templates/Overviews/overview_of_radio_units_against_devices.php:170
+#: templates/PaymentPurposes/index.php:62 templates/PowerSupplies/index.php:97
+#: templates/PowerSupplyTypes/index.php:77
 #: templates/RadarInterferences/devices.php:79
 #: templates/RadarInterferences/index.php:81 templates/RadioLinks/index.php:147
 #: templates/RadioUnitBands/index.php:64 templates/RadioUnitTypes/index.php:78
@@ -1425,8 +1433,10 @@ msgstr "předchozí"
 #: templates/ElectricityMeterReadings/index.php:81
 #: templates/IpAddressRanges/index.php:96
 #: templates/LandlordPayments/index.php:103
-#: templates/Manufacturers/index.php:64 templates/PaymentPurposes/index.php:64
-#: templates/PowerSupplies/index.php:99 templates/PowerSupplyTypes/index.php:79
+#: templates/Manufacturers/index.php:64
+#: templates/Overviews/overview_of_radio_units_against_devices.php:172
+#: templates/PaymentPurposes/index.php:64 templates/PowerSupplies/index.php:99
+#: templates/PowerSupplyTypes/index.php:79
 #: templates/RadarInterferences/devices.php:81
 #: templates/RadarInterferences/index.php:83 templates/RadioLinks/index.php:149
 #: templates/RadioUnitBands/index.php:66 templates/RadioUnitTypes/index.php:80
@@ -1447,8 +1457,9 @@ msgstr "další"
 #: templates/ElectricityMeterReadings/index.php:82
 #: templates/IpAddressRanges/index.php:97
 #: templates/LandlordPayments/index.php:104
-#: templates/Manufacturers/index.php:65 templates/PaymentPurposes/index.php:65
-#: templates/PowerSupplies/index.php:100
+#: templates/Manufacturers/index.php:65
+#: templates/Overviews/overview_of_radio_units_against_devices.php:173
+#: templates/PaymentPurposes/index.php:65 templates/PowerSupplies/index.php:100
 #: templates/PowerSupplyTypes/index.php:80
 #: templates/RadarInterferences/devices.php:82
 #: templates/RadarInterferences/index.php:84 templates/RadioLinks/index.php:150
@@ -1470,8 +1481,9 @@ msgstr "poslední"
 #: templates/ElectricityMeterReadings/index.php:85
 #: templates/IpAddressRanges/index.php:100
 #: templates/LandlordPayments/index.php:107
-#: templates/Manufacturers/index.php:68 templates/PaymentPurposes/index.php:68
-#: templates/PowerSupplies/index.php:103
+#: templates/Manufacturers/index.php:68
+#: templates/Overviews/overview_of_radio_units_against_devices.php:176
+#: templates/PaymentPurposes/index.php:68 templates/PowerSupplies/index.php:103
 #: templates/PowerSupplyTypes/index.php:83
 #: templates/RadarInterferences/devices.php:85
 #: templates/RadarInterferences/index.php:87 templates/RadioLinks/index.php:153
@@ -1673,7 +1685,7 @@ msgid "Map"
 msgstr "Mapa"
 
 #: templates/AccessPoints/index.php:37 templates/AccessPoints/map.php:20
-#: templates/layout/default.php:107 templates/layout/default.php:264
+#: templates/layout/default.php:107 templates/layout/default.php:271
 msgid "Access Points"
 msgstr "Přístupové body"
 
@@ -1693,7 +1705,9 @@ msgstr "Bezdrátové propoje RouterOS"
 msgid "Linked Customers"
 msgstr "Propojení zákazníci"
 
-#: templates/AccessPoints/map.php:46 templates/RadarInterferences/view.php:75
+#: templates/AccessPoints/map.php:46
+#: templates/Overviews/overview_of_radio_units_against_devices.php:100
+#: templates/RadarInterferences/view.php:75
 #: templates/RouterosDeviceInterfaces/add.php:28
 #: templates/RouterosDeviceInterfaces/edit.php:36
 #: templates/RouterosDeviceInterfaces/index.php:46
@@ -1896,10 +1910,11 @@ msgstr "Pro sítě technologií nastavené ručně"
 #: templates/IpAddressRanges/view.php:102
 #: templates/IpAddressRanges/view.php:111
 #: templates/IpAddressRanges/view.php:117
-#: templates/IpAddressRanges/view.php:123 templates/RadioUnits/view.php:142
-#: templates/RadioUnits/view.php:146 templates/TaskStates/index.php:39
-#: templates/TaskStates/view.php:45 templates/TaskTypes/index.php:35
-#: templates/TaskTypes/view.php:37
+#: templates/IpAddressRanges/view.php:123
+#: templates/Overviews/overview_of_radio_units_against_devices.php:47
+#: templates/RadioUnits/view.php:142 templates/RadioUnits/view.php:146
+#: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
+#: templates/TaskTypes/index.php:35 templates/TaskTypes/view.php:37
 msgid "Yes"
 msgstr "Ano"
 
@@ -1921,10 +1936,11 @@ msgstr "Ano"
 #: templates/IpAddressRanges/view.php:102
 #: templates/IpAddressRanges/view.php:111
 #: templates/IpAddressRanges/view.php:117
-#: templates/IpAddressRanges/view.php:123 templates/RadioUnits/view.php:142
-#: templates/RadioUnits/view.php:146 templates/TaskStates/index.php:39
-#: templates/TaskStates/view.php:45 templates/TaskTypes/index.php:35
-#: templates/TaskTypes/view.php:37
+#: templates/IpAddressRanges/view.php:123
+#: templates/Overviews/overview_of_radio_units_against_devices.php:48
+#: templates/RadioUnits/view.php:142 templates/RadioUnits/view.php:146
+#: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
+#: templates/TaskTypes/index.php:35 templates/TaskTypes/view.php:37
 msgid "No"
 msgstr "Ne"
 
@@ -1944,6 +1960,7 @@ msgstr "Typ napájecího zdroje"
 #: templates/AccessPoints/view.php:466 templates/AccessPoints/view.php:542
 #: templates/AccessPoints/view.php:629 templates/AntennaTypes/view.php:104
 #: templates/CustomerConnections/view.php:184 templates/DeviceTypes/view.php:89
+#: templates/Overviews/overview_of_radio_units_against_devices.php:99
 #: templates/PowerSupplies/view.php:74 templates/PowerSupplyTypes/view.php:94
 #: templates/RadioLinks/index.php:46 templates/RadioLinks/view.php:88
 #: templates/RadioUnitTypes/view.php:108 templates/RadioUnits/export.php:33
@@ -2092,6 +2109,8 @@ msgstr "Datum vypršení platnosti"
 #: templates/CustomerConnectionIps/view.php:61
 #: templates/CustomerConnections/view.php:126
 #: templates/CustomerConnections/view.php:181 templates/DeviceTypes/view.php:86
+#: templates/Overviews/overview_of_radio_units_against_devices.php:21
+#: templates/Overviews/overview_of_radio_units_against_devices.php:102
 #: templates/RadioLinks/index.php:48 templates/RadioLinks/view.php:91
 #: templates/RadioUnitTypes/view.php:111 templates/RadioUnits/add.php:68
 #: templates/RadioUnits/edit.php:73 templates/RadioUnits/export.php:36
@@ -2223,7 +2242,9 @@ msgid "Delete Antenna Type"
 msgstr "Odstranit typ antény"
 
 #: templates/AntennaTypes/view.php:39 templates/Manufacturers/view.php:65
-#: templates/Manufacturers/view.php:159 templates/RadioUnitTypes/view.php:47
+#: templates/Manufacturers/view.php:159
+#: templates/Overviews/overview_of_radio_units_against_devices.php:98
+#: templates/RadioUnitTypes/view.php:47
 msgid "Radio Unit Band"
 msgstr "Pásmo rádiových jednotek"
 
@@ -2245,19 +2266,19 @@ msgstr "Číslo dílu"
 msgid "Antenna Gain"
 msgstr "Zisk antény"
 
-#: templates/AppUsers/user_settings.php:53 templates/layout/default.php:215
+#: templates/AppUsers/user_settings.php:53 templates/layout/default.php:222
 msgid "Light"
 msgstr "Světlý"
 
-#: templates/AppUsers/user_settings.php:54 templates/layout/default.php:216
+#: templates/AppUsers/user_settings.php:54 templates/layout/default.php:223
 msgid "Dark"
 msgstr "Tmavý"
 
-#: templates/AppUsers/user_settings.php:55 templates/layout/default.php:217
+#: templates/AppUsers/user_settings.php:55 templates/layout/default.php:224
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:218
+#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:225
 msgid "Legacy"
 msgstr "Starší"
 
@@ -2282,7 +2303,7 @@ msgid "New Customer Connection IP"
 msgstr "Nová IP připojení zákazníka"
 
 #: templates/CustomerConnectionIps/index.php:25
-#: templates/layout/default.php:303
+#: templates/layout/default.php:310
 msgid "Customer Connection Ips"
 msgstr "IP připojení zákazníků"
 
@@ -2318,7 +2339,7 @@ msgstr "Nové připojení zákazníka"
 
 #: templates/CustomerConnections/index.php:31
 #: templates/element/AccessPoints/subtree.php:68
-#: templates/layout/default.php:298
+#: templates/layout/default.php:305
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
 
@@ -2356,7 +2377,7 @@ msgid "New Customer Point"
 msgstr "Nový zákaznický bod"
 
 #: templates/CustomerPoints/index.php:25 templates/layout/default.php:126
-#: templates/layout/default.php:293
+#: templates/layout/default.php:300
 msgid "Customer Points"
 msgstr "Zákaznické body"
 
@@ -2493,7 +2514,7 @@ msgstr "Vysoká sazba - Cena za kWh"
 msgid "Edit Landlord Payment"
 msgstr "Upravit platbu pronajímateli"
 
-#: templates/LandlordPayments/index.php:25 templates/layout/default.php:279
+#: templates/LandlordPayments/index.php:25 templates/layout/default.php:286
 msgid "Landlord Payments"
 msgstr "Platby pronajímateli"
 
@@ -2554,6 +2575,76 @@ msgstr "Proud"
 #: templates/Manufacturers/view.php:153 templates/RadioUnitBands/view.php:112
 msgid "Related Radio Unit Types"
 msgstr "Související typy rádiových jednotek"
+
+#: templates/Overviews/index.php:7 templates/layout/default.php:167
+msgid "Overviews"
+msgstr "Přehledy"
+
+#: templates/Overviews/index.php:10
+msgid "Radio Related"
+msgstr "Související s rádiem"
+
+#: templates/Overviews/index.php:13
+#: templates/Overviews/overview_of_radio_units_against_devices.php:58
+msgid "Overview of Radio Units Against Devices"
+msgstr "Přehled rádiových jednotek proti zařízením"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:13
+msgid "Differs"
+msgstr "Liší se"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:14
+msgid "Matches"
+msgstr "Souhlasí"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:15
+msgid "Not recorded here"
+msgstr "Zde neevidováno"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:16
+msgid "Not reported"
+msgstr "Nenahlášeno"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:17
+msgid "No device"
+msgstr "Bez zařízení"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:23
+#: templates/Overviews/overview_of_radio_units_against_devices.php:104
+#: templates/RadarInterferences/view.php:82
+#: templates/RouterosDeviceInterfaces/view.php:84
+#: templates/RouterosDevices/view.php:151
+msgid "Frequency"
+msgstr "Frekvence"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:44
+msgid "Only Differences"
+msgstr "Pouze rozdíly"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:61
+msgid ""
+"Each radio unit is put next to the device carrying the same serial number, "
+"and next to the radio of that device on the band the unit is recorded on. A "
+"difference is not necessarily a mistake in the records - a radio may pick "
+"its own channel and move off the one it was installed on - so nothing here "
+"is corrected, only reported."
+msgstr "Ke každé rádiové jednotce je postaveno zařízení nesoucí stejné sériové číslo a to jeho rádio, které je na pásmu, na kterém je jednotka evidována. Rozdíl nemusí být chybou v evidenci - rádio si může kanál volit samo a odejít z toho, na kterém bylo nainstalováno - proto se zde nic neopravuje, jen hlásí."
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:73
+msgid "Checked"
+msgstr "Kontrolováno"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:96
+msgid "Radio Unit"
+msgstr "Rádiová jednotka"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:101
+msgid "Interface"
+msgstr "Rozhraní"
+
+#: templates/Overviews/overview_of_radio_units_against_devices.php:105
+msgid "Read"
+msgstr "Načteno"
 
 #: templates/PaymentPurposes/add.php:12 templates/PaymentPurposes/edit.php:20
 #: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:45
@@ -2661,7 +2752,7 @@ msgstr "Nové rušení radaru"
 msgid "Devices That Interfere"
 msgstr "Zařízení, která ruší"
 
-#: templates/RadarInterferences/index.php:35 templates/layout/default.php:333
+#: templates/RadarInterferences/index.php:35 templates/layout/default.php:340
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
@@ -2695,12 +2786,6 @@ msgstr "BSSID"
 #: templates/RouterosDevices/view.php:150
 msgid "Band"
 msgstr "Pásmo"
-
-#: templates/RadarInterferences/view.php:82
-#: templates/RouterosDeviceInterfaces/view.php:84
-#: templates/RouterosDevices/view.php:151
-msgid "Frequency"
-msgstr "Frekvence"
 
 #: templates/RadarInterferences/view.php:83
 #: templates/RouterosDeviceInterfaces/view.php:89
@@ -2764,12 +2849,12 @@ msgid "New Radio Link"
 msgstr "Nový rádiový spoj"
 
 #: templates/RadioLinks/index.php:27 templates/layout/default.php:152
-#: templates/layout/default.php:346
+#: templates/layout/default.php:353
 msgid "Radio Links"
 msgstr "Rádiové spoje"
 
 #: templates/RadioLinks/index.php:35 templates/RadioUnits/export.php:10
-#: templates/RadioUnits/index.php:29 templates/layout/default.php:351
+#: templates/RadioUnits/index.php:29 templates/layout/default.php:358
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
@@ -2906,7 +2991,7 @@ msgid "New RouterOS Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:40
-#: templates/layout/default.php:323
+#: templates/layout/default.php:330
 msgid "RouterOS Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
 
@@ -2964,7 +3049,7 @@ msgstr "Upravit IP zařízení RouterOS"
 msgid "New RouterOS Device IP"
 msgstr "Nová IP zařízení RouterOS"
 
-#: templates/RouterosDeviceIps/index.php:40 templates/layout/default.php:328
+#: templates/RouterosDeviceIps/index.php:40 templates/layout/default.php:335
 msgid "RouterOS Device Ips"
 msgstr "IP zařízení RouterOS"
 
@@ -2987,7 +3072,7 @@ msgstr "Upravit zařízení RouterOS"
 
 #: templates/RouterosDevices/export.php:37
 #: templates/RouterosDevices/index.php:41 templates/layout/default.php:142
-#: templates/layout/default.php:318
+#: templates/layout/default.php:325
 msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
 
@@ -3035,7 +3120,7 @@ msgstr ""
 msgid "Setting: {path}"
 msgstr "Nastavení: {path}"
 
-#: templates/Settings/index.php:7 templates/layout/default.php:167
+#: templates/Settings/index.php:7 templates/layout/default.php:174
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -3334,31 +3419,51 @@ msgstr "více"
 msgid "less"
 msgstr "méně"
 
+#: templates/element/comparison_result.php:22
+msgid "The device reports something else than is recorded here."
+msgstr "Zařízení hlásí něco jiného, než je zde evidováno."
+
+#: templates/element/comparison_result.php:23
+msgid "Nothing is recorded here to compare with."
+msgstr "Není zde evidováno nic, s čím porovnat."
+
+#: templates/element/comparison_result.php:24
+msgid "The device reported nothing to compare with."
+msgstr "Zařízení nenahlásilo nic, s čím porovnat."
+
+#: templates/element/comparison_result.php:25
+msgid "The device reports the same."
+msgstr "Zařízení hlásí totéž."
+
+#: templates/element/comparison_result.php:26
+msgid "No device carries the serial number of this radio unit."
+msgstr "Sériové číslo této rádiové jednotky nenese žádné zařízení."
+
 #: templates/email/html/task_notification.php:116
 msgid "View Task"
 msgstr "Zobrazit úkol"
 
-#: templates/layout/default.php:185
+#: templates/layout/default.php:192
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
 
-#: templates/layout/default.php:213
+#: templates/layout/default.php:220
 msgid "Default"
 msgstr "Výchozí"
 
-#: templates/layout/default.php:244
+#: templates/layout/default.php:251
 msgid "Logout"
 msgstr "Odhlášení"
 
-#: templates/layout/default.php:370
+#: templates/layout/default.php:377
 msgid "Changelog"
 msgstr "Seznam změn"
 
-#: templates/layout/default.php:371
+#: templates/layout/default.php:378
 msgid "Source Code"
 msgstr "Zdrojový kód"
 
-#: templates/layout/default.php:373
+#: templates/layout/default.php:380
 msgid "Version"
 msgstr "Verze"
 

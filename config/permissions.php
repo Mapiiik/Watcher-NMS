@@ -332,6 +332,22 @@ $permissions = [
                 'edit',
             ],
         ],
+        // the overviews read the records and change nothing, so whoever may see the records the
+        // overview is of may see the overview
+        [
+            'role' => [
+                'network-technician',
+                'network-manager',
+            ],
+            'plugin' => null,
+            'controller' => [
+                'Overviews',
+            ],
+            'action' => [
+                'index',
+                'overviewOfRadioUnitsAgainstDevices',
+            ],
+        ],
     ],
 ];
 
