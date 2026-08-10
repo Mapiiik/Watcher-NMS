@@ -346,6 +346,7 @@ $permissions = [
             'action' => [
                 'index',
                 'overviewOfRadioUnitsAgainstDevices',
+                'overviewOfDeviceRadiosAgainstRadioUnits',
             ],
         ],
     ],

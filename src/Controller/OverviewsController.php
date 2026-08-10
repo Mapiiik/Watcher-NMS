@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
 use App\Model\Table\RadioUnitBandsTable;
 use Cake\Validation\Validation;
@@ -86,6 +87,68 @@ class OverviewsController extends AppController
         $radioUnitBands = $this->fetchTable(RadioUnitBandsTable::class)->find('list', order: ['name']);
 
         $this->set(compact('radioUnits', 'radioUnitBands', 'onlyDifferences'));
+        $this->set('summary', $comparison->summary($conditions));
+    }
+
+    /**
+     * Overview of the radios the devices report against the radio units that record them
+     *
+     * @return void Renders view
+     */
+    public function overviewOfDeviceRadiosAgainstRadioUnits(): void
+    {
+        $conditions = [];
+
+        if ($this->access_point_id !== null) {
+            $conditions[] = ['RouterosDevices.access_point_id' => $this->access_point_id];
+        }
+
+        $radioUnitBandId = $this->getRequest()->getQuery('radio_unit_band_id');
+        if (is_string($radioUnitBandId) && Validation::uuid($radioUnitBandId)) {
+            $conditions[] = ['RadioUnitBands.id' => $radioUnitBandId];
+        }
+
+        $search = $this->getRequest()->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RouterosDeviceInterfaces.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDeviceInterfaces.ssid ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RouterosDevices.serial_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                ],
+            ];
+        }
+
+        $onlyMissing = $this->getRequest()->getQuery('only_missing', '1') === '1';
+
+        $comparison = new DeviceRadioComparison();
+
+        $query = $comparison->query($conditions);
+        if ($onlyMissing) {
+            $query->where($comparison->missing($query));
+        }
+
+        $deviceRadios = $this->paginate($query, [
+            'sortableFields' => [
+                'RouterosDevices.name',
+                'RouterosDeviceInterfaces.name',
+                'RouterosDeviceInterfaces.frequency',
+                'radio_unit_check',
+            ],
+            'order' => [
+                'RouterosDevices.name' => 'ASC',
+                'RouterosDeviceInterfaces.name' => 'ASC',
+            ],
+        ]);
+
+        // Only the bands that ask for anything can appear, so only they are offered to filter by.
+        $radioUnitBands = $this->fetchTable(RadioUnitBandsTable::class)
+            ->find('list', order: ['name'])
+            ->where(['devices_require_radio_unit' => true]);
+
+        $this->set(compact('deviceRadios', 'radioUnitBands', 'onlyMissing'));
         $this->set('summary', $comparison->summary($conditions));
     }
 }

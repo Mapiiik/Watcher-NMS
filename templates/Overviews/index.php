@@ -14,6 +14,11 @@
                     ['action' => 'overviewOfRadioUnitsAgainstDevices'],
                     ['class' => 'side-nav-item'],
                 ) ?>
+                <?= $this->AuthLink->link(
+                    __('Overview of Device Radios Against Radio Units'),
+                    ['action' => 'overviewOfDeviceRadiosAgainstRadioUnits'],
+                    ['class' => 'side-nav-item'],
+                ) ?>
             </div>
         </div>
     </div>

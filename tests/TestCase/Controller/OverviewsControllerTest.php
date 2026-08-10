@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\OverviewsController;
+use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\Datasource\EntityInterface;
@@ -21,6 +22,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
  */
 #[UsesClass(OverviewsController::class)]
 #[UsesClass(RadioUnitComparison::class)]
+#[UsesClass(DeviceRadioComparison::class)]
 class OverviewsControllerTest extends TestCase
 {
     use ControllerTestTrait;
@@ -96,6 +98,50 @@ class OverviewsControllerTest extends TestCase
         $this->get(
             '/overviews/overview-of-radio-units-against-devices'
             . '?only_differences=0&search=Lorem&radio_unit_band_id=04c8767f-d828-42dd-8950-6500917fc0ce',
+        );
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * The other direction renders, both with nothing to report and with something.
+     *
+     * With no band asking for its radios to be recorded - which is how every installation starts -
+     * the listing has nothing to show and says so rather than looking broken.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfDeviceRadiosAgainstRadioUnits()
+     */
+    public function testOverviewOfDeviceRadiosAgainstRadioUnits(): void
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-device-radios-against-radio-units');
+        $this->assertResponseOk();
+
+        $this->requiringBand();
+        $device = $this->device('UNRECORDED RADIO', '10.0.1.1');
+        $this->radio($device, 'wlan1', '12:00:00:00:00:01', 5760);
+
+        $this->get('/overviews/overview-of-device-radios-against-radio-units');
+
+        $this->assertResponseOk();
+        $this->assertSame(1, $this->viewVariable('summary')[DeviceRadioComparison::MISSING] ?? 0);
+    }
+
+    /**
+     * The filters of the other direction build a different query as well.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfDeviceRadiosAgainstRadioUnits()
+     */
+    public function testOverviewOfDeviceRadiosAgainstRadioUnitsFiltered(): void
+    {
+        $band = $this->requiringBand();
+
+        $this->login();
+        $this->get(
+            '/overviews/overview-of-device-radios-against-radio-units'
+            . '?only_missing=0&search=wlan&radio_unit_band_id=' . $band,
         );
 
         $this->assertResponseOk();
@@ -321,6 +367,26 @@ class OverviewsControllerTest extends TestCase
 
         $this->assertSame($this->radioUnitsTable()->find()->count(), $counted);
         $this->assertSame(1, $summary['frequency_check'][RadioUnitComparison::DIFFERS] ?? 0);
+    }
+
+    /**
+     * Add a band that asks for the radios of its devices to be recorded.
+     *
+     * @return string Id of the band.
+     */
+    private function requiringBand(): string
+    {
+        $bands = $this->getTableLocator()->get('RadioUnitBands');
+
+        $band = $bands->newEntity([
+            'name' => 'Band that asks',
+            'minimum_frequency' => 5725,
+            'maximum_frequency' => 5875,
+            'devices_require_radio_unit' => true,
+        ]);
+        $bands->saveOrFail($band);
+
+        return (string)$band->get('id');
     }
 
     /**
