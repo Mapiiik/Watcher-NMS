@@ -4,9 +4,10 @@
  * @var iterable<\App\Model\Entity\RadioUnit> $radioUnits
  * @var iterable<\App\Model\Entity\RadioUnitBand> $radioUnitBands
  * @var array<string, array<string, int>> $summary
- * @var bool $onlyDifferences
+ * @var string $show
  */
 
+use App\Controller\OverviewsController;
 use App\Devices\RadioUnitComparison;
 
 $verdicts = [
@@ -40,14 +41,17 @@ $checkedFields = [
         ]) ?>
     </div>
     <div class="column">
-        <?= $this->Form->control('only_differences', [
-            'label' => __('Only Differences'),
+        <?= $this->Form->control('show', [
+            'label' => __('Show'),
             'type' => 'select',
             'options' => [
-                '1' => __('Yes'),
-                '0' => __('No'),
+                OverviewsController::SHOW_DIFFERENCES => __('Only Differences'),
+                OverviewsController::SHOW_WITHOUT_DEVICE => __('Only Without a Device'),
+                OverviewsController::SHOW_ALL => __('All'),
             ],
-            'default' => '1',
+            // What was applied rather than what was asked for, so that an address carrying
+            // something else says which of the three it was answered with.
+            'value' => $show,
             'onchange' => 'this.form.submit();',
         ]) ?>
     </div>

@@ -202,6 +202,21 @@ final class RadioUnitComparison
     }
 
     /**
+     * The condition that keeps only the units nothing carries the serial number of.
+     *
+     * The units that have never been compared with anything. On the bands the agent reads that is
+     * a unit whose device was never registered, or whose serial number is written down wrongly on
+     * one side or the other; on the bands it does not read, it is all of them.
+     *
+     * @param \Cake\ORM\Query\SelectQuery<\App\Model\Entity\RadioUnit> $query Query to build it for.
+     * @return \Cake\Database\ExpressionInterface
+     */
+    public function withoutDevice(SelectQuery $query): ExpressionInterface
+    {
+        return $this->hasNoDevice($query);
+    }
+
+    /**
      * The verdict of each checked field, keyed by the name the listing reads it under.
      *
      * @param \Cake\ORM\Query\SelectQuery<\App\Model\Entity\RadioUnit> $query Query to build them for.
@@ -214,6 +229,20 @@ final class RadioUnitComparison
             'mac_address_check' => $this->macAddressCheck($query),
             'frequency_check' => $this->frequencyCheck($query),
         ];
+    }
+
+    /**
+     * Whether nothing was found to compare the unit with.
+     *
+     * Every verdict opens with this and the filter reads the same thing, so it is written once:
+     * what counts as having a device is one question, however many answers lean on it.
+     *
+     * @param \Cake\ORM\Query\SelectQuery<\App\Model\Entity\RadioUnit> $query Query to build it for.
+     * @return \Cake\Database\ExpressionInterface
+     */
+    private function hasNoDevice(SelectQuery $query): ExpressionInterface
+    {
+        return $query->expr('RouterosDevices.id IS NULL');
     }
 
     /**
@@ -325,7 +354,7 @@ final class RadioUnitComparison
 
         return $query->expr()
             ->case()
-            ->when($query->expr('RouterosDevices.id IS NULL'))
+            ->when($this->hasNoDevice($query))
             ->then(self::NO_DEVICE, 'string')
             ->when($query->expr('RadioUnits.ip_address IS NULL'))
             ->then(self::NOT_IN_INVENTORY, 'string')
@@ -344,7 +373,7 @@ final class RadioUnitComparison
     {
         return $query->expr()
             ->case()
-            ->when($query->expr('RouterosDevices.id IS NULL'))
+            ->when($this->hasNoDevice($query))
             ->then(self::NO_DEVICE, 'string')
             // Anything that is not a MAC address is not a MAC address recorded wrongly.
             ->when($query->expr(
@@ -374,7 +403,7 @@ final class RadioUnitComparison
     {
         return $query->expr()
             ->case()
-            ->when($query->expr('RouterosDevices.id IS NULL'))
+            ->when($this->hasNoDevice($query))
             ->then(self::NO_DEVICE, 'string')
             ->when($query->expr('RadioUnits.tx_frequency IS NULL'))
             ->then(self::NOT_IN_INVENTORY, 'string')

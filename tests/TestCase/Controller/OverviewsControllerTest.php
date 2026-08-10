@@ -97,7 +97,7 @@ class OverviewsControllerTest extends TestCase
         $this->login();
         $this->get(
             '/overviews/overview-of-radio-units-against-devices'
-            . '?only_differences=0&search=Lorem&radio_unit_band_id=04c8767f-d828-42dd-8950-6500917fc0ce',
+            . '?show=all&search=Lorem&radio_unit_band_id=04c8767f-d828-42dd-8950-6500917fc0ce',
         );
 
         $this->assertResponseOk();
@@ -192,8 +192,8 @@ class OverviewsControllerTest extends TestCase
         $this->radio($device, 'wlan60-1', '11:00:00:00:00:02', 58320);
         $this->radioUnit('Agreeing unit', 'AGREES', '11:00:00:00:00:02', 58320, '10.0.0.2');
 
-        $this->assertNotContains('Agreeing unit', $this->namesListed(onlyDifferences: true));
-        $this->assertContains('Agreeing unit', $this->namesListed(onlyDifferences: false));
+        $this->assertNotContains('Agreeing unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
+        $this->assertContains('Agreeing unit', $this->namesListed(OverviewsController::SHOW_ALL));
     }
 
     /**
@@ -214,7 +214,49 @@ class OverviewsControllerTest extends TestCase
             [RadioUnitComparison::NO_DEVICE, RadioUnitComparison::NO_DEVICE, RadioUnitComparison::NO_DEVICE],
             $this->checksOf('Unread unit'),
         );
-        $this->assertNotContains('Unread unit', $this->namesListed(onlyDifferences: true));
+        $this->assertNotContains('Unread unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
+    }
+
+    /**
+     * The units nothing was found to compare with are a listing of their own.
+     *
+     * They are not differences and not agreements, so neither of the other two ever shows them on
+     * their own - and asked band by band, this is the list of what has never been seen on a device.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstDevices()
+     */
+    public function testTheUnitsWithoutADeviceAreAListingOfTheirOwn(): void
+    {
+        $device = $this->device('HAS A DEVICE', '10.0.0.11');
+        $this->radio($device, 'wlan60-1', '11:00:00:00:00:20', 58320);
+        $this->radioUnit('Compared unit', 'HAS A DEVICE', '11:00:00:00:00:20', 64800, '10.0.0.11');
+        $this->radioUnit('Uncompared unit', 'NO DEVICE CARRIES THIS', '11:00:00:00:00:21', 58320, '10.0.0.12');
+
+        $withoutDevice = $this->namesListed(OverviewsController::SHOW_WITHOUT_DEVICE);
+
+        $this->assertContains('Uncompared unit', $withoutDevice);
+        $this->assertNotContains('Compared unit', $withoutDevice);
+
+        // and the unit that does have one is still where it was, among the differences
+        $this->assertContains('Compared unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
+        $this->assertNotContains('Uncompared unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
+    }
+
+    /**
+     * A `show` naming none of the three is answered with the differences rather than with an
+     * error, and the form says which of them it was answered with.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstDevices()
+     */
+    public function testAnUnknownShowFallsBackToTheDifferences(): void
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-radio-units-against-devices?show=nonsense');
+
+        $this->assertResponseOk();
+        $this->assertSame(OverviewsController::SHOW_DIFFERENCES, $this->viewVariable('show'));
     }
 
     /**
@@ -300,7 +342,7 @@ class OverviewsControllerTest extends TestCase
         $this->radioUnit('Unit off the air', 'LINK DOWN', '11:00:00:00:00:09', 58320, '10.0.0.7');
 
         $this->assertSame(RadioUnitComparison::NOT_REPORTED, $this->checksOf('Unit off the air')[2]);
-        $this->assertNotContains('Unit off the air', $this->namesListed(onlyDifferences: true));
+        $this->assertNotContains('Unit off the air', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
     }
 
     /**
@@ -319,7 +361,7 @@ class OverviewsControllerTest extends TestCase
         $this->radioUnit('Licensed unit', 'LICENSED', '51DDH', 58320, '10.0.0.8');
 
         $this->assertSame(RadioUnitComparison::NOT_IN_INVENTORY, $this->checksOf('Licensed unit')[1]);
-        $this->assertNotContains('Licensed unit', $this->namesListed(onlyDifferences: true));
+        $this->assertNotContains('Licensed unit', $this->namesListed(OverviewsController::SHOW_DIFFERENCES));
     }
 
     /**
@@ -338,7 +380,7 @@ class OverviewsControllerTest extends TestCase
         $this->radioUnit('Serving unit', 'POINT TO MULTIPOINT', '11:00:00:00:00:11', 58320, '10.0.0.9');
 
         $listed = array_filter(
-            $this->namesListed(onlyDifferences: false),
+            $this->namesListed(OverviewsController::SHOW_ALL),
             fn(string $name): bool => $name === 'Serving unit',
         );
 
@@ -513,16 +555,13 @@ class OverviewsControllerTest extends TestCase
     /**
      * The names the overview lists, as the action answers with them.
      *
-     * @param bool $onlyDifferences Whether to ask for only the units something disagrees about.
+     * @param string $show Which of the units to ask for, as {@see \App\Controller\OverviewsController::SHOWN}.
      * @return array<string>
      */
-    private function namesListed(bool $onlyDifferences): array
+    private function namesListed(string $show): array
     {
         $this->login();
-        $this->get(
-            '/overviews/overview-of-radio-units-against-devices'
-            . '?only_differences=' . ($onlyDifferences ? '1' : '0'),
-        );
+        $this->get('/overviews/overview-of-radio-units-against-devices?show=' . $show);
         $this->assertResponseOk();
 
         /** @var \Cake\Datasource\Paging\PaginatedInterface<int, \App\Model\Entity\RadioUnit> $radioUnits */

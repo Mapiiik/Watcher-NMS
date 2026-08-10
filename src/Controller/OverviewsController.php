@@ -18,6 +18,33 @@ use Cake\Validation\Validation;
 class OverviewsController extends AppController
 {
     /**
+     * Only the units something disagrees about, which is what the overview is opened for.
+     */
+    public const SHOW_DIFFERENCES = 'differences';
+
+    /**
+     * Only the units nothing was found to compare with - what a band is filtered down to when
+     * the question is which of its units the NMS has never seen a device for.
+     */
+    public const SHOW_WITHOUT_DEVICE = 'without_device';
+
+    /**
+     * Every unit the other filters allow, however it came out.
+     */
+    public const SHOW_ALL = 'all';
+
+    /**
+     * What the listing may be narrowed down to, in the order the form offers them.
+     *
+     * @var array<string>
+     */
+    public const SHOWN = [
+        self::SHOW_DIFFERENCES,
+        self::SHOW_WITHOUT_DEVICE,
+        self::SHOW_ALL,
+    ];
+
+    /**
      * Index method
      *
      * @return void Renders view
@@ -61,15 +88,20 @@ class OverviewsController extends AppController
         }
 
         // Most of what is compared agrees, and a listing of agreements is not what anybody opens
-        // this for. The summary above the table says how much is being left out, and the filter
-        // is there to see all of it.
-        $onlyDifferences = $this->getRequest()->getQuery('only_differences', '1') === '1';
+        // this for. The three are one field rather than two switches because they do not overlap:
+        // a unit with no device is never one the device disagrees with. The summary above the
+        // table counts all of them however this is set.
+        $show = $this->getRequest()->getQuery('show');
+        $show = in_array($show, self::SHOWN, true) ? $show : self::SHOW_DIFFERENCES;
 
         $comparison = new RadioUnitComparison();
 
         $query = $comparison->query($conditions);
-        if ($onlyDifferences) {
+        if ($show === self::SHOW_DIFFERENCES) {
             $query->where($comparison->differences($query));
+        }
+        if ($show === self::SHOW_WITHOUT_DEVICE) {
+            $query->where($comparison->withoutDevice($query));
         }
 
         $radioUnits = $this->paginate($query, [
@@ -86,7 +118,7 @@ class OverviewsController extends AppController
 
         $radioUnitBands = $this->fetchTable(RadioUnitBandsTable::class)->find('list', order: ['name']);
 
-        $this->set(compact('radioUnits', 'radioUnitBands', 'onlyDifferences'));
+        $this->set(compact('radioUnits', 'radioUnitBands', 'show'));
         $this->set('summary', $comparison->summary($conditions));
     }
 
