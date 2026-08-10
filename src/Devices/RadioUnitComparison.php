@@ -75,11 +75,12 @@ final class RadioUnitComparison
     /**
      * How far apart two frequencies may be and still be the same band, as a ratio.
      *
-     * There is no table of band edges to ask - the bands are named, not measured - so the bands
-     * are told apart by how far they sit from one another, which is much further than the width of
-     * any one of them. A quarter keeps 5.2 and 5.8 GHz together, as one radio's tuning range and
-     * one registration regime, while separating 2.4 from 5, 5 from 60, and each licensed band from
-     * the next; anything a wider ratio would let through is still settled by the criteria below it.
+     * Only for the bands that have not been given their edges. Bands sit much further from one
+     * another than any one of them is wide, so how far a frequency is from the one recorded for
+     * the unit still tells the bands apart: a quarter keeps 5.2 and 5.8 GHz together, as one
+     * radio's tuning range and one registration regime, while separating 2.4 from 5, 5 from 60,
+     * and each licensed band from the next. Anything a ratio this wide lets through is settled by
+     * the criteria below it - and filling the band's edges in settles it outright.
      */
     private const SAME_BAND_RATIO = '1.25';
 
@@ -224,9 +225,10 @@ final class RadioUnitComparison
      * comparison into nonsense, so the choice is made the way somebody reading the two records
      * would make it, in this order:
      *
-     * 1. The band. Radios of other bands are not this unit whatever else matches, and the
-     *    frequency written down for the unit names its band closely enough - a channel may have
-     *    drifted across the band since, but not out of it.
+     * 1. The band. Radios of other bands are not this unit whatever else matches. Where the unit's
+     *    band knows its own edges they say which radios are on it; where it does not, the frequency
+     *    written down for the unit names its band closely enough - a channel may have drifted
+     *    across the band since, but not out of it.
      * 2. The MAC address. Within a band it is what tells two radios of one device apart, and it
      *    is the identifier a registration is issued against, so it is the one most likely to be
      *    recorded. A unit with no frequency written down is still found by it.
@@ -250,6 +252,21 @@ final class RadioUnitComparison
             );
 
         return $query
+            // The band is reached from the unit's type rather than from the joined `RadioUnitBands`
+            // of the listing: the contained associations are joined after this subquery is, and an
+            // alias that comes later in the FROM clause is not one it may name.
+            ->leftJoin(
+                ['ReportingUnitType' => 'radio_unit_types'],
+                [
+                    $query->expr('ReportingUnitType.id = RadioUnits.radio_unit_type_id'),
+                ],
+            )
+            ->leftJoin(
+                ['ReportingBand' => 'radio_unit_bands'],
+                [
+                    $query->expr('ReportingBand.id = ReportingUnitType.radio_unit_band_id'),
+                ],
+            )
             ->where(function (QueryExpression $exp): QueryExpression {
                 return $exp
                     ->equalFields('ReportingInterface.routeros_device_id', 'RouterosDevices.id')
@@ -258,8 +275,12 @@ final class RadioUnitComparison
             // Each of these is NULL where the unit has nothing to be sorted by, and NULLS LAST
             // then leaves the decision to the next one down rather than to whatever sorts first.
             ->orderBy($query->expr(sprintf(
-                'ReportingInterface.frequency BETWEEN RadioUnits.tx_frequency / %1$s'
-                    . ' AND RadioUnits.tx_frequency * %1$s DESC NULLS LAST',
+                'COALESCE('
+                    . 'ReportingInterface.frequency'
+                        . ' BETWEEN ReportingBand.minimum_frequency AND ReportingBand.maximum_frequency,'
+                    . ' ReportingInterface.frequency'
+                        . ' BETWEEN RadioUnits.tx_frequency / %1$s AND RadioUnits.tx_frequency * %1$s'
+                . ') DESC NULLS LAST',
                 self::SAME_BAND_RATIO,
             )))
             ->orderBy($query->expr(
