@@ -25,6 +25,7 @@
         "dereuromark/cakephp-geo": "^3.8",
         "geocoder-php/google-maps-provider": "^4.8",
         "geocoder-php/nominatim-provider": "^5.8",
+        "josegonzalez/dotenv": "^4.0",
         "league/oauth2-google": "^5.0",
         "mobiledetect/mobiledetectlib": "^4.10"
     },
@@ -33,7 +34,6 @@
         "cakephp/bake": "^3.6",
         "cakephp/cakephp-codesniffer": "^5.3",
         "cakephp/debug_kit": "^5.2",
-        "josegonzalez/dotenv": "^4.0",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^11.5 || ^12.5 || ^13.1",
