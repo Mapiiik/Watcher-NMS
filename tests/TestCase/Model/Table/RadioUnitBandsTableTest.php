@@ -88,4 +88,66 @@ class RadioUnitBandsTableTest extends TestCase
     {
         $this->assertEmptyRecordIsRefused($this->RadioUnitBands);
     }
+
+    /**
+     * A band given only one of its edges is refused.
+     *
+     * Saved, it would be a band recognised by no frequency at all, and the overview that reads the
+     * edges would quietly never find it - which reads as the band being fine rather than half
+     * filled in.
+     *
+     * @return void
+     * @link \App\Model\Table\RadioUnitBandsTable::validationDefault()
+     */
+    public function testABandWithOnlyOneEdgeIsRefused(): void
+    {
+        foreach (['minimum_frequency', 'maximum_frequency'] as $field) {
+            $band = $this->RadioUnitBands->newEntity(['name' => 'Half a band', $field => 5725]);
+
+            $this->assertFalse($this->RadioUnitBands->save($band));
+            $this->assertArrayHasKey($field, $band->getErrors());
+        }
+    }
+
+    /**
+     * Edges the wrong way round are refused, for the same reason.
+     *
+     * @return void
+     * @link \App\Model\Table\RadioUnitBandsTable::validationDefault()
+     */
+    public function testABandWhoseEdgesAreTheWrongWayRoundIsRefused(): void
+    {
+        $band = $this->RadioUnitBands->newEntity([
+            'name' => 'Backwards band',
+            'minimum_frequency' => 5875,
+            'maximum_frequency' => 5725,
+        ]);
+
+        $this->assertFalse($this->RadioUnitBands->save($band));
+        $this->assertArrayHasKey('maximum_frequency', $band->getErrors());
+    }
+
+    /**
+     * A band with both of its edges, and one with neither, are both saved.
+     *
+     * @return void
+     * @link \App\Model\Table\RadioUnitBandsTable::validationDefault()
+     */
+    public function testABandKeepsBothItsEdgesOrNeither(): void
+    {
+        $measured = $this->RadioUnitBands->newEntity([
+            'name' => 'Measured band',
+            'minimum_frequency' => 5725,
+            'maximum_frequency' => 5875,
+            'devices_require_radio_unit' => true,
+        ]);
+        $this->assertNotFalse($this->RadioUnitBands->save($measured));
+        $this->assertTrue($measured->devices_require_radio_unit);
+
+        // A band nobody said anything about asks for nothing - read back rather than off the
+        // entity, which never saw the default the column carries.
+        $named = $this->RadioUnitBands->newEntity(['name' => 'Named band']);
+        $this->assertNotFalse($this->RadioUnitBands->save($named));
+        $this->assertFalse($this->RadioUnitBands->get($named->id)->devices_require_radio_unit);
+    }
 }

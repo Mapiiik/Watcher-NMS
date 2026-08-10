@@ -23,6 +23,9 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('color', ['type' => 'color']);
+                    echo $this->Form->control('minimum_frequency');
+                    echo $this->Form->control('maximum_frequency');
+                    echo $this->Form->control('devices_require_radio_unit');
                     echo $this->Form->control('note');
                 ?>
             </fieldset>

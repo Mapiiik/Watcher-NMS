@@ -45,6 +45,20 @@
                                 h($radioUnitBand->color)
                             ?></td>
                         </tr>
+                        <tr>
+                            <th><?= __('Minimum Frequency') ?></th>
+                            <td><?= $radioUnitBand->minimum_frequency === null ?
+                                '' : $this->Number->format($radioUnitBand->minimum_frequency) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Maximum Frequency') ?></th>
+                            <td><?= $radioUnitBand->maximum_frequency === null ?
+                                '' : $this->Number->format($radioUnitBand->maximum_frequency) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Devices Require Radio Unit') ?></th>
+                            <td><?= $radioUnitBand->devices_require_radio_unit ? __('Yes') : __('No') ?></td>
+                        </tr>
                     </table>
                 </div>
                 <div class="column">

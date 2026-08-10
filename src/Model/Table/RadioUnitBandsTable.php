@@ -77,7 +77,62 @@ class RadioUnitBandsTable extends AppTable
             ->scalar('note')
             ->allowEmptyString('note');
 
+        $validator
+            ->integer('minimum_frequency')
+            ->allowEmptyString('minimum_frequency');
+
+        $validator
+            ->integer('maximum_frequency')
+            ->allowEmptyString('maximum_frequency');
+
+        $validator
+            ->boolean('devices_require_radio_unit')
+            ->allowEmptyString('devices_require_radio_unit');
+
+        // A band with only one edge is recognised by no frequency at all, and a band whose edges
+        // are the wrong way round by none either. Both read as the band simply never being found,
+        // which is not something anybody would go looking for in these two fields.
+        $validator
+            ->add('minimum_frequency', 'withMaximum', [
+                'rule' => fn(mixed $value, array $context): bool => self::frequencyEdgesGoTogether($context),
+                'message' => __('Give the band both of its edges, or neither of them.'),
+            ])
+            ->add('maximum_frequency', 'withMinimum', [
+                'rule' => fn(mixed $value, array $context): bool => self::frequencyEdgesGoTogether($context),
+                'message' => __('Give the band both of its edges, or neither of them.'),
+            ])
+            ->add('maximum_frequency', 'notBelowMinimum', [
+                'rule' => function (mixed $value, array $context): bool {
+                    $minimum = $context['data']['minimum_frequency'] ?? null;
+
+                    return !is_numeric($minimum) || !is_numeric($value) || (int)$value >= (int)$minimum;
+                },
+                'message' => __('The highest frequency of the band cannot be below the lowest one.'),
+            ]);
+
         return $validator;
+    }
+
+    /**
+     * Whether the request carries both edges of the band or neither of them.
+     *
+     * Read off the request rather than off the record: a form that leaves one of them out is
+     * saying nothing about it, and what the record already holds is then what it keeps.
+     *
+     * @param array<string, mixed> $context Validation context.
+     * @return bool
+     */
+    private static function frequencyEdgesGoTogether(array $context): bool
+    {
+        /** @var array<string, mixed> $data */
+        $data = $context['data'] ?? [];
+
+        $given = array_filter(
+            ['minimum_frequency', 'maximum_frequency'],
+            fn(string $field): bool => ($data[$field] ?? '') !== '' && ($data[$field] ?? null) !== null,
+        );
+
+        return count($given) !== 1;
     }
 
     /**

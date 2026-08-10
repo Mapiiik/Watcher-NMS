@@ -29,6 +29,9 @@
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('color') ?></th>
+                    <th><?= $this->Paginator->sort('minimum_frequency') ?></th>
+                    <th><?= $this->Paginator->sort('maximum_frequency') ?></th>
+                    <th><?= $this->Paginator->sort('devices_require_radio_unit') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -37,6 +40,11 @@
                 <tr>
                     <td><?= h($radioUnitBand->name) ?></td>
                     <td style="background-color: <?= h($radioUnitBand->color) ?>;"><?= h($radioUnitBand->color) ?></td>
+                    <td><?= $radioUnitBand->minimum_frequency === null ?
+                        '' : $this->Number->format($radioUnitBand->minimum_frequency) ?></td>
+                    <td><?= $radioUnitBand->maximum_frequency === null ?
+                        '' : $this->Number->format($radioUnitBand->maximum_frequency) ?></td>
+                    <td><?= $radioUnitBand->devices_require_radio_unit ? __('Yes') : __('No') ?></td>
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),
