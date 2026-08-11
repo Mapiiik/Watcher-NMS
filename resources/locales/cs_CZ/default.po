@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-11 09:55+0200\n"
-"PO-Revision-Date: 2026-08-11 09:56+0200\n"
+"POT-Creation-Date: 2026-08-11 10:36+0200\n"
+"PO-Revision-Date: 2026-08-11 10:39+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -75,12 +75,12 @@ msgstr "Aktualizace zákaznických bodů se nezdařila."
 #: templates/CustomerConnections/view.php:179 templates/DeviceTypes/view.php:84
 #: templates/ElectricityMeterReadings/view.php:47
 #: templates/IpAddressRanges/view.php:55 templates/LandlordPayments/view.php:43
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:96
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:113
 #: templates/Overviews/overview_of_radio_units_against_devices.php:99
 #: templates/PaymentPurposes/view.php:64 templates/PowerSupplies/view.php:61
 #: templates/PowerSupplyTypes/view.php:93 templates/RadioLinks/view.php:76
 #: templates/RadioUnitTypes/view.php:96 templates/RadioUnits/export.php:15
-#: templates/RadioUnits/view.php:57 templates/RouterosDevices/export.php:42
+#: templates/RadioUnits/view.php:57 templates/RouterosDevices/export.php:31
 #: templates/RouterosDevices/view.php:53 templates/TaskStates/view.php:67
 #: templates/TaskTypes/view.php:59 templates/Tasks/view.php:71
 #: templates/cell/AccessPoint/display.php:12
@@ -186,7 +186,7 @@ msgstr "Hlášení odečtu elektroměru se nezdařilo."
 #: templates/RadioUnits/export.php:16 templates/RadioUnits/view.php:40
 #: templates/RouterosDeviceInterfaces/view.php:57
 #: templates/RouterosDeviceIps/view.php:57
-#: templates/RouterosDevices/export.php:44
+#: templates/RouterosDevices/export.php:33
 #: templates/RouterosDevices/view.php:49 templates/RouterosDevices/view.php:145
 #: templates/RouterosDevices/view.php:220 templates/TaskStates/view.php:32
 #: templates/TaskTypes/view.php:32
@@ -195,7 +195,7 @@ msgid "Name"
 msgstr "Jméno"
 
 #: src/Command/RadarInterferencesReportCommand.php:94
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:99
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:116
 #: templates/Overviews/overview_of_radio_units_against_devices.php:23
 #: templates/Overviews/overview_of_radio_units_against_devices.php:105
 #: templates/RadarInterferences/add.php:26
@@ -205,15 +205,15 @@ msgstr "Jméno"
 #: templates/RadarInterferences/view.php:78
 #: templates/RouterosDeviceInterfaces/add.php:35
 #: templates/RouterosDeviceInterfaces/edit.php:43
-#: templates/RouterosDeviceInterfaces/index.php:48
+#: templates/RouterosDeviceInterfaces/index.php:37
 #: templates/RouterosDeviceInterfaces/view.php:65
-#: templates/RouterosDevices/export.php:52
+#: templates/RouterosDevices/export.php:41
 #: templates/RouterosDevices/view.php:147
 msgid "MAC Address"
 msgstr "MAC adresa"
 
 #: src/Command/RadarInterferencesReportCommand.php:95
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:98
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:115
 #: templates/RadarInterferences/add.php:29
 #: templates/RadarInterferences/edit.php:37
 #: templates/RadarInterferences/index.php:42
@@ -221,9 +221,9 @@ msgstr "MAC adresa"
 #: templates/RadarInterferences/view.php:79
 #: templates/RouterosDeviceInterfaces/add.php:38
 #: templates/RouterosDeviceInterfaces/edit.php:46
-#: templates/RouterosDeviceInterfaces/index.php:49
+#: templates/RouterosDeviceInterfaces/index.php:38
 #: templates/RouterosDeviceInterfaces/view.php:72
-#: templates/RouterosDevices/export.php:54
+#: templates/RouterosDevices/export.php:43
 #: templates/RouterosDevices/view.php:148
 msgid "SSID"
 msgstr "SSID"
@@ -702,61 +702,61 @@ msgstr "Rádiová jednotka byla odstraněna."
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr "Rádiovou jednotku nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDeviceInterfacesController.php:100
-#: src/Controller/RouterosDeviceInterfacesController.php:127
+#: src/Controller/RouterosDeviceInterfacesController.php:92
+#: src/Controller/RouterosDeviceInterfacesController.php:119
 msgid "The RouterOS device interface has been saved."
 msgstr "Rozhraní zařízení RouterOS bylo uloženo."
 
-#: src/Controller/RouterosDeviceInterfacesController.php:104
-#: src/Controller/RouterosDeviceInterfacesController.php:131
+#: src/Controller/RouterosDeviceInterfacesController.php:96
+#: src/Controller/RouterosDeviceInterfacesController.php:123
 msgid "The RouterOS device interface could not be saved. Please, try again."
 msgstr "Rozhraní zařízení RouterOS nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDeviceInterfacesController.php:151
+#: src/Controller/RouterosDeviceInterfacesController.php:143
 msgid "The RouterOS device interface has been deleted."
 msgstr "Rozhraní zařízení RouterOS bylo odstraněno."
 
-#: src/Controller/RouterosDeviceInterfacesController.php:154
+#: src/Controller/RouterosDeviceInterfacesController.php:146
 msgid "The RouterOS device interface could not be deleted. Please, try again."
 msgstr "Rozhraní zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDeviceIpsController.php:94
-#: src/Controller/RouterosDeviceIpsController.php:121
+#: src/Controller/RouterosDeviceIpsController.php:86
+#: src/Controller/RouterosDeviceIpsController.php:113
 msgid "The RouterOS device IP has been saved."
 msgstr "IP RouterOS zařízení byla uložena."
 
-#: src/Controller/RouterosDeviceIpsController.php:98
-#: src/Controller/RouterosDeviceIpsController.php:125
+#: src/Controller/RouterosDeviceIpsController.php:90
+#: src/Controller/RouterosDeviceIpsController.php:117
 msgid "The RouterOS device IP could not be saved. Please, try again."
 msgstr "IP RouterOS zařízení nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDeviceIpsController.php:145
+#: src/Controller/RouterosDeviceIpsController.php:137
 msgid "The RouterOS device IP has been deleted."
 msgstr "IP RouterOS zařízení byla odstraněna."
 
-#: src/Controller/RouterosDeviceIpsController.php:148
+#: src/Controller/RouterosDeviceIpsController.php:140
 msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr "IP adresu zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:183
-#: src/Controller/RouterosDevicesController.php:217
+#: src/Controller/RouterosDevicesController.php:176
+#: src/Controller/RouterosDevicesController.php:210
 msgid "The RouterOS device has been saved."
 msgstr "Zařízení RouterOS bylo uloženo."
 
-#: src/Controller/RouterosDevicesController.php:187
-#: src/Controller/RouterosDevicesController.php:221
+#: src/Controller/RouterosDevicesController.php:180
+#: src/Controller/RouterosDevicesController.php:214
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr "Zařízení RouterOS nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:248
+#: src/Controller/RouterosDevicesController.php:241
 msgid "The RouterOS device has been deleted."
 msgstr "Zařízení RouterOS bylo odstraněno."
 
-#: src/Controller/RouterosDevicesController.php:251
+#: src/Controller/RouterosDevicesController.php:244
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr "Zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:277
+#: src/Controller/RouterosDevicesController.php:270
 msgid ""
 "Cannot update RouterOS device data via SNMP. Missing IP address or SNMP "
 "community."
@@ -764,12 +764,12 @@ msgstr ""
 "Nelze aktualizovat data zařízení RouterOS prostřednictvím protokolu SNMP. "
 "Chybí IP adresa nebo SNMP komunita."
 
-#: src/Controller/RouterosDevicesController.php:296
+#: src/Controller/RouterosDevicesController.php:289
 msgid "The RouterOS device data has been updated via SNMP."
 msgstr ""
 "Údaje o zařízení RouterOS byly aktualizovány prostřednictvím protokolu SNMP."
 
-#: src/Controller/RouterosDevicesController.php:308
+#: src/Controller/RouterosDevicesController.php:301
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr "Nepodařilo se aktualizovat data zařízení RouterOS přes SNMP: {0}"
 
@@ -952,6 +952,30 @@ msgstr "Vysoká"
 msgid "Urgent"
 msgstr "Naléhavé"
 
+#: src/Model/Enum/DeviceLinkScope.php:53
+#: src/Model/Enum/RadioUnitComparisonScope.php:48
+msgid "All"
+msgstr "Vše"
+
+#: src/Model/Enum/DeviceLinkScope.php:54
+msgid "Only With an Access Point"
+msgstr "Pouze s přístupovým bodem"
+
+#: src/Model/Enum/DeviceLinkScope.php:55
+msgid "Only With a Customer Connection"
+msgstr "Pouze se zákaznickým bodem"
+
+#: src/Model/Enum/DeviceLinkScope.php:56
+msgid "Only Without a Link"
+msgstr "Pouze bez vazby"
+
+#: src/Model/Enum/MaximumAge.php:70
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} den"
+msgstr[1] "{0} dny"
+msgstr[2] "{0} dní"
+
 #: src/Model/Enum/RadioUnitComparisonScope.php:46
 msgid "Only Differences"
 msgstr "Pouze rozdíly"
@@ -959,10 +983,6 @@ msgstr "Pouze rozdíly"
 #: src/Model/Enum/RadioUnitComparisonScope.php:47
 msgid "Only Without a Device"
 msgstr "Pouze bez zařízení"
-
-#: src/Model/Enum/RadioUnitComparisonScope.php:48
-msgid "All"
-msgstr "Vše"
 
 #: src/Model/Table/LandlordPaymentsElectricityDetailsTable.php:117
 msgid "This field cannot be left empty"
@@ -1083,15 +1103,15 @@ msgstr "Není nainstalováno přes Git"
 #: templates/RadioUnits/index.php:53 templates/RadioUnits/view.php:10
 #: templates/RouterosDeviceInterfaces/add.php:11
 #: templates/RouterosDeviceInterfaces/edit.php:11
-#: templates/RouterosDeviceInterfaces/index.php:60
+#: templates/RouterosDeviceInterfaces/index.php:49
 #: templates/RouterosDeviceInterfaces/view.php:10
 #: templates/RouterosDeviceIps/add.php:11
 #: templates/RouterosDeviceIps/edit.php:11
-#: templates/RouterosDeviceIps/index.php:49
+#: templates/RouterosDeviceIps/index.php:38
 #: templates/RouterosDeviceIps/view.php:10 templates/RouterosDevices/add.php:13
 #: templates/RouterosDevices/edit.php:13
-#: templates/RouterosDevices/export.php:57
-#: templates/RouterosDevices/index.php:56 templates/RouterosDevices/view.php:10
+#: templates/RouterosDevices/export.php:46
+#: templates/RouterosDevices/index.php:45 templates/RouterosDevices/view.php:10
 #: templates/RouterosDevices/view.php:159
 #: templates/RouterosDevices/view.php:223 templates/Settings/edit.php:15
 #: templates/TaskStates/add.php:10 templates/TaskStates/edit.php:10
@@ -1196,12 +1216,12 @@ msgstr "Potvrdit"
 #: templates/RadioUnitTypes/view.php:161 templates/RadioUnits/edit.php:16
 #: templates/RadioUnits/export.php:133 templates/RadioUnits/index.php:116
 #: templates/RouterosDeviceInterfaces/edit.php:13
-#: templates/RouterosDeviceInterfaces/index.php:110
+#: templates/RouterosDeviceInterfaces/index.php:99
 #: templates/RouterosDeviceIps/edit.php:13
-#: templates/RouterosDeviceIps/index.php:81
+#: templates/RouterosDeviceIps/index.php:70
 #: templates/RouterosDevices/edit.php:15
-#: templates/RouterosDevices/export.php:147
-#: templates/RouterosDevices/index.php:105
+#: templates/RouterosDevices/export.php:136
+#: templates/RouterosDevices/index.php:94
 #: templates/RouterosDevices/view.php:196
 #: templates/RouterosDevices/view.php:241 templates/TaskStates/edit.php:12
 #: templates/TaskStates/index.php:48 templates/TaskStates/view.php:117
@@ -1267,15 +1287,15 @@ msgstr "Odstranit"
 #: templates/RadioUnits/edit.php:18 templates/RadioUnits/export.php:135
 #: templates/RadioUnits/index.php:118 templates/RadioUnits/view.php:19
 #: templates/RouterosDeviceInterfaces/edit.php:16
-#: templates/RouterosDeviceInterfaces/index.php:112
+#: templates/RouterosDeviceInterfaces/index.php:101
 #: templates/RouterosDeviceInterfaces/view.php:20
 #: templates/RouterosDeviceIps/edit.php:16
-#: templates/RouterosDeviceIps/index.php:83
+#: templates/RouterosDeviceIps/index.php:72
 #: templates/RouterosDeviceIps/view.php:20
 #: templates/RouterosDevices/edit.php:18
-#: templates/RouterosDevices/export.php:149
-#: templates/RouterosDevices/index.php:107
-#: templates/RouterosDevices/view.php:20 templates/RouterosDevices/view.php:202
+#: templates/RouterosDevices/export.php:138
+#: templates/RouterosDevices/index.php:96 templates/RouterosDevices/view.php:20
+#: templates/RouterosDevices/view.php:202
 #: templates/RouterosDevices/view.php:243 templates/TaskStates/edit.php:14
 #: templates/TaskStates/index.php:50 templates/TaskStates/view.php:19
 #: templates/TaskStates/view.php:119 templates/TaskTypes/edit.php:14
@@ -1299,17 +1319,17 @@ msgstr "Upravit kontakt přístupového bodu"
 #: templates/ElectricityMeterReadings/index.php:11
 #: templates/IpAddressRanges/index.php:11
 #: templates/LandlordPayments/index.php:11 templates/Manufacturers/index.php:11
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:21
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:24
 #: templates/Overviews/overview_of_radio_units_against_devices.php:31
 #: templates/PaymentPurposes/index.php:11 templates/PowerSupplies/index.php:11
 #: templates/PowerSupplyTypes/index.php:11
 #: templates/RadarInterferences/index.php:11 templates/RadioLinks/index.php:11
 #: templates/RadioUnitBands/index.php:11 templates/RadioUnitTypes/index.php:11
 #: templates/RadioUnits/index.php:12
-#: templates/RouterosDeviceInterfaces/index.php:11
-#: templates/RouterosDeviceIps/index.php:11
-#: templates/RouterosDevices/export.php:12
-#: templates/RouterosDevices/index.php:11 templates/TaskStates/index.php:11
+#: templates/RouterosDeviceInterfaces/index.php:12
+#: templates/RouterosDeviceIps/index.php:12
+#: templates/RouterosDevices/export.php:13
+#: templates/RouterosDevices/index.php:12 templates/TaskStates/index.php:11
 #: templates/TaskTypes/index.php:11 templates/Tasks/index.php:45
 msgid "Search"
 msgstr "Hledat"
@@ -1353,10 +1373,10 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RadioUnitBands/view.php:105 templates/RadioUnitBands/view.php:155
 #: templates/RadioUnitTypes/index.php:56 templates/RadioUnitTypes/view.php:152
 #: templates/RadioUnits/export.php:124 templates/RadioUnits/index.php:107
-#: templates/RouterosDeviceInterfaces/index.php:101
-#: templates/RouterosDeviceIps/index.php:72
-#: templates/RouterosDevices/export.php:138
-#: templates/RouterosDevices/index.php:96
+#: templates/RouterosDeviceInterfaces/index.php:90
+#: templates/RouterosDeviceIps/index.php:61
+#: templates/RouterosDevices/export.php:127
+#: templates/RouterosDevices/index.php:85
 #: templates/RouterosDevices/view.php:179
 #: templates/RouterosDevices/view.php:232 templates/TaskStates/index.php:41
 #: templates/TaskStates/view.php:108 templates/TaskTypes/index.php:37
@@ -1396,10 +1416,10 @@ msgstr "Zobrazit"
 #: templates/RadioUnitBands/view.php:109 templates/RadioUnitBands/view.php:159
 #: templates/RadioUnitTypes/index.php:60 templates/RadioUnitTypes/view.php:156
 #: templates/RadioUnits/export.php:128 templates/RadioUnits/index.php:111
-#: templates/RouterosDeviceInterfaces/index.php:105
-#: templates/RouterosDeviceIps/index.php:76
-#: templates/RouterosDevices/export.php:142
-#: templates/RouterosDevices/index.php:100
+#: templates/RouterosDeviceInterfaces/index.php:94
+#: templates/RouterosDeviceIps/index.php:65
+#: templates/RouterosDevices/export.php:131
+#: templates/RouterosDevices/index.php:89
 #: templates/RouterosDevices/view.php:187
 #: templates/RouterosDevices/view.php:236 templates/TaskStates/index.php:43
 #: templates/TaskStates/view.php:112 templates/TaskTypes/index.php:39
@@ -1418,7 +1438,7 @@ msgstr "Upravit"
 #: templates/IpAddressRanges/index.php:93
 #: templates/LandlordPayments/index.php:100
 #: templates/Manufacturers/index.php:61
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:158
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:175
 #: templates/Overviews/overview_of_radio_units_against_devices.php:171
 #: templates/PaymentPurposes/index.php:61 templates/PowerSupplies/index.php:96
 #: templates/PowerSupplyTypes/index.php:76
@@ -1426,9 +1446,9 @@ msgstr "Upravit"
 #: templates/RadarInterferences/index.php:80 templates/RadioLinks/index.php:146
 #: templates/RadioUnitBands/index.php:71 templates/RadioUnitTypes/index.php:77
 #: templates/RadioUnits/index.php:128
-#: templates/RouterosDeviceInterfaces/index.php:122
-#: templates/RouterosDeviceIps/index.php:93
-#: templates/RouterosDevices/index.php:117 templates/TaskStates/index.php:60
+#: templates/RouterosDeviceInterfaces/index.php:111
+#: templates/RouterosDeviceIps/index.php:82
+#: templates/RouterosDevices/index.php:106 templates/TaskStates/index.php:60
 #: templates/TaskTypes/index.php:56 templates/Tasks/index.php:143
 msgid "first"
 msgstr "první"
@@ -1443,7 +1463,7 @@ msgstr "první"
 #: templates/IpAddressRanges/index.php:94
 #: templates/LandlordPayments/index.php:101
 #: templates/Manufacturers/index.php:62
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:159
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:176
 #: templates/Overviews/overview_of_radio_units_against_devices.php:172
 #: templates/PaymentPurposes/index.php:62 templates/PowerSupplies/index.php:97
 #: templates/PowerSupplyTypes/index.php:77
@@ -1451,9 +1471,9 @@ msgstr "první"
 #: templates/RadarInterferences/index.php:81 templates/RadioLinks/index.php:147
 #: templates/RadioUnitBands/index.php:72 templates/RadioUnitTypes/index.php:78
 #: templates/RadioUnits/index.php:129
-#: templates/RouterosDeviceInterfaces/index.php:123
-#: templates/RouterosDeviceIps/index.php:94
-#: templates/RouterosDevices/index.php:118 templates/TaskStates/index.php:61
+#: templates/RouterosDeviceInterfaces/index.php:112
+#: templates/RouterosDeviceIps/index.php:83
+#: templates/RouterosDevices/index.php:107 templates/TaskStates/index.php:61
 #: templates/TaskTypes/index.php:57 templates/Tasks/index.php:144
 msgid "previous"
 msgstr "předchozí"
@@ -1468,7 +1488,7 @@ msgstr "předchozí"
 #: templates/IpAddressRanges/index.php:96
 #: templates/LandlordPayments/index.php:103
 #: templates/Manufacturers/index.php:64
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:161
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:178
 #: templates/Overviews/overview_of_radio_units_against_devices.php:174
 #: templates/PaymentPurposes/index.php:64 templates/PowerSupplies/index.php:99
 #: templates/PowerSupplyTypes/index.php:79
@@ -1476,9 +1496,9 @@ msgstr "předchozí"
 #: templates/RadarInterferences/index.php:83 templates/RadioLinks/index.php:149
 #: templates/RadioUnitBands/index.php:74 templates/RadioUnitTypes/index.php:80
 #: templates/RadioUnits/index.php:131
-#: templates/RouterosDeviceInterfaces/index.php:125
-#: templates/RouterosDeviceIps/index.php:96
-#: templates/RouterosDevices/index.php:120 templates/TaskStates/index.php:63
+#: templates/RouterosDeviceInterfaces/index.php:114
+#: templates/RouterosDeviceIps/index.php:85
+#: templates/RouterosDevices/index.php:109 templates/TaskStates/index.php:63
 #: templates/TaskTypes/index.php:59 templates/Tasks/index.php:146
 msgid "next"
 msgstr "další"
@@ -1493,7 +1513,7 @@ msgstr "další"
 #: templates/IpAddressRanges/index.php:97
 #: templates/LandlordPayments/index.php:104
 #: templates/Manufacturers/index.php:65
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:162
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:179
 #: templates/Overviews/overview_of_radio_units_against_devices.php:175
 #: templates/PaymentPurposes/index.php:65 templates/PowerSupplies/index.php:100
 #: templates/PowerSupplyTypes/index.php:80
@@ -1501,9 +1521,9 @@ msgstr "další"
 #: templates/RadarInterferences/index.php:84 templates/RadioLinks/index.php:150
 #: templates/RadioUnitBands/index.php:75 templates/RadioUnitTypes/index.php:81
 #: templates/RadioUnits/index.php:132
-#: templates/RouterosDeviceInterfaces/index.php:126
-#: templates/RouterosDeviceIps/index.php:97
-#: templates/RouterosDevices/index.php:121 templates/TaskStates/index.php:64
+#: templates/RouterosDeviceInterfaces/index.php:115
+#: templates/RouterosDeviceIps/index.php:86
+#: templates/RouterosDevices/index.php:110 templates/TaskStates/index.php:64
 #: templates/TaskTypes/index.php:60 templates/Tasks/index.php:147
 msgid "last"
 msgstr "poslední"
@@ -1518,7 +1538,7 @@ msgstr "poslední"
 #: templates/IpAddressRanges/index.php:100
 #: templates/LandlordPayments/index.php:107
 #: templates/Manufacturers/index.php:68
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:165
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:182
 #: templates/Overviews/overview_of_radio_units_against_devices.php:178
 #: templates/PaymentPurposes/index.php:68 templates/PowerSupplies/index.php:103
 #: templates/PowerSupplyTypes/index.php:83
@@ -1526,9 +1546,9 @@ msgstr "poslední"
 #: templates/RadarInterferences/index.php:87 templates/RadioLinks/index.php:153
 #: templates/RadioUnitBands/index.php:78 templates/RadioUnitTypes/index.php:84
 #: templates/RadioUnits/index.php:135
-#: templates/RouterosDeviceInterfaces/index.php:129
-#: templates/RouterosDeviceIps/index.php:100
-#: templates/RouterosDevices/index.php:124 templates/TaskStates/index.php:67
+#: templates/RouterosDeviceInterfaces/index.php:118
+#: templates/RouterosDeviceIps/index.php:89
+#: templates/RouterosDevices/index.php:113 templates/TaskStates/index.php:67
 #: templates/TaskTypes/index.php:63 templates/Tasks/index.php:150
 msgid ""
 "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
@@ -1641,13 +1661,13 @@ msgstr "Měsíc odečítání elektroměru"
 
 #: templates/AccessPointTypes/view.php:74 templates/AccessPoints/view.php:96
 #: templates/CustomerPoints/view.php:47 templates/RadioUnits/export.php:40
-#: templates/RouterosDevices/export.php:55
+#: templates/RouterosDevices/export.php:44
 msgid "Gps Y"
 msgstr "Gps Y"
 
 #: templates/AccessPointTypes/view.php:75 templates/AccessPoints/view.php:101
 #: templates/CustomerPoints/view.php:52 templates/RadioUnits/export.php:41
-#: templates/RouterosDevices/export.php:56
+#: templates/RouterosDevices/export.php:45
 msgid "Gps X"
 msgstr "Gps X"
 
@@ -1743,16 +1763,16 @@ msgid "Linked Customers"
 msgstr "Propojení zákazníci"
 
 #: templates/AccessPoints/map.php:46
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:95
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:112
 #: templates/Overviews/overview_of_radio_units_against_devices.php:102
 #: templates/RadarInterferences/view.php:75
 #: templates/RouterosDeviceInterfaces/add.php:28
 #: templates/RouterosDeviceInterfaces/edit.php:36
-#: templates/RouterosDeviceInterfaces/index.php:46
+#: templates/RouterosDeviceInterfaces/index.php:35
 #: templates/RouterosDeviceInterfaces/view.php:43
 #: templates/RouterosDeviceIps/add.php:26
 #: templates/RouterosDeviceIps/edit.php:34
-#: templates/RouterosDeviceIps/index.php:46
+#: templates/RouterosDeviceIps/index.php:35
 #: templates/RouterosDeviceIps/view.php:43
 msgid "RouterOS Device"
 msgstr "Zařízení RouterOS"
@@ -1949,7 +1969,7 @@ msgstr "Pro sítě technologií nastavené ručně"
 #: templates/IpAddressRanges/view.php:111
 #: templates/IpAddressRanges/view.php:117
 #: templates/IpAddressRanges/view.php:123
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:38
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:53
 #: templates/RadioUnitBands/index.php:47 templates/RadioUnitBands/view.php:60
 #: templates/RadioUnits/view.php:142 templates/RadioUnits/view.php:146
 #: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
@@ -1977,7 +1997,7 @@ msgstr "Ano"
 #: templates/IpAddressRanges/view.php:111
 #: templates/IpAddressRanges/view.php:117
 #: templates/IpAddressRanges/view.php:123
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:39
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:54
 #: templates/RadioUnitBands/index.php:47 templates/RadioUnitBands/view.php:60
 #: templates/RadioUnits/view.php:142 templates/RadioUnits/view.php:146
 #: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
@@ -2006,7 +2026,7 @@ msgstr "Typ napájecího zdroje"
 #: templates/PowerSupplies/view.php:74 templates/PowerSupplyTypes/view.php:94
 #: templates/RadioLinks/index.php:46 templates/RadioLinks/view.php:88
 #: templates/RadioUnitTypes/view.php:108 templates/RadioUnits/export.php:33
-#: templates/RadioUnits/view.php:157 templates/RouterosDevices/export.php:49
+#: templates/RadioUnits/view.php:157 templates/RouterosDevices/export.php:38
 #: templates/RouterosDevices/view.php:124
 msgid "Serial Number"
 msgstr "Sériové číslo"
@@ -2125,7 +2145,7 @@ msgstr "Maximální rychlost"
 #: templates/CustomerConnections/view.php:186 templates/DeviceTypes/view.php:91
 #: templates/RadioLinks/view.php:87 templates/RadioUnitTypes/view.php:107
 #: templates/RadioUnits/export.php:32 templates/RadioUnits/view.php:153
-#: templates/RouterosDevices/export.php:51
+#: templates/RouterosDevices/export.php:40
 #: templates/RouterosDevices/view.php:132
 msgid "Firmware Version"
 msgstr "Verze firmwaru"
@@ -2159,16 +2179,16 @@ msgstr "Datum vypršení platnosti"
 #: templates/RadioUnits/index.php:51 templates/RadioUnits/view.php:172
 #: templates/RouterosDeviceIps/add.php:32
 #: templates/RouterosDeviceIps/edit.php:40
-#: templates/RouterosDeviceIps/index.php:47
+#: templates/RouterosDeviceIps/index.php:36
 #: templates/RouterosDeviceIps/view.php:61 templates/RouterosDevices/add.php:45
 #: templates/RouterosDevices/edit.php:53
-#: templates/RouterosDevices/export.php:46
-#: templates/RouterosDevices/index.php:50 templates/RouterosDevices/view.php:95
+#: templates/RouterosDevices/export.php:35
+#: templates/RouterosDevices/index.php:39 templates/RouterosDevices/view.php:95
 #: templates/RouterosDevices/view.php:221
 msgid "IP Address"
 msgstr "IP adresa"
 
-#: templates/AccessPoints/view.php:615 templates/RouterosDevices/index.php:36
+#: templates/AccessPoints/view.php:615 templates/RouterosDevices/index.php:25
 #: templates/RouterosDevices/view.php:29
 msgid "New RouterOS Device"
 msgstr "Nové zařízení RouterOS"
@@ -2181,28 +2201,28 @@ msgstr "Související zařízení RouterOS"
 #: templates/AccessPoints/view.php:625 templates/AccessPoints/view.php:683
 #: templates/AccessPoints/view.php:802
 #: templates/CustomerConnections/view.php:180
-#: templates/RouterosDevices/export.php:45
+#: templates/RouterosDevices/export.php:34
 #: templates/RouterosDevices/view.php:81
 msgid "Device Type"
 msgstr "Typ zařízení"
 
 #: templates/AccessPoints/view.php:627
 #: templates/CustomerConnections/view.php:182 templates/DeviceTypes/view.php:87
-#: templates/RouterosDevices/export.php:47
+#: templates/RouterosDevices/export.php:36
 #: templates/RouterosDevices/view.php:116
 msgid "System Description"
 msgstr "Popis systému"
 
 #: templates/AccessPoints/view.php:628
 #: templates/CustomerConnections/view.php:183 templates/DeviceTypes/view.php:88
-#: templates/RouterosDevices/export.php:48
+#: templates/RouterosDevices/export.php:37
 #: templates/RouterosDevices/view.php:120
 msgid "Board Name"
 msgstr "Název desky"
 
 #: templates/AccessPoints/view.php:630
 #: templates/CustomerConnections/view.php:185 templates/DeviceTypes/view.php:90
-#: templates/RouterosDevices/export.php:50
+#: templates/RouterosDevices/export.php:39
 #: templates/RouterosDevices/view.php:128
 msgid "Software Version"
 msgstr "Verze softwaru"
@@ -2285,7 +2305,7 @@ msgstr "Odstranit typ antény"
 
 #: templates/AntennaTypes/view.php:39 templates/Manufacturers/view.php:65
 #: templates/Manufacturers/view.php:159
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:101
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:118
 #: templates/Overviews/overview_of_radio_units_against_devices.php:100
 #: templates/RadioUnitTypes/view.php:47
 msgid "Radio Unit Band"
@@ -2355,7 +2375,7 @@ msgid "Delete Customer Connection IP"
 msgstr "Odstranit IP připojení zákazníka"
 
 #: templates/CustomerConnectionIps/view.php:47
-#: templates/DeviceTypes/view.php:85 templates/RouterosDevices/export.php:43
+#: templates/DeviceTypes/view.php:85 templates/RouterosDevices/export.php:32
 #: templates/RouterosDevices/view.php:67
 msgid "Customer Connection"
 msgstr "Připojení zákazníka"
@@ -2633,48 +2653,57 @@ msgid "Overview of Radio Units Against Devices"
 msgstr "Přehled rádiových jednotek proti zařízením"
 
 #: templates/Overviews/index.php:18
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:49
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:64
 msgid "Overview of Device Radios Against Radio Units"
 msgstr "Přehled rádií zařízení proti rádiovým jednotkám"
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:13
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:16
 msgid "Not recorded"
 msgstr "Neevidováno"
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:14
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:17
 msgid "Recorded"
 msgstr "Evidováno"
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:35
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:41
+msgid "Link"
+msgstr "Odkaz"
+
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:50
 msgid "Only Not Recorded"
 msgstr "Pouze neevidovaná"
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:52
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:67
 msgid ""
 "The radios the devices report, on the bands that ask for their radios to be "
 "recorded. Which bands those are is set on the band itself, by its frequency "
 "range and by whether devices on it require a radio unit - a band with "
 "neither is left out of this entirely. A radio counts as recorded when a "
 "radio unit carries its MAC address, or carries the serial number of its "
-"device and is on its band."
+"device and is on its band. Only the devices read within the maximum age are "
+"listed, so a device nothing has been read off for longer is left out of the "
+"counts as well as of the table."
 msgstr ""
-"Rádia, která hlásí zařízení, na pásmech, která vyžadují evidenci svých "
-"rádií. Která pásma to jsou, se nastavuje na samotném pásmu - jeho rozsahem "
-"frekvencí a tím, zda zařízení na něm vyžadují rádiovou jednotku; pásmo bez "
-"obojího sem nespadá vůbec. Rádio je evidované, pokud některá rádiová "
-"jednotka nese jeho MAC adresu, nebo nese sériové číslo jeho zařízení a je na "
-"jeho pásmu."
+"Zařízení hlásí své rádiové moduly na pásmech, která vyžadují jejich "
+"zaznamenání. O tom, která pásma to jsou, rozhoduje samotné pásmo, jeho "
+"frekvenční rozsah a to, zda zařízení na něm vyžadují rádiový modul – pásmo, "
+"které nesplňuje ani jednu z těchto podmínek, je z tohoto procesu zcela "
+"vynecháno. Rádio se považuje za zaznamenané, pokud rádiová jednotka obsahuje "
+"jeho MAC adresu nebo sériové číslo zařízení a nachází se na příslušném "
+"pásmu. Uváděna jsou pouze zařízení, u nichž byla načtena data v rámci "
+"maximální doby platnosti, takže zařízení, u nichž již delší dobu nebyla "
+"načtena žádná data, jsou vynechána jak z počtů, tak z tabulky."
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:64
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:81
 msgid "No band asks for its device radios to be recorded yet."
 msgstr "Zatím žádné pásmo nevyžaduje evidenci rádií svých zařízení."
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:97
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:114
 #: templates/Overviews/overview_of_radio_units_against_devices.php:103
 msgid "Interface"
 msgstr "Rozhraní"
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:100
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:117
 #: templates/Overviews/overview_of_radio_units_against_devices.php:24
 #: templates/Overviews/overview_of_radio_units_against_devices.php:106
 #: templates/RadarInterferences/view.php:82
@@ -2683,21 +2712,21 @@ msgstr "Rozhraní"
 msgid "Frequency"
 msgstr "Frekvence"
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:102
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:119
 #: templates/Overviews/overview_of_radio_units_against_devices.php:98
 msgid "Radio Unit"
 msgstr "Rádiová jednotka"
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:103
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:120
 #: templates/Overviews/overview_of_radio_units_against_devices.php:107
 msgid "Read"
 msgstr "Načteno"
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:142
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:159
 msgid "Nothing records this radio, and its band says something should."
 msgstr "Toto rádio nic neeviduje, a jeho pásmo říká, že by mělo."
 
-#: templates/Overviews/overview_of_device_radios_against_radio_units.php:143
+#: templates/Overviews/overview_of_device_radios_against_radio_units.php:160
 msgid "A radio unit is the record of this radio."
 msgstr "Toto rádio eviduje rádiová jednotka."
 
@@ -2870,7 +2899,7 @@ msgstr "Komentář"
 #: templates/RadarInterferences/view.php:80
 #: templates/RouterosDeviceInterfaces/add.php:41
 #: templates/RouterosDeviceInterfaces/edit.php:49
-#: templates/RouterosDeviceInterfaces/index.php:50
+#: templates/RouterosDeviceInterfaces/index.php:39
 #: templates/RouterosDeviceInterfaces/view.php:76
 #: templates/RouterosDevices/view.php:149
 msgid "BSSID"
@@ -2878,7 +2907,7 @@ msgstr "BSSID"
 
 #: templates/RadarInterferences/view.php:81 templates/RadioUnits/export.php:21
 #: templates/RouterosDeviceInterfaces/view.php:80
-#: templates/RouterosDevices/export.php:53
+#: templates/RouterosDevices/export.php:42
 #: templates/RouterosDevices/view.php:150
 msgid "Band"
 msgstr "Pásmo"
@@ -3047,7 +3076,7 @@ msgstr "ATPC"
 msgid "Edit Radio Unit"
 msgstr "Upravit rádiovou jednotku"
 
-#: templates/RadioUnits/export.php:9 templates/RouterosDevices/export.php:36
+#: templates/RadioUnits/export.php:9 templates/RouterosDevices/export.php:25
 msgid "Index"
 msgstr "Index"
 
@@ -3063,7 +3092,7 @@ msgstr "Uživatelské jméno zařízení"
 msgid "Device Password"
 msgstr "Heslo zařízení"
 
-#: templates/RadioUnits/index.php:28 templates/RouterosDevices/index.php:40
+#: templates/RadioUnits/index.php:28 templates/RouterosDevices/index.php:29
 msgid "Export"
 msgstr "Export"
 
@@ -3086,52 +3115,15 @@ msgstr "Přidat rozhraní zařízení RouterOS"
 msgid "Edit RouterOS Device Interface"
 msgstr "Upravit rozhraní zařízení RouterOS"
 
-#: templates/RouterosDeviceInterfaces/index.php:18
-#: templates/RouterosDeviceIps/index.php:18
-#: templates/RouterosDevices/export.php:19
-#: templates/RouterosDevices/index.php:18
-msgid "Maximum Age"
-msgstr "Maximální stáří"
-
-#: templates/RouterosDeviceInterfaces/index.php:36
+#: templates/RouterosDeviceInterfaces/index.php:25
 #: templates/RouterosDeviceInterfaces/view.php:30
 msgid "New RouterOS Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
-#: templates/RouterosDeviceInterfaces/index.php:40
+#: templates/RouterosDeviceInterfaces/index.php:29
 #: templates/layout/default.php:330
 msgid "RouterOS Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
-
-#: templates/RouterosDeviceInterfaces/index.php:20
-#: templates/RouterosDeviceInterfaces/index.php:21
-#: templates/RouterosDeviceInterfaces/index.php:22
-#: templates/RouterosDeviceInterfaces/index.php:23
-#: templates/RouterosDeviceInterfaces/index.php:24
-#: templates/RouterosDeviceInterfaces/index.php:25
-#: templates/RouterosDeviceIps/index.php:20
-#: templates/RouterosDeviceIps/index.php:21
-#: templates/RouterosDeviceIps/index.php:22
-#: templates/RouterosDeviceIps/index.php:23
-#: templates/RouterosDeviceIps/index.php:24
-#: templates/RouterosDeviceIps/index.php:25
-#: templates/RouterosDevices/export.php:21
-#: templates/RouterosDevices/export.php:22
-#: templates/RouterosDevices/export.php:23
-#: templates/RouterosDevices/export.php:24
-#: templates/RouterosDevices/export.php:25
-#: templates/RouterosDevices/export.php:26
-#: templates/RouterosDevices/index.php:20
-#: templates/RouterosDevices/index.php:21
-#: templates/RouterosDevices/index.php:22
-#: templates/RouterosDevices/index.php:23
-#: templates/RouterosDevices/index.php:24
-#: templates/RouterosDevices/index.php:25
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} den"
-msgstr[1] "{0} dny"
-msgstr[2] "{0} dní"
 
 #: templates/RouterosDeviceInterfaces/view.php:17
 msgid "Delete RouterOS Device Interface"
@@ -3152,12 +3144,12 @@ msgstr "Přidat IP zařízení RouterOS"
 msgid "Edit RouterOS Device IP"
 msgstr "Upravit IP zařízení RouterOS"
 
-#: templates/RouterosDeviceIps/index.php:36
+#: templates/RouterosDeviceIps/index.php:25
 #: templates/RouterosDeviceIps/view.php:30
 msgid "New RouterOS Device IP"
 msgstr "Nová IP zařízení RouterOS"
 
-#: templates/RouterosDeviceIps/index.php:40 templates/layout/default.php:335
+#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:335
 msgid "RouterOS Device Ips"
 msgstr "IP zařízení RouterOS"
 
@@ -3178,8 +3170,8 @@ msgstr "Přidat zařízení RouterOS"
 msgid "Edit RouterOS Device"
 msgstr "Upravit zařízení RouterOS"
 
-#: templates/RouterosDevices/export.php:37
-#: templates/RouterosDevices/index.php:41 templates/layout/default.php:142
+#: templates/RouterosDevices/export.php:26
+#: templates/RouterosDevices/index.php:30 templates/layout/default.php:142
 #: templates/layout/default.php:325
 msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
@@ -3533,6 +3525,10 @@ msgstr "více"
 msgid "less"
 msgstr "méně"
 
+#: templates/element/common/maximum_age.php:13
+msgid "Maximum Age"
+msgstr "Maximální stáří"
+
 #: templates/element/comparison_result.php:22
 msgid "The device reports something else than is recorded here."
 msgstr "Zařízení hlásí něco jiného, než je zde evidováno."
@@ -3646,9 +3642,6 @@ msgstr "Zpět"
 
 #~ msgid "Description"
 #~ msgstr "Popis"
-
-#~ msgid "Link"
-#~ msgstr "Odkaz"
 
 #~ msgid "Token Secret"
 #~ msgstr "Tajemství tokenu"

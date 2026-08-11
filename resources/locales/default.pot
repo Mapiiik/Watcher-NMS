@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-11 09:55+0200\n"
+"POT-Creation-Date: 2026-08-11 10:36+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -72,7 +72,7 @@ msgstr ""
 #: ./templates/ElectricityMeterReadings/view.php:47
 #: ./templates/IpAddressRanges/view.php:55
 #: ./templates/LandlordPayments/view.php:43
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:96
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:113
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:99
 #: ./templates/PaymentPurposes/view.php:64
 #: ./templates/PowerSupplies/view.php:61
@@ -81,7 +81,7 @@ msgstr ""
 #: ./templates/RadioUnitTypes/view.php:96
 #: ./templates/RadioUnits/export.php:15
 #: ./templates/RadioUnits/view.php:57
-#: ./templates/RouterosDevices/export.php:42
+#: ./templates/RouterosDevices/export.php:31
 #: ./templates/RouterosDevices/view.php:53
 #: ./templates/TaskStates/view.php:67
 #: ./templates/TaskTypes/view.php:59
@@ -204,7 +204,7 @@ msgstr ""
 #: ./templates/RadioUnits/view.php:40
 #: ./templates/RouterosDeviceInterfaces/view.php:57
 #: ./templates/RouterosDeviceIps/view.php:57
-#: ./templates/RouterosDevices/export.php:44
+#: ./templates/RouterosDevices/export.php:33
 #: ./templates/RouterosDevices/view.php:49
 #: ./templates/RouterosDevices/view.php:145
 #: ./templates/RouterosDevices/view.php:220
@@ -215,7 +215,7 @@ msgid "Name"
 msgstr ""
 
 #: ./src/Command/RadarInterferencesReportCommand.php:94
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:99
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:116
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:23
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:105
 #: ./templates/RadarInterferences/add.php:26
@@ -225,15 +225,15 @@ msgstr ""
 #: ./templates/RadarInterferences/view.php:78
 #: ./templates/RouterosDeviceInterfaces/add.php:35
 #: ./templates/RouterosDeviceInterfaces/edit.php:43
-#: ./templates/RouterosDeviceInterfaces/index.php:48
+#: ./templates/RouterosDeviceInterfaces/index.php:37
 #: ./templates/RouterosDeviceInterfaces/view.php:65
-#: ./templates/RouterosDevices/export.php:52
+#: ./templates/RouterosDevices/export.php:41
 #: ./templates/RouterosDevices/view.php:147
 msgid "MAC Address"
 msgstr ""
 
 #: ./src/Command/RadarInterferencesReportCommand.php:95
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:98
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:115
 #: ./templates/RadarInterferences/add.php:29
 #: ./templates/RadarInterferences/edit.php:37
 #: ./templates/RadarInterferences/index.php:42
@@ -241,9 +241,9 @@ msgstr ""
 #: ./templates/RadarInterferences/view.php:79
 #: ./templates/RouterosDeviceInterfaces/add.php:38
 #: ./templates/RouterosDeviceInterfaces/edit.php:46
-#: ./templates/RouterosDeviceInterfaces/index.php:49
+#: ./templates/RouterosDeviceInterfaces/index.php:38
 #: ./templates/RouterosDeviceInterfaces/view.php:72
-#: ./templates/RouterosDevices/export.php:54
+#: ./templates/RouterosDevices/export.php:43
 #: ./templates/RouterosDevices/view.php:148
 msgid "SSID"
 msgstr ""
@@ -723,69 +723,69 @@ msgstr ""
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceInterfacesController.php:100
-#: ./src/Controller/RouterosDeviceInterfacesController.php:127
+#: ./src/Controller/RouterosDeviceInterfacesController.php:92
+#: ./src/Controller/RouterosDeviceInterfacesController.php:119
 msgid "The RouterOS device interface has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceInterfacesController.php:104
-#: ./src/Controller/RouterosDeviceInterfacesController.php:131
+#: ./src/Controller/RouterosDeviceInterfacesController.php:96
+#: ./src/Controller/RouterosDeviceInterfacesController.php:123
 msgid "The RouterOS device interface could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceInterfacesController.php:151
+#: ./src/Controller/RouterosDeviceInterfacesController.php:143
 msgid "The RouterOS device interface has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceInterfacesController.php:154
+#: ./src/Controller/RouterosDeviceInterfacesController.php:146
 msgid "The RouterOS device interface could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceIpsController.php:94
-#: ./src/Controller/RouterosDeviceIpsController.php:121
+#: ./src/Controller/RouterosDeviceIpsController.php:86
+#: ./src/Controller/RouterosDeviceIpsController.php:113
 msgid "The RouterOS device IP has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceIpsController.php:98
-#: ./src/Controller/RouterosDeviceIpsController.php:125
+#: ./src/Controller/RouterosDeviceIpsController.php:90
+#: ./src/Controller/RouterosDeviceIpsController.php:117
 msgid "The RouterOS device IP could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceIpsController.php:145
+#: ./src/Controller/RouterosDeviceIpsController.php:137
 msgid "The RouterOS device IP has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDeviceIpsController.php:148
+#: ./src/Controller/RouterosDeviceIpsController.php:140
 msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:183
-#: ./src/Controller/RouterosDevicesController.php:217
+#: ./src/Controller/RouterosDevicesController.php:176
+#: ./src/Controller/RouterosDevicesController.php:210
 msgid "The RouterOS device has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:187
-#: ./src/Controller/RouterosDevicesController.php:221
+#: ./src/Controller/RouterosDevicesController.php:180
+#: ./src/Controller/RouterosDevicesController.php:214
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:248
+#: ./src/Controller/RouterosDevicesController.php:241
 msgid "The RouterOS device has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:251
+#: ./src/Controller/RouterosDevicesController.php:244
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:277
+#: ./src/Controller/RouterosDevicesController.php:270
 msgid "Cannot update RouterOS device data via SNMP. Missing IP address or SNMP community."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:296
+#: ./src/Controller/RouterosDevicesController.php:289
 msgid "The RouterOS device data has been updated via SNMP."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:308
+#: ./src/Controller/RouterosDevicesController.php:301
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr ""
 
@@ -964,16 +964,35 @@ msgstr ""
 msgid "Urgent"
 msgstr ""
 
+#: ./src/Model/Enum/DeviceLinkScope.php:53
+#: ./src/Model/Enum/RadioUnitComparisonScope.php:48
+msgid "All"
+msgstr ""
+
+#: ./src/Model/Enum/DeviceLinkScope.php:54
+msgid "Only With an Access Point"
+msgstr ""
+
+#: ./src/Model/Enum/DeviceLinkScope.php:55
+msgid "Only With a Customer Connection"
+msgstr ""
+
+#: ./src/Model/Enum/DeviceLinkScope.php:56
+msgid "Only Without a Link"
+msgstr ""
+
+#: ./src/Model/Enum/MaximumAge.php:70
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] ""
+msgstr[1] ""
+
 #: ./src/Model/Enum/RadioUnitComparisonScope.php:46
 msgid "Only Differences"
 msgstr ""
 
 #: ./src/Model/Enum/RadioUnitComparisonScope.php:47
 msgid "Only Without a Device"
-msgstr ""
-
-#: ./src/Model/Enum/RadioUnitComparisonScope.php:48
-msgid "All"
 msgstr ""
 
 #: ./src/Model/Table/LandlordPaymentsElectricityDetailsTable.php:117
@@ -1134,16 +1153,16 @@ msgstr ""
 #: ./templates/RadioUnits/view.php:10
 #: ./templates/RouterosDeviceInterfaces/add.php:11
 #: ./templates/RouterosDeviceInterfaces/edit.php:11
-#: ./templates/RouterosDeviceInterfaces/index.php:60
+#: ./templates/RouterosDeviceInterfaces/index.php:49
 #: ./templates/RouterosDeviceInterfaces/view.php:10
 #: ./templates/RouterosDeviceIps/add.php:11
 #: ./templates/RouterosDeviceIps/edit.php:11
-#: ./templates/RouterosDeviceIps/index.php:49
+#: ./templates/RouterosDeviceIps/index.php:38
 #: ./templates/RouterosDeviceIps/view.php:10
 #: ./templates/RouterosDevices/add.php:13
 #: ./templates/RouterosDevices/edit.php:13
-#: ./templates/RouterosDevices/export.php:57
-#: ./templates/RouterosDevices/index.php:56
+#: ./templates/RouterosDevices/export.php:46
+#: ./templates/RouterosDevices/index.php:45
 #: ./templates/RouterosDevices/view.php:10
 #: ./templates/RouterosDevices/view.php:159
 #: ./templates/RouterosDevices/view.php:223
@@ -1301,12 +1320,12 @@ msgstr ""
 #: ./templates/RadioUnits/export.php:133
 #: ./templates/RadioUnits/index.php:116
 #: ./templates/RouterosDeviceInterfaces/edit.php:13
-#: ./templates/RouterosDeviceInterfaces/index.php:110
+#: ./templates/RouterosDeviceInterfaces/index.php:99
 #: ./templates/RouterosDeviceIps/edit.php:13
-#: ./templates/RouterosDeviceIps/index.php:81
+#: ./templates/RouterosDeviceIps/index.php:70
 #: ./templates/RouterosDevices/edit.php:15
-#: ./templates/RouterosDevices/export.php:147
-#: ./templates/RouterosDevices/index.php:105
+#: ./templates/RouterosDevices/export.php:136
+#: ./templates/RouterosDevices/index.php:94
 #: ./templates/RouterosDevices/view.php:196
 #: ./templates/RouterosDevices/view.php:241
 #: ./templates/TaskStates/edit.php:12
@@ -1406,14 +1425,14 @@ msgstr ""
 #: ./templates/RadioUnits/index.php:118
 #: ./templates/RadioUnits/view.php:19
 #: ./templates/RouterosDeviceInterfaces/edit.php:16
-#: ./templates/RouterosDeviceInterfaces/index.php:112
+#: ./templates/RouterosDeviceInterfaces/index.php:101
 #: ./templates/RouterosDeviceInterfaces/view.php:20
 #: ./templates/RouterosDeviceIps/edit.php:16
-#: ./templates/RouterosDeviceIps/index.php:83
+#: ./templates/RouterosDeviceIps/index.php:72
 #: ./templates/RouterosDeviceIps/view.php:20
 #: ./templates/RouterosDevices/edit.php:18
-#: ./templates/RouterosDevices/export.php:149
-#: ./templates/RouterosDevices/index.php:107
+#: ./templates/RouterosDevices/export.php:138
+#: ./templates/RouterosDevices/index.php:96
 #: ./templates/RouterosDevices/view.php:20
 #: ./templates/RouterosDevices/view.php:202
 #: ./templates/RouterosDevices/view.php:243
@@ -1447,7 +1466,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:11
 #: ./templates/LandlordPayments/index.php:11
 #: ./templates/Manufacturers/index.php:11
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:21
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:24
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:31
 #: ./templates/PaymentPurposes/index.php:11
 #: ./templates/PowerSupplies/index.php:11
@@ -1457,10 +1476,10 @@ msgstr ""
 #: ./templates/RadioUnitBands/index.php:11
 #: ./templates/RadioUnitTypes/index.php:11
 #: ./templates/RadioUnits/index.php:12
-#: ./templates/RouterosDeviceInterfaces/index.php:11
-#: ./templates/RouterosDeviceIps/index.php:11
-#: ./templates/RouterosDevices/export.php:12
-#: ./templates/RouterosDevices/index.php:11
+#: ./templates/RouterosDeviceInterfaces/index.php:12
+#: ./templates/RouterosDeviceIps/index.php:12
+#: ./templates/RouterosDevices/export.php:13
+#: ./templates/RouterosDevices/index.php:12
 #: ./templates/TaskStates/index.php:11
 #: ./templates/TaskTypes/index.php:11
 #: ./templates/Tasks/index.php:45
@@ -1524,10 +1543,10 @@ msgstr ""
 #: ./templates/RadioUnitTypes/view.php:152
 #: ./templates/RadioUnits/export.php:124
 #: ./templates/RadioUnits/index.php:107
-#: ./templates/RouterosDeviceInterfaces/index.php:101
-#: ./templates/RouterosDeviceIps/index.php:72
-#: ./templates/RouterosDevices/export.php:138
-#: ./templates/RouterosDevices/index.php:96
+#: ./templates/RouterosDeviceInterfaces/index.php:90
+#: ./templates/RouterosDeviceIps/index.php:61
+#: ./templates/RouterosDevices/export.php:127
+#: ./templates/RouterosDevices/index.php:85
 #: ./templates/RouterosDevices/view.php:179
 #: ./templates/RouterosDevices/view.php:232
 #: ./templates/TaskStates/index.php:41
@@ -1587,10 +1606,10 @@ msgstr ""
 #: ./templates/RadioUnitTypes/view.php:156
 #: ./templates/RadioUnits/export.php:128
 #: ./templates/RadioUnits/index.php:111
-#: ./templates/RouterosDeviceInterfaces/index.php:105
-#: ./templates/RouterosDeviceIps/index.php:76
-#: ./templates/RouterosDevices/export.php:142
-#: ./templates/RouterosDevices/index.php:100
+#: ./templates/RouterosDeviceInterfaces/index.php:94
+#: ./templates/RouterosDeviceIps/index.php:65
+#: ./templates/RouterosDevices/export.php:131
+#: ./templates/RouterosDevices/index.php:89
 #: ./templates/RouterosDevices/view.php:187
 #: ./templates/RouterosDevices/view.php:236
 #: ./templates/TaskStates/index.php:43
@@ -1614,7 +1633,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:93
 #: ./templates/LandlordPayments/index.php:100
 #: ./templates/Manufacturers/index.php:61
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:158
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:175
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:171
 #: ./templates/PaymentPurposes/index.php:61
 #: ./templates/PowerSupplies/index.php:96
@@ -1625,9 +1644,9 @@ msgstr ""
 #: ./templates/RadioUnitBands/index.php:71
 #: ./templates/RadioUnitTypes/index.php:77
 #: ./templates/RadioUnits/index.php:128
-#: ./templates/RouterosDeviceInterfaces/index.php:122
-#: ./templates/RouterosDeviceIps/index.php:93
-#: ./templates/RouterosDevices/index.php:117
+#: ./templates/RouterosDeviceInterfaces/index.php:111
+#: ./templates/RouterosDeviceIps/index.php:82
+#: ./templates/RouterosDevices/index.php:106
 #: ./templates/TaskStates/index.php:60
 #: ./templates/TaskTypes/index.php:56
 #: ./templates/Tasks/index.php:143
@@ -1646,7 +1665,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:94
 #: ./templates/LandlordPayments/index.php:101
 #: ./templates/Manufacturers/index.php:62
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:159
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:176
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:172
 #: ./templates/PaymentPurposes/index.php:62
 #: ./templates/PowerSupplies/index.php:97
@@ -1657,9 +1676,9 @@ msgstr ""
 #: ./templates/RadioUnitBands/index.php:72
 #: ./templates/RadioUnitTypes/index.php:78
 #: ./templates/RadioUnits/index.php:129
-#: ./templates/RouterosDeviceInterfaces/index.php:123
-#: ./templates/RouterosDeviceIps/index.php:94
-#: ./templates/RouterosDevices/index.php:118
+#: ./templates/RouterosDeviceInterfaces/index.php:112
+#: ./templates/RouterosDeviceIps/index.php:83
+#: ./templates/RouterosDevices/index.php:107
 #: ./templates/TaskStates/index.php:61
 #: ./templates/TaskTypes/index.php:57
 #: ./templates/Tasks/index.php:144
@@ -1678,7 +1697,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:96
 #: ./templates/LandlordPayments/index.php:103
 #: ./templates/Manufacturers/index.php:64
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:161
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:178
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:174
 #: ./templates/PaymentPurposes/index.php:64
 #: ./templates/PowerSupplies/index.php:99
@@ -1689,9 +1708,9 @@ msgstr ""
 #: ./templates/RadioUnitBands/index.php:74
 #: ./templates/RadioUnitTypes/index.php:80
 #: ./templates/RadioUnits/index.php:131
-#: ./templates/RouterosDeviceInterfaces/index.php:125
-#: ./templates/RouterosDeviceIps/index.php:96
-#: ./templates/RouterosDevices/index.php:120
+#: ./templates/RouterosDeviceInterfaces/index.php:114
+#: ./templates/RouterosDeviceIps/index.php:85
+#: ./templates/RouterosDevices/index.php:109
 #: ./templates/TaskStates/index.php:63
 #: ./templates/TaskTypes/index.php:59
 #: ./templates/Tasks/index.php:146
@@ -1710,7 +1729,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:97
 #: ./templates/LandlordPayments/index.php:104
 #: ./templates/Manufacturers/index.php:65
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:162
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:179
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:175
 #: ./templates/PaymentPurposes/index.php:65
 #: ./templates/PowerSupplies/index.php:100
@@ -1721,9 +1740,9 @@ msgstr ""
 #: ./templates/RadioUnitBands/index.php:75
 #: ./templates/RadioUnitTypes/index.php:81
 #: ./templates/RadioUnits/index.php:132
-#: ./templates/RouterosDeviceInterfaces/index.php:126
-#: ./templates/RouterosDeviceIps/index.php:97
-#: ./templates/RouterosDevices/index.php:121
+#: ./templates/RouterosDeviceInterfaces/index.php:115
+#: ./templates/RouterosDeviceIps/index.php:86
+#: ./templates/RouterosDevices/index.php:110
 #: ./templates/TaskStates/index.php:64
 #: ./templates/TaskTypes/index.php:60
 #: ./templates/Tasks/index.php:147
@@ -1742,7 +1761,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:100
 #: ./templates/LandlordPayments/index.php:107
 #: ./templates/Manufacturers/index.php:68
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:165
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:182
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:178
 #: ./templates/PaymentPurposes/index.php:68
 #: ./templates/PowerSupplies/index.php:103
@@ -1753,9 +1772,9 @@ msgstr ""
 #: ./templates/RadioUnitBands/index.php:78
 #: ./templates/RadioUnitTypes/index.php:84
 #: ./templates/RadioUnits/index.php:135
-#: ./templates/RouterosDeviceInterfaces/index.php:129
-#: ./templates/RouterosDeviceIps/index.php:100
-#: ./templates/RouterosDevices/index.php:124
+#: ./templates/RouterosDeviceInterfaces/index.php:118
+#: ./templates/RouterosDeviceIps/index.php:89
+#: ./templates/RouterosDevices/index.php:113
 #: ./templates/TaskStates/index.php:67
 #: ./templates/TaskTypes/index.php:63
 #: ./templates/Tasks/index.php:150
@@ -1893,7 +1912,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:96
 #: ./templates/CustomerPoints/view.php:47
 #: ./templates/RadioUnits/export.php:40
-#: ./templates/RouterosDevices/export.php:55
+#: ./templates/RouterosDevices/export.php:44
 msgid "Gps Y"
 msgstr ""
 
@@ -1901,7 +1920,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:101
 #: ./templates/CustomerPoints/view.php:52
 #: ./templates/RadioUnits/export.php:41
-#: ./templates/RouterosDevices/export.php:56
+#: ./templates/RouterosDevices/export.php:45
 msgid "Gps X"
 msgstr ""
 
@@ -2012,16 +2031,16 @@ msgid "Linked Customers"
 msgstr ""
 
 #: ./templates/AccessPoints/map.php:46
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:95
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:112
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:102
 #: ./templates/RadarInterferences/view.php:75
 #: ./templates/RouterosDeviceInterfaces/add.php:28
 #: ./templates/RouterosDeviceInterfaces/edit.php:36
-#: ./templates/RouterosDeviceInterfaces/index.php:46
+#: ./templates/RouterosDeviceInterfaces/index.php:35
 #: ./templates/RouterosDeviceInterfaces/view.php:43
 #: ./templates/RouterosDeviceIps/add.php:26
 #: ./templates/RouterosDeviceIps/edit.php:34
-#: ./templates/RouterosDeviceIps/index.php:46
+#: ./templates/RouterosDeviceIps/index.php:35
 #: ./templates/RouterosDeviceIps/view.php:43
 msgid "RouterOS Device"
 msgstr ""
@@ -2250,7 +2269,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:111
 #: ./templates/IpAddressRanges/view.php:117
 #: ./templates/IpAddressRanges/view.php:123
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:38
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:53
 #: ./templates/RadioUnitBands/index.php:47
 #: ./templates/RadioUnitBands/view.php:60
 #: ./templates/RadioUnits/view.php:142
@@ -2292,7 +2311,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:111
 #: ./templates/IpAddressRanges/view.php:117
 #: ./templates/IpAddressRanges/view.php:123
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:39
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:54
 #: ./templates/RadioUnitBands/index.php:47
 #: ./templates/RadioUnitBands/view.php:60
 #: ./templates/RadioUnits/view.php:142
@@ -2335,7 +2354,7 @@ msgstr ""
 #: ./templates/RadioUnitTypes/view.php:108
 #: ./templates/RadioUnits/export.php:33
 #: ./templates/RadioUnits/view.php:157
-#: ./templates/RouterosDevices/export.php:49
+#: ./templates/RouterosDevices/export.php:38
 #: ./templates/RouterosDevices/view.php:124
 msgid "Serial Number"
 msgstr ""
@@ -2499,7 +2518,7 @@ msgstr ""
 #: ./templates/RadioUnitTypes/view.php:107
 #: ./templates/RadioUnits/export.php:32
 #: ./templates/RadioUnits/view.php:153
-#: ./templates/RouterosDevices/export.php:51
+#: ./templates/RouterosDevices/export.php:40
 #: ./templates/RouterosDevices/view.php:132
 msgid "Firmware Version"
 msgstr ""
@@ -2545,19 +2564,19 @@ msgstr ""
 #: ./templates/RadioUnits/view.php:172
 #: ./templates/RouterosDeviceIps/add.php:32
 #: ./templates/RouterosDeviceIps/edit.php:40
-#: ./templates/RouterosDeviceIps/index.php:47
+#: ./templates/RouterosDeviceIps/index.php:36
 #: ./templates/RouterosDeviceIps/view.php:61
 #: ./templates/RouterosDevices/add.php:45
 #: ./templates/RouterosDevices/edit.php:53
-#: ./templates/RouterosDevices/export.php:46
-#: ./templates/RouterosDevices/index.php:50
+#: ./templates/RouterosDevices/export.php:35
+#: ./templates/RouterosDevices/index.php:39
 #: ./templates/RouterosDevices/view.php:95
 #: ./templates/RouterosDevices/view.php:221
 msgid "IP Address"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:615
-#: ./templates/RouterosDevices/index.php:36
+#: ./templates/RouterosDevices/index.php:25
 #: ./templates/RouterosDevices/view.php:29
 msgid "New RouterOS Device"
 msgstr ""
@@ -2572,7 +2591,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:683
 #: ./templates/AccessPoints/view.php:802
 #: ./templates/CustomerConnections/view.php:180
-#: ./templates/RouterosDevices/export.php:45
+#: ./templates/RouterosDevices/export.php:34
 #: ./templates/RouterosDevices/view.php:81
 msgid "Device Type"
 msgstr ""
@@ -2580,7 +2599,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:627
 #: ./templates/CustomerConnections/view.php:182
 #: ./templates/DeviceTypes/view.php:87
-#: ./templates/RouterosDevices/export.php:47
+#: ./templates/RouterosDevices/export.php:36
 #: ./templates/RouterosDevices/view.php:116
 msgid "System Description"
 msgstr ""
@@ -2588,7 +2607,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:628
 #: ./templates/CustomerConnections/view.php:183
 #: ./templates/DeviceTypes/view.php:88
-#: ./templates/RouterosDevices/export.php:48
+#: ./templates/RouterosDevices/export.php:37
 #: ./templates/RouterosDevices/view.php:120
 msgid "Board Name"
 msgstr ""
@@ -2596,7 +2615,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:630
 #: ./templates/CustomerConnections/view.php:185
 #: ./templates/DeviceTypes/view.php:90
-#: ./templates/RouterosDevices/export.php:50
+#: ./templates/RouterosDevices/export.php:39
 #: ./templates/RouterosDevices/view.php:128
 msgid "Software Version"
 msgstr ""
@@ -2694,7 +2713,7 @@ msgstr ""
 #: ./templates/AntennaTypes/view.php:39
 #: ./templates/Manufacturers/view.php:65
 #: ./templates/Manufacturers/view.php:159
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:101
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:118
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:100
 #: ./templates/RadioUnitTypes/view.php:47
 msgid "Radio Unit Band"
@@ -2777,7 +2796,7 @@ msgstr ""
 
 #: ./templates/CustomerConnectionIps/view.php:47
 #: ./templates/DeviceTypes/view.php:85
-#: ./templates/RouterosDevices/export.php:43
+#: ./templates/RouterosDevices/export.php:32
 #: ./templates/RouterosDevices/view.php:67
 msgid "Customer Connection"
 msgstr ""
@@ -3084,36 +3103,40 @@ msgid "Overview of Radio Units Against Devices"
 msgstr ""
 
 #: ./templates/Overviews/index.php:18
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:49
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:64
 msgid "Overview of Device Radios Against Radio Units"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:13
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:16
 msgid "Not recorded"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:14
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:17
 msgid "Recorded"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:35
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:41
+msgid "Link"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:50
 msgid "Only Not Recorded"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:52
-msgid "The radios the devices report, on the bands that ask for their radios to be recorded. Which bands those are is set on the band itself, by its frequency range and by whether devices on it require a radio unit - a band with neither is left out of this entirely. A radio counts as recorded when a radio unit carries its MAC address, or carries the serial number of its device and is on its band."
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:67
+msgid "The radios the devices report, on the bands that ask for their radios to be recorded. Which bands those are is set on the band itself, by its frequency range and by whether devices on it require a radio unit - a band with neither is left out of this entirely. A radio counts as recorded when a radio unit carries its MAC address, or carries the serial number of its device and is on its band. Only the devices read within the maximum age are listed, so a device nothing has been read off for longer is left out of the counts as well as of the table."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:64
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:81
 msgid "No band asks for its device radios to be recorded yet."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:97
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:114
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:103
 msgid "Interface"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:100
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:117
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:24
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:106
 #: ./templates/RadarInterferences/view.php:82
@@ -3122,21 +3145,21 @@ msgstr ""
 msgid "Frequency"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:102
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:119
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:98
 msgid "Radio Unit"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:103
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:120
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:107
 msgid "Read"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:142
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:159
 msgid "Nothing records this radio, and its band says something should."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:143
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:160
 msgid "A radio unit is the record of this radio."
 msgstr ""
 
@@ -3310,7 +3333,7 @@ msgstr ""
 #: ./templates/RadarInterferences/view.php:80
 #: ./templates/RouterosDeviceInterfaces/add.php:41
 #: ./templates/RouterosDeviceInterfaces/edit.php:49
-#: ./templates/RouterosDeviceInterfaces/index.php:50
+#: ./templates/RouterosDeviceInterfaces/index.php:39
 #: ./templates/RouterosDeviceInterfaces/view.php:76
 #: ./templates/RouterosDevices/view.php:149
 msgid "BSSID"
@@ -3319,7 +3342,7 @@ msgstr ""
 #: ./templates/RadarInterferences/view.php:81
 #: ./templates/RadioUnits/export.php:21
 #: ./templates/RouterosDeviceInterfaces/view.php:80
-#: ./templates/RouterosDevices/export.php:53
+#: ./templates/RouterosDevices/export.php:42
 #: ./templates/RouterosDevices/view.php:150
 msgid "Band"
 msgstr ""
@@ -3509,7 +3532,7 @@ msgid "Edit Radio Unit"
 msgstr ""
 
 #: ./templates/RadioUnits/export.php:9
-#: ./templates/RouterosDevices/export.php:36
+#: ./templates/RouterosDevices/export.php:25
 msgid "Index"
 msgstr ""
 
@@ -3529,7 +3552,7 @@ msgid "Device Password"
 msgstr ""
 
 #: ./templates/RadioUnits/index.php:28
-#: ./templates/RouterosDevices/index.php:40
+#: ./templates/RouterosDevices/index.php:29
 msgid "Export"
 msgstr ""
 
@@ -3552,51 +3575,15 @@ msgstr ""
 msgid "Edit RouterOS Device Interface"
 msgstr ""
 
-#: ./templates/RouterosDeviceInterfaces/index.php:18
-#: ./templates/RouterosDeviceIps/index.php:18
-#: ./templates/RouterosDevices/export.php:19
-#: ./templates/RouterosDevices/index.php:18
-msgid "Maximum Age"
-msgstr ""
-
-#: ./templates/RouterosDeviceInterfaces/index.php:36
+#: ./templates/RouterosDeviceInterfaces/index.php:25
 #: ./templates/RouterosDeviceInterfaces/view.php:30
 msgid "New RouterOS Device Interface"
 msgstr ""
 
-#: ./templates/RouterosDeviceInterfaces/index.php:40
+#: ./templates/RouterosDeviceInterfaces/index.php:29
 #: ./templates/layout/default.php:330
 msgid "RouterOS Device Interfaces"
 msgstr ""
-
-#: ./templates/RouterosDeviceInterfaces/index.php:20
-#: ./templates/RouterosDeviceInterfaces/index.php:21
-#: ./templates/RouterosDeviceInterfaces/index.php:22
-#: ./templates/RouterosDeviceInterfaces/index.php:23
-#: ./templates/RouterosDeviceInterfaces/index.php:24
-#: ./templates/RouterosDeviceInterfaces/index.php:25
-#: ./templates/RouterosDeviceIps/index.php:20
-#: ./templates/RouterosDeviceIps/index.php:21
-#: ./templates/RouterosDeviceIps/index.php:22
-#: ./templates/RouterosDeviceIps/index.php:23
-#: ./templates/RouterosDeviceIps/index.php:24
-#: ./templates/RouterosDeviceIps/index.php:25
-#: ./templates/RouterosDevices/export.php:21
-#: ./templates/RouterosDevices/export.php:22
-#: ./templates/RouterosDevices/export.php:23
-#: ./templates/RouterosDevices/export.php:24
-#: ./templates/RouterosDevices/export.php:25
-#: ./templates/RouterosDevices/export.php:26
-#: ./templates/RouterosDevices/index.php:20
-#: ./templates/RouterosDevices/index.php:21
-#: ./templates/RouterosDevices/index.php:22
-#: ./templates/RouterosDevices/index.php:23
-#: ./templates/RouterosDevices/index.php:24
-#: ./templates/RouterosDevices/index.php:25
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
 
 #: ./templates/RouterosDeviceInterfaces/view.php:17
 msgid "Delete RouterOS Device Interface"
@@ -3617,12 +3604,12 @@ msgstr ""
 msgid "Edit RouterOS Device IP"
 msgstr ""
 
-#: ./templates/RouterosDeviceIps/index.php:36
+#: ./templates/RouterosDeviceIps/index.php:25
 #: ./templates/RouterosDeviceIps/view.php:30
 msgid "New RouterOS Device IP"
 msgstr ""
 
-#: ./templates/RouterosDeviceIps/index.php:40
+#: ./templates/RouterosDeviceIps/index.php:29
 #: ./templates/layout/default.php:335
 msgid "RouterOS Device Ips"
 msgstr ""
@@ -3646,8 +3633,8 @@ msgstr ""
 msgid "Edit RouterOS Device"
 msgstr ""
 
-#: ./templates/RouterosDevices/export.php:37
-#: ./templates/RouterosDevices/index.php:41
+#: ./templates/RouterosDevices/export.php:26
+#: ./templates/RouterosDevices/index.php:30
 #: ./templates/layout/default.php:142
 #: ./templates/layout/default.php:325
 msgid "RouterOS Devices"
@@ -4030,6 +4017,10 @@ msgstr ""
 #: ./templates/element/common/expandable_text.php:17
 #: ./templates/element/common/expandable_text.php:20
 msgid "less"
+msgstr ""
+
+#: ./templates/element/common/maximum_age.php:13
+msgid "Maximum Age"
 msgstr ""
 
 #: ./templates/element/comparison_result.php:22
