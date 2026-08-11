@@ -5,9 +5,12 @@
  * @var iterable<\App\Model\Entity\RadioUnitBand> $radioUnitBands
  * @var array<string, int> $summary
  * @var bool $onlyMissing
+ * @var \App\Model\Enum\MaximumAge $maximumAge
+ * @var \App\Model\Enum\DeviceLinkScope $link
  */
 
 use App\Devices\DeviceRadioComparison;
+use App\Model\Enum\DeviceLinkScope;
 
 $verdicts = [
     DeviceRadioComparison::MISSING => __('Not recorded'),
@@ -27,6 +30,18 @@ $verdicts = [
         <?= $this->Form->control('radio_unit_band_id', [
             'options' => $radioUnitBands,
             'empty' => true,
+            'onchange' => 'this.form.submit();',
+        ]) ?>
+    </div>
+    <div class="column">
+        <?= $this->element('common/maximum_age', ['maximumAge' => $maximumAge]) ?>
+    </div>
+    <div class="column">
+        <?= $this->Form->control('link', [
+            'label' => __('Link'),
+            'type' => 'select',
+            'options' => DeviceLinkScope::options(),
+            'value' => $link->value,
             'onchange' => 'this.form.submit();',
         ]) ?>
     </div>
@@ -54,7 +69,9 @@ $verdicts = [
             . 'Which bands those are is set on the band itself, by its frequency range and by '
             . 'whether devices on it require a radio unit - a band with neither is left out of this '
             . 'entirely. A radio counts as recorded when a radio unit carries its MAC address, or '
-            . 'carries the serial number of its device and is on its band.',
+            . 'carries the serial number of its device and is on its band. Only the devices read '
+            . 'within the maximum age are listed, so a device nothing has been read off for longer '
+            . 'is left out of the counts as well as of the table.',
         ) ?>
     </p>
 

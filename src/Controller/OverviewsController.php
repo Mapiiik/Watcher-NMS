@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
+use App\Model\Enum\DeviceLinkScope;
+use App\Model\Enum\MaximumAge;
 use App\Model\Enum\RadioUnitComparisonScope;
 use App\Model\Table\RadioUnitBandsTable;
 use Cake\Validation\Validation;
@@ -117,6 +119,28 @@ class OverviewsController extends AppController
             $conditions[] = ['RadioUnitBands.id' => $radioUnitBandId];
         }
 
+        // A device nothing has been read off for weeks reports the radios it had when it was last
+        // reached, and a radio that is only missing because the reading is stale is not one to go
+        // looking for. The age is the device's, as it is on the listing of the devices.
+        $maximumAge = MaximumAge::fromQuery($this->getRequest()->getQuery('maximum_age'));
+        $conditions[] = ['RouterosDevices.modified >' => $maximumAge->since()];
+
+        $link = $this->getRequest()->getQuery('link');
+        $link = DeviceLinkScope::tryFrom(is_string($link) ? $link : '') ?? DeviceLinkScope::All;
+
+        $linked = match ($link) {
+            DeviceLinkScope::All => null,
+            DeviceLinkScope::AccessPoint => ['RouterosDevices.access_point_id IS NOT' => null],
+            DeviceLinkScope::CustomerConnection => ['RouterosDevices.customer_connection_id IS NOT' => null],
+            DeviceLinkScope::Unlinked => [
+                'RouterosDevices.access_point_id IS' => null,
+                'RouterosDevices.customer_connection_id IS' => null,
+            ],
+        };
+        if ($linked !== null) {
+            $conditions[] = $linked;
+        }
+
         $search = $this->getRequest()->getQuery('search');
         if (!empty($search)) {
             $conditions[] = [
@@ -157,7 +181,7 @@ class OverviewsController extends AppController
             ->find('list', order: ['name'])
             ->where(['devices_require_radio_unit' => true]);
 
-        $this->set(compact('deviceRadios', 'radioUnitBands', 'onlyMissing'));
+        $this->set(compact('deviceRadios', 'radioUnitBands', 'onlyMissing', 'maximumAge', 'link'));
         $this->set('summary', $comparison->summary($conditions));
     }
 }

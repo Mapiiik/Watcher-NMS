@@ -6,9 +6,11 @@ namespace App\Test\TestCase\Controller;
 use App\Controller\OverviewsController;
 use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
+use App\Model\Enum\DeviceLinkScope;
 use App\Model\Enum\RadioUnitComparisonScope;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\Datasource\EntityInterface;
+use Cake\I18n\DateTime;
 use Cake\ORM\Table;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
@@ -25,6 +27,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RadioUnitComparison::class)]
 #[UsesClass(DeviceRadioComparison::class)]
 #[UsesClass(RadioUnitComparisonScope::class)]
+#[UsesClass(DeviceLinkScope::class)]
 class OverviewsControllerTest extends TestCase
 {
     use ControllerTestTrait;
@@ -36,6 +39,20 @@ class OverviewsControllerTest extends TestCase
      * @var string
      */
     private const RADIO_UNIT_TYPE_ID = 'bb375bd5-3389-4776-9afa-708773554c94';
+
+    /**
+     * Access point a device is attached to.
+     *
+     * @var string
+     */
+    private const ACCESS_POINT_ID = '1bd5e754-e102-46ad-8488-11b1b44bf026';
+
+    /**
+     * Customer connection a device is attached to.
+     *
+     * @var string
+     */
+    private const CUSTOMER_CONNECTION_ID = '2561f92d-4edc-4357-91b6-990e74e1ef64';
 
     /**
      * Fixtures
@@ -143,10 +160,56 @@ class OverviewsControllerTest extends TestCase
         $this->login();
         $this->get(
             '/overviews/overview-of-device-radios-against-radio-units'
-            . '?only_missing=0&search=wlan&radio_unit_band_id=' . $band,
+            . '?only_missing=0&search=wlan&maximum_age=28&link=all&radio_unit_band_id=' . $band,
         );
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * A device nothing has been read off for longer than the maximum age is left out, radios and
+     * counts alike.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfDeviceRadiosAgainstRadioUnits()
+     */
+    public function testADeviceReadTooLongAgoIsLeftOut(): void
+    {
+        $this->requiringBand();
+        $device = $this->device('STALE READING', '10.0.2.1');
+        $this->radio($device, 'wlan1', '13:00:00:00:00:01', 5760);
+        $this->readAt($device, DateTime::now()->subDays(30));
+
+        $this->assertSame(0, $this->missingCounted());
+        $this->assertSame(1, $this->missingCounted('maximum_age=56'));
+    }
+
+    /**
+     * Each of the links is a listing of its own, and a device attached to neither is in none of
+     * them but the last.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfDeviceRadiosAgainstRadioUnits()
+     */
+    public function testTheLinkNarrowsTheListingToTheDevicesOfThatKind(): void
+    {
+        $this->requiringBand();
+
+        $onAccessPoint = $this->device('ON AN ACCESS POINT', '10.0.2.2');
+        $this->radio($onAccessPoint, 'wlan1', '13:00:00:00:00:02', 5760);
+        $this->attach($onAccessPoint, ['access_point_id' => self::ACCESS_POINT_ID]);
+
+        $atCustomer = $this->device('AT A CUSTOMER', '10.0.2.3');
+        $this->radio($atCustomer, 'wlan1', '13:00:00:00:00:03', 5760);
+        $this->attach($atCustomer, ['customer_connection_id' => self::CUSTOMER_CONNECTION_ID]);
+
+        $unlinked = $this->device('ATTACHED TO NEITHER', '10.0.2.4');
+        $this->radio($unlinked, 'wlan1', '13:00:00:00:00:04', 5760);
+
+        $this->assertSame(3, $this->missingCounted('link=all'));
+        $this->assertSame(1, $this->missingCounted('link=access-point'));
+        $this->assertSame(1, $this->missingCounted('link=customer-connection'));
+        $this->assertSame(1, $this->missingCounted('link=unlinked'));
     }
 
     /**
@@ -476,6 +539,52 @@ class OverviewsControllerTest extends TestCase
             'mac_address' => $macAddress,
             'frequency' => $frequency,
         ]));
+    }
+
+    /**
+     * Attach a device to what it belongs to. The timestamp is left where it was, so that this says
+     * nothing about when the device was last read.
+     *
+     * @param string $deviceId Device to attach.
+     * @param array<string, string> $link The link field and what it points at.
+     * @return void
+     */
+    private function attach(string $deviceId, array $link): void
+    {
+        $this->getTableLocator()->get('RouterosDevices')->updateAll($link, ['id' => $deviceId]);
+    }
+
+    /**
+     * Say when the device was last read.
+     *
+     * Saving would only stamp the timestamp with the present, which is the one thing this needs it
+     * not to be.
+     *
+     * @param string $deviceId Device that was read.
+     * @param \Cake\I18n\DateTime $when When it was read.
+     * @return void
+     */
+    private function readAt(string $deviceId, DateTime $when): void
+    {
+        $this->getTableLocator()->get('RouterosDevices')->updateAll(['modified' => $when], ['id' => $deviceId]);
+    }
+
+    /**
+     * How many radios the overview reports as unrecorded, as the action answers with it.
+     *
+     * @param string $filters What to narrow the overview down to, as a query string.
+     * @return int
+     */
+    private function missingCounted(string $filters = ''): int
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-device-radios-against-radio-units?' . $filters);
+        $this->assertResponseOk();
+
+        /** @var array<string, int> $summary */
+        $summary = $this->viewVariable('summary');
+
+        return $summary[DeviceRadioComparison::MISSING] ?? 0;
     }
 
     /**
