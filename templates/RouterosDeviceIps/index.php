@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\RouterosDeviceIp> $routerosDeviceIps
+ * @var \App\Model\Enum\MaximumAge $maximumAge
  */
 ?>
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query', 'context']]) ?>
@@ -14,19 +15,7 @@
         ]) ?>
     </div>
     <div class="column">
-        <?= $this->Form->control('maximum_age', [
-            'label' => __('Maximum Age'),
-            'options' => [
-                1 => __n('{0} day', '{0} days', 1, 1),
-                7 => __n('{0} day', '{0} days', 7, 7),
-                14 => __n('{0} day', '{0} days', 14, 14),
-                28 => __n('{0} day', '{0} days', 28, 28),
-                56 => __n('{0} day', '{0} days', 56, 56),
-                365 => __n('{0} day', '{0} days', 365, 365),
-            ],
-            'default' => 14,
-            'onchange' => 'this.form.submit();',
-        ]) ?>
+        <?= $this->element('common/maximum_age', ['maximumAge' => $maximumAge]) ?>
     </div>
 </div>
 <?= $this->Form->end() ?>

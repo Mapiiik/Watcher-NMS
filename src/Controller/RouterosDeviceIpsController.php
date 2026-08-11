@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Enum\MaximumAge;
 use Cake\Http\Response;
-use Cake\I18n\DateTime;
 
 /**
  * RouterosDeviceIps Controller
@@ -22,16 +22,8 @@ class RouterosDeviceIpsController extends AppController
     {
         // filter
         $conditions = [];
-        $maximum_age = $this->getRequest()->getQuery('maximum_age');
-        if (!empty($maximum_age)) {
-            $conditions[] = [
-                'RouterosDeviceIps.modified >' => DateTime::now()->subDays((int)$maximum_age),
-            ];
-        } else {
-            $conditions[] = [
-                'RouterosDeviceIps.modified >' => DateTime::now()->subDays(14),
-            ];
-        }
+        $maximumAge = MaximumAge::fromQuery($this->getRequest()->getQuery('maximum_age'));
+        $conditions[] = ['RouterosDeviceIps.modified >' => $maximumAge->since()];
 
         // search
         $search = $this->getRequest()->getQuery('search');
@@ -57,7 +49,7 @@ class RouterosDeviceIpsController extends AppController
             conditions: $conditions,
         ));
 
-        $this->set(compact('routerosDeviceIps'));
+        $this->set(compact('routerosDeviceIps', 'maximumAge'));
     }
 
     /**

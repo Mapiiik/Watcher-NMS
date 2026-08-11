@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Enum\MaximumAge;
 use App\Provisioning\RouterOS\CredentialsGenerator;
 use App\Snmp\Provider\RouterosSnmpProviderAgentPull;
 use App\Snmp\Service\RouterosSnmpUpdateService;
@@ -32,16 +33,8 @@ class RouterosDevicesController extends AppController
                 'RouterosDevices.access_point_id' => $this->access_point_id,
             ];
         }
-        $maximum_age = $this->getRequest()->getQuery('maximum_age');
-        if (!empty($maximum_age)) {
-            $conditions[] = [
-                'RouterosDevices.modified >' => DateTime::now()->subDays((int)$maximum_age),
-            ];
-        } else {
-            $conditions[] = [
-                'RouterosDevices.modified >' => DateTime::now()->subDays(14),
-            ];
-        }
+        $maximumAge = MaximumAge::fromQuery($this->getRequest()->getQuery('maximum_age'));
+        $conditions[] = ['RouterosDevices.modified >' => $maximumAge->since()];
 
         // search
         $search = $this->getRequest()->getQuery('search');
@@ -74,7 +67,7 @@ class RouterosDevicesController extends AppController
             conditions: $conditions,
         ));
 
-        $this->set(compact('routerosDevices'));
+        $this->set(compact('routerosDevices', 'maximumAge'));
     }
 
     /**
@@ -326,16 +319,8 @@ class RouterosDevicesController extends AppController
                 'RouterosDevices.access_point_id' => $this->access_point_id,
             ];
         }
-        $maximum_age = $this->getRequest()->getQuery('maximum_age');
-        if (!empty($maximum_age)) {
-            $conditions[] = [
-                'RouterosDevices.modified >' => DateTime::now()->subDays((int)$maximum_age),
-            ];
-        } else {
-            $conditions[] = [
-                'RouterosDevices.modified >' => DateTime::now()->subDays(14),
-            ];
-        }
+        $maximumAge = MaximumAge::fromQuery($this->getRequest()->getQuery('maximum_age'));
+        $conditions[] = ['RouterosDevices.modified >' => $maximumAge->since()];
 
         // search
         $search = $this->getRequest()->getQuery('search');
@@ -371,6 +356,6 @@ class RouterosDevicesController extends AppController
             conditions: $conditions,
         );
 
-        $this->set(compact('routerosDevices'));
+        $this->set(compact('routerosDevices', 'maximumAge'));
     }
 }
