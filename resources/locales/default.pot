@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-10 16:39+0200\n"
+"POT-Creation-Date: 2026-08-11 09:55+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -13,6 +13,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./config/settings.php:54
+msgid "IP ranges left out when devices are linked by their neighbouring addresses."
+msgstr ""
 
 #: ./src/Agent/ApiClient.php:28
 msgid "Watcher Agent is not configured."
@@ -1143,7 +1147,7 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:10
 #: ./templates/RouterosDevices/view.php:159
 #: ./templates/RouterosDevices/view.php:223
-#: ./templates/Settings/edit.php:13
+#: ./templates/Settings/edit.php:15
 #: ./templates/TaskStates/add.php:10
 #: ./templates/TaskStates/edit.php:10
 #: ./templates/TaskStates/index.php:30
@@ -1220,7 +1224,7 @@ msgstr ""
 #: ./templates/RouterosDeviceIps/edit.php:45
 #: ./templates/RouterosDevices/add.php:60
 #: ./templates/RouterosDevices/edit.php:68
-#: ./templates/Settings/edit.php:38
+#: ./templates/Settings/edit.php:42
 #: ./templates/TaskStates/add.php:26
 #: ./templates/TaskStates/edit.php:31
 #: ./templates/TaskTypes/add.php:24
@@ -2255,6 +2259,7 @@ msgstr ""
 #: ./templates/TaskStates/view.php:45
 #: ./templates/TaskTypes/index.php:35
 #: ./templates/TaskTypes/view.php:37
+#: ./templates/element/Settings/FormFields.php:34
 msgid "Yes"
 msgstr ""
 
@@ -2296,6 +2301,7 @@ msgstr ""
 #: ./templates/TaskStates/view.php:45
 #: ./templates/TaskTypes/index.php:35
 #: ./templates/TaskTypes/view.php:37
+#: ./templates/element/Settings/FormFields.php:34
 msgid "No"
 msgstr ""
 
@@ -3671,20 +3677,20 @@ msgstr ""
 msgid "Related RouterOS Device Ips"
 msgstr ""
 
-#: ./templates/Settings/edit.php:14
+#: ./templates/Settings/edit.php:16
 msgid "List Settings"
 msgstr ""
 
-#: ./templates/Settings/edit.php:21
+#: ./templates/Settings/edit.php:23
 msgid "Edit Setting"
 msgstr ""
 
-#: ./templates/Settings/edit.php:22
+#: ./templates/Settings/edit.php:24
 msgid "If you leave the field blank, it will not be saved in the DB and the default value will be used."
 msgstr ""
 
-#: ./templates/Settings/edit.php:28
-#: ./templates/element/Settings/FormFields.php:22
+#: ./templates/Settings/edit.php:30
+#: ./templates/element/Settings/FormFields.php:82
 msgid "Setting: {path}"
 msgstr ""
 
@@ -3949,7 +3955,13 @@ msgstr ""
 msgid "OpenStreetMap"
 msgstr ""
 
-#: ./templates/element/Settings/FormFields.php:48
+#: ./templates/element/Settings/FormFields.php:34
+#: ./templates/layout/default.php:220
+msgid "Default"
+msgstr ""
+
+#: ./templates/element/Settings/FormFields.php:71
+#: ./templates/element/Settings/FormFields.php:110
 msgid "Default value:"
 msgstr ""
 
@@ -4046,10 +4058,6 @@ msgstr ""
 
 #: ./templates/layout/default.php:192
 msgid "Customer Relationship Management"
-msgstr ""
-
-#: ./templates/layout/default.php:220
-msgid "Default"
 msgstr ""
 
 #: ./templates/layout/default.php:251

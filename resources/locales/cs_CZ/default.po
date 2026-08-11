@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-10 16:39+0200\n"
-"PO-Revision-Date: 2026-08-10 15:58+0200\n"
+"POT-Creation-Date: 2026-08-11 09:55+0200\n"
+"PO-Revision-Date: 2026-08-11 09:56+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -14,6 +14,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
+
+#: config/settings.php:54
+msgid ""
+"IP ranges left out when devices are linked by their neighbouring addresses."
+msgstr ""
+"Rozsahy IP adres, které nejsou zahrnuty, pokud jsou zařízení propojena na "
+"základě sousedních adres."
 
 #: src/Agent/ApiClient.php:28
 msgid "Watcher Agent is not configured."
@@ -1086,7 +1093,7 @@ msgstr "Není nainstalováno přes Git"
 #: templates/RouterosDevices/export.php:57
 #: templates/RouterosDevices/index.php:56 templates/RouterosDevices/view.php:10
 #: templates/RouterosDevices/view.php:159
-#: templates/RouterosDevices/view.php:223 templates/Settings/edit.php:13
+#: templates/RouterosDevices/view.php:223 templates/Settings/edit.php:15
 #: templates/TaskStates/add.php:10 templates/TaskStates/edit.php:10
 #: templates/TaskStates/index.php:30 templates/TaskStates/view.php:10
 #: templates/TaskStates/view.php:72 templates/TaskTypes/add.php:10
@@ -1139,7 +1146,7 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/RouterosDeviceInterfaces/edit.php:68
 #: templates/RouterosDeviceIps/add.php:37
 #: templates/RouterosDeviceIps/edit.php:45 templates/RouterosDevices/add.php:60
-#: templates/RouterosDevices/edit.php:68 templates/Settings/edit.php:38
+#: templates/RouterosDevices/edit.php:68 templates/Settings/edit.php:42
 #: templates/TaskStates/add.php:26 templates/TaskStates/edit.php:31
 #: templates/TaskTypes/add.php:24 templates/TaskTypes/edit.php:29
 #: templates/Tasks/add.php:59 templates/Tasks/edit.php:73
@@ -1947,6 +1954,7 @@ msgstr "Pro sítě technologií nastavené ručně"
 #: templates/RadioUnits/view.php:142 templates/RadioUnits/view.php:146
 #: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
 #: templates/TaskTypes/index.php:35 templates/TaskTypes/view.php:37
+#: templates/element/Settings/FormFields.php:34
 msgid "Yes"
 msgstr "Ano"
 
@@ -1974,6 +1982,7 @@ msgstr "Ano"
 #: templates/RadioUnits/view.php:142 templates/RadioUnits/view.php:146
 #: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
 #: templates/TaskTypes/index.php:35 templates/TaskTypes/view.php:37
+#: templates/element/Settings/FormFields.php:34
 msgid "No"
 msgstr "Ne"
 
@@ -3199,15 +3208,15 @@ msgstr "Heslo"
 msgid "Related RouterOS Device Ips"
 msgstr "Související IP zařízení RouterOS"
 
-#: templates/Settings/edit.php:14
+#: templates/Settings/edit.php:16
 msgid "List Settings"
 msgstr "Seznam nastavení"
 
-#: templates/Settings/edit.php:21
+#: templates/Settings/edit.php:23
 msgid "Edit Setting"
 msgstr "Upravit nastavení"
 
-#: templates/Settings/edit.php:22
+#: templates/Settings/edit.php:24
 msgid ""
 "If you leave the field blank, it will not be saved in the DB and the default "
 "value will be used."
@@ -3215,7 +3224,7 @@ msgstr ""
 "Pokud pole ponecháte prázdné, nebude uloženo do databáze a bude použita "
 "výchozí hodnota."
 
-#: templates/Settings/edit.php:28 templates/element/Settings/FormFields.php:22
+#: templates/Settings/edit.php:30 templates/element/Settings/FormFields.php:82
 msgid "Setting: {path}"
 msgstr "Nastavení: {path}"
 
@@ -3447,7 +3456,13 @@ msgstr "Mapy.cz"
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
-#: templates/element/Settings/FormFields.php:48
+#: templates/element/Settings/FormFields.php:34
+#: templates/layout/default.php:220
+msgid "Default"
+msgstr "Výchozí"
+
+#: templates/element/Settings/FormFields.php:71
+#: templates/element/Settings/FormFields.php:110
 msgid "Default value:"
 msgstr "Výchozí hodnota:"
 
@@ -3545,10 +3560,6 @@ msgstr "Zobrazit úkol"
 #: templates/layout/default.php:192
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
-
-#: templates/layout/default.php:220
-msgid "Default"
-msgstr "Výchozí"
 
 #: templates/layout/default.php:251
 msgid "Logout"
