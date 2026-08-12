@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Phones\Formatter as PhoneFormatter;
 use Cake\Http\Response;
+use Cake\Utility\Text;
+use SplObjectStorage;
 
 /**
  * AccessPointContacts Controller
@@ -12,6 +15,13 @@ use Cake\Http\Response;
  */
 class AccessPointContactsController extends AppController
 {
+    /**
+     * How many of the numbers that could not be read are named in the message about them.
+     *
+     * @var int
+     */
+    private const REFUSED_SHOWN = 20;
+
     /**
      * Index method
      *
@@ -160,5 +170,73 @@ class AccessPointContactsController extends AppController
         }
 
         return $this->afterDeleteRedirect(['action' => 'index']);
+    }
+
+    /**
+     * Format all method
+     *
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Http\Exception\MethodNotAllowedException When badly called.
+     */
+    public function formatAll(): ?Response
+    {
+        $this->getRequest()->allowMethod(['post']);
+
+        /**
+         * A contact reached by mail alone carries no phone, and there is nothing to format there.
+         *
+         * @var \Cake\Datasource\ResultSetInterface<array-key, \App\Model\Entity\AccessPointContact> $contacts
+         */
+        $contacts = $this->AccessPointContacts->find()
+            ->where(['AccessPointContacts.phone IS NOT' => null])
+            ->all();
+
+        $refused = [];
+
+        foreach ($contacts as $contact) {
+            $formatted = PhoneFormatter::toInternational((string)$contact->phone);
+
+            if ($formatted === null) {
+                $refused[] = $contact->phone;
+                continue;
+            }
+
+            // an entity assigned what it already holds stays clean, so an unchanged record is
+            // not saved again
+            $contact->phone = $formatted;
+        }
+
+        if ($refused !== []) {
+            // one message however many there are - a flash apiece buries the outcome under them
+            // and carries the whole lot in the session
+            $this->Flash->error(__(
+                'Phone numbers that could not be read were left as they are ({0}): {1}',
+                count($refused),
+                implode(', ', array_slice($refused, 0, self::REFUSED_SHOWN)),
+            ));
+        }
+
+        // save all changes
+        if (
+            $this->AccessPointContacts->saveMany(
+                $contacts,
+                [
+                    // saveMany audit options kept intentionally: audit-stash groups the batch
+                    // under one transaction id only when they're passed
+                    '_auditQueue' => new SplObjectStorage(),
+                    '_auditTransaction' => Text::uuid(),
+                ],
+            ) === false
+        ) {
+            $this->Flash->error(
+                __('The access point contacts could not be updated. Please, try again.'),
+            );
+        } else {
+            $this->Flash->success(
+                __('The access point contacts have been updated.'),
+            );
+        }
+
+        return $this->redirect(['action' => 'index']);
     }
 }

@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\AccessPointContactsController;
+use App\Test\Traits\ConfigureTestTrait;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Override;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
@@ -19,8 +21,22 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(AccessPointContactsController::class)]
 class AccessPointContactsControllerTest extends TestCase
 {
+    use ConfigureTestTrait;
     use ControllerTestTrait;
     use IntegrationTestTrait;
+
+    /**
+     * tearDown method
+     *
+     * @return void
+     */
+    #[Override]
+    public function tearDown(): void
+    {
+        $this->restoreConfigure();
+
+        parent::tearDown();
+    }
 
     /**
      * Access point the nested routes hang off.
@@ -175,5 +191,97 @@ class AccessPointContactsControllerTest extends TestCase
             'Renamed contact',
             $this->getTableLocator()->get('AccessPointContacts')->get($accessPointContactId)->name,
         );
+    }
+
+    /**
+     * Numbers that were stored before they were formatted on save are brought into one format by
+     * the run from the settings page.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointContactsController::formatAll()
+     */
+    public function testFormatAllPutsTheStoredNumbersIntoOneFormat(): void
+    {
+        $this->withConfigure(['Phones.defaultRegion' => 'CZ']);
+        $contactId = $this->storeContactWithPhone('601234567');
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/access-point-contacts/format-all');
+
+        $this->assertRedirect();
+        $this->assertSame(
+            '+420 601 234 567',
+            $this->getTableLocator()->get('AccessPointContacts')->get($contactId)->phone,
+        );
+    }
+
+    /**
+     * A value that cannot be read as a number is left as it stands - the run reports it rather
+     * than making something up for it.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointContactsController::formatAll()
+     */
+    public function testFormatAllLeavesANumberItCannotReadAlone(): void
+    {
+        $this->withConfigure(['Phones.defaultRegion' => 'CZ']);
+        $contactId = $this->storeContactWithPhone('reception desk');
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/access-point-contacts/format-all');
+
+        $this->assertRedirect();
+        $this->assertSame(
+            'reception desk',
+            $this->getTableLocator()->get('AccessPointContacts')->get($contactId)->phone,
+        );
+    }
+
+    /**
+     * A contact reached by mail alone carries no phone, and the run has to leave it standing
+     * rather than trip over the empty field.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointContactsController::formatAll()
+     */
+    public function testFormatAllLeavesAContactWithoutAPhoneStanding(): void
+    {
+        $this->withConfigure(['Phones.defaultRegion' => 'CZ']);
+        $contactId = $this->storeContactWithPhone(null);
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/access-point-contacts/format-all');
+
+        $this->assertRedirect();
+        $this->assertNull(
+            $this->getTableLocator()->get('AccessPointContacts')->get($contactId)->phone,
+        );
+    }
+
+    /**
+     * Stores a number the way one could already be sitting in the table - past the marshalling
+     * that would format it and past the rule that would refuse it.
+     *
+     * @param string|null $phone Number to store as it stands.
+     * @return string Id of the stored record.
+     */
+    private function storeContactWithPhone(?string $phone): string
+    {
+        $contacts = $this->getTableLocator()->get('AccessPointContacts');
+
+        $entity = $contacts->newEmptyEntity();
+        $entity->set('access_point_id', self::ACCESS_POINT_ID);
+        $entity->set('name', 'Reception');
+        $entity->set('phone', $phone);
+
+        $contacts->saveOrFail($entity, ['checkRules' => false]);
+
+        return (string)$entity->get('id');
     }
 }

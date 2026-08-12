@@ -34,6 +34,27 @@
         </div>
 
         <div class="related">
+            <h4><?= __('Access Point Functions') ?></h4>
+            <div>
+                <?= $this->AuthLink->postLink(
+                    __('Update Phone Number Format'),
+                    [
+                        'controller' => 'AccessPointContacts',
+                        'action' => 'formatAll',
+                        'plugin' => null,
+                        false,
+                    ],
+                    [
+                        'confirm' => __(
+                            'Do you really want to update all phones for all access point contacts?',
+                        ),
+                        'class' => 'side-nav-item',
+                    ],
+                ) ?>
+            </div>
+        </div>
+
+        <div class="related">
             <h4><?= __('Access Point Related') ?></h4>
             <div>
                 <?= $this->AuthLink->link(
