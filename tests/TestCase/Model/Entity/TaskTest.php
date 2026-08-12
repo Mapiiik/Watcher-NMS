@@ -6,7 +6,7 @@ namespace App\Test\TestCase\Model\Entity;
 use App\Model\Entity\AccessPoint;
 use App\Model\Entity\Task;
 use App\Model\Entity\TaskType;
-use Cake\Core\Configure;
+use App\Test\Traits\ConfigureTestTrait;
 use Cake\TestSuite\TestCase;
 use Override;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -17,6 +17,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Task::class)]
 class TaskTest extends TestCase
 {
+    use ConfigureTestTrait;
+
     /**
      * setUp method
      *
@@ -27,10 +29,25 @@ class TaskTest extends TestCase
     {
         parent::setUp();
 
-        Configure::write('Phones.stripPrefixForSummary', false);
         // a deployment names a region, a development machine names one in config/.env and CI names
         // none - the tests that read numbers against one say so themselves
-        Configure::write('Phones.defaultRegion', 'CZ');
+        $this->withConfigure([
+            'Phones.stripPrefixForSummary' => false,
+            'Phones.defaultRegion' => 'CZ',
+        ]);
+    }
+
+    /**
+     * tearDown method
+     *
+     * @return void
+     */
+    #[Override]
+    public function tearDown(): void
+    {
+        $this->restoreConfigure();
+
+        parent::tearDown();
     }
 
     /**
@@ -110,7 +127,7 @@ class TaskTest extends TestCase
      */
     public function testAPhoneFromTheRegionIsShortenedWhenConfigured(): void
     {
-        Configure::write('Phones.stripPrefixForSummary', true);
+        $this->withConfigure(['Phones.stripPrefixForSummary' => true]);
 
         $task = new Task([
             'subject' => 'Antenna realignment',
@@ -128,7 +145,7 @@ class TaskTest extends TestCase
      */
     public function testAForeignPhoneKeepsItsPrefix(): void
     {
-        Configure::write('Phones.stripPrefixForSummary', true);
+        $this->withConfigure(['Phones.stripPrefixForSummary' => true]);
 
         $task = new Task([
             'subject' => 'Antenna realignment',

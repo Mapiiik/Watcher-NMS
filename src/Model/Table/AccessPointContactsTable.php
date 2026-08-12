@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Phones\Formatter as PhoneFormatter;
+use ArrayObject;
+use Cake\Event\EventInterface;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -112,6 +115,36 @@ class AccessPointContactsTable extends AppTable
     {
         $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'), ['errorField' => 'access_point_id']);
 
+        // A contact does not have to carry a phone at all, but the one it carries has to be a
+        // number somebody can dial.
+        $rules->add(
+            fn($entity, $_options): bool => in_array($entity->phone, [null, ''], true)
+                || PhoneFormatter::isValid((string)$entity->phone),
+            'isPhoneNumberValid',
+            [
+                'errorField' => 'phone',
+                'message' => __('The phone number is not valid.'),
+            ],
+        );
+
         return $rules;
+    }
+
+    /**
+     * Normalization of phone numbers
+     *
+     * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event Event
+     * @param \ArrayObject<string, mixed> $data Data
+     * @param \ArrayObject<string, mixed> $options Options
+     * @psalm-suppress PossiblyUnusedParam
+     * @return void
+     */
+    public function beforeMarshal(EventInterface $event, ArrayObject $data, ArrayObject $options): void
+    {
+        if (isset($data['phone']) && is_string($data['phone']) && ($data['phone'] !== '')) {
+            // A value that cannot be read is left as it was entered - the "isPhoneNumberValid"
+            // rule is the one that reports it.
+            $data['phone'] = PhoneFormatter::toInternational($data['phone']) ?? $data['phone'];
+        }
     }
 }
