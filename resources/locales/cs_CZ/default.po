@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-11 10:36+0200\n"
-"PO-Revision-Date: 2026-08-11 10:39+0200\n"
+"POT-Creation-Date: 2026-08-12 20:30+0200\n"
+"PO-Revision-Date: 2026-08-12 20:34+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -306,23 +306,39 @@ msgstr "Aktualizace radarových interferencí se nezdařila"
 msgid "Radar interferences update failed."
 msgstr "Aktualizace radarových interferencí se nezdařila."
 
-#: src/Controller/AccessPointContactsController.php:98
-#: src/Controller/AccessPointContactsController.php:129
+#: src/Controller/AccessPointContactsController.php:108
+#: src/Controller/AccessPointContactsController.php:139
 msgid "The access point contact has been saved."
 msgstr "Kontakt přístupového bodu byl uložen."
 
-#: src/Controller/AccessPointContactsController.php:102
-#: src/Controller/AccessPointContactsController.php:133
+#: src/Controller/AccessPointContactsController.php:112
+#: src/Controller/AccessPointContactsController.php:143
 msgid "The access point contact could not be saved. Please, try again."
 msgstr "Kontakt přístupového bodu nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointContactsController.php:156
+#: src/Controller/AccessPointContactsController.php:166
 msgid "The access point contact has been deleted."
 msgstr "Kontakt přístupového bodu byl odstraněn."
 
-#: src/Controller/AccessPointContactsController.php:159
+#: src/Controller/AccessPointContactsController.php:169
 msgid "The access point contact could not be deleted. Please, try again."
 msgstr "Kontakt přístupového bodu nelze odstranit. Opakujte akci."
+
+#: src/Controller/AccessPointContactsController.php:212
+msgid "Phone numbers that could not be read were left as they are ({0}): {1}"
+msgstr ""
+"Telefonní čísla, která nebylo možné přečíst, byla ponechána v původním znění "
+"({0}): {1}"
+
+#: src/Controller/AccessPointContactsController.php:232
+msgid "The access point contacts could not be updated. Please, try again."
+msgstr ""
+"Kontakty přístupového bodu se nepodařilo aktualizovat. Zkuste to prosím "
+"znovu."
+
+#: src/Controller/AccessPointContactsController.php:236
+msgid "The access point contacts have been updated."
+msgstr "Kontakty přístupového bodu byly aktualizovány."
 
 #: src/Controller/AccessPointTypesController.php:77
 #: src/Controller/AccessPointTypesController.php:101
@@ -898,57 +914,57 @@ msgstr "Vyhledání adresy se nezdařilo."
 msgid "No address found for these GPS coordinates."
 msgstr "Pro tyto GPS souřadnice nebyla nalezena žádná adresa."
 
-#: src/Model/Entity/AppUser.php:92 templates/TaskStates/view.php:62
+#: src/Model/Entity/AppUser.php:78 templates/TaskStates/view.php:62
 #: templates/TaskTypes/view.php:54 templates/Tasks/view.php:54
 #: templates/email/html/task_notification.php:48
 msgid "User"
 msgstr "Uživatel"
 
-#: src/Model/Entity/AppUser.php:93
+#: src/Model/Entity/AppUser.php:79
 msgid "Customer Service Technician"
 msgstr "Technik zákaznického servisu"
 
-#: src/Model/Entity/AppUser.php:94
+#: src/Model/Entity/AppUser.php:80
 msgid "Network Technician"
 msgstr "Síťový technik"
 
-#: src/Model/Entity/AppUser.php:95
+#: src/Model/Entity/AppUser.php:81
 msgid "Network Manager"
 msgstr "Správce sítě"
 
-#: src/Model/Entity/AppUser.php:96
+#: src/Model/Entity/AppUser.php:82
 msgid "Sales Representative"
 msgstr "Obchodní zástupce"
 
-#: src/Model/Entity/AppUser.php:97
+#: src/Model/Entity/AppUser.php:83
 msgid "Sales Manager"
 msgstr "Manažer prodeje"
 
-#: src/Model/Entity/AppUser.php:98
+#: src/Model/Entity/AppUser.php:84
 msgid "Bookkeeper"
 msgstr "Účetní"
 
-#: src/Model/Entity/AppUser.php:99
+#: src/Model/Entity/AppUser.php:85
 msgid "Admin"
 msgstr "Admin"
 
-#: src/Model/Entity/AppUser.php:100
+#: src/Model/Entity/AppUser.php:86
 msgid "API"
 msgstr "API"
 
-#: src/Model/Entity/Task.php:132
+#: src/Model/Entity/Task.php:136
 msgid "Low"
 msgstr "Nízká"
 
-#: src/Model/Entity/Task.php:133
+#: src/Model/Entity/Task.php:137
 msgid "Normal"
 msgstr "Normální"
 
-#: src/Model/Entity/Task.php:134
+#: src/Model/Entity/Task.php:138
 msgid "High"
 msgstr "Vysoká"
 
-#: src/Model/Entity/Task.php:135
+#: src/Model/Entity/Task.php:139
 msgid "Urgent"
 msgstr "Naléhavé"
 
@@ -983,6 +999,10 @@ msgstr "Pouze rozdíly"
 #: src/Model/Enum/RadioUnitComparisonScope.php:47
 msgid "Only Without a Device"
 msgstr "Pouze bez zařízení"
+
+#: src/Model/Table/AccessPointContactsTable.php:126
+msgid "The phone number is not valid."
+msgstr "Toto telefonní číslo není platné."
 
 #: src/Model/Table/LandlordPaymentsElectricityDetailsTable.php:117
 msgid "This field cannot be left empty"
@@ -1616,7 +1636,7 @@ msgid "Note"
 msgstr "Poznámka"
 
 #: templates/AccessPointTypes/add.php:12 templates/AccessPointTypes/edit.php:20
-#: templates/AccessPointTypes/view.php:25 templates/Settings/index.php:40
+#: templates/AccessPointTypes/view.php:25 templates/Settings/index.php:61
 msgid "List Access Point Types"
 msgstr "Seznam typů přístupových bodů"
 
@@ -2295,7 +2315,7 @@ msgstr "Upravit typ antény"
 msgid "New Antenna Type"
 msgstr "Nový typ antény"
 
-#: templates/AntennaTypes/index.php:25 templates/Settings/index.php:77
+#: templates/AntennaTypes/index.php:25 templates/Settings/index.php:98
 msgid "Antenna Types"
 msgstr "Typy antén"
 
@@ -2470,7 +2490,7 @@ msgstr "Upravit typ zařízení"
 msgid "New Device Type"
 msgstr "Nový typ zařízení"
 
-#: templates/DeviceTypes/index.php:21 templates/Settings/index.php:56
+#: templates/DeviceTypes/index.php:21 templates/Settings/index.php:77
 msgid "Device Types"
 msgstr "Typy zařízení"
 
@@ -2610,8 +2630,8 @@ msgstr "Upravit výrobce"
 msgid "New Manufacturer"
 msgstr "Nový výrobce"
 
-#: templates/Manufacturers/index.php:25 templates/Settings/index.php:82
-#: templates/Settings/index.php:98
+#: templates/Manufacturers/index.php:25 templates/Settings/index.php:103
+#: templates/Settings/index.php:119
 msgid "Manufacturers"
 msgstr "Výrobci"
 
@@ -2772,7 +2792,7 @@ msgid "Checked"
 msgstr "Kontrolováno"
 
 #: templates/PaymentPurposes/add.php:12 templates/PaymentPurposes/edit.php:20
-#: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:45
+#: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:66
 msgid "List Payment Purposes"
 msgstr "Seznam účelů platby"
 
@@ -2836,7 +2856,7 @@ msgstr "Upravit typ napájecího zdroje"
 msgid "New Power Supply Type"
 msgstr "Nový typ napájecího zdroje"
 
-#: templates/PowerSupplyTypes/index.php:25 templates/Settings/index.php:93
+#: templates/PowerSupplyTypes/index.php:25 templates/Settings/index.php:114
 msgid "Power Supply Types"
 msgstr "Typy napájecích zdrojů"
 
@@ -3013,7 +3033,7 @@ msgstr "Upravit pásmo rádiových jednotek"
 msgid "New Radio Unit Band"
 msgstr "Nové pásmo rádiových jednotek"
 
-#: templates/RadioUnitBands/index.php:25 templates/Settings/index.php:72
+#: templates/RadioUnitBands/index.php:25 templates/Settings/index.php:93
 msgid "Radio Unit Bands"
 msgstr "Pásma rádiových jednotek"
 
@@ -3050,7 +3070,7 @@ msgstr "Upravit typ rádiové jednotky"
 msgid "New Radio Unit Type"
 msgstr "Nový typ rádiové jednotky"
 
-#: templates/RadioUnitTypes/index.php:25 templates/Settings/index.php:67
+#: templates/RadioUnitTypes/index.php:25 templates/Settings/index.php:88
 msgid "Radio Unit Types"
 msgstr "Typy rádiových jednotek"
 
@@ -3245,31 +3265,45 @@ msgid "Devices"
 msgstr "Zařízení"
 
 #: templates/Settings/index.php:37
+msgid "Access Point Functions"
+msgstr "Funkce přístupového bodu"
+
+#: templates/Settings/index.php:40
+msgid "Update Phone Number Format"
+msgstr "Aktualizace formátu telefonního čísla"
+
+#: templates/Settings/index.php:48
+msgid "Do you really want to update all phones for all access point contacts?"
+msgstr ""
+"Opravdu chcete aktualizovat všechny telefony u všech kontaktů přístupových "
+"bodů?"
+
+#: templates/Settings/index.php:58
 msgid "Access Point Related"
 msgstr "Související s přístupovým bodem"
 
-#: templates/Settings/index.php:53
+#: templates/Settings/index.php:74
 msgid "RouterOS Device Related"
 msgstr "Související se zařízením RouterOS"
 
-#: templates/Settings/index.php:64
+#: templates/Settings/index.php:85
 msgid "Radio Link Related"
 msgstr "Související s rádiovým spojem"
 
-#: templates/Settings/index.php:90
+#: templates/Settings/index.php:111
 msgid "Power Supply Related"
 msgstr "Související s napájecím zdrojem"
 
-#: templates/Settings/index.php:106
+#: templates/Settings/index.php:127
 msgid "Task Related"
 msgstr "Související s úkolem"
 
-#: templates/Settings/index.php:109 templates/TaskStates/add.php:11
+#: templates/Settings/index.php:130 templates/TaskStates/add.php:11
 #: templates/TaskStates/edit.php:16 templates/TaskStates/view.php:21
 msgid "List Task States"
 msgstr "Seznam stavů úkolů"
 
-#: templates/Settings/index.php:114 templates/TaskTypes/add.php:11
+#: templates/Settings/index.php:135 templates/TaskTypes/add.php:11
 #: templates/TaskTypes/edit.php:16 templates/TaskTypes/view.php:21
 msgid "List Task Types"
 msgstr "Seznam typů úkolů"
