@@ -6,7 +6,9 @@ namespace App\Test\TestCase\Model\Entity;
 use App\Model\Entity\AccessPoint;
 use App\Model\Entity\Task;
 use App\Model\Entity\TaskType;
+use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
+use Override;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
@@ -15,6 +17,22 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Task::class)]
 class TaskTest extends TestCase
 {
+    /**
+     * setUp method
+     *
+     * @return void
+     */
+    #[Override]
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Configure::write('Phones.stripPrefixForSummary', false);
+        // a deployment names a region, a development machine names one in config/.env and CI names
+        // none - the tests that read numbers against one say so themselves
+        Configure::write('Phones.defaultRegion', 'CZ');
+    }
+
     /**
      * The summary is what a task is recognised by in lists and notifications, so it carries the
      * subject, the access point it belongs to and the phone to call.
@@ -81,5 +99,58 @@ class TaskTest extends TestCase
         $task = new Task();
 
         $this->assertSame('', $task->summary_text);
+    }
+
+    /**
+     * A number from the configured region is dialled without its prefix at home, so a deployment
+     * that asks for it gets the short form - however the number happens to be stored.
+     *
+     * @return void
+     * @link \App\Model\Entity\Task::_getSummaryText()
+     */
+    public function testAPhoneFromTheRegionIsShortenedWhenConfigured(): void
+    {
+        Configure::write('Phones.stripPrefixForSummary', true);
+
+        $task = new Task([
+            'subject' => 'Antenna realignment',
+            'phone' => '+420601234567',
+        ]);
+
+        $this->assertSame('Antenna realignment, 601234567', $task->summary_text);
+    }
+
+    /**
+     * A number from anywhere else keeps the prefix it cannot be dialled without.
+     *
+     * @return void
+     * @link \App\Model\Entity\Task::_getSummaryText()
+     */
+    public function testAForeignPhoneKeepsItsPrefix(): void
+    {
+        Configure::write('Phones.stripPrefixForSummary', true);
+
+        $task = new Task([
+            'subject' => 'Antenna realignment',
+            'phone' => '+1 650-253-0000',
+        ]);
+
+        $this->assertSame('Antenna realignment, +1 650-253-0000', $task->summary_text);
+    }
+
+    /**
+     * A deployment that has not asked for the short form gets the number as it stands.
+     *
+     * @return void
+     * @link \App\Model\Entity\Task::_getSummaryText()
+     */
+    public function testAPhoneIsLeftAloneWhenNotConfiguredToBeShortened(): void
+    {
+        $task = new Task([
+            'subject' => 'Antenna realignment',
+            'phone' => '+420 601 234 567',
+        ]);
+
+        $this->assertSame('Antenna realignment, +420 601 234 567', $task->summary_text);
     }
 }

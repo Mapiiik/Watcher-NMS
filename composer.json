@@ -25,6 +25,7 @@
         "dereuromark/cakephp-geo": "^3.8",
         "geocoder-php/google-maps-provider": "^4.8",
         "geocoder-php/nominatim-provider": "^5.8",
+        "giggsey/libphonenumber-for-php": "^9.0",
         "josegonzalez/dotenv": "^4.0",
         "league/oauth2-google": "^5.0",
         "mobiledetect/mobiledetectlib": "^4.10"

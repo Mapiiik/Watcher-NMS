@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use App\Colors\ColorThemeSelector;
+use App\Phones\Formatter as PhoneFormatter;
 use Cake\Core\Configure;
 
 /**
@@ -85,6 +86,11 @@ class Task extends AppEntity
      */
     protected function _getSummaryText(): string
     {
+        $phoneNumber = $this->phone;
+        if (isset($phoneNumber) && Configure::read('Phones.stripPrefixForSummary') === true) {
+            $phoneNumber = PhoneFormatter::toLocal($phoneNumber);
+        }
+
         // The subject and the access point head the line, the phone follows
         // behind a comma.
         return implode(', ', array_filter([
@@ -92,7 +98,7 @@ class Task extends AppEntity
                 $this->subject ?? $this->task_type->name ?? null,
                 $this->access_point->name ?? null,
             ])),
-            $this->phone,
+            $phoneNumber,
         ]));
     }
 

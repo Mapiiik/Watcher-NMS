@@ -279,6 +279,15 @@ return [
         'reportNames' => (string)env('RADAR_INTERFERENCES_REPORT_NAMES', ''),
     ],
 
+    'Phones' => [
+        // the region numbers without a country prefix are read as; nothing named means none assumed
+        'defaultRegion' => trim((string)env('APP_DEFAULT_PHONE_REGION', '')) ?: null,
+        'stripPrefixForSummary' => filter_var(
+            env('STRIP_PHONE_PREFIX_FOR_SUMMARY_TEXT', false),
+            FILTER_VALIDATE_BOOLEAN,
+        ),
+    ],
+
     /*
      * Email delivery profiles
      *
