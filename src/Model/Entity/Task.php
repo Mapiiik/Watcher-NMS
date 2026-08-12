@@ -85,17 +85,15 @@ class Task extends AppEntity
      */
     protected function _getSummaryText(): string
     {
-        $summary_text = $this->subject ?? $this->task_type->name ?? '';
-
-        if (isset($this->access_point->name)) {
-            $summary_text .= ' - ' . $this->access_point->name;
-        }
-
-        if (isset($this->phone)) {
-            $summary_text .= ', ' . $this->phone;
-        }
-
-        return $summary_text;
+        // The subject and the access point head the line, the phone follows
+        // behind a comma.
+        return implode(', ', array_filter([
+            implode(' - ', array_filter([
+                $this->subject ?? $this->task_type->name ?? null,
+                $this->access_point->name ?? null,
+            ])),
+            $this->phone,
+        ]));
     }
 
     /**

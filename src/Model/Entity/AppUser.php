@@ -44,17 +44,10 @@ class AppUser extends User
      */
     protected function _getName(): string
     {
-        $name = '';
-
-        if (isset($this->first_name)) {
-            $name .= $this->first_name;
-        }
-        if (isset($this->last_name)) {
-            if ($name !== '') {
-                $name .= ' ';
-            }
-            $name .= $this->last_name;
-        }
+        $name = implode(' ', array_filter([
+            $this->first_name,
+            $this->last_name,
+        ]));
 
         return $name . ' (' . $this->username . ')';
     }
@@ -66,17 +59,10 @@ class AppUser extends User
      */
     protected function _getNameForLists(): string
     {
-        $name = '';
-
-        if (isset($this->last_name)) {
-            $name .= $this->last_name;
-        }
-        if (isset($this->first_name)) {
-            if ($name !== '') {
-                $name .= ' ';
-            }
-            $name .= $this->first_name;
-        }
+        $name = implode(' ', array_filter([
+            $this->last_name,
+            $this->first_name,
+        ]));
 
         return $name . ' (' . $this->username . ')';
     }
