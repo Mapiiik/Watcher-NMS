@@ -8,6 +8,9 @@ use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
 use App\Model\Enum\DeviceLinkScope;
 use App\Model\Enum\RadioUnitComparisonScope;
+use App\Model\Enum\RlanRegistrationScope;
+use App\Rlan\RadioUnitRegistrationComparison;
+use App\Rlan\RegisteredStationComparison;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\Datasource\EntityInterface;
 use Cake\I18n\DateTime;
@@ -28,6 +31,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(DeviceRadioComparison::class)]
 #[UsesClass(RadioUnitComparisonScope::class)]
 #[UsesClass(DeviceLinkScope::class)]
+#[UsesClass(RadioUnitRegistrationComparison::class)]
+#[UsesClass(RegisteredStationComparison::class)]
+#[UsesClass(RlanRegistrationScope::class)]
 class OverviewsControllerTest extends TestCase
 {
     use ControllerTestTrait;
@@ -75,6 +81,7 @@ class OverviewsControllerTest extends TestCase
         'app.RouterosDevices',
         'app.RouterosDeviceInterfaces',
         'app.RouterosDeviceIps',
+        'app.RlanStations',
     ];
 
     /**
@@ -474,6 +481,138 @@ class OverviewsControllerTest extends TestCase
 
         $this->assertSame($this->radioUnitsTable()->find()->count(), $counted);
         $this->assertSame(1, $summary['frequency_check'][RadioUnitComparison::DIFFERS] ?? 0);
+    }
+
+    /**
+     * The overview against the register renders.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
+     */
+    public function testOverviewOfRadioUnitsAgainstRegisteredStations(): void
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-radio-units-against-registered-stations');
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * The filters build a different query than the plain listing does, so each is asked for.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
+     */
+    public function testOverviewOfRadioUnitsAgainstRegisteredStationsFiltered(): void
+    {
+        $this->login();
+        $this->get(
+            '/overviews/overview-of-radio-units-against-registered-stations'
+            . '?show=all&search=Lorem&radio_unit_band_id=04c8767f-d828-42dd-8950-6500917fc0ce',
+        );
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * Each listing the scope offers is a different query, so each is asked for.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
+     */
+    public function testEveryRegistrationScopeRenders(): void
+    {
+        $this->login();
+
+        foreach (RlanRegistrationScope::cases() as $scope) {
+            $this->get(
+                '/overviews/overview-of-radio-units-against-registered-stations?show=' . $scope->value,
+            );
+
+            $this->assertResponseOk();
+        }
+    }
+
+    /**
+     * A scope naming none of them is answered with the differences rather than with an error.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
+     */
+    public function testAnUnknownRegistrationScopeFallsBackToTheDifferences(): void
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-radio-units-against-registered-stations?show=nonsense');
+
+        $this->assertResponseOk();
+        $this->assertSame(RlanRegistrationScope::Differences, $this->viewVariable('show'));
+    }
+
+    /**
+     * The other direction renders, and reports the station the fixture holds as unrecorded.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRegisteredStationsAgainstRadioUnits()
+     */
+    public function testOverviewOfRegisteredStationsAgainstRadioUnits(): void
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-registered-stations-against-radio-units');
+
+        $this->assertResponseOk();
+        $this->assertSame([RegisteredStationComparison::MISSING => 1], $this->viewVariable('summary'));
+    }
+
+    /**
+     * The filters build a different query than the plain listing does, so each is asked for.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRegisteredStationsAgainstRadioUnits()
+     */
+    public function testOverviewOfRegisteredStationsAgainstRadioUnitsFiltered(): void
+    {
+        $this->login();
+        $this->get(
+            '/overviews/overview-of-registered-stations-against-radio-units'
+            . '?only_missing=0&only_ours=0&search=000005',
+        );
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * How old the mirror is, is a fact about the whole listing, and it is read off an aggregate -
+     * which arrives as whatever the driver hands over unless it is asked to arrive as a date. It
+     * came back a string once, and every listing then said the register had never been read.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRegisteredStationsAgainstRadioUnits()
+     */
+    public function testTheListingSaysWhenTheRegisterWasRead(): void
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-registered-stations-against-radio-units');
+
+        $this->assertResponseOk();
+        $this->assertInstanceOf(DateTime::class, $this->viewVariable('registerRead'));
+    }
+
+    /**
+     * With nothing read there is nothing to compare against, and the listing says that rather
+     * than looking broken.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
+     */
+    public function testAnUnreadRegisterSaysSo(): void
+    {
+        $this->getTableLocator()->get('RlanStations')->deleteAll([]);
+
+        $this->login();
+        $this->get('/overviews/overview-of-radio-units-against-registered-stations');
+
+        $this->assertResponseOk();
+        $this->assertNull($this->viewVariable('registerRead'));
     }
 
     /**

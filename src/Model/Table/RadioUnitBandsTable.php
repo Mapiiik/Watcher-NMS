@@ -89,6 +89,10 @@ class RadioUnitBandsTable extends AppTable
             ->boolean('devices_require_radio_unit')
             ->allowEmptyString('devices_require_radio_unit');
 
+        $validator
+            ->boolean('units_require_rlan_registration')
+            ->allowEmptyString('units_require_rlan_registration');
+
         // A band with only one edge is recognised by no frequency at all, and a band whose edges
         // are the wrong way round by none either. Both read as the band simply never being found,
         // which is not something anybody would go looking for in these two fields.

@@ -59,6 +59,10 @@
                             <th><?= __('Devices Require Radio Unit') ?></th>
                             <td><?= $radioUnitBand->devices_require_radio_unit ? __('Yes') : __('No') ?></td>
                         </tr>
+                        <tr>
+                            <th><?= __('Units Require Rlan Registration') ?></th>
+                            <td><?= $radioUnitBand->units_require_rlan_registration ? __('Yes') : __('No') ?></td>
+                        </tr>
                     </table>
                 </div>
                 <div class="column">

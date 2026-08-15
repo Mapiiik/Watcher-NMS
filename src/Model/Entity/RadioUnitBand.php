@@ -16,6 +16,7 @@ use Cake\Core\Configure;
  * @property int|null $minimum_frequency
  * @property int|null $maximum_frequency
  * @property bool $devices_require_radio_unit
+ * @property bool $units_require_rlan_registration
  *
  * @property \App\Model\Entity\AntennaType[] $antenna_types
  * @property \App\Model\Entity\RadioUnitType[] $radio_unit_types
@@ -41,6 +42,7 @@ class RadioUnitBand extends AppEntity
         'minimum_frequency' => true,
         'maximum_frequency' => true,
         'devices_require_radio_unit' => true,
+        'units_require_rlan_registration' => true,
         'created' => true,
         'created_by' => true,
         'modified' => true,

@@ -8,7 +8,13 @@ use App\Devices\RadioUnitComparison;
 use App\Model\Enum\DeviceLinkScope;
 use App\Model\Enum\MaximumAge;
 use App\Model\Enum\RadioUnitComparisonScope;
+use App\Model\Enum\RlanRegistrationScope;
 use App\Model\Table\RadioUnitBandsTable;
+use App\Model\Table\RlanStationsTable;
+use App\Rlan\RadioUnitRegistrationComparison;
+use App\Rlan\RegisteredStationComparison;
+use Cake\Core\Configure;
+use Cake\I18n\DateTime;
 use Cake\Validation\Validation;
 
 /**
@@ -183,5 +189,172 @@ class OverviewsController extends AppController
 
         $this->set(compact('deviceRadios', 'radioUnitBands', 'onlyMissing', 'maximumAge', 'link'));
         $this->set('summary', $comparison->summary($conditions));
+    }
+
+    /**
+     * Overview of radio units against the stations registered for them
+     *
+     * @return void Renders view
+     */
+    public function overviewOfRadioUnitsAgainstRegisteredStations(): void
+    {
+        $conditions = [];
+
+        if ($this->access_point_id !== null) {
+            $conditions[] = ['RadioUnits.access_point_id' => $this->access_point_id];
+        }
+
+        $radioUnitBandId = $this->getRequest()->getQuery('radio_unit_band_id');
+        if (is_string($radioUnitBandId) && Validation::uuid($radioUnitBandId)) {
+            $conditions[] = ['RadioUnitTypes.radio_unit_band_id' => $radioUnitBandId];
+        }
+
+        $search = $this->getRequest()->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RadioUnits.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioUnits.serial_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioUnits.station_address ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioUnits.authorization_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RadioLinks.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RlanStations.name ILIKE' => '%' . trim((string)$search) . '%',
+                ],
+            ];
+        }
+
+        // Most of what is compared agrees, and a listing of agreements is not what anybody opens
+        // this for. An address naming none of them is answered with the differences rather than
+        // with an error. The summary above the table counts all of them however this is set.
+        $show = $this->getRequest()->getQuery('show');
+        $show = RlanRegistrationScope::tryFrom(is_string($show) ? $show : '')
+            ?? RlanRegistrationScope::Differences;
+
+        $comparison = new RadioUnitRegistrationComparison();
+
+        $query = $comparison->query($conditions);
+
+        $scope = match ($show) {
+            RlanRegistrationScope::Differences => $comparison->differences($query),
+            RlanRegistrationScope::NotRegistered => $comparison->notRegistered($query),
+            RlanRegistrationScope::WithoutTheAddress => $comparison->foundWithoutTheAddress($query),
+            RlanRegistrationScope::All => null,
+        };
+        if ($scope !== null) {
+            $query->where($scope);
+        }
+
+        $radioUnits = $this->paginate($query, [
+            'sortableFields' => [
+                'RadioUnits.name',
+                'RadioUnits.authorization_number',
+                'RadioUnits.tx_frequency',
+                'registration_check',
+                'frequency_check',
+                'channel_width_check',
+                'antenna_gain_check',
+                'power_check',
+                'coordinates_check',
+            ],
+            'order' => ['RadioUnits.name' => 'ASC'],
+        ]);
+
+        // Only the bands whose units are registered can appear, so only they are offered.
+        $radioUnitBands = $this->fetchTable(RadioUnitBandsTable::class)
+            ->find('list', order: ['name'])
+            ->where(['units_require_rlan_registration' => true]);
+
+        $this->set(compact('radioUnits', 'radioUnitBands', 'show'));
+        $this->set('summary', $comparison->summary($conditions));
+        $this->set('registerRead', $this->registerRead());
+    }
+
+    /**
+     * Overview of the registered stations against the radio units that record them
+     *
+     * @return void Renders view
+     */
+    public function overviewOfRegisteredStationsAgainstRadioUnits(): void
+    {
+        $conditions = [];
+
+        // The listing carries the stations of every account that shares with ours, and only ours
+        // are ours to answer for. Offered as a choice only where there is an account to compare
+        // against - without one there is nothing to tell them apart by.
+        $userId = Configure::read('Rlan.userId');
+        $ours = is_scalar($userId) && trim((string)$userId) !== '' ? (int)$userId : null;
+        $onlyOurs = $ours !== null && $this->getRequest()->getQuery('only_ours', '1') === '1';
+        if ($onlyOurs) {
+            $conditions[] = ['RlanStations.user_id' => $ours];
+        }
+
+        $search = $this->getRequest()->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'RlanStations.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'RlanStations.mac_address ILIKE' => '%' . trim((string)$search) . '%',
+                    'RlanStations.type_name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CAST(RlanStations.station_id AS TEXT) ILIKE' => '%' . trim((string)$search) . '%',
+                ],
+            ];
+        }
+
+        $onlyMissing = $this->getRequest()->getQuery('only_missing', '1') === '1';
+
+        $comparison = new RegisteredStationComparison();
+
+        $query = $comparison->query($conditions);
+        if ($onlyMissing) {
+            $query->where($comparison->missing($query));
+        }
+
+        $registeredStations = $this->paginate($query, [
+            'sortableFields' => [
+                'RlanStations.station_id',
+                'RlanStations.name',
+                'RlanStations.type',
+                'RlanStations.mac_address',
+                'radio_unit_check',
+            ],
+            'order' => [
+                'RlanStations.name' => 'ASC',
+                'RlanStations.station_id' => 'ASC',
+            ],
+        ]);
+
+        $this->set(compact('registeredStations', 'onlyMissing', 'onlyOurs'));
+        $this->set('ourAccount', $ours);
+        $this->set('summary', $comparison->summary($conditions));
+        $this->set('registerRead', $this->registerRead());
+    }
+
+    /**
+     * When the register was last read.
+     *
+     * The mirror is refreshed whole by one reading, so its age is a fact about the table rather
+     * than about a row - and a listing read off a mirror nobody has refreshed for a fortnight is
+     * saying something about a fortnight ago, which the reader had better be told.
+     *
+     * @return \Cake\I18n\DateTime|null
+     */
+    private function registerRead(): ?DateTime
+    {
+        $query = $this->fetchTable(RlanStationsTable::class)->find();
+
+        // A column selected under a name of its own arrives as whatever the driver hands over,
+        // which for a timestamp is a string nothing will format as a date - and, here, a string
+        // that is not the date it plainly is.
+        $query->getSelectTypeMap()->addDefaults(['read' => 'datetime']);
+
+        $read = $query
+            ->select(['read' => $query->func()->max('RlanStations.modified')])
+            ->disableHydration()
+            ->first();
+
+        $read = is_array($read) ? $read['read'] ?? null : null;
+
+        return $read instanceof DateTime ? $read : null;
     }
 }

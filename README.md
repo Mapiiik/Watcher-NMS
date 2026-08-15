@@ -48,6 +48,46 @@ The currently generated password for each device is shown on its detail page.
 
 Otherwise the script only logs the provisioning status and performs no changes.
 
+## Register of stations (ČTÚ RLAN portal)
+
+Radio units on the bands operated under the general authorisation VO-R/12 are
+checked against the register the regulator keeps at
+[rlan.ctu.gov.cz](https://rlan.ctu.gov.cz). Two overviews report the result —
+radio units against the stations registered for them, and the stations against
+the units that record them. Nothing is ever written back to the portal; an
+ordinary portal account that may only look is enough.
+
+Set the account in `config/.env`:
+
+```sh
+export RLAN_EMAIL=""
+export RLAN_PASSWORD=""
+# the account number your stations are registered to; the listing also carries
+# the stations of every account that shares with yours
+export RLAN_USER_ID=""
+```
+
+Then say which bands are registered — tick **Units Require Rlan Registration**
+on each band under *Radio Unit Bands*. Nothing is reported for a band until it
+is, so an installation that has not got round to it sees an empty listing
+rather than a wall of findings.
+
+Read the register on a schedule, e.g. daily:
+
+```sh
+bin/cake rlan_stations_update
+```
+
+A radio unit is matched to a station by the MAC address it is recorded under
+(`station_address`), and failing that by the number the registration was filed
+under (`authorization_number`). The second is the name the portal shows for the
+station — both ends of a point-to-point link share one, so the address is what
+tells them apart.
+
+Only the 60 GHz bands publish technical parameters; the 5.2 and 5.8 GHz ones
+are registered by coordinates and address alone, and the overview says so
+rather than reporting them as mismatched.
+
 ## Requirements
 
 - PHP 8.2 or newer

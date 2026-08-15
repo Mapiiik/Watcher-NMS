@@ -347,6 +347,8 @@ $permissions = [
                 'index',
                 'overviewOfRadioUnitsAgainstDevices',
                 'overviewOfDeviceRadiosAgainstRadioUnits',
+                'overviewOfRadioUnitsAgainstRegisteredStations',
+                'overviewOfRegisteredStationsAgainstRadioUnits',
             ],
         ],
     ],

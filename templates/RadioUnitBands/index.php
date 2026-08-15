@@ -32,6 +32,7 @@
                     <th><?= $this->Paginator->sort('minimum_frequency') ?></th>
                     <th><?= $this->Paginator->sort('maximum_frequency') ?></th>
                     <th><?= $this->Paginator->sort('devices_require_radio_unit') ?></th>
+                    <th><?= $this->Paginator->sort('units_require_rlan_registration') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -45,6 +46,7 @@
                     <td><?= $radioUnitBand->maximum_frequency === null ?
                         '' : $this->Number->format($radioUnitBand->maximum_frequency) ?></td>
                     <td><?= $radioUnitBand->devices_require_radio_unit ? __('Yes') : __('No') ?></td>
+                    <td><?= $radioUnitBand->units_require_rlan_registration ? __('Yes') : __('No') ?></td>
                     <td class="actions">
                         <?= $this->AuthLink->link(
                             __('View'),

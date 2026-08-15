@@ -21,5 +21,20 @@
                 ) ?>
             </div>
         </div>
+        <div class="related">
+            <h4><?= __('Regulatory') ?></h4>
+            <div>
+                <?= $this->AuthLink->link(
+                    __('Overview of Radio Units Against Registered Stations'),
+                    ['action' => 'overviewOfRadioUnitsAgainstRegisteredStations'],
+                    ['class' => 'side-nav-item'],
+                ) ?>
+                <?= $this->AuthLink->link(
+                    __('Overview of Registered Stations Against Radio Units'),
+                    ['action' => 'overviewOfRegisteredStationsAgainstRadioUnits'],
+                    ['class' => 'side-nav-item'],
+                ) ?>
+            </div>
+        </div>
     </div>
 </div>

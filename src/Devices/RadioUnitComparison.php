@@ -69,8 +69,13 @@ final class RadioUnitComparison
      * units of the bands registered by MAC address keep one in it. A licensed band keeps the
      * station address the authorization was issued for, which is not a MAC address and must not be
      * compared as one - hence the check on the shape rather than on the field being filled in.
+     *
+     * Public because the same question is asked of the same field when a unit is compared with the
+     * register it is registered in, and the two must not drift apart.
+     *
+     * @see \App\Rlan\RadioUnitRegistrationComparison
      */
-    private const MAC_ADDRESS_PATTERN = '^[0-9A-Fa-f]{2}(:[0-9A-Fa-f]{2}){5}$';
+    public const MAC_ADDRESS_PATTERN = '^[0-9A-Fa-f]{2}(:[0-9A-Fa-f]{2}){5}$';
 
     /**
      * How far apart two frequencies may be and still be the same band, as a ratio.

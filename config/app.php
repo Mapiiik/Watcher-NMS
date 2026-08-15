@@ -279,6 +279,20 @@ return [
         'reportNames' => (string)env('RADAR_INTERFERENCES_REPORT_NAMES', ''),
     ],
 
+    /*
+     * The register of stations the regulator keeps. Read only: the account is used to see what is
+     * registered for us and never to change it, so an account with nothing but the right to look
+     * is enough.
+     */
+    'Rlan' => [
+        'url' => rtrim((string)env('RLAN_URL', 'https://rlan.ctu.gov.cz/api/v1'), '/'),
+        'email' => (string)env('RLAN_EMAIL', ''),
+        'password' => (string)env('RLAN_PASSWORD', ''),
+        // the account the stations that are ours are registered to; the listing carries the
+        // stations of every account that shares with ours, and this is what tells them apart
+        'userId' => trim((string)env('RLAN_USER_ID', '')) ?: null,
+    ],
+
     'Phones' => [
         // the region numbers without a country prefix are read as; nothing named means none assumed
         'defaultRegion' => trim((string)env('APP_DEFAULT_PHONE_REGION', '')) ?: null,
