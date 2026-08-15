@@ -94,6 +94,7 @@
                         <tr>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Access Point') ?></th>
+                            <th><?= __('Customer Connection') ?></th>
                             <th><?= __('Radio Link') ?></th>
                             <th><?= __('Antenna Type') ?></th>
                             <th><?= __('Polarization') ?></th>
@@ -119,6 +120,17 @@
                                 <?= $radioUnits->access_point !== null ? $this->Html->link(
                                     $radioUnits->access_point->name ?? '(' . $radioUnits->access_point->id . ')',
                                     ['controller' => 'AccessPoints', 'action' => 'view', $radioUnits->access_point->id],
+                                ) : '' ?>
+                            </td>
+                            <td>
+                                <?= $radioUnits->customer_connection !== null ? $this->Html->link(
+                                    $radioUnits->customer_connection->name
+                                        ?? '(' . $radioUnits->customer_connection->id . ')',
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'view',
+                                        $radioUnits->customer_connection->id,
+                                    ],
                                 ) : '' ?>
                             </td>
                             <td>

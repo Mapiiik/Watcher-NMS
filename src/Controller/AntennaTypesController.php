@@ -64,6 +64,7 @@ class AntennaTypesController extends AppController
             'RadioUnits' => [
                 'RadioUnitTypes',
                 'AccessPoints',
+                'CustomerConnections',
                 'RadioLinks',
             ],
             'Creators',
