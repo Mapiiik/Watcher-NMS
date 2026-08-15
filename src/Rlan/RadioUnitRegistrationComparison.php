@@ -86,7 +86,7 @@ final class RadioUnitRegistrationComparison
     /**
      * How far the coordinates may be apart before it is a different place, when nothing says.
      */
-    private const COORDINATE_TOLERANCE_FALLBACK = 100;
+    private const COORDINATE_TOLERANCE_FALLBACK = 10;
 
     /**
      * The furthest apart worth calling the same place. A tolerance past this compares nothing.
@@ -145,7 +145,7 @@ final class RadioUnitRegistrationComparison
      */
     public function __construct()
     {
-        $tolerance = Settings::get('core.rlan.coordinate_tolerance_metres');
+        $tolerance = Settings::get('core.radio_units.rlan.coordinate_tolerance_metres');
         $tolerance = is_numeric($tolerance) ? (int)$tolerance : self::COORDINATE_TOLERANCE_FALLBACK;
 
         $this->coordinateTolerance = max(0, min($tolerance, self::COORDINATE_TOLERANCE_LIMIT));

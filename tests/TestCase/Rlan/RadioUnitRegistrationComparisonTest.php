@@ -7,6 +7,7 @@ use App\Rlan\RadioUnitRegistrationComparison;
 use Cake\Datasource\EntityInterface;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
+use Settings\Utility\Settings;
 
 /**
  * App\Rlan\RadioUnitRegistrationComparison Test Case
@@ -317,6 +318,42 @@ class RadioUnitRegistrationComparisonTest extends TestCase
 
         $this->assertSame(RadioUnitRegistrationComparison::DIFFERS, $listed->get('coordinates_check'));
         $this->assertGreaterThan(1000, (float)$listed->get('distance_in_metres'));
+    }
+
+    /**
+     * The tolerance is declared where the comparison reads it.
+     *
+     * Asked outright, because nothing about a verdict can answer it: the fallback is deliberately
+     * the same number as the shipped default, so a path that quietly moved would go on giving the
+     * right answers for the wrong reason.
+     *
+     * @return void
+     * @link \App\Rlan\RadioUnitRegistrationComparison::__construct()
+     */
+    public function testTheToleranceIsDeclaredWhereItIsRead(): void
+    {
+        $this->assertIsNumeric(Settings::get('core.radio_units.rlan.coordinate_tolerance_metres'));
+    }
+
+    /**
+     * A station a little way off is still too far, so the tolerance is metres rather than nothing
+     * and rather than everything.
+     *
+     * @return void
+     * @link \App\Rlan\RadioUnitRegistrationComparison::query()
+     */
+    public function testAStationFiftyMetresOffIsTooFar(): void
+    {
+        $band = $this->band('Registered band', registered: true);
+
+        // ~50 m north of the station the fixture holds.
+        $nearby = $this->accessPoint('Fifty metres off', 50.599995, 15.511295692493);
+        $this->radioUnit('Slightly displaced', $band, stationAddress: '04:d6:aa:a6:df:74', accessPointId: $nearby);
+
+        $listed = $this->listed('Slightly displaced');
+
+        $this->assertEqualsWithDelta(50, (float)$listed->get('distance_in_metres'), 5);
+        $this->assertSame(RadioUnitRegistrationComparison::DIFFERS, $listed->get('coordinates_check'));
     }
 
     /**

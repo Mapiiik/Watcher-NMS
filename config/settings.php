@@ -55,14 +55,16 @@ return [
                 hint: __('IP ranges left out when devices are linked by their neighbouring addresses.'),
             ),
         ],
-        'rlan' => [
-            'coordinate_tolerance_metres' => NumberType::ofInt(
-                default: 10,
-                hint: __(
-                    'How far a registered station may stand from the access point'
-                    . ' of the radio unit and still be taken for the same place.',
+        'radio_units' => [
+            'rlan' => [
+                'coordinate_tolerance_metres' => NumberType::ofInt(
+                    default: 10,
+                    hint: __(
+                        'How far a registered station may stand from the access point'
+                        . ' of the radio unit and still be taken for the same place.',
+                    ),
                 ),
-            ),
+            ],
         ],
     ],
 ];

@@ -10,6 +10,7 @@ use Cake\ORM\Locator\TableLocator;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Override;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
@@ -77,5 +78,37 @@ class SettingsControllerTest extends TestCase
         $this->get('/settings/edit/core.devices');
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * Every block the listing offers opens. A block is reached by the path it is declared under,
+     * so a link naming a path nothing declares answers with a not-found rather than a page - and
+     * nothing but opening it says whether the two agree.
+     *
+     * @param string $path Path of the block, as the listing links to it.
+     * @return void
+     * @link \Settings\Controller\Trait\SettingsControllerTrait::edit()
+     */
+    #[DataProvider('blocksProvider')]
+    public function testEveryBlockTheListingOffersOpens(string $path): void
+    {
+        $this->login();
+        $this->get('/settings/edit/' . $path);
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * @return array<string, array{string}>
+     */
+    public static function blocksProvider(): array
+    {
+        return [
+            'devices' => ['core.devices'],
+            'radio units' => ['core.radio_units'],
+            // A block within a block opens on its own too, which is what a listing would link to
+            // if one of them ever grew big enough to be worth a page of its own.
+            'the register within the radio units' => ['core.radio_units.rlan'],
+        ];
     }
 }
