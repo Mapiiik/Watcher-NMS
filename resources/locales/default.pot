@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-15 15:07+0200\n"
+"POT-Creation-Date: 2026-08-15 21:04+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "IP ranges left out when devices are linked by their neighbouring addresses."
 msgstr ""
 
-#: ./config/settings.php:61
+#: ./config/settings.php:62
 msgid "How far a registered station may stand from the access point of the radio unit and still be taken for the same place."
 msgstr ""
 
@@ -45,27 +45,27 @@ msgstr ""
 msgid "Watcher Agent returned an unexpected response: {0}"
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:75
+#: ./src/Command/CustomerPointsUpdateCommand.php:76
 msgid "The customer points data could not be downloaded. Please, try again."
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:85
+#: ./src/Command/CustomerPointsUpdateCommand.php:86
 msgid "The customer points data could not be decoded. Please, check the source data."
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:184
+#: ./src/Command/CustomerPointsUpdateCommand.php:185
 msgid "The customer points data have been updated."
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:192
+#: ./src/Command/CustomerPointsUpdateCommand.php:193
 msgid "Error during customer points update: {0}"
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:198
+#: ./src/Command/CustomerPointsUpdateCommand.php:199
 msgid "Customer points update failed"
 msgstr ""
 
-#: ./src/Command/CustomerPointsUpdateCommand.php:199
+#: ./src/Command/CustomerPointsUpdateCommand.php:200
 msgid "Customer points update failed."
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr ""
 #: ./templates/AccessPointContacts/view.php:47
 #: ./templates/AntennaTypes/view.php:92
 #: ./templates/CustomerConnections/view.php:78
-#: ./templates/CustomerConnections/view.php:179
+#: ./templates/CustomerConnections/view.php:269
 #: ./templates/DeviceTypes/view.php:84
 #: ./templates/ElectricityMeterReadings/view.php:47
 #: ./templates/IpAddressRanges/view.php:55
@@ -177,14 +177,16 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:529
 #: ./templates/AccessPoints/view.php:624
 #: ./templates/AccessPoints/view.php:682
-#: ./templates/AccessPoints/view.php:801
-#: ./templates/AccessPoints/view.php:923
+#: ./templates/AccessPoints/view.php:752
+#: ./templates/AccessPoints/view.php:873
+#: ./templates/AccessPoints/view.php:993
 #: ./templates/AntennaTypes/view.php:35
 #: ./templates/AntennaTypes/view.php:91
 #: ./templates/CustomerConnectionIps/view.php:43
 #: ./templates/CustomerConnections/view.php:61
 #: ./templates/CustomerConnections/view.php:125
 #: ./templates/CustomerConnections/view.php:178
+#: ./templates/CustomerConnections/view.php:268
 #: ./templates/CustomerPoints/view.php:43
 #: ./templates/CustomerPoints/view.php:83
 #: ./templates/DeviceTypes/view.php:35
@@ -209,7 +211,7 @@ msgstr ""
 #: ./templates/RadioUnitBands/view.php:135
 #: ./templates/RadioUnitTypes/view.php:43
 #: ./templates/RadioUnitTypes/view.php:95
-#: ./templates/RadioUnits/export.php:16
+#: ./templates/RadioUnits/export.php:17
 #: ./templates/RadioUnits/view.php:40
 #: ./templates/RouterosDeviceInterfaces/view.php:57
 #: ./templates/RouterosDeviceIps/view.php:57
@@ -224,9 +226,9 @@ msgid "Name"
 msgstr ""
 
 #: ./src/Command/RadarInterferencesReportCommand.php:94
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:116
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:117
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:23
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:105
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:106
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:88
 #: ./templates/RadarInterferences/add.php:26
 #: ./templates/RadarInterferences/edit.php:34
@@ -243,7 +245,7 @@ msgid "MAC Address"
 msgstr ""
 
 #: ./src/Command/RadarInterferencesReportCommand.php:95
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:115
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:116
 #: ./templates/RadarInterferences/add.php:29
 #: ./templates/RadarInterferences/edit.php:37
 #: ./templates/RadarInterferences/index.php:42
@@ -410,55 +412,55 @@ msgstr ""
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:264
-#: ./src/Controller/AccessPointsController.php:290
+#: ./src/Controller/AccessPointsController.php:268
+#: ./src/Controller/AccessPointsController.php:294
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:268
-#: ./src/Controller/AccessPointsController.php:294
+#: ./src/Controller/AccessPointsController.php:272
+#: ./src/Controller/AccessPointsController.php:298
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:327
+#: ./src/Controller/AccessPointsController.php:331
 msgid "The access point has been archived."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:331
+#: ./src/Controller/AccessPointsController.php:335
 msgid "The access point could not be archived. Please try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:358
+#: ./src/Controller/AccessPointsController.php:362
 msgid "The access point has been restored."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:363
+#: ./src/Controller/AccessPointsController.php:367
 msgid "The access point could not be restored. Please try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:382
+#: ./src/Controller/AccessPointsController.php:386
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:385
+#: ./src/Controller/AccessPointsController.php:389
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AntennaTypesController.php:87
-#: ./src/Controller/AntennaTypesController.php:113
+#: ./src/Controller/AntennaTypesController.php:88
+#: ./src/Controller/AntennaTypesController.php:114
 msgid "The antenna type has been saved."
 msgstr ""
 
-#: ./src/Controller/AntennaTypesController.php:91
-#: ./src/Controller/AntennaTypesController.php:117
+#: ./src/Controller/AntennaTypesController.php:92
+#: ./src/Controller/AntennaTypesController.php:118
 msgid "The antenna type could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AntennaTypesController.php:138
+#: ./src/Controller/AntennaTypesController.php:139
 msgid "The antenna type has been deleted."
 msgstr ""
 
-#: ./src/Controller/AntennaTypesController.php:141
+#: ./src/Controller/AntennaTypesController.php:142
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr ""
 
@@ -484,37 +486,37 @@ msgstr ""
 msgid "The customer connection IP could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:102
-#: ./src/Controller/CustomerConnectionsController.php:134
+#: ./src/Controller/CustomerConnectionsController.php:107
+#: ./src/Controller/CustomerConnectionsController.php:139
 msgid "The customer connection has been saved."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:106
-#: ./src/Controller/CustomerConnectionsController.php:138
+#: ./src/Controller/CustomerConnectionsController.php:111
+#: ./src/Controller/CustomerConnectionsController.php:143
 msgid "The customer connection could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:172
+#: ./src/Controller/CustomerConnectionsController.php:177
 msgid "The customer connection has been archived."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:176
+#: ./src/Controller/CustomerConnectionsController.php:181
 msgid "The customer connection could not be archived. Please try again."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:203
+#: ./src/Controller/CustomerConnectionsController.php:208
 msgid "The customer connection has been restored."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:208
+#: ./src/Controller/CustomerConnectionsController.php:213
 msgid "The customer connection could not be restored. Please try again."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:227
+#: ./src/Controller/CustomerConnectionsController.php:232
 msgid "The customer connection has been deleted."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionsController.php:230
+#: ./src/Controller/CustomerConnectionsController.php:235
 msgid "The customer connection could not be deleted. Please, try again."
 msgstr ""
 
@@ -734,39 +736,39 @@ msgstr ""
 msgid "The radio unit band could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitTypesController.php:87
-#: ./src/Controller/RadioUnitTypesController.php:113
+#: ./src/Controller/RadioUnitTypesController.php:88
+#: ./src/Controller/RadioUnitTypesController.php:114
 msgid "The radio unit type has been saved."
 msgstr ""
 
-#: ./src/Controller/RadioUnitTypesController.php:91
-#: ./src/Controller/RadioUnitTypesController.php:117
+#: ./src/Controller/RadioUnitTypesController.php:92
+#: ./src/Controller/RadioUnitTypesController.php:118
 msgid "The radio unit type could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitTypesController.php:138
+#: ./src/Controller/RadioUnitTypesController.php:139
 msgid "The radio unit type has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioUnitTypesController.php:141
+#: ./src/Controller/RadioUnitTypesController.php:142
 msgid "The radio unit type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:119
-#: ./src/Controller/RadioUnitsController.php:164
+#: ./src/Controller/RadioUnitsController.php:122
+#: ./src/Controller/RadioUnitsController.php:178
 msgid "The radio unit has been saved."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:123
-#: ./src/Controller/RadioUnitsController.php:168
+#: ./src/Controller/RadioUnitsController.php:126
+#: ./src/Controller/RadioUnitsController.php:182
 msgid "The radio unit could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:204
+#: ./src/Controller/RadioUnitsController.php:230
 msgid "The radio unit has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:207
+#: ./src/Controller/RadioUnitsController.php:233
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr ""
 
@@ -1155,12 +1157,12 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:473
 #: ./templates/AccessPoints/view.php:547
 #: ./templates/AccessPoints/view.php:632
-#: ./templates/AccessPoints/view.php:928
+#: ./templates/AccessPoints/view.php:998
 #: ./templates/AntennaTypes/add.php:12
 #: ./templates/AntennaTypes/edit.php:12
 #: ./templates/AntennaTypes/index.php:35
 #: ./templates/AntennaTypes/view.php:10
-#: ./templates/AntennaTypes/view.php:109
+#: ./templates/AntennaTypes/view.php:110
 #: ./templates/CustomerConnectionIps/add.php:11
 #: ./templates/CustomerConnectionIps/edit.php:11
 #: ./templates/CustomerConnectionIps/index.php:33
@@ -1170,7 +1172,8 @@ msgstr ""
 #: ./templates/CustomerConnections/index.php:41
 #: ./templates/CustomerConnections/view.php:10
 #: ./templates/CustomerConnections/view.php:128
-#: ./templates/CustomerConnections/view.php:187
+#: ./templates/CustomerConnections/view.php:196
+#: ./templates/CustomerConnections/view.php:277
 #: ./templates/CustomerPoints/add.php:10
 #: ./templates/CustomerPoints/edit.php:10
 #: ./templates/CustomerPoints/index.php:34
@@ -1224,10 +1227,10 @@ msgstr ""
 #: ./templates/RadioLinks/edit.php:10
 #: ./templates/RadioLinks/index.php:49
 #: ./templates/RadioLinks/view.php:10
-#: ./templates/RadioLinks/view.php:94
+#: ./templates/RadioLinks/view.php:95
 #: ./templates/RadioUnitBands/add.php:10
 #: ./templates/RadioUnitBands/edit.php:10
-#: ./templates/RadioUnitBands/index.php:36
+#: ./templates/RadioUnitBands/index.php:39
 #: ./templates/RadioUnitBands/view.php:10
 #: ./templates/RadioUnitBands/view.php:89
 #: ./templates/RadioUnitBands/view.php:139
@@ -1235,11 +1238,11 @@ msgstr ""
 #: ./templates/RadioUnitTypes/edit.php:12
 #: ./templates/RadioUnitTypes/index.php:34
 #: ./templates/RadioUnitTypes/view.php:10
-#: ./templates/RadioUnitTypes/view.php:113
-#: ./templates/RadioUnits/add.php:14
-#: ./templates/RadioUnits/edit.php:14
-#: ./templates/RadioUnits/export.php:42
-#: ./templates/RadioUnits/index.php:53
+#: ./templates/RadioUnitTypes/view.php:114
+#: ./templates/RadioUnits/add.php:15
+#: ./templates/RadioUnits/edit.php:15
+#: ./templates/RadioUnits/export.php:43
+#: ./templates/RadioUnits/index.php:54
 #: ./templates/RadioUnits/view.php:10
 #: ./templates/RouterosDeviceInterfaces/add.php:11
 #: ./templates/RouterosDeviceInterfaces/edit.php:11
@@ -1292,7 +1295,7 @@ msgstr ""
 #: ./templates/AccessPointTypes/edit.php:37
 #: ./templates/AccessPoints/add.php:53
 #: ./templates/AccessPoints/edit.php:79
-#: ./templates/AccessPoints/map.php:52
+#: ./templates/AccessPoints/map.php:55
 #: ./templates/AntennaTypes/add.php:30
 #: ./templates/AntennaTypes/edit.php:38
 #: ./templates/CustomerConnectionIps/add.php:36
@@ -1321,12 +1324,12 @@ msgstr ""
 #: ./templates/RadarInterferences/edit.php:43
 #: ./templates/RadioLinks/add.php:26
 #: ./templates/RadioLinks/edit.php:31
-#: ./templates/RadioUnitBands/add.php:33
-#: ./templates/RadioUnitBands/edit.php:41
+#: ./templates/RadioUnitBands/add.php:37
+#: ./templates/RadioUnitBands/edit.php:45
 #: ./templates/RadioUnitTypes/add.php:33
 #: ./templates/RadioUnitTypes/edit.php:41
-#: ./templates/RadioUnits/add.php:78
-#: ./templates/RadioUnits/edit.php:83
+#: ./templates/RadioUnits/add.php:83
+#: ./templates/RadioUnits/edit.php:88
 #: ./templates/RouterosDeviceInterfaces/add.php:60
 #: ./templates/RouterosDeviceInterfaces/edit.php:68
 #: ./templates/RouterosDeviceIps/add.php:37
@@ -1357,16 +1360,17 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:507
 #: ./templates/AccessPoints/view.php:602
 #: ./templates/AccessPoints/view.php:664
-#: ./templates/AccessPoints/view.php:965
+#: ./templates/AccessPoints/view.php:1035
 #: ./templates/AntennaTypes/edit.php:14
 #: ./templates/AntennaTypes/index.php:68
-#: ./templates/AntennaTypes/view.php:161
+#: ./templates/AntennaTypes/view.php:173
 #: ./templates/CustomerConnectionIps/edit.php:13
 #: ./templates/CustomerConnectionIps/index.php:59
 #: ./templates/CustomerConnections/edit.php:14
 #: ./templates/CustomerConnections/index.php:92
 #: ./templates/CustomerConnections/view.php:154
-#: ./templates/CustomerConnections/view.php:233
+#: ./templates/CustomerConnections/view.php:251
+#: ./templates/CustomerConnections/view.php:323
 #: ./templates/CustomerPoints/edit.php:12
 #: ./templates/CustomerPoints/index.php:62
 #: ./templates/CustomerPoints/view.php:114
@@ -1398,17 +1402,17 @@ msgstr ""
 #: ./templates/RadarInterferences/view.php:138
 #: ./templates/RadioLinks/edit.php:12
 #: ./templates/RadioLinks/index.php:134
-#: ./templates/RadioLinks/view.php:147
+#: ./templates/RadioLinks/view.php:159
 #: ./templates/RadioUnitBands/edit.php:12
-#: ./templates/RadioUnitBands/index.php:61
+#: ./templates/RadioUnitBands/index.php:64
 #: ./templates/RadioUnitBands/view.php:118
 #: ./templates/RadioUnitBands/view.php:168
 #: ./templates/RadioUnitTypes/edit.php:14
 #: ./templates/RadioUnitTypes/index.php:65
-#: ./templates/RadioUnitTypes/view.php:161
-#: ./templates/RadioUnits/edit.php:16
-#: ./templates/RadioUnits/export.php:133
-#: ./templates/RadioUnits/index.php:116
+#: ./templates/RadioUnitTypes/view.php:173
+#: ./templates/RadioUnits/edit.php:17
+#: ./templates/RadioUnits/export.php:154
+#: ./templates/RadioUnits/index.php:128
 #: ./templates/RouterosDeviceInterfaces/edit.php:13
 #: ./templates/RouterosDeviceInterfaces/index.php:99
 #: ./templates/RouterosDeviceIps/edit.php:13
@@ -1445,11 +1449,11 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:509
 #: ./templates/AccessPoints/view.php:604
 #: ./templates/AccessPoints/view.php:666
-#: ./templates/AccessPoints/view.php:971
+#: ./templates/AccessPoints/view.php:1041
 #: ./templates/AntennaTypes/edit.php:17
 #: ./templates/AntennaTypes/index.php:70
 #: ./templates/AntennaTypes/view.php:20
-#: ./templates/AntennaTypes/view.php:163
+#: ./templates/AntennaTypes/view.php:175
 #: ./templates/CustomerConnectionIps/edit.php:16
 #: ./templates/CustomerConnectionIps/index.php:61
 #: ./templates/CustomerConnectionIps/view.php:20
@@ -1457,7 +1461,8 @@ msgstr ""
 #: ./templates/CustomerConnections/index.php:94
 #: ./templates/CustomerConnections/view.php:37
 #: ./templates/CustomerConnections/view.php:160
-#: ./templates/CustomerConnections/view.php:235
+#: ./templates/CustomerConnections/view.php:253
+#: ./templates/CustomerConnections/view.php:325
 #: ./templates/CustomerPoints/edit.php:15
 #: ./templates/CustomerPoints/index.php:64
 #: ./templates/CustomerPoints/view.php:20
@@ -1500,19 +1505,19 @@ msgstr ""
 #: ./templates/RadioLinks/edit.php:14
 #: ./templates/RadioLinks/index.php:136
 #: ./templates/RadioLinks/view.php:19
-#: ./templates/RadioLinks/view.php:149
+#: ./templates/RadioLinks/view.php:161
 #: ./templates/RadioUnitBands/edit.php:15
-#: ./templates/RadioUnitBands/index.php:63
+#: ./templates/RadioUnitBands/index.php:66
 #: ./templates/RadioUnitBands/view.php:20
 #: ./templates/RadioUnitBands/view.php:120
 #: ./templates/RadioUnitBands/view.php:170
 #: ./templates/RadioUnitTypes/edit.php:17
 #: ./templates/RadioUnitTypes/index.php:67
 #: ./templates/RadioUnitTypes/view.php:20
-#: ./templates/RadioUnitTypes/view.php:163
-#: ./templates/RadioUnits/edit.php:18
-#: ./templates/RadioUnits/export.php:135
-#: ./templates/RadioUnits/index.php:118
+#: ./templates/RadioUnitTypes/view.php:175
+#: ./templates/RadioUnits/edit.php:19
+#: ./templates/RadioUnits/export.php:156
+#: ./templates/RadioUnits/index.php:130
 #: ./templates/RadioUnits/view.php:19
 #: ./templates/RouterosDeviceInterfaces/edit.php:16
 #: ./templates/RouterosDeviceInterfaces/index.php:101
@@ -1600,13 +1605,14 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:498
 #: ./templates/AccessPoints/view.php:593
 #: ./templates/AccessPoints/view.php:655
-#: ./templates/AccessPoints/view.php:948
+#: ./templates/AccessPoints/view.php:1018
 #: ./templates/AntennaTypes/index.php:59
-#: ./templates/AntennaTypes/view.php:152
+#: ./templates/AntennaTypes/view.php:164
 #: ./templates/CustomerConnectionIps/index.php:52
 #: ./templates/CustomerConnections/index.php:72
 #: ./templates/CustomerConnections/view.php:137
-#: ./templates/CustomerConnections/view.php:222
+#: ./templates/CustomerConnections/view.php:242
+#: ./templates/CustomerConnections/view.php:312
 #: ./templates/CustomerPoints/index.php:53
 #: ./templates/CustomerPoints/view.php:97
 #: ./templates/DeviceTypes/index.php:51
@@ -1627,14 +1633,14 @@ msgstr ""
 #: ./templates/RadarInterferences/index.php:59
 #: ./templates/RadarInterferences/view.php:121
 #: ./templates/RadioLinks/index.php:125
-#: ./templates/RadioLinks/view.php:138
-#: ./templates/RadioUnitBands/index.php:52
+#: ./templates/RadioLinks/view.php:150
+#: ./templates/RadioUnitBands/index.php:55
 #: ./templates/RadioUnitBands/view.php:109
 #: ./templates/RadioUnitBands/view.php:159
 #: ./templates/RadioUnitTypes/index.php:56
-#: ./templates/RadioUnitTypes/view.php:152
-#: ./templates/RadioUnits/export.php:124
-#: ./templates/RadioUnits/index.php:107
+#: ./templates/RadioUnitTypes/view.php:164
+#: ./templates/RadioUnits/export.php:145
+#: ./templates/RadioUnits/index.php:119
 #: ./templates/RouterosDeviceInterfaces/index.php:90
 #: ./templates/RouterosDeviceIps/index.php:61
 #: ./templates/RouterosDevices/export.php:127
@@ -1663,13 +1669,14 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:502
 #: ./templates/AccessPoints/view.php:597
 #: ./templates/AccessPoints/view.php:659
-#: ./templates/AccessPoints/view.php:956
+#: ./templates/AccessPoints/view.php:1026
 #: ./templates/AntennaTypes/index.php:63
-#: ./templates/AntennaTypes/view.php:156
+#: ./templates/AntennaTypes/view.php:168
 #: ./templates/CustomerConnectionIps/index.php:54
 #: ./templates/CustomerConnections/index.php:76
 #: ./templates/CustomerConnections/view.php:145
-#: ./templates/CustomerConnections/view.php:228
+#: ./templates/CustomerConnections/view.php:246
+#: ./templates/CustomerConnections/view.php:318
 #: ./templates/CustomerPoints/index.php:57
 #: ./templates/CustomerPoints/view.php:105
 #: ./templates/DeviceTypes/index.php:55
@@ -1690,14 +1697,14 @@ msgstr ""
 #: ./templates/RadarInterferences/index.php:63
 #: ./templates/RadarInterferences/view.php:129
 #: ./templates/RadioLinks/index.php:129
-#: ./templates/RadioLinks/view.php:142
-#: ./templates/RadioUnitBands/index.php:56
+#: ./templates/RadioLinks/view.php:154
+#: ./templates/RadioUnitBands/index.php:59
 #: ./templates/RadioUnitBands/view.php:113
 #: ./templates/RadioUnitBands/view.php:163
 #: ./templates/RadioUnitTypes/index.php:60
-#: ./templates/RadioUnitTypes/view.php:156
-#: ./templates/RadioUnits/export.php:128
-#: ./templates/RadioUnits/index.php:111
+#: ./templates/RadioUnitTypes/view.php:168
+#: ./templates/RadioUnits/export.php:149
+#: ./templates/RadioUnits/index.php:123
 #: ./templates/RouterosDeviceInterfaces/index.php:94
 #: ./templates/RouterosDeviceIps/index.php:65
 #: ./templates/RouterosDevices/export.php:131
@@ -1725,19 +1732,19 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:93
 #: ./templates/LandlordPayments/index.php:100
 #: ./templates/Manufacturers/index.php:61
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:175
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:171
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:217
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:152
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:187
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:183
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:229
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:164
 #: ./templates/PaymentPurposes/index.php:61
 #: ./templates/PowerSupplies/index.php:96
 #: ./templates/PowerSupplyTypes/index.php:76
 #: ./templates/RadarInterferences/devices.php:78
 #: ./templates/RadarInterferences/index.php:80
 #: ./templates/RadioLinks/index.php:146
-#: ./templates/RadioUnitBands/index.php:73
+#: ./templates/RadioUnitBands/index.php:76
 #: ./templates/RadioUnitTypes/index.php:77
-#: ./templates/RadioUnits/index.php:128
+#: ./templates/RadioUnits/index.php:140
 #: ./templates/RouterosDeviceInterfaces/index.php:111
 #: ./templates/RouterosDeviceIps/index.php:82
 #: ./templates/RouterosDevices/index.php:106
@@ -1759,19 +1766,19 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:94
 #: ./templates/LandlordPayments/index.php:101
 #: ./templates/Manufacturers/index.php:62
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:176
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:172
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:218
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:153
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:188
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:184
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:230
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:165
 #: ./templates/PaymentPurposes/index.php:62
 #: ./templates/PowerSupplies/index.php:97
 #: ./templates/PowerSupplyTypes/index.php:77
 #: ./templates/RadarInterferences/devices.php:79
 #: ./templates/RadarInterferences/index.php:81
 #: ./templates/RadioLinks/index.php:147
-#: ./templates/RadioUnitBands/index.php:74
+#: ./templates/RadioUnitBands/index.php:77
 #: ./templates/RadioUnitTypes/index.php:78
-#: ./templates/RadioUnits/index.php:129
+#: ./templates/RadioUnits/index.php:141
 #: ./templates/RouterosDeviceInterfaces/index.php:112
 #: ./templates/RouterosDeviceIps/index.php:83
 #: ./templates/RouterosDevices/index.php:107
@@ -1793,19 +1800,19 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:96
 #: ./templates/LandlordPayments/index.php:103
 #: ./templates/Manufacturers/index.php:64
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:178
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:174
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:220
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:155
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:190
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:186
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:232
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:167
 #: ./templates/PaymentPurposes/index.php:64
 #: ./templates/PowerSupplies/index.php:99
 #: ./templates/PowerSupplyTypes/index.php:79
 #: ./templates/RadarInterferences/devices.php:81
 #: ./templates/RadarInterferences/index.php:83
 #: ./templates/RadioLinks/index.php:149
-#: ./templates/RadioUnitBands/index.php:76
+#: ./templates/RadioUnitBands/index.php:79
 #: ./templates/RadioUnitTypes/index.php:80
-#: ./templates/RadioUnits/index.php:131
+#: ./templates/RadioUnits/index.php:143
 #: ./templates/RouterosDeviceInterfaces/index.php:114
 #: ./templates/RouterosDeviceIps/index.php:85
 #: ./templates/RouterosDevices/index.php:109
@@ -1827,19 +1834,19 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:97
 #: ./templates/LandlordPayments/index.php:104
 #: ./templates/Manufacturers/index.php:65
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:179
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:175
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:221
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:156
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:191
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:187
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:233
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:168
 #: ./templates/PaymentPurposes/index.php:65
 #: ./templates/PowerSupplies/index.php:100
 #: ./templates/PowerSupplyTypes/index.php:80
 #: ./templates/RadarInterferences/devices.php:82
 #: ./templates/RadarInterferences/index.php:84
 #: ./templates/RadioLinks/index.php:150
-#: ./templates/RadioUnitBands/index.php:77
+#: ./templates/RadioUnitBands/index.php:80
 #: ./templates/RadioUnitTypes/index.php:81
-#: ./templates/RadioUnits/index.php:132
+#: ./templates/RadioUnits/index.php:144
 #: ./templates/RouterosDeviceInterfaces/index.php:115
 #: ./templates/RouterosDeviceIps/index.php:86
 #: ./templates/RouterosDevices/index.php:110
@@ -1861,19 +1868,19 @@ msgstr ""
 #: ./templates/IpAddressRanges/index.php:100
 #: ./templates/LandlordPayments/index.php:107
 #: ./templates/Manufacturers/index.php:68
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:182
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:178
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:224
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:159
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:194
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:190
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:236
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:171
 #: ./templates/PaymentPurposes/index.php:68
 #: ./templates/PowerSupplies/index.php:103
 #: ./templates/PowerSupplyTypes/index.php:83
 #: ./templates/RadarInterferences/devices.php:85
 #: ./templates/RadarInterferences/index.php:87
 #: ./templates/RadioLinks/index.php:153
-#: ./templates/RadioUnitBands/index.php:80
+#: ./templates/RadioUnitBands/index.php:83
 #: ./templates/RadioUnitTypes/index.php:84
-#: ./templates/RadioUnits/index.php:135
+#: ./templates/RadioUnits/index.php:147
 #: ./templates/RouterosDeviceInterfaces/index.php:118
 #: ./templates/RouterosDeviceIps/index.php:89
 #: ./templates/RouterosDevices/index.php:113
@@ -1907,7 +1914,7 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:67
 #: ./templates/AccessPoints/view.php:165
-#: ./templates/AccessPoints/view.php:925
+#: ./templates/AccessPoints/view.php:995
 #: ./templates/CustomerConnections/view.php:90
 #: ./templates/CustomerPoints/view.php:84
 msgid "Customer Number"
@@ -1915,7 +1922,7 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:77
 #: ./templates/AccessPoints/view.php:166
-#: ./templates/AccessPoints/view.php:926
+#: ./templates/AccessPoints/view.php:996
 #: ./templates/CustomerConnections/view.php:99
 #: ./templates/CustomerPoints/view.php:85
 msgid "Contract Number"
@@ -1929,12 +1936,13 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:318
 #: ./templates/AccessPoints/view.php:472
 #: ./templates/AccessPoints/view.php:546
-#: ./templates/AccessPoints/view.php:927
+#: ./templates/AccessPoints/view.php:997
 #: ./templates/AntennaTypes/view.php:80
-#: ./templates/AntennaTypes/view.php:108
+#: ./templates/AntennaTypes/view.php:109
 #: ./templates/CustomerConnectionIps/view.php:71
 #: ./templates/CustomerConnections/view.php:114
 #: ./templates/CustomerConnections/view.php:127
+#: ./templates/CustomerConnections/view.php:195
 #: ./templates/CustomerPoints/view.php:72
 #: ./templates/CustomerPoints/view.php:86
 #: ./templates/DeviceTypes/view.php:72
@@ -1951,20 +1959,20 @@ msgstr ""
 #: ./templates/PowerSupplyTypes/view.php:81
 #: ./templates/PowerSupplyTypes/view.php:100
 #: ./templates/RadioLinks/view.php:59
-#: ./templates/RadioLinks/view.php:93
+#: ./templates/RadioLinks/view.php:94
 #: ./templates/RadioUnitBands/view.php:73
 #: ./templates/RadioUnitBands/view.php:88
 #: ./templates/RadioUnitBands/view.php:138
 #: ./templates/RadioUnitTypes/view.php:84
-#: ./templates/RadioUnitTypes/view.php:112
-#: ./templates/RadioUnits/view.php:192
+#: ./templates/RadioUnitTypes/view.php:113
+#: ./templates/RadioUnits/view.php:206
 msgid "Note"
 msgstr ""
 
 #: ./templates/AccessPointTypes/add.php:12
 #: ./templates/AccessPointTypes/edit.php:20
 #: ./templates/AccessPointTypes/view.php:25
-#: ./templates/Settings/index.php:61
+#: ./templates/Settings/index.php:66
 msgid "List Access Point Types"
 msgstr ""
 
@@ -2013,7 +2021,7 @@ msgstr ""
 #: ./templates/AccessPointTypes/view.php:74
 #: ./templates/AccessPoints/view.php:96
 #: ./templates/CustomerPoints/view.php:47
-#: ./templates/RadioUnits/export.php:40
+#: ./templates/RadioUnits/export.php:41
 #: ./templates/RouterosDevices/export.php:44
 msgid "Gps Y"
 msgstr ""
@@ -2021,7 +2029,7 @@ msgstr ""
 #: ./templates/AccessPointTypes/view.php:75
 #: ./templates/AccessPoints/view.php:101
 #: ./templates/CustomerPoints/view.php:52
-#: ./templates/RadioUnits/export.php:41
+#: ./templates/RadioUnits/export.php:42
 #: ./templates/RouterosDevices/export.php:45
 msgid "Gps X"
 msgstr ""
@@ -2121,20 +2129,27 @@ msgid "Map Options"
 msgstr ""
 
 #: ./templates/AccessPoints/map.php:33
-msgid "RouterOS IP Links"
+#: ./templates/RadioLinks/index.php:27
+#: ./templates/layout/default.php:152
+#: ./templates/layout/default.php:353
+msgid "Radio Links"
 msgstr ""
 
 #: ./templates/AccessPoints/map.php:36
-msgid "RouterOS Wireless Links"
+msgid "RouterOS IP Links"
 msgstr ""
 
 #: ./templates/AccessPoints/map.php:39
+msgid "RouterOS Wireless Links"
+msgstr ""
+
+#: ./templates/AccessPoints/map.php:42
 msgid "Linked Customers"
 msgstr ""
 
-#: ./templates/AccessPoints/map.php:46
+#: ./templates/AccessPoints/map.php:49
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:112
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:102
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:103
 #: ./templates/RadarInterferences/view.php:75
 #: ./templates/RouterosDeviceInterfaces/add.php:28
 #: ./templates/RouterosDeviceInterfaces/edit.php:36
@@ -2374,12 +2389,12 @@ msgstr ""
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:53
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:28
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:38
-#: ./templates/RadioUnitBands/index.php:48
-#: ./templates/RadioUnitBands/index.php:49
+#: ./templates/RadioUnitBands/index.php:51
+#: ./templates/RadioUnitBands/index.php:52
 #: ./templates/RadioUnitBands/view.php:60
 #: ./templates/RadioUnitBands/view.php:64
-#: ./templates/RadioUnits/view.php:142
-#: ./templates/RadioUnits/view.php:146
+#: ./templates/RadioUnits/view.php:156
+#: ./templates/RadioUnits/view.php:160
 #: ./templates/TaskStates/index.php:39
 #: ./templates/TaskStates/view.php:45
 #: ./templates/TaskTypes/index.php:35
@@ -2420,12 +2435,12 @@ msgstr ""
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:54
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:28
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:38
-#: ./templates/RadioUnitBands/index.php:48
-#: ./templates/RadioUnitBands/index.php:49
+#: ./templates/RadioUnitBands/index.php:51
+#: ./templates/RadioUnitBands/index.php:52
 #: ./templates/RadioUnitBands/view.php:60
 #: ./templates/RadioUnitBands/view.php:64
-#: ./templates/RadioUnits/view.php:142
-#: ./templates/RadioUnits/view.php:146
+#: ./templates/RadioUnits/view.php:156
+#: ./templates/RadioUnits/view.php:160
 #: ./templates/TaskStates/index.php:39
 #: ./templates/TaskStates/view.php:45
 #: ./templates/TaskTypes/index.php:35
@@ -2453,17 +2468,18 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:466
 #: ./templates/AccessPoints/view.php:542
 #: ./templates/AccessPoints/view.php:629
-#: ./templates/AntennaTypes/view.php:104
-#: ./templates/CustomerConnections/view.php:184
+#: ./templates/AntennaTypes/view.php:105
+#: ./templates/CustomerConnections/view.php:191
+#: ./templates/CustomerConnections/view.php:274
 #: ./templates/DeviceTypes/view.php:89
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:101
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:102
 #: ./templates/PowerSupplies/view.php:74
 #: ./templates/PowerSupplyTypes/view.php:94
 #: ./templates/RadioLinks/index.php:46
-#: ./templates/RadioLinks/view.php:88
-#: ./templates/RadioUnitTypes/view.php:108
-#: ./templates/RadioUnits/export.php:33
-#: ./templates/RadioUnits/view.php:157
+#: ./templates/RadioLinks/view.php:89
+#: ./templates/RadioUnitTypes/view.php:109
+#: ./templates/RadioUnits/export.php:34
+#: ./templates/RadioUnits/view.php:171
 #: ./templates/RouterosDevices/export.php:38
 #: ./templates/RouterosDevices/view.php:124
 msgid "Serial Number"
@@ -2508,172 +2524,190 @@ msgstr ""
 
 #: ./templates/AccessPoints/view.php:524
 #: ./templates/AntennaTypes/view.php:86
+#: ./templates/CustomerConnections/view.php:173
 #: ./templates/RadioLinks/view.php:70
 #: ./templates/RadioUnitTypes/view.php:90
 msgid "Related Radio Units"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:530
-#: ./templates/AntennaTypes/view.php:94
+#: ./templates/AccessPoints/view.php:683
+#: ./templates/AntennaTypes/view.php:95
+#: ./templates/CustomerConnections/view.php:179
 #: ./templates/RadioLinks/index.php:36
-#: ./templates/RadioLinks/view.php:77
-#: ./templates/RadioUnits/export.php:17
+#: ./templates/RadioLinks/view.php:78
+#: ./templates/RadioUnits/export.php:18
 #: ./templates/RadioUnits/view.php:44
 msgid "Radio Unit Type"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:531
-#: ./templates/AntennaTypes/view.php:93
-#: ./templates/RadioUnitTypes/view.php:97
-#: ./templates/RadioUnits/export.php:18
-#: ./templates/RadioUnits/view.php:70
+#: ./templates/AccessPoints/view.php:684
+#: ./templates/AntennaTypes/view.php:94
+#: ./templates/CustomerConnections/view.php:180
+#: ./templates/RadioUnitTypes/view.php:98
+#: ./templates/RadioUnits/export.php:19
+#: ./templates/RadioUnits/view.php:84
 msgid "Radio Link"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:532
+#: ./templates/CustomerConnections/view.php:181
 #: ./templates/RadioLinks/index.php:37
-#: ./templates/RadioLinks/view.php:78
-#: ./templates/RadioUnitTypes/view.php:98
-#: ./templates/RadioUnits/export.php:19
-#: ./templates/RadioUnits/view.php:83
+#: ./templates/RadioLinks/view.php:79
+#: ./templates/RadioUnitTypes/view.php:99
+#: ./templates/RadioUnits/export.php:20
+#: ./templates/RadioUnits/view.php:97
 msgid "Antenna Type"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:533
-#: ./templates/AntennaTypes/view.php:95
+#: ./templates/AntennaTypes/view.php:96
+#: ./templates/CustomerConnections/view.php:182
 #: ./templates/RadioLinks/index.php:38
-#: ./templates/RadioLinks/view.php:79
-#: ./templates/RadioUnitTypes/view.php:99
-#: ./templates/RadioUnits/export.php:22
-#: ./templates/RadioUnits/view.php:96
+#: ./templates/RadioLinks/view.php:80
+#: ./templates/RadioUnitTypes/view.php:100
+#: ./templates/RadioUnits/export.php:23
+#: ./templates/RadioUnits/view.php:110
 msgid "Polarization"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:534
-#: ./templates/AntennaTypes/view.php:96
+#: ./templates/AntennaTypes/view.php:97
+#: ./templates/CustomerConnections/view.php:183
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:25
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:141
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:142
 #: ./templates/RadioLinks/index.php:39
-#: ./templates/RadioLinks/view.php:80
-#: ./templates/RadioUnitTypes/view.php:100
-#: ./templates/RadioUnits/export.php:23
-#: ./templates/RadioUnits/view.php:103
+#: ./templates/RadioLinks/view.php:81
+#: ./templates/RadioUnitTypes/view.php:101
+#: ./templates/RadioUnits/export.php:24
+#: ./templates/RadioUnits/view.php:117
 msgid "Channel Width"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:535
-#: ./templates/AntennaTypes/view.php:97
+#: ./templates/AntennaTypes/view.php:98
+#: ./templates/CustomerConnections/view.php:184
 #: ./templates/RadioLinks/index.php:40
-#: ./templates/RadioLinks/view.php:81
-#: ./templates/RadioUnitTypes/view.php:101
-#: ./templates/RadioUnits/export.php:24
-#: ./templates/RadioUnits/view.php:108
+#: ./templates/RadioLinks/view.php:82
+#: ./templates/RadioUnitTypes/view.php:102
+#: ./templates/RadioUnits/export.php:25
+#: ./templates/RadioUnits/view.php:122
 msgid "Tx Frequency"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:536
-#: ./templates/AntennaTypes/view.php:98
+#: ./templates/AntennaTypes/view.php:99
+#: ./templates/CustomerConnections/view.php:185
 #: ./templates/RadioLinks/index.php:41
-#: ./templates/RadioLinks/view.php:82
-#: ./templates/RadioUnitTypes/view.php:102
-#: ./templates/RadioUnits/export.php:25
-#: ./templates/RadioUnits/view.php:113
+#: ./templates/RadioLinks/view.php:83
+#: ./templates/RadioUnitTypes/view.php:103
+#: ./templates/RadioUnits/export.php:26
+#: ./templates/RadioUnits/view.php:127
 msgid "Rx Frequency"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:537
-#: ./templates/AntennaTypes/view.php:99
+#: ./templates/AntennaTypes/view.php:100
+#: ./templates/CustomerConnections/view.php:186
 #: ./templates/RadioLinks/index.php:42
-#: ./templates/RadioLinks/view.php:83
-#: ./templates/RadioUnitTypes/view.php:103
-#: ./templates/RadioUnits/export.php:26
-#: ./templates/RadioUnits/view.php:118
+#: ./templates/RadioLinks/view.php:84
+#: ./templates/RadioUnitTypes/view.php:104
+#: ./templates/RadioUnits/export.php:27
+#: ./templates/RadioUnits/view.php:132
 msgid "Tx Power"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:538
-#: ./templates/AntennaTypes/view.php:100
+#: ./templates/AntennaTypes/view.php:101
+#: ./templates/CustomerConnections/view.php:187
 #: ./templates/RadioLinks/index.php:43
-#: ./templates/RadioLinks/view.php:84
-#: ./templates/RadioUnitTypes/view.php:104
-#: ./templates/RadioUnits/export.php:27
-#: ./templates/RadioUnits/view.php:123
+#: ./templates/RadioLinks/view.php:85
+#: ./templates/RadioUnitTypes/view.php:105
+#: ./templates/RadioUnits/export.php:28
+#: ./templates/RadioUnits/view.php:137
 msgid "Rx Signal"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:539
-#: ./templates/AntennaTypes/view.php:101
+#: ./templates/AntennaTypes/view.php:102
+#: ./templates/CustomerConnections/view.php:188
 #: ./templates/RadioLinks/index.php:44
-#: ./templates/RadioLinks/view.php:85
-#: ./templates/RadioUnitTypes/view.php:105
-#: ./templates/RadioUnits/export.php:28
-#: ./templates/RadioUnits/view.php:131
+#: ./templates/RadioLinks/view.php:86
+#: ./templates/RadioUnitTypes/view.php:106
+#: ./templates/RadioUnits/export.php:29
+#: ./templates/RadioUnits/view.php:145
 msgid "Operating Speed"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:540
-#: ./templates/AntennaTypes/view.php:102
+#: ./templates/AntennaTypes/view.php:103
+#: ./templates/CustomerConnections/view.php:189
 #: ./templates/RadioLinks/index.php:45
-#: ./templates/RadioLinks/view.php:86
-#: ./templates/RadioUnitTypes/view.php:106
-#: ./templates/RadioUnits/export.php:29
-#: ./templates/RadioUnits/view.php:136
+#: ./templates/RadioLinks/view.php:87
+#: ./templates/RadioUnitTypes/view.php:107
+#: ./templates/RadioUnits/export.php:30
+#: ./templates/RadioUnits/view.php:150
 msgid "Maximal Speed"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:541
 #: ./templates/AccessPoints/view.php:631
-#: ./templates/AntennaTypes/view.php:103
-#: ./templates/CustomerConnections/view.php:186
+#: ./templates/AntennaTypes/view.php:104
+#: ./templates/CustomerConnections/view.php:190
+#: ./templates/CustomerConnections/view.php:276
 #: ./templates/DeviceTypes/view.php:91
-#: ./templates/RadioLinks/view.php:87
-#: ./templates/RadioUnitTypes/view.php:107
-#: ./templates/RadioUnits/export.php:32
-#: ./templates/RadioUnits/view.php:153
+#: ./templates/RadioLinks/view.php:88
+#: ./templates/RadioUnitTypes/view.php:108
+#: ./templates/RadioUnits/export.php:33
+#: ./templates/RadioUnits/view.php:167
 #: ./templates/RouterosDevices/export.php:40
 #: ./templates/RouterosDevices/view.php:132
 msgid "Firmware Version"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:543
-#: ./templates/AntennaTypes/view.php:105
+#: ./templates/AntennaTypes/view.php:106
+#: ./templates/CustomerConnections/view.php:192
 #: ./templates/RadioLinks/index.php:47
-#: ./templates/RadioLinks/view.php:89
-#: ./templates/RadioUnitTypes/view.php:109
-#: ./templates/RadioUnits/export.php:34
-#: ./templates/RadioUnits/view.php:161
+#: ./templates/RadioLinks/view.php:90
+#: ./templates/RadioUnitTypes/view.php:110
+#: ./templates/RadioUnits/export.php:35
+#: ./templates/RadioUnits/view.php:175
 msgid "Station Address"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:544
-#: ./templates/AntennaTypes/view.php:106
-#: ./templates/RadioLinks/view.php:90
-#: ./templates/RadioUnitTypes/view.php:110
-#: ./templates/RadioUnits/export.php:35
-#: ./templates/RadioUnits/view.php:165
+#: ./templates/AntennaTypes/view.php:107
+#: ./templates/CustomerConnections/view.php:193
+#: ./templates/RadioLinks/view.php:91
+#: ./templates/RadioUnitTypes/view.php:111
+#: ./templates/RadioUnits/export.php:36
+#: ./templates/RadioUnits/view.php:179
 msgid "Expiration Date"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:545
 #: ./templates/AccessPoints/view.php:626
-#: ./templates/AntennaTypes/view.php:107
+#: ./templates/AntennaTypes/view.php:108
 #: ./templates/CustomerConnectionIps/add.php:31
 #: ./templates/CustomerConnectionIps/edit.php:39
 #: ./templates/CustomerConnectionIps/index.php:32
 #: ./templates/CustomerConnectionIps/view.php:61
 #: ./templates/CustomerConnections/view.php:126
-#: ./templates/CustomerConnections/view.php:181
+#: ./templates/CustomerConnections/view.php:194
+#: ./templates/CustomerConnections/view.php:271
 #: ./templates/DeviceTypes/view.php:86
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:22
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:104
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:105
 #: ./templates/RadioLinks/index.php:48
-#: ./templates/RadioLinks/view.php:91
-#: ./templates/RadioUnitTypes/view.php:111
-#: ./templates/RadioUnits/add.php:68
-#: ./templates/RadioUnits/edit.php:73
-#: ./templates/RadioUnits/export.php:36
-#: ./templates/RadioUnits/index.php:51
-#: ./templates/RadioUnits/view.php:172
+#: ./templates/RadioLinks/view.php:92
+#: ./templates/RadioUnitTypes/view.php:112
+#: ./templates/RadioUnits/add.php:73
+#: ./templates/RadioUnits/edit.php:78
+#: ./templates/RadioUnits/export.php:37
+#: ./templates/RadioUnits/index.php:52
+#: ./templates/RadioUnits/view.php:186
 #: ./templates/RouterosDeviceIps/add.php:32
 #: ./templates/RouterosDeviceIps/edit.php:40
 #: ./templates/RouterosDeviceIps/index.php:36
@@ -2694,22 +2728,22 @@ msgid "New RouterOS Device"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:619
-#: ./templates/CustomerConnections/view.php:173
+#: ./templates/CustomerConnections/view.php:263
 #: ./templates/DeviceTypes/view.php:78
 msgid "Related RouterOS Devices"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:625
-#: ./templates/AccessPoints/view.php:683
-#: ./templates/AccessPoints/view.php:802
-#: ./templates/CustomerConnections/view.php:180
+#: ./templates/AccessPoints/view.php:753
+#: ./templates/AccessPoints/view.php:874
+#: ./templates/CustomerConnections/view.php:270
 #: ./templates/RouterosDevices/export.php:34
 #: ./templates/RouterosDevices/view.php:81
 msgid "Device Type"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:627
-#: ./templates/CustomerConnections/view.php:182
+#: ./templates/CustomerConnections/view.php:272
 #: ./templates/DeviceTypes/view.php:87
 #: ./templates/RouterosDevices/export.php:36
 #: ./templates/RouterosDevices/view.php:116
@@ -2717,7 +2751,7 @@ msgid "System Description"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:628
-#: ./templates/CustomerConnections/view.php:183
+#: ./templates/CustomerConnections/view.php:273
 #: ./templates/DeviceTypes/view.php:88
 #: ./templates/RouterosDevices/export.php:37
 #: ./templates/RouterosDevices/view.php:120
@@ -2725,7 +2759,7 @@ msgid "Board Name"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:630
-#: ./templates/CustomerConnections/view.php:185
+#: ./templates/CustomerConnections/view.php:275
 #: ./templates/DeviceTypes/view.php:90
 #: ./templates/RouterosDevices/export.php:39
 #: ./templates/RouterosDevices/view.php:128
@@ -2733,62 +2767,72 @@ msgid "Software Version"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:677
-#: ./templates/RouterosDevices/view.php:254
-msgid "Related RouterOS Wireless Links"
-msgstr ""
-
-#: ./templates/AccessPoints/view.php:684
-#: ./templates/RouterosDevices/view.php:259
-msgid "Local Wireless Interface"
+msgid "Related Radio Unit Links"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:685
-#: ./templates/RouterosDevices/view.php:260
-msgid "Neighbouring Wireless Interface"
+msgid "Neighbouring Radio Unit"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:686
-#: ./templates/AccessPoints/view.php:805
-#: ./templates/RouterosDevices/view.php:261
-#: ./templates/RouterosDevices/view.php:363
-msgid "Neighbouring RouterOS Device"
-msgstr ""
-
-#: ./templates/AccessPoints/view.php:687
-#: ./templates/AccessPoints/view.php:806
+#: ./templates/AccessPoints/view.php:757
+#: ./templates/AccessPoints/view.php:878
 #: ./templates/RouterosDevices/view.php:262
-#: ./templates/RouterosDevices/view.php:364
+#: ./templates/RouterosDevices/view.php:358
 msgid "Neighbouring Access Point"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:688
-#: ./templates/AccessPoints/view.php:807
+#: ./templates/AccessPoints/view.php:687
+#: ./templates/AccessPoints/view.php:758
+#: ./templates/AccessPoints/view.php:879
 #: ./templates/RouterosDevices/view.php:263
-#: ./templates/RouterosDevices/view.php:365
+#: ./templates/RouterosDevices/view.php:359
 msgid "Neighbouring Customer Connection"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:796
-#: ./templates/RouterosDevices/view.php:356
+#: ./templates/AccessPoints/view.php:747
+#: ./templates/RouterosDevices/view.php:254
 msgid "Related RouterOS IP Links"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:803
-#: ./templates/RouterosDevices/view.php:361
+#: ./templates/AccessPoints/view.php:754
+#: ./templates/RouterosDevices/view.php:259
 msgid "Local IP Address"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:804
-#: ./templates/RouterosDevices/view.php:362
+#: ./templates/AccessPoints/view.php:755
+#: ./templates/RouterosDevices/view.php:260
 msgid "Neighbouring IP address"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:918
+#: ./templates/AccessPoints/view.php:756
+#: ./templates/AccessPoints/view.php:877
+#: ./templates/RouterosDevices/view.php:261
+#: ./templates/RouterosDevices/view.php:357
+msgid "Neighbouring RouterOS Device"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:868
+#: ./templates/RouterosDevices/view.php:350
+msgid "Related RouterOS Wireless Links"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:875
+#: ./templates/RouterosDevices/view.php:355
+msgid "Local Wireless Interface"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:876
+#: ./templates/RouterosDevices/view.php:356
+msgid "Neighbouring Wireless Interface"
+msgstr ""
+
+#: ./templates/AccessPoints/view.php:988
 #: ./templates/CustomerPoints/view.php:78
 msgid "Related Customer Connections"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:924
+#: ./templates/AccessPoints/view.php:994
 #: ./templates/CustomerConnections/view.php:65
 msgid "Customer Point"
 msgstr ""
@@ -2814,7 +2858,7 @@ msgid "New Antenna Type"
 msgstr ""
 
 #: ./templates/AntennaTypes/index.php:25
-#: ./templates/Settings/index.php:98
+#: ./templates/Settings/index.php:103
 msgid "Antenna Types"
 msgstr ""
 
@@ -2825,10 +2869,10 @@ msgstr ""
 #: ./templates/AntennaTypes/view.php:39
 #: ./templates/Manufacturers/view.php:65
 #: ./templates/Manufacturers/view.php:159
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:118
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:100
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:134
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:92
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:119
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:101
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:135
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:93
 #: ./templates/RadioUnitTypes/view.php:47
 msgid "Radio Unit Band"
 msgstr ""
@@ -2838,7 +2882,7 @@ msgstr ""
 #: ./templates/RadioUnitBands/view.php:85
 #: ./templates/RadioUnitBands/view.php:136
 #: ./templates/RadioUnitTypes/view.php:61
-#: ./templates/RadioUnits/export.php:20
+#: ./templates/RadioUnits/export.php:21
 msgid "Manufacturer"
 msgstr ""
 
@@ -2856,9 +2900,25 @@ msgstr ""
 #: ./templates/AntennaTypes/view.php:69
 #: ./templates/Manufacturers/view.php:66
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:26
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:142
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:143
 #: ./templates/RadioUnitBands/view.php:86
 msgid "Antenna Gain"
+msgstr ""
+
+#: ./templates/AntennaTypes/view.php:93
+#: ./templates/CustomerConnectionIps/view.php:47
+#: ./templates/DeviceTypes/view.php:85
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:114
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:100
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:134
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:92
+#: ./templates/RadioLinks/view.php:77
+#: ./templates/RadioUnitTypes/view.php:97
+#: ./templates/RadioUnits/export.php:16
+#: ./templates/RadioUnits/view.php:70
+#: ./templates/RouterosDevices/export.php:32
+#: ./templates/RouterosDevices/view.php:67
+msgid "Customer Connection"
 msgstr ""
 
 #: ./templates/AppUsers/user_settings.php:53
@@ -2908,13 +2968,6 @@ msgstr ""
 
 #: ./templates/CustomerConnectionIps/view.php:17
 msgid "Delete Customer Connection IP"
-msgstr ""
-
-#: ./templates/CustomerConnectionIps/view.php:47
-#: ./templates/DeviceTypes/view.php:85
-#: ./templates/RouterosDevices/export.php:32
-#: ./templates/RouterosDevices/view.php:67
-msgid "Customer Connection"
 msgstr ""
 
 #: ./templates/CustomerConnections/add.php:14
@@ -3017,7 +3070,7 @@ msgid "New Device Type"
 msgstr ""
 
 #: ./templates/DeviceTypes/index.php:21
-#: ./templates/Settings/index.php:77
+#: ./templates/Settings/index.php:82
 msgid "Device Types"
 msgstr ""
 
@@ -3171,8 +3224,8 @@ msgid "New Manufacturer"
 msgstr ""
 
 #: ./templates/Manufacturers/index.php:25
-#: ./templates/Settings/index.php:103
-#: ./templates/Settings/index.php:119
+#: ./templates/Settings/index.php:108
+#: ./templates/Settings/index.php:124
 msgid "Manufacturers"
 msgstr ""
 
@@ -3264,39 +3317,39 @@ msgstr ""
 msgid "No band asks for its device radios to be recorded yet."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:114
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:103
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:115
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:104
 msgid "Interface"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:117
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:118
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:24
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:106
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:107
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:24
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:140
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:141
 #: ./templates/RadarInterferences/view.php:82
 #: ./templates/RouterosDeviceInterfaces/view.php:84
 #: ./templates/RouterosDevices/view.php:151
 msgid "Frequency"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:119
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:120
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:98
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:132
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:90
 msgid "Radio Unit"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:120
-#: ./templates/Overviews/overview_of_radio_units_against_devices.php:107
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:121
+#: ./templates/Overviews/overview_of_radio_units_against_devices.php:108
 msgid "Read"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:159
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:171
 msgid "Nothing records this radio, and its band says something should."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:160
+#: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:172
 msgid "A radio unit is the record of this radio."
 msgstr ""
 
@@ -3351,12 +3404,12 @@ msgid "Not registered"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:27
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:143
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:144
 msgid "Power"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:28
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:144
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:145
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:89
 msgid "Coordinates"
 msgstr ""
@@ -3373,24 +3426,24 @@ msgstr ""
 msgid "Each radio unit of a band whose units are registered is put next to the station the regulator has registered for it - found by the address the unit is recorded under, or failing that by the number the registration was filed under. A unit nothing answers for is one the register does not know about, whatever the records here say. Nothing is corrected, only reported."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:137
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:138
 #: ./templates/RadioLinks/view.php:44
-#: ./templates/RadioLinks/view.php:92
-#: ./templates/RadioUnits/export.php:39
-#: ./templates/RadioUnits/view.php:184
+#: ./templates/RadioLinks/view.php:93
+#: ./templates/RadioUnits/export.php:40
+#: ./templates/RadioUnits/view.php:198
 msgid "Authorization Number"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:139
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:140
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:85
 msgid "Station"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:200
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:212
 msgid "{0} m"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:205
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:217
 msgid "{0} m away"
 msgstr ""
 
@@ -3406,15 +3459,15 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:93
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:94
 msgid "Status"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:115
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:116
 msgid "No radio unit records this station."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:117
+#: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:118
 #: ./templates/element/rlan/registration_found.php:39
 msgid "None"
 msgstr ""
@@ -3422,7 +3475,7 @@ msgstr ""
 #: ./templates/PaymentPurposes/add.php:12
 #: ./templates/PaymentPurposes/edit.php:20
 #: ./templates/PaymentPurposes/view.php:25
-#: ./templates/Settings/index.php:66
+#: ./templates/Settings/index.php:71
 msgid "List Payment Purposes"
 msgstr ""
 
@@ -3493,7 +3546,7 @@ msgid "New Power Supply Type"
 msgstr ""
 
 #: ./templates/PowerSupplyTypes/index.php:25
-#: ./templates/Settings/index.php:114
+#: ./templates/Settings/index.php:119
 msgid "Power Supply Types"
 msgstr ""
 
@@ -3564,7 +3617,7 @@ msgid "BSSID"
 msgstr ""
 
 #: ./templates/RadarInterferences/view.php:81
-#: ./templates/RadioUnits/export.php:21
+#: ./templates/RadioUnits/export.php:22
 #: ./templates/RouterosDeviceInterfaces/view.php:80
 #: ./templates/RouterosDevices/export.php:42
 #: ./templates/RouterosDevices/view.php:150
@@ -3635,15 +3688,10 @@ msgstr ""
 msgid "New Radio Link"
 msgstr ""
 
-#: ./templates/RadioLinks/index.php:27
-#: ./templates/layout/default.php:152
-#: ./templates/layout/default.php:353
-msgid "Radio Links"
-msgstr ""
-
 #: ./templates/RadioLinks/index.php:35
 #: ./templates/RadioUnits/export.php:10
 #: ./templates/RadioUnits/index.php:29
+#: ./templates/Settings/index.php:34
 #: ./templates/layout/default.php:358
 msgid "Radio Units"
 msgstr ""
@@ -3666,6 +3714,13 @@ msgstr ""
 msgid "Add Radio Unit Band"
 msgstr ""
 
+#: ./templates/RadioUnitBands/add.php:32
+#: ./templates/RadioUnitBands/edit.php:40
+#: ./templates/RadioUnitBands/index.php:37
+#: ./templates/RadioUnitBands/view.php:63
+msgid "Units Require RLAN Registration"
+msgstr ""
+
 #: ./templates/RadioUnitBands/edit.php:30
 #: ./templates/RadioUnitBands/view.php:12
 msgid "Edit Radio Unit Band"
@@ -3677,7 +3732,7 @@ msgid "New Radio Unit Band"
 msgstr ""
 
 #: ./templates/RadioUnitBands/index.php:25
-#: ./templates/Settings/index.php:93
+#: ./templates/Settings/index.php:98
 msgid "Radio Unit Bands"
 msgstr ""
 
@@ -3695,10 +3750,6 @@ msgstr ""
 
 #: ./templates/RadioUnitBands/view.php:59
 msgid "Devices Require Radio Unit"
-msgstr ""
-
-#: ./templates/RadioUnitBands/view.php:63
-msgid "Units Require RLAN Registration"
 msgstr ""
 
 #: ./templates/RadioUnitTypes/add.php:14
@@ -3722,7 +3773,7 @@ msgid "New Radio Unit Type"
 msgstr ""
 
 #: ./templates/RadioUnitTypes/index.php:25
-#: ./templates/Settings/index.php:88
+#: ./templates/Settings/index.php:93
 msgid "Radio Unit Types"
 msgstr ""
 
@@ -3730,24 +3781,24 @@ msgstr ""
 msgid "Delete Radio Unit Type"
 msgstr ""
 
-#: ./templates/RadioUnits/add.php:15
-#: ./templates/RadioUnits/edit.php:20
+#: ./templates/RadioUnits/add.php:16
+#: ./templates/RadioUnits/edit.php:21
 #: ./templates/RadioUnits/view.php:22
 msgid "List Radio Units"
 msgstr ""
 
-#: ./templates/RadioUnits/add.php:22
+#: ./templates/RadioUnits/add.php:23
 msgid "Add Radio Unit"
 msgstr ""
 
-#: ./templates/RadioUnits/add.php:57
-#: ./templates/RadioUnits/edit.php:62
-#: ./templates/RadioUnits/export.php:31
-#: ./templates/RadioUnits/view.php:145
+#: ./templates/RadioUnits/add.php:62
+#: ./templates/RadioUnits/edit.php:67
+#: ./templates/RadioUnits/export.php:32
+#: ./templates/RadioUnits/view.php:159
 msgid "ATPC"
 msgstr ""
 
-#: ./templates/RadioUnits/edit.php:27
+#: ./templates/RadioUnits/edit.php:28
 #: ./templates/RadioUnits/view.php:12
 msgid "Edit Radio Unit"
 msgstr ""
@@ -3757,18 +3808,18 @@ msgstr ""
 msgid "Index"
 msgstr ""
 
-#: ./templates/RadioUnits/export.php:30
-#: ./templates/RadioUnits/view.php:141
+#: ./templates/RadioUnits/export.php:31
+#: ./templates/RadioUnits/view.php:155
 msgid "Acm"
 msgstr ""
 
-#: ./templates/RadioUnits/export.php:37
-#: ./templates/RadioUnits/view.php:176
+#: ./templates/RadioUnits/export.php:38
+#: ./templates/RadioUnits/view.php:190
 msgid "Device Login"
 msgstr ""
 
-#: ./templates/RadioUnits/export.php:38
-#: ./templates/RadioUnits/view.php:180
+#: ./templates/RadioUnits/export.php:39
+#: ./templates/RadioUnits/view.php:194
 msgid "Device Password"
 msgstr ""
 
@@ -3927,46 +3978,46 @@ msgstr ""
 msgid "Devices"
 msgstr ""
 
-#: ./templates/Settings/index.php:37
+#: ./templates/Settings/index.php:42
 msgid "Access Point Functions"
 msgstr ""
 
-#: ./templates/Settings/index.php:40
+#: ./templates/Settings/index.php:45
 msgid "Update Phone Number Format"
 msgstr ""
 
-#: ./templates/Settings/index.php:48
+#: ./templates/Settings/index.php:53
 msgid "Do you really want to update all phones for all access point contacts?"
 msgstr ""
 
-#: ./templates/Settings/index.php:58
+#: ./templates/Settings/index.php:63
 msgid "Access Point Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:74
+#: ./templates/Settings/index.php:79
 msgid "RouterOS Device Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:85
+#: ./templates/Settings/index.php:90
 msgid "Radio Link Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:111
+#: ./templates/Settings/index.php:116
 msgid "Power Supply Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:127
+#: ./templates/Settings/index.php:132
 msgid "Task Related"
 msgstr ""
 
-#: ./templates/Settings/index.php:130
+#: ./templates/Settings/index.php:135
 #: ./templates/TaskStates/add.php:11
 #: ./templates/TaskStates/edit.php:16
 #: ./templates/TaskStates/view.php:21
 msgid "List Task States"
 msgstr ""
 
-#: ./templates/Settings/index.php:135
+#: ./templates/Settings/index.php:140
 #: ./templates/TaskTypes/add.php:11
 #: ./templates/TaskTypes/edit.php:16
 #: ./templates/TaskTypes/view.php:21
