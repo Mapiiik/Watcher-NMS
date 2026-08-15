@@ -67,7 +67,7 @@ export RLAN_PASSWORD=""
 export RLAN_USER_ID=""
 ```
 
-Then say which bands are registered — tick **Units Require Rlan Registration**
+Then say which bands are registered — tick **Units Require RLAN Registration**
 on each band under *Radio Unit Bands*. Nothing is reported for a band until it
 is, so an installation that has not got round to it sees an empty listing
 rather than a wall of findings.

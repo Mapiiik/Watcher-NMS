@@ -15,7 +15,7 @@ $verdicts = [
     RadioUnitRegistrationComparison::DIFFERS => __('Differs'),
     RadioUnitRegistrationComparison::MATCHES => __('Matches'),
     RadioUnitRegistrationComparison::NOT_IN_INVENTORY => __('Not recorded here'),
-    RadioUnitRegistrationComparison::NOT_REPORTED => __('Not registered as such'),
+    RadioUnitRegistrationComparison::NOT_REPORTED => __('Not kept in the register'),
     RadioUnitRegistrationComparison::NOT_READ => __('Not read yet'),
     RadioUnitRegistrationComparison::NOT_REGISTERED => __('Not registered'),
 ];

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-12 20:30+0200\n"
-"PO-Revision-Date: 2026-08-12 20:34+0200\n"
+"POT-Creation-Date: 2026-08-15 15:07+0200\n"
+"PO-Revision-Date: 2026-08-15 15:17+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -15,12 +15,20 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: config/settings.php:54
+#: config/settings.php:55
 msgid ""
 "IP ranges left out when devices are linked by their neighbouring addresses."
 msgstr ""
 "Rozsahy IP adres, které nejsou zahrnuty, pokud jsou zařízení propojena na "
 "základě sousedních adres."
+
+#: config/settings.php:61
+msgid ""
+"How far a registered station may stand from the access point of the radio "
+"unit and still be taken for the same place."
+msgstr ""
+"Jak daleko od přístupového bodu rádiové jednotky může být umístěna "
+"registrovaná stanice, aby byla stále považována za stejné místo."
 
 #: src/Agent/ApiClient.php:28
 msgid "Watcher Agent is not configured."
@@ -35,6 +43,7 @@ msgid "Watcher Agent returned HTTP {0} ({1})"
 msgstr "Watcher Agent vrátil HTTP {0} ({1})"
 
 #: src/Agent/ApiClient.php:84 src/Agent/ApiClient.php:92
+#: src/Rlan/ApiClient.php:287 src/Rlan/Service/RlanStationsUpdateService.php:98
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
@@ -77,6 +86,8 @@ msgstr "Aktualizace zákaznických bodů se nezdařila."
 #: templates/IpAddressRanges/view.php:55 templates/LandlordPayments/view.php:43
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:113
 #: templates/Overviews/overview_of_radio_units_against_devices.php:99
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:133
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:91
 #: templates/PaymentPurposes/view.php:64 templates/PowerSupplies/view.php:61
 #: templates/PowerSupplyTypes/view.php:93 templates/RadioLinks/view.php:76
 #: templates/RadioUnitTypes/view.php:96 templates/RadioUnits/export.php:15
@@ -175,13 +186,15 @@ msgstr "Hlášení odečtu elektroměru se nezdařilo."
 #: templates/ElectricityMeterReadings/view.php:43
 #: templates/IpAddressRanges/view.php:43 templates/Manufacturers/view.php:43
 #: templates/Manufacturers/view.php:64 templates/Manufacturers/view.php:116
-#: templates/Manufacturers/view.php:158 templates/PaymentPurposes/view.php:43
-#: templates/PowerSupplies/view.php:43 templates/PowerSupplyTypes/view.php:43
+#: templates/Manufacturers/view.php:158
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:86
+#: templates/PaymentPurposes/view.php:43 templates/PowerSupplies/view.php:43
+#: templates/PowerSupplyTypes/view.php:43
 #: templates/PowerSupplyTypes/view.php:92
 #: templates/RadarInterferences/view.php:43
 #: templates/RadarInterferences/view.php:76 templates/RadioLinks/view.php:40
 #: templates/RadioLinks/view.php:75 templates/RadioUnitBands/view.php:39
-#: templates/RadioUnitBands/view.php:80 templates/RadioUnitBands/view.php:131
+#: templates/RadioUnitBands/view.php:84 templates/RadioUnitBands/view.php:135
 #: templates/RadioUnitTypes/view.php:43 templates/RadioUnitTypes/view.php:95
 #: templates/RadioUnits/export.php:16 templates/RadioUnits/view.php:40
 #: templates/RouterosDeviceInterfaces/view.php:57
@@ -198,6 +211,7 @@ msgstr "Jméno"
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:116
 #: templates/Overviews/overview_of_radio_units_against_devices.php:23
 #: templates/Overviews/overview_of_radio_units_against_devices.php:105
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:88
 #: templates/RadarInterferences/add.php:26
 #: templates/RadarInterferences/edit.php:34
 #: templates/RadarInterferences/index.php:41
@@ -305,6 +319,31 @@ msgstr "Aktualizace radarových interferencí se nezdařila"
 #: src/Command/RadarInterferencesUpdateCommand.php:122
 msgid "Radar interferences update failed."
 msgstr "Aktualizace radarových interferencí se nezdařila."
+
+#: src/Command/RlanStationsUpdateCommand.php:68
+msgid "The register of stations has been read. Stations: {0}"
+msgstr "Seznam stanic byl načten. Stanice: {0}"
+
+#: src/Command/RlanStationsUpdateCommand.php:76
+msgid "Error during the reading of the register of stations: {0}"
+msgstr "Chyba při čtení registru stanic: {0}"
+
+#: src/Command/RlanStationsUpdateCommand.php:82
+msgid "Reading the register of stations failed"
+msgstr "Čtení registru stanic se nezdařilo"
+
+#: src/Command/RlanStationsUpdateCommand.php:83
+msgid "Reading the register of stations failed."
+msgstr "Čtení registru stanic se nezdařilo."
+
+#: src/Command/RlanStationsUpdateCommand.php:123
+msgid "The kept reading could not be read: {0}"
+msgstr "Nelze načíst údaj o pokračování ve čtení: {0}"
+
+#: src/Command/RlanStationsUpdateCommand.php:129
+#: src/Command/RlanStationsUpdateCommand.php:136
+msgid "The kept reading is not a reading: {0}"
+msgstr "Pokračování čtení není čtením: {0}"
 
 #: src/Controller/AccessPointContactsController.php:108
 #: src/Controller/AccessPointContactsController.php:139
@@ -970,6 +1009,7 @@ msgstr "Naléhavé"
 
 #: src/Model/Enum/DeviceLinkScope.php:53
 #: src/Model/Enum/RadioUnitComparisonScope.php:48
+#: src/Model/Enum/RlanRegistrationScope.php:56
 msgid "All"
 msgstr "Vše"
 
@@ -993,12 +1033,21 @@ msgstr[1] "{0} dny"
 msgstr[2] "{0} dní"
 
 #: src/Model/Enum/RadioUnitComparisonScope.php:46
+#: src/Model/Enum/RlanRegistrationScope.php:53
 msgid "Only Differences"
 msgstr "Pouze rozdíly"
 
 #: src/Model/Enum/RadioUnitComparisonScope.php:47
 msgid "Only Without a Device"
 msgstr "Pouze bez zařízení"
+
+#: src/Model/Enum/RlanRegistrationScope.php:54
+msgid "Only Not Registered"
+msgstr "Pouze neregistrované"
+
+#: src/Model/Enum/RlanRegistrationScope.php:55
+msgid "Only Found Without the Address"
+msgstr "Nalezeno pouze bez adresy"
 
 #: src/Model/Table/AccessPointContactsTable.php:126
 msgid "The phone number is not valid."
@@ -1008,18 +1057,46 @@ msgstr "Toto telefonní číslo není platné."
 msgid "This field cannot be left empty"
 msgstr "Toto pole nelze ponechat prázdné"
 
-#: src/Model/Table/RadioUnitBandsTable.php:98
 #: src/Model/Table/RadioUnitBandsTable.php:102
+#: src/Model/Table/RadioUnitBandsTable.php:106
 msgid "Give the band both of its edges, or neither of them."
 msgstr "Zadejte pásmu obě jeho hranice, nebo ani jednu."
 
-#: src/Model/Table/RadioUnitBandsTable.php:110
+#: src/Model/Table/RadioUnitBandsTable.php:114
 msgid "The highest frequency of the band cannot be below the lowest one."
 msgstr "Horní frekvence pásma nemůže být nižší než dolní."
 
 #: src/Model/Table/TasksTable.php:174
 msgid "The specified task type requires the assignment of an access point."
 msgstr "Zadaný typ úkolu vyžaduje přiřazení přístupového bodu."
+
+#: src/Rlan/ApiClient.php:63
+msgid "The register of stations is not configured."
+msgstr "Registr stanic není nakonfigurován."
+
+#: src/Rlan/ApiClient.php:167 src/Rlan/ApiClient.php:240
+msgid "The register of stations is unreachable: {0}"
+msgstr "Registr stanic je nedostupný: {0}"
+
+#: src/Rlan/ApiClient.php:259
+msgid "The register of stations did not hand over an access token."
+msgstr "Registr stanic nevydal přístupový token."
+
+#: src/Rlan/ApiClient.php:283
+msgid "The register of stations answered {0} to {1} ({2})"
+msgstr "Registr stanic odpověděl {0} na {1} ({2})"
+
+#: src/Rlan/Provider/RlanStationPayloadNormalizer.php:131
+msgid "The register answered with something unexpected."
+msgstr "Registr odpověděl něčím nečekaným."
+
+#: src/Rlan/Service/RlanStationsUpdateService.php:52
+msgid "The register named no stations at all, so nothing was changed."
+msgstr "V seznamu nebyly uvedeny žádné stanice, takže se nic nezměnilo."
+
+#: src/Rlan/Service/RlanStationsUpdateService.php:95
+msgid "The station {0} of the register could not be saved: {1}"
+msgstr "Stanici {0} v registru se nepodařilo uložit: {1}"
 
 #: src/Snmp/Provider/RouterosSnmpPayloadNormalizer.php:24
 msgid "Unexpected SNMP payload structure"
@@ -1114,8 +1191,8 @@ msgstr "Není nainstalováno přes Git"
 #: templates/RadioLinks/edit.php:10 templates/RadioLinks/index.php:49
 #: templates/RadioLinks/view.php:10 templates/RadioLinks/view.php:94
 #: templates/RadioUnitBands/add.php:10 templates/RadioUnitBands/edit.php:10
-#: templates/RadioUnitBands/index.php:35 templates/RadioUnitBands/view.php:10
-#: templates/RadioUnitBands/view.php:85 templates/RadioUnitBands/view.php:135
+#: templates/RadioUnitBands/index.php:36 templates/RadioUnitBands/view.php:10
+#: templates/RadioUnitBands/view.php:89 templates/RadioUnitBands/view.php:139
 #: templates/RadioUnitTypes/add.php:12 templates/RadioUnitTypes/edit.php:12
 #: templates/RadioUnitTypes/index.php:34 templates/RadioUnitTypes/view.php:10
 #: templates/RadioUnitTypes/view.php:113 templates/RadioUnits/add.php:14
@@ -1178,8 +1255,8 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/PowerSupplyTypes/add.php:33 templates/PowerSupplyTypes/edit.php:41
 #: templates/RadarInterferences/add.php:35
 #: templates/RadarInterferences/edit.php:43 templates/RadioLinks/add.php:26
-#: templates/RadioLinks/edit.php:31 templates/RadioUnitBands/add.php:32
-#: templates/RadioUnitBands/edit.php:40 templates/RadioUnitTypes/add.php:33
+#: templates/RadioLinks/edit.php:31 templates/RadioUnitBands/add.php:33
+#: templates/RadioUnitBands/edit.php:41 templates/RadioUnitTypes/add.php:33
 #: templates/RadioUnitTypes/edit.php:41 templates/RadioUnits/add.php:78
 #: templates/RadioUnits/edit.php:83
 #: templates/RouterosDeviceInterfaces/add.php:60
@@ -1230,8 +1307,8 @@ msgstr "Potvrdit"
 #: templates/RadarInterferences/index.php:68
 #: templates/RadarInterferences/view.php:138 templates/RadioLinks/edit.php:12
 #: templates/RadioLinks/index.php:134 templates/RadioLinks/view.php:147
-#: templates/RadioUnitBands/edit.php:12 templates/RadioUnitBands/index.php:59
-#: templates/RadioUnitBands/view.php:114 templates/RadioUnitBands/view.php:164
+#: templates/RadioUnitBands/edit.php:12 templates/RadioUnitBands/index.php:61
+#: templates/RadioUnitBands/view.php:118 templates/RadioUnitBands/view.php:168
 #: templates/RadioUnitTypes/edit.php:14 templates/RadioUnitTypes/index.php:65
 #: templates/RadioUnitTypes/view.php:161 templates/RadioUnits/edit.php:16
 #: templates/RadioUnits/export.php:133 templates/RadioUnits/index.php:116
@@ -1300,8 +1377,8 @@ msgstr "Odstranit"
 #: templates/RadarInterferences/view.php:144 templates/RadioLinks/edit.php:14
 #: templates/RadioLinks/index.php:136 templates/RadioLinks/view.php:19
 #: templates/RadioLinks/view.php:149 templates/RadioUnitBands/edit.php:15
-#: templates/RadioUnitBands/index.php:61 templates/RadioUnitBands/view.php:20
-#: templates/RadioUnitBands/view.php:116 templates/RadioUnitBands/view.php:166
+#: templates/RadioUnitBands/index.php:63 templates/RadioUnitBands/view.php:20
+#: templates/RadioUnitBands/view.php:120 templates/RadioUnitBands/view.php:170
 #: templates/RadioUnitTypes/edit.php:17 templates/RadioUnitTypes/index.php:67
 #: templates/RadioUnitTypes/view.php:20 templates/RadioUnitTypes/view.php:163
 #: templates/RadioUnits/edit.php:18 templates/RadioUnits/export.php:135
@@ -1341,6 +1418,8 @@ msgstr "Upravit kontakt přístupového bodu"
 #: templates/LandlordPayments/index.php:11 templates/Manufacturers/index.php:11
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:24
 #: templates/Overviews/overview_of_radio_units_against_devices.php:31
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:41
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:18
 #: templates/PaymentPurposes/index.php:11 templates/PowerSupplies/index.php:11
 #: templates/PowerSupplyTypes/index.php:11
 #: templates/RadarInterferences/index.php:11 templates/RadioLinks/index.php:11
@@ -1389,8 +1468,8 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RadarInterferences/devices.php:57
 #: templates/RadarInterferences/index.php:59
 #: templates/RadarInterferences/view.php:121 templates/RadioLinks/index.php:125
-#: templates/RadioLinks/view.php:138 templates/RadioUnitBands/index.php:50
-#: templates/RadioUnitBands/view.php:105 templates/RadioUnitBands/view.php:155
+#: templates/RadioLinks/view.php:138 templates/RadioUnitBands/index.php:52
+#: templates/RadioUnitBands/view.php:109 templates/RadioUnitBands/view.php:159
 #: templates/RadioUnitTypes/index.php:56 templates/RadioUnitTypes/view.php:152
 #: templates/RadioUnits/export.php:124 templates/RadioUnits/index.php:107
 #: templates/RouterosDeviceInterfaces/index.php:90
@@ -1432,8 +1511,8 @@ msgstr "Zobrazit"
 #: templates/RadarInterferences/devices.php:61
 #: templates/RadarInterferences/index.php:63
 #: templates/RadarInterferences/view.php:129 templates/RadioLinks/index.php:129
-#: templates/RadioLinks/view.php:142 templates/RadioUnitBands/index.php:54
-#: templates/RadioUnitBands/view.php:109 templates/RadioUnitBands/view.php:159
+#: templates/RadioLinks/view.php:142 templates/RadioUnitBands/index.php:56
+#: templates/RadioUnitBands/view.php:113 templates/RadioUnitBands/view.php:163
 #: templates/RadioUnitTypes/index.php:60 templates/RadioUnitTypes/view.php:156
 #: templates/RadioUnits/export.php:128 templates/RadioUnits/index.php:111
 #: templates/RouterosDeviceInterfaces/index.php:94
@@ -1460,11 +1539,13 @@ msgstr "Upravit"
 #: templates/Manufacturers/index.php:61
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:175
 #: templates/Overviews/overview_of_radio_units_against_devices.php:171
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:217
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:152
 #: templates/PaymentPurposes/index.php:61 templates/PowerSupplies/index.php:96
 #: templates/PowerSupplyTypes/index.php:76
 #: templates/RadarInterferences/devices.php:78
 #: templates/RadarInterferences/index.php:80 templates/RadioLinks/index.php:146
-#: templates/RadioUnitBands/index.php:71 templates/RadioUnitTypes/index.php:77
+#: templates/RadioUnitBands/index.php:73 templates/RadioUnitTypes/index.php:77
 #: templates/RadioUnits/index.php:128
 #: templates/RouterosDeviceInterfaces/index.php:111
 #: templates/RouterosDeviceIps/index.php:82
@@ -1485,11 +1566,13 @@ msgstr "první"
 #: templates/Manufacturers/index.php:62
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:176
 #: templates/Overviews/overview_of_radio_units_against_devices.php:172
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:218
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:153
 #: templates/PaymentPurposes/index.php:62 templates/PowerSupplies/index.php:97
 #: templates/PowerSupplyTypes/index.php:77
 #: templates/RadarInterferences/devices.php:79
 #: templates/RadarInterferences/index.php:81 templates/RadioLinks/index.php:147
-#: templates/RadioUnitBands/index.php:72 templates/RadioUnitTypes/index.php:78
+#: templates/RadioUnitBands/index.php:74 templates/RadioUnitTypes/index.php:78
 #: templates/RadioUnits/index.php:129
 #: templates/RouterosDeviceInterfaces/index.php:112
 #: templates/RouterosDeviceIps/index.php:83
@@ -1510,11 +1593,13 @@ msgstr "předchozí"
 #: templates/Manufacturers/index.php:64
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:178
 #: templates/Overviews/overview_of_radio_units_against_devices.php:174
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:220
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:155
 #: templates/PaymentPurposes/index.php:64 templates/PowerSupplies/index.php:99
 #: templates/PowerSupplyTypes/index.php:79
 #: templates/RadarInterferences/devices.php:81
 #: templates/RadarInterferences/index.php:83 templates/RadioLinks/index.php:149
-#: templates/RadioUnitBands/index.php:74 templates/RadioUnitTypes/index.php:80
+#: templates/RadioUnitBands/index.php:76 templates/RadioUnitTypes/index.php:80
 #: templates/RadioUnits/index.php:131
 #: templates/RouterosDeviceInterfaces/index.php:114
 #: templates/RouterosDeviceIps/index.php:85
@@ -1535,11 +1620,13 @@ msgstr "další"
 #: templates/Manufacturers/index.php:65
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:179
 #: templates/Overviews/overview_of_radio_units_against_devices.php:175
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:221
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:156
 #: templates/PaymentPurposes/index.php:65 templates/PowerSupplies/index.php:100
 #: templates/PowerSupplyTypes/index.php:80
 #: templates/RadarInterferences/devices.php:82
 #: templates/RadarInterferences/index.php:84 templates/RadioLinks/index.php:150
-#: templates/RadioUnitBands/index.php:75 templates/RadioUnitTypes/index.php:81
+#: templates/RadioUnitBands/index.php:77 templates/RadioUnitTypes/index.php:81
 #: templates/RadioUnits/index.php:132
 #: templates/RouterosDeviceInterfaces/index.php:115
 #: templates/RouterosDeviceIps/index.php:86
@@ -1560,11 +1647,13 @@ msgstr "poslední"
 #: templates/Manufacturers/index.php:68
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:182
 #: templates/Overviews/overview_of_radio_units_against_devices.php:178
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:224
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:159
 #: templates/PaymentPurposes/index.php:68 templates/PowerSupplies/index.php:103
 #: templates/PowerSupplyTypes/index.php:83
 #: templates/RadarInterferences/devices.php:85
 #: templates/RadarInterferences/index.php:87 templates/RadioLinks/index.php:153
-#: templates/RadioUnitBands/index.php:78 templates/RadioUnitTypes/index.php:84
+#: templates/RadioUnitBands/index.php:80 templates/RadioUnitTypes/index.php:84
 #: templates/RadioUnits/index.php:135
 #: templates/RouterosDeviceInterfaces/index.php:118
 #: templates/RouterosDeviceIps/index.php:89
@@ -1628,8 +1717,8 @@ msgstr "Číslo smlouvy"
 #: templates/PaymentPurposes/view.php:69 templates/PowerSupplies/view.php:110
 #: templates/PowerSupplyTypes/view.php:81
 #: templates/PowerSupplyTypes/view.php:100 templates/RadioLinks/view.php:59
-#: templates/RadioLinks/view.php:93 templates/RadioUnitBands/view.php:69
-#: templates/RadioUnitBands/view.php:84 templates/RadioUnitBands/view.php:134
+#: templates/RadioLinks/view.php:93 templates/RadioUnitBands/view.php:73
+#: templates/RadioUnitBands/view.php:88 templates/RadioUnitBands/view.php:138
 #: templates/RadioUnitTypes/view.php:84 templates/RadioUnitTypes/view.php:112
 #: templates/RadioUnits/view.php:192
 msgid "Note"
@@ -1990,7 +2079,10 @@ msgstr "Pro sítě technologií nastavené ručně"
 #: templates/IpAddressRanges/view.php:117
 #: templates/IpAddressRanges/view.php:123
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:53
-#: templates/RadioUnitBands/index.php:47 templates/RadioUnitBands/view.php:60
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:28
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:38
+#: templates/RadioUnitBands/index.php:48 templates/RadioUnitBands/index.php:49
+#: templates/RadioUnitBands/view.php:60 templates/RadioUnitBands/view.php:64
 #: templates/RadioUnits/view.php:142 templates/RadioUnits/view.php:146
 #: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
 #: templates/TaskTypes/index.php:35 templates/TaskTypes/view.php:37
@@ -2018,7 +2110,10 @@ msgstr "Ano"
 #: templates/IpAddressRanges/view.php:117
 #: templates/IpAddressRanges/view.php:123
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:54
-#: templates/RadioUnitBands/index.php:47 templates/RadioUnitBands/view.php:60
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:28
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:38
+#: templates/RadioUnitBands/index.php:48 templates/RadioUnitBands/index.php:49
+#: templates/RadioUnitBands/view.php:60 templates/RadioUnitBands/view.php:64
 #: templates/RadioUnits/view.php:142 templates/RadioUnits/view.php:146
 #: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
 #: templates/TaskTypes/index.php:35 templates/TaskTypes/view.php:37
@@ -2112,6 +2207,8 @@ msgid "Polarization"
 msgstr "Polarizace"
 
 #: templates/AccessPoints/view.php:534 templates/AntennaTypes/view.php:96
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:25
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:141
 #: templates/RadioLinks/index.php:39 templates/RadioLinks/view.php:80
 #: templates/RadioUnitTypes/view.php:100 templates/RadioUnits/export.php:23
 #: templates/RadioUnits/view.php:103
@@ -2327,25 +2424,29 @@ msgstr "Odstranit typ antény"
 #: templates/Manufacturers/view.php:159
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:118
 #: templates/Overviews/overview_of_radio_units_against_devices.php:100
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:134
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:92
 #: templates/RadioUnitTypes/view.php:47
 msgid "Radio Unit Band"
 msgstr "Pásmo rádiových jednotek"
 
 #: templates/AntennaTypes/view.php:53 templates/PowerSupplyTypes/view.php:47
-#: templates/RadioUnitBands/view.php:81 templates/RadioUnitBands/view.php:132
+#: templates/RadioUnitBands/view.php:85 templates/RadioUnitBands/view.php:136
 #: templates/RadioUnitTypes/view.php:61 templates/RadioUnits/export.php:20
 msgid "Manufacturer"
 msgstr "Výrobce"
 
 #: templates/AntennaTypes/view.php:65 templates/Manufacturers/view.php:67
 #: templates/Manufacturers/view.php:119 templates/Manufacturers/view.php:160
-#: templates/PowerSupplyTypes/view.php:61 templates/RadioUnitBands/view.php:83
-#: templates/RadioUnitBands/view.php:133 templates/RadioUnitTypes/view.php:74
+#: templates/PowerSupplyTypes/view.php:61 templates/RadioUnitBands/view.php:87
+#: templates/RadioUnitBands/view.php:137 templates/RadioUnitTypes/view.php:74
 msgid "Part Number"
 msgstr "Číslo dílu"
 
 #: templates/AntennaTypes/view.php:69 templates/Manufacturers/view.php:66
-#: templates/RadioUnitBands/view.php:82
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:26
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:142
+#: templates/RadioUnitBands/view.php:86
 msgid "Antenna Gain"
 msgstr "Zisk antény"
 
@@ -2639,7 +2740,7 @@ msgstr "Výrobci"
 msgid "Delete Manufacturer"
 msgstr "Odstranit výrobce"
 
-#: templates/Manufacturers/view.php:59 templates/RadioUnitBands/view.php:75
+#: templates/Manufacturers/view.php:59 templates/RadioUnitBands/view.php:79
 msgid "Related Antenna Types"
 msgstr "Související typy antén"
 
@@ -2655,7 +2756,7 @@ msgstr "Napětí"
 msgid "Current"
 msgstr "Proud"
 
-#: templates/Manufacturers/view.php:153 templates/RadioUnitBands/view.php:126
+#: templates/Manufacturers/view.php:153 templates/RadioUnitBands/view.php:130
 msgid "Related Radio Unit Types"
 msgstr "Související typy rádiových jednotek"
 
@@ -2677,11 +2778,27 @@ msgstr "Přehled rádiových jednotek proti zařízením"
 msgid "Overview of Device Radios Against Radio Units"
 msgstr "Přehled rádií zařízení proti rádiovým jednotkám"
 
+#: templates/Overviews/index.php:25
+msgid "Regulatory"
+msgstr "Regulační"
+
+#: templates/Overviews/index.php:28
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:68
+msgid "Overview of Radio Units Against Registered Stations"
+msgstr "Přehled rádiových jednotek proti registrovaným stanicím"
+
+#: templates/Overviews/index.php:33
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:47
+msgid "Overview of Registered Stations Against Radio Units"
+msgstr "Přehled registrovaných stanic proti rádiovým jednotkám"
+
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:16
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:66
 msgid "Not recorded"
 msgstr "Neevidováno"
 
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:17
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:67
 msgid "Recorded"
 msgstr "Evidováno"
 
@@ -2690,8 +2807,9 @@ msgid "Link"
 msgstr "Odkaz"
 
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:50
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:36
 msgid "Only Not Recorded"
-msgstr "Pouze neevidovaná"
+msgstr "Pouze neevidované"
 
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:67
 msgid ""
@@ -2726,6 +2844,8 @@ msgstr "Rozhraní"
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:117
 #: templates/Overviews/overview_of_radio_units_against_devices.php:24
 #: templates/Overviews/overview_of_radio_units_against_devices.php:106
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:24
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:140
 #: templates/RadarInterferences/view.php:82
 #: templates/RouterosDeviceInterfaces/view.php:84
 #: templates/RouterosDevices/view.php:151
@@ -2734,6 +2854,8 @@ msgstr "Frekvence"
 
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:119
 #: templates/Overviews/overview_of_radio_units_against_devices.php:98
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:132
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:90
 msgid "Radio Unit"
 msgstr "Rádiová jednotka"
 
@@ -2751,14 +2873,17 @@ msgid "A radio unit is the record of this radio."
 msgstr "Toto rádio eviduje rádiová jednotka."
 
 #: templates/Overviews/overview_of_radio_units_against_devices.php:14
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:15
 msgid "Differs"
 msgstr "Liší se"
 
 #: templates/Overviews/overview_of_radio_units_against_devices.php:15
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:16
 msgid "Matches"
 msgstr "Souhlasí"
 
 #: templates/Overviews/overview_of_radio_units_against_devices.php:16
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:17
 msgid "Not recorded here"
 msgstr "Zde neevidováno"
 
@@ -2771,6 +2896,7 @@ msgid "No device"
 msgstr "Bez zařízení"
 
 #: templates/Overviews/overview_of_radio_units_against_devices.php:45
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:55
 msgid "Show"
 msgstr "Zobrazit"
 
@@ -2788,8 +2914,114 @@ msgstr ""
 "toho, na kterém bylo nainstalováno - proto se zde nic neopravuje, jen hlásí."
 
 #: templates/Overviews/overview_of_radio_units_against_devices.php:73
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:86
 msgid "Checked"
 msgstr "Kontrolováno"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:18
+msgid "Not kept in the register"
+msgstr "Neuchovává se v registru"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:19
+msgid "Not read yet"
+msgstr "Ještě nebylo čteno"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:20
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:34
+msgid "Not registered"
+msgstr "Není zaregistrováno"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:27
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:143
+msgid "Power"
+msgstr "Výkon"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:28
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:144
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:89
+msgid "Coordinates"
+msgstr "Souřadnice"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:32
+msgid "Found by the address"
+msgstr "Nalezeno podle adresy"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:33
+msgid "Found by the number only"
+msgstr "Vyhledáno pouze podle čísla"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:71
+msgid ""
+"Each radio unit of a band whose units are registered is put next to the "
+"station the regulator has registered for it - found by the address the unit "
+"is recorded under, or failing that by the number the registration was filed "
+"under. A unit nothing answers for is one the register does not know about, "
+"whatever the records here say. Nothing is corrected, only reported."
+msgstr ""
+"Každá rádiová jednotka z pásma, jehož jednotky jsou registrovány, je uvedena "
+"vedle stanice, kterou pro ni zaregistroval regulační orgán – a to na základě "
+"adresy, pod kterou je jednotka evidována, nebo v případě jejího neexistence "
+"na základě čísla, pod kterým byla registrace podána. Jednotka, za kterou "
+"nikdo neodpovídá, je taková, o níž registr nemá žádné informace, bez ohledu "
+"na to, co uvádějí zdejší záznamy. Nic se neopravuje, pouze se o tom podává "
+"zpráva."
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:137
+#: templates/RadioLinks/view.php:44 templates/RadioLinks/view.php:92
+#: templates/RadioUnits/export.php:39 templates/RadioUnits/view.php:184
+msgid "Authorization Number"
+msgstr "Číslo oprávnění"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:139
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:85
+msgid "Station"
+msgstr "Stanice"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:200
+msgid "{0} m"
+msgstr "{0} m"
+
+#: templates/Overviews/overview_of_radio_units_against_registered_stations.php:205
+msgid "{0} m away"
+msgstr "{0} m daleko"
+
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:26
+msgid "Only Ours"
+msgstr "Jen naše"
+
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:50
+msgid ""
+"Each station the regulator has registered for us is put next to the radio "
+"unit that records it. A station nothing records is either equipment that "
+"came down and was never struck off the register - where it still stands in "
+"the way of everybody else - or equipment somebody registered on our behalf "
+"that was never written down here. Any band counts: a station of ours ought "
+"to be recorded by some unit, whichever band it was filed under."
+msgstr ""
+"Každá stanice, kterou nám regulátor zaregistroval, je uvedena vedle rádiové "
+"jednotky, která ji zaznamenává. Stanice, kterou nikdo nezaznamenává, je buď "
+"zařízení, které bylo vyřazeno z provozu, ale nikdy nebylo vyškrtnuto z "
+"registru – kde stále překáží všem ostatním –, nebo zařízení, které někdo "
+"zaregistroval naším jménem, ale které zde nikdy nebylo zapsáno. Počítá se "
+"jakékoli pásmo: naše stanice by měla být zaznamenána nějakou jednotkou, bez "
+"ohledu na to, pod jakým pásmem byla zařazena."
+
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:87
+msgid "Type"
+msgstr "Typ"
+
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:93
+msgid "Status"
+msgstr "Stav"
+
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:115
+msgid "No radio unit records this station."
+msgstr "Tuto stanici neeviduje žádná rádiová jednotka."
+
+#: templates/Overviews/overview_of_registered_stations_against_radio_units.php:117
+#: templates/element/rlan/registration_found.php:39
+msgid "None"
+msgstr "Žádné"
 
 #: templates/PaymentPurposes/add.php:12 templates/PaymentPurposes/edit.php:20
 #: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:66
@@ -3007,11 +3239,6 @@ msgstr "Rádiové jednotky"
 msgid "Delete Radio Link"
 msgstr "Odstranit rádiový spoj"
 
-#: templates/RadioLinks/view.php:44 templates/RadioLinks/view.php:92
-#: templates/RadioUnits/export.php:39 templates/RadioUnits/view.php:184
-msgid "Authorization Number"
-msgstr "Číslo oprávnění"
-
 #: templates/RadioLinks/view.php:48
 msgid "Distance"
 msgstr "Vzdálenost"
@@ -3052,6 +3279,10 @@ msgstr "Horní frekvence"
 #: templates/RadioUnitBands/view.php:59
 msgid "Devices Require Radio Unit"
 msgstr "Zařízení vyžadují rádiovou jednotku"
+
+#: templates/RadioUnitBands/view.php:63
+msgid "Units Require RLAN Registration"
+msgstr "Jednotky vyžadují registraci v RLAN"
 
 #: templates/RadioUnitTypes/add.php:14 templates/RadioUnitTypes/edit.php:22
 #: templates/RadioUnitTypes/view.php:25
@@ -3568,6 +3799,7 @@ msgid "The device reports something else than is recorded here."
 msgstr "Zařízení hlásí něco jiného, než je zde evidováno."
 
 #: templates/element/comparison_result.php:23
+#: templates/element/registration_comparison_result.php:30
 msgid "Nothing is recorded here to compare with."
 msgstr "Není zde evidováno nic, s čím porovnat."
 
@@ -3582,6 +3814,51 @@ msgstr "Zařízení hlásí totéž."
 #: templates/element/comparison_result.php:26
 msgid "No device carries the serial number of this radio unit."
 msgstr "Sériové číslo této rádiové jednotky nenese žádné zařízení."
+
+#: templates/element/registration_comparison_result.php:28
+msgid "The register holds something else than is recorded here."
+msgstr "V registru je uvedeno něco jiného, než co je zde zaznamenáno."
+
+#: templates/element/registration_comparison_result.php:32
+msgid "The register keeps no such value for a station of this kind."
+msgstr "Registr pro stanici tohoto typu žádnou takovou hodnotu neuchovává."
+
+#: templates/element/registration_comparison_result.php:34
+msgid "The parameters of this station have not been read yet."
+msgstr "Parametry této stanice zatím nebyly načteny."
+
+#: templates/element/registration_comparison_result.php:36
+msgid "The register holds the same."
+msgstr "V registru je uvedeno totéž."
+
+#: templates/element/registration_comparison_result.php:38
+#: templates/element/rlan/registration_found.php:26
+msgid "Nothing in the register answers for this radio unit."
+msgstr "V registru není k této rádiové jednotce žádný záznam."
+
+#: templates/element/rlan/register_read.php:21
+msgid ""
+"The register has never been read, so there is nothing here to compare "
+"against."
+msgstr ""
+"Tento registr nebyl nikdy načten, takže zde není nic, s čím by se dalo "
+"porovnávat."
+
+#: templates/element/rlan/register_read.php:23
+msgid "The register was last read {0}."
+msgstr "Registr byl naposledy načten {0}."
+
+#: templates/element/rlan/registration_found.php:28
+msgid ""
+"Found by the number the registration was filed under. The address is not "
+"recorded here."
+msgstr ""
+"Vyhledáno podle čísla, pod kterým byla registrace podána. Adresa zde není "
+"uvedena."
+
+#: templates/element/rlan/registration_found.php:30
+msgid "Found by the address the registration was issued against."
+msgstr "Vyhledáno podle adresy, na kterou byla registrace vystavena."
 
 #: templates/email/html/task_notification.php:116
 msgid "View Task"
@@ -3610,6 +3887,9 @@ msgstr "Verze"
 #: templates/layout/error.php:36
 msgid "Back"
 msgstr "Zpět"
+
+#~ msgid "Not registered as such"
+#~ msgstr "Není jako takový registrován"
 
 #~ msgid "Path"
 #~ msgstr "Cesta"
