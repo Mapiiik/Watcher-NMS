@@ -6,8 +6,8 @@ namespace App\Maps;
 use App\Form\MapOptionsForm;
 use App\Model\Entity\AccessPoint;
 use App\Model\Entity\RouterosDevice;
+use App\Model\Enum\MaximumAge;
 use App\Model\Table\AccessPointsTable;
-use Cake\I18n\DateTime;
 use Cake\ORM\Association;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\View\Helper\HtmlHelper;
@@ -32,9 +32,12 @@ final class NetworkMap
 
     /**
      * @param \Cake\View\Helper\HtmlHelper $html What the bubbles are written with.
+     * @param \App\Model\Enum\MaximumAge $maximumAge How old a reading may be and still be drawn.
      */
-    public function __construct(private readonly HtmlHelper $html)
-    {
+    public function __construct(
+        private readonly HtmlHelper $html,
+        private readonly MaximumAge $maximumAge = MaximumAge::FALLBACK,
+    ) {
     }
 
     /**
@@ -54,7 +57,7 @@ final class NetworkMap
             'RouterosDevices' => [
                 'sort' => ['RouterosDevices.name' => 'ASC'],
                 'conditions' => [
-                    'RouterosDevices.modified >' => DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
+                    'RouterosDevices.modified >' => $this->maximumAge->since(),
                 ],
             ],
         ]);
@@ -205,8 +208,7 @@ final class NetworkMap
                             'NeighbouringIpAddresses.ip_address',
                         ],
                         'conditions' => [
-                            'NeighbouringIpAddresses.modified >' =>
-                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
+                            'NeighbouringIpAddresses.modified >' => $this->maximumAge->since(),
                         ],
                         'RouterosDevices' => [
                             'fields' => [
@@ -255,8 +257,7 @@ final class NetworkMap
                             'NeighbouringStations.name',
                         ],
                         'conditions' => [
-                            'NeighbouringStations.modified >' =>
-                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
+                            'NeighbouringStations.modified >' => $this->maximumAge->since(),
                         ],
                         'RouterosDevices' => [
                             'fields' => [
@@ -281,8 +282,7 @@ final class NetworkMap
                             'NeighbouringAccessPoints.name',
                         ],
                         'conditions' => [
-                            'NeighbouringAccessPoints.modified >' =>
-                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
+                            'NeighbouringAccessPoints.modified >' => $this->maximumAge->since(),
                         ],
                         'RouterosDevices' => [
                             'fields' => [

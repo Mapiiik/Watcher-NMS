@@ -5,9 +5,9 @@ namespace App\Controller;
 
 use App\Form\MapOptionsForm;
 use App\Maps\NetworkMap;
+use App\Model\Enum\MaximumAge;
 use Cake\Form\Form;
 use Cake\Http\Response;
-use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
@@ -134,6 +134,10 @@ class AccessPointsController extends AppController
      */
     public function view(?string $id = null): void
     {
+        // What an agent wrote is only ever as true as the last reading, and the listings below
+        // leave out what has not been heard from since.
+        $readSince = MaximumAge::FALLBACK->since();
+
         $accessPoint = $this->AccessPoints->get($id, contain: [
             'AccessPointTypes',
             'ParentAccessPoints',
@@ -172,8 +176,7 @@ class AccessPointsController extends AppController
                     ],
                     'NeighbouringIpAddresses' => [
                         'conditions' => [
-                            'NeighbouringIpAddresses.modified >' =>
-                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
+                            'NeighbouringIpAddresses.modified >' => $readSince,
                         ],
                         'RouterosDevices' => [
                             'AccessPoints',
@@ -187,8 +190,7 @@ class AccessPointsController extends AppController
                     ],
                     'NeighbouringStations' => [
                         'conditions' => [
-                            'NeighbouringStations.modified >' =>
-                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
+                            'NeighbouringStations.modified >' => $readSince,
                         ],
                         'RouterosDevices' => [
                             'AccessPoints',
@@ -197,8 +199,7 @@ class AccessPointsController extends AppController
                     ],
                     'NeighbouringAccessPoints' => [
                         'conditions' => [
-                            'NeighbouringAccessPoints.modified >' =>
-                                DateTime::now()->subDays(14)->format('Y-m-d H:i:s'),
+                            'NeighbouringAccessPoints.modified >' => $readSince,
                         ],
                         'RouterosDevices' => [
                             'AccessPoints',
