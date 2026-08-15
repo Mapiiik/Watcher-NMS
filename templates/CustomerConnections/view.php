@@ -170,78 +170,6 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related RouterOS Devices') ?></h4>
-                <?php if (!empty($customerConnection->routeros_devices)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Name') ?></th>
-                            <th><?= __('Access Point') ?></th>
-                            <th><?= __('Device Type') ?></th>
-                            <th><?= __('IP Address') ?></th>
-                            <th><?= __('System Description') ?></th>
-                            <th><?= __('Board Name') ?></th>
-                            <th><?= __('Serial Number') ?></th>
-                            <th><?= __('Software Version') ?></th>
-                            <th><?= __('Firmware Version') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($customerConnection->routeros_devices as $routerosDevices) : ?>
-                        <tr>
-                            <td><?= h($routerosDevices->name) ?></td>
-                            <td>
-                                <?= $routerosDevices->access_point !== null ? $this->Html->link(
-                                    $routerosDevices->access_point->name
-                                    ?? '(' . $routerosDevices->access_point->id . ')',
-                                    [
-                                        'controller' => 'AccessPoints',
-                                        'action' => 'view',
-                                        $routerosDevices->access_point->id,
-                                    ],
-                                ) : '' ?>
-                            </td>
-                            <td>
-                                <?= $routerosDevices->device_type !== null ? $this->Html->link(
-                                    $routerosDevices->device_type->name
-                                    ?? '(' . $routerosDevices->device_type->id . ')',
-                                    [
-                                        'controller' => 'DeviceTypes',
-                                        'action' => 'view',
-                                        $routerosDevices->device_type->id,
-                                    ],
-                                ) : '' ?>
-                            </td>
-                            <td><?= h($routerosDevices->ip_address) ?></td>
-                            <td><?= h($routerosDevices->system_description) ?></td>
-                            <td><?= h($routerosDevices->board_name) ?></td>
-                            <td><?= h($routerosDevices->serial_number) ?></td>
-                            <td><?= h($routerosDevices->software_version) ?></td>
-                            <td><?= h($routerosDevices->firmware_version) ?></td>
-                            <td class="actions">
-                                <?= $this->AuthLink->link(
-                                    __('View'),
-                                    ['controller' => 'RouterosDevices',
-                                    'action' => 'view',
-                                    $routerosDevices->id],
-                                ) ?>
-                                <?= $this->AuthLink->link(
-                                    __('Edit'),
-                                    ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
-                                    ['class' => 'win-link'],
-                                ) ?>
-                                <?= $this->AuthLink->postLink(
-                                    __('Delete'),
-                                    ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)],
-                                ) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
-            </div>
-            <div class="related">
                 <h4><?= __('Related Radio Units') ?></h4>
                 <?php if (!empty($customerConnection->radio_units)) : ?>
                 <div class="table-responsive">
@@ -323,6 +251,78 @@
                                     __('Delete'),
                                     ['controller' => 'RadioUnits', 'action' => 'delete', $radioUnits->id],
                                     ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)],
+                                ) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="related">
+                <h4><?= __('Related RouterOS Devices') ?></h4>
+                <?php if (!empty($customerConnection->routeros_devices)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('Access Point') ?></th>
+                            <th><?= __('Device Type') ?></th>
+                            <th><?= __('IP Address') ?></th>
+                            <th><?= __('System Description') ?></th>
+                            <th><?= __('Board Name') ?></th>
+                            <th><?= __('Serial Number') ?></th>
+                            <th><?= __('Software Version') ?></th>
+                            <th><?= __('Firmware Version') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($customerConnection->routeros_devices as $routerosDevices) : ?>
+                        <tr>
+                            <td><?= h($routerosDevices->name) ?></td>
+                            <td>
+                                <?= $routerosDevices->access_point !== null ? $this->Html->link(
+                                    $routerosDevices->access_point->name
+                                    ?? '(' . $routerosDevices->access_point->id . ')',
+                                    [
+                                        'controller' => 'AccessPoints',
+                                        'action' => 'view',
+                                        $routerosDevices->access_point->id,
+                                    ],
+                                ) : '' ?>
+                            </td>
+                            <td>
+                                <?= $routerosDevices->device_type !== null ? $this->Html->link(
+                                    $routerosDevices->device_type->name
+                                    ?? '(' . $routerosDevices->device_type->id . ')',
+                                    [
+                                        'controller' => 'DeviceTypes',
+                                        'action' => 'view',
+                                        $routerosDevices->device_type->id,
+                                    ],
+                                ) : '' ?>
+                            </td>
+                            <td><?= h($routerosDevices->ip_address) ?></td>
+                            <td><?= h($routerosDevices->system_description) ?></td>
+                            <td><?= h($routerosDevices->board_name) ?></td>
+                            <td><?= h($routerosDevices->serial_number) ?></td>
+                            <td><?= h($routerosDevices->software_version) ?></td>
+                            <td><?= h($routerosDevices->firmware_version) ?></td>
+                            <td class="actions">
+                                <?= $this->AuthLink->link(
+                                    __('View'),
+                                    ['controller' => 'RouterosDevices',
+                                    'action' => 'view',
+                                    $routerosDevices->id],
+                                ) ?>
+                                <?= $this->AuthLink->link(
+                                    __('Edit'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'edit', $routerosDevices->id],
+                                    ['class' => 'win-link'],
+                                ) ?>
+                                <?= $this->AuthLink->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'RouterosDevices', 'action' => 'delete', $routerosDevices->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $routerosDevices->id)],
                                 ) ?>
                             </td>
                         </tr>

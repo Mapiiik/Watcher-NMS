@@ -109,6 +109,32 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * The radio links of an access point say where their far end stands, as the links read off the
+     * devices do - a link is only worth listing if it says what is at the other end of it.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testViewListsTheFarEndOfEveryRadioLink(): void
+    {
+        $map = $this->createMapTopology();
+
+        $this->login();
+        $this->get('/access-points/view/' . $map['home_access_point_id']);
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(__('Related Radio Unit Links'));
+        // the end at the neighbour, named along with the mast it stands on
+        $this->assertResponseContains('Map backhaul far end');
+        $this->assertResponseContains(
+            '<a href="/access-points/' . $map['neighbouring_access_point_id'] . '">Map neighbour</a>',
+        );
+        // and the end at a customer, named along with the connection it hangs off
+        $this->assertResponseContains('Map customer link far end');
+        $this->assertResponseContains('Map radio customer connection');
+    }
+
+    /**
      * Test utilization method
      *
      * @return void

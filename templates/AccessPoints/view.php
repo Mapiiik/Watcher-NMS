@@ -674,115 +674,66 @@
             </div>
             <hr>
             <div class="related">
-                <h4><?= __('Related RouterOS Wireless Links') ?></h4>
-                <?php if (!empty($accessPoint->routeros_devices)) : ?>
+                <h4><?= __('Related Radio Unit Links') ?></h4>
+                <?php if (!empty($accessPoint->radio_units)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Device Type') ?></th>
-                            <th><?= __('Local Wireless Interface') ?></th>
-                            <th><?= __('Neighbouring Wireless Interface') ?></th>
-                            <th><?= __('Neighbouring RouterOS Device') ?></th>
+                            <th><?= __('Radio Unit Type') ?></th>
+                            <th><?= __('Radio Link') ?></th>
+                            <th><?= __('Neighbouring Radio Unit') ?></th>
                             <th><?= __('Neighbouring Access Point') ?></th>
                             <th><?= __('Neighbouring Customer Connection') ?></th>
                         </tr>
-                        <?php foreach ($accessPoint->routeros_devices as $routerosDevice) : ?>
-                            <?php foreach ($routerosDevice->routeros_wireless_links as $routerosWirelessLink) : ?>
+                        <?php foreach ($accessPoint->radio_units as $radioUnit) : ?>
+                            <?php foreach ($radioUnit->neighbouring_radio_units as $neighbouringUnit) : ?>
                             <tr>
                                 <td><?=
                                     $this->Html->link(
-                                        $routerosDevice->name
-                                        ?? '(' . $routerosDevice->id . ')',
-                                        ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
+                                        $radioUnit->name ?? '(' . $radioUnit->id . ')',
+                                        ['controller' => 'RadioUnits', 'action' => 'view', $radioUnit->id],
                                     ) ?></td>
                                 <td>
-                                    <?= $routerosDevice->device_type !== null ? $this->Html->link(
-                                        $routerosDevice->device_type->name
-                                        ?? '(' . $routerosDevice->device_type->id . ')',
+                                    <?= $radioUnit->radio_unit_type !== null ? $this->Html->link(
+                                        $radioUnit->radio_unit_type->name
+                                        ?? '(' . $radioUnit->radio_unit_type->id . ')',
                                         [
-                                            'controller' => 'DeviceTypes',
+                                            'controller' => 'RadioUnitTypes',
                                             'action' => 'view',
-                                            $routerosDevice->device_type->id,
+                                            $radioUnit->radio_unit_type->id,
                                         ],
                                     ) : '' ?></td>
-                                <td><?= h($routerosWirelessLink->name) ?></td>
-                                <td><?= h($routerosWirelessLink->neighbouring_interface->name) ?></td>
-                                <td><?=
-                                    isset(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
-                                            ->routeros_device,
-                                    ) ?
-                                    $this->Html->link(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
-                                            ->routeros_device
-                                            ->name ?? '(' . $routerosWirelessLink
-                                                ->neighbouring_interface
-                                                ->routeros_device
-                                                ->id . ')',
-                                        [
-                                            'controller' => 'RouterosDevices',
-                                            'action' => 'view',
-                                            $routerosWirelessLink
-                                                ->neighbouring_interface
-                                                ->routeros_device
-                                                ->id,
-                                        ],
+                                <td>
+                                    <?= $radioUnit->radio_link !== null ? $this->Html->link(
+                                        $radioUnit->radio_link->name ?? '(' . $radioUnit->radio_link->id . ')',
+                                        ['controller' => 'RadioLinks', 'action' => 'view', $radioUnit->radio_link->id],
                                     ) : '' ?></td>
                                 <td><?=
-                                    isset(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
-                                            ->routeros_device
-                                            ->access_point,
-                                    ) ?
                                     $this->Html->link(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
-                                            ->routeros_device
-                                            ->access_point
-                                            ->name ?? '(' . $routerosWirelessLink
-                                                ->neighbouring_interface
-                                                ->routeros_device
-                                                ->access_point
-                                                ->id . ')',
+                                        $neighbouringUnit->name ?? '(' . $neighbouringUnit->id . ')',
+                                        ['controller' => 'RadioUnits', 'action' => 'view', $neighbouringUnit->id],
+                                    ) ?></td>
+                                <td><?=
+                                    isset($neighbouringUnit->access_point) ?
+                                    $this->Html->link(
+                                        $neighbouringUnit->access_point->name
+                                            ?? '(' . $neighbouringUnit->access_point->id . ')',
                                         [
                                             'controller' => 'AccessPoints',
                                             'action' => 'view',
-                                            $routerosWirelessLink
-                                                ->neighbouring_interface
-                                                ->routeros_device
-                                                ->access_point
-                                                ->id,
+                                            $neighbouringUnit->access_point->id,
                                         ],
                                     ) : '' ?></td>
                                 <td><?=
-                                    isset(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
-                                            ->routeros_device
-                                            ->customer_connection,
-                                    ) ?
+                                    isset($neighbouringUnit->customer_connection) ?
                                     $this->Html->link(
-                                        $routerosWirelessLink
-                                            ->neighbouring_interface
-                                            ->routeros_device
-                                            ->customer_connection
-                                            ->name ?? '(' . $routerosWirelessLink
-                                                ->neighbouring_interface
-                                                ->routeros_device
-                                                ->customer_connection
-                                                ->id . ')',
+                                        $neighbouringUnit->customer_connection->name
+                                            ?? '(' . $neighbouringUnit->customer_connection->id . ')',
                                         [
                                             'controller' => 'CustomerConnections',
                                             'action' => 'view',
-                                            $routerosWirelessLink
-                                                ->neighbouring_interface
-                                                ->routeros_device
-                                                ->customer_connection
-                                                ->id,
+                                            $neighbouringUnit->customer_connection->id,
                                         ],
                                     ) : '' ?></td>
                             </tr>
@@ -901,6 +852,125 @@
                                             'action' => 'view',
                                             $routerosIpLink
                                                 ->neighbouring_ip_address
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id,
+                                        ],
+                                    ) : '' ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="related">
+                <h4><?= __('Related RouterOS Wireless Links') ?></h4>
+                <?php if (!empty($accessPoint->routeros_devices)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('Device Type') ?></th>
+                            <th><?= __('Local Wireless Interface') ?></th>
+                            <th><?= __('Neighbouring Wireless Interface') ?></th>
+                            <th><?= __('Neighbouring RouterOS Device') ?></th>
+                            <th><?= __('Neighbouring Access Point') ?></th>
+                            <th><?= __('Neighbouring Customer Connection') ?></th>
+                        </tr>
+                        <?php foreach ($accessPoint->routeros_devices as $routerosDevice) : ?>
+                            <?php foreach ($routerosDevice->routeros_wireless_links as $routerosWirelessLink) : ?>
+                            <tr>
+                                <td><?=
+                                    $this->Html->link(
+                                        $routerosDevice->name
+                                        ?? '(' . $routerosDevice->id . ')',
+                                        ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
+                                    ) ?></td>
+                                <td>
+                                    <?= $routerosDevice->device_type !== null ? $this->Html->link(
+                                        $routerosDevice->device_type->name
+                                        ?? '(' . $routerosDevice->device_type->id . ')',
+                                        [
+                                            'controller' => 'DeviceTypes',
+                                            'action' => 'view',
+                                            $routerosDevice->device_type->id,
+                                        ],
+                                    ) : '' ?></td>
+                                <td><?= h($routerosWirelessLink->name) ?></td>
+                                <td><?= h($routerosWirelessLink->neighbouring_interface->name) ?></td>
+                                <td><?=
+                                    isset(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device,
+                                    ) ?
+                                    $this->Html->link(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->name ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->id . ')',
+                                        [
+                                            'controller' => 'RouterosDevices',
+                                            'action' => 'view',
+                                            $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->id,
+                                        ],
+                                    ) : '' ?></td>
+                                <td><?=
+                                    isset(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->access_point,
+                                    ) ?
+                                    $this->Html->link(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->access_point
+                                            ->name ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->access_point
+                                                ->id . ')',
+                                        [
+                                            'controller' => 'AccessPoints',
+                                            'action' => 'view',
+                                            $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->access_point
+                                                ->id,
+                                        ],
+                                    ) : '' ?></td>
+                                <td><?=
+                                    isset(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->customer_connection,
+                                    ) ?
+                                    $this->Html->link(
+                                        $routerosWirelessLink
+                                            ->neighbouring_interface
+                                            ->routeros_device
+                                            ->customer_connection
+                                            ->name ?? '(' . $routerosWirelessLink
+                                                ->neighbouring_interface
+                                                ->routeros_device
+                                                ->customer_connection
+                                                ->id . ')',
+                                        [
+                                            'controller' => 'CustomerConnections',
+                                            'action' => 'view',
+                                            $routerosWirelessLink
+                                                ->neighbouring_interface
                                                 ->routeros_device
                                                 ->customer_connection
                                                 ->id,

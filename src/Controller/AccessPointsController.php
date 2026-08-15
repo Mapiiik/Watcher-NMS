@@ -166,6 +166,12 @@ class AccessPointsController extends AppController
                 'RadioUnitTypes',
                 'RadioLinks',
                 'AntennaTypes',
+                // The far ends of each link, which the entity picks out of these, and wherever
+                // each of them stands.
+                'RadioLinkUnits' => [
+                    'AccessPoints',
+                    'CustomerConnections',
+                ],
             ],
             'RouterosDevices' => [
                 'sort' => ['RouterosDevices.name' => 'ASC'],

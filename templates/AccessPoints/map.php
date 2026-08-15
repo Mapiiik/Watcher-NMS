@@ -29,14 +29,14 @@
             <fieldset>
                 <legend><?= __('Map Options') ?></legend>
                 <?php
+                echo $this->Form->control('radio_links', [
+                    'label' => __('Radio Links'),
+                ]);
                 echo $this->Form->control('routeros_ip_links', [
                     'label' => __('RouterOS IP Links'),
                 ]);
                 echo $this->Form->control('routeros_wireless_links', [
                     'label' => __('RouterOS Wireless Links'),
-                ]);
-                echo $this->Form->control('radio_links', [
-                    'label' => __('Radio Links'),
                 ]);
                 echo $this->Form->control('linked_customers', [
                     'label' => __('Linked Customers'),
