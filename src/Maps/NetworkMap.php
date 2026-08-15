@@ -142,7 +142,7 @@ final class NetworkMap
                     '<b>'
                     . $this->html->link(
                         $accessPoint->name ?? '(' . $accessPoint->id . ')',
-                        ['action' => 'view', $accessPoint->id],
+                        ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
                     )
                     . '</b>' . '<br>' . '<br>';
 
@@ -197,12 +197,10 @@ final class NetworkMap
                         lng: $accessPoint->gps_x,
                     ),
                     title: $accessPoint->name ?? '(' . $accessPoint->id . ')',
-                    color: $accessPoint->access_point_type->color ?? '#d02f37',
+                    color: $accessPoint->access_point_type->color ?? self::ACCESS_POINT_COLOR,
                     content: $content,
                     locked: true,
                 );
-
-                unset($content);
             }
         }
 
