@@ -81,6 +81,8 @@ class CustomerConnectionsController extends AppController
             ],
             'RadioUnits' => [
                 'RadioUnitTypes',
+                'RadioLinks',
+                'AntennaTypes',
             ],
             'Creators',
             'Modifiers',

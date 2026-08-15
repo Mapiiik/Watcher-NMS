@@ -249,8 +249,22 @@
                         <tr>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Radio Unit Type') ?></th>
+                            <th><?= __('Radio Link') ?></th>
+                            <th><?= __('Antenna Type') ?></th>
+                            <th><?= __('Polarization') ?></th>
+                            <th><?= __('Channel Width') ?></th>
+                            <th><?= __('Tx Frequency') ?></th>
+                            <th><?= __('Rx Frequency') ?></th>
+                            <th><?= __('Tx Power') ?></th>
+                            <th><?= __('Rx Signal') ?></th>
+                            <th><?= __('Operating Speed') ?></th>
+                            <th><?= __('Maximal Speed') ?></th>
+                            <th><?= __('Firmware Version') ?></th>
                             <th><?= __('Serial Number') ?></th>
                             <th><?= __('Station Address') ?></th>
+                            <th><?= __('Expiration Date') ?></th>
+                            <th><?= __('IP Address') ?></th>
+                            <th><?= __('Note') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($customerConnection->radio_units as $radioUnits) : ?>
@@ -259,7 +273,7 @@
                             <td>
                                 <?= $radioUnits->radio_unit_type !== null ? $this->Html->link(
                                     $radioUnits->radio_unit_type->name
-                                        ?? '(' . $radioUnits->radio_unit_type->id . ')',
+                                    ?? '(' . $radioUnits->radio_unit_type->id . ')',
                                     [
                                         'controller' => 'RadioUnitTypes',
                                         'action' => 'view',
@@ -267,8 +281,34 @@
                                     ],
                                 ) : '' ?>
                             </td>
+                            <td>
+                                <?= $radioUnits->radio_link !== null ? $this->Html->link(
+                                    $radioUnits->radio_link->name
+                                    ?? '(' . $radioUnits->radio_link->id . ')',
+                                    ['controller' => 'RadioLinks', 'action' => 'view', $radioUnits->radio_link->id],
+                                ) : '' ?>
+                            </td>
+                            <td>
+                                <?= $radioUnits->antenna_type !== null ? $this->Html->link(
+                                    $radioUnits->antenna_type->name
+                                    ?? '(' . $radioUnits->antenna_type->id . ')',
+                                    ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id],
+                                ) : '' ?>
+                            </td>
+                            <td><?= h($radioUnits->polarization) ?></td>
+                            <td><?= h($radioUnits->channel_width) ?></td>
+                            <td><?= h($radioUnits->tx_frequency) ?></td>
+                            <td><?= h($radioUnits->rx_frequency) ?></td>
+                            <td><?= h($radioUnits->tx_power) ?></td>
+                            <td><?= h($radioUnits->rx_signal) ?></td>
+                            <td><?= h($radioUnits->operating_speed) ?></td>
+                            <td><?= h($radioUnits->maximal_speed) ?></td>
+                            <td><?= h($radioUnits->firmware_version) ?></td>
                             <td><?= h($radioUnits->serial_number) ?></td>
                             <td><?= h($radioUnits->station_address) ?></td>
+                            <td><?= h($radioUnits->expiration_date) ?></td>
+                            <td><?= h($radioUnits->ip_address) ?></td>
+                            <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
                             <td class="actions">
                                 <?= $this->AuthLink->link(
                                     __('View'),
@@ -278,6 +318,11 @@
                                     __('Edit'),
                                     ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id],
                                     ['class' => 'win-link'],
+                                ) ?>
+                                <?= $this->AuthLink->postLink(
+                                    __('Delete'),
+                                    ['controller' => 'RadioUnits', 'action' => 'delete', $radioUnits->id],
+                                    ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)],
                                 ) ?>
                             </td>
                         </tr>
