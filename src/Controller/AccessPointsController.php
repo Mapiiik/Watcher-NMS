@@ -801,7 +801,7 @@ class AccessPointsController extends AppController
                     && is_numeric($neighbouringAccessPoint->gps_x)
                 ) {
                     // add map polyline for IP link (to access point)
-                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] =
+                    $mapPolylines[$this->lineKey($accessPoint->id, $neighbouringAccessPoint->id)] =
                         new Polyline(
                             from: $from,
                             to: new Position(
@@ -900,7 +900,7 @@ class AccessPointsController extends AppController
                     && is_numeric($neighbouringCustomerPoint->gps_x)
                 ) {
                     // add map polyline for IP link (to customer point)
-                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] =
+                    $mapPolylines[$this->lineKey($accessPoint->id, $neighbouringCustomerPoint->id)] =
                         new Polyline(
                             from: $from,
                             to: new Position(
@@ -1088,7 +1088,7 @@ class AccessPointsController extends AppController
                     && is_numeric($neighbouringAccessPoint->gps_x)
                 ) {
                     // add map polyline for wireless link (to access point)
-                    $mapPolylines[$accessPoint->id . '--' . $neighbouringAccessPoint->id] =
+                    $mapPolylines[$this->lineKey($accessPoint->id, $neighbouringAccessPoint->id)] =
                         new Polyline(
                             from: $from,
                             to: new Position(
@@ -1188,7 +1188,7 @@ class AccessPointsController extends AppController
                     && is_numeric($neighbouringCustomerPoint->gps_x)
                 ) {
                     // add map polyline for wireless link (to customer point)
-                    $mapPolylines[$accessPoint->id . '--' . $neighbouringCustomerPoint->id] =
+                    $mapPolylines[$this->lineKey($accessPoint->id, $neighbouringCustomerPoint->id)] =
                         new Polyline(
                             from: $from,
                             to: new Position(
@@ -1362,10 +1362,10 @@ class AccessPointsController extends AppController
                         && is_numeric($neighbouringAccessPoint->gps_x)
                     ) {
                         // add map polyline for radio link (to access point)
-                        $mapPolylines[$this->radioLinkKey(
-                            $radioLink->id,
+                        $mapPolylines[$this->lineKey(
                             $accessPoint->id,
                             $neighbouringAccessPoint->id,
+                            $radioLink->id,
                         )] = new Polyline(
                             from: $from,
                             to: new Position(
@@ -1436,10 +1436,10 @@ class AccessPointsController extends AppController
                         && is_numeric($neighbouringCustomerPoint->gps_x)
                     ) {
                         // add map polyline for radio link (to customer point)
-                        $mapPolylines[$this->radioLinkKey(
-                            $radioLink->id,
+                        $mapPolylines[$this->lineKey(
                             $accessPoint->id,
                             $neighbouringCustomerPoint->id,
+                            $radioLink->id,
                         )] = new Polyline(
                             from: $from,
                             to: new Position(
@@ -1515,19 +1515,25 @@ class AccessPointsController extends AppController
     }
 
     /**
-     * The key one line of a radio link is held under, the same whichever end it is drawn from.
+     * The key one line is held under, the same whichever of its two ends it is drawn from.
      *
-     * A link between two access points is walked twice, once from each end, and without this the
-     * second walk would lay a second line over the first one under a key of its own.
+     * Both ends of a link between two access points are walked, once each, and without a key that
+     * comes out the same either way the second walk lays a second line over the first one.
      *
-     * @param string $radioLinkId The link being drawn.
-     * @param string ...$ends The two places it joins.
+     * A link of its own may be named as well, which keeps two links between one pair of places
+     * apart. The links read off the devices name none: several networks between two masts are one
+     * line on a map, and drawing them over each other says nothing the one line does not.
+     *
+     * @param string $from One end.
+     * @param string $to The other end.
+     * @param string|null $link The link itself, where two of them between one pair are two lines.
      * @return string
      */
-    private function radioLinkKey(string $radioLinkId, string ...$ends): string
+    private function lineKey(string $from, string $to, ?string $link = null): string
     {
+        $ends = [$from, $to];
         sort($ends);
 
-        return 'radio-link-' . $radioLinkId . '--' . implode('--', $ends);
+        return ($link !== null ? 'link-' . $link . '--' : '') . implode('--', $ends);
     }
 }

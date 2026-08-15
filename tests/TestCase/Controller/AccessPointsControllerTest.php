@@ -468,6 +468,9 @@ class AccessPointsControllerTest extends TestCase
      * Two access points linked by an IP address out of one network are drawn joined up: a line
      * between them and a marker on each end.
      *
+     * One line, not one per end. Both ends are walked, because both stand at an access point the
+     * map draws, and the link is recorded on both of them.
+     *
      * @return void
      * @link \App\Controller\AccessPointsController::map()
      */
@@ -483,10 +486,11 @@ class AccessPointsControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertArrayHasKey(
-            $map['home_access_point_id'] . '--' . $map['neighbouring_access_point_id'],
+            $this->lineKey($map['home_access_point_id'], $map['neighbouring_access_point_id']),
             $this->polylinesDrawn(),
         );
         $this->assertArrayHasKey($map['neighbouring_access_point_id'], $this->markersDrawn());
+        $this->assertCount(1, $this->polylinesDrawn(), 'The link is drawn once from each end.');
     }
 
     /**
@@ -508,9 +512,10 @@ class AccessPointsControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertArrayHasKey(
-            $map['home_access_point_id'] . '--' . $map['neighbouring_access_point_id'],
+            $this->lineKey($map['home_access_point_id'], $map['neighbouring_access_point_id']),
             $this->polylinesDrawn(),
         );
+        $this->assertCount(1, $this->polylinesDrawn(), 'The link is drawn once from each end.');
     }
 
     /**
@@ -545,7 +550,7 @@ class AccessPointsControllerTest extends TestCase
         foreach (['wired_customer_point_id', 'wireless_customer_point_id'] as $customerPoint) {
             $this->assertArrayHasKey($map[$customerPoint], $this->markersDrawn());
             $this->assertArrayHasKey(
-                $map['home_access_point_id'] . '--' . $map[$customerPoint],
+                $this->lineKey($map['home_access_point_id'], $map[$customerPoint]),
                 $this->polylinesDrawn(),
             );
         }
@@ -572,10 +577,10 @@ class AccessPointsControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertArrayHasKey(
-            $this->radioLinkKey(
-                $map['backhaul_radio_link_id'],
+            $this->lineKey(
                 $map['home_access_point_id'],
                 $map['neighbouring_access_point_id'],
+                $map['backhaul_radio_link_id'],
             ),
             $this->polylinesDrawn(),
         );
@@ -617,10 +622,10 @@ class AccessPointsControllerTest extends TestCase
         $this->assertResponseOk();
         $this->assertArrayHasKey($map['radio_customer_point_id'], $this->markersDrawn());
         $this->assertArrayHasKey(
-            $this->radioLinkKey(
-                $map['customer_radio_link_id'],
+            $this->lineKey(
                 $map['home_access_point_id'],
                 $map['radio_customer_point_id'],
+                $map['customer_radio_link_id'],
             ),
             $this->polylinesDrawn(),
         );
@@ -649,15 +654,15 @@ class AccessPointsControllerTest extends TestCase
 
         $this->assertSame(
             [
-                $this->radioLinkKey(
-                    $map['multipoint_radio_link_id'],
+                $this->lineKey(
                     $map['home_access_point_id'],
                     $map['radio_customer_point_id'],
-                ),
-                $this->radioLinkKey(
                     $map['multipoint_radio_link_id'],
+                ),
+                $this->lineKey(
                     $map['home_access_point_id'],
                     $map['shared_customer_point_id'],
+                    $map['multipoint_radio_link_id'],
                 ),
             ],
             array_keys($lines),
@@ -739,23 +744,25 @@ class AccessPointsControllerTest extends TestCase
     {
         return array_filter(
             $this->polylinesDrawn(),
-            fn(string $key): bool => str_starts_with($key, 'radio-link-' . $radioLinkId . '--'),
+            fn(string $key): bool => str_starts_with($key, 'link-' . $radioLinkId . '--'),
             ARRAY_FILTER_USE_KEY,
         );
     }
 
     /**
-     * The key one line of a radio link is held under, written the way the controller writes it.
+     * The key one line is held under, written the way the controller writes it.
      *
-     * @param string $radioLinkId The link being drawn.
-     * @param string ...$ends The two places it joins.
+     * @param string $from One end.
+     * @param string $to The other end.
+     * @param string|null $link The link itself, where the layer keeps two of them apart.
      * @return string
      */
-    private function radioLinkKey(string $radioLinkId, string ...$ends): string
+    private function lineKey(string $from, string $to, ?string $link = null): string
     {
+        $ends = [$from, $to];
         sort($ends);
 
-        return 'radio-link-' . $radioLinkId . '--' . implode('--', $ends);
+        return ($link !== null ? 'link-' . $link . '--' : '') . implode('--', $ends);
     }
 
     /**
