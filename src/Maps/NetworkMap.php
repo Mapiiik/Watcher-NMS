@@ -369,58 +369,33 @@ final class NetworkMap
         $content = '';
 
         foreach ($routerosDevice->routeros_ip_links ?? [] as $routerosIpLink) {
+            // the address at the other end of the link, and whatever device answers at it
+            $neighbouringAddress = $routerosIpLink->neighbouring_ip_address;
+            $neighbouringDevice = $neighbouringAddress->routeros_device ?? null;
+
             // add informations about IP link to map marker for access point
             $content .=
                 '<li>'
                 . ' (' . $routerosIpLink->ip_address . ') - '
                 . (
-                    isset(
-                        $routerosIpLink
-                            ->neighbouring_ip_address
-                            ->routeros_device,
-                    ) ? $this->html->link(
-                        $routerosIpLink
-                            ->neighbouring_ip_address
-                            ->routeros_device
-                            ->name
-                            ?? '(' . $routerosIpLink
-                                ->neighbouring_ip_address
-                                ->routeros_device
-                                ->id . ')',
+                    $neighbouringDevice !== null ? $this->html->link(
+                        $neighbouringDevice->name
+                            ?? '(' . $neighbouringDevice->id . ')',
                         [
                             'controller' => 'RouterosDevices',
                             'action' => 'view',
-                            $routerosIpLink
-                                ->neighbouring_ip_address
-                                ->routeros_device
-                                ->id,
+                            $neighbouringDevice->id,
                         ],
                     ) : ''
                 )
-                . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ')' . '</li>';
+                . ' (' . $neighbouringAddress->ip_address . ')' . '</li>';
 
             // add map polyline and marker for IP link (to access point)
             if (
-                isset(
-                    $routerosIpLink
-                        ->neighbouring_ip_address
-                        ->routeros_device
-                        ->access_point,
-                )
-                && (
-                    $routerosIpLink
-                        ->neighbouring_ip_address
-                        ->routeros_device
-                        ->access_point
-                        ->id
-                    !=
-                    $accessPoint->id
-                )
+                isset($neighbouringDevice->access_point)
+                && $neighbouringDevice->access_point->id != $accessPoint->id
             ) {
-                $neighbouringAccessPoint = $routerosIpLink
-                    ->neighbouring_ip_address
-                    ->routeros_device
-                    ->access_point;
+                $neighbouringAccessPoint = $neighbouringDevice->access_point;
 
                 if (
                     is_numeric($neighbouringAccessPoint->gps_y)
@@ -472,24 +447,15 @@ final class NetworkMap
                         $mapMarkers[$neighbouringAccessPoint->id]->content .=
                             '<br>'
                             . $this->html->link(
-                                $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->routeros_device
-                                    ->name
-                                    ?? '(' . $routerosIpLink
-                                        ->neighbouring_ip_address
-                                        ->routeros_device
-                                        ->id . ')',
+                                $neighbouringDevice->name
+                                    ?? '(' . $neighbouringDevice->id . ')',
                                 [
                                     'controller' => 'RouterosDevices',
                                     'action' => 'view',
-                                    $routerosIpLink
-                                        ->neighbouring_ip_address
-                                        ->routeros_device
-                                        ->id,
+                                    $neighbouringDevice->id,
                                 ],
                             )
-                            . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
+                            . ' (' . $neighbouringAddress->ip_address . ') - '
                             . $this->html->link(
                                 $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
                                 [
@@ -507,19 +473,9 @@ final class NetworkMap
             // add map polyline and marker for IP link (to customer point)
             if (
                 $linkedCustomers
-                && isset(
-                    $routerosIpLink
-                        ->neighbouring_ip_address
-                        ->routeros_device
-                        ->customer_connection
-                        ->customer_point,
-                )
+                && isset($neighbouringDevice->customer_connection->customer_point)
             ) {
-                $neighbouringCustomerPoint = $routerosIpLink
-                    ->neighbouring_ip_address
-                    ->routeros_device
-                    ->customer_connection
-                    ->customer_point;
+                $neighbouringCustomerPoint = $neighbouringDevice->customer_connection->customer_point;
 
                 if (
                     is_numeric($neighbouringCustomerPoint->gps_y)
@@ -571,46 +527,26 @@ final class NetworkMap
                         '<br>'
                         . '<b>'
                         . $this->html->link(
-                            $routerosIpLink
-                                ->neighbouring_ip_address
-                                ->routeros_device
-                                ->customer_connection
-                                ->name
-                                ?? '(' . $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->routeros_device
-                                    ->customer_connection->id . ')',
+                            $neighbouringDevice->customer_connection->name
+                                ?? '(' . $neighbouringDevice->customer_connection->id . ')',
                             [
                                 'controller' => 'CustomerConnections',
                                 'action' => 'view',
-                                $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->routeros_device
-                                    ->customer_connection
-                                    ->id,
+                                $neighbouringDevice->customer_connection->id,
                             ],
                         )
                         . '</b>'
                         . '<br>'
                         . $this->html->link(
-                            $routerosIpLink
-                                ->neighbouring_ip_address
-                                ->routeros_device
-                                ->name
-                                ?? '(' . $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->routeros_device
-                                    ->id . ')',
+                            $neighbouringDevice->name
+                                ?? '(' . $neighbouringDevice->id . ')',
                             [
                                 'controller' => 'RouterosDevices',
                                 'action' => 'view',
-                                $routerosIpLink
-                                    ->neighbouring_ip_address
-                                    ->routeros_device
-                                    ->id,
+                                $neighbouringDevice->id,
                             ],
                         )
-                        . ' (' . $routerosIpLink->neighbouring_ip_address->ip_address . ') - '
+                        . ' (' . $neighbouringAddress->ip_address . ') - '
                         . $this->html->link(
                             $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
                             [
@@ -653,59 +589,34 @@ final class NetworkMap
         $content = '';
 
         foreach ($routerosDevice->routeros_wireless_links ?? [] as $routerosWirelessLink) {
+            // the radio at the other end of the link, and whatever device answers at it
+            $neighbouringInterface = $routerosWirelessLink->neighbouring_interface;
+            $neighbouringDevice = $neighbouringInterface?->routeros_device;
+
             // add informations about wireless link to map marker for access point
             $content .=
                 '<li>'
                 . ' (' . $routerosWirelessLink->name . ') - '
                 . (
-                    isset(
-                        $routerosWirelessLink
-                            ->neighbouring_interface
-                            ->routeros_device,
-                    ) ? $this->html->link(
-                        $routerosWirelessLink
-                            ->neighbouring_interface
-                            ->routeros_device
-                            ->name
-                            ?? '(' . $routerosWirelessLink
-                                ->neighbouring_interface
-                                ->routeros_device
-                                ->id . ')',
+                    $neighbouringDevice !== null ? $this->html->link(
+                        $neighbouringDevice->name
+                            ?? '(' . $neighbouringDevice->id . ')',
                         [
                             'controller' => 'RouterosDevices',
                             'action' => 'view',
-                            $routerosWirelessLink
-                                ->neighbouring_interface
-                                ->routeros_device
-                                ->id,
+                            $neighbouringDevice->id,
                         ],
                     ) : ''
                 )
-                . ' (' . $routerosWirelessLink->neighbouring_interface->name . ')'
+                . ' (' . $neighbouringInterface->name . ')'
                 . '</li>';
 
             // add map polyline and marker for wireless link (to access point)
             if (
-                isset(
-                    $routerosWirelessLink
-                        ->neighbouring_interface
-                        ->routeros_device
-                        ->access_point,
-                )
-                && (
-                    $routerosWirelessLink
-                        ->neighbouring_interface
-                        ->routeros_device
-                        ->access_point
-                        ->id
-                    !=
-                    $accessPoint->id
-                )
+                isset($neighbouringDevice->access_point)
+                && $neighbouringDevice->access_point->id != $accessPoint->id
             ) {
-                $neighbouringAccessPoint = $routerosWirelessLink
-                    ->neighbouring_interface
-                    ->routeros_device
-                    ->access_point;
+                $neighbouringAccessPoint = $neighbouringDevice->access_point;
 
                 if (
                     is_numeric($neighbouringAccessPoint->gps_y)
@@ -757,24 +668,15 @@ final class NetworkMap
                         $mapMarkers[$neighbouringAccessPoint->id]->content .=
                             '<br>'
                             . $this->html->link(
-                                $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->routeros_device
-                                    ->name
-                                    ?? '(' . $routerosWirelessLink
-                                        ->neighbouring_interface
-                                        ->routeros_device
-                                        ->id . ')',
+                                $neighbouringDevice->name
+                                    ?? '(' . $neighbouringDevice->id . ')',
                                 [
                                     'controller' => 'RouterosDevices',
                                     'action' => 'view',
-                                    $routerosWirelessLink
-                                        ->neighbouring_interface
-                                        ->routeros_device
-                                        ->id,
+                                    $neighbouringDevice->id,
                                 ],
                             )
-                            . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
+                            . ' (' . $neighbouringInterface->name . ') - '
                             . $this->html->link(
                                 $routerosDevice->name
                                     ?? '(' . $routerosDevice->id . ')',
@@ -793,19 +695,9 @@ final class NetworkMap
             // add map polyline and marker for wireless link (to customer point)
             if (
                 $linkedCustomers
-                && isset(
-                    $routerosWirelessLink
-                        ->neighbouring_interface
-                        ->routeros_device
-                        ->customer_connection
-                        ->customer_point,
-                )
+                && isset($neighbouringDevice->customer_connection->customer_point)
             ) {
-                $neighbouringCustomerPoint = $routerosWirelessLink
-                    ->neighbouring_interface
-                    ->routeros_device
-                    ->customer_connection
-                    ->customer_point;
+                $neighbouringCustomerPoint = $neighbouringDevice->customer_connection->customer_point;
 
                 if (
                     is_numeric($neighbouringCustomerPoint->gps_y)
@@ -857,47 +749,26 @@ final class NetworkMap
                         '<br>'
                         . '<b>'
                         . $this->html->link(
-                            $routerosWirelessLink
-                                ->neighbouring_interface
-                                ->routeros_device
-                                ->customer_connection
-                                ->name
-                                ?? '(' . $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->routeros_device
-                                    ->customer_connection
-                                    ->id . ')',
+                            $neighbouringDevice->customer_connection->name
+                                ?? '(' . $neighbouringDevice->customer_connection->id . ')',
                             [
                                 'controller' => 'CustomerConnections',
                                 'action' => 'view',
-                                $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->routeros_device
-                                    ->customer_connection
-                                    ->id,
+                                $neighbouringDevice->customer_connection->id,
                             ],
                         )
                         . '</b>'
                         . '<br>'
                         . $this->html->link(
-                            $routerosWirelessLink
-                                ->neighbouring_interface
-                                ->routeros_device
-                                ->name
-                                ?? '(' . $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->routeros_device
-                                    ->id . ')',
+                            $neighbouringDevice->name
+                                ?? '(' . $neighbouringDevice->id . ')',
                             [
                                 'controller' => 'RouterosDevices',
                                 'action' => 'view',
-                                $routerosWirelessLink
-                                    ->neighbouring_interface
-                                    ->routeros_device
-                                    ->id,
+                                $neighbouringDevice->id,
                             ],
                         )
-                        . ' (' . $routerosWirelessLink->neighbouring_interface->name . ') - '
+                        . ' (' . $neighbouringInterface->name . ') - '
                         . $this->html->link(
                             $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
                             [
