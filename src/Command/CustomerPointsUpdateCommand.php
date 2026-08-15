@@ -6,6 +6,7 @@ namespace App\Command;
 use App\Model\Table\CustomerConnectionIpsTable;
 use App\Model\Table\CustomerConnectionsTable;
 use App\Model\Table\CustomerPointsTable;
+use App\Model\Table\RadioUnitsTable;
 use App\Model\Table\RouterosDevicesTable;
 use App\Service\OperatorReport;
 use Cake\Command\Command;
@@ -298,8 +299,9 @@ class CustomerPointsUpdateCommand extends Command
      *
      * Order matters: each delete can orphan parents above it, so we go
      * bottom-up (IPs → connections → points). Connections that still have
-     * RouterOS devices are NOT deleted — they carry live NMS data — so they
-     * are archived instead (archived_by stays null = archived by system).
+     * RouterOS devices or radio units are NOT deleted — they carry live NMS
+     * data — so they are archived instead (archived_by stays null = archived
+     * by system).
      *
      * @return void
      */
@@ -309,8 +311,9 @@ class CustomerPointsUpdateCommand extends Command
         CustomerConnectionIpsTable $customerConnectionIpsTable,
         DateTime $startTime,
     ): void {
-        // fetch RouterOS devices table for use in multiple places below
+        // fetch the tables carrying live NMS data for use in multiple places below
         $routerosDevicesTable = $this->fetchTable(RouterosDevicesTable::class);
+        $radioUnitsTable = $this->fetchTable(RadioUnitsTable::class);
 
         /**
          * Customer connetion IP addresses - no special handling, just delete if stale.
@@ -322,15 +325,18 @@ class CustomerPointsUpdateCommand extends Command
         );
 
         /**
-         * Customer connections - first find those with RouterOS devices, then archive them, then delete the rest.
+         * Customer connections - first find those carrying live NMS data, then archive them, then
+         * delete the rest.
          */
 
-        // 1. archive stale connections that still have RouterOS devices.
+        // 1. archive stale connections that still have RouterOS devices or radio units.
         /** @var \Cake\Datasource\ResultSetInterface<array-key, \App\Model\Entity\CustomerConnection> $connectionsToArchive */
         $connectionsToArchive = $customerConnectionsTable->find()
             ->where(function (QueryExpression $exp) use (
                 $startTime,
                 $routerosDevicesTable,
+                $radioUnitsTable,
+                $customerConnectionsTable,
             ) {
                 $hasDevice = $routerosDevicesTable->find()
                     ->select(['RouterosDevices.id'])
@@ -339,8 +345,21 @@ class CustomerPointsUpdateCommand extends Command
                         'CustomerConnections.id',
                     ));
 
+                $hasRadioUnit = $radioUnitsTable->find()
+                    ->select(['RadioUnits.id'])
+                    ->where(fn(QueryExpression $e) => $e->equalFields(
+                        'RadioUnits.customer_connection_id',
+                        'CustomerConnections.id',
+                    ));
+
+                // Either of them is reason enough to keep the connection, and `exists()` adds to
+                // the expression it is called on rather than handing one back - so the two are
+                // built as expressions of their own and put side by side.
                 return $exp
-                    ->exists($hasDevice)
+                    ->add($exp->or([
+                        $customerConnectionsTable->find()->expr()->exists($hasDevice),
+                        $customerConnectionsTable->find()->expr()->exists($hasRadioUnit),
+                    ]))
                     ->lt('CustomerConnections.modified', $startTime)
                     ->isNull('CustomerConnections.archived');
             })
@@ -364,18 +383,26 @@ class CustomerPointsUpdateCommand extends Command
             );
         }
 
-        // 2. delete stale connections with no RouterOS devices and no IPs.
+        // 2. delete stale connections with no RouterOS devices, no radio units and no IPs.
         $customerConnectionsTable->deleteManyOrFail(
             $customerConnectionsTable->find()
                 ->where(function (QueryExpression $exp) use (
                     $startTime,
                     $routerosDevicesTable,
+                    $radioUnitsTable,
                     $customerConnectionIpsTable,
                 ) {
                     $hasDevice = $routerosDevicesTable->find()
                         ->select(['RouterosDevices.id'])
                         ->where(fn(QueryExpression $e) => $e->equalFields(
                             'RouterosDevices.customer_connection_id',
+                            'CustomerConnections.id',
+                        ));
+
+                    $hasRadioUnit = $radioUnitsTable->find()
+                        ->select(['RadioUnits.id'])
+                        ->where(fn(QueryExpression $e) => $e->equalFields(
+                            'RadioUnits.customer_connection_id',
                             'CustomerConnections.id',
                         ));
 
@@ -389,6 +416,7 @@ class CustomerPointsUpdateCommand extends Command
                     return $exp
                         ->lt('CustomerConnections.modified', $startTime)
                         ->notExists($hasDevice)
+                        ->notExists($hasRadioUnit)
                         ->notExists($hasIp);
                 })
                 ->all(),

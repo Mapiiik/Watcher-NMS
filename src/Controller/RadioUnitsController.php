@@ -44,6 +44,7 @@ class RadioUnitsController extends AppController
                     'RadioUnits.authorization_number ILIKE' => '%' . trim((string)$search) . '%',
                     'RadioUnitTypes.name ILIKE' => '%' . trim((string)$search) . '%',
                     'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
                     'RadioLinks.name ILIKE' => '%' . trim((string)$search) . '%',
                     'AntennaTypes.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
@@ -58,6 +59,7 @@ class RadioUnitsController extends AppController
             'all',
             contain: [
                 'AccessPoints',
+                'CustomerConnections',
                 'AntennaTypes',
                 'RadioLinks',
                 'RadioUnitTypes' => [
@@ -84,6 +86,7 @@ class RadioUnitsController extends AppController
         $radioUnit = $this->RadioUnits->get($id, contain: [
             'RadioUnitTypes',
             'AccessPoints',
+            'CustomerConnections',
             'RadioLinks',
             'AntennaTypes',
             'Creators',
@@ -128,6 +131,10 @@ class RadioUnitsController extends AppController
             ->find('active')
             ->find('list', order: ['name'])
             ->all();
+        $customerConnections = $this->RadioUnits->CustomerConnections
+            ->find('active')
+            ->find('list', order: ['name'])
+            ->all();
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name'])->all();
 
         $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', order: ['name']);
@@ -140,7 +147,14 @@ class RadioUnitsController extends AppController
             ]]);
         }
 
-        $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
+        $this->set(compact(
+            'radioUnit',
+            'radioUnitTypes',
+            'accessPoints',
+            'customerConnections',
+            'radioLinks',
+            'antennaTypes',
+        ));
 
         return null;
     }
@@ -169,7 +183,12 @@ class RadioUnitsController extends AppController
             }
         }
         $radioUnitTypes = $this->RadioUnits->RadioUnitTypes->find('list', order: ['name'])->all();
+        // Not narrowed to the active ones, unlike when a unit is being added: a unit already
+        // recorded at a customer whose connection has since been archived must keep saying so.
         $accessPoints = $this->RadioUnits->AccessPoints
+            ->find('list', order: ['name'])
+            ->all();
+        $customerConnections = $this->RadioUnits->CustomerConnections
             ->find('list', order: ['name'])
             ->all();
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name'])->all();
@@ -184,7 +203,14 @@ class RadioUnitsController extends AppController
             ]]);
         }
 
-        $this->set(compact('radioUnit', 'radioUnitTypes', 'accessPoints', 'radioLinks', 'antennaTypes'));
+        $this->set(compact(
+            'radioUnit',
+            'radioUnitTypes',
+            'accessPoints',
+            'customerConnections',
+            'radioLinks',
+            'antennaTypes',
+        ));
 
         return null;
     }
@@ -225,6 +251,11 @@ class RadioUnitsController extends AppController
                     'Manufacturers',
                 ],
                 'AccessPoints',
+                // Through to the place, because a unit recorded at a customer takes its
+                // coordinates from there the way one at an access point takes them from the mast.
+                'CustomerConnections' => [
+                    'CustomerPoints',
+                ],
                 'RadioLinks',
                 'AntennaTypes',
             ],

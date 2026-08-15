@@ -13,6 +13,7 @@ $this->setLayout('clean');
             <thead>
                 <tr>
                     <th><?= __('Access Point') ?></th>
+                    <th><?= __('Customer Connection') ?></th>
                     <th><?= __('Name') ?></th>
                     <th><?= __('Radio Unit Type') ?></th>
                     <th><?= __('Radio Link') ?></th>
@@ -49,6 +50,17 @@ $this->setLayout('clean');
                         <?= $radioUnit->access_point !== null ? $this->Html->link(
                             $radioUnit->access_point->name ?? '(' . $radioUnit->access_point->id . ')',
                             ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id],
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->customer_connection !== null ? $this->Html->link(
+                            $radioUnit->customer_connection->name
+                                ?? '(' . $radioUnit->customer_connection->id . ')',
+                            [
+                                'controller' => 'CustomerConnections',
+                                'action' => 'view',
+                                $radioUnit->customer_connection->id,
+                            ],
                         ) : '' ?>
                     </td>
                     <td><?= h($radioUnit->name) ?></td>
@@ -117,8 +129,17 @@ $this->setLayout('clean');
                     <td><?= h($radioUnit->device_login) ?></td>
                     <td><?= h($radioUnit->device_password) ?></td>
                     <td><?= h($radioUnit->authorization_number) ?></td>
-                    <td><?= $radioUnit->access_point !== null ? h($radioUnit->access_point->gps_y ?? '') : '' ?></td>
-                    <td><?= $radioUnit->access_point !== null ? h($radioUnit->access_point->gps_x ?? '') : '' ?></td>
+                    <?php
+                    // Where the unit stands, from whichever of the two places it is recorded at.
+                    $gpsY = $radioUnit->access_point->gps_y
+                        ?? $radioUnit->customer_connection->customer_point->gps_y
+                        ?? null;
+                    $gpsX = $radioUnit->access_point->gps_x
+                        ?? $radioUnit->customer_connection->customer_point->gps_x
+                        ?? null;
+                    ?>
+                    <td><?= h($gpsY) ?></td>
+                    <td><?= h($gpsX) ?></td>
                     <td>
                         <?= $this->AuthLink->link(
                             __('View'),

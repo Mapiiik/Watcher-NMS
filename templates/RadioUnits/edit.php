@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\RadioUnit $radioUnit
  * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPoints
+ * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $customerConnections
  * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $antennaTypes
  * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $radioLinks
  * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $radioUnitTypes
@@ -47,6 +48,10 @@
                         if (!isset($access_point_id)) {
                             echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                         }
+                        echo $this->Form->control(
+                            'customer_connection_id',
+                            ['options' => $customerConnections, 'empty' => true],
+                        );
                         echo $this->Form->control('radio_link_id', ['options' => $radioLinks, 'empty' => true]);
                         echo $this->Form->control('antenna_type_id', ['options' => $antennaTypes, 'empty' => true]);
                         echo $this->Form->control('polarization');

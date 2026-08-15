@@ -357,6 +357,60 @@ class RadioUnitRegistrationComparisonTest extends TestCase
     }
 
     /**
+     * A unit recorded at a customer is placed by the customer, which is what the client end of a
+     * link looks like - there is no mast of ours to name for it.
+     *
+     * @return void
+     * @link \App\Rlan\RadioUnitRegistrationComparison::query()
+     */
+    public function testAUnitAtACustomerIsPlacedByTheCustomer(): void
+    {
+        $band = $this->band('Registered band', registered: true);
+
+        $connection = $this->customerConnection('At the customer', 50.599546047948, 15.511295692493);
+        $this->radioUnit(
+            'Unit at a customer',
+            $band,
+            stationAddress: '04:d6:aa:a6:df:74',
+            customerConnectionId: $connection,
+        );
+
+        $listed = $this->listed('Unit at a customer');
+
+        $this->assertSame(RadioUnitRegistrationComparison::MATCHES, $listed->get('coordinates_check'));
+        $this->assertLessThan(1, (float)$listed->get('distance_in_metres'));
+    }
+
+    /**
+     * A unit recorded in two places at once is a mistake rather than a case to handle, and the
+     * access point is the one that answers.
+     *
+     * @return void
+     * @link \App\Rlan\RadioUnitRegistrationComparison::query()
+     */
+    public function testTheAccessPointAnswersForAUnitRecordedInTwoPlaces(): void
+    {
+        $band = $this->band('Registered band', registered: true);
+
+        $far = $this->accessPoint('Somewhere else', 50.7, 15.6);
+        $near = $this->customerConnection('At the station', 50.599546047948, 15.511295692493);
+
+        $this->radioUnit(
+            'Unit in two places',
+            $band,
+            stationAddress: '04:d6:aa:a6:df:74',
+            accessPointId: $far,
+            customerConnectionId: $near,
+        );
+
+        $listed = $this->listed('Unit in two places');
+
+        // Placed by the access point, so it is a long way off, however near the customer is.
+        $this->assertSame(RadioUnitRegistrationComparison::DIFFERS, $listed->get('coordinates_check'));
+        $this->assertGreaterThan(1000, (float)$listed->get('distance_in_metres'));
+    }
+
+    /**
      * A unit with no access point has nowhere recorded to compare against.
      *
      * @return void
@@ -469,6 +523,35 @@ class RadioUnitRegistrationComparisonTest extends TestCase
     }
 
     /**
+     * Add a customer connection standing somewhere.
+     *
+     * A connection has no coordinates of its own - it takes them from the customer point it is
+     * for, the same way a unit recorded at a customer takes them from the connection.
+     *
+     * @param string $name What to call it.
+     * @param float $latitude Where it stands.
+     * @param float $longitude Where it stands.
+     * @return string Id of the connection.
+     */
+    private function customerConnection(string $name, float $latitude, float $longitude): string
+    {
+        $points = $this->getTableLocator()->get('CustomerPoints');
+        $point = $points->newEntity(['name' => $name, 'gps_y' => $latitude, 'gps_x' => $longitude]);
+        $points->saveOrFail($point);
+
+        $connections = $this->getTableLocator()->get('CustomerConnections');
+        $connection = $connections->newEntity([
+            'name' => $name,
+            'customer_number' => 'C-1',
+            'contract_number' => $name,
+            'customer_point_id' => $point->get('id'),
+        ]);
+        $connections->saveOrFail($connection);
+
+        return (string)$connection->get('id');
+    }
+
+    /**
      * Add a station to the mirror of the register.
      *
      * @param int $stationId The number the register keeps it under.
@@ -513,7 +596,8 @@ class RadioUnitRegistrationComparisonTest extends TestCase
      * @param string $bandId Band it is on.
      * @param string|null $stationAddress What identifies the station.
      * @param string|null $authorizationNumber What the registration was filed under.
-     * @param string|null $accessPointId Where it stands.
+     * @param string|null $accessPointId Where it stands, when it stands at an access point.
+     * @param string|null $customerConnectionId Where it stands, when it stands at a customer.
      * @param int|null $txFrequency Channel it is recorded on.
      * @param int|null $channelWidth Bandwidth it is recorded with.
      * @return void
@@ -524,6 +608,7 @@ class RadioUnitRegistrationComparisonTest extends TestCase
         ?string $stationAddress = null,
         ?string $authorizationNumber = null,
         ?string $accessPointId = null,
+        ?string $customerConnectionId = null,
         ?int $txFrequency = null,
         ?int $channelWidth = null,
     ): void {
@@ -538,6 +623,7 @@ class RadioUnitRegistrationComparisonTest extends TestCase
             'station_address' => $stationAddress,
             'authorization_number' => $authorizationNumber,
             'access_point_id' => $accessPointId,
+            'customer_connection_id' => $customerConnectionId,
             'tx_frequency' => $txFrequency,
             'channel_width' => $channelWidth,
         ]));

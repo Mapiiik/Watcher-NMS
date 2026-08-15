@@ -13,6 +13,7 @@ use Cake\Core\Configure;
  * @property string|null $name
  * @property string|null $radio_unit_type_id
  * @property string|null $access_point_id
+ * @property string|null $customer_connection_id
  * @property string|null $radio_link_id
  * @property string|null $antenna_type_id
  * @property string|null $polarization
@@ -37,6 +38,7 @@ use Cake\Core\Configure;
  *
  * @property \App\Model\Entity\RadioUnitType $radio_unit_type
  * @property \App\Model\Entity\AccessPoint $access_point
+ * @property \App\Model\Entity\CustomerConnection $customer_connection
  * @property \App\Model\Entity\RadioLink $radio_link
  * @property \App\Model\Entity\AntennaType $antenna_type
  *
@@ -58,6 +60,7 @@ class RadioUnit extends AppEntity
         'name' => true,
         'radio_unit_type_id' => true,
         'access_point_id' => true,
+        'customer_connection_id' => true,
         'radio_link_id' => true,
         'antenna_type_id' => true,
         'polarization' => true,
@@ -85,6 +88,7 @@ class RadioUnit extends AppEntity
         'modified_by' => true,
         'radio_unit_type' => true,
         'access_point' => true,
+        'customer_connection' => true,
         'radio_link' => true,
         'antenna_type' => true,
     ];

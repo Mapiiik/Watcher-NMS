@@ -15,6 +15,7 @@ use Override;
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\CustomerConnectionIpsTable&\Cake\ORM\Association\HasMany $CustomerConnectionIps
  * @property \App\Model\Table\RouterosDevicesTable&\Cake\ORM\Association\HasMany $RouterosDevices
+ * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioUnits
  * @method \App\Model\Entity\CustomerConnection newEmptyEntity()
  * @method \App\Model\Entity\CustomerConnection newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\CustomerConnection[] newEntities(array $data, array $options = [])
@@ -64,6 +65,9 @@ class CustomerConnectionsTable extends AppTable
             'foreignKey' => 'customer_connection_id',
         ]);
         $this->hasMany('RouterosDevices', [
+            'foreignKey' => 'customer_connection_id',
+        ]);
+        $this->hasMany('RadioUnits', [
             'foreignKey' => 'customer_connection_id',
         ]);
     }
@@ -128,6 +132,7 @@ class CustomerConnectionsTable extends AppTable
 
         $rules->addDelete($rules->isNotLinkedTo('CustomerConnectionIps'));
         $rules->addDelete($rules->isNotLinkedTo('RouterosDevices'));
+        $rules->addDelete($rules->isNotLinkedTo('RadioUnits'));
 
         return $rules;
     }

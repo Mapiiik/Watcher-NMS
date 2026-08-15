@@ -26,6 +26,10 @@ use Settings\Utility\Settings;
  * number. Neither is a foreign key and there is nothing to make one out of, so this is a
  * comparison rather than an association, for the same reason the comparison against devices is.
  *
+ * Where a unit stands is recorded either as an access point of ours or as a customer, and the
+ * registered coordinates are compared against whichever of the two it is - the client end of a
+ * link is at the customer, and there is no mast of ours to name for it.
+ *
  * Only the bands that say their units are registered are looked at, and no band says so until
  * somebody says it does. What the register holds differs from band to band - the bands registered
  * by address alone have no technical parameters at all, and the register publishes none for them -
@@ -119,6 +123,17 @@ final class RadioUnitRegistrationComparison
         . ' AND BTRIM(RadioUnits.authorization_number) = %1$s.name';
 
     /**
+     * Where the inventory says the unit stands.
+     *
+     * A unit stands either at an access point of ours or at a customer, and it is recorded one way
+     * or the other - the client end of a link is at the customer, and there is no mast of ours to
+     * name for it. Recorded both ways it is a record of two places at once, which is a mistake
+     * rather than a case to handle: the access point answers and the other is left alone.
+     */
+    private const RECORDED_LATITUDE = 'COALESCE(AccessPoints.gps_y, CustomerPoints.gps_y)';
+    private const RECORDED_LONGITUDE = 'COALESCE(AccessPoints.gps_x, CustomerPoints.gps_x)';
+
+    /**
      * How far apart two places are, in metres.
      *
      * Flat trigonometry rather than a great circle: over the few hundred metres that decide this
@@ -127,10 +142,10 @@ final class RadioUnitRegistrationComparison
      */
     private const DISTANCE_IN_METRES =
         '6371000 * SQRT('
-            . 'POWER(RADIANS(RlanStations.latitude - AccessPoints.gps_y), 2)'
+            . 'POWER(RADIANS(RlanStations.latitude - ' . self::RECORDED_LATITUDE . '), 2)'
             . ' + POWER('
-                . 'RADIANS(RlanStations.longitude - AccessPoints.gps_x)'
-                . ' * COS(RADIANS((RlanStations.latitude + AccessPoints.gps_y) / 2))'
+                . 'RADIANS(RlanStations.longitude - ' . self::RECORDED_LONGITUDE . ')'
+                . ' * COS(RADIANS((RlanStations.latitude + ' . self::RECORDED_LATITUDE . ') / 2))'
             . ', 2)'
         . ')';
 
@@ -182,6 +197,10 @@ final class RadioUnitRegistrationComparison
             ->find()
             ->contain([
                 'AccessPoints',
+                // The other place a unit may be recorded at, reached through to the coordinates.
+                'CustomerConnections' => [
+                    'CustomerPoints',
+                ],
                 'AntennaTypes',
                 'RadioLinks',
                 'RadioUnitTypes' => [
@@ -403,13 +422,28 @@ final class RadioUnitRegistrationComparison
             );
 
         return $query
-            // The access point is reached from the unit rather than from the joined `AccessPoints`
-            // of the listing: the contained associations are joined after this subquery is, and an
-            // alias that comes later in the FROM clause is not one it may name.
+            // Where the unit stands is reached from the unit rather than from the joined
+            // `AccessPoints` and `CustomerPoints` of the listing: the contained associations are
+            // joined after this subquery is, and an alias that comes later in the FROM clause is
+            // not one it may name.
             ->leftJoin(
                 ['RegisteringUnitAccessPoint' => 'access_points'],
                 [
                     $query->expr('RegisteringUnitAccessPoint.id = RadioUnits.access_point_id'),
+                ],
+            )
+            ->leftJoin(
+                ['RegisteringUnitConnection' => 'customer_connections'],
+                [
+                    $query->expr('RegisteringUnitConnection.id = RadioUnits.customer_connection_id'),
+                ],
+            )
+            ->leftJoin(
+                ['RegisteringUnitCustomerPoint' => 'customer_points'],
+                [
+                    $query->expr(
+                        'RegisteringUnitCustomerPoint.id = RegisteringUnitConnection.customer_point_id',
+                    ),
                 ],
             )
             ->where(function (QueryExpression $exp) use ($query): QueryExpression {
@@ -419,11 +453,13 @@ final class RadioUnitRegistrationComparison
                 ]);
             })
             ->orderBy($query->expr($this->matching(self::MATCHES_THE_MAC_ADDRESS) . ' DESC NULLS LAST'))
-            ->orderBy($query->expr(sprintf(
-                'ABS(RegisteringStation.latitude - RegisteringUnitAccessPoint.gps_y)'
-                . ' + ABS(RegisteringStation.longitude - RegisteringUnitAccessPoint.gps_x)'
+            ->orderBy($query->expr(
+                'ABS(RegisteringStation.latitude'
+                    . ' - COALESCE(RegisteringUnitAccessPoint.gps_y, RegisteringUnitCustomerPoint.gps_y))'
+                . ' + ABS(RegisteringStation.longitude'
+                    . ' - COALESCE(RegisteringUnitAccessPoint.gps_x, RegisteringUnitCustomerPoint.gps_x))'
                 . ' ASC NULLS LAST',
-            )))
+            ))
             ->orderBy(['RegisteringStation.station_id' => 'ASC'])
             ->limit(1);
     }
@@ -508,7 +544,9 @@ final class RadioUnitRegistrationComparison
             ->then(self::NOT_REGISTERED, 'string')
             ->when($query->expr('RlanStations.latitude IS NULL OR RlanStations.longitude IS NULL'))
             ->then(self::NOT_REPORTED, 'string')
-            ->when($query->expr('AccessPoints.gps_y IS NULL OR AccessPoints.gps_x IS NULL'))
+            ->when($query->expr(
+                self::RECORDED_LATITUDE . ' IS NULL OR ' . self::RECORDED_LONGITUDE . ' IS NULL',
+            ))
             ->then(self::NOT_IN_INVENTORY, 'string')
             ->when($query->expr(self::DISTANCE_IN_METRES . ' <= ' . $this->coordinateTolerance))
             ->then(self::MATCHES, 'string')

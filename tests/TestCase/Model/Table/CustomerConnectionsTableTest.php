@@ -37,6 +37,14 @@ class CustomerConnectionsTableTest extends TestCase
         'app.AccessPoints',
         'app.DeviceTypes',
         'app.RouterosDevices',
+        // A radio unit may stand at a customer too, so a connection has to answer for those as
+        // well - and a unit brings the whole of what it is made of with it.
+        'app.Manufacturers',
+        'app.RadioUnitBands',
+        'app.AntennaTypes',
+        'app.RadioLinks',
+        'app.RadioUnitTypes',
+        'app.RadioUnits',
     ];
 
     /**

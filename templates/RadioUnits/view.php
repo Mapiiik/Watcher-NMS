@@ -67,6 +67,20 @@
                             </td>
                         </tr>
                         <tr>
+                            <th><?= __('Customer Connection') ?></th>
+                            <td>
+                                <?= $radioUnit->customer_connection !== null ? $this->Html->link(
+                                    $radioUnit->customer_connection->name
+                                        ?? '(' . $radioUnit->customer_connection->id . ')',
+                                    [
+                                        'controller' => 'CustomerConnections',
+                                        'action' => 'view',
+                                        $radioUnit->customer_connection->id,
+                                    ],
+                                ) : '' ?>
+                            </td>
+                        </tr>
+                        <tr>
                             <th><?= __('Radio Link') ?></th>
                             <td>
                                 <?= $radioUnit->radio_link !== null ? $this->Html->link(

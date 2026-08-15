@@ -88,6 +88,27 @@ Only the 60 GHz bands publish technical parameters; the 5.2 and 5.8 GHz ones
 are registered by coordinates and address alone, and the overview says so
 rather than reporting them as mismatched.
 
+### Where a radio unit stands
+
+The registered coordinates are compared against the place the unit is recorded
+at, which is either an access point of yours or a customer connection — the
+client end of a link is at the customer, and there is no mast of yours to name
+for it. A unit stands in one place, so fill in one or the other, not both; the
+access point is the one compared against if both are there.
+
+Units recorded before the customer connection was offered can be placed from
+the devices carrying them — a unit is matched to its device by the serial
+number, and the device has usually been placed already:
+
+```sh
+bin/cake radio_units_link_customers --dry-run   # say what would be placed
+bin/cake radio_units_link_customers
+```
+
+It only fills in units that say nothing about where they stand, never
+overwrites, and reports the units it could not place. There is nothing to
+schedule — a unit recorded from then on is placed as it is recorded.
+
 ## Requirements
 
 - PHP 8.2 or newer

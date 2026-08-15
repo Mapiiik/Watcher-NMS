@@ -33,6 +33,7 @@
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
+                    <th><?= $this->Paginator->sort('customer_connection_id') ?></th>
                     <th><?= $this->Paginator->sort('radio_unit_type_id') ?></th>
                     <th><?= $this->Paginator->sort('radio_link_id') ?></th>
                     <th><?= $this->Paginator->sort('antenna_type_id') ?></th>
@@ -61,6 +62,17 @@
                         <?= $radioUnit->access_point !== null ? $this->Html->link(
                             $radioUnit->access_point->name ?? '(' . $radioUnit->access_point->id . ')',
                             ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id],
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->customer_connection !== null ? $this->Html->link(
+                            $radioUnit->customer_connection->name
+                                ?? '(' . $radioUnit->customer_connection->id . ')',
+                            [
+                                'controller' => 'CustomerConnections',
+                                'action' => 'view',
+                                $radioUnit->customer_connection->id,
+                            ],
                         ) : '' ?>
                     </td>
                     <td>

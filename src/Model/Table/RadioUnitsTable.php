@@ -12,6 +12,7 @@ use Override;
  *
  * @property \App\Model\Table\RadioUnitTypesTable&\Cake\ORM\Association\BelongsTo $RadioUnitTypes
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
+ * @property \App\Model\Table\CustomerConnectionsTable&\Cake\ORM\Association\BelongsTo $CustomerConnections
  * @property \App\Model\Table\RadioLinksTable&\Cake\ORM\Association\BelongsTo $RadioLinks
  * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\BelongsTo $AntennaTypes
  * @method \App\Model\Entity\RadioUnit newEmptyEntity()
@@ -56,6 +57,11 @@ class RadioUnitsTable extends AppTable
         $this->belongsTo('AccessPoints', [
             'foreignKey' => 'access_point_id',
         ]);
+        // Where the unit stands, for a unit that does not stand at an access point of ours. One or
+        // the other rather than both: a unit stands in one place.
+        $this->belongsTo('CustomerConnections', [
+            'foreignKey' => 'customer_connection_id',
+        ]);
         $this->belongsTo('RadioLinks', [
             'foreignKey' => 'radio_link_id',
         ]);
@@ -76,6 +82,10 @@ class RadioUnitsTable extends AppTable
         $validator
             ->uuid('access_point_id')
             ->allowEmptyString('access_point_id');
+
+        $validator
+            ->uuid('customer_connection_id')
+            ->allowEmptyString('customer_connection_id');
 
         $validator
             ->uuid('id')
@@ -178,6 +188,7 @@ class RadioUnitsTable extends AppTable
     {
         $rules->add($rules->existsIn(['radio_unit_type_id'], 'RadioUnitTypes'));
         $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
+        $rules->add($rules->existsIn(['customer_connection_id'], 'CustomerConnections'));
         $rules->add($rules->existsIn(['radio_link_id'], 'RadioLinks'));
         $rules->add($rules->existsIn(['antenna_type_id'], 'AntennaTypes'));
 

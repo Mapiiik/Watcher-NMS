@@ -41,6 +41,8 @@ class RadioUnitsControllerTest extends TestCase
         'app.AntennaTypes',
         'app.AccessPointTypes',
         'app.AccessPoints',
+        'app.CustomerPoints',
+        'app.CustomerConnections',
         'app.RadioLinks',
         'app.RadioUnitTypes',
         'app.RadioUnits',
@@ -248,6 +250,34 @@ class RadioUnitsControllerTest extends TestCase
         $this->assertSame(
             'Renamed radio unit',
             $this->getTableLocator()->get('RadioUnits')->get($radioUnitId)->name,
+        );
+    }
+
+    /**
+     * A unit can be recorded as standing at a customer rather than at an access point, which is
+     * what the client end of a link looks like.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitsController::edit()
+     */
+    public function testEditStoresTheCustomerTheUnitStandsAt(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $connectionId = $this->firstId('CustomerConnections');
+        $radioUnitId = $this->firstId('RadioUnits');
+
+        $this->post('/radio-units/edit/' . $radioUnitId, [
+            'name' => 'Unit at a customer',
+            'customer_connection_id' => $connectionId,
+        ]);
+
+        $this->assertRedirect();
+        $this->assertSame(
+            $connectionId,
+            $this->getTableLocator()->get('RadioUnits')->get($radioUnitId)->customer_connection_id,
         );
     }
 }

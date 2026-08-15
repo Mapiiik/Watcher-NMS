@@ -241,6 +241,51 @@
                 </div>
                 <?php endif; ?>
             </div>
+            <div class="related">
+                <h4><?= __('Related Radio Units') ?></h4>
+                <?php if (!empty($customerConnection->radio_units)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Name') ?></th>
+                            <th><?= __('Radio Unit Type') ?></th>
+                            <th><?= __('Serial Number') ?></th>
+                            <th><?= __('Station Address') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($customerConnection->radio_units as $radioUnits) : ?>
+                        <tr>
+                            <td><?= h($radioUnits->name) ?></td>
+                            <td>
+                                <?= $radioUnits->radio_unit_type !== null ? $this->Html->link(
+                                    $radioUnits->radio_unit_type->name
+                                        ?? '(' . $radioUnits->radio_unit_type->id . ')',
+                                    [
+                                        'controller' => 'RadioUnitTypes',
+                                        'action' => 'view',
+                                        $radioUnits->radio_unit_type->id,
+                                    ],
+                                ) : '' ?>
+                            </td>
+                            <td><?= h($radioUnits->serial_number) ?></td>
+                            <td><?= h($radioUnits->station_address) ?></td>
+                            <td class="actions">
+                                <?= $this->AuthLink->link(
+                                    __('View'),
+                                    ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id],
+                                ) ?>
+                                <?= $this->AuthLink->link(
+                                    __('Edit'),
+                                    ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id],
+                                    ['class' => 'win-link'],
+                                ) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

@@ -79,6 +79,9 @@ class CustomerConnectionsController extends AppController
                 'AccessPoints',
                 'DeviceTypes',
             ],
+            'RadioUnits' => [
+                'RadioUnitTypes',
+            ],
             'Creators',
             'Modifiers',
         ]);
