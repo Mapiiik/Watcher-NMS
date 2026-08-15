@@ -114,6 +114,9 @@ final class RadioUnitComparison
             ->find()
             ->contain([
                 'AccessPoints',
+                // The other place a unit may stand, so that the listing says where every unit is
+                // and not only the ones on a mast of ours.
+                'CustomerConnections',
                 'RadioLinks',
                 'RadioUnitTypes' => [
                     'RadioUnitBands',

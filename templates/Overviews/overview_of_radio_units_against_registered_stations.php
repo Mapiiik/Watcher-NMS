@@ -131,6 +131,7 @@ $registrations = [
                 <tr>
                     <th><?= $this->Paginator->sort('RadioUnits.name', __('Radio Unit')) ?></th>
                     <th><?= __('Access Point') ?></th>
+                    <th><?= __('Customer Connection') ?></th>
                     <th><?= __('Radio Unit Band') ?></th>
                     <th><?= $this->Paginator->sort(
                         'RadioUnits.authorization_number',
@@ -157,6 +158,17 @@ $registrations = [
                         <?= $radioUnit->access_point !== null ? $this->Html->link(
                             $radioUnit->access_point->name ?? '(' . $radioUnit->access_point->id . ')',
                             ['controller' => 'AccessPoints', 'action' => 'view', $radioUnit->access_point->id],
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $radioUnit->customer_connection !== null ? $this->Html->link(
+                            $radioUnit->customer_connection->name
+                                ?? '(' . $radioUnit->customer_connection->id . ')',
+                            [
+                                'controller' => 'CustomerConnections',
+                                'action' => 'view',
+                                $radioUnit->customer_connection->id,
+                            ],
                         ) : '' ?>
                     </td>
                     <td style="<?= $radioUnit->style ?>">

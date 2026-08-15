@@ -111,6 +111,7 @@ $verdicts = [
                 <tr>
                     <th><?= $this->Paginator->sort('RouterosDevices.name', __('RouterOS Device')) ?></th>
                     <th><?= __('Access Point') ?></th>
+                    <th><?= __('Customer Connection') ?></th>
                     <th><?= $this->Paginator->sort('RouterosDeviceInterfaces.name', __('Interface')) ?></th>
                     <th><?= __('SSID') ?></th>
                     <th><?= __('MAC Address') ?></th>
@@ -137,6 +138,17 @@ $verdicts = [
                                 'controller' => 'AccessPoints',
                                 'action' => 'view',
                                 $deviceRadio->routeros_device->access_point->id,
+                            ],
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $deviceRadio->routeros_device?->customer_connection !== null ? $this->Html->link(
+                            $deviceRadio->routeros_device->customer_connection->name
+                                ?? '(' . $deviceRadio->routeros_device->customer_connection->id . ')',
+                            [
+                                'controller' => 'CustomerConnections',
+                                'action' => 'view',
+                                $deviceRadio->routeros_device->customer_connection->id,
                             ],
                         ) : '' ?>
                     </td>

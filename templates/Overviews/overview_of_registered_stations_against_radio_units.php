@@ -89,6 +89,7 @@ use App\Rlan\RegisteredStationComparison;
                     <th><?= __('Coordinates') ?></th>
                     <th><?= $this->Paginator->sort('radio_unit_check', __('Radio Unit')) ?></th>
                     <th><?= __('Access Point') ?></th>
+                    <th><?= __('Customer Connection') ?></th>
                     <th><?= __('Radio Unit Band') ?></th>
                     <th><?= __('Status') ?></th>
                 </tr>
@@ -137,6 +138,17 @@ use App\Rlan\RegisteredStationComparison;
                                 'controller' => 'AccessPoints',
                                 'action' => 'view',
                                 $registeredStation->get('access_point_id'),
+                            ],
+                        ) : '' ?>
+                    </td>
+                    <td>
+                        <?= $registeredStation->get('customer_connection_id') !== null ? $this->Html->link(
+                            $registeredStation->get('customer_connection_name')
+                                ?? '(' . $registeredStation->get('customer_connection_id') . ')',
+                            [
+                                'controller' => 'CustomerConnections',
+                                'action' => 'view',
+                                $registeredStation->get('customer_connection_id'),
                             ],
                         ) : '' ?>
                     </td>

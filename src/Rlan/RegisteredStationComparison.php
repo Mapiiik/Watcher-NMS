@@ -103,6 +103,14 @@ final class RegisteredStationComparison
                 $query->expr('AccessPoints.id = RadioUnits.access_point_id'),
             ],
         );
+        // The other place the recording unit may stand, so that a station recorded by a unit at a
+        // customer says where it is rather than leaving the place blank.
+        $query->leftJoin(
+            ['CustomerConnections' => 'customer_connections'],
+            [
+                $query->expr('CustomerConnections.id = RadioUnits.customer_connection_id'),
+            ],
+        );
 
         $query->getSelectTypeMap()->addDefaults([
             'read' => 'datetime',
@@ -119,6 +127,8 @@ final class RegisteredStationComparison
                 'band_name' => 'RadioUnitBands.name',
                 'access_point_id' => 'AccessPoints.id',
                 'access_point_name' => 'AccessPoints.name',
+                'customer_connection_id' => 'CustomerConnections.id',
+                'customer_connection_name' => 'CustomerConnections.name',
                 'read' => 'RlanStations.modified',
             ])
             ->select(['radio_unit_check' => $this->radioUnitCheck($query)]);

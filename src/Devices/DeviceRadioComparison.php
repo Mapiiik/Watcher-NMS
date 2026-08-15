@@ -75,6 +75,9 @@ final class DeviceRadioComparison
             ->contain([
                 'RouterosDevices' => [
                     'AccessPoints',
+                    // The other place a device may stand, so that the listing says where every
+                    // radio is and not only the ones on a mast of ours.
+                    'CustomerConnections',
                 ],
             ]);
 
