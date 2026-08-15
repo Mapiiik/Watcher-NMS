@@ -34,9 +34,13 @@
                     echo $this->Form->control('minimum_frequency');
                     echo $this->Form->control('maximum_frequency');
                     echo $this->Form->control('devices_require_radio_unit');
-                    echo $this->Form->control('units_require_rlan_registration');
+                    echo $this->Form->control('units_require_rlan_registration', [
+                        // Spelled out, because the label made up from the column name spells the
+                        // register's name as a word and there is no translation of that.
+                        'label' => __('Units Require RLAN Registration'),
+                    ]);
                     echo $this->Form->control('note');
-                ?>
+                    ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

@@ -32,7 +32,10 @@
                     <th><?= $this->Paginator->sort('minimum_frequency') ?></th>
                     <th><?= $this->Paginator->sort('maximum_frequency') ?></th>
                     <th><?= $this->Paginator->sort('devices_require_radio_unit') ?></th>
-                    <th><?= $this->Paginator->sort('units_require_rlan_registration') ?></th>
+                    <th><?= $this->Paginator->sort(
+                        'units_require_rlan_registration',
+                        __('Units Require RLAN Registration'),
+                    ) ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
