@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\ORM\Association;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -14,6 +15,7 @@ use Override;
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\CustomerConnectionsTable&\Cake\ORM\Association\BelongsTo $CustomerConnections
  * @property \App\Model\Table\RadioLinksTable&\Cake\ORM\Association\BelongsTo $RadioLinks
+ * @property \App\Model\Table\RadioUnitsTable&\Cake\ORM\Association\HasMany $RadioLinkUnits
  * @property \App\Model\Table\AntennaTypesTable&\Cake\ORM\Association\BelongsTo $AntennaTypes
  * @method \App\Model\Entity\RadioUnit newEmptyEntity()
  * @method \App\Model\Entity\RadioUnit newEntity(array $data, array $options = [])
@@ -64,6 +66,16 @@ class RadioUnitsTable extends AppTable
         ]);
         $this->belongsTo('RadioLinks', [
             'foreignKey' => 'radio_link_id',
+        ]);
+
+        // Every unit standing on the same link, this one among them - which is what the units of a
+        // link are. Which of them are the far ends is a question about a particular unit rather
+        // than about the link, and the entity answers it.
+        $this->hasMany('RadioLinkUnits', [
+            'className' => 'RadioUnits',
+            'foreignKey' => 'radio_link_id',
+            'bindingKey' => 'radio_link_id',
+            'strategy' => Association::STRATEGY_SELECT,
         ]);
         $this->belongsTo('AntennaTypes', [
             'foreignKey' => 'antenna_type_id',

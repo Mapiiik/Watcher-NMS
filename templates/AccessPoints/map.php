@@ -35,6 +35,9 @@
                 echo $this->Form->control('routeros_wireless_links', [
                     'label' => __('RouterOS Wireless Links'),
                 ]);
+                echo $this->Form->control('radio_links', [
+                    'label' => __('Radio Links'),
+                ]);
                 echo $this->Form->control('linked_customers', [
                     'label' => __('Linked Customers'),
                 ]);

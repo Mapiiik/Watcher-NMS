@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\AccessPointsController;
 use App\Test\Traits\ControllerTestTrait;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -551,6 +552,213 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * A radio link between two access points is drawn as one line, not as one per end.
+     *
+     * Both ends are walked, because both stand at an access point the map draws, and a line laid
+     * down twice under two keys is two lines over each other on the map.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapDrawsARadioLinkBetweenTwoAccessPointsOnce(): void
+    {
+        $map = $this->createMapTopology();
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-points/map', ['radio_links' => 1]);
+
+        $this->assertResponseOk();
+        $this->assertArrayHasKey(
+            $this->radioLinkKey(
+                $map['backhaul_radio_link_id'],
+                $map['home_access_point_id'],
+                $map['neighbouring_access_point_id'],
+            ),
+            $this->polylinesDrawn(),
+        );
+        $this->assertArrayHasKey($map['neighbouring_access_point_id'], $this->markersDrawn());
+        $this->assertCount(1, $this->linesOfRadioLink($map['backhaul_radio_link_id']));
+
+        // the link hands back every unit on it, so the unit walked in on is offered as a far end of
+        // its own link, and it would be listed against itself
+        $this->assertSame(
+            1,
+            substr_count(
+                $this->markersDrawn()[$map['home_access_point_id']]->content,
+                'Map backhaul home end',
+            ),
+            'The unit is named as the far end of its own link.',
+        );
+    }
+
+    /**
+     * The end of a radio link standing at a customer follows the switch the other layers follow -
+     * one switch for customers, whichever kind of link they hang off.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapDrawsARadioLinkToACustomerOnlyWhenAskedTo(): void
+    {
+        $map = $this->createMapTopology();
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-points/map', ['radio_links' => 1]);
+        $this->assertArrayNotHasKey($map['radio_customer_point_id'], $this->markersDrawn());
+
+        $this->post('/access-points/map', ['radio_links' => 1, 'linked_customers' => 1]);
+
+        $this->assertResponseOk();
+        $this->assertArrayHasKey($map['radio_customer_point_id'], $this->markersDrawn());
+        $this->assertArrayHasKey(
+            $this->radioLinkKey(
+                $map['customer_radio_link_id'],
+                $map['home_access_point_id'],
+                $map['radio_customer_point_id'],
+            ),
+            $this->polylinesDrawn(),
+        );
+    }
+
+    /**
+     * A link recorded with more than two units is a sector serving several clients, and the clients
+     * are not joined to one another - they cannot see each other and no line says they can.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapDrawsAMultipointRadioLinkOnlyOutOfTheAccessPoint(): void
+    {
+        $map = $this->createMapTopology();
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-points/map', ['radio_links' => 1, 'linked_customers' => 1]);
+
+        $this->assertResponseOk();
+
+        $lines = $this->linesOfRadioLink($map['multipoint_radio_link_id']);
+
+        $this->assertSame(
+            [
+                $this->radioLinkKey(
+                    $map['multipoint_radio_link_id'],
+                    $map['home_access_point_id'],
+                    $map['radio_customer_point_id'],
+                ),
+                $this->radioLinkKey(
+                    $map['multipoint_radio_link_id'],
+                    $map['home_access_point_id'],
+                    $map['shared_customer_point_id'],
+                ),
+            ],
+            array_keys($lines),
+        );
+    }
+
+    /**
+     * A radio link is drawn however long ago it was written down.
+     *
+     * The layers read off the devices leave out anything not heard from within the fortnight,
+     * because a stale reading is not to be trusted. A radio link is not read off anything - it is
+     * what somebody recorded - so the same window would hide the links nobody has had to touch.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapDrawsARadioLinkHoweverOldTheRecordIs(): void
+    {
+        $map = $this->createMapTopology();
+
+        $this->getTableLocator()->get('RadioUnits')
+            ->updateAll(['modified' => new DateTime('-2 years')], []);
+        $this->getTableLocator()->get('RadioLinks')
+            ->updateAll(['modified' => new DateTime('-2 years')], []);
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-points/map', ['radio_links' => 1]);
+
+        $this->assertResponseOk();
+        $this->assertCount(1, $this->linesOfRadioLink($map['backhaul_radio_link_id']));
+    }
+
+    /**
+     * No line is ever drawn from a place back to itself.
+     *
+     * The units of a link are reached through the link, which hands back the unit walked in on
+     * along with the rest of them, and two units of one link may perfectly well stand on one mast.
+     * Either one drawn as a link to somewhere would be a line of no length sitting under a marker.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapNeverDrawsALinkBackToWhereItStarted(): void
+    {
+        $this->createMapTopology();
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-points/map', [
+            'routeros_ip_links' => 1,
+            'routeros_wireless_links' => 1,
+            'radio_links' => 1,
+            'linked_customers' => 1,
+        ]);
+
+        $this->assertResponseOk();
+
+        foreach ($this->polylinesDrawn() as $key => $polyline) {
+            $this->assertNotEquals(
+                [$polyline->from->lat, $polyline->from->lng],
+                [$polyline->to->lat, $polyline->to->lng],
+                $key . ' joins a place to itself.',
+            );
+        }
+    }
+
+    /**
+     * The lines drawn for one radio link, keyed as the map keys them.
+     *
+     * @param string $radioLinkId The link asked about.
+     * @return array<string, \App\Maps\Polyline>
+     */
+    private function linesOfRadioLink(string $radioLinkId): array
+    {
+        return array_filter(
+            $this->polylinesDrawn(),
+            fn(string $key): bool => str_starts_with($key, 'radio-link-' . $radioLinkId . '--'),
+            ARRAY_FILTER_USE_KEY,
+        );
+    }
+
+    /**
+     * The key one line of a radio link is held under, written the way the controller writes it.
+     *
+     * @param string $radioLinkId The link being drawn.
+     * @param string ...$ends The two places it joins.
+     * @return string
+     */
+    private function radioLinkKey(string $radioLinkId, string ...$ends): string
+    {
+        sort($ends);
+
+        return 'radio-link-' . $radioLinkId . '--' . implode('--', $ends);
+    }
+
+    /**
      * The markers the map was handed, keyed by what they mark.
      *
      * @return array<string, \App\Maps\Marker>
@@ -629,6 +837,26 @@ class AccessPointsControllerTest extends TestCase
             'name' => 'Map wireless customer connection',
             'customer_point_id' => $wirelessCustomerPoint->get('id'),
         ]));
+        $radioCustomerPoint = $customerPoints->saveOrFail($customerPoints->newEntity([
+            'name' => 'Map radio customer',
+            'gps_y' => 50.2000,
+            'gps_x' => 14.5000,
+        ]));
+        $radioCustomerConnection = $customerConnections->saveOrFail($customerConnections->newEntity([
+            'name' => 'Map radio customer connection',
+            'customer_point_id' => $radioCustomerPoint->get('id'),
+        ]));
+        // a second customer on the same radio link, so that a link recorded with more than two
+        // units has something to be drawn wrongly as - a line between the two of them
+        $sharedCustomerPoint = $customerPoints->saveOrFail($customerPoints->newEntity([
+            'name' => 'Map shared radio customer',
+            'gps_y' => 50.2500,
+            'gps_x' => 14.5500,
+        ]));
+        $sharedCustomerConnection = $customerConnections->saveOrFail($customerConnections->newEntity([
+            'name' => 'Map shared radio customer connection',
+            'customer_point_id' => $sharedCustomerPoint->get('id'),
+        ]));
 
         $homeDevice = $devices->saveOrFail($devices->newEntity([
             'name' => 'Map home device',
@@ -674,13 +902,68 @@ class AccessPointsControllerTest extends TestCase
             'customer-link',
         );
 
+        // a radio link is written down rather than read, so both ends are simply recorded as being
+        // on it - one link out to the neighbour, one out to a customer, and one serving two
+        $backhaul = $this->recordRadioLink('Map backhaul', [
+            ['name' => 'Map backhaul home end', 'access_point_id' => $home->get('id')],
+            ['name' => 'Map backhaul far end', 'access_point_id' => $neighbour->get('id')],
+        ]);
+        $customerLink = $this->recordRadioLink('Map radio customer link', [
+            ['name' => 'Map customer link home end', 'access_point_id' => $home->get('id')],
+            [
+                'name' => 'Map customer link far end',
+                'customer_connection_id' => $radioCustomerConnection->get('id'),
+            ],
+        ]);
+        $multipoint = $this->recordRadioLink('Map multipoint', [
+            ['name' => 'Map multipoint sector', 'access_point_id' => $home->get('id')],
+            [
+                'name' => 'Map multipoint first client',
+                'customer_connection_id' => $radioCustomerConnection->get('id'),
+            ],
+            [
+                'name' => 'Map multipoint second client',
+                'customer_connection_id' => $sharedCustomerConnection->get('id'),
+            ],
+        ]);
+
         return [
             'home_access_point_id' => (string)$home->get('id'),
             'neighbouring_access_point_id' => (string)$neighbour->get('id'),
             'wired_customer_point_id' => (string)$wiredCustomerPoint->get('id'),
             'wireless_customer_point_id' => (string)$wirelessCustomerPoint->get('id'),
+            'radio_customer_point_id' => (string)$radioCustomerPoint->get('id'),
+            'shared_customer_point_id' => (string)$sharedCustomerPoint->get('id'),
             'home_device_id' => (string)$homeDevice->get('id'),
+            'backhaul_radio_link_id' => $backhaul,
+            'customer_radio_link_id' => $customerLink,
+            'multipoint_radio_link_id' => $multipoint,
         ];
+    }
+
+    /**
+     * Record a radio link and the units standing on it, each placed where it stands.
+     *
+     * @param string $name What the link is called.
+     * @param array<array<string, mixed>> $units The units on it, each with the place it stands at.
+     * @return string The id of the link.
+     */
+    private function recordRadioLink(string $name, array $units): string
+    {
+        $radioLinks = $this->getTableLocator()->get('RadioLinks');
+        $radioUnits = $this->getTableLocator()->get('RadioUnits');
+
+        $radioLink = $radioLinks->saveOrFail($radioLinks->newEntity(['name' => $name]));
+        $radioUnitTypeId = $this->firstId('RadioUnitTypes');
+
+        foreach ($units as $unit) {
+            $radioUnits->saveOrFail($radioUnits->newEntity($unit + [
+                'radio_link_id' => $radioLink->get('id'),
+                'radio_unit_type_id' => $radioUnitTypeId,
+            ]));
+        }
+
+        return (string)$radioLink->get('id');
     }
 
     /**

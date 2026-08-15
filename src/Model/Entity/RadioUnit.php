@@ -40,8 +40,10 @@ use Cake\Core\Configure;
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\CustomerConnection $customer_connection
  * @property \App\Model\Entity\RadioLink $radio_link
+ * @property \App\Model\Entity\RadioUnit[] $radio_link_units
  * @property \App\Model\Entity\AntennaType $antenna_type
  *
+ * @property \App\Model\Entity\RadioUnit[] $neighbouring_radio_units
  * @property string $name_for_lists
  * @property string $style
  */
@@ -103,6 +105,27 @@ class RadioUnit extends AppEntity
         return $this->serial_number !== null ?
             strval($this->name) . ' (' . strval($this->serial_number) . ')' :
             strval($this->name);
+    }
+
+    /**
+     * getter for neighbouring radio units
+     *
+     * The other ends of the link this unit is on. The units of a link include the unit itself,
+     * because that is what being on a link means, and which of them are the far ends is a question
+     * about this unit rather than about the link - so it is answered here rather than by each
+     * caller, and answered the same way for all of them.
+     *
+     * A link is not always a pair: a sector serves several clients and all of them are far ends of
+     * the one link.
+     *
+     * @return array<\App\Model\Entity\RadioUnit>
+     */
+    protected function _getNeighbouringRadioUnits(): array
+    {
+        return array_values(array_filter(
+            $this->radio_link_units ?? [],
+            fn(RadioUnit $radioUnit): bool => $radioUnit->id !== $this->id,
+        ));
     }
 
     /**
