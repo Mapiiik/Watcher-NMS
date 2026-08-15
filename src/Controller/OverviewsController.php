@@ -64,6 +64,7 @@ class OverviewsController extends AppController
                     'RadioUnits.station_address ILIKE' => '%' . trim((string)$search) . '%',
                     'RadioUnitTypes.name ILIKE' => '%' . trim((string)$search) . '%',
                     'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
                     'RadioLinks.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
@@ -156,6 +157,7 @@ class OverviewsController extends AppController
                     'RouterosDevices.name ILIKE' => '%' . trim((string)$search) . '%',
                     'RouterosDevices.serial_number ILIKE' => '%' . trim((string)$search) . '%',
                     'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
             ];
         }
@@ -218,6 +220,7 @@ class OverviewsController extends AppController
                     'RadioUnits.station_address ILIKE' => '%' . trim((string)$search) . '%',
                     'RadioUnits.authorization_number ILIKE' => '%' . trim((string)$search) . '%',
                     'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
                     'RadioLinks.name ILIKE' => '%' . trim((string)$search) . '%',
                     'RlanStations.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],
