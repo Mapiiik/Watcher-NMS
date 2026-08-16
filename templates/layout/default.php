@@ -104,6 +104,11 @@ $urlWithQuery = function ($query = []) use ($request) {
         <?php if (!($request->getQuery('win-link') == 'true')) : ?>
         <div class="top-nav-links">
             <?= $this->AuthLink->link(
+                __('Dashboard'),
+                ['controller' => 'Dashboard', 'action' => 'index', 'plugin' => null, 'access_point_id' => false],
+                ['class' => 'button button-small' . $buttonSelected(['Dashboard'])],
+            ) ?>
+            <?= $this->AuthLink->link(
                 __('Access Points'),
                 ['controller' => 'AccessPoints', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([
