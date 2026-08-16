@@ -104,6 +104,8 @@ class SettingsControllerTest extends TestCase
     public static function blocksProvider(): array
     {
         return [
+            'dashboard' => ['core.dashboard'],
+            'the tasks within the dashboard' => ['core.dashboard.tasks'],
             'devices' => ['core.devices'],
             'radio units' => ['core.radio_units'],
             // A block within a block opens on its own too, which is what a listing would link to

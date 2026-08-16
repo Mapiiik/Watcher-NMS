@@ -35,6 +35,11 @@
                     ['controller' => 'Settings', 'action' => 'edit', 'core.radio_units'],
                     ['class' => 'side-nav-item'],
                 ) ?>
+                <?= $this->AuthLink->link(
+                    __('Dashboard Configuration'),
+                    ['controller' => 'Settings', 'action' => 'edit', 'core.dashboard'],
+                    ['class' => 'side-nav-item'],
+                ) ?>
             </div>
         </div>
 
