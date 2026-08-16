@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-16 14:29+0200\n"
-"PO-Revision-Date: 2026-08-16 14:35+0200\n"
+"POT-Creation-Date: 2026-08-16 20:30+0200\n"
+"PO-Revision-Date: 2026-08-16 20:34+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -540,10 +540,6 @@ msgstr "Bod zákazníka byl odstraněn."
 msgid "The customer point could not be deleted. Please, try again."
 msgstr "Bod zákazníka nelze odstranit. Opakujte akci."
 
-#: src/Controller/DashboardController.php:41
-msgid "There is no such card."
-msgstr "Taková karta neexistuje."
-
 #: src/Controller/DeviceTypesController.php:76
 #: src/Controller/DeviceTypesController.php:100
 msgid "The device type has been saved."
@@ -949,7 +945,7 @@ msgstr "Záznam, pod kterým byla adresa evidována, již neexistuje."
 msgid "Errors"
 msgstr "Chyby"
 
-#: src/Dashboard/Card/ElectricityMeterReadingsCard.php:42
+#: src/Dashboard/Card/ElectricityMeterReadingsCard.php:43
 msgid "Electricity Meters to Read"
 msgstr "Elektroměry k odečtení"
 
@@ -969,11 +965,11 @@ msgstr "Naléhavé a zpožděné úkoly"
 msgid "Nothing is urgent or running late."
 msgstr "Nic není naléhavé ani zpožděné."
 
-#: src/Dashboard/Card/RadarInterferencesCard.php:39
+#: src/Dashboard/Card/RadarInterferencesCard.php:40
 msgid "Our Devices Interfering with Radar"
 msgstr "Naše zařízení rušící radar"
 
-#: src/Dashboard/Card/StaleDeviceDataCard.php:41
+#: src/Dashboard/Card/StaleDeviceDataCard.php:42
 msgid "Devices with Stale Data"
 msgstr "Zařízení s neaktuálními údaji"
 
@@ -2672,19 +2668,6 @@ msgstr "Zákaznické body"
 msgid "Delete Customer Point"
 msgstr "Odstranit zákaznický bod"
 
-#: templates/Dashboard/index.php:7 templates/Dashboard/index.php:14
-#: templates/layout/default.php:107
-msgid "Dashboard"
-msgstr "Nástěnka"
-
-#: templates/Dashboard/index.php:17
-msgid "There is nothing on the dashboard for your role yet."
-msgstr "Na nástěnce zatím není pro vaši roli nic k dispozici."
-
-#: templates/Dashboard/index.php:28
-msgid "Loading…"
-msgstr "Načítání…"
-
 #: templates/DeviceTypes/add.php:11 templates/DeviceTypes/edit.php:19
 #: templates/DeviceTypes/view.php:24
 msgid "List Device Types"
@@ -4018,6 +4001,10 @@ msgstr "Vyhledáno podle adresy, na kterou byla registrace vystavena."
 msgid "View Task"
 msgstr "Zobrazit úkol"
 
+#: templates/layout/default.php:107
+msgid "Dashboard"
+msgstr "Nástěnka"
+
 #: templates/layout/default.php:197
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
@@ -4041,6 +4028,15 @@ msgstr "Verze"
 #: templates/layout/error.php:36
 msgid "Back"
 msgstr "Zpět"
+
+#~ msgid "There is no such card."
+#~ msgstr "Taková karta neexistuje."
+
+#~ msgid "There is nothing on the dashboard for your role yet."
+#~ msgstr "Na nástěnce zatím není pro vaši roli nic k dispozici."
+
+#~ msgid "Loading…"
+#~ msgstr "Načítání…"
 
 #~ msgid "Radar Interferences on Our Devices"
 #~ msgstr "Radarové rušení našich zařízení"

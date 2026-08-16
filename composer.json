@@ -99,6 +99,7 @@
         "stan": "phpstan analyse",
         "test": "phpunit --colors=always",
         "translations-update": [
+            "bin/cake i18n extract --extract-core no --overwrite -p Dashboard",
             "bin/cake i18n extract --extract-core no --overwrite -p Settings",
             "bin/cake i18n extract --extract-core yes --overwrite --paths src/,templates/,config/ --output resources/locales/"
         ]

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-16 14:29+0200\n"
+"POT-Creation-Date: 2026-08-16 20:30+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -550,10 +550,6 @@ msgstr ""
 msgid "The customer point could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/DashboardController.php:41
-msgid "There is no such card."
-msgstr ""
-
 #: ./src/Controller/DeviceTypesController.php:76
 #: ./src/Controller/DeviceTypesController.php:100
 msgid "The device type has been saved."
@@ -946,7 +942,7 @@ msgstr ""
 msgid "Errors"
 msgstr ""
 
-#: ./src/Dashboard/Card/ElectricityMeterReadingsCard.php:42
+#: ./src/Dashboard/Card/ElectricityMeterReadingsCard.php:43
 msgid "Electricity Meters to Read"
 msgstr ""
 
@@ -967,11 +963,11 @@ msgstr ""
 msgid "Nothing is urgent or running late."
 msgstr ""
 
-#: ./src/Dashboard/Card/RadarInterferencesCard.php:39
+#: ./src/Dashboard/Card/RadarInterferencesCard.php:40
 msgid "Our Devices Interfering with Radar"
 msgstr ""
 
-#: ./src/Dashboard/Card/StaleDeviceDataCard.php:41
+#: ./src/Dashboard/Card/StaleDeviceDataCard.php:42
 msgid "Devices with Stale Data"
 msgstr ""
 
@@ -3103,20 +3099,6 @@ msgstr ""
 msgid "Delete Customer Point"
 msgstr ""
 
-#: ./templates/Dashboard/index.php:7
-#: ./templates/Dashboard/index.php:14
-#: ./templates/layout/default.php:107
-msgid "Dashboard"
-msgstr ""
-
-#: ./templates/Dashboard/index.php:17
-msgid "There is nothing on the dashboard for your role yet."
-msgstr ""
-
-#: ./templates/Dashboard/index.php:28
-msgid "Loading…"
-msgstr ""
-
 #: ./templates/DeviceTypes/add.php:11
 #: ./templates/DeviceTypes/edit.php:19
 #: ./templates/DeviceTypes/view.php:24
@@ -4482,6 +4464,10 @@ msgstr ""
 
 #: ./templates/email/html/task_notification.php:116
 msgid "View Task"
+msgstr ""
+
+#: ./templates/layout/default.php:107
+msgid "Dashboard"
 msgstr ""
 
 #: ./templates/layout/default.php:197
