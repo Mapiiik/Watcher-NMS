@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-16 11:08+0200\n"
-"PO-Revision-Date: 2026-08-16 11:20+0200\n"
+"POT-Creation-Date: 2026-08-16 14:29+0200\n"
+"PO-Revision-Date: 2026-08-16 14:31+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -1056,19 +1056,19 @@ msgstr "Admin"
 msgid "API"
 msgstr "API"
 
-#: src/Model/Entity/Task.php:144
+#: src/Model/Entity/Task.php:159
 msgid "Low"
 msgstr "Nízká"
 
-#: src/Model/Entity/Task.php:145
+#: src/Model/Entity/Task.php:160
 msgid "Normal"
 msgstr "Normální"
 
-#: src/Model/Entity/Task.php:146
+#: src/Model/Entity/Task.php:161
 msgid "High"
 msgstr "Vysoká"
 
-#: src/Model/Entity/Task.php:147
+#: src/Model/Entity/Task.php:162
 msgid "Urgent"
 msgstr "Naléhavé"
 
@@ -1131,7 +1131,7 @@ msgstr "Zadejte pásmu obě jeho hranice, nebo ani jednu."
 msgid "The highest frequency of the band cannot be below the lowest one."
 msgstr "Horní frekvence pásma nemůže být nižší než dolní."
 
-#: src/Model/Table/TasksTable.php:247
+#: src/Model/Table/TasksTable.php:255
 msgid "The specified task type requires the assignment of an access point."
 msgstr "Zadaný typ úkolu vyžaduje přiřazení přístupového bodu."
 
@@ -3716,7 +3716,8 @@ msgid "Start Date"
 msgstr "Datum přijetí"
 
 #: templates/TaskStates/view.php:69 templates/TaskTypes/view.php:61
-#: templates/Tasks/view.php:90 templates/email/html/task_notification.php:80
+#: templates/Tasks/view.php:90 templates/element/Dashboard/task_list.php:58
+#: templates/email/html/task_notification.php:80
 msgid "Estimated Date"
 msgstr "Přepokládaný datum řešení"
 
@@ -3825,7 +3826,7 @@ msgstr "nikdy"
 #: templates/element/Dashboard/electricity_meter_readings.php:31
 #: templates/element/Dashboard/radar_interferences.php:34
 #: templates/element/Dashboard/stale_device_data.php:37
-#: templates/element/Dashboard/task_list.php:39
+#: templates/element/Dashboard/task_list.php:68
 msgid "and {0} more"
 msgstr "a {0} dalších"
 
