@@ -97,3 +97,18 @@
 .dashboard-date-estimated {
     opacity: 0.7;
 }
+
+/*
+ * The line under a heading that says what the row is about. Some of them run long, so it is
+ * cut to two lines here and carried whole on the element's title, where hovering brings it
+ * out.
+ */
+.dashboard-hint {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    /* muted by transparency rather than by a colour of its own, so it holds up in every theme */
+    opacity: 0.75;
+}

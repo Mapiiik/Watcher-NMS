@@ -37,8 +37,11 @@ $priorityClass = function (Task $task): string {
                             $task->subject ?? $task->task_type->name ?? $task->number,
                             ['controller' => 'Tasks', 'action' => 'view', $task->id],
                         ) ?>
-                        <?php if ($task->access_point !== null) : ?>
-                            <br><small><?= h($task->access_point->name) ?></small>
+                        <?php $summary = $task->getSummaryText(false) ?>
+                        <?php if ($summary !== '') : ?>
+                            <br><small class="dashboard-hint" title="<?= h($summary) ?>">
+                                <?= h($summary) ?>
+                            </small>
                         <?php endif ?>
                     </td>
                     <td>

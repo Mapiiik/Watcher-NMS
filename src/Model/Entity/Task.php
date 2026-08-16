@@ -94,6 +94,21 @@ class Task extends AppEntity
      */
     protected function _getSummaryText(): string
     {
+        return $this->getSummaryText();
+    }
+
+    /**
+     * The one line that says what a task is about: where it is and how to reach whoever is
+     * there.
+     *
+     * Whoever already shows the subject - a listing that has it as its heading, say - asks
+     * for it to be left out rather than reading it twice.
+     *
+     * @param bool $with_subject Whether the subject heads the line.
+     * @return string
+     */
+    public function getSummaryText(bool $with_subject = true): string
+    {
         $phoneNumber = $this->phone;
         if (isset($phoneNumber) && Configure::read('Phones.stripPrefixForSummary') === true) {
             $phoneNumber = PhoneFormatter::toLocal($phoneNumber);
@@ -103,7 +118,7 @@ class Task extends AppEntity
         // behind a comma.
         return implode(', ', array_filter([
             implode(' - ', array_filter([
-                $this->subject ?? $this->task_type->name ?? null,
+                $with_subject ? $this->subject ?? $this->task_type->name ?? null : null,
                 $this->access_point->name ?? null,
             ])),
             $phoneNumber,
