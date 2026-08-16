@@ -71,7 +71,11 @@ class DashboardControllerTest extends TestCase
         $this->assertResponseContains('class="dashboard index content"');
         $this->assertResponseContains('class="dashboard-cards"');
         $this->assertResponseContains('class="related"');
-        $this->assertResponseContains('css/dashboard.css');
+        // served out of the plugin, so the path says which one it came from
+        $this->assertResponseContains('/dashboard/css/dashboard.css');
+        // the deferred cards are the only thing that fetches itself, so the script comes with
+        // this page rather than with every page
+        $this->assertResponseContains('js/lazy-load.js');
     }
 
     /**
@@ -136,7 +140,7 @@ class DashboardControllerTest extends TestCase
 
         $this->assertResponseOk();
 
-        /** @var list<\App\Dashboard\Card\DashboardCardInterface> $cards */
+        /** @var list<\Dashboard\Card\DashboardCardInterface> $cards */
         $cards = $this->viewVariable('cards');
         $ids = array_map(fn($card): string => $card->id(), $cards);
 
@@ -208,7 +212,7 @@ class DashboardControllerTest extends TestCase
 
         $this->assertResponseOk();
 
-        /** @var \App\Dashboard\Card\DashboardCardInterface $card */
+        /** @var \Dashboard\Card\DashboardCardInterface $card */
         $card = $this->viewVariable('card');
         $query = $card->data()['url']['?'];
 

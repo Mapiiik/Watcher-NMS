@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Dashboard;
 
-use App\Dashboard\Card\DashboardCardInterface;
 use App\Dashboard\Card\ElectricityMeterReadingsCard;
 use App\Dashboard\Card\MyTasksCard;
 use App\Dashboard\Card\PressingTasksCard;
@@ -16,6 +15,8 @@ use App\Model\Table\RadarInterferencesTable;
 use App\Model\Table\RouterosDevicesTable;
 use App\Model\Table\TasksTable;
 use Cake\ORM\Locator\LocatorAwareTrait;
+use Dashboard\Card\CardRegistryInterface;
+use Dashboard\Card\DashboardCardInterface;
 
 /**
  * Registry of the cards the dashboard can draw.
@@ -24,12 +25,12 @@ use Cake\ORM\Locator\LocatorAwareTrait;
  * order, for the roles it names. Cards are built lazily, so registering one costs nothing
  * until it is actually drawn.
  */
-final class DashboardCardRegistry
+final class DashboardCardRegistry implements CardRegistryInterface
 {
     use LocatorAwareTrait;
 
     /**
-     * @var array<string, callable(): \App\Dashboard\Card\DashboardCardInterface>
+     * @var array<string, callable(): \Dashboard\Card\DashboardCardInterface>
      */
     private array $factories = [];
 
@@ -64,7 +65,7 @@ final class DashboardCardRegistry
      * The card registered under the given id, or null where there is none.
      *
      * @param string $id Registry key.
-     * @return \App\Dashboard\Card\DashboardCardInterface|null
+     * @return \Dashboard\Card\DashboardCardInterface|null
      */
     public function get(string $id): ?DashboardCardInterface
     {
@@ -78,7 +79,7 @@ final class DashboardCardRegistry
      * it. Cards are fetched one URL at a time, so a card has to check who is asking.
      *
      * @param string $id Registry key.
-     * @return \App\Dashboard\Card\DashboardCardInterface|null
+     * @return \Dashboard\Card\DashboardCardInterface|null
      */
     public function getAllowed(string $id): ?DashboardCardInterface
     {
@@ -90,7 +91,7 @@ final class DashboardCardRegistry
     /**
      * The cards the signed-in role is offered, in the order they are registered.
      *
-     * @return list<\App\Dashboard\Card\DashboardCardInterface>
+     * @return list<\Dashboard\Card\DashboardCardInterface>
      */
     public function forRole(): array
     {
@@ -109,7 +110,7 @@ final class DashboardCardRegistry
      * Whether the signed-in role is offered the given card. Administrators are offered
      * every card, as they are everywhere else.
      *
-     * @param \App\Dashboard\Card\DashboardCardInterface $card The card to ask about.
+     * @param \Dashboard\Card\DashboardCardInterface $card The card to ask about.
      * @return bool
      */
     private function isAllowed(DashboardCardInterface $card): bool

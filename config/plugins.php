@@ -38,6 +38,9 @@ return [
     // Settings
     'Settings' => [],
 
+    // Dashboard
+    'Dashboard' => [],
+
     // dereuromark/cakephp-geo
     'Geo' => [],
 ];

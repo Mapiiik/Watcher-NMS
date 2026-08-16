@@ -5,6 +5,7 @@ namespace App\Dashboard\Card;
 
 use App\Model\Enum\MaximumAge;
 use App\Model\Table\RouterosDevicesTable;
+use Dashboard\Card\AbstractDashboardCard;
 use Override;
 
 /**

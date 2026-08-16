@@ -7,6 +7,7 @@ use App\Model\Entity\AccessPoint;
 use App\Model\Table\AccessPointsTable;
 use Cake\I18n\DateTime;
 use Cake\ORM\Query\SelectQuery;
+use Dashboard\Card\AbstractDashboardCard;
 use Override;
 
 /**
