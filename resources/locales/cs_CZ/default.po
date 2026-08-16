@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-15 21:04+0200\n"
-"PO-Revision-Date: 2026-08-15 21:07+0200\n"
+"POT-Creation-Date: 2026-08-16 11:08+0200\n"
+"PO-Revision-Date: 2026-08-16 11:20+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -15,14 +15,30 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: config/settings.php:55
+#: config/settings.php:53
+msgid "How many rows a card lists before it only says how many more there are."
+msgstr ""
+"Kolik řádků karta uvádí, než se zobrazí pouze informace o tom, kolik dalších "
+"zbývá."
+
+#: config/settings.php:59
+msgid "How far ahead a task deadline is already counted as pressing."
+msgstr "Jak dlouho před termínem řešení úkolu se již považuje za naléhavé."
+
+#: config/settings.php:63
+msgid "How long an unfinished task may lie untouched before it is pointed out."
+msgstr ""
+"Jak dlouho může nedokončený úkol zůstat bez povšimnutí, než se na něj "
+"upozorní."
+
+#: config/settings.php:73
 msgid ""
 "IP ranges left out when devices are linked by their neighbouring addresses."
 msgstr ""
 "Rozsahy IP adres, které nejsou zahrnuty, pokud jsou zařízení propojena na "
 "základě sousedních adres."
 
-#: config/settings.php:62
+#: config/settings.php:80
 msgid ""
 "How far a registered station may stand from the access point of the radio "
 "unit and still be taken for the same place."
@@ -135,7 +151,7 @@ msgstr ""
 
 #: src/Command/ElectricityMeterReadingsReportCommand.php:112
 #: templates/ElectricityMeterReadings/index.php:25
-#: templates/layout/default.php:281
+#: templates/layout/default.php:286
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
@@ -524,6 +540,10 @@ msgstr "Bod zákazníka byl odstraněn."
 msgid "The customer point could not be deleted. Please, try again."
 msgstr "Bod zákazníka nelze odstranit. Opakujte akci."
 
+#: src/Controller/DashboardController.php:41
+msgid "There is no such card."
+msgstr "Taková karta neexistuje."
+
 #: src/Controller/DeviceTypesController.php:76
 #: src/Controller/DeviceTypesController.php:100
 msgid "The device type has been saved."
@@ -865,29 +885,29 @@ msgstr "Typ úkolu byl odstraněn."
 msgid "The task type could not be deleted. Please, try again."
 msgstr "Typ úkolu nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:228
+#: src/Controller/TasksController.php:260
 msgid "none"
 msgstr "žádný"
 
-#: src/Controller/TasksController.php:329
-#: src/Controller/TasksController.php:404
+#: src/Controller/TasksController.php:361
+#: src/Controller/TasksController.php:436
 msgid "The task has been saved."
 msgstr "Úkol byl uložen."
 
-#: src/Controller/TasksController.php:333
-#: src/Controller/TasksController.php:408
+#: src/Controller/TasksController.php:365
+#: src/Controller/TasksController.php:440
 msgid "The task could not be saved. Please, try again."
 msgstr "Úkol nelze uložit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:456
+#: src/Controller/TasksController.php:488
 msgid "The task has been deleted."
 msgstr "Úkol byl odstraněn."
 
-#: src/Controller/TasksController.php:459
+#: src/Controller/TasksController.php:491
 msgid "The task could not be deleted. Please, try again."
 msgstr "Úkol nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:504
+#: src/Controller/TasksController.php:536
 msgid ""
 "The notification email could not be sent because the user does not have an "
 "email address."
@@ -895,23 +915,23 @@ msgstr ""
 "Oznamovací e-mail nebylo možné odeslat, protože uživatel nemá e-mailovou "
 "adresu."
 
-#: src/Controller/TasksController.php:517
+#: src/Controller/TasksController.php:549
 msgid "You have a new task # {0}"
 msgstr "Máte nový úkol č. {0}"
 
-#: src/Controller/TasksController.php:518
+#: src/Controller/TasksController.php:550
 msgid "You have changes in task # {0}"
 msgstr "Máte změny v úkolu č. {0}"
 
-#: src/Controller/TasksController.php:530
+#: src/Controller/TasksController.php:562
 msgid "Notification email sent."
 msgstr "E-mail s oznámením odeslán."
 
-#: src/Controller/TasksController.php:534
+#: src/Controller/TasksController.php:566
 msgid "The notification email could not be sent."
 msgstr "E-mail s oznámením se nepodařilo odeslat."
 
-#: src/Controller/TasksController.php:248
+#: src/Controller/TasksController.php:280
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural ""
 "There were {0} unfinished tasks found that do not have a user assigned."
@@ -928,6 +948,50 @@ msgstr "Záznam, pod kterým byla adresa evidována, již neexistuje."
 #: src/Controller/Traits/ErrorFormatterTrait.php:35
 msgid "Errors"
 msgstr "Chyby"
+
+#: src/Dashboard/Card/ElectricityMeterReadingsCard.php:42
+msgid "Electricity Meters to Read"
+msgstr "Elektroměry k odečtení"
+
+#: src/Dashboard/Card/MyTasksCard.php:38
+msgid "My Tasks"
+msgstr "Moje úkoly"
+
+#: src/Dashboard/Card/MyTasksCard.php:61 src/Dashboard/Card/MyTasksCard.php:68
+msgid "You are holding no unfinished tasks."
+msgstr "Nemáte žádné nedokončené úkoly."
+
+#: src/Dashboard/Card/PressingTasksCard.php:31
+msgid "Urgent and Overdue Tasks"
+msgstr "Naléhavé a zpožděné úkoly"
+
+#: src/Dashboard/Card/PressingTasksCard.php:54
+msgid "Nothing is urgent or running late."
+msgstr "Nic není naléhavé ani zpožděné."
+
+#: src/Dashboard/Card/RadarInterferencesCard.php:39
+msgid "Our Devices Interfering with Radar"
+msgstr "Naše zařízení rušící radar"
+
+#: src/Dashboard/Card/StaleDeviceDataCard.php:41
+msgid "Devices with Stale Data"
+msgstr "Zařízení s neaktuálními údaji"
+
+#: src/Dashboard/Card/StaleTasksCard.php:31
+msgid "Stale Tasks"
+msgstr "Zaseknuté úkoly"
+
+#: src/Dashboard/Card/StaleTasksCard.php:54
+msgid "Nothing has been left lying around."
+msgstr "Nic tu nezůstalo ležet."
+
+#: src/Dashboard/Card/UnassignedTasksCard.php:28
+msgid "Unassigned Tasks"
+msgstr "Nepřiřazené úkoly"
+
+#: src/Dashboard/Card/UnassignedTasksCard.php:49
+msgid "Every unfinished task has somebody holding it."
+msgstr "Za každým nedokončeným úkolem stojí někdo, kdo ho má na starosti."
 
 #: src/Model/Entity/AccessPoint.php:101
 #: src/Model/Entity/CustomerConnection.php:72
@@ -992,19 +1056,19 @@ msgstr "Admin"
 msgid "API"
 msgstr "API"
 
-#: src/Model/Entity/Task.php:136
+#: src/Model/Entity/Task.php:144
 msgid "Low"
 msgstr "Nízká"
 
-#: src/Model/Entity/Task.php:137
+#: src/Model/Entity/Task.php:145
 msgid "Normal"
 msgstr "Normální"
 
-#: src/Model/Entity/Task.php:138
+#: src/Model/Entity/Task.php:146
 msgid "High"
 msgstr "Vysoká"
 
-#: src/Model/Entity/Task.php:139
+#: src/Model/Entity/Task.php:147
 msgid "Urgent"
 msgstr "Naléhavé"
 
@@ -1067,7 +1131,7 @@ msgstr "Zadejte pásmu obě jeho hranice, nebo ani jednu."
 msgid "The highest frequency of the band cannot be below the lowest one."
 msgstr "Horní frekvence pásma nemůže být nižší než dolní."
 
-#: src/Model/Table/TasksTable.php:174
+#: src/Model/Table/TasksTable.php:247
 msgid "The specified task type requires the assignment of an access point."
 msgstr "Zadaný typ úkolu vyžaduje přiřazení přístupového bodu."
 
@@ -1219,7 +1283,7 @@ msgstr "Není nainstalováno přes Git"
 #: templates/TaskTypes/edit.php:10 templates/TaskTypes/index.php:28
 #: templates/TaskTypes/view.php:10 templates/TaskTypes/view.php:64
 #: templates/Tasks/add.php:14 templates/Tasks/edit.php:14
-#: templates/Tasks/index.php:77 templates/Tasks/view.php:10
+#: templates/Tasks/index.php:99 templates/Tasks/view.php:10
 #: templates/element/AccessPoints/subtree.php:70
 #: templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
@@ -1433,7 +1497,7 @@ msgstr "Upravit kontakt přístupového bodu"
 #: templates/RouterosDeviceIps/index.php:12
 #: templates/RouterosDevices/export.php:13
 #: templates/RouterosDevices/index.php:12 templates/TaskStates/index.php:11
-#: templates/TaskTypes/index.php:11 templates/Tasks/index.php:45
+#: templates/TaskTypes/index.php:11 templates/Tasks/index.php:40
 msgid "Search"
 msgstr "Hledat"
 
@@ -1443,7 +1507,7 @@ msgstr "Hledat"
 msgid "New Access Point Contact"
 msgstr "Nový kontakt přístupového bodu"
 
-#: templates/AccessPointContacts/index.php:25 templates/layout/default.php:276
+#: templates/AccessPointContacts/index.php:25 templates/layout/default.php:281
 msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
@@ -1484,7 +1548,7 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/view.php:179
 #: templates/RouterosDevices/view.php:232 templates/TaskStates/index.php:41
 #: templates/TaskStates/view.php:108 templates/TaskTypes/index.php:37
-#: templates/TaskTypes/view.php:100 templates/Tasks/index.php:127
+#: templates/TaskTypes/view.php:100 templates/Tasks/index.php:149
 #: templates/element/AccessPoints/subtree.php:94
 #: templates/email/html/electricity_meter_readings_report.php:52
 #: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
@@ -1528,7 +1592,7 @@ msgstr "Zobrazit"
 #: templates/RouterosDevices/view.php:187
 #: templates/RouterosDevices/view.php:236 templates/TaskStates/index.php:43
 #: templates/TaskStates/view.php:112 templates/TaskTypes/index.php:39
-#: templates/TaskTypes/view.php:104 templates/Tasks/index.php:131
+#: templates/TaskTypes/view.php:104 templates/Tasks/index.php:153
 #: templates/element/AccessPoints/subtree.php:98
 msgid "Edit"
 msgstr "Upravit"
@@ -1556,7 +1620,7 @@ msgstr "Upravit"
 #: templates/RouterosDeviceInterfaces/index.php:111
 #: templates/RouterosDeviceIps/index.php:82
 #: templates/RouterosDevices/index.php:106 templates/TaskStates/index.php:60
-#: templates/TaskTypes/index.php:56 templates/Tasks/index.php:143
+#: templates/TaskTypes/index.php:56 templates/Tasks/index.php:165
 msgid "first"
 msgstr "první"
 
@@ -1583,7 +1647,7 @@ msgstr "první"
 #: templates/RouterosDeviceInterfaces/index.php:112
 #: templates/RouterosDeviceIps/index.php:83
 #: templates/RouterosDevices/index.php:107 templates/TaskStates/index.php:61
-#: templates/TaskTypes/index.php:57 templates/Tasks/index.php:144
+#: templates/TaskTypes/index.php:57 templates/Tasks/index.php:166
 msgid "previous"
 msgstr "předchozí"
 
@@ -1610,7 +1674,7 @@ msgstr "předchozí"
 #: templates/RouterosDeviceInterfaces/index.php:114
 #: templates/RouterosDeviceIps/index.php:85
 #: templates/RouterosDevices/index.php:109 templates/TaskStates/index.php:63
-#: templates/TaskTypes/index.php:59 templates/Tasks/index.php:146
+#: templates/TaskTypes/index.php:59 templates/Tasks/index.php:168
 msgid "next"
 msgstr "další"
 
@@ -1637,7 +1701,7 @@ msgstr "další"
 #: templates/RouterosDeviceInterfaces/index.php:115
 #: templates/RouterosDeviceIps/index.php:86
 #: templates/RouterosDevices/index.php:110 templates/TaskStates/index.php:64
-#: templates/TaskTypes/index.php:60 templates/Tasks/index.php:147
+#: templates/TaskTypes/index.php:60 templates/Tasks/index.php:169
 msgid "last"
 msgstr "poslední"
 
@@ -1664,7 +1728,7 @@ msgstr "poslední"
 #: templates/RouterosDeviceInterfaces/index.php:118
 #: templates/RouterosDeviceIps/index.php:89
 #: templates/RouterosDevices/index.php:113 templates/TaskStates/index.php:67
-#: templates/TaskTypes/index.php:63 templates/Tasks/index.php:150
+#: templates/TaskTypes/index.php:63 templates/Tasks/index.php:172
 msgid ""
 "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
 "total"
@@ -1732,7 +1796,7 @@ msgid "Note"
 msgstr "Poznámka"
 
 #: templates/AccessPointTypes/add.php:12 templates/AccessPointTypes/edit.php:20
-#: templates/AccessPointTypes/view.php:25 templates/Settings/index.php:66
+#: templates/AccessPointTypes/view.php:25 templates/Settings/index.php:71
 msgid "List Access Point Types"
 msgstr "Seznam typů přístupových bodů"
 
@@ -1858,7 +1922,7 @@ msgid "Map"
 msgstr "Mapa"
 
 #: templates/AccessPoints/index.php:37 templates/AccessPoints/map.php:20
-#: templates/layout/default.php:107 templates/layout/default.php:271
+#: templates/layout/default.php:112 templates/layout/default.php:276
 msgid "Access Points"
 msgstr "Přístupové body"
 
@@ -1867,7 +1931,7 @@ msgid "Map Options"
 msgstr "Možnosti mapy"
 
 #: templates/AccessPoints/map.php:33 templates/RadioLinks/index.php:27
-#: templates/layout/default.php:152 templates/layout/default.php:353
+#: templates/layout/default.php:157 templates/layout/default.php:358
 msgid "Radio Links"
 msgstr "Rádiové spoje"
 
@@ -2443,7 +2507,7 @@ msgstr "Upravit typ antény"
 msgid "New Antenna Type"
 msgstr "Nový typ antény"
 
-#: templates/AntennaTypes/index.php:25 templates/Settings/index.php:103
+#: templates/AntennaTypes/index.php:25 templates/Settings/index.php:108
 msgid "Antenna Types"
 msgstr "Typy antén"
 
@@ -2495,19 +2559,19 @@ msgstr "Zisk antény"
 msgid "Customer Connection"
 msgstr "Připojení zákazníka"
 
-#: templates/AppUsers/user_settings.php:53 templates/layout/default.php:222
+#: templates/AppUsers/user_settings.php:53 templates/layout/default.php:227
 msgid "Light"
 msgstr "Světlý"
 
-#: templates/AppUsers/user_settings.php:54 templates/layout/default.php:223
+#: templates/AppUsers/user_settings.php:54 templates/layout/default.php:228
 msgid "Dark"
 msgstr "Tmavý"
 
-#: templates/AppUsers/user_settings.php:55 templates/layout/default.php:224
+#: templates/AppUsers/user_settings.php:55 templates/layout/default.php:229
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:225
+#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:230
 msgid "Legacy"
 msgstr "Starší"
 
@@ -2532,7 +2596,7 @@ msgid "New Customer Connection IP"
 msgstr "Nová IP připojení zákazníka"
 
 #: templates/CustomerConnectionIps/index.php:25
-#: templates/layout/default.php:310
+#: templates/layout/default.php:315
 msgid "Customer Connection Ips"
 msgstr "IP připojení zákazníků"
 
@@ -2562,7 +2626,7 @@ msgstr "Nové připojení zákazníka"
 
 #: templates/CustomerConnections/index.php:31
 #: templates/element/AccessPoints/subtree.php:68
-#: templates/layout/default.php:305
+#: templates/layout/default.php:310
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
 
@@ -2599,14 +2663,27 @@ msgstr "Upravit zákaznický bod"
 msgid "New Customer Point"
 msgstr "Nový zákaznický bod"
 
-#: templates/CustomerPoints/index.php:25 templates/layout/default.php:126
-#: templates/layout/default.php:300
+#: templates/CustomerPoints/index.php:25 templates/layout/default.php:131
+#: templates/layout/default.php:305
 msgid "Customer Points"
 msgstr "Zákaznické body"
 
 #: templates/CustomerPoints/view.php:17
 msgid "Delete Customer Point"
 msgstr "Odstranit zákaznický bod"
+
+#: templates/Dashboard/index.php:7 templates/Dashboard/index.php:14
+#: templates/layout/default.php:107
+msgid "Dashboard"
+msgstr "Nástěnka"
+
+#: templates/Dashboard/index.php:17
+msgid "There is nothing on the dashboard for your role yet."
+msgstr "Na nástěnce zatím není pro vaši roli nic k dispozici."
+
+#: templates/Dashboard/index.php:28
+msgid "Loading…"
+msgstr "Načítání…"
 
 #: templates/DeviceTypes/add.php:11 templates/DeviceTypes/edit.php:19
 #: templates/DeviceTypes/view.php:24
@@ -2630,7 +2707,7 @@ msgstr "Upravit typ zařízení"
 msgid "New Device Type"
 msgstr "Nový typ zařízení"
 
-#: templates/DeviceTypes/index.php:21 templates/Settings/index.php:82
+#: templates/DeviceTypes/index.php:21 templates/Settings/index.php:87
 msgid "Device Types"
 msgstr "Typy zařízení"
 
@@ -2690,7 +2767,7 @@ msgstr "Přidat rozsah IP adres"
 msgid "Edit IP Address Range"
 msgstr "Upravit rozsah IP adres"
 
-#: templates/IpAddressRanges/index.php:25 templates/layout/default.php:135
+#: templates/IpAddressRanges/index.php:25 templates/layout/default.php:140
 msgid "IP Address Ranges"
 msgstr "Rozsahy IP adres"
 
@@ -2737,7 +2814,7 @@ msgstr "Vysoká sazba - Cena za kWh"
 msgid "Edit Landlord Payment"
 msgstr "Upravit platbu pronajímateli"
 
-#: templates/LandlordPayments/index.php:25 templates/layout/default.php:286
+#: templates/LandlordPayments/index.php:25 templates/layout/default.php:291
 msgid "Landlord Payments"
 msgstr "Platby pronajímateli"
 
@@ -2770,8 +2847,8 @@ msgstr "Upravit výrobce"
 msgid "New Manufacturer"
 msgstr "Nový výrobce"
 
-#: templates/Manufacturers/index.php:25 templates/Settings/index.php:108
-#: templates/Settings/index.php:124
+#: templates/Manufacturers/index.php:25 templates/Settings/index.php:113
+#: templates/Settings/index.php:129
 msgid "Manufacturers"
 msgstr "Výrobci"
 
@@ -2799,7 +2876,7 @@ msgstr "Proud"
 msgid "Related Radio Unit Types"
 msgstr "Související typy rádiových jednotek"
 
-#: templates/Overviews/index.php:7 templates/layout/default.php:167
+#: templates/Overviews/index.php:7 templates/layout/default.php:172
 msgid "Overviews"
 msgstr "Přehledy"
 
@@ -3063,7 +3140,7 @@ msgid "None"
 msgstr "Žádné"
 
 #: templates/PaymentPurposes/add.php:12 templates/PaymentPurposes/edit.php:20
-#: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:71
+#: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:76
 msgid "List Payment Purposes"
 msgstr "Seznam účelů platby"
 
@@ -3100,7 +3177,7 @@ msgstr "Přidat napájecí zdroj"
 msgid "Edit Power Supply"
 msgstr "Upravit napájecí zdroj"
 
-#: templates/PowerSupplies/index.php:25 templates/layout/default.php:160
+#: templates/PowerSupplies/index.php:25 templates/layout/default.php:165
 msgid "Power Supplies"
 msgstr "Napájecí zdroje"
 
@@ -3127,7 +3204,7 @@ msgstr "Upravit typ napájecího zdroje"
 msgid "New Power Supply Type"
 msgstr "Nový typ napájecího zdroje"
 
-#: templates/PowerSupplyTypes/index.php:25 templates/Settings/index.php:119
+#: templates/PowerSupplyTypes/index.php:25 templates/Settings/index.php:124
 msgid "Power Supply Types"
 msgstr "Typy napájecích zdrojů"
 
@@ -3168,7 +3245,7 @@ msgstr "Nové rušení radaru"
 msgid "Devices That Interfere"
 msgstr "Zařízení, která ruší"
 
-#: templates/RadarInterferences/index.php:35 templates/layout/default.php:340
+#: templates/RadarInterferences/index.php:35 templates/layout/default.php:345
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
@@ -3266,7 +3343,7 @@ msgstr "Nový rádiový spoj"
 
 #: templates/RadioLinks/index.php:35 templates/RadioUnits/export.php:10
 #: templates/RadioUnits/index.php:29 templates/Settings/index.php:34
-#: templates/layout/default.php:358
+#: templates/layout/default.php:363
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
@@ -3300,7 +3377,7 @@ msgstr "Upravit pásmo rádiových jednotek"
 msgid "New Radio Unit Band"
 msgstr "Nové pásmo rádiových jednotek"
 
-#: templates/RadioUnitBands/index.php:25 templates/Settings/index.php:98
+#: templates/RadioUnitBands/index.php:25 templates/Settings/index.php:103
 msgid "Radio Unit Bands"
 msgstr "Pásma rádiových jednotek"
 
@@ -3337,7 +3414,7 @@ msgstr "Upravit typ rádiové jednotky"
 msgid "New Radio Unit Type"
 msgstr "Nový typ rádiové jednotky"
 
-#: templates/RadioUnitTypes/index.php:25 templates/Settings/index.php:93
+#: templates/RadioUnitTypes/index.php:25 templates/Settings/index.php:98
 msgid "Radio Unit Types"
 msgstr "Typy rádiových jednotek"
 
@@ -3408,7 +3485,7 @@ msgid "New RouterOS Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:29
-#: templates/layout/default.php:330
+#: templates/layout/default.php:335
 msgid "RouterOS Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
 
@@ -3436,7 +3513,7 @@ msgstr "Upravit IP zařízení RouterOS"
 msgid "New RouterOS Device IP"
 msgstr "Nová IP zařízení RouterOS"
 
-#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:335
+#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:340
 msgid "RouterOS Device Ips"
 msgstr "IP zařízení RouterOS"
 
@@ -3458,8 +3535,8 @@ msgid "Edit RouterOS Device"
 msgstr "Upravit zařízení RouterOS"
 
 #: templates/RouterosDevices/export.php:26
-#: templates/RouterosDevices/index.php:30 templates/layout/default.php:142
-#: templates/layout/default.php:325
+#: templates/RouterosDevices/index.php:30 templates/layout/default.php:147
+#: templates/layout/default.php:330
 msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
 
@@ -3507,7 +3584,7 @@ msgstr ""
 msgid "Setting: {path}"
 msgstr "Nastavení: {path}"
 
-#: templates/Settings/index.php:7 templates/layout/default.php:174
+#: templates/Settings/index.php:7 templates/layout/default.php:179
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -3531,46 +3608,50 @@ msgstr "Nastavení aplikace"
 msgid "Devices"
 msgstr "Zařízení"
 
-#: templates/Settings/index.php:42
+#: templates/Settings/index.php:39
+msgid "Dashboard Configuration"
+msgstr "Nastavení nástěnky"
+
+#: templates/Settings/index.php:47
 msgid "Access Point Functions"
 msgstr "Funkce přístupového bodu"
 
-#: templates/Settings/index.php:45
+#: templates/Settings/index.php:50
 msgid "Update Phone Number Format"
 msgstr "Aktualizace formátu telefonního čísla"
 
-#: templates/Settings/index.php:53
+#: templates/Settings/index.php:58
 msgid "Do you really want to update all phones for all access point contacts?"
 msgstr ""
 "Opravdu chcete aktualizovat všechny telefony u všech kontaktů přístupových "
 "bodů?"
 
-#: templates/Settings/index.php:63
+#: templates/Settings/index.php:68
 msgid "Access Point Related"
 msgstr "Související s přístupovým bodem"
 
-#: templates/Settings/index.php:79
+#: templates/Settings/index.php:84
 msgid "RouterOS Device Related"
 msgstr "Související se zařízením RouterOS"
 
-#: templates/Settings/index.php:90
+#: templates/Settings/index.php:95
 msgid "Radio Link Related"
 msgstr "Související s rádiovým spojem"
 
-#: templates/Settings/index.php:116
+#: templates/Settings/index.php:121
 msgid "Power Supply Related"
 msgstr "Související s napájecím zdrojem"
 
-#: templates/Settings/index.php:132
+#: templates/Settings/index.php:137
 msgid "Task Related"
 msgstr "Související s úkolem"
 
-#: templates/Settings/index.php:135 templates/TaskStates/add.php:11
+#: templates/Settings/index.php:140 templates/TaskStates/add.php:11
 #: templates/TaskStates/edit.php:16 templates/TaskStates/view.php:21
 msgid "List Task States"
 msgstr "Seznam stavů úkolů"
 
-#: templates/Settings/index.php:140 templates/TaskTypes/add.php:11
+#: templates/Settings/index.php:145 templates/TaskTypes/add.php:11
 #: templates/TaskTypes/edit.php:16 templates/TaskTypes/view.php:21
 msgid "List Task Types"
 msgstr "Seznam typů úkolů"
@@ -3610,7 +3691,7 @@ msgid "Related Tasks"
 msgstr "Související úkoly"
 
 #: templates/TaskStates/view.php:59 templates/TaskTypes/view.php:51
-#: templates/Tasks/index.php:65
+#: templates/Tasks/index.php:87
 msgid "Number"
 msgstr "Číslo"
 
@@ -3673,7 +3754,7 @@ msgstr "Odstranit typ úkolu"
 msgid "Access Point Required"
 msgstr "Je vyžadován přístupový bod"
 
-#: templates/TaskTypes/view.php:53 templates/Tasks/index.php:68
+#: templates/TaskTypes/view.php:53 templates/Tasks/index.php:90
 #: templates/Tasks/view.php:47 templates/email/html/task_notification.php:44
 msgid "Task State"
 msgstr "Stav úkolu"
@@ -3691,23 +3772,31 @@ msgstr "Přidat úkol"
 msgid "Edit Task"
 msgstr "Upravit úkol"
 
-#: templates/Tasks/index.php:20
+#: templates/Tasks/index.php:49
 msgid "Show Completed"
 msgstr "Zobrazit dokončené"
 
-#: templates/Tasks/index.php:50
+#: templates/Tasks/index.php:56
+msgid "Urgent or Overdue Only"
+msgstr "Pouze urgentní nebo po termínu"
+
+#: templates/Tasks/index.php:63
+msgid "Untouched for a While Only"
+msgstr "Pouze ty které jsou chvíli bez zásahu"
+
+#: templates/Tasks/index.php:72
 msgid "Expandable Text"
 msgstr "Rozbalitelný text"
 
-#: templates/Tasks/index.php:59 templates/Tasks/view.php:18
+#: templates/Tasks/index.php:81 templates/Tasks/view.php:18
 msgid "New Task"
 msgstr "Nový úkol"
 
-#: templates/Tasks/index.php:60 templates/layout/default.php:117
+#: templates/Tasks/index.php:82 templates/layout/default.php:122
 msgid "Tasks"
 msgstr "Úkoly"
 
-#: templates/Tasks/index.php:70 templates/Tasks/view.php:110
+#: templates/Tasks/index.php:92 templates/Tasks/view.php:110
 #: templates/email/html/task_notification.php:124
 msgid "Summary Text"
 msgstr "Souhrnný text"
@@ -3723,6 +3812,34 @@ msgstr "Úkol č."
 #: templates/element/AccessPoints/subtree.php:69
 msgid "Customer Connections Including Subordinates"
 msgstr "Připojení zákazníků včetně podřazených"
+
+#: templates/element/Dashboard/electricity_meter_readings.php:9
+msgid "Every meter due this month has been read."
+msgstr ""
+"Všechny elektroměry, u nichž je tento měsíc termín odečtu, již byly odečteny."
+
+#: templates/element/Dashboard/electricity_meter_readings.php:23
+msgid "never"
+msgstr "nikdy"
+
+#: templates/element/Dashboard/electricity_meter_readings.php:31
+#: templates/element/Dashboard/radar_interferences.php:34
+#: templates/element/Dashboard/stale_device_data.php:37
+#: templates/element/Dashboard/task_list.php:39
+msgid "and {0} more"
+msgstr "a {0} dalších"
+
+#: templates/element/Dashboard/radar_interferences.php:11
+msgid "No device of ours is reported as interfering."
+msgstr "Žádné z našich zařízení nebylo nahlášeno jako zdroj rušení."
+
+#: templates/element/Dashboard/stale_device_data.php:12
+msgid "Every device has been written to recently."
+msgstr "Na každé zařízení se v poslední době něco zapsalo."
+
+#: templates/element/Dashboard/stale_device_data.php:14
+msgid "Nothing has been written for these in {0}."
+msgstr "Za posledních {0} se u nich nic nezapsalo."
 
 #: templates/element/Maps/google/point-picker.php:113
 #: templates/element/Maps/leaflet/point-picker.php:82
@@ -3750,7 +3867,7 @@ msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
 #: templates/element/Settings/FormFields.php:34
-#: templates/layout/default.php:220
+#: templates/layout/default.php:225
 msgid "Default"
 msgstr "Výchozí"
 
@@ -3900,29 +4017,32 @@ msgstr "Vyhledáno podle adresy, na kterou byla registrace vystavena."
 msgid "View Task"
 msgstr "Zobrazit úkol"
 
-#: templates/layout/default.php:192
+#: templates/layout/default.php:197
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
 
-#: templates/layout/default.php:251
+#: templates/layout/default.php:256
 msgid "Logout"
 msgstr "Odhlášení"
 
-#: templates/layout/default.php:377
+#: templates/layout/default.php:382
 msgid "Changelog"
 msgstr "Seznam změn"
 
-#: templates/layout/default.php:378
+#: templates/layout/default.php:383
 msgid "Source Code"
 msgstr "Zdrojový kód"
 
-#: templates/layout/default.php:380
+#: templates/layout/default.php:385
 msgid "Version"
 msgstr "Verze"
 
 #: templates/layout/error.php:36
 msgid "Back"
 msgstr "Zpět"
+
+#~ msgid "Radar Interferences on Our Devices"
+#~ msgstr "Radarové rušení našich zařízení"
 
 #~ msgid "Not registered as such"
 #~ msgstr "Není jako takový registrován"
