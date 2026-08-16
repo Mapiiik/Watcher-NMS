@@ -65,3 +65,35 @@
     width: 1%;
     white-space: nowrap;
 }
+
+/*
+ * The priority of a task. The ordinary one is said quietly, as most tasks carry it; the two
+ * that ask for attention are set in a badge of their own, which has to read against the
+ * colour the row already carries from the task's state.
+ */
+.dashboard-priority-plain {
+    opacity: 0.7;
+}
+
+.dashboard-priority-high,
+.dashboard-priority-urgent {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.3rem;
+    font-weight: bold;
+}
+
+.dashboard-priority-high {
+    background-color: var(--color-message-warning-bg);
+    color: var(--color-message-warning-text);
+}
+
+.dashboard-priority-urgent {
+    background-color: var(--color-message-error-bg);
+    color: var(--color-message-error-text);
+}
+
+/* An expected date, which is a plan rather than a promise and is said more quietly. */
+.dashboard-date-estimated {
+    opacity: 0.7;
+}
