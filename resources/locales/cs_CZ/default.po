@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
 "POT-Creation-Date: 2026-08-16 14:29+0200\n"
-"PO-Revision-Date: 2026-08-16 14:31+0200\n"
+"PO-Revision-Date: 2026-08-16 14:35+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -3719,7 +3719,7 @@ msgstr "Datum přijetí"
 #: templates/Tasks/view.php:90 templates/element/Dashboard/task_list.php:58
 #: templates/email/html/task_notification.php:80
 msgid "Estimated Date"
-msgstr "Přepokládaný datum řešení"
+msgstr "Předpokládaný datum řešení"
 
 #: templates/TaskStates/view.php:70 templates/TaskTypes/view.php:62
 #: templates/Tasks/view.php:94 templates/email/html/task_notification.php:84
