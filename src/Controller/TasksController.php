@@ -14,6 +14,7 @@ use Cake\Validation\Validation;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
 use Exception;
+use Settings\Utility\Settings;
 
 /**
  * Tasks Controller
@@ -51,6 +52,18 @@ class TasksController extends AppController
             $this->getRequest()->getSession()->write(
                 'Config.Tasks.filter.show_completed',
                 $this->getRequest()->getQuery('show_completed'),
+            );
+        }
+        if (!is_null($this->getRequest()->getQuery('pressing'))) {
+            $this->getRequest()->getSession()->write(
+                'Config.Tasks.filter.pressing',
+                $this->getRequest()->getQuery('pressing'),
+            );
+        }
+        if (!is_null($this->getRequest()->getQuery('stale'))) {
+            $this->getRequest()->getSession()->write(
+                'Config.Tasks.filter.stale',
+                $this->getRequest()->getQuery('stale'),
             );
         }
         if (!is_null($this->getRequest()->getQuery('user_id'))) {
@@ -94,6 +107,11 @@ class TasksController extends AppController
         }
 
         // filter by completed
+        // filter by what wants attention - the same reading the dashboard cards are drawn
+        // from, so a card and the listing it points at hold the same tasks
+        $pressing = toBool($filter['pressing'] ?? null);
+        $stale = toBool($filter['stale'] ?? null);
+
         $show_completed = $filter['show_completed'] ?? null;
         if (empty($show_completed)) {
             $conditions[] = [
@@ -165,6 +183,8 @@ class TasksController extends AppController
         $filterForm->setData([
             'expandable_text' => $expandable_text,
             'show_completed' => $show_completed,
+            'pressing' => $pressing,
+            'stale' => $stale,
             'user_id' => $user_id,
             'task_type_id' => $task_type_id,
             'task_state_id' => $task_state_id,
@@ -197,7 +217,7 @@ class TasksController extends AppController
         ];
 
         // paginate results
-        $tasks = $this->paginate($this->Tasks->find(
+        $query = $this->Tasks->find(
             'all',
             contain: [
                 'AccessPoints',
@@ -206,7 +226,19 @@ class TasksController extends AppController
                 'TaskTypes',
             ],
             conditions: $conditions,
-        ));
+        );
+
+        if ($pressing) {
+            $query->find('pressing', within_days: (int)Settings::get(
+                'core.dashboard.tasks.critical_within_days',
+                7,
+            ));
+        }
+        if ($stale) {
+            $query->find('stale', days: (int)Settings::get('core.dashboard.tasks.stale_after_days', 30));
+        }
+
+        $tasks = $this->paginate($query);
 
         $users = $this->Tasks->Users
             ->find()

@@ -4,7 +4,10 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\TasksController;
+use App\Model\Entity\Task;
 use App\Test\Traits\ControllerTestTrait;
+use Cake\I18n\Date;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
@@ -248,5 +251,105 @@ class TasksControllerTest extends TestCase
         $this->assertMailSentTo('operator@example.com');
         $this->assertMailSubjectContains('You have changes in task');
         $this->assertMailContainsHtml('Realign the sector antenna');
+    }
+
+    /**
+     * The listing can be narrowed to what wants attention: a deadline near or past, or an
+     * urgent mark whatever the date says.
+     *
+     * A deadline counted from today cannot be put in a fixture, so the tasks this asks
+     * about are written here.
+     *
+     * @return void
+     * @link \App\Controller\TasksController::index()
+     */
+    public function testIndexNarrowedToPressingTasks(): void
+    {
+        $pressing = $this->openTask(['critical_date' => Date::today()->addDays(2)]);
+        $urgent = $this->openTask(['priority' => Task::PRIORITY_URGENT]);
+        $quiet = $this->openTask(['critical_date' => Date::today()->addDays(400)]);
+
+        $this->login();
+        $this->get('/tasks?pressing=1&stale=0&show_completed=0&user_id=');
+
+        $this->assertResponseOk();
+
+        $ids = $this->listedTaskIds();
+        $this->assertContains($pressing->id, $ids);
+        $this->assertContains($urgent->id, $ids, 'urgent counts whatever its date says');
+        $this->assertNotContains($quiet->id, $ids);
+    }
+
+    /**
+     * The listing can be narrowed to what has lain untouched. Nothing brings a forgotten
+     * task back on its own, so this is what stands in for that.
+     *
+     * @return void
+     * @link \App\Controller\TasksController::index()
+     */
+    public function testIndexNarrowedToStaleTasks(): void
+    {
+        $stale = $this->openTask([]);
+        $fresh = $this->openTask([]);
+
+        // the timestamp behavior writes `modified` on save, so it is set aside afterwards
+        $this->getTableLocator()->get('Tasks')->updateAll(
+            ['modified' => DateTime::now()->subDays(90)],
+            ['id' => $stale->id],
+        );
+
+        $this->login();
+        $this->get('/tasks?pressing=0&stale=1&show_completed=0&user_id=');
+
+        $this->assertResponseOk();
+
+        $ids = $this->listedTaskIds();
+        $this->assertContains($stale->id, $ids);
+        $this->assertNotContains($fresh->id, $ids);
+    }
+
+    /**
+     * An unfinished task, in a state that counts as unfinished.
+     *
+     * @param array<string, mixed> $data What this task differs by.
+     * @return \App\Model\Entity\Task
+     */
+    private function openTask(array $data): Task
+    {
+        // the fixtures write the identity column with the values they carry, which leaves the
+        // sequence where it started
+        $this->advanceIdentity('Tasks', 'nid');
+
+        $states = $this->getTableLocator()->get('TaskStates');
+        $open = $states->find()->where(['completed' => false])->firstOrFail();
+
+        $tasks = $this->getTableLocator()->get('Tasks');
+
+        /** @var \App\Model\Entity\Task $task */
+        $task = $tasks->saveOrFail($tasks->newEntity($data + [
+            'task_type_id' => $this->firstId('TaskTypes'),
+            'task_state_id' => $open->get('id'),
+            'subject' => 'Written by the test',
+            'priority' => Task::PRIORITY_NORMAL,
+        ]));
+
+        return $task;
+    }
+
+    /**
+     * The ids of the tasks the listing came back with.
+     *
+     * @return list<string>
+     */
+    private function listedTaskIds(): array
+    {
+        $ids = [];
+        /** @var iterable<\App\Model\Entity\Task> $tasks */
+        $tasks = $this->viewVariable('tasks');
+        foreach ($tasks as $task) {
+            $ids[] = $task->id;
+        }
+
+        return $ids;
     }
 }
