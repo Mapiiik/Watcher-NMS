@@ -3,15 +3,12 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use App\Maps\GeocoderFactory;
-use App\Maps\MapProvider;
 use Cake\Cache\Cache;
-use Cake\Core\Configure;
 use Cake\Log\Log;
-use Geocoder\Collection;
-use Geocoder\Exception\Exception as GeocoderException;
-use Geocoder\Query\ReverseQuery;
-use Psr\Http\Client\ClientExceptionInterface;
+use Maps\Geocoder\GeocoderFactory;
+use Maps\Geocoder\Suggestion;
+use Maps\Position;
+use Throwable;
 
 /**
  * AccessPoint Entity
@@ -108,31 +105,26 @@ class AccessPoint extends AppEntity
      */
     public function getNearestFoundAddress(): ?string
     {
-        if (MapProvider::requiresApiKey() && Configure::read('Maps.googleApiKey') === '') {
-            return '(' . __('You must provide an Google Map API key.') . ')';
-        }
-
         if (!(is_numeric($this->gps_y) && is_numeric($this->gps_x))) {
             return '(' . __('You need to set the correct GPS coordinates.') . ')';
         }
 
-        $locale = (string)Configure::read('App.defaultLocale');
+        $geocoder = GeocoderFactory::create();
+
+        if ($geocoder === null) {
+            return null;
+        }
 
         try {
-            // The cached value is a provider specific address model, so the
-            // provider has to be part of the key.
-            /** @var \Geocoder\Model\AddressCollection $address_collection */
-            $address_collection = Cache::remember(
-                'access_point__address_lookup_' . MapProvider::current() . '_' . $this->id,
-                function () use ($locale): Collection {
-                    return GeocoderFactory::create()->reverseQuery(
-                        ReverseQuery::fromCoordinates((float)$this->gps_y, (float)$this->gps_x)
-                            ->withLocale($locale),
-                    );
-                },
+            // The answer is the geocoder's, so a change of geocoder must not be served the old one.
+            $suggestion = Cache::remember(
+                'access_point__address_lookup_' . md5($geocoder::class) . '_' . $this->id,
+                fn(): ?Suggestion => $geocoder->reverse(
+                    new Position((float)$this->gps_y, (float)$this->gps_x),
+                ),
                 'default',
             );
-        } catch (GeocoderException | ClientExceptionInterface $e) {
+        } catch (Throwable $e) {
             Log::warning(sprintf(
                 'Reverse geocoding for access point %s failed (%s).',
                 $this->id,
@@ -142,13 +134,11 @@ class AccessPoint extends AppEntity
             return '(' . __('Address lookup failed.') . ')';
         }
 
-        $address = $address_collection->first();
-
-        if ($address === null) {
+        if ($suggestion === null) {
             return '(' . __('No address found for these GPS coordinates.') . ')';
         }
 
-        return GeocoderFactory::formatAddress($address);
+        return $suggestion->label;
     }
 
     /**

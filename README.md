@@ -172,39 +172,42 @@ read at boot). Common groups:
 - **Database / cache:** `DATABASE_URL`, `CACHE_*_URL`
 - **Server:** `APP_NAME` (used as cache prefix), `SERVER_NAME` (domain for
   ACME / TLS in the production image)
-- **Maps:** `MAP_PROVIDER` selects the whole mapping stack — maps, address
+- **Maps:** `NOMINATIM_*` and `PHOTON_URL` name the services behind the address
   search and reverse geocoding. See below.
 
-### Map provider
+### Maps
 
-`MAP_PROVIDER` accepts two values:
+The maps are drawn by the `Maps` plugin in `plugins/Maps` — Leaflet with
+OpenStreetMap tiles, vendored so a map needs nothing from a CDN. `MAP_PROVIDER`
+selects the mapping stack and `osm` is the only one built in; see the plugin's
+README for what adding another one takes.
 
-- `google` (default) — Maps JavaScript API for the maps, Places for the address
-  search box and `geocoder-php/google-maps-provider` for reverse geocoding. All
-  three need `GOOGLE_MAP_API_KEY`, and the key needs **billing enabled on the
-  Google Cloud project**; without it Google refuses the requests.
-- `osm` — Leaflet with OpenStreetMap tiles, [Photon](https://photon.komoot.io)
-  for the address search box and [Nominatim](https://nominatim.openstreetmap.org)
-  for reverse geocoding. No API key and no billing.
+Addresses come from two OpenStreetMap services:
+[Photon](https://photon.komoot.io) answers the search box while you type, and
+[Nominatim](https://nominatim.openstreetmap.org) says what a pair of coordinates
+falls on. No API key and no billing. The browser asks neither directly — it asks
+this application, which keeps the choice of geocoder, and any key it needs, on
+the server.
 
-In `osm` mode everything defaults to the public community servers. They are fine
-for a normal installation (results are cached per access point), but their usage
-policies expect low volume and a `User-Agent` identifying your installation —
-set `NOMINATIM_USER_AGENT` to something like `Watcher NMS (nms@example.com)`.
-Both services are self-hostable; point `NOMINATIM_URL`, `PHOTON_URL` and
-`MAP_TILE_URL` at your own instances to lift the public rate limits.
+Both default to the public community servers. They are fine for a normal
+installation (results are cached per access point), but their usage policies
+expect low volume and a `User-Agent` identifying your installation — set
+`NOMINATIM_USER_AGENT` to something like `Watcher NMS (nms@example.com)`. Both
+are self-hostable; point `NOMINATIM_URL` and `PHOTON_URL` at your own instances
+to lift the public rate limits.
 
 #### Aerial imagery
 
-OpenStreetMap is map data, not photography, so `osm` mode gets its imagery from
-separate services. The maps carry a layer switcher offering:
+OpenStreetMap is map data, not photography, so the imagery comes from separate
+services. The maps carry a layer switcher offering:
 
 - **OpenStreetMap** — the street map, shown on load
 - **Ortofoto ČR (ČÚZK)** — the Czech national orthophoto, free and keyless, up
   to zoom 20, Czech Republic only
 - **Satellite (Esri)** — Esri World Imagery, worldwide coverage
 
-The list lives under `Leaflet.baseLayers` in `config/app.php`. Each entry is
+The list lives under `Maps.baseLayers`, which the plugin ships in
+`plugins/Maps/config/maps.php` and `config/app.php` may override. Each entry is
 either `type: xyz` (a plain `{z}/{x}/{y}` tile service) or `type: wms`; add your
 own services or drop the ones you do not need. The first entry is the layer
 shown on load. Keep the `attribution` values — displaying them is a licence

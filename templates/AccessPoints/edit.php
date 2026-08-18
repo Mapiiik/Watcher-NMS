@@ -78,8 +78,9 @@
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
-            <?= $this->element('Maps/point-picker', [
-                'mapPoint' => $accessPoint,
+            <?= $this->element('Maps.Maps/point-picker', [
+                'lat' => $accessPoint->gps_y,
+                'lng' => $accessPoint->gps_x,
             ]) ?>
         </div>
     </div>

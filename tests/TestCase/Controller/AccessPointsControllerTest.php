@@ -764,7 +764,7 @@ class AccessPointsControllerTest extends TestCase
      * The lines drawn for one radio link, keyed as the map keys them.
      *
      * @param string $radioLinkId The link asked about.
-     * @return array<string, \App\Maps\Polyline>
+     * @return array<string, \Maps\Polyline>
      */
     private function linesOfRadioLink(string $radioLinkId): array
     {
@@ -794,11 +794,11 @@ class AccessPointsControllerTest extends TestCase
     /**
      * The markers the map was handed, keyed by what they mark.
      *
-     * @return array<string, \App\Maps\Marker>
+     * @return array<string, \Maps\Marker>
      */
     private function markersDrawn(): array
     {
-        /** @var array<string, \App\Maps\Marker> $markers */
+        /** @var array<string, \Maps\Marker> $markers */
         $markers = $this->viewVariable('mapMarkers');
 
         return $markers;
@@ -807,11 +807,11 @@ class AccessPointsControllerTest extends TestCase
     /**
      * The lines the map was handed, keyed by the two ends they join.
      *
-     * @return array<string, \App\Maps\Polyline>
+     * @return array<string, \Maps\Polyline>
      */
     private function polylinesDrawn(): array
     {
-        /** @var array<string, \App\Maps\Polyline> $polylines */
+        /** @var array<string, \Maps\Polyline> $polylines */
         $polylines = $this->viewVariable('mapPolylines');
 
         return $polylines;

@@ -134,6 +134,18 @@ return function (RouteBuilder $routes): void {
         $builder->setExtensions(['json']);
 
         $builder->resources('AccessPoints');
+        // Bridge controllers for external API integrations
+        $builder->resources('GeocoderBridge', [
+            'only' => [
+                'search',
+            ],
+            'map' => [
+                'search' => [
+                    'action' => 'search',
+                    'method' => 'GET',
+                ],
+            ],
+        ]);
         $builder->resources('IpAddressRanges', [
             'map' => [
                 'search' => [

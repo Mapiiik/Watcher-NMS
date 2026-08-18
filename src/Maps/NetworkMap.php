@@ -13,6 +13,10 @@ use App\Model\Table\AccessPointsTable;
 use Cake\ORM\Association;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\View\Helper\HtmlHelper;
+use Maps\DrawnMap;
+use Maps\Marker;
+use Maps\Polyline;
+use Maps\Position;
 
 /**
  * The network drawn as markers and the lines between them.
@@ -71,7 +75,7 @@ final class NetworkMap
      * Draws the network the given options ask for.
      *
      * @param \App\Form\MapOptionsForm $options What the operator asked to see.
-     * @return \App\Maps\DrawnMap
+     * @return \Maps\DrawnMap
      */
     public function draw(MapOptionsForm $options): DrawnMap
     {
@@ -122,9 +126,9 @@ final class NetworkMap
             }
         }
 
-        /** @var array<string, \App\Maps\Marker> $mapMarkers */
+        /** @var array<string, \Maps\Marker> $mapMarkers */
         $mapMarkers = [];
-        /** @var array<string, \App\Maps\Polyline> $mapPolylines */
+        /** @var array<string, \Maps\Polyline> $mapPolylines */
         $mapPolylines = [];
 
         foreach ($accessPointsQuery as $accessPoint) {
@@ -376,11 +380,11 @@ final class NetworkMap
      * what the association pairs them by.
      *
      * @param \App\Model\Entity\AccessPoint $accessPoint The access point being drawn.
-     * @param \App\Maps\Position $from Where it stands, which the caller has already made sure of.
+     * @param \Maps\Position $from Where it stands, which the caller has already made sure of.
      * @param \App\Model\Entity\RouterosDevice $routerosDevice The device the links are read off.
      * @param bool $linkedCustomers Whether the ends standing at a customer are wanted.
-     * @param array<string, \App\Maps\Marker> $mapMarkers Markers gathered so far.
-     * @param array<string, \App\Maps\Polyline> $mapPolylines Lines gathered so far.
+     * @param array<string, \Maps\Marker> $mapMarkers Markers gathered so far.
+     * @param array<string, \Maps\Polyline> $mapPolylines Lines gathered so far.
      * @return string What to add to the bubble of the access point.
      */
     private function addIpLinks(
@@ -460,11 +464,11 @@ final class NetworkMap
      * either end may be the one serving - and both are drawn the same way.
      *
      * @param \App\Model\Entity\AccessPoint $accessPoint The access point being drawn.
-     * @param \App\Maps\Position $from Where it stands, which the caller has already made sure of.
+     * @param \Maps\Position $from Where it stands, which the caller has already made sure of.
      * @param \App\Model\Entity\RouterosDevice $routerosDevice The device the links are read off.
      * @param bool $linkedCustomers Whether the ends standing at a customer are wanted.
-     * @param array<string, \App\Maps\Marker> $mapMarkers Markers gathered so far.
-     * @param array<string, \App\Maps\Polyline> $mapPolylines Lines gathered so far.
+     * @param array<string, \Maps\Marker> $mapMarkers Markers gathered so far.
+     * @param array<string, \Maps\Polyline> $mapPolylines Lines gathered so far.
      * @return string What to add to the bubble of the access point.
      */
     private function addWirelessLinks(
@@ -552,10 +556,10 @@ final class NetworkMap
      * as it is wherever a unit has to be placed - a unit stands in one place.
      *
      * @param \App\Model\Entity\AccessPoint $accessPoint The access point being drawn.
-     * @param \App\Maps\Position $from Where it stands, which the caller has already made sure of.
+     * @param \Maps\Position $from Where it stands, which the caller has already made sure of.
      * @param bool $linkedCustomers Whether the ends standing at a customer are wanted.
-     * @param array<string, \App\Maps\Marker> $mapMarkers Markers gathered so far.
-     * @param array<string, \App\Maps\Polyline> $mapPolylines Lines gathered so far.
+     * @param array<string, \Maps\Marker> $mapMarkers Markers gathered so far.
+     * @param array<string, \Maps\Polyline> $mapPolylines Lines gathered so far.
      * @return string What to add to the bubble of the access point.
      */
     private function addRadioLinks(
@@ -651,13 +655,13 @@ final class NetworkMap
      * bubble would name a link the map does not show.
      *
      * @param \App\Model\Entity\AccessPoint $accessPoint The access point being drawn.
-     * @param \App\Maps\Position $from Where it stands.
+     * @param \Maps\Position $from Where it stands.
      * @param \App\Model\Entity\AccessPoint|\App\Model\Entity\CustomerPoint $place The other end.
      * @param string $color What colour says which layer the line belongs to.
      * @param int $weight How heavy the line is drawn.
      * @param string $told What to add to the bubble of the place.
-     * @param array<string, \App\Maps\Marker> $mapMarkers Markers gathered so far.
-     * @param array<string, \App\Maps\Polyline> $mapPolylines Lines gathered so far.
+     * @param array<string, \Maps\Marker> $mapMarkers Markers gathered so far.
+     * @param array<string, \Maps\Polyline> $mapPolylines Lines gathered so far.
      * @param string|null $link The link itself, where two of them between one pair are two lines.
      * @return void
      */
@@ -704,8 +708,8 @@ final class NetworkMap
      * drawing the place itself later says more, and says it over this.
      *
      * @param \App\Model\Entity\AccessPoint|\App\Model\Entity\CustomerPoint $place What to mark.
-     * @param \App\Maps\Position $at Where it stands, which the caller has already made sure of.
-     * @return \App\Maps\Marker
+     * @param \Maps\Position $at Where it stands, which the caller has already made sure of.
+     * @return \Maps\Marker
      */
     private function markerFor(AccessPoint|CustomerPoint $place, Position $at): Marker
     {

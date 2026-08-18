@@ -22,9 +22,6 @@
         "cakephp/plugin-installer": "^2.0",
         "composer/composer": "^2.9",
         "dereuromark/cakephp-audit-stash": "^2.0.1",
-        "dereuromark/cakephp-geo": "^3.8",
-        "geocoder-php/google-maps-provider": "^4.8",
-        "geocoder-php/nominatim-provider": "^5.8",
         "giggsey/libphonenumber-for-php": "^9.0",
         "josegonzalez/dotenv": "^4.0",
         "league/oauth2-google": "^5.0",
@@ -52,6 +49,7 @@
         "psr-4": {
             "App\\": "src/",
             "Dashboard\\": "plugins/Dashboard/src/",
+            "Maps\\": "plugins/Maps/src/",
             "Settings\\": "plugins/Settings/src/"
         }
     },
@@ -59,6 +57,7 @@
         "psr-4": {
             "App\\Test\\": "tests/",
             "Dashboard\\Test\\": "plugins/Dashboard/tests/",
+            "Maps\\Test\\": "plugins/Maps/tests/",
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
             "Settings\\Test\\": "plugins/Settings/tests/"
         }
@@ -67,7 +66,6 @@
         "allow-plugins": {
             "cakephp/plugin-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "php-http/discovery": true,
             "phpstan/extension-installer": true
         },
         "platform-check": true,
@@ -103,13 +101,9 @@
         "test": "phpunit --colors=always",
         "translations-update": [
             "bin/cake i18n extract --extract-core no --overwrite -p Dashboard",
+            "bin/cake i18n extract --extract-core no --overwrite -p Maps",
             "bin/cake i18n extract --extract-core no --overwrite -p Settings",
             "bin/cake i18n extract --extract-core yes --overwrite --paths src/,templates/,config/ --output resources/locales/"
         ]
-    },
-    "extra": {
-        "discovery": {
-            "psr/http-client-implementation": "Cake\\Http\\Client"
-        }
     }
 }

@@ -56,7 +56,7 @@
                         <tr>
                             <th><?= __('Maps') ?></th>
                             <td class="actions">
-                                <?= $this->element('Maps/links', [
+                                <?= $this->element('Maps.Maps/links', [
                                     'lat' => $customerPoint->gps_y,
                                     'lng' => $customerPoint->gps_x,
                                 ]) ?>

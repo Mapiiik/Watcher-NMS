@@ -28,8 +28,6 @@ use RuntimeException;
  *
  * @link https://book.cakephp.org/5/en/views.html#the-app-view
  * @property \CakeDC\Users\View\Helper\AuthLinkHelper $AuthLink
- * @property \Geo\View\Helper\GoogleMapHelper $GoogleMap
- * @property \Geo\View\Helper\LeafletHelper $Leaflet
  */
 class AppView extends View
 {

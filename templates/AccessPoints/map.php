@@ -5,8 +5,8 @@
  * @var \App\Form\MapOptionsForm $mapOptions
  * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPointsFilter
  * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $routerosDevicesFilter
- * @var array<string, \App\Maps\Marker> $mapMarkers
- * @var array<string, \App\Maps\Polyline> $mapPolylines
+ * @var array<string, \Maps\Marker> $mapMarkers
+ * @var array<string, \Maps\Polyline> $mapPolylines
  */
 ?>
 <div class="accessPoints map content">
@@ -18,7 +18,7 @@
         ['class' => 'button float-right'],
     ) ?>
     <h3><?= __('Access Points') ?></h3>
-<?= $this->element('Maps/overview', [
+<?= $this->element('Maps.Maps/overview', [
     'mapMarkers' => $mapMarkers,
     'mapPolylines' => $mapPolylines,
     'mapHeight' => '600px',

@@ -158,6 +158,18 @@ $permissions = [
                 'card',
             ],
         ],
+        //the maps ask this for addresses, so every role that is shown a map needs it
+        [
+            'role' => '*',
+            'prefix' => 'Api',
+            'plugin' => null,
+            'controller' => [
+                'GeocoderBridge',
+            ],
+            'action' => [
+                'search',
+            ],
+        ],
         //always allow access to DebugKit
         [
             'role' => '*',

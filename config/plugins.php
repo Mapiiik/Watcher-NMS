@@ -41,6 +41,6 @@ return [
     // Dashboard
     'Dashboard' => [],
 
-    // dereuromark/cakephp-geo
-    'Geo' => [],
+    // Maps
+    'Maps' => [],
 ];

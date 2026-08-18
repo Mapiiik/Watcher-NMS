@@ -43,7 +43,7 @@
                     <td><?= $customerPoint->gps_x === null ?
                         '' : $this->Number->format($customerPoint->gps_x, ['precision' => 15]) ?></td>
                     <td class="actions">
-                        <?= $this->element('Maps/links', [
+                        <?= $this->element('Maps.Maps/links', [
                             'lat' => $customerPoint->gps_y,
                             'lng' => $customerPoint->gps_x,
                         ]) ?>
