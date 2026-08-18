@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "186533a5d0e7416993670209af43cfbe",
+    "content-hash": "643b3451f912abfc75e9adf2809be9de",
     "packages": [
         {
             "name": "cakedc/auth",

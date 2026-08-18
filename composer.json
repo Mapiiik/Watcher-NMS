@@ -66,6 +66,7 @@
         "allow-plugins": {
             "cakephp/plugin-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true,
             "phpstan/extension-installer": true
         },
         "platform-check": true,
@@ -105,5 +106,10 @@
             "bin/cake i18n extract --extract-core no --overwrite -p Settings",
             "bin/cake i18n extract --extract-core yes --overwrite --paths src/,templates/,config/ --output resources/locales/"
         ]
+    },
+    "extra": {
+        "discovery": {
+            "psr/http-client-implementation": "Cake\\Http\\Client"
+        }
     }
 }
