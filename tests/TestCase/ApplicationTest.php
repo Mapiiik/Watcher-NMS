@@ -48,6 +48,7 @@ class ApplicationTest extends TestCase
         $this->assertCount(7, $plugins);
         $this->assertTrue($plugins->has('Bake'), 'plugins has Bake?');
         $this->assertTrue($plugins->has('Dashboard'), 'plugins has Dashboard?');
+        $this->assertTrue($plugins->has('Maps'), 'plugins has Maps?');
         $this->assertFalse($plugins->has('DebugKit'), 'plugins has DebugKit?');
         $this->assertTrue($plugins->has('Migrations'), 'plugins has Migrations?');
     }
