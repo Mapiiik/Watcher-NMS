@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Maps\TaskMap;
 use Cake\Form\Form;
 use Cake\Http\Response;
 use Cake\I18n\Date;
@@ -23,6 +24,21 @@ use Settings\Utility\Settings;
  */
 class TasksController extends AppController
 {
+    /**
+     * Map method
+     *
+     * The open tasks drawn where they are to be done, which is what planning a round asks for.
+     *
+     * @return void Renders view
+     */
+    public function map(): void
+    {
+        $map = (new TaskMap(new HtmlHelper(new View())))->draw();
+
+        $this->set('mapMarkers', $map->markers);
+        $this->set('mapPolylines', $map->polylines);
+    }
+
     /**
      * Index method
      *

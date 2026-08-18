@@ -276,6 +276,7 @@ $permissions = [
             'action' => [
                 'index',
                 'view',
+                'map',
                 'add',
                 'edit',
             ],

@@ -11,6 +11,7 @@ use Cake\I18n\DateTime;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Maps\Marker;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
@@ -378,5 +379,49 @@ class TasksControllerTest extends TestCase
         }
 
         return $ids;
+    }
+
+    /**
+     * A task hangs on the map at the access point it names, in its state's colour.
+     *
+     * @return void
+     * @link \App\Controller\TasksController::map()
+     */
+    public function testMapDrawsAnOpenTaskAtItsAccessPoint(): void
+    {
+        $this->login();
+        $this->get('/tasks/map');
+
+        $this->assertResponseOk();
+
+        /** @var array<string, \Maps\Marker> $markers */
+        $markers = $this->viewVariable('mapMarkers');
+        $this->assertCount(1, $markers);
+
+        $marker = reset($markers);
+        $this->assertInstanceOf(Marker::class, $marker);
+        // The access point the fixtures place at 1, 1.
+        $this->assertSame(1.0, $marker->position->lat);
+        $this->assertSame(1.0, $marker->position->lng);
+        $this->assertSame('#ffffff', $marker->color);
+    }
+
+    /**
+     * A task naming no access point has nowhere to be drawn, and is left off rather than drawn
+     * at nought.
+     *
+     * @return void
+     * @link \App\Controller\TasksController::map()
+     */
+    public function testMapLeavesOffATaskWithNoAccessPoint(): void
+    {
+        $this->openTask([]);
+
+        $this->login();
+        $this->get('/tasks/map');
+
+        $this->assertResponseOk();
+        // Only the one the fixtures place at an access point.
+        $this->assertCount(1, (array)$this->viewVariable('mapMarkers'));
     }
 }

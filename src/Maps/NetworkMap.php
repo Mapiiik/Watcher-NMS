@@ -37,6 +37,13 @@ final class NetworkMap
     use LocatorAwareTrait;
 
     /**
+     * A bubble is read while the map is still wanted, so what it points at opens beside it.
+     *
+     * @var array<string, string>
+     */
+    private const LINK_OPTIONS = ['target' => '_blank'];
+
+    /**
      * What colour says which layer a line belongs to.
      */
     private const IP_LINK_COLOR = '#00dd00';
@@ -147,6 +154,7 @@ final class NetworkMap
                     . $this->html->link(
                         $accessPoint->name ?? '(' . $accessPoint->id . ')',
                         ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
+                        self::LINK_OPTIONS,
                     )
                     . '</b>' . '<br>' . '<br>';
 
@@ -159,6 +167,7 @@ final class NetworkMap
                                 'action' => 'view',
                                 $routerosDevice->id,
                             ],
+                            self::LINK_OPTIONS,
                         ) . '<br>';
 
                     $content .= '<ul>';
@@ -582,6 +591,7 @@ final class NetworkMap
                 $this->html->link(
                     $radioUnit->name ?? '(' . $radioUnit->id . ')',
                     ['controller' => 'RadioUnits', 'action' => 'view', $radioUnit->id],
+                    self::LINK_OPTIONS,
                 ) . '<br>';
 
             $content .= '<ul>';
@@ -592,11 +602,13 @@ final class NetworkMap
                 $told = $this->html->link(
                     $radioLink->name ?? '(' . $radioLink->id . ')',
                     ['controller' => 'RadioLinks', 'action' => 'view', $radioLink->id],
+                    self::LINK_OPTIONS,
                 )
                 . ' - '
                 . $this->html->link(
                     $farEnd->name ?? '(' . $farEnd->id . ')',
                     ['controller' => 'RadioUnits', 'action' => 'view', $farEnd->id],
+                    self::LINK_OPTIONS,
                 );
 
                 // add informations about the radio link to map marker for access point
@@ -730,6 +742,7 @@ final class NetworkMap
                         'action' => 'view',
                         $place->id,
                     ],
+                    self::LINK_OPTIONS,
                 )
                 . '</b>'
                 . '<br>',
@@ -748,6 +761,7 @@ final class NetworkMap
         return $this->html->link(
             $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
             ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
+            self::LINK_OPTIONS,
         );
     }
 
@@ -763,6 +777,7 @@ final class NetworkMap
             . $this->html->link(
                 $customerConnection->name ?? '(' . $customerConnection->id . ')',
                 ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnection->id],
+                self::LINK_OPTIONS,
             )
             . '</b>';
     }
