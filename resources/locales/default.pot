@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-16 20:30+0200\n"
+"POT-Creation-Date: 2026-08-18 15:01+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -886,49 +886,49 @@ msgstr ""
 msgid "The task type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:260
+#: ./src/Controller/TasksController.php:276
 msgid "none"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:361
-#: ./src/Controller/TasksController.php:436
+#: ./src/Controller/TasksController.php:377
+#: ./src/Controller/TasksController.php:452
 msgid "The task has been saved."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:365
-#: ./src/Controller/TasksController.php:440
+#: ./src/Controller/TasksController.php:381
+#: ./src/Controller/TasksController.php:456
 msgid "The task could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:488
+#: ./src/Controller/TasksController.php:504
 msgid "The task has been deleted."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:491
+#: ./src/Controller/TasksController.php:507
 msgid "The task could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:536
+#: ./src/Controller/TasksController.php:552
 msgid "The notification email could not be sent because the user does not have an email address."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:549
+#: ./src/Controller/TasksController.php:565
 msgid "You have a new task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:550
+#: ./src/Controller/TasksController.php:566
 msgid "You have changes in task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:562
+#: ./src/Controller/TasksController.php:578
 msgid "Notification email sent."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:566
+#: ./src/Controller/TasksController.php:582
 msgid "The notification email could not be sent."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:280
+#: ./src/Controller/TasksController.php:296
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural "There were {0} unfinished tasks found that do not have a user assigned."
 msgstr[0] ""
@@ -987,7 +987,7 @@ msgstr ""
 msgid "Every unfinished task has somebody holding it."
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:101
+#: ./src/Model/Entity/AccessPoint.php:98
 #: ./src/Model/Entity/CustomerConnection.php:72
 #: ./templates/AccessPoints/edit.php:46
 #: ./templates/AccessPoints/index.php:37
@@ -998,19 +998,15 @@ msgstr ""
 msgid "archived"
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:112
-msgid "You must provide an Google Map API key."
-msgstr ""
-
-#: ./src/Model/Entity/AccessPoint.php:116
+#: ./src/Model/Entity/AccessPoint.php:109
 msgid "You need to set the correct GPS coordinates."
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:142
+#: ./src/Model/Entity/AccessPoint.php:134
 msgid "Address lookup failed."
 msgstr ""
 
-#: ./src/Model/Entity/AccessPoint.php:148
+#: ./src/Model/Entity/AccessPoint.php:138
 msgid "No address found for these GPS coordinates."
 msgstr ""
 
@@ -1329,7 +1325,7 @@ msgstr ""
 #: ./templates/TaskTypes/view.php:64
 #: ./templates/Tasks/add.php:14
 #: ./templates/Tasks/edit.php:14
-#: ./templates/Tasks/index.php:99
+#: ./templates/Tasks/index.php:100
 #: ./templates/Tasks/view.php:10
 #: ./templates/element/AccessPoints/subtree.php:70
 #: ./templates/email/html/electricity_meter_readings_report.php:32
@@ -1708,7 +1704,7 @@ msgstr ""
 #: ./templates/TaskStates/view.php:108
 #: ./templates/TaskTypes/index.php:37
 #: ./templates/TaskTypes/view.php:100
-#: ./templates/Tasks/index.php:149
+#: ./templates/Tasks/index.php:150
 #: ./templates/element/AccessPoints/subtree.php:94
 #: ./templates/email/html/electricity_meter_readings_report.php:52
 #: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
@@ -1772,7 +1768,7 @@ msgstr ""
 #: ./templates/TaskStates/view.php:112
 #: ./templates/TaskTypes/index.php:39
 #: ./templates/TaskTypes/view.php:104
-#: ./templates/Tasks/index.php:153
+#: ./templates/Tasks/index.php:154
 #: ./templates/element/AccessPoints/subtree.php:98
 msgid "Edit"
 msgstr ""
@@ -1807,7 +1803,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:106
 #: ./templates/TaskStates/index.php:60
 #: ./templates/TaskTypes/index.php:56
-#: ./templates/Tasks/index.php:165
+#: ./templates/Tasks/index.php:166
 msgid "first"
 msgstr ""
 
@@ -1841,7 +1837,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:107
 #: ./templates/TaskStates/index.php:61
 #: ./templates/TaskTypes/index.php:57
-#: ./templates/Tasks/index.php:166
+#: ./templates/Tasks/index.php:167
 msgid "previous"
 msgstr ""
 
@@ -1875,7 +1871,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:109
 #: ./templates/TaskStates/index.php:63
 #: ./templates/TaskTypes/index.php:59
-#: ./templates/Tasks/index.php:168
+#: ./templates/Tasks/index.php:169
 msgid "next"
 msgstr ""
 
@@ -1909,7 +1905,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:110
 #: ./templates/TaskStates/index.php:64
 #: ./templates/TaskTypes/index.php:60
-#: ./templates/Tasks/index.php:169
+#: ./templates/Tasks/index.php:170
 msgid "last"
 msgstr ""
 
@@ -1943,7 +1939,7 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:113
 #: ./templates/TaskStates/index.php:67
 #: ./templates/TaskTypes/index.php:63
-#: ./templates/Tasks/index.php:172
+#: ./templates/Tasks/index.php:173
 msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
 
@@ -2171,6 +2167,7 @@ msgstr ""
 
 #: ./templates/AccessPoints/index.php:36
 #: ./templates/AccessPoints/utilization.php:47
+#: ./templates/Tasks/index.php:82
 msgid "Map"
 msgstr ""
 
@@ -4126,7 +4123,7 @@ msgstr ""
 
 #: ./templates/TaskStates/view.php:59
 #: ./templates/TaskTypes/view.php:51
-#: ./templates/Tasks/index.php:87
+#: ./templates/Tasks/index.php:88
 msgid "Number"
 msgstr ""
 
@@ -4206,7 +4203,7 @@ msgid "Access Point Required"
 msgstr ""
 
 #: ./templates/TaskTypes/view.php:53
-#: ./templates/Tasks/index.php:90
+#: ./templates/Tasks/index.php:91
 #: ./templates/Tasks/view.php:47
 #: ./templates/email/html/task_notification.php:44
 msgid "Task State"
@@ -4214,6 +4211,7 @@ msgstr ""
 
 #: ./templates/Tasks/add.php:15
 #: ./templates/Tasks/edit.php:20
+#: ./templates/Tasks/map.php:9
 #: ./templates/Tasks/view.php:17
 msgid "List Tasks"
 msgstr ""
@@ -4248,15 +4246,20 @@ msgstr ""
 msgid "New Task"
 msgstr ""
 
-#: ./templates/Tasks/index.php:82
+#: ./templates/Tasks/index.php:83
+#: ./templates/Tasks/map.php:10
 #: ./templates/layout/default.php:122
 msgid "Tasks"
 msgstr ""
 
-#: ./templates/Tasks/index.php:92
+#: ./templates/Tasks/index.php:93
 #: ./templates/Tasks/view.php:110
 #: ./templates/email/html/task_notification.php:124
 msgid "Summary Text"
+msgstr ""
+
+#: ./templates/Tasks/map.php:12
+msgid "No open task has a place on the map."
 msgstr ""
 
 #: ./templates/Tasks/view.php:13
@@ -4296,31 +4299,6 @@ msgstr ""
 
 #: ./templates/element/Dashboard/stale_device_data.php:14
 msgid "Nothing has been written for these in {0}."
-msgstr ""
-
-#: ./templates/element/Maps/google/point-picker.php:113
-#: ./templates/element/Maps/leaflet/point-picker.php:82
-msgid "Search on the Map"
-msgstr ""
-
-#: ./templates/element/Maps/leaflet/fullscreen.php:18
-msgid "Fullscreen"
-msgstr ""
-
-#: ./templates/element/Maps/leaflet/fullscreen.php:19
-msgid "Exit Fullscreen"
-msgstr ""
-
-#: ./templates/element/Maps/links.php:22
-msgid "Google Maps"
-msgstr ""
-
-#: ./templates/element/Maps/links.php:27
-msgid "Mapy.cz"
-msgstr ""
-
-#: ./templates/element/Maps/links.php:32
-msgid "OpenStreetMap"
 msgstr ""
 
 #: ./templates/element/Settings/FormFields.php:34

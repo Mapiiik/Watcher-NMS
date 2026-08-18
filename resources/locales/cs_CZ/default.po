@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-16 20:30+0200\n"
-"PO-Revision-Date: 2026-08-16 20:34+0200\n"
+"POT-Creation-Date: 2026-08-18 15:01+0200\n"
+"PO-Revision-Date: 2026-08-18 15:09+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -881,29 +881,29 @@ msgstr "Typ úkolu byl odstraněn."
 msgid "The task type could not be deleted. Please, try again."
 msgstr "Typ úkolu nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:260
+#: src/Controller/TasksController.php:276
 msgid "none"
 msgstr "žádný"
 
-#: src/Controller/TasksController.php:361
-#: src/Controller/TasksController.php:436
+#: src/Controller/TasksController.php:377
+#: src/Controller/TasksController.php:452
 msgid "The task has been saved."
 msgstr "Úkol byl uložen."
 
-#: src/Controller/TasksController.php:365
-#: src/Controller/TasksController.php:440
+#: src/Controller/TasksController.php:381
+#: src/Controller/TasksController.php:456
 msgid "The task could not be saved. Please, try again."
 msgstr "Úkol nelze uložit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:488
+#: src/Controller/TasksController.php:504
 msgid "The task has been deleted."
 msgstr "Úkol byl odstraněn."
 
-#: src/Controller/TasksController.php:491
+#: src/Controller/TasksController.php:507
 msgid "The task could not be deleted. Please, try again."
 msgstr "Úkol nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:536
+#: src/Controller/TasksController.php:552
 msgid ""
 "The notification email could not be sent because the user does not have an "
 "email address."
@@ -911,23 +911,23 @@ msgstr ""
 "Oznamovací e-mail nebylo možné odeslat, protože uživatel nemá e-mailovou "
 "adresu."
 
-#: src/Controller/TasksController.php:549
+#: src/Controller/TasksController.php:565
 msgid "You have a new task # {0}"
 msgstr "Máte nový úkol č. {0}"
 
-#: src/Controller/TasksController.php:550
+#: src/Controller/TasksController.php:566
 msgid "You have changes in task # {0}"
 msgstr "Máte změny v úkolu č. {0}"
 
-#: src/Controller/TasksController.php:562
+#: src/Controller/TasksController.php:578
 msgid "Notification email sent."
 msgstr "E-mail s oznámením odeslán."
 
-#: src/Controller/TasksController.php:566
+#: src/Controller/TasksController.php:582
 msgid "The notification email could not be sent."
 msgstr "E-mail s oznámením se nepodařilo odeslat."
 
-#: src/Controller/TasksController.php:280
+#: src/Controller/TasksController.php:296
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural ""
 "There were {0} unfinished tasks found that do not have a user assigned."
@@ -989,7 +989,7 @@ msgstr "Nepřiřazené úkoly"
 msgid "Every unfinished task has somebody holding it."
 msgstr "Za každým nedokončeným úkolem stojí někdo, kdo ho má na starosti."
 
-#: src/Model/Entity/AccessPoint.php:101
+#: src/Model/Entity/AccessPoint.php:98
 #: src/Model/Entity/CustomerConnection.php:72
 #: templates/AccessPoints/edit.php:46 templates/AccessPoints/index.php:37
 #: templates/AccessPoints/view.php:50 templates/CustomerConnections/edit.php:50
@@ -998,19 +998,15 @@ msgstr "Za každým nedokončeným úkolem stojí někdo, kdo ho má na starosti
 msgid "archived"
 msgstr "archivováno"
 
-#: src/Model/Entity/AccessPoint.php:112
-msgid "You must provide an Google Map API key."
-msgstr "Musíte zadat klíč Google Map API."
-
-#: src/Model/Entity/AccessPoint.php:116
+#: src/Model/Entity/AccessPoint.php:109
 msgid "You need to set the correct GPS coordinates."
 msgstr "Je třeba nastavit správné souřadnice GPS."
 
-#: src/Model/Entity/AccessPoint.php:142
+#: src/Model/Entity/AccessPoint.php:134
 msgid "Address lookup failed."
 msgstr "Vyhledání adresy se nezdařilo."
 
-#: src/Model/Entity/AccessPoint.php:148
+#: src/Model/Entity/AccessPoint.php:138
 msgid "No address found for these GPS coordinates."
 msgstr "Pro tyto GPS souřadnice nebyla nalezena žádná adresa."
 
@@ -1279,7 +1275,7 @@ msgstr "Není nainstalováno přes Git"
 #: templates/TaskTypes/edit.php:10 templates/TaskTypes/index.php:28
 #: templates/TaskTypes/view.php:10 templates/TaskTypes/view.php:64
 #: templates/Tasks/add.php:14 templates/Tasks/edit.php:14
-#: templates/Tasks/index.php:99 templates/Tasks/view.php:10
+#: templates/Tasks/index.php:100 templates/Tasks/view.php:10
 #: templates/element/AccessPoints/subtree.php:70
 #: templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
@@ -1544,7 +1540,7 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/view.php:179
 #: templates/RouterosDevices/view.php:232 templates/TaskStates/index.php:41
 #: templates/TaskStates/view.php:108 templates/TaskTypes/index.php:37
-#: templates/TaskTypes/view.php:100 templates/Tasks/index.php:149
+#: templates/TaskTypes/view.php:100 templates/Tasks/index.php:150
 #: templates/element/AccessPoints/subtree.php:94
 #: templates/email/html/electricity_meter_readings_report.php:52
 #: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
@@ -1588,7 +1584,7 @@ msgstr "Zobrazit"
 #: templates/RouterosDevices/view.php:187
 #: templates/RouterosDevices/view.php:236 templates/TaskStates/index.php:43
 #: templates/TaskStates/view.php:112 templates/TaskTypes/index.php:39
-#: templates/TaskTypes/view.php:104 templates/Tasks/index.php:153
+#: templates/TaskTypes/view.php:104 templates/Tasks/index.php:154
 #: templates/element/AccessPoints/subtree.php:98
 msgid "Edit"
 msgstr "Upravit"
@@ -1616,7 +1612,7 @@ msgstr "Upravit"
 #: templates/RouterosDeviceInterfaces/index.php:111
 #: templates/RouterosDeviceIps/index.php:82
 #: templates/RouterosDevices/index.php:106 templates/TaskStates/index.php:60
-#: templates/TaskTypes/index.php:56 templates/Tasks/index.php:165
+#: templates/TaskTypes/index.php:56 templates/Tasks/index.php:166
 msgid "first"
 msgstr "první"
 
@@ -1643,7 +1639,7 @@ msgstr "první"
 #: templates/RouterosDeviceInterfaces/index.php:112
 #: templates/RouterosDeviceIps/index.php:83
 #: templates/RouterosDevices/index.php:107 templates/TaskStates/index.php:61
-#: templates/TaskTypes/index.php:57 templates/Tasks/index.php:166
+#: templates/TaskTypes/index.php:57 templates/Tasks/index.php:167
 msgid "previous"
 msgstr "předchozí"
 
@@ -1670,7 +1666,7 @@ msgstr "předchozí"
 #: templates/RouterosDeviceInterfaces/index.php:114
 #: templates/RouterosDeviceIps/index.php:85
 #: templates/RouterosDevices/index.php:109 templates/TaskStates/index.php:63
-#: templates/TaskTypes/index.php:59 templates/Tasks/index.php:168
+#: templates/TaskTypes/index.php:59 templates/Tasks/index.php:169
 msgid "next"
 msgstr "další"
 
@@ -1697,7 +1693,7 @@ msgstr "další"
 #: templates/RouterosDeviceInterfaces/index.php:115
 #: templates/RouterosDeviceIps/index.php:86
 #: templates/RouterosDevices/index.php:110 templates/TaskStates/index.php:64
-#: templates/TaskTypes/index.php:60 templates/Tasks/index.php:169
+#: templates/TaskTypes/index.php:60 templates/Tasks/index.php:170
 msgid "last"
 msgstr "poslední"
 
@@ -1724,7 +1720,7 @@ msgstr "poslední"
 #: templates/RouterosDeviceInterfaces/index.php:118
 #: templates/RouterosDeviceIps/index.php:89
 #: templates/RouterosDevices/index.php:113 templates/TaskStates/index.php:67
-#: templates/TaskTypes/index.php:63 templates/Tasks/index.php:172
+#: templates/TaskTypes/index.php:63 templates/Tasks/index.php:173
 msgid ""
 "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
 "total"
@@ -1913,7 +1909,7 @@ msgid "Utilization"
 msgstr "Využití"
 
 #: templates/AccessPoints/index.php:36
-#: templates/AccessPoints/utilization.php:47
+#: templates/AccessPoints/utilization.php:47 templates/Tasks/index.php:82
 msgid "Map"
 msgstr "Mapa"
 
@@ -3674,7 +3670,7 @@ msgid "Related Tasks"
 msgstr "Související úkoly"
 
 #: templates/TaskStates/view.php:59 templates/TaskTypes/view.php:51
-#: templates/Tasks/index.php:87
+#: templates/Tasks/index.php:88
 msgid "Number"
 msgstr "Číslo"
 
@@ -3738,13 +3734,13 @@ msgstr "Odstranit typ úkolu"
 msgid "Access Point Required"
 msgstr "Je vyžadován přístupový bod"
 
-#: templates/TaskTypes/view.php:53 templates/Tasks/index.php:90
+#: templates/TaskTypes/view.php:53 templates/Tasks/index.php:91
 #: templates/Tasks/view.php:47 templates/email/html/task_notification.php:44
 msgid "Task State"
 msgstr "Stav úkolu"
 
 #: templates/Tasks/add.php:15 templates/Tasks/edit.php:20
-#: templates/Tasks/view.php:17
+#: templates/Tasks/map.php:9 templates/Tasks/view.php:17
 msgid "List Tasks"
 msgstr "Seznam úkolů"
 
@@ -3776,14 +3772,19 @@ msgstr "Rozbalitelný text"
 msgid "New Task"
 msgstr "Nový úkol"
 
-#: templates/Tasks/index.php:82 templates/layout/default.php:122
+#: templates/Tasks/index.php:83 templates/Tasks/map.php:10
+#: templates/layout/default.php:122
 msgid "Tasks"
 msgstr "Úkoly"
 
-#: templates/Tasks/index.php:92 templates/Tasks/view.php:110
+#: templates/Tasks/index.php:93 templates/Tasks/view.php:110
 #: templates/email/html/task_notification.php:124
 msgid "Summary Text"
 msgstr "Souhrnný text"
+
+#: templates/Tasks/map.php:12
+msgid "No open task has a place on the map."
+msgstr "Žádný otevřený úkol nemá na mapě své místo."
 
 #: templates/Tasks/view.php:13
 msgid "Delete Task"
@@ -3824,31 +3825,6 @@ msgstr "Na každé zařízení se v poslední době něco zapsalo."
 #: templates/element/Dashboard/stale_device_data.php:14
 msgid "Nothing has been written for these in {0}."
 msgstr "Za posledních {0} se u nich nic nezapsalo."
-
-#: templates/element/Maps/google/point-picker.php:113
-#: templates/element/Maps/leaflet/point-picker.php:82
-msgid "Search on the Map"
-msgstr "Hledat na mapě"
-
-#: templates/element/Maps/leaflet/fullscreen.php:18
-msgid "Fullscreen"
-msgstr "Celá obrazovka"
-
-#: templates/element/Maps/leaflet/fullscreen.php:19
-msgid "Exit Fullscreen"
-msgstr "Ukončit režim celé obrazovky"
-
-#: templates/element/Maps/links.php:22
-msgid "Google Maps"
-msgstr "Google Mapy"
-
-#: templates/element/Maps/links.php:27
-msgid "Mapy.cz"
-msgstr "Mapy.cz"
-
-#: templates/element/Maps/links.php:32
-msgid "OpenStreetMap"
-msgstr "OpenStreetMap"
 
 #: templates/element/Settings/FormFields.php:34
 #: templates/layout/default.php:225
@@ -4028,6 +4004,27 @@ msgstr "Verze"
 #: templates/layout/error.php:36
 msgid "Back"
 msgstr "Zpět"
+
+#~ msgid "You must provide an Google Map API key."
+#~ msgstr "Musíte zadat klíč Google Map API."
+
+#~ msgid "Search on the Map"
+#~ msgstr "Hledat na mapě"
+
+#~ msgid "Fullscreen"
+#~ msgstr "Celá obrazovka"
+
+#~ msgid "Exit Fullscreen"
+#~ msgstr "Ukončit režim celé obrazovky"
+
+#~ msgid "Google Maps"
+#~ msgstr "Google Mapy"
+
+#~ msgid "Mapy.cz"
+#~ msgstr "Mapy.cz"
+
+#~ msgid "OpenStreetMap"
+#~ msgstr "OpenStreetMap"
 
 #~ msgid "There is no such card."
 #~ msgstr "Taková karta neexistuje."
