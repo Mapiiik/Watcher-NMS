@@ -5,6 +5,7 @@ use Cake\Database\Connection;
 use Cake\Database\Driver\Postgres;
 use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
+use Maps\Geocoder\AddressRegistryGeocoder;
 use Maps\Geocoder\OpenStreetMapGeocoder;
 use function Cake\Core\env;
 
@@ -548,7 +549,10 @@ return [
      */
     'Maps' => [
         'provider' => env('MAP_PROVIDER', 'osm'),
-        'geocoder' => OpenStreetMapGeocoder::class,
+        'geocoder' => [
+            AddressRegistryGeocoder::class,
+            OpenStreetMapGeocoder::class,
+        ],
         'nominatim' => [
             'url' => env('NOMINATIM_URL', 'https://nominatim.openstreetmap.org'),
             'userAgent' => env('NOMINATIM_USER_AGENT', 'Watcher NMS'),
@@ -560,6 +564,8 @@ return [
         'addressRegistry' => [
             'url' => rtrim((string)env('ADDRESSES_API_URL', ''), '/'),
             'key' => (string)env('ADDRESSES_API_KEY', ''),
+            // Nothing here carries a country of its own, so every country we work in is asked.
+            'defaultCountries' => env('ADDRESSES_API_COUNTRIES', 'cz,hr'),
         ],
     ],
 
