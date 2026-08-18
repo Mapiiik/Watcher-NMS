@@ -19,7 +19,9 @@
  * @psalm-scope-this \App\View\AppView
  */
 
-$cakeDescription = 'Watcher NMS | ' . (string)env('APP_COMPANY', 'ISP');
+use Cake\Core\Configure;
+
+$cakeDescription = 'Watcher NMS | ' . (string)Configure::read('App.company');
 ?>
 <!DOCTYPE html>
 <html>
