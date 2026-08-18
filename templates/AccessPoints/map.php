@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\AccessPoint> $accessPoints
  * @var \App\Form\MapOptionsForm $mapOptions
+ * @var string|null $access_point_id
  * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $accessPointsFilter
  * @var \Cake\Collection\CollectionInterface<string, string>|array<string> $routerosDevicesFilter
  * @var array<string, \Maps\Marker> $mapMarkers
@@ -41,10 +42,13 @@
                 echo $this->Form->control('linked_customers', [
                     'label' => __('Linked Customers'),
                 ]);
-                echo $this->Form->control('access_point_id', [
-                    'options' => $accessPointsFilter,
-                    'empty' => true,
-                ]);
+                // The route may have chosen the access point already, and then it is not a choice.
+                if ($access_point_id === null) {
+                    echo $this->Form->control('access_point_id', [
+                        'options' => $accessPointsFilter,
+                        'empty' => true,
+                    ]);
+                }
                 echo $this->Form->control('routeros_device_id', [
                     'label' => __('RouterOS Device'),
                     'options' => $routerosDevicesFilter,

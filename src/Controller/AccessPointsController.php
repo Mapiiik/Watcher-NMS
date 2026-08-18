@@ -395,9 +395,13 @@ class AccessPointsController extends AppController
     /**
      * Map method
      *
+     * Reached through an access point - `/access-points/{id}/map` - the map is that access point's
+     * and says so: the choice of which one is not offered, and the layout heads the page with it.
+     *
+     * @param string|null $accessPointId The access point the route was nested under, if any.
      * @return void Renders view
      */
-    public function map(): void
+    public function map(?string $accessPointId = null): void
     {
         $mapOptions = new MapOptionsForm();
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -406,7 +410,26 @@ class AccessPointsController extends AppController
             } else {
                 $this->Flash->error('There was a problem setting your map options.');
             }
+        } else {
+            // A link may carry the options, which is how somewhere else points at the map of one
+            // access point. Only what the form knows is taken, so the rest of the query - what
+            // opens the page in a window of its own, say - is left where it is.
+            $asked = array_intersect_key(
+                $this->getRequest()->getQueryParams(),
+                array_flip($mapOptions->getSchema()->fields()),
+            );
+
+            if ($asked !== []) {
+                $mapOptions->execute($asked);
+            }
         }
+
+        // Whatever the form carries, a map reached through an access point is that one's.
+        if ($accessPointId !== null) {
+            $mapOptions->setData(['access_point_id' => $accessPointId] + (array)$mapOptions->getData());
+        }
+
+        $this->set('access_point_id', $accessPointId);
         $this->set('mapOptions', $mapOptions);
 
         $accessPointsFilter = $this->AccessPoints->find('active')->find('list', order: ['name']);

@@ -70,7 +70,7 @@ return function (RouteBuilder $routes): void {
                 'controller' => 'AccessPoints',
             ])
             ->setPatterns([
-                'action' => 'edit|delete',
+                'action' => 'edit|delete|map',
                 'access_point_id' => RouteBuilder::UUID,
             ])
             ->setPass(['access_point_id']);

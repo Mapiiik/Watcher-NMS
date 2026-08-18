@@ -100,6 +100,8 @@ class AccessPointsControllerTest extends TestCase
         // The heading is translated, so it is looked up rather than hard coded.
         $this->assertResponseContains(__('Subordinate Access Points'));
         $this->assertResponseContains('<a href="/access-points/' . $child->id . '">Tree child</a>');
+        // Its own map is offered, nested under it and with every layer asked for.
+        $this->assertResponseContains('/access-points/' . $root->id . '/map?');
 
         $this->get('/access-points/view/' . $child->id);
 
@@ -460,6 +462,40 @@ class AccessPointsControllerTest extends TestCase
         ]);
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * An access point points at its own map: the nesting says which one and the query says what
+     * to draw, so the page opens showing everything that reaches it.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapNestedUnderAnAccessPointDrawsEveryLayerReachingIt(): void
+    {
+        $map = $this->createMapTopology();
+
+        $this->login();
+        $this->get('/access-points/' . $map['home_access_point_id'] . '/map?' . http_build_query([
+            'radio_links' => 1,
+            'routeros_ip_links' => 1,
+            'routeros_wireless_links' => 1,
+            'linked_customers' => 1,
+        ]));
+
+        $this->assertResponseOk();
+        $this->assertSame(
+            $map['home_access_point_id'],
+            $this->viewVariable('mapOptions')->getData('access_point_id'),
+            'The access point comes from the route rather than from the form.',
+        );
+
+        // The far ends of every layer, which none of them would carry on its own.
+        $drawn = $this->markersDrawn();
+        $this->assertArrayHasKey($map['home_access_point_id'], $drawn);
+        $this->assertArrayHasKey($map['neighbouring_access_point_id'], $drawn);
+        $this->assertArrayHasKey($map['wired_customer_point_id'], $drawn);
+        $this->assertArrayHasKey($map['wireless_customer_point_id'], $drawn);
     }
 
     /**

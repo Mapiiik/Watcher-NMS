@@ -109,6 +109,20 @@
                                     'lat' => $accessPoint->gps_y,
                                     'lng' => $accessPoint->gps_x,
                                 ]) ?>
+                                <?= $this->AuthLink->link(
+                                    __('Network Map'),
+                                    [
+                                        'action' => 'map',
+                                        'access_point_id' => $accessPoint->id,
+                                        '?' => [
+                                            'radio_links' => 1,
+                                            'routeros_ip_links' => 1,
+                                            'routeros_wireless_links' => 1,
+                                            'linked_customers' => 1,
+                                        ],
+                                    ],
+                                    ['class' => 'win-link'],
+                                ) ?>
                             </td>
                         </tr>
                         <tr>
