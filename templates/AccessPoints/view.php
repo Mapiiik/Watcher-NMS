@@ -186,20 +186,12 @@
                             <td><?= h($accessPointContact->name) ?></td>
                             <td><?= h($accessPointContact->phone) ?></td>
                             <td><?= h($accessPointContact->email) ?></td>
-                            <td><?= $accessPointContact->customer_number !== null && env('WATCHER_CRM_URL') ?
-                                $this->Html->link(
-                                    $accessPointContact->customer_number,
-                                    (string)env('WATCHER_CRM_URL')
-                                        . '/customers?search=' . $accessPointContact->customer_number,
-                                    ['target' => '_blank'],
-                                ) : h($accessPointContact->customer_number) ?></td>
-                            <td><?= $accessPointContact->contract_number !== null && env('WATCHER_CRM_URL') ?
-                                $this->Html->link(
-                                    $accessPointContact->contract_number,
-                                    (string)env('WATCHER_CRM_URL')
-                                        . '/customers?search=' . $accessPointContact->contract_number,
-                                    ['target' => '_blank'],
-                                ) : h($accessPointContact->contract_number) ?></td>
+                            <td><?= $this->element('Crm/number', [
+                                'number' => $accessPointContact->customer_number,
+                            ]) ?></td>
+                            <td><?= $this->element('Crm/number', [
+                                'number' => $accessPointContact->contract_number,
+                            ]) ?></td>
                             <td><?= $this->Text->autoParagraph(h($accessPointContact->note)); ?></td>
                             <td class="actions">
                                 <?= $this->AuthLink->link(

@@ -12,7 +12,7 @@
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-
+use App\CRM\Links;
 use App\Versioning;
 use Cake\Core\Configure;
 
@@ -192,10 +192,10 @@ $urlWithQuery = function ($query = []) use ($request) {
                 ])],
             ) ?>
 
-            <?= env('WATCHER_CRM_URL') ?
+            <?= Links::home() !== null ?
                 $this->Html->link(
                     __('Customer Relationship Management'),
-                    (string)env('WATCHER_CRM_URL'),
+                    Links::home(),
                     ['class' => 'button button-small'],
                 ) : '' ?>
 

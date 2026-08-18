@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\CustomerConnection $customerConnection
  */
+
+use App\CRM\Links;
 ?>
 <div class="row">
     <aside class="column">
@@ -88,19 +90,23 @@
                                 ) : '' ?></td>
                         <tr>
                             <th><?= __('Customer Number') ?></th>
-                            <td><?= $customerConnection->customer_url !== null && env('WATCHER_CRM_URL') ?
-                                $this->Html->link(
+                            <td><?php $url = $customerConnection->customer_url === null
+                                ? null
+                                : Links::path($customerConnection->customer_url); ?>
+                                <?= $url !== null ? $this->Html->link(
                                     (string)$customerConnection->customer_number,
-                                    (string)env('WATCHER_CRM_URL') . $customerConnection->customer_url,
+                                    $url,
                                     ['target' => '_blank'],
                                 ) : h($customerConnection->customer_number) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Contract Number') ?></th>
-                            <td><?= $customerConnection->contract_url !== null && env('WATCHER_CRM_URL') ?
-                                $this->Html->link(
+                            <td><?php $url = $customerConnection->contract_url === null
+                                ? null
+                                : Links::path($customerConnection->contract_url); ?>
+                                <?= $url !== null ? $this->Html->link(
                                     (string)$customerConnection->contract_number,
-                                    (string)env('WATCHER_CRM_URL') . $customerConnection->contract_url,
+                                    $url,
                                     ['target' => '_blank'],
                                 ) : h($customerConnection->contract_number) ?></td>
                         </tr>
