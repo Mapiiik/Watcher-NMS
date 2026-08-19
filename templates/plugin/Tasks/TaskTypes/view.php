@@ -7,27 +7,27 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __d('tasks', 'Actions') ?></h4>
+            <h4 class="heading"><?= __d('app_tasks', 'Actions') ?></h4>
             <?= $this->AuthLink->link(
-                __d('tasks', 'Edit Task Type'),
+                __d('app_tasks', 'Edit Task Type'),
                 ['action' => 'edit', $taskType->id],
                 ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
-                __d('tasks', 'Delete Task Type'),
+                __d('app_tasks', 'Delete Task Type'),
                 ['action' => 'delete', $taskType->id],
                 [
-                    'confirm' => __d('tasks', 'Are you sure you want to delete # {0}?', $taskType->id),
+                    'confirm' => __d('app_tasks', 'Are you sure you want to delete # {0}?', $taskType->id),
                     'class' => 'side-nav-item',
                 ],
             ) ?>
             <?= $this->AuthLink->link(
-                __d('tasks', 'List Task Types'),
+                __d('app_tasks', 'List Task Types'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->link(
-                __d('tasks', 'New Task Type'),
+                __d('app_tasks', 'New Task Type'),
                 ['action' => 'add'],
                 ['class' => 'side-nav-item'],
             ) ?>
@@ -40,12 +40,14 @@
                 <div class="column">
                     <table>
                         <tr>
-                            <th><?= __d('tasks', 'Name') ?></th>
+                            <th><?= __d('app_tasks', 'Name') ?></th>
                             <td><?= h($taskType->name) ?></td>
                         </tr>
                         <tr>
-                            <th><?= __d('tasks', 'Access Point Required') ?></th>
-                            <td><?= $taskType->access_point_required ? __d('tasks', 'Yes') : __d('tasks', 'No'); ?></td>
+                            <th><?= __d('app_tasks', 'Access Point Required') ?></th>
+                            <td><?= $taskType->access_point_required
+                                ? __d('app_tasks', 'Yes')
+                                : __d('app_tasks', 'No'); ?></td>
                         </tr>
                     </table>
                 </div>
@@ -54,7 +56,7 @@
                 </div>
             </div>
             <div class="related">
-                <h4><?= __d('tasks', 'Related Tasks') ?></h4>
+                <h4><?= __d('app_tasks', 'Related Tasks') ?></h4>
                 <?= $this->element('Tasks/related', [
                     'tasks' => $taskType->tasks,
                     'task_state_column' => true,

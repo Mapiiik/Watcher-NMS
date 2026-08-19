@@ -8,7 +8,7 @@
 <div class="row">
     <div class="column">
         <?= $this->Form->control('search', [
-            'label' => __d('tasks', 'Search'),
+            'label' => __d('app_tasks', 'Search'),
             'type' => 'search',
             'onchange' => 'this.form.submit();',
         ]) ?>
@@ -18,36 +18,36 @@
 
 <div class="taskTypes index content">
     <?= $this->AuthLink->link(
-        __d('tasks', 'New Task Type'),
+        __d('app_tasks', 'New Task Type'),
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __d('tasks', 'Task Types') ?></h3>
+    <h3><?= __d('app_tasks', 'Task Types') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('access_point_required') ?></th>
-                    <th class="actions"><?= __d('tasks', 'Actions') ?></th>
+                    <th class="actions"><?= __d('app_tasks', 'Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($taskTypes as $taskType) : ?>
                 <tr>
                     <td><?= h($taskType->name) ?></td>
-                    <td><?= $taskType->access_point_required ? __d('tasks', 'Yes') : __d('tasks', 'No'); ?></td>
+                    <td><?= $taskType->access_point_required ? __d('app_tasks', 'Yes') : __d('app_tasks', 'No'); ?></td>
                     <td class="actions">
-                        <?= $this->AuthLink->link(__d('tasks', 'View'), ['action' => 'view', $taskType->id]) ?>
+                        <?= $this->AuthLink->link(__d('app_tasks', 'View'), ['action' => 'view', $taskType->id]) ?>
                         <?= $this->AuthLink->link(
-                            __d('tasks', 'Edit'),
+                            __d('app_tasks', 'Edit'),
                             ['action' => 'edit', $taskType->id],
                             ['class' => 'win-link'],
                         ) ?>
                         <?= $this->AuthLink->postLink(
-                            __d('tasks', 'Delete'),
+                            __d('app_tasks', 'Delete'),
                             ['action' => 'delete', $taskType->id],
-                            ['confirm' => __d('tasks', 'Are you sure you want to delete # {0}?', $taskType->id)],
+                            ['confirm' => __d('app_tasks', 'Are you sure you want to delete # {0}?', $taskType->id)],
                         ) ?>
                     </td>
                 </tr>
@@ -57,14 +57,14 @@
     </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __d('tasks', 'first')) ?>
-            <?= $this->Paginator->prev('< ' . __d('tasks', 'previous')) ?>
+            <?= $this->Paginator->first('<< ' . __d('app_tasks', 'first')) ?>
+            <?= $this->Paginator->prev('< ' . __d('app_tasks', 'previous')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__d('tasks', 'next') . ' >') ?>
-            <?= $this->Paginator->last(__d('tasks', 'last') . ' >>') ?>
+            <?= $this->Paginator->next(__d('app_tasks', 'next') . ' >') ?>
+            <?= $this->Paginator->last(__d('app_tasks', 'last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(
-            __d('tasks', 'Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
+            __d('app_tasks', 'Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'),
         ) ?></p>
     </div>
 </div>
