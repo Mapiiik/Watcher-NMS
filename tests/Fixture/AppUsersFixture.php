@@ -49,7 +49,7 @@ class AppUsersFixture extends TestFixture
                 'secret_verified' => 1,
                 'additional_data' => '',
                 'last_login' => 1697628267,
-                'user_settings' => '',
+                'user_settings' => null,
             ],
         ];
         parent::init();
