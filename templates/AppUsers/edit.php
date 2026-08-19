@@ -40,6 +40,7 @@ $user = ${$tableAlias};
                         echo $this->Form->control('last_name');
                         echo $this->Form->control('role', ['options' => $user->getRoleOptions()]);
                         echo $this->Form->control('active');
+                        echo $this->Form->control('holds_tasks');
                     ?>
                     </div>
                     <div class="column">
