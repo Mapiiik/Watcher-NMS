@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-18 23:17+0200\n"
+"POT-Creation-Date: 2026-08-19 12:22+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -891,40 +891,40 @@ msgid "none"
 msgstr ""
 
 #: ./src/Controller/TasksController.php:407
-#: ./src/Controller/TasksController.php:482
+#: ./src/Controller/TasksController.php:485
 msgid "The task has been saved."
 msgstr ""
 
 #: ./src/Controller/TasksController.php:411
-#: ./src/Controller/TasksController.php:486
+#: ./src/Controller/TasksController.php:489
 msgid "The task could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:534
+#: ./src/Controller/TasksController.php:537
 msgid "The task has been deleted."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:537
+#: ./src/Controller/TasksController.php:540
 msgid "The task could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:582
+#: ./src/Controller/TasksController.php:585
 msgid "The notification email could not be sent because the user does not have an email address."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:595
+#: ./src/Controller/TasksController.php:598
 msgid "You have a new task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:596
+#: ./src/Controller/TasksController.php:599
 msgid "You have changes in task # {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:608
+#: ./src/Controller/TasksController.php:611
 msgid "Notification email sent."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:612
+#: ./src/Controller/TasksController.php:615
 msgid "The notification email could not be sent."
 msgstr ""
 
@@ -1010,7 +1010,7 @@ msgstr ""
 msgid "No address found for these GPS coordinates."
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:78
+#: ./src/Model/Entity/AppUser.php:79
 #: ./templates/TaskStates/view.php:62
 #: ./templates/TaskTypes/view.php:54
 #: ./templates/Tasks/view.php:54
@@ -1018,35 +1018,35 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:79
+#: ./src/Model/Entity/AppUser.php:80
 msgid "Customer Service Technician"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:80
+#: ./src/Model/Entity/AppUser.php:81
 msgid "Network Technician"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:81
+#: ./src/Model/Entity/AppUser.php:82
 msgid "Network Manager"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:82
+#: ./src/Model/Entity/AppUser.php:83
 msgid "Sales Representative"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:83
+#: ./src/Model/Entity/AppUser.php:84
 msgid "Sales Manager"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:84
+#: ./src/Model/Entity/AppUser.php:85
 msgid "Bookkeeper"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:85
+#: ./src/Model/Entity/AppUser.php:86
 msgid "Admin"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:86
+#: ./src/Model/Entity/AppUser.php:87
 msgid "API"
 msgstr ""
 

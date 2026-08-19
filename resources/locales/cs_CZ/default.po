@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-18 23:17+0200\n"
-"PO-Revision-Date: 2026-08-18 23:18+0200\n"
+"POT-Creation-Date: 2026-08-19 12:22+0200\n"
+"PO-Revision-Date: 2026-08-19 13:32+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -886,24 +886,24 @@ msgid "none"
 msgstr "žádný"
 
 #: src/Controller/TasksController.php:407
-#: src/Controller/TasksController.php:482
+#: src/Controller/TasksController.php:485
 msgid "The task has been saved."
 msgstr "Úkol byl uložen."
 
 #: src/Controller/TasksController.php:411
-#: src/Controller/TasksController.php:486
+#: src/Controller/TasksController.php:489
 msgid "The task could not be saved. Please, try again."
 msgstr "Úkol nelze uložit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:534
+#: src/Controller/TasksController.php:537
 msgid "The task has been deleted."
 msgstr "Úkol byl odstraněn."
 
-#: src/Controller/TasksController.php:537
+#: src/Controller/TasksController.php:540
 msgid "The task could not be deleted. Please, try again."
 msgstr "Úkol nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:582
+#: src/Controller/TasksController.php:585
 msgid ""
 "The notification email could not be sent because the user does not have an "
 "email address."
@@ -911,19 +911,19 @@ msgstr ""
 "Oznamovací e-mail nebylo možné odeslat, protože uživatel nemá e-mailovou "
 "adresu."
 
-#: src/Controller/TasksController.php:595
+#: src/Controller/TasksController.php:598
 msgid "You have a new task # {0}"
 msgstr "Máte nový úkol č. {0}"
 
-#: src/Controller/TasksController.php:596
+#: src/Controller/TasksController.php:599
 msgid "You have changes in task # {0}"
 msgstr "Máte změny v úkolu č. {0}"
 
-#: src/Controller/TasksController.php:608
+#: src/Controller/TasksController.php:611
 msgid "Notification email sent."
 msgstr "E-mail s oznámením odeslán."
 
-#: src/Controller/TasksController.php:612
+#: src/Controller/TasksController.php:615
 msgid "The notification email could not be sent."
 msgstr "E-mail s oznámením se nepodařilo odeslat."
 
@@ -1010,41 +1010,41 @@ msgstr "Vyhledání adresy se nezdařilo."
 msgid "No address found for these GPS coordinates."
 msgstr "Pro tyto GPS souřadnice nebyla nalezena žádná adresa."
 
-#: src/Model/Entity/AppUser.php:78 templates/TaskStates/view.php:62
+#: src/Model/Entity/AppUser.php:79 templates/TaskStates/view.php:62
 #: templates/TaskTypes/view.php:54 templates/Tasks/view.php:54
 #: templates/email/html/task_notification.php:48
 msgid "User"
 msgstr "Uživatel"
 
-#: src/Model/Entity/AppUser.php:79
+#: src/Model/Entity/AppUser.php:80
 msgid "Customer Service Technician"
 msgstr "Technik zákaznického servisu"
 
-#: src/Model/Entity/AppUser.php:80
+#: src/Model/Entity/AppUser.php:81
 msgid "Network Technician"
 msgstr "Síťový technik"
 
-#: src/Model/Entity/AppUser.php:81
+#: src/Model/Entity/AppUser.php:82
 msgid "Network Manager"
 msgstr "Správce sítě"
 
-#: src/Model/Entity/AppUser.php:82
+#: src/Model/Entity/AppUser.php:83
 msgid "Sales Representative"
 msgstr "Obchodní zástupce"
 
-#: src/Model/Entity/AppUser.php:83
+#: src/Model/Entity/AppUser.php:84
 msgid "Sales Manager"
 msgstr "Manažer prodeje"
 
-#: src/Model/Entity/AppUser.php:84
+#: src/Model/Entity/AppUser.php:85
 msgid "Bookkeeper"
 msgstr "Účetní"
 
-#: src/Model/Entity/AppUser.php:85
+#: src/Model/Entity/AppUser.php:86
 msgid "Admin"
 msgstr "Admin"
 
-#: src/Model/Entity/AppUser.php:86
+#: src/Model/Entity/AppUser.php:87
 msgid "API"
 msgstr "API"
 
