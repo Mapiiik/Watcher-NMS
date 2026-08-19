@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-19 14:01+0200\n"
-"PO-Revision-Date: 2026-08-19 15:39+0200\n"
+"POT-Creation-Date: 2026-08-19 21:42+0200\n"
+"PO-Revision-Date: 2026-08-19 22:12+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -108,8 +108,7 @@ msgstr "Aktualizace zákaznických bodů se nezdařila."
 #: templates/PowerSupplyTypes/view.php:93 templates/RadioLinks/view.php:76
 #: templates/RadioUnitTypes/view.php:96 templates/RadioUnits/export.php:15
 #: templates/RadioUnits/view.php:57 templates/RouterosDevices/export.php:31
-#: templates/RouterosDevices/view.php:53 templates/TaskStates/view.php:67
-#: templates/TaskTypes/view.php:59 templates/Tasks/view.php:71
+#: templates/RouterosDevices/view.php:53 templates/Tasks/view.php:71
 #: templates/cell/AccessPoint/display.php:12
 #: templates/email/html/electricity_meter_readings_report.php:27
 #: templates/email/html/task_notification.php:60
@@ -218,8 +217,7 @@ msgstr "Hlášení odečtu elektroměru se nezdařilo."
 #: templates/RouterosDeviceIps/view.php:57
 #: templates/RouterosDevices/export.php:33
 #: templates/RouterosDevices/view.php:49 templates/RouterosDevices/view.php:145
-#: templates/RouterosDevices/view.php:220 templates/TaskStates/view.php:32
-#: templates/TaskTypes/view.php:32
+#: templates/RouterosDevices/view.php:220
 #: templates/element/AccessPoints/subtree.php:65
 msgid "Name"
 msgstr "Jméno"
@@ -845,65 +843,29 @@ msgstr ""
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr "Nepodařilo se aktualizovat data zařízení RouterOS přes SNMP: {0}"
 
-#: src/Controller/TaskStatesController.php:83
-#: src/Controller/TaskStatesController.php:107
-msgid "The task state has been saved."
-msgstr "Stav úkolu byl uložen."
-
-#: src/Controller/TaskStatesController.php:87
-#: src/Controller/TaskStatesController.php:111
-msgid "The task state could not be saved. Please, try again."
-msgstr "Stav úkolu nelze uložit. Prosím, zkuste to znovu."
-
-#: src/Controller/TaskStatesController.php:130
-msgid "The task state has been deleted."
-msgstr "Stav úkolu byl odstraněn."
-
-#: src/Controller/TaskStatesController.php:133
-msgid "The task state could not be deleted. Please, try again."
-msgstr "Stav úkolu nelze odstranit. Prosím, zkuste to znovu."
-
-#: src/Controller/TaskTypesController.php:82
-#: src/Controller/TaskTypesController.php:106
-msgid "The task type has been saved."
-msgstr "Typ úkolu byl uložen."
-
-#: src/Controller/TaskTypesController.php:86
-#: src/Controller/TaskTypesController.php:110
-msgid "The task type could not be saved. Please, try again."
-msgstr "Typ úkolu nelze uložit. Prosím, zkuste to znovu."
-
-#: src/Controller/TaskTypesController.php:129
-msgid "The task type has been deleted."
-msgstr "Typ úkolu byl odstraněn."
-
-#: src/Controller/TaskTypesController.php:132
-msgid "The task type could not be deleted. Please, try again."
-msgstr "Typ úkolu nelze odstranit. Prosím, zkuste to znovu."
-
-#: src/Controller/TasksController.php:309
+#: src/Controller/TasksController.php:339
 msgid "none"
 msgstr "žádný"
 
-#: src/Controller/TasksController.php:410
-#: src/Controller/TasksController.php:485
+#: src/Controller/TasksController.php:440
+#: src/Controller/TasksController.php:515
 msgid "The task has been saved."
 msgstr "Úkol byl uložen."
 
-#: src/Controller/TasksController.php:414
-#: src/Controller/TasksController.php:489
+#: src/Controller/TasksController.php:444
+#: src/Controller/TasksController.php:519
 msgid "The task could not be saved. Please, try again."
 msgstr "Úkol nelze uložit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:540
+#: src/Controller/TasksController.php:570
 msgid "The task has been deleted."
 msgstr "Úkol byl odstraněn."
 
-#: src/Controller/TasksController.php:543
+#: src/Controller/TasksController.php:573
 msgid "The task could not be deleted. Please, try again."
 msgstr "Úkol nelze odstranit. Prosím, zkuste to znovu."
 
-#: src/Controller/TasksController.php:588
+#: src/Controller/TasksController.php:618
 msgid ""
 "The notification email could not be sent because the user does not have an "
 "email address."
@@ -911,23 +873,23 @@ msgstr ""
 "Oznamovací e-mail nebylo možné odeslat, protože uživatel nemá e-mailovou "
 "adresu."
 
-#: src/Controller/TasksController.php:601
+#: src/Controller/TasksController.php:631
 msgid "You have a new task # {0}"
 msgstr "Máte nový úkol č. {0}"
 
-#: src/Controller/TasksController.php:602
+#: src/Controller/TasksController.php:632
 msgid "You have changes in task # {0}"
 msgstr "Máte změny v úkolu č. {0}"
 
-#: src/Controller/TasksController.php:614
+#: src/Controller/TasksController.php:644
 msgid "Notification email sent."
 msgstr "E-mail s oznámením odeslán."
 
-#: src/Controller/TasksController.php:618
+#: src/Controller/TasksController.php:648
 msgid "The notification email could not be sent."
 msgstr "E-mail s oznámením se nepodařilo odeslat."
 
-#: src/Controller/TasksController.php:329
+#: src/Controller/TasksController.php:359
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural ""
 "There were {0} unfinished tasks found that do not have a user assigned."
@@ -949,22 +911,6 @@ msgstr "Chyby"
 msgid "Electricity Meters to Read"
 msgstr "Elektroměry k odečtení"
 
-#: src/Dashboard/Card/MyTasksCard.php:38
-msgid "My Tasks"
-msgstr "Moje úkoly"
-
-#: src/Dashboard/Card/MyTasksCard.php:61 src/Dashboard/Card/MyTasksCard.php:68
-msgid "You are holding no unfinished tasks."
-msgstr "Nemáte žádné nedokončené úkoly."
-
-#: src/Dashboard/Card/PressingTasksCard.php:31
-msgid "Urgent and Overdue Tasks"
-msgstr "Naléhavé a zpožděné úkoly"
-
-#: src/Dashboard/Card/PressingTasksCard.php:54
-msgid "Nothing is urgent or running late."
-msgstr "Nic není naléhavé ani zpožděné."
-
 #: src/Dashboard/Card/RadarInterferencesCard.php:40
 msgid "Our Devices Interfering with Radar"
 msgstr "Naše zařízení rušící radar"
@@ -972,22 +918,6 @@ msgstr "Naše zařízení rušící radar"
 #: src/Dashboard/Card/StaleDeviceDataCard.php:42
 msgid "Devices with Stale Data"
 msgstr "Zařízení s neaktuálními údaji"
-
-#: src/Dashboard/Card/StaleTasksCard.php:31
-msgid "Stale Tasks"
-msgstr "Zaseknuté úkoly"
-
-#: src/Dashboard/Card/StaleTasksCard.php:54
-msgid "Nothing has been left lying around."
-msgstr "Nic tu nezůstalo ležet."
-
-#: src/Dashboard/Card/UnassignedTasksCard.php:28
-msgid "Unassigned Tasks"
-msgstr "Nepřiřazené úkoly"
-
-#: src/Dashboard/Card/UnassignedTasksCard.php:49
-msgid "Every unfinished task has somebody holding it."
-msgstr "Za každým nedokončeným úkolem stojí někdo, kdo ho má na starosti."
 
 #: src/Model/Entity/AccessPoint.php:98
 #: src/Model/Entity/CustomerConnection.php:72
@@ -1010,59 +940,42 @@ msgstr "Vyhledání adresy se nezdařilo."
 msgid "No address found for these GPS coordinates."
 msgstr "Pro tyto GPS souřadnice nebyla nalezena žádná adresa."
 
-#: src/Model/Entity/AppUser.php:79 templates/TaskStates/view.php:62
-#: templates/TaskTypes/view.php:54 templates/Tasks/view.php:54
+#: src/Model/Entity/AppUser.php:87 templates/Tasks/view.php:54
 #: templates/email/html/task_notification.php:48
 msgid "User"
 msgstr "Uživatel"
 
-#: src/Model/Entity/AppUser.php:80
+#: src/Model/Entity/AppUser.php:88
 msgid "Customer Service Technician"
 msgstr "Technik zákaznického servisu"
 
-#: src/Model/Entity/AppUser.php:81
+#: src/Model/Entity/AppUser.php:89
 msgid "Network Technician"
 msgstr "Síťový technik"
 
-#: src/Model/Entity/AppUser.php:82
+#: src/Model/Entity/AppUser.php:90
 msgid "Network Manager"
 msgstr "Správce sítě"
 
-#: src/Model/Entity/AppUser.php:83
+#: src/Model/Entity/AppUser.php:91
 msgid "Sales Representative"
 msgstr "Obchodní zástupce"
 
-#: src/Model/Entity/AppUser.php:84
+#: src/Model/Entity/AppUser.php:92
 msgid "Sales Manager"
 msgstr "Manažer prodeje"
 
-#: src/Model/Entity/AppUser.php:85
+#: src/Model/Entity/AppUser.php:93
 msgid "Bookkeeper"
 msgstr "Účetní"
 
-#: src/Model/Entity/AppUser.php:86
+#: src/Model/Entity/AppUser.php:94
 msgid "Admin"
 msgstr "Admin"
 
-#: src/Model/Entity/AppUser.php:87
+#: src/Model/Entity/AppUser.php:95
 msgid "API"
 msgstr "API"
-
-#: src/Model/Entity/Task.php:159
-msgid "Low"
-msgstr "Nízká"
-
-#: src/Model/Entity/Task.php:160
-msgid "Normal"
-msgstr "Normální"
-
-#: src/Model/Entity/Task.php:161
-msgid "High"
-msgstr "Vysoká"
-
-#: src/Model/Entity/Task.php:162
-msgid "Urgent"
-msgstr "Naléhavé"
 
 #: src/Model/Enum/DeviceLinkScope.php:53
 #: src/Model/Enum/RadioUnitComparisonScope.php:48
@@ -1128,7 +1041,7 @@ msgstr "Zadejte pásmu obě jeho hranice, nebo ani jednu."
 msgid "The highest frequency of the band cannot be below the lowest one."
 msgstr "Horní frekvence pásma nemůže být nižší než dolní."
 
-#: src/Model/Table/TasksTable.php:255
+#: src/Model/Table/TasksTable.php:84
 msgid "The specified task type requires the assignment of an access point."
 msgstr "Zadaný typ úkolu vyžaduje přiřazení přístupového bodu."
 
@@ -1274,13 +1187,8 @@ msgstr "Není nainstalováno přes Git"
 #: templates/RouterosDevices/index.php:45 templates/RouterosDevices/view.php:10
 #: templates/RouterosDevices/view.php:159
 #: templates/RouterosDevices/view.php:223 templates/Settings/edit.php:15
-#: templates/TaskStates/add.php:10 templates/TaskStates/edit.php:10
-#: templates/TaskStates/index.php:30 templates/TaskStates/view.php:10
-#: templates/TaskStates/view.php:72 templates/TaskTypes/add.php:10
-#: templates/TaskTypes/edit.php:10 templates/TaskTypes/index.php:28
-#: templates/TaskTypes/view.php:10 templates/TaskTypes/view.php:64
 #: templates/Tasks/add.php:14 templates/Tasks/edit.php:14
-#: templates/Tasks/index.php:100 templates/Tasks/view.php:10
+#: templates/Tasks/index.php:108 templates/Tasks/view.php:10
 #: templates/element/AccessPoints/subtree.php:70
 #: templates/email/html/electricity_meter_readings_report.php:32
 msgid "Actions"
@@ -1327,8 +1235,6 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/RouterosDeviceIps/add.php:37
 #: templates/RouterosDeviceIps/edit.php:45 templates/RouterosDevices/add.php:60
 #: templates/RouterosDevices/edit.php:68 templates/Settings/edit.php:42
-#: templates/TaskStates/add.php:26 templates/TaskStates/edit.php:31
-#: templates/TaskTypes/add.php:24 templates/TaskTypes/edit.php:29
 #: templates/Tasks/add.php:59 templates/Tasks/edit.php:73
 msgid "Submit"
 msgstr "Potvrdit"
@@ -1384,10 +1290,7 @@ msgstr "Potvrdit"
 #: templates/RouterosDevices/export.php:136
 #: templates/RouterosDevices/index.php:94
 #: templates/RouterosDevices/view.php:196
-#: templates/RouterosDevices/view.php:241 templates/TaskStates/edit.php:12
-#: templates/TaskStates/index.php:48 templates/TaskStates/view.php:117
-#: templates/TaskTypes/edit.php:12 templates/TaskTypes/index.php:44
-#: templates/TaskTypes/view.php:109 templates/Tasks/edit.php:16
+#: templates/RouterosDevices/view.php:241 templates/Tasks/edit.php:16
 msgid "Delete"
 msgstr "Odstranit"
 
@@ -1458,11 +1361,7 @@ msgstr "Odstranit"
 #: templates/RouterosDevices/export.php:138
 #: templates/RouterosDevices/index.php:96 templates/RouterosDevices/view.php:20
 #: templates/RouterosDevices/view.php:202
-#: templates/RouterosDevices/view.php:243 templates/TaskStates/edit.php:14
-#: templates/TaskStates/index.php:50 templates/TaskStates/view.php:19
-#: templates/TaskStates/view.php:119 templates/TaskTypes/edit.php:14
-#: templates/TaskTypes/index.php:46 templates/TaskTypes/view.php:19
-#: templates/TaskTypes/view.php:111 templates/Tasks/edit.php:18
+#: templates/RouterosDevices/view.php:243 templates/Tasks/edit.php:18
 #: templates/Tasks/view.php:15
 msgid "Are you sure you want to delete # {0}?"
 msgstr "Opravdu chcete odstranit # {0}?"
@@ -1493,8 +1392,7 @@ msgstr "Upravit kontakt přístupového bodu"
 #: templates/RouterosDeviceInterfaces/index.php:12
 #: templates/RouterosDeviceIps/index.php:12
 #: templates/RouterosDevices/export.php:13
-#: templates/RouterosDevices/index.php:12 templates/TaskStates/index.php:11
-#: templates/TaskTypes/index.php:11 templates/Tasks/index.php:40
+#: templates/RouterosDevices/index.php:12 templates/Tasks/index.php:48
 msgid "Search"
 msgstr "Hledat"
 
@@ -1543,9 +1441,7 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/export.php:127
 #: templates/RouterosDevices/index.php:85
 #: templates/RouterosDevices/view.php:179
-#: templates/RouterosDevices/view.php:232 templates/TaskStates/index.php:41
-#: templates/TaskStates/view.php:108 templates/TaskTypes/index.php:37
-#: templates/TaskTypes/view.php:100 templates/Tasks/index.php:150
+#: templates/RouterosDevices/view.php:232 templates/Tasks/index.php:158
 #: templates/element/AccessPoints/subtree.php:94
 #: templates/email/html/electricity_meter_readings_report.php:52
 #: vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1225
@@ -1587,9 +1483,7 @@ msgstr "Zobrazit"
 #: templates/RouterosDevices/export.php:131
 #: templates/RouterosDevices/index.php:89
 #: templates/RouterosDevices/view.php:187
-#: templates/RouterosDevices/view.php:236 templates/TaskStates/index.php:43
-#: templates/TaskStates/view.php:112 templates/TaskTypes/index.php:39
-#: templates/TaskTypes/view.php:104 templates/Tasks/index.php:154
+#: templates/RouterosDevices/view.php:236 templates/Tasks/index.php:162
 #: templates/element/AccessPoints/subtree.php:98
 msgid "Edit"
 msgstr "Upravit"
@@ -1616,8 +1510,7 @@ msgstr "Upravit"
 #: templates/RadioUnits/index.php:140
 #: templates/RouterosDeviceInterfaces/index.php:111
 #: templates/RouterosDeviceIps/index.php:82
-#: templates/RouterosDevices/index.php:106 templates/TaskStates/index.php:60
-#: templates/TaskTypes/index.php:56 templates/Tasks/index.php:166
+#: templates/RouterosDevices/index.php:106 templates/Tasks/index.php:174
 msgid "first"
 msgstr "první"
 
@@ -1643,8 +1536,7 @@ msgstr "první"
 #: templates/RadioUnits/index.php:141
 #: templates/RouterosDeviceInterfaces/index.php:112
 #: templates/RouterosDeviceIps/index.php:83
-#: templates/RouterosDevices/index.php:107 templates/TaskStates/index.php:61
-#: templates/TaskTypes/index.php:57 templates/Tasks/index.php:167
+#: templates/RouterosDevices/index.php:107 templates/Tasks/index.php:175
 msgid "previous"
 msgstr "předchozí"
 
@@ -1670,8 +1562,7 @@ msgstr "předchozí"
 #: templates/RadioUnits/index.php:143
 #: templates/RouterosDeviceInterfaces/index.php:114
 #: templates/RouterosDeviceIps/index.php:85
-#: templates/RouterosDevices/index.php:109 templates/TaskStates/index.php:63
-#: templates/TaskTypes/index.php:59 templates/Tasks/index.php:169
+#: templates/RouterosDevices/index.php:109 templates/Tasks/index.php:177
 msgid "next"
 msgstr "další"
 
@@ -1697,8 +1588,7 @@ msgstr "další"
 #: templates/RadioUnits/index.php:144
 #: templates/RouterosDeviceInterfaces/index.php:115
 #: templates/RouterosDeviceIps/index.php:86
-#: templates/RouterosDevices/index.php:110 templates/TaskStates/index.php:64
-#: templates/TaskTypes/index.php:60 templates/Tasks/index.php:170
+#: templates/RouterosDevices/index.php:110 templates/Tasks/index.php:178
 msgid "last"
 msgstr "poslední"
 
@@ -1724,8 +1614,7 @@ msgstr "poslední"
 #: templates/RadioUnits/index.php:147
 #: templates/RouterosDeviceInterfaces/index.php:118
 #: templates/RouterosDeviceIps/index.php:89
-#: templates/RouterosDevices/index.php:113 templates/TaskStates/index.php:67
-#: templates/TaskTypes/index.php:63 templates/Tasks/index.php:173
+#: templates/RouterosDevices/index.php:113 templates/Tasks/index.php:181
 msgid ""
 "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
 "total"
@@ -1738,15 +1627,13 @@ msgid "Delete Access Point Contact"
 msgstr "Odstranit kontakt přístupového bodu"
 
 #: templates/AccessPointContacts/view.php:59
-#: templates/AccessPoints/view.php:177 templates/TaskStates/view.php:66
-#: templates/TaskTypes/view.php:58 templates/Tasks/view.php:67
+#: templates/AccessPoints/view.php:177 templates/Tasks/view.php:67
 #: templates/email/html/task_notification.php:56
 msgid "Phone"
 msgstr "Telefon"
 
 #: templates/AccessPointContacts/view.php:63
-#: templates/AccessPoints/view.php:178 templates/TaskStates/view.php:65
-#: templates/TaskTypes/view.php:57 templates/Tasks/view.php:63
+#: templates/AccessPoints/view.php:178 templates/Tasks/view.php:63
 #: templates/email/html/task_notification.php:52
 msgid "Email"
 msgstr "E-mail"
@@ -1820,7 +1707,6 @@ msgid "Delete Access Point Type"
 msgstr "Odstranit typ přístupového bodu"
 
 #: templates/AccessPointTypes/view.php:47 templates/RadioUnitBands/view.php:43
-#: templates/TaskStates/view.php:36
 msgid "Color"
 msgstr "Barva"
 
@@ -1914,7 +1800,7 @@ msgid "Utilization"
 msgstr "Využití"
 
 #: templates/AccessPoints/index.php:36
-#: templates/AccessPoints/utilization.php:47 templates/Tasks/index.php:82
+#: templates/AccessPoints/utilization.php:47 templates/Tasks/index.php:90
 msgid "Map"
 msgstr "Mapa"
 
@@ -2161,8 +2047,6 @@ msgstr "Pro sítě technologií nastavené ručně"
 #: templates/RadioUnitBands/index.php:51 templates/RadioUnitBands/index.php:52
 #: templates/RadioUnitBands/view.php:60 templates/RadioUnitBands/view.php:64
 #: templates/RadioUnits/view.php:156 templates/RadioUnits/view.php:160
-#: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
-#: templates/TaskTypes/index.php:35 templates/TaskTypes/view.php:37
 #: templates/element/Settings/FormFields.php:34
 msgid "Yes"
 msgstr "Ano"
@@ -2192,8 +2076,6 @@ msgstr "Ano"
 #: templates/RadioUnitBands/index.php:51 templates/RadioUnitBands/index.php:52
 #: templates/RadioUnitBands/view.php:60 templates/RadioUnitBands/view.php:64
 #: templates/RadioUnits/view.php:156 templates/RadioUnits/view.php:160
-#: templates/TaskStates/index.php:39 templates/TaskStates/view.php:45
-#: templates/TaskTypes/index.php:35 templates/TaskTypes/view.php:37
 #: templates/element/Settings/FormFields.php:34
 msgid "No"
 msgstr "Ne"
@@ -2560,19 +2442,19 @@ msgstr "Zisk antény"
 msgid "Customer Connection"
 msgstr "Připojení zákazníka"
 
-#: templates/AppUsers/user_settings.php:53 templates/layout/default.php:227
+#: templates/AppUsers/user_settings.php:55 templates/layout/default.php:227
 msgid "Light"
 msgstr "Světlý"
 
-#: templates/AppUsers/user_settings.php:54 templates/layout/default.php:228
+#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:228
 msgid "Dark"
 msgstr "Tmavý"
 
-#: templates/AppUsers/user_settings.php:55 templates/layout/default.php:229
+#: templates/AppUsers/user_settings.php:57 templates/layout/default.php:229
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:230
+#: templates/AppUsers/user_settings.php:58 templates/layout/default.php:230
 msgid "Legacy"
 msgstr "Starší"
 
@@ -3634,122 +3516,16 @@ msgstr "Související s napájecím zdrojem"
 msgid "Task Related"
 msgstr "Související s úkolem"
 
-#: templates/Settings/index.php:140 templates/TaskStates/add.php:11
-#: templates/TaskStates/edit.php:16 templates/TaskStates/view.php:21
+#: templates/Settings/index.php:140
 msgid "List Task States"
 msgstr "Seznam stavů úkolů"
 
-#: templates/Settings/index.php:145 templates/TaskTypes/add.php:11
-#: templates/TaskTypes/edit.php:16 templates/TaskTypes/view.php:21
+#: templates/Settings/index.php:145
 msgid "List Task Types"
 msgstr "Seznam typů úkolů"
 
-#: templates/TaskStates/add.php:18
-msgid "Add Task State"
-msgstr "Přidat stav úkolu"
-
-#: templates/TaskStates/edit.php:23 templates/TaskStates/view.php:12
-msgid "Edit Task State"
-msgstr "Upravit stav úkolu"
-
-#: templates/TaskStates/index.php:20 templates/TaskStates/view.php:22
-msgid "New Task State"
-msgstr "Nový stav úkolu"
-
-#: templates/TaskStates/index.php:21
-msgid "Task States"
-msgstr "Stavy úkolů"
-
-#: templates/TaskStates/view.php:17
-msgid "Delete Task State"
-msgstr "Odstranit stav úkolu"
-
-#: templates/TaskStates/view.php:40 templates/TaskStates/view.php:61
-#: templates/TaskTypes/view.php:52 templates/Tasks/view.php:43
-#: templates/email/html/task_notification.php:40
-msgid "Priority"
-msgstr "Priorita"
-
-#: templates/TaskStates/view.php:44
-msgid "Completed"
-msgstr "Dokončeno"
-
-#: templates/TaskStates/view.php:54 templates/TaskTypes/view.php:46
-msgid "Related Tasks"
-msgstr "Související úkoly"
-
-#: templates/TaskStates/view.php:59 templates/TaskTypes/view.php:51
-#: templates/Tasks/index.php:88
-msgid "Number"
-msgstr "Číslo"
-
-#: templates/TaskStates/view.php:60 templates/Tasks/view.php:36
-#: templates/email/html/task_notification.php:36
-msgid "Task Type"
-msgstr "Typ úkolu"
-
-#: templates/TaskStates/view.php:63 templates/TaskTypes/view.php:55
-#: templates/Tasks/view.php:106 templates/email/html/task_notification.php:120
-msgid "Subject"
-msgstr "Předmět"
-
-#: templates/TaskStates/view.php:64 templates/TaskTypes/view.php:56
-#: templates/Tasks/view.php:116 templates/email/html/task_notification.php:130
-msgid "Text"
-msgstr "Text"
-
-#: templates/TaskStates/view.php:68 templates/TaskTypes/view.php:60
-#: templates/Tasks/view.php:86 templates/email/html/task_notification.php:76
-msgid "Start Date"
-msgstr "Datum přijetí"
-
-#: templates/TaskStates/view.php:69 templates/TaskTypes/view.php:61
-#: templates/Tasks/view.php:90 templates/element/Dashboard/task_list.php:58
-#: templates/email/html/task_notification.php:80
-msgid "Estimated Date"
-msgstr "Předpokládaný datum řešení"
-
-#: templates/TaskStates/view.php:70 templates/TaskTypes/view.php:62
-#: templates/Tasks/view.php:94 templates/email/html/task_notification.php:84
-msgid "Critical Date"
-msgstr "Nutné dořešit do"
-
-#: templates/TaskStates/view.php:71 templates/TaskTypes/view.php:63
-#: templates/Tasks/view.php:98 templates/email/html/task_notification.php:88
-msgid "Finish Date"
-msgstr "Datum vyřízení"
-
-#: templates/TaskTypes/add.php:18
-msgid "Add Task Type"
-msgstr "Přidat typ úkolu"
-
-#: templates/TaskTypes/edit.php:23 templates/TaskTypes/view.php:12
-msgid "Edit Task Type"
-msgstr "Upravit typ úkolu"
-
-#: templates/TaskTypes/index.php:20 templates/TaskTypes/view.php:22
-msgid "New Task Type"
-msgstr "Nový typ úkolu"
-
-#: templates/TaskTypes/index.php:21
-msgid "Task Types"
-msgstr "Typy úkolů"
-
-#: templates/TaskTypes/view.php:17
-msgid "Delete Task Type"
-msgstr "Odstranit typ úkolu"
-
-#: templates/TaskTypes/view.php:36
-msgid "Access Point Required"
-msgstr "Je vyžadován přístupový bod"
-
-#: templates/TaskTypes/view.php:53 templates/Tasks/index.php:91
-#: templates/Tasks/view.php:47 templates/email/html/task_notification.php:44
-msgid "Task State"
-msgstr "Stav úkolu"
-
 #: templates/Tasks/add.php:15 templates/Tasks/edit.php:20
-#: templates/Tasks/map.php:29 templates/Tasks/view.php:17
+#: templates/Tasks/map.php:35 templates/Tasks/view.php:17
 msgid "List Tasks"
 msgstr "Seznam úkolů"
 
@@ -3761,37 +3537,52 @@ msgstr "Přidat úkol"
 msgid "Edit Task"
 msgstr "Upravit úkol"
 
-#: templates/Tasks/index.php:49
+#: templates/Tasks/index.php:24 templates/Tasks/map.php:15
+#: templates/Tasks/view.php:36 templates/email/html/task_notification.php:36
+msgid "Task Type"
+msgstr "Typ úkolu"
+
+#: templates/Tasks/index.php:33 templates/Tasks/index.php:99
+#: templates/Tasks/map.php:24 templates/Tasks/view.php:47
+#: templates/email/html/task_notification.php:44
+msgid "Task State"
+msgstr "Stav úkolu"
+
+#: templates/Tasks/index.php:57
 msgid "Show Completed"
 msgstr "Zobrazit dokončené"
 
-#: templates/Tasks/index.php:56
+#: templates/Tasks/index.php:64
 msgid "Urgent or Overdue Only"
 msgstr "Pouze urgentní nebo po termínu"
 
-#: templates/Tasks/index.php:63
+#: templates/Tasks/index.php:71
 msgid "Untouched for a While Only"
 msgstr "Pouze ty které jsou chvíli bez zásahu"
 
-#: templates/Tasks/index.php:72
+#: templates/Tasks/index.php:80
 msgid "Expandable Text"
 msgstr "Rozbalitelný text"
 
-#: templates/Tasks/index.php:81 templates/Tasks/view.php:18
+#: templates/Tasks/index.php:89 templates/Tasks/view.php:18
 msgid "New Task"
 msgstr "Nový úkol"
 
-#: templates/Tasks/index.php:83 templates/Tasks/map.php:30
+#: templates/Tasks/index.php:91 templates/Tasks/map.php:36
 #: templates/layout/default.php:122
 msgid "Tasks"
 msgstr "Úkoly"
 
-#: templates/Tasks/index.php:93 templates/Tasks/view.php:110
+#: templates/Tasks/index.php:96
+msgid "Number"
+msgstr "Číslo"
+
+#: templates/Tasks/index.php:101 templates/Tasks/view.php:110
 #: templates/email/html/task_notification.php:124
 msgid "Summary Text"
 msgstr "Souhrnný text"
 
-#: templates/Tasks/map.php:32
+#: templates/Tasks/map.php:38
 msgid "No open task has a place on the map."
 msgstr "Žádný otevřený úkol nemá na mapě své místo."
 
@@ -3802,6 +3593,35 @@ msgstr "Odstranit úkol"
 #: templates/Tasks/view.php:31
 msgid "Task No."
 msgstr "Úkol č."
+
+#: templates/Tasks/view.php:43 templates/email/html/task_notification.php:40
+msgid "Priority"
+msgstr "Priorita"
+
+#: templates/Tasks/view.php:86 templates/email/html/task_notification.php:76
+msgid "Start Date"
+msgstr "Datum přijetí"
+
+#: templates/Tasks/view.php:90 templates/element/Dashboard/task_list.php:58
+#: templates/email/html/task_notification.php:80
+msgid "Estimated Date"
+msgstr "Předpokládaný datum řešení"
+
+#: templates/Tasks/view.php:94 templates/email/html/task_notification.php:84
+msgid "Critical Date"
+msgstr "Nutné dořešit do"
+
+#: templates/Tasks/view.php:98 templates/email/html/task_notification.php:88
+msgid "Finish Date"
+msgstr "Datum vyřízení"
+
+#: templates/Tasks/view.php:106 templates/email/html/task_notification.php:120
+msgid "Subject"
+msgstr "Předmět"
+
+#: templates/Tasks/view.php:116 templates/email/html/task_notification.php:130
+msgid "Text"
+msgstr "Text"
 
 #: templates/element/AccessPoints/subtree.php:69
 msgid "Customer Connections Including Subordinates"
@@ -4013,6 +3833,105 @@ msgstr "Verze"
 #: templates/layout/error.php:36
 msgid "Back"
 msgstr "Zpět"
+
+#~ msgid "The task state has been saved."
+#~ msgstr "Stav úkolu byl uložen."
+
+#~ msgid "The task state could not be saved. Please, try again."
+#~ msgstr "Stav úkolu nelze uložit. Prosím, zkuste to znovu."
+
+#~ msgid "The task state has been deleted."
+#~ msgstr "Stav úkolu byl odstraněn."
+
+#~ msgid "The task state could not be deleted. Please, try again."
+#~ msgstr "Stav úkolu nelze odstranit. Prosím, zkuste to znovu."
+
+#~ msgid "The task type has been saved."
+#~ msgstr "Typ úkolu byl uložen."
+
+#~ msgid "The task type could not be saved. Please, try again."
+#~ msgstr "Typ úkolu nelze uložit. Prosím, zkuste to znovu."
+
+#~ msgid "The task type has been deleted."
+#~ msgstr "Typ úkolu byl odstraněn."
+
+#~ msgid "The task type could not be deleted. Please, try again."
+#~ msgstr "Typ úkolu nelze odstranit. Prosím, zkuste to znovu."
+
+#~ msgid "My Tasks"
+#~ msgstr "Moje úkoly"
+
+#~ msgid "You are holding no unfinished tasks."
+#~ msgstr "Nemáte žádné nedokončené úkoly."
+
+#~ msgid "Urgent and Overdue Tasks"
+#~ msgstr "Naléhavé a zpožděné úkoly"
+
+#~ msgid "Nothing is urgent or running late."
+#~ msgstr "Nic není naléhavé ani zpožděné."
+
+#~ msgid "Stale Tasks"
+#~ msgstr "Zaseknuté úkoly"
+
+#~ msgid "Nothing has been left lying around."
+#~ msgstr "Nic tu nezůstalo ležet."
+
+#~ msgid "Unassigned Tasks"
+#~ msgstr "Nepřiřazené úkoly"
+
+#~ msgid "Every unfinished task has somebody holding it."
+#~ msgstr "Za každým nedokončeným úkolem stojí někdo, kdo ho má na starosti."
+
+#~ msgid "Low"
+#~ msgstr "Nízká"
+
+#~ msgid "Normal"
+#~ msgstr "Normální"
+
+#~ msgid "High"
+#~ msgstr "Vysoká"
+
+#~ msgid "Urgent"
+#~ msgstr "Naléhavé"
+
+#~ msgid "Add Task State"
+#~ msgstr "Přidat stav úkolu"
+
+#~ msgid "Edit Task State"
+#~ msgstr "Upravit stav úkolu"
+
+#~ msgid "New Task State"
+#~ msgstr "Nový stav úkolu"
+
+#~ msgid "Task States"
+#~ msgstr "Stavy úkolů"
+
+#~ msgid "Delete Task State"
+#~ msgstr "Odstranit stav úkolu"
+
+#~ msgid "Completed"
+#~ msgstr "Dokončeno"
+
+#~ msgid "Related Tasks"
+#~ msgstr "Související úkoly"
+
+#~ msgid "Add Task Type"
+#~ msgstr "Přidat typ úkolu"
+
+#~ msgid "Edit Task Type"
+#~ msgstr "Upravit typ úkolu"
+
+#~ msgid "New Task Type"
+#~ msgstr "Nový typ úkolu"
+
+#~ msgid "Task Types"
+#~ msgstr "Typy úkolů"
+
+#~ msgid "Delete Task Type"
+#~ msgstr "Odstranit typ úkolu"
+
+#~ msgid "Access Point Required"
+#~ msgstr "Je vyžadován přístupový bod"
 
 #~ msgid "You must provide an Google Map API key."
 #~ msgstr "Musíte zadat klíč Google Map API."
