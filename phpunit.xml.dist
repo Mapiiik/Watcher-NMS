@@ -11,6 +11,7 @@
       <directory>tests/TestCase/</directory>
     </testsuite>
     <testsuite name="plugins">
+      <directory>plugins/Dashboard/tests/TestCase/</directory>
       <directory>plugins/Maps/tests/TestCase/</directory>
       <directory>plugins/Settings/tests/TestCase/</directory>
       <directory>plugins/Tasks/tests/TestCase/</directory>
