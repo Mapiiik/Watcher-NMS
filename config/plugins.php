@@ -41,6 +41,9 @@ return [
     // Dashboard
     'Dashboard' => [],
 
+    // Tasks
+    'Tasks' => [],
+
     // Maps
     'Maps' => [],
 ];

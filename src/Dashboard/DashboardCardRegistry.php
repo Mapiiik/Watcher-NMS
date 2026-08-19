@@ -4,12 +4,8 @@ declare(strict_types=1);
 namespace App\Dashboard;
 
 use App\Dashboard\Card\ElectricityMeterReadingsCard;
-use App\Dashboard\Card\MyTasksCard;
-use App\Dashboard\Card\PressingTasksCard;
 use App\Dashboard\Card\RadarInterferencesCard;
 use App\Dashboard\Card\StaleDeviceDataCard;
-use App\Dashboard\Card\StaleTasksCard;
-use App\Dashboard\Card\UnassignedTasksCard;
 use App\Model\Table\AccessPointsTable;
 use App\Model\Table\RadarInterferencesTable;
 use App\Model\Table\RouterosDevicesTable;
@@ -17,6 +13,10 @@ use App\Model\Table\TasksTable;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Dashboard\Card\CardRegistryInterface;
 use Dashboard\Card\DashboardCardInterface;
+use Tasks\Dashboard\Card\MyTasksCard;
+use Tasks\Dashboard\Card\PressingTasksCard;
+use Tasks\Dashboard\Card\StaleTasksCard;
+use Tasks\Dashboard\Card\UnassignedTasksCard;
 
 /**
  * Registry of the cards the dashboard can draw.

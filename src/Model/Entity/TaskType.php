@@ -3,23 +3,20 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use Tasks\Model\Entity\TaskType as TasksTaskType;
+
 /**
  * TaskType Entity
  *
- * @property string $id
- * @property string|null $name
- * @property bool $access_point_required
+ * What a type requires of a task is what this application adds to the shared one: a task filed
+ * under an access point.
  *
- * @property \App\Model\Entity\Task[] $tasks
+ * @property bool $access_point_required
  */
-class TaskType extends AppEntity
+class TaskType extends TasksTaskType
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
-     *
-     * Note that when '*' is set to true, this allows all unspecified fields to
-     * be mass assigned. For security purposes, it is advised to set '*' to false
-     * (or remove it), and explicitly make individual fields accessible as needed.
      *
      * @var array<string, bool>
      */

@@ -50,7 +50,8 @@
             "App\\": "src/",
             "Dashboard\\": "plugins/Dashboard/src/",
             "Maps\\": "plugins/Maps/src/",
-            "Settings\\": "plugins/Settings/src/"
+            "Settings\\": "plugins/Settings/src/",
+            "Tasks\\": "plugins/Tasks/src/"
         }
     },
     "autoload-dev": {
@@ -59,7 +60,8 @@
             "Dashboard\\Test\\": "plugins/Dashboard/tests/",
             "Maps\\Test\\": "plugins/Maps/tests/",
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
-            "Settings\\Test\\": "plugins/Settings/tests/"
+            "Settings\\Test\\": "plugins/Settings/tests/",
+            "Tasks\\Test\\": "plugins/Tasks/tests/"
         }
     },
     "config": {
@@ -107,6 +109,7 @@
             "bin/cake i18n extract --extract-core no --overwrite -p Dashboard",
             "bin/cake i18n extract --extract-core no --overwrite -p Maps",
             "bin/cake i18n extract --extract-core no --overwrite -p Settings",
+            "bin/cake i18n extract --extract-core no --overwrite -p Tasks",
             "bin/cake i18n extract --extract-core yes --overwrite --paths src/,templates/,config/ --output resources/locales/"
         ]
     },

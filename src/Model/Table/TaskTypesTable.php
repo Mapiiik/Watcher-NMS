@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
+use Tasks\Model\Table\TaskTypesTable as TasksTaskTypesTable;
 
 /**
  * TaskTypes Model
+ *
+ * On top of the shared type: what this application lets a type require of a task.
  *
  * @property \App\Model\Table\TasksTable&\Cake\ORM\Association\HasMany $Tasks
  * @method \App\Model\Entity\TaskType newEmptyEntity()
@@ -26,37 +28,8 @@ use Override;
  * @method iterable<\App\Model\Entity\TaskType> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class TaskTypesTable extends AppTable
+class TaskTypesTable extends TasksTaskTypesTable
 {
-    /**
-     * Initialize method
-     *
-     * @param array<string, mixed> $config The configuration for the Table.
-     * @return void
-     */
-    #[Override]
-    public function initialize(array $config): void
-    {
-        parent::initialize($config);
-
-        $this->setTable('task_types');
-        $this->setDisplayField('name');
-        $this->setPrimaryKey('id');
-
-        $this->addBehavior('Timestamp');
-        $this->addBehavior('Footprint');
-        $this->addBehavior('StringModifications');
-
-        $this->hasMany('Tasks', [
-            'foreignKey' => 'task_type_id',
-            'sort' => [
-                'TaskStates.priority' => 'DESC',
-                'Tasks.priority' => 'DESC',
-                'Tasks.nid' => 'DESC',
-            ],
-        ]);
-    }
-
     /**
      * Default validation rules.
      *
@@ -66,33 +39,12 @@ class TaskTypesTable extends AppTable
     #[Override]
     public function validationDefault(Validator $validator): Validator
     {
-        $validator
-            ->uuid('id')
-            ->allowEmptyString('id', null, 'create');
-
-        $validator
-            ->scalar('name')
-            ->allowEmptyString('name');
+        $validator = parent::validationDefault($validator);
 
         $validator
             ->boolean('access_point_required')
             ->notEmptyString('access_point_required');
 
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    #[Override]
-    public function buildRules(RulesChecker $rules): RulesChecker
-    {
-        $rules->addDelete($rules->isNotLinkedTo('Tasks'));
-
-        return $rules;
     }
 }

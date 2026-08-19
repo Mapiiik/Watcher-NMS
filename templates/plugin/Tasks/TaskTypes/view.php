@@ -7,19 +7,19 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
+            <h4 class="heading"><?= __d('tasks', 'Actions') ?></h4>
             <?= $this->AuthLink->link(
-                __('Edit Task Type'),
+                __d('tasks', 'Edit Task Type'),
                 ['action' => 'edit', $taskType->id],
                 ['class' => 'side-nav-item'],
             ) ?>
             <?= $this->AuthLink->postLink(
-                __('Delete Task Type'),
+                __d('tasks', 'Delete Task Type'),
                 ['action' => 'delete', $taskType->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $taskType->id), 'class' => 'side-nav-item'],
+                ['confirm' => __d('tasks', 'Are you sure you want to delete # {0}?', $taskType->id), 'class' => 'side-nav-item'],
             ) ?>
-            <?= $this->AuthLink->link(__('List Task Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->AuthLink->link(__('New Task Type'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(__d('tasks', 'List Task Types'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->AuthLink->link(__d('tasks', 'New Task Type'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-90">
@@ -29,12 +29,12 @@
                 <div class="column">
                     <table>
                         <tr>
-                            <th><?= __('Name') ?></th>
+                            <th><?= __d('tasks', 'Name') ?></th>
                             <td><?= h($taskType->name) ?></td>
                         </tr>
                         <tr>
-                            <th><?= __('Access Point Required') ?></th>
-                            <td><?= $taskType->access_point_required ? __('Yes') : __('No'); ?></td>
+                            <th><?= __d('tasks', 'Access Point Required') ?></th>
+                            <td><?= $taskType->access_point_required ? __d('tasks', 'Yes') : __d('tasks', 'No'); ?></td>
                         </tr>
                     </table>
                 </div>
@@ -43,25 +43,25 @@
                 </div>
             </div>
             <div class="related">
-                <h4><?= __('Related Tasks') ?></h4>
+                <h4><?= __d('tasks', 'Related Tasks') ?></h4>
                 <?php if (!empty($taskType->tasks)) : ?>
                     <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Number') ?></th>
-                            <th><?= __('Priority') ?></th>
-                            <th><?= __('Task State') ?></th>
-                            <th><?= __('User') ?></th>
-                            <th><?= __('Subject') ?></th>
-                            <th><?= __('Text') ?></th>
-                            <th><?= __('Email') ?></th>
-                            <th><?= __('Phone') ?></th>
-                            <th><?= __('Access Point') ?></th>
-                            <th><?= __('Start Date') ?></th>
-                            <th><?= __('Estimated Date') ?></th>
-                            <th><?= __('Critical Date') ?></th>
-                            <th><?= __('Finish Date') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th><?= __d('tasks', 'Number') ?></th>
+                            <th><?= __d('tasks', 'Priority') ?></th>
+                            <th><?= __d('tasks', 'Task State') ?></th>
+                            <th><?= __d('tasks', 'User') ?></th>
+                            <th><?= __d('tasks', 'Subject') ?></th>
+                            <th><?= __d('tasks', 'Text') ?></th>
+                            <th><?= __d('tasks', 'Email') ?></th>
+                            <th><?= __d('tasks', 'Phone') ?></th>
+                            <th><?= __d('tasks', 'Access Point') ?></th>
+                            <th><?= __d('tasks', 'Start Date') ?></th>
+                            <th><?= __d('tasks', 'Estimated Date') ?></th>
+                            <th><?= __d('tasks', 'Critical Date') ?></th>
+                            <th><?= __d('tasks', 'Finish Date') ?></th>
+                            <th class="actions"><?= __d('tasks', 'Actions') ?></th>
                         </tr>
                         <?php foreach ($taskType->tasks as $task) : ?>
                         <tr style="<?= $task->style ?>">
@@ -97,18 +97,18 @@
                             <td><?= h($task->finish_date) ?></td>
                             <td class="actions">
                                 <?= $this->AuthLink->link(
-                                    __('View'),
+                                    __d('tasks', 'View'),
                                     ['controller' => 'Tasks', 'action' => 'view', $task->id],
                                 ) ?>
                                 <?= $this->AuthLink->link(
-                                    __('Edit'),
+                                    __d('tasks', 'Edit'),
                                     ['controller' => 'Tasks', 'action' => 'edit', $task->id],
                                     ['class' => 'win-link'],
                                 ) ?>
                                 <?= $this->AuthLink->postLink(
-                                    __('Delete'),
+                                    __d('tasks', 'Delete'),
                                     ['controller' => 'Tasks', 'action' => 'delete', $task->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $task->number)],
+                                    ['confirm' => __d('tasks', 'Are you sure you want to delete # {0}?', $task->number)],
                                 ) ?>
                             </td>
                         </tr>

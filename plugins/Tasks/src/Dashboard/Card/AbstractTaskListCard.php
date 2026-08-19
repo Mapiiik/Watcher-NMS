@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Dashboard\Card;
+namespace Tasks\Dashboard\Card;
 
 use App\Model\Table\TasksTable;
 use Cake\Database\Expression\FunctionExpression;
@@ -110,7 +110,7 @@ abstract class AbstractTaskListCard extends AbstractDashboardCard
         /** @var \Cake\ORM\Query\SelectQuery<\App\Model\Entity\Task> $query */
         $query = $this->tasks
             ->find('active')
-            ->contain(['TaskTypes', 'AccessPoints']);
+            ->contain($this->tasks->summaryContain());
 
         // Whichever of the two dates comes first is the one a task is waiting on, so that is
         // what it is ordered by - ordering by the critical date alone would drop every task
