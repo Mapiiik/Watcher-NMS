@@ -14,13 +14,14 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class AppUserTest extends TestCase
 {
     /**
-     * A user is shown by their name with the username behind it, so that two people sharing a name
-     * can still be told apart.
+     * A user is shown by their name alone. Telling two people of the same name apart is what the
+     * lists are for, and a cell in a row that already says which task it is has nothing to tell
+     * apart.
      *
      * @return void
      * @link \App\Model\Entity\AppUser::_getName()
      */
-    public function testAUserIsShownByTheirNameAndUsername(): void
+    public function testAUserIsShownByTheirNameAlone(): void
     {
         $user = new AppUser([
             'first_name' => 'Jan',
@@ -28,32 +29,32 @@ class AppUserTest extends TestCase
             'username' => 'jnovak',
         ]);
 
-        $this->assertSame('Jan Novak (jnovak)', $user->name);
+        $this->assertSame('Jan Novak', $user->name);
     }
 
     /**
-     * A user who has no name filled in still shows their username rather than nothing at all. The
-     * space the missing name leaves in front of it is what has always been shown.
+     * A user who has no name filled in is shown by their username rather than by nothing at all.
      *
      * @return void
      * @link \App\Model\Entity\AppUser::_getName()
      */
-    public function testAUserWithoutANameStillShowsTheUsername(): void
+    public function testAUserWithoutANameIsShownByTheirUsername(): void
     {
         $user = new AppUser([
             'username' => 'jnovak',
         ]);
 
-        $this->assertSame(' (jnovak)', $user->name);
+        $this->assertSame('jnovak', $user->name);
     }
 
     /**
-     * Lists put the surname first so that they sort by it.
+     * Lists put the surname first, and name the account, so that two people sharing a name can be
+     * told apart when one of them has to be picked.
      *
      * @return void
      * @link \App\Model\Entity\AppUser::_getNameForLists()
      */
-    public function testListsPutTheSurnameFirst(): void
+    public function testListsPutTheSurnameFirstAndNameTheAccount(): void
     {
         $user = new AppUser([
             'first_name' => 'Jan',
