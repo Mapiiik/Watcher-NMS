@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-19 14:01+0200\n"
+"POT-Creation-Date: 2026-08-19 20:02+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -103,8 +103,6 @@ msgstr ""
 #: ./templates/RadioUnits/view.php:57
 #: ./templates/RouterosDevices/export.php:31
 #: ./templates/RouterosDevices/view.php:53
-#: ./templates/TaskStates/view.php:67
-#: ./templates/TaskTypes/view.php:59
 #: ./templates/Tasks/view.php:71
 #: ./templates/cell/AccessPoint/display.php:12
 #: ./templates/email/html/electricity_meter_readings_report.php:27
@@ -231,8 +229,6 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:49
 #: ./templates/RouterosDevices/view.php:145
 #: ./templates/RouterosDevices/view.php:220
-#: ./templates/TaskStates/view.php:32
-#: ./templates/TaskTypes/view.php:32
 #: ./templates/element/AccessPoints/subtree.php:65
 msgid "Name"
 msgstr ""
@@ -850,42 +846,6 @@ msgstr ""
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr ""
 
-#: ./src/Controller/TaskStatesController.php:83
-#: ./src/Controller/TaskStatesController.php:107
-msgid "The task state has been saved."
-msgstr ""
-
-#: ./src/Controller/TaskStatesController.php:87
-#: ./src/Controller/TaskStatesController.php:111
-msgid "The task state could not be saved. Please, try again."
-msgstr ""
-
-#: ./src/Controller/TaskStatesController.php:130
-msgid "The task state has been deleted."
-msgstr ""
-
-#: ./src/Controller/TaskStatesController.php:133
-msgid "The task state could not be deleted. Please, try again."
-msgstr ""
-
-#: ./src/Controller/TaskTypesController.php:82
-#: ./src/Controller/TaskTypesController.php:106
-msgid "The task type has been saved."
-msgstr ""
-
-#: ./src/Controller/TaskTypesController.php:86
-#: ./src/Controller/TaskTypesController.php:110
-msgid "The task type could not be saved. Please, try again."
-msgstr ""
-
-#: ./src/Controller/TaskTypesController.php:129
-msgid "The task type has been deleted."
-msgstr ""
-
-#: ./src/Controller/TaskTypesController.php:132
-msgid "The task type could not be deleted. Please, try again."
-msgstr ""
-
 #: ./src/Controller/TasksController.php:309
 msgid "none"
 msgstr ""
@@ -946,45 +906,12 @@ msgstr ""
 msgid "Electricity Meters to Read"
 msgstr ""
 
-#: ./src/Dashboard/Card/MyTasksCard.php:38
-msgid "My Tasks"
-msgstr ""
-
-#: ./src/Dashboard/Card/MyTasksCard.php:61
-#: ./src/Dashboard/Card/MyTasksCard.php:68
-msgid "You are holding no unfinished tasks."
-msgstr ""
-
-#: ./src/Dashboard/Card/PressingTasksCard.php:31
-msgid "Urgent and Overdue Tasks"
-msgstr ""
-
-#: ./src/Dashboard/Card/PressingTasksCard.php:54
-msgid "Nothing is urgent or running late."
-msgstr ""
-
 #: ./src/Dashboard/Card/RadarInterferencesCard.php:40
 msgid "Our Devices Interfering with Radar"
 msgstr ""
 
 #: ./src/Dashboard/Card/StaleDeviceDataCard.php:42
 msgid "Devices with Stale Data"
-msgstr ""
-
-#: ./src/Dashboard/Card/StaleTasksCard.php:31
-msgid "Stale Tasks"
-msgstr ""
-
-#: ./src/Dashboard/Card/StaleTasksCard.php:54
-msgid "Nothing has been left lying around."
-msgstr ""
-
-#: ./src/Dashboard/Card/UnassignedTasksCard.php:28
-msgid "Unassigned Tasks"
-msgstr ""
-
-#: ./src/Dashboard/Card/UnassignedTasksCard.php:49
-msgid "Every unfinished task has somebody holding it."
 msgstr ""
 
 #: ./src/Model/Entity/AccessPoint.php:98
@@ -1010,60 +937,42 @@ msgstr ""
 msgid "No address found for these GPS coordinates."
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:79
-#: ./templates/TaskStates/view.php:62
-#: ./templates/TaskTypes/view.php:54
+#: ./src/Model/Entity/AppUser.php:87
 #: ./templates/Tasks/view.php:54
 #: ./templates/email/html/task_notification.php:48
 msgid "User"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:80
+#: ./src/Model/Entity/AppUser.php:88
 msgid "Customer Service Technician"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:81
+#: ./src/Model/Entity/AppUser.php:89
 msgid "Network Technician"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:82
+#: ./src/Model/Entity/AppUser.php:90
 msgid "Network Manager"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:83
+#: ./src/Model/Entity/AppUser.php:91
 msgid "Sales Representative"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:84
+#: ./src/Model/Entity/AppUser.php:92
 msgid "Sales Manager"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:85
+#: ./src/Model/Entity/AppUser.php:93
 msgid "Bookkeeper"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:86
+#: ./src/Model/Entity/AppUser.php:94
 msgid "Admin"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:87
+#: ./src/Model/Entity/AppUser.php:95
 msgid "API"
-msgstr ""
-
-#: ./src/Model/Entity/Task.php:159
-msgid "Low"
-msgstr ""
-
-#: ./src/Model/Entity/Task.php:160
-msgid "Normal"
-msgstr ""
-
-#: ./src/Model/Entity/Task.php:161
-msgid "High"
-msgstr ""
-
-#: ./src/Model/Entity/Task.php:162
-msgid "Urgent"
 msgstr ""
 
 #: ./src/Model/Enum/DeviceLinkScope.php:53
@@ -1128,7 +1037,7 @@ msgstr ""
 msgid "The highest frequency of the band cannot be below the lowest one."
 msgstr ""
 
-#: ./src/Model/Table/TasksTable.php:255
+#: ./src/Model/Table/TasksTable.php:84
 msgid "The specified task type requires the assignment of an access point."
 msgstr ""
 
@@ -1317,16 +1226,6 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:159
 #: ./templates/RouterosDevices/view.php:223
 #: ./templates/Settings/edit.php:15
-#: ./templates/TaskStates/add.php:10
-#: ./templates/TaskStates/edit.php:10
-#: ./templates/TaskStates/index.php:30
-#: ./templates/TaskStates/view.php:10
-#: ./templates/TaskStates/view.php:72
-#: ./templates/TaskTypes/add.php:10
-#: ./templates/TaskTypes/edit.php:10
-#: ./templates/TaskTypes/index.php:28
-#: ./templates/TaskTypes/view.php:10
-#: ./templates/TaskTypes/view.php:64
 #: ./templates/Tasks/add.php:14
 #: ./templates/Tasks/edit.php:14
 #: ./templates/Tasks/index.php:100
@@ -1394,10 +1293,6 @@ msgstr ""
 #: ./templates/RouterosDevices/add.php:60
 #: ./templates/RouterosDevices/edit.php:68
 #: ./templates/Settings/edit.php:42
-#: ./templates/TaskStates/add.php:26
-#: ./templates/TaskStates/edit.php:31
-#: ./templates/TaskTypes/add.php:24
-#: ./templates/TaskTypes/edit.php:29
 #: ./templates/Tasks/add.php:59
 #: ./templates/Tasks/edit.php:73
 msgid "Submit"
@@ -1479,12 +1374,6 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:94
 #: ./templates/RouterosDevices/view.php:196
 #: ./templates/RouterosDevices/view.php:241
-#: ./templates/TaskStates/edit.php:12
-#: ./templates/TaskStates/index.php:48
-#: ./templates/TaskStates/view.php:117
-#: ./templates/TaskTypes/edit.php:12
-#: ./templates/TaskTypes/index.php:44
-#: ./templates/TaskTypes/view.php:109
 #: ./templates/Tasks/edit.php:16
 msgid "Delete"
 msgstr ""
@@ -1588,14 +1477,6 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:20
 #: ./templates/RouterosDevices/view.php:202
 #: ./templates/RouterosDevices/view.php:243
-#: ./templates/TaskStates/edit.php:14
-#: ./templates/TaskStates/index.php:50
-#: ./templates/TaskStates/view.php:19
-#: ./templates/TaskStates/view.php:119
-#: ./templates/TaskTypes/edit.php:14
-#: ./templates/TaskTypes/index.php:46
-#: ./templates/TaskTypes/view.php:19
-#: ./templates/TaskTypes/view.php:111
 #: ./templates/Tasks/edit.php:18
 #: ./templates/Tasks/view.php:15
 msgid "Are you sure you want to delete # {0}?"
@@ -1634,8 +1515,6 @@ msgstr ""
 #: ./templates/RouterosDeviceIps/index.php:12
 #: ./templates/RouterosDevices/export.php:13
 #: ./templates/RouterosDevices/index.php:12
-#: ./templates/TaskStates/index.php:11
-#: ./templates/TaskTypes/index.php:11
 #: ./templates/Tasks/index.php:40
 msgid "Search"
 msgstr ""
@@ -1704,10 +1583,6 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:85
 #: ./templates/RouterosDevices/view.php:179
 #: ./templates/RouterosDevices/view.php:232
-#: ./templates/TaskStates/index.php:41
-#: ./templates/TaskStates/view.php:108
-#: ./templates/TaskTypes/index.php:37
-#: ./templates/TaskTypes/view.php:100
 #: ./templates/Tasks/index.php:150
 #: ./templates/element/AccessPoints/subtree.php:94
 #: ./templates/email/html/electricity_meter_readings_report.php:52
@@ -1768,10 +1643,6 @@ msgstr ""
 #: ./templates/RouterosDevices/index.php:89
 #: ./templates/RouterosDevices/view.php:187
 #: ./templates/RouterosDevices/view.php:236
-#: ./templates/TaskStates/index.php:43
-#: ./templates/TaskStates/view.php:112
-#: ./templates/TaskTypes/index.php:39
-#: ./templates/TaskTypes/view.php:104
 #: ./templates/Tasks/index.php:154
 #: ./templates/element/AccessPoints/subtree.php:98
 msgid "Edit"
@@ -1805,8 +1676,6 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:111
 #: ./templates/RouterosDeviceIps/index.php:82
 #: ./templates/RouterosDevices/index.php:106
-#: ./templates/TaskStates/index.php:60
-#: ./templates/TaskTypes/index.php:56
 #: ./templates/Tasks/index.php:166
 msgid "first"
 msgstr ""
@@ -1839,8 +1708,6 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:112
 #: ./templates/RouterosDeviceIps/index.php:83
 #: ./templates/RouterosDevices/index.php:107
-#: ./templates/TaskStates/index.php:61
-#: ./templates/TaskTypes/index.php:57
 #: ./templates/Tasks/index.php:167
 msgid "previous"
 msgstr ""
@@ -1873,8 +1740,6 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:114
 #: ./templates/RouterosDeviceIps/index.php:85
 #: ./templates/RouterosDevices/index.php:109
-#: ./templates/TaskStates/index.php:63
-#: ./templates/TaskTypes/index.php:59
 #: ./templates/Tasks/index.php:169
 msgid "next"
 msgstr ""
@@ -1907,8 +1772,6 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:115
 #: ./templates/RouterosDeviceIps/index.php:86
 #: ./templates/RouterosDevices/index.php:110
-#: ./templates/TaskStates/index.php:64
-#: ./templates/TaskTypes/index.php:60
 #: ./templates/Tasks/index.php:170
 msgid "last"
 msgstr ""
@@ -1941,8 +1804,6 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:118
 #: ./templates/RouterosDeviceIps/index.php:89
 #: ./templates/RouterosDevices/index.php:113
-#: ./templates/TaskStates/index.php:67
-#: ./templates/TaskTypes/index.php:63
 #: ./templates/Tasks/index.php:173
 msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
@@ -1953,8 +1814,6 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:59
 #: ./templates/AccessPoints/view.php:177
-#: ./templates/TaskStates/view.php:66
-#: ./templates/TaskTypes/view.php:58
 #: ./templates/Tasks/view.php:67
 #: ./templates/email/html/task_notification.php:56
 msgid "Phone"
@@ -1962,8 +1821,6 @@ msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:63
 #: ./templates/AccessPoints/view.php:178
-#: ./templates/TaskStates/view.php:65
-#: ./templates/TaskTypes/view.php:57
 #: ./templates/Tasks/view.php:63
 #: ./templates/email/html/task_notification.php:52
 msgid "Email"
@@ -2057,7 +1914,6 @@ msgstr ""
 
 #: ./templates/AccessPointTypes/view.php:47
 #: ./templates/RadioUnitBands/view.php:43
-#: ./templates/TaskStates/view.php:36
 msgid "Color"
 msgstr ""
 
@@ -2457,10 +2313,6 @@ msgstr ""
 #: ./templates/RadioUnitBands/view.php:64
 #: ./templates/RadioUnits/view.php:156
 #: ./templates/RadioUnits/view.php:160
-#: ./templates/TaskStates/index.php:39
-#: ./templates/TaskStates/view.php:45
-#: ./templates/TaskTypes/index.php:35
-#: ./templates/TaskTypes/view.php:37
 #: ./templates/element/Settings/FormFields.php:34
 msgid "Yes"
 msgstr ""
@@ -2503,10 +2355,6 @@ msgstr ""
 #: ./templates/RadioUnitBands/view.php:64
 #: ./templates/RadioUnits/view.php:156
 #: ./templates/RadioUnits/view.php:160
-#: ./templates/TaskStates/index.php:39
-#: ./templates/TaskStates/view.php:45
-#: ./templates/TaskTypes/index.php:35
-#: ./templates/TaskTypes/view.php:37
 #: ./templates/element/Settings/FormFields.php:34
 msgid "No"
 msgstr ""
@@ -4077,144 +3925,11 @@ msgid "Task Related"
 msgstr ""
 
 #: ./templates/Settings/index.php:140
-#: ./templates/TaskStates/add.php:11
-#: ./templates/TaskStates/edit.php:16
-#: ./templates/TaskStates/view.php:21
 msgid "List Task States"
 msgstr ""
 
 #: ./templates/Settings/index.php:145
-#: ./templates/TaskTypes/add.php:11
-#: ./templates/TaskTypes/edit.php:16
-#: ./templates/TaskTypes/view.php:21
 msgid "List Task Types"
-msgstr ""
-
-#: ./templates/TaskStates/add.php:18
-msgid "Add Task State"
-msgstr ""
-
-#: ./templates/TaskStates/edit.php:23
-#: ./templates/TaskStates/view.php:12
-msgid "Edit Task State"
-msgstr ""
-
-#: ./templates/TaskStates/index.php:20
-#: ./templates/TaskStates/view.php:22
-msgid "New Task State"
-msgstr ""
-
-#: ./templates/TaskStates/index.php:21
-msgid "Task States"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:17
-msgid "Delete Task State"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:40
-#: ./templates/TaskStates/view.php:61
-#: ./templates/TaskTypes/view.php:52
-#: ./templates/Tasks/view.php:43
-#: ./templates/email/html/task_notification.php:40
-msgid "Priority"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:44
-msgid "Completed"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:54
-#: ./templates/TaskTypes/view.php:46
-msgid "Related Tasks"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:59
-#: ./templates/TaskTypes/view.php:51
-#: ./templates/Tasks/index.php:88
-msgid "Number"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:60
-#: ./templates/Tasks/view.php:36
-#: ./templates/email/html/task_notification.php:36
-msgid "Task Type"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:63
-#: ./templates/TaskTypes/view.php:55
-#: ./templates/Tasks/view.php:106
-#: ./templates/email/html/task_notification.php:120
-msgid "Subject"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:64
-#: ./templates/TaskTypes/view.php:56
-#: ./templates/Tasks/view.php:116
-#: ./templates/email/html/task_notification.php:130
-msgid "Text"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:68
-#: ./templates/TaskTypes/view.php:60
-#: ./templates/Tasks/view.php:86
-#: ./templates/email/html/task_notification.php:76
-msgid "Start Date"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:69
-#: ./templates/TaskTypes/view.php:61
-#: ./templates/Tasks/view.php:90
-#: ./templates/element/Dashboard/task_list.php:58
-#: ./templates/email/html/task_notification.php:80
-msgid "Estimated Date"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:70
-#: ./templates/TaskTypes/view.php:62
-#: ./templates/Tasks/view.php:94
-#: ./templates/email/html/task_notification.php:84
-msgid "Critical Date"
-msgstr ""
-
-#: ./templates/TaskStates/view.php:71
-#: ./templates/TaskTypes/view.php:63
-#: ./templates/Tasks/view.php:98
-#: ./templates/email/html/task_notification.php:88
-msgid "Finish Date"
-msgstr ""
-
-#: ./templates/TaskTypes/add.php:18
-msgid "Add Task Type"
-msgstr ""
-
-#: ./templates/TaskTypes/edit.php:23
-#: ./templates/TaskTypes/view.php:12
-msgid "Edit Task Type"
-msgstr ""
-
-#: ./templates/TaskTypes/index.php:20
-#: ./templates/TaskTypes/view.php:22
-msgid "New Task Type"
-msgstr ""
-
-#: ./templates/TaskTypes/index.php:21
-msgid "Task Types"
-msgstr ""
-
-#: ./templates/TaskTypes/view.php:17
-msgid "Delete Task Type"
-msgstr ""
-
-#: ./templates/TaskTypes/view.php:36
-msgid "Access Point Required"
-msgstr ""
-
-#: ./templates/TaskTypes/view.php:53
-#: ./templates/Tasks/index.php:91
-#: ./templates/Tasks/view.php:47
-#: ./templates/email/html/task_notification.php:44
-msgid "Task State"
 msgstr ""
 
 #: ./templates/Tasks/add.php:15
@@ -4260,6 +3975,16 @@ msgstr ""
 msgid "Tasks"
 msgstr ""
 
+#: ./templates/Tasks/index.php:88
+msgid "Number"
+msgstr ""
+
+#: ./templates/Tasks/index.php:91
+#: ./templates/Tasks/view.php:47
+#: ./templates/email/html/task_notification.php:44
+msgid "Task State"
+msgstr ""
+
 #: ./templates/Tasks/index.php:93
 #: ./templates/Tasks/view.php:110
 #: ./templates/email/html/task_notification.php:124
@@ -4276,6 +4001,47 @@ msgstr ""
 
 #: ./templates/Tasks/view.php:31
 msgid "Task No."
+msgstr ""
+
+#: ./templates/Tasks/view.php:36
+#: ./templates/email/html/task_notification.php:36
+msgid "Task Type"
+msgstr ""
+
+#: ./templates/Tasks/view.php:43
+#: ./templates/email/html/task_notification.php:40
+msgid "Priority"
+msgstr ""
+
+#: ./templates/Tasks/view.php:86
+#: ./templates/email/html/task_notification.php:76
+msgid "Start Date"
+msgstr ""
+
+#: ./templates/Tasks/view.php:90
+#: ./templates/element/Dashboard/task_list.php:58
+#: ./templates/email/html/task_notification.php:80
+msgid "Estimated Date"
+msgstr ""
+
+#: ./templates/Tasks/view.php:94
+#: ./templates/email/html/task_notification.php:84
+msgid "Critical Date"
+msgstr ""
+
+#: ./templates/Tasks/view.php:98
+#: ./templates/email/html/task_notification.php:88
+msgid "Finish Date"
+msgstr ""
+
+#: ./templates/Tasks/view.php:106
+#: ./templates/email/html/task_notification.php:120
+msgid "Subject"
+msgstr ""
+
+#: ./templates/Tasks/view.php:116
+#: ./templates/email/html/task_notification.php:130
+msgid "Text"
 msgstr ""
 
 #: ./templates/element/AccessPoints/subtree.php:69
