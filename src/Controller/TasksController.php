@@ -152,12 +152,12 @@ class TasksController extends AppController
             ];
         }
 
-        // filter by completed
         // filter by what wants attention - the same reading the dashboard cards are drawn
         // from, so a card and the listing it points at hold the same tasks
         $pressing = toBool($filter['pressing'] ?? null) ?? false;
         $stale = toBool($filter['stale'] ?? null) ?? false;
 
+        // filter by completed
         $show_completed = $filter['show_completed'] ?? null;
         if (empty($show_completed)) {
             $conditions[] = [
