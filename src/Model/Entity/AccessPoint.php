@@ -20,6 +20,12 @@ use Throwable;
  * @property float|null $gps_y
  * @property string|null $note
  * @property int|null $month_of_electricity_meter_reading
+ * @property string|null $electricity_ean
+ * @property string|null $electricity_meter_number
+ * @property \Cake\I18n\DateTime|null $supply_resolved
+ * @property string|null $supply_resolution_failed
+ * @property float|null $supply_resolved_gps_x
+ * @property float|null $supply_resolved_gps_y
  * @property string|null $parent_access_point_id
  * @property string|null $contract_conditions
  * @property string|null $access_point_type_id
@@ -28,6 +34,9 @@ use Throwable;
  * @property \App\Model\Entity\AccessPointType $access_point_type
  * @property \App\Model\Entity\AccessPoint $parent_access_point
  * @property \App\Model\Entity\AccessPointContact[] $access_point_contacts
+ * @property \App\Model\Entity\AccessPointSupplyAddress[] $access_point_supply_addresses
+ * @property \App\Model\Entity\AccessPointPowerOutage[] $access_point_power_outages
+ * @property \App\Model\Entity\PowerOutage[] $power_outages
  * @property \App\Model\Entity\CustomerConnection[] $customer_connections
  * @property \App\Model\Entity\ElectricityMeterReading[] $electricity_meter_readings
  * @property \App\Model\Entity\IpAddressRange[] $ip_address_ranges
@@ -67,6 +76,8 @@ class AccessPoint extends AppEntity
         'modified' => true,
         'archived' => true,
         'month_of_electricity_meter_reading' => true,
+        'electricity_ean' => true,
+        'electricity_meter_number' => true,
         'parent_access_point_id' => true,
         'contract_conditions' => true,
         'created_by' => true,
@@ -79,6 +90,8 @@ class AccessPoint extends AppEntity
         'access_point_type' => true,
         'parent_access_point' => true,
         'access_point_contacts' => true,
+        'access_point_supply_addresses' => true,
+        'access_point_power_outages' => true,
         'customer_connections' => true,
         'electricity_meter_readings' => true,
         'ip_address_ranges' => true,
@@ -139,6 +152,38 @@ class AccessPoint extends AppEntity
         }
 
         return $suggestion->label;
+    }
+
+    /**
+     * Whether the addresses around the access point were looked up somewhere else.
+     *
+     * A mast that has been moved - or one whose coordinates were only ever a guess and have since
+     * been corrected - is standing somewhere the stored addresses do not describe. A metre of
+     * slack, because the coordinates are floats and being written back unchanged should not count
+     * as moving.
+     *
+     * @return bool
+     */
+    public function supplyAddressesAreStale(): bool
+    {
+        if ($this->supply_resolved === null) {
+            return true;
+        }
+
+        if (!(is_numeric($this->gps_x) && is_numeric($this->gps_y))) {
+            return false;
+        }
+
+        if ($this->supply_resolved_gps_x === null || $this->supply_resolved_gps_y === null) {
+            return true;
+        }
+
+        // Roughly a metre, in degrees. Coarse on purpose: what this decides is whether to ask the
+        // registry again, and asking it once too often costs nothing worth counting.
+        $tolerance = 0.00001;
+
+        return abs((float)$this->gps_x - $this->supply_resolved_gps_x) > $tolerance
+            || abs((float)$this->gps_y - $this->supply_resolved_gps_y) > $tolerance;
     }
 
     /**

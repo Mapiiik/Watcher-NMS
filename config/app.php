@@ -143,6 +143,19 @@ return [
             'duration' => '+1 years',
             'url' => env('CACHE_CAKEMODEL_URL', null),
         ],
+
+        /*
+         * What the address registry answered. A monthly snapshot of a national register, so an
+         * answer keeps well; how long it actually keeps is the deployment's to say through the URL.
+         */
+        'addresses_api' => [
+            'className' => FileEngine::class,
+            'prefix' => 'api_addresses_',
+            'path' => CACHE . 'addresses' . DS,
+            'serialize' => true,
+            'duration' => '+1 day',
+            'url' => env('CACHE_ADDRESSES_URL', null),
+        ],
     ],
 
     /*
@@ -298,6 +311,39 @@ return [
         // the account the stations that are ours are registered to; the listing carries the
         // stations of every account that shares with ours, and this is what tells them apart
         'userId' => trim((string)env('RLAN_USER_ID', '')) ?: null,
+    ],
+
+    /*
+     * The address registry, asked for the registry's own numbers for a place rather than for a
+     * label. The same one the address whisperer asks, so it is named by the same two variables.
+     */
+    'Addresses' => [
+        'url' => rtrim((string)env('ADDRESSES_API_URL', ''), '/'),
+        'key' => (string)env('ADDRESSES_API_KEY', ''),
+    ],
+
+    /*
+     * Planned outages published by the electricity distributor, matched against our masts.
+     *
+     * Off unless it is turned on. There are no credentials here whose absence would serve as the
+     * switch, and what is read are undocumented endpoints of somebody's public widget rather than
+     * an interface anybody promised - so an installation that has no use for this should not start
+     * asking after them merely by being upgraded.
+     */
+    'PowerOutages' => [
+        'enabled' => filter_var(env('POWER_OUTAGES_ENABLED', false), FILTER_VALIDATE_BOOLEAN),
+        'bezstavyUrl' => rtrim((string)env('POWER_OUTAGES_BEZSTAVY_URL', 'https://api.bezstavy.cz'), '/'),
+        // where the announcement of an outage is published; taken from here and never from the
+        // host named in the answer, which is not ours to trust
+        'bezstavyCdnUrl' => rtrim((string)env('POWER_OUTAGES_BEZSTAVY_CDN_URL', 'https://cdn.bezstavy.cz'), '/'),
+        'dipUrl' => (string)env(
+            'POWER_OUTAGES_DIP_URL',
+            'https://dip.cezdistribuce.cz/irj/portal/anonymous/vyhledani-odstavek?path=shutdown-search',
+        ),
+        // where somebody is sent to ask about a fault happening now, which is a question no
+        // server of ours may ask - see the fault-check element
+        'faultsUrl' => (string)env('POWER_OUTAGES_FAULTS_URL', 'https://www.cezdistribuce.cz/nejde-mi-elektrina'),
+        'userAgent' => (string)env('POWER_OUTAGES_USER_AGENT', ''),
     ],
 
     'Phones' => [

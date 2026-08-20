@@ -9,6 +9,7 @@ use App\Test\Traits\TableTestTrait;
 use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
 use Override;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * App\Model\Table\AccessPointsTable Test Case
@@ -34,6 +35,10 @@ class AccessPointsTableTest extends TestCase
         'app.AccessPointTypes',
         'app.AccessPoints',
         'app.AccessPointContacts',
+        'app.AccessPointSupplyAddresses',
+        'app.PowerOutages',
+        'app.PowerOutageScopes',
+        'app.AccessPointPowerOutages',
         'app.Manufacturers',
         'app.PowerSupplyTypes',
         'app.PowerSupplies',
@@ -97,6 +102,69 @@ class AccessPointsTableTest extends TestCase
     public function testBuildRules(): void
     {
         $this->assertDanglingReferencesAreRefused($this->AccessPoints);
+    }
+
+    /**
+     * The supply point is judged by its shape, check digit and all.
+     *
+     * Worth asking of every branch rather than only of the happy one: a mistyped supply point is
+     * never the subject of an outage, which on the screen looks exactly like having none - so this
+     * is the one validation here whose absence would be invisible.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::isValidEan()
+     */
+    #[DataProvider('eansAndWhetherTheyAreValid')]
+    public function testIsValidEan(mixed $ean, bool $expected): void
+    {
+        $this->assertSame($expected, AccessPointsTable::isValidEan($ean));
+    }
+
+    /**
+     * @return array<string, array{mixed, bool}>
+     */
+    public static function eansAndWhetherTheyAreValid(): array
+    {
+        return [
+            'eighteen digits with the right check digit' => ['859182400000001231', true],
+            'the same with the check digit one out' => ['859182400000001232', false],
+            'two digits transposed' => ['859182400000002131', false],
+            'seventeen digits' => ['85918240000000123', false],
+            'nineteen digits' => ['8591824000000012310', false],
+            'letters in it' => ['85918240000000123X', false],
+            'spaces in it' => ['859182 400000001231', false],
+            'not a string at all' => [859182400000001231, false],
+        ];
+    }
+
+    /**
+     * An access point may have no supply point, which is the ordinary case until somebody looks
+     * one up.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::validationDefault()
+     */
+    public function testValidationDefaultAllowsNoEan(): void
+    {
+        $accessPoint = $this->AccessPoints->newEntity(['name' => 'No supply point', 'electricity_ean' => '']);
+
+        $this->assertArrayNotHasKey('electricity_ean', $accessPoint->getErrors());
+    }
+
+    /**
+     * A supply point that could not be one is refused rather than stored to be puzzled over.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::validationDefault()
+     */
+    public function testValidationDefaultRefusesAMistypedEan(): void
+    {
+        $accessPoint = $this->AccessPoints->newEntity([
+            'name' => 'Mistyped supply point',
+            'electricity_ean' => '859182400000001232',
+        ]);
+
+        $this->assertArrayHasKey('electricity_ean', $accessPoint->getErrors());
     }
 
     /**
@@ -247,6 +315,7 @@ class AccessPointsTableTest extends TestCase
         // Every access point is listed, the subtrees ordered by the name of their root.
         $this->assertSame(
             [
+                'Kolin water tower',
                 'Lorem ipsum dolor sit',
                 '- Lorem ipsum dolor sit amet',
                 'Tree root',
@@ -260,12 +329,12 @@ class AccessPointsTableTest extends TestCase
             [$tree['root']->id, $tree['branch']->id, $tree['leaf']->id, $tree['sibling']->id],
             array_map(
                 fn(AccessPoint $accessPoint): string => $accessPoint->id,
-                array_slice($subtree, 2),
+                array_slice($subtree, 3),
             ),
         );
         // The counts of a subtree are the ones it carries on its own.
         $this->assertSame(
-            [0, 0, 3, 3, 2, 0],
+            [0, 0, 0, 3, 3, 2, 0],
             array_map(
                 fn(AccessPoint $accessPoint): int => $accessPoint->subtree_customer_connections_count,
                 $subtree,
@@ -291,6 +360,7 @@ class AccessPointsTableTest extends TestCase
             [
                 'A branch',
                 'B sibling',
+                'Kolin water tower',
                 'Leaf',
                 'Lorem ipsum dolor sit',
                 '- Lorem ipsum dolor sit amet',
@@ -401,6 +471,7 @@ class AccessPointsTableTest extends TestCase
         // The branch and the leaf carry customers, so nothing of that side of the tree is left.
         $this->assertSame(
             [
+                'Kolin water tower',
                 'Lorem ipsum dolor sit',
                 '- Lorem ipsum dolor sit amet',
                 'Tree root',

@@ -65,6 +65,35 @@ return [
             ],
         ],
 
+        'access_points' => [
+            'power_outages' => [
+                'address_radius_metres' => NumberType::ofInt(
+                    default: 500,
+                    hint: __('How far around an access point an address may lie and still be taken for its own.'),
+                ),
+                'address_limit' => NumberType::ofInt(
+                    default: 10,
+                    hint: __('How many of the nearest addresses an access point is looked for outages by.'),
+                ),
+                'horizon_days' => NumberType::ofInt(
+                    default: 60,
+                    hint: __('How far ahead a planned outage is still worth listing.'),
+                ),
+                'keep_past_days' => NumberType::ofInt(
+                    default: 14,
+                    hint: __('How long an outage that has already happened is kept, so it can still be looked up.'),
+                ),
+                'report_within_days' => NumberType::ofInt(
+                    default: 14,
+                    hint: __('How soon an outage has to begin to be reported and shown on the dashboard.'),
+                ),
+                'town_cache_seconds' => NumberType::ofInt(
+                    default: 3600,
+                    hint: __('How long an answer about one municipality is kept before it is asked for again.'),
+                ),
+            ],
+        ],
+
         'devices' => [
             'ignored_ip_link_ranges_list' => ListType::ofStrings(
                 default: [

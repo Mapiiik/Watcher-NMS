@@ -150,8 +150,16 @@ class ArchiveTraitTest extends TestCase
      */
     public function testTheFindersDrawTheLineInTheSamePlace(): void
     {
-        $this->assertSame([self::ACTIVE_ID], $this->idsIn($this->AccessPoints->find('active')));
-        $this->assertSame([self::ARCHIVED_ID], $this->idsIn($this->AccessPoints->find('archived')));
+        $active = $this->idsIn($this->AccessPoints->find('active'));
+        $archived = $this->idsIn($this->AccessPoints->find('archived'));
+
+        $this->assertContains(self::ACTIVE_ID, $active);
+        $this->assertContains(self::ARCHIVED_ID, $archived);
+
+        // Asked of the two sets rather than of two lists written out here, so that a record added
+        // to the fixture for some other test does not read as this one breaking.
+        $this->assertSame([], array_values(array_intersect($active, $archived)));
+        $this->assertSame($this->idsIn($this->AccessPoints->find()), $this->sorted([...$active, ...$archived]));
     }
 
     /**
@@ -166,7 +174,7 @@ class ArchiveTraitTest extends TestCase
     {
         $this->AccessPoints->archive($this->AccessPoints->get(self::ACTIVE_ID), self::USER_ID);
 
-        $this->assertSame([], $this->idsIn($this->AccessPoints->find('active')));
+        $this->assertNotContains(self::ACTIVE_ID, $this->idsIn($this->AccessPoints->find('active')));
         $this->assertContains(self::ACTIVE_ID, $this->idsIn($this->AccessPoints->find('archived')));
     }
 
@@ -182,6 +190,17 @@ class ArchiveTraitTest extends TestCase
         /** @var array<string> $ids */
         $ids = $query->all()->extract('id')->toList();
 
+        return $this->sorted($ids);
+    }
+
+    /**
+     * The same ids, in the order two of these lists can be compared in.
+     *
+     * @param array<string> $ids Ids to put in order.
+     * @return array<string>
+     */
+    private function sorted(array $ids): array
+    {
         sort($ids);
 
         return $ids;

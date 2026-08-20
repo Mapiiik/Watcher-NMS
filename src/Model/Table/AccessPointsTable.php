@@ -14,6 +14,9 @@ use Override;
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $ParentAccessPoints
  * @property \App\Model\Table\AccessPointTypesTable&\Cake\ORM\Association\BelongsTo $AccessPointTypes
  * @property \App\Model\Table\AccessPointContactsTable&\Cake\ORM\Association\HasMany $AccessPointContacts
+ * @property \App\Model\Table\AccessPointSupplyAddressesTable&\Cake\ORM\Association\HasMany $AccessPointSupplyAddresses
+ * @property \App\Model\Table\AccessPointPowerOutagesTable&\Cake\ORM\Association\HasMany $AccessPointPowerOutages
+ * @property \App\Model\Table\PowerOutagesTable&\Cake\ORM\Association\BelongsToMany $PowerOutages
  * @property \App\Model\Table\CustomerConnectionsTable&\Cake\ORM\Association\HasMany $CustomerConnections
  * @property \App\Model\Table\ElectricityMeterReadingsTable&\Cake\ORM\Association\HasMany $ElectricityMeterReadings
  * @property \App\Model\Table\IpAddressRangesTable&\Cake\ORM\Association\HasMany $IpAddressRanges
@@ -91,6 +94,22 @@ class AccessPointsTable extends AppTable
         $this->hasMany('RouterosDevices', [
             'foreignKey' => 'access_point_id',
         ]);
+        // Both of these are worked out rather than kept by hand, and both go when the access point
+        // does: they say something about a place that has stopped being one of ours.
+        $this->hasMany('AccessPointSupplyAddresses', [
+            'foreignKey' => 'access_point_id',
+            'sort' => ['AccessPointSupplyAddresses.rank' => 'ASC'],
+            'dependent' => true,
+        ]);
+        $this->hasMany('AccessPointPowerOutages', [
+            'foreignKey' => 'access_point_id',
+            'dependent' => true,
+        ]);
+        $this->belongsToMany('PowerOutages', [
+            'through' => 'AccessPointPowerOutages',
+            'foreignKey' => 'access_point_id',
+            'targetForeignKey' => 'power_outage_id',
+        ]);
     }
 
     /**
@@ -130,6 +149,38 @@ class AccessPointsTable extends AppTable
             ->integer('month_of_electricity_meter_reading')
             ->allowEmptyString('month_of_electricity_meter_reading');
 
+        // Getting this wrong costs nothing that can be seen: a mistyped supply point is simply
+        // never the subject of an outage, which reads exactly like having no outages. So the check
+        // digit is asked for as well as the length. What comes before it is not checked - the
+        // number belongs to whichever distributor issued it, and there is more than one of them.
+        $validator
+            ->add('electricity_ean', 'validEan', [
+                'rule' => [self::class, 'isValidEan'],
+                'message' => __('This is not a valid EAN of a supply point.'),
+            ])
+            ->allowEmptyString('electricity_ean');
+
+        $validator
+            ->scalar('electricity_meter_number')
+            ->maxLength('electricity_meter_number', 32)
+            ->allowEmptyString('electricity_meter_number');
+
+        $validator
+            ->dateTime('supply_resolved')
+            ->allowEmptyDateTime('supply_resolved');
+
+        $validator
+            ->scalar('supply_resolution_failed')
+            ->allowEmptyString('supply_resolution_failed');
+
+        $validator
+            ->numeric('supply_resolved_gps_x')
+            ->allowEmptyString('supply_resolved_gps_x');
+
+        $validator
+            ->numeric('supply_resolved_gps_y')
+            ->allowEmptyString('supply_resolved_gps_y');
+
         $validator
             ->uuid('parent_access_point_id')
             ->allowEmptyString('parent_access_point_id');
@@ -151,6 +202,36 @@ class AccessPointsTable extends AppTable
             ->allowEmptyString('access_point_type_id');
 
         return $validator;
+    }
+
+    /**
+     * Whether a string is an EAN a supply point could actually be kept under.
+     *
+     * Eighteen digits, the last of which is worked out from the seventeen before it the way the
+     * standard says. Only the shape is judged: whether the distributor has ever heard of this
+     * particular number is a question only the distributor can answer.
+     *
+     * @param mixed $value What was typed in.
+     * @return bool
+     */
+    public static function isValidEan(mixed $value): bool
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+
+        $ean = trim($value);
+
+        if (strlen($ean) !== 18 || !ctype_digit($ean)) {
+            return false;
+        }
+
+        $sum = 0;
+        foreach (array_reverse(str_split(substr($ean, 0, 17))) as $position => $digit) {
+            $sum += (int)$digit * ($position % 2 === 0 ? 3 : 1);
+        }
+
+        return (10 - $sum % 10) % 10 === (int)$ean[17];
     }
 
     /**
