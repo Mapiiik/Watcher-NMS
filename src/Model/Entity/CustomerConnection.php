@@ -21,6 +21,7 @@ namespace App\Model\Entity;
  * @property \App\Model\Entity\AccessPoint $access_point
  * @property \App\Model\Entity\CustomerConnectionIp[] $customer_connection_ips
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
+ * @property \App\Model\Entity\RadioUnit[] $radio_units
  *
  * @property string $name_for_lists
  */

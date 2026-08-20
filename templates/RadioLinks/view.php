@@ -68,104 +68,14 @@
                     ['class' => 'button button-small float-right win-link'],
                 ) ?>
                 <h4><?= __('Related Radio Units') ?></h4>
-                <?php if (!empty($radioLink->radio_units)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Name') ?></th>
-                            <th><?= __('Access Point') ?></th>
-                            <th><?= __('Customer Connection') ?></th>
-                            <th><?= __('Radio Unit Type') ?></th>
-                            <th><?= __('Antenna Type') ?></th>
-                            <th><?= __('Polarization') ?></th>
-                            <th><?= __('Channel Width') ?></th>
-                            <th><?= __('Tx Frequency') ?></th>
-                            <th><?= __('Rx Frequency') ?></th>
-                            <th><?= __('Tx Power') ?></th>
-                            <th><?= __('Rx Signal') ?></th>
-                            <th><?= __('Operating Speed') ?></th>
-                            <th><?= __('Maximal Speed') ?></th>
-                            <th><?= __('Firmware Version') ?></th>
-                            <th><?= __('Serial Number') ?></th>
-                            <th><?= __('Station Address') ?></th>
-                            <th><?= __('Expiration Date') ?></th>
-                            <th><?= __('IP Address') ?></th>
-                            <th><?= __('Authorization Number') ?></th>
-                            <th><?= __('Note') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($radioLink->radio_units as $radioUnits) : ?>
-                        <tr>
-                            <td><?= h($radioUnits->name) ?></td>
-                            <td>
-                                <?= $radioUnits->access_point !== null ? $this->Html->link(
-                                    $radioUnits->access_point->name ?? '(' . $radioUnits->access_point->id . ')',
-                                    ['controller' => 'AccessPoints', 'action' => 'view', $radioUnits->access_point->id],
-                                ) : '' ?>
-                            </td>
-                            <td>
-                                <?= $radioUnits->customer_connection !== null ? $this->Html->link(
-                                    $radioUnits->customer_connection->name
-                                        ?? '(' . $radioUnits->customer_connection->id . ')',
-                                    [
-                                        'controller' => 'CustomerConnections',
-                                        'action' => 'view',
-                                        $radioUnits->customer_connection->id,
-                                    ],
-                                ) : '' ?>
-                            </td>
-                            <td>
-                                <?= $radioUnits->radio_unit_type !== null ? $this->Html->link(
-                                    $radioUnits->radio_unit_type->name ?? '(' . $radioUnits->radio_unit_type->id . ')',
-                                    [
-                                        'controller' => 'RadioUnitTypes',
-                                        'action' => 'view',
-                                        $radioUnits->radio_unit_type->id,
-                                    ],
-                                ) : '' ?>
-                            </td>
-                            <td>
-                                <?= $radioUnits->antenna_type !== null ? $this->Html->link(
-                                    $radioUnits->antenna_type->name ?? '(' . $radioUnits->antenna_type->id . ')',
-                                    ['controller' => 'AntennaTypes', 'action' => 'view', $radioUnits->antenna_type->id],
-                                ) : '' ?>
-                            </td>
-                            <td><?= h($radioUnits->polarization) ?></td>
-                            <td><?= h($radioUnits->channel_width) ?></td>
-                            <td><?= h($radioUnits->tx_frequency) ?></td>
-                            <td><?= h($radioUnits->rx_frequency) ?></td>
-                            <td><?= h($radioUnits->tx_power) ?></td>
-                            <td><?= h($radioUnits->rx_signal) ?></td>
-                            <td><?= h($radioUnits->operating_speed) ?></td>
-                            <td><?= h($radioUnits->maximal_speed) ?></td>
-                            <td><?= h($radioUnits->firmware_version) ?></td>
-                            <td><?= h($radioUnits->serial_number) ?></td>
-                            <td><?= h($radioUnits->station_address) ?></td>
-                            <td><?= h($radioUnits->expiration_date) ?></td>
-                            <td><?= h($radioUnits->ip_address) ?></td>
-                            <td><?= h($radioUnits->authorization_number) ?></td>
-                            <td><?= $this->Text->autoParagraph(h($radioUnits->note)); ?></td>
-                            <td class="actions">
-                                <?= $this->AuthLink->link(
-                                    __('View'),
-                                    ['controller' => 'RadioUnits', 'action' => 'view', $radioUnits->id],
-                                ) ?>
-                                <?= $this->AuthLink->link(
-                                    __('Edit'),
-                                    ['controller' => 'RadioUnits', 'action' => 'edit', $radioUnits->id],
-                                    ['class' => 'win-link'],
-                                ) ?>
-                                <?= $this->AuthLink->postLink(
-                                    __('Delete'),
-                                    ['controller' => 'RadioUnits', 'action' => 'delete', $radioUnits->id],
-                                    ['confirm' => __('Are you sure you want to delete # {0}?', $radioUnits->id)],
-                                ) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
+                <?= $this->element('RadioUnits/related', [
+                    'radioUnits' => $radioLink->radio_units,
+                    'access_point_column' => true,
+                    'customer_connection_column' => true,
+                    'radio_unit_type_column' => true,
+                    'antenna_type_column' => true,
+                    'authorization_number_column' => true,
+                ]) ?>
             </div>
         </div>
     </div>
