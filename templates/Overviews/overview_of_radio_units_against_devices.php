@@ -30,14 +30,14 @@ $checkedFields = [
         <?= $this->Form->control('search', [
             'label' => __('Search'),
             'type' => 'search',
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">
         <?= $this->Form->control('radio_unit_band_id', [
             'options' => $radioUnitBands,
             'empty' => true,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">
@@ -48,7 +48,7 @@ $checkedFields = [
             // What was applied rather than what was asked for, so that an address carrying
             // something else says which of the three it was answered with.
             'value' => $show->value,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
 </div>

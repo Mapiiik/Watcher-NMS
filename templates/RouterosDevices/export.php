@@ -12,7 +12,7 @@ $this->setLayout('clean');
         <?= $this->Form->control('search', [
             'label' => __('Search'),
             'type' => 'search',
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">

@@ -17,7 +17,7 @@ use App\Rlan\RegisteredStationComparison;
         <?= $this->Form->control('search', [
             'label' => __('Search'),
             'type' => 'search',
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <?php if ($ourAccount !== null) : ?>
@@ -27,7 +27,7 @@ use App\Rlan\RegisteredStationComparison;
             'type' => 'select',
             'options' => [1 => __('Yes'), 0 => __('No')],
             'value' => $onlyOurs ? 1 : 0,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <?php endif; ?>
@@ -37,7 +37,7 @@ use App\Rlan\RegisteredStationComparison;
             'type' => 'select',
             'options' => [1 => __('Yes'), 0 => __('No')],
             'value' => $onlyMissing ? 1 : 0,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
 </div>

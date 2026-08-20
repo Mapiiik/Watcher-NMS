@@ -23,14 +23,14 @@ $verdicts = [
         <?= $this->Form->control('search', [
             'label' => __('Search'),
             'type' => 'search',
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">
         <?= $this->Form->control('radio_unit_band_id', [
             'options' => $radioUnitBands,
             'empty' => true,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">
@@ -42,7 +42,7 @@ $verdicts = [
             'type' => 'select',
             'options' => DeviceLinkScope::options(),
             'value' => $link->value,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">
@@ -54,7 +54,7 @@ $verdicts = [
                 '0' => __('No'),
             ],
             'default' => '1',
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
 </div>

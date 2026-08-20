@@ -12,7 +12,7 @@
             'label' => __('Minimum Customer Connections'),
             'type' => 'number',
             'min' => 0,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">
@@ -20,7 +20,7 @@
             'label' => __('Maximum Customer Connections'),
             'type' => 'number',
             'min' => 0,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">
@@ -28,7 +28,7 @@
             'label' => __('Minimum Customer Connections Including Subordinates'),
             'type' => 'number',
             'min' => 0,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
     <div class="column">
@@ -36,7 +36,7 @@
             'label' => __('Maximum Customer Connections Including Subordinates'),
             'type' => 'number',
             'min' => 0,
-            'onchange' => 'this.form.submit();',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
         ]) ?>
     </div>
 </div>

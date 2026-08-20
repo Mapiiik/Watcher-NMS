@@ -14,5 +14,5 @@ echo $this->Form->control('maximum_age', [
     'type' => 'select',
     'options' => MaximumAge::options(),
     'value' => $maximumAge->value,
-    'onchange' => 'this.form.submit();',
+    'onchange' => $this::SUBMIT_ON_CHANGE,
 ]);
