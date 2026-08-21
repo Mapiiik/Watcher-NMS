@@ -254,6 +254,58 @@ class PowerOutagesUpdateCommandTest extends TestCase
     }
 
     /**
+     * A dry run does not keep the addresses it looked up either.
+     *
+     * Looking those up writes as surely as storing an outage does, and it happens before any of
+     * the outages are read - so a dry run that wrapped only the writing of outages would quietly
+     * keep half of what it did.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\PowerOutagesUpdateService::updateNow()
+     */
+    public function testADryRunKeepsNoAddressesEither(): void
+    {
+        $addresses = TableRegistry::getTableLocator()->get('AccessPointSupplyAddresses');
+        $addresses->deleteAll(['access_point_id' => self::KOLIN_ID]);
+
+        // Somewhere to look them up, and one address to be found there.
+        $this->withConfigure(['Addresses.url' => 'https://addresses.example.com', 'Addresses.key' => '']);
+        $this->mockClientGet(
+            'https://addresses.example.com/v1/reverse?' . http_build_query([
+                'country' => 'cz',
+                'lat' => 50.0281552,
+                'lon' => 15.200344,
+                'radius_m' => 500.0,
+                'limit' => 10,
+                'include' => 'raw',
+            ]),
+            $this->jsonResponse([[
+                'registry_ref' => '21154996',
+                'formatted_address' => 'Hlubocska 106, 28002 Kolin',
+                'number_type' => 'house',
+                'distance_m' => 42.0,
+                'raw' => ['obec_kod' => 533165, 'ulice_nazev' => 'Hlubocska', 'cislo_domovni' => 106],
+            ]]),
+        );
+        $this->mockClientPost(
+            'https://portal.example.com/shutdown-search',
+            $this->jsonResponse(['statusCode' => 200, 'data' => []]),
+        );
+
+        $this->exec(sprintf(
+            'power_outages_update --dry-run --force-resolve --access-point=%s',
+            self::KOLIN_ID,
+        ));
+
+        $this->assertExitSuccess();
+        $this->assertSame(
+            0,
+            $addresses->find()->where(['access_point_id' => self::KOLIN_ID])->count(),
+            'A dry run kept the addresses it looked up.',
+        );
+    }
+
+    /**
      * Kept answers are replayed without anybody being asked anything.
      *
      * @return void
@@ -425,7 +477,10 @@ class PowerOutagesUpdateCommandTest extends TestCase
     }
 
     /**
-     * @param array<string, mixed> $body What is answered with.
+     * The address registry answers with a bare list where the distributor answers with an object,
+     * so this takes either.
+     *
+     * @param array<mixed> $body What is answered with.
      * @return \Cake\Http\Client\Response
      */
     private function jsonResponse(array $body): Response

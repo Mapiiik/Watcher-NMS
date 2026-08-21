@@ -68,8 +68,40 @@ final class PowerOutagesUpdateService
      */
     public function updateNow(PowerOutagesUpdateOptions $options): PowerOutagesUpdateResult
     {
-        $startTime = DateTime::now();
         $result = new PowerOutagesUpdateResult();
+
+        if (!$options->dryRun) {
+            $this->carryOut($options, $result);
+
+            return $result;
+        }
+
+        // Everything a real run would do, inside a transaction that is thrown away at the end of
+        // it. The whole run has to be wrapped rather than only the writing of the outages: looking
+        // up the addresses around a mast writes too, and a dry run that quietly kept that would be
+        // a dry run in name. It holds a transaction open across the reading, which a nightly run
+        // must not do - but this one is asked for by somebody at a keyboard.
+        $this->fetchTable('PowerOutages')->getConnection()->transactional(
+            function () use ($options, $result): bool {
+                $this->carryOut($options, $result);
+
+                return false;
+            },
+        );
+
+        return $result;
+    }
+
+    /**
+     * The run itself, whether or not what it does is going to be kept.
+     *
+     * @param \App\PowerOutages\Dto\PowerOutagesUpdateOptions $options How the run is to be carried out.
+     * @param \App\PowerOutages\Dto\PowerOutagesUpdateResult $result What the run has done.
+     * @return void
+     */
+    private function carryOut(PowerOutagesUpdateOptions $options, PowerOutagesUpdateResult $result): void
+    {
+        $startTime = DateTime::now();
 
         $accessPoints = $this->accessPointsToConsider($options);
 
@@ -78,13 +110,16 @@ final class PowerOutagesUpdateService
         }
 
         if ($options->resolveOnly) {
-            return $result;
+            return;
         }
 
         $readings = [];
 
         if (!$options->rematch) {
             $query = $this->buildQuery($accessPoints);
+
+            // Read before anything is written, so that a reading that fails half way through
+            // leaves the mirror as it was rather than half swept.
             $readings = $this->provider->read($query);
 
             $result->scopesAsked = count($query->townCodes) + count($query->eans);
@@ -93,22 +128,16 @@ final class PowerOutagesUpdateService
             $this->refuseARunNobodyAnswered($result);
         }
 
-        $write = function () use ($accessPoints, $readings, $options, $result, $startTime): bool {
+        $write = function () use ($accessPoints, $readings, $options, $result, $startTime): void {
             if (!$options->rematch) {
                 $this->storeOutages($readings, $result, $startTime);
                 $this->sweepOutages($readings, $result, $startTime);
             }
 
             $this->relinkAccessPoints($accessPoints, $result, $startTime);
-
-            // Returning false is what rolls a transaction back, which is the whole of a dry run:
-            // everything is really done, and none of it is kept.
-            return !$options->dryRun;
         };
 
         $this->fetchTable('PowerOutages')->getConnection()->transactional($write);
-
-        return $result;
     }
 
     /**
