@@ -25,7 +25,7 @@ final readonly class PowerOutagesUpdateOptions
         public bool $forceResolve = false,
         public bool $dryRun = false,
         public ?string $accessPointId = null,
-        public int $resolveLimit = 200,
+        public int $resolveLimit = 1000,
     ) {
     }
 }

@@ -71,7 +71,7 @@ class PowerOutagesUpdateCommand extends Command
             ])
             ->addOption('resolve-limit', [
                 'help' => 'How many access points may be looked up in one run',
-                'default' => '200',
+                'default' => '1000',
             ]);
 
         return $parser;
@@ -106,7 +106,7 @@ class PowerOutagesUpdateCommand extends Command
                 forceResolve: (bool)$args->getOption('force-resolve'),
                 dryRun: (bool)$args->getOption('dry-run'),
                 accessPointId: is_string($accessPointId) && $accessPointId !== '' ? $accessPointId : null,
-                resolveLimit: is_numeric($resolveLimit) ? max(0, (int)$resolveLimit) : 200,
+                resolveLimit: is_numeric($resolveLimit) ? max(0, (int)$resolveLimit) : 1000,
             );
 
             $service = new PowerOutagesUpdateService(
