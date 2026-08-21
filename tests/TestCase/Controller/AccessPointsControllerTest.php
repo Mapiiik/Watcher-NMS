@@ -148,6 +148,7 @@ class AccessPointsControllerTest extends TestCase
         $this->withConfigure([
             'PowerOutages.enabled' => true,
             'PowerOutages.faultsUrl' => 'https://distributor.example.com/no-power',
+            'PowerOutages.plannedUrl' => 'https://distributor.example.com/planned',
             'Maps.geocoder' => AddressRegistryGeocoder::class,
             'Maps.addressRegistry.url' => 'https://addresses.example.com',
             'Maps.addressRegistry.key' => '',
@@ -160,9 +161,11 @@ class AccessPointsControllerTest extends TestCase
         $this->get('/access-points/view/3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71');
 
         $this->assertResponseOk();
+        // Both questions the distributor answers, each carrying the same place.
         $this->assertResponseContains('https://distributor.example.com/no-power?jlAddress=21154996');
-        // The wording of the address is not repeated beside the link; it stands in the row above,
-        // and this is what says the two come out of one lookup rather than two.
+        $this->assertResponseContains('https://distributor.example.com/planned?jlAddress=21154996');
+        // The wording of the address is not repeated beside them; it stands in the row above, and
+        // this is what says all of it comes out of one lookup rather than several.
         $this->assertResponseContains('Karlovo namesti 91, 28002 Kolin');
     }
 
@@ -181,6 +184,7 @@ class AccessPointsControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertResponseNotContains(__('Check for a Power Failure'));
+        $this->assertResponseNotContains(__('Check for a Planned Outage'));
     }
 
     /**

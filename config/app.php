@@ -340,9 +340,15 @@ return [
             'POWER_OUTAGES_DIP_URL',
             'https://dip.cezdistribuce.cz/irj/portal/anonymous/vyhledani-odstavek?path=shutdown-search',
         ),
-        // where somebody is sent to ask about a fault happening now, which is a question no
-        // server of ours may ask - see the fault-check element
+        // where somebody is sent to ask the distributor themselves. The fault happening now is a
+        // question no server of ours may ask; the planned one we mirror, but the distributor is
+        // the one publishing it and stays the place to settle an argument.
         'faultsUrl' => (string)env('POWER_OUTAGES_FAULTS_URL', 'https://www.cezdistribuce.cz/nejde-mi-elektrina'),
+        'plannedUrl' => (string)env(
+            'POWER_OUTAGES_PLANNED_URL',
+            'https://www.cezdistribuce.cz/pro-zakazniky/potrebuji-vyresit/stavajici-pripojeni'
+            . '/overeni-planovane-odstavky',
+        ),
         'userAgent' => (string)env('POWER_OUTAGES_USER_AGENT', ''),
     ],
 

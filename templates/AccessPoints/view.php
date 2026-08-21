@@ -137,7 +137,7 @@
                             <th><?= __('Nearest Found Address') ?></th>
                             <td><?= h($accessPoint->getNearestFoundAddress()) ?></td>
                         </tr>
-                        <?= $this->element('AccessPoints/fault_check', [
+                        <?= $this->element('AccessPoints/distributor_links', [
                             'accessPoint' => $accessPoint,
                         ]) ?>
                     </table>

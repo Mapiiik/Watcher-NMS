@@ -196,9 +196,16 @@ How far around a mast an address may lie, how many are kept, and how long an
 outage is kept after it has happened are all settings under *Access Points →
 Power Outages*.
 
-Nothing here asks about a fault happening **now**: the distributor puts that
-question behind a check for humans. The access point page offers the link and
-the address to paste into it, and stops there.
+The access point page also links to the distributor's own pages — the one asking
+whether the power is off **now**, which is a question no server of ours may ask
+because it sits behind a check for humans, and the one listing what is planned,
+which stays the place to settle an argument about what our listing says.
+
+Both arrive with the place already in them, by the registry number of the
+nearest address: the widget on either page starts from the same number the
+address registry hands us. That parameter is not documented anywhere, so if it
+ever stops working the pages still open and the address stands written out on
+the row above.
 
 ## Requirements
 
