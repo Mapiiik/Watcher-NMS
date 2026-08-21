@@ -137,14 +137,9 @@
                             <th><?= __('Nearest Found Address') ?></th>
                             <td><?= h($accessPoint->getNearestFoundAddress()) ?></td>
                         </tr>
-                        <tr>
-                            <th><?= __('Power Failure') ?></th>
-                            <td class="actions">
-                                <?= $this->element('AccessPoints/fault_check', [
-                                    'accessPoint' => $accessPoint,
-                                ]) ?>
-                            </td>
-                        </tr>
+                        <?= $this->element('AccessPoints/fault_check', [
+                            'accessPoint' => $accessPoint,
+                        ]) ?>
                     </table>
                 </div>
                 <div class="column">

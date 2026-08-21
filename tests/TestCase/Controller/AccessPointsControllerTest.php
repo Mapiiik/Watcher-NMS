@@ -4,10 +4,15 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\AccessPointsController;
+use App\Test\Traits\ConfigureTestTrait;
 use App\Test\Traits\ControllerTestTrait;
+use Cake\Cache\Cache;
+use Cake\Http\TestSuite\HttpClientTrait;
 use Cake\I18n\DateTime;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Maps\Geocoder\AddressRegistryGeocoder;
+use Override;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
@@ -16,7 +21,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(AccessPointsController::class)]
 class AccessPointsControllerTest extends TestCase
 {
+    use ConfigureTestTrait;
     use ControllerTestTrait;
+    use HttpClientTrait;
     use IntegrationTestTrait;
 
     /**
@@ -64,6 +71,19 @@ class AccessPointsControllerTest extends TestCase
     ];
 
     /**
+     * tearDown method
+     *
+     * @return void
+     */
+    #[Override]
+    protected function tearDown(): void
+    {
+        $this->restoreConfigure();
+
+        parent::tearDown();
+    }
+
+    /**
      * The listing renders, plain and with the search filled in - the search builds a different
      * query than the plain listing does.
      *
@@ -104,9 +124,88 @@ class AccessPointsControllerTest extends TestCase
         $this->assertResponseContains(__('Probable'));
         $this->assertResponseContains('Hlubocska 106 (42 m)');
 
-        // The supply point is shown, and so is the way to go and ask about a failure now.
+        // The supply point is shown. Whether the fault check is offered depends on configuration,
+        // so that is asked about on its own below rather than leaned on here.
         $this->assertResponseContains('859182400000001231');
-        $this->assertResponseContains(__('Check for a Power Failure'));
+    }
+
+    /**
+     * The fault check arrives with the place already in it.
+     *
+     * The number is the one the address registry keeps the nearest address under, which is what
+     * the outage widget on the distributor page starts from - so the operator does not have to
+     * type the address again. Undocumented, hence the address is written out beside the link too.
+     *
+     * The configuration is said out loud rather than left to the environment: the machine this
+     * runs on may have turned outages on in its own `.env`, and a test passing for that reason
+     * would fail on one that has not.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testTheFaultCheckCarriesThePlaceItAlreadyKnows(): void
+    {
+        $this->withConfigure([
+            'PowerOutages.enabled' => true,
+            'PowerOutages.faultsUrl' => 'https://distributor.example.com/no-power',
+            'Maps.geocoder' => AddressRegistryGeocoder::class,
+            'Maps.addressRegistry.url' => 'https://addresses.example.com',
+            'Maps.addressRegistry.key' => '',
+            'Maps.addressRegistry.defaultCountries' => 'cz',
+        ]);
+        Cache::clear();
+        $this->mockNearestAddress('cz', '21154996');
+
+        $this->login();
+        $this->get('/access-points/view/3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('https://distributor.example.com/no-power?jlAddress=21154996');
+        // The wording of the address is not repeated beside the link; it stands in the row above,
+        // and this is what says the two come out of one lookup rather than two.
+        $this->assertResponseContains('Karlovo namesti 91, 28002 Kolin');
+    }
+
+    /**
+     * An installation that does not read outages does not offer the link at all.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testTheFaultCheckIsNotOfferedWhenOutagesAreOff(): void
+    {
+        $this->withConfigure(['PowerOutages.enabled' => false]);
+        $this->login();
+
+        $this->get('/access-points/view/3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71');
+
+        $this->assertResponseOk();
+        $this->assertResponseNotContains(__('Check for a Power Failure'));
+    }
+
+    /**
+     * What the address registry answers about the mast in the fixture.
+     *
+     * @param string $source Which country register the record came out of.
+     * @param string $registryRef What that register keeps it under.
+     * @return void
+     */
+    private function mockNearestAddress(string $source, string $registryRef): void
+    {
+        $this->mockClientGet(
+            'https://addresses.example.com/v1/reverse?' . http_build_query([
+                'country' => 'cz',
+                'lat' => 50.0281552,
+                'lon' => 15.200344,
+                'limit' => 1,
+            ]),
+            $this->newClientResponse(200, ['Content-Type: application/json'], (string)json_encode([[
+                'formatted_address' => 'Karlovo namesti 91, 28002 Kolin',
+                'geometry' => ['type' => 'Point', 'coordinates' => [15.200344, 50.0281552]],
+                'source' => $source,
+                'registry_ref' => $registryRef,
+            ]])),
+        );
     }
 
     /**

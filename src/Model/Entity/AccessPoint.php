@@ -122,21 +122,12 @@ class AccessPoint extends AppEntity
             return '(' . __('You need to set the correct GPS coordinates.') . ')';
         }
 
-        $geocoder = GeocoderFactory::create();
-
-        if ($geocoder === null) {
+        if (GeocoderFactory::create() === null) {
             return null;
         }
 
         try {
-            // The answer is the geocoder's, so a change of geocoder must not be served the old one.
-            $suggestion = Cache::remember(
-                'access_point__address_lookup_' . md5($geocoder::class) . '_' . $this->id,
-                fn(): ?Suggestion => $geocoder->reverse(
-                    new Position((float)$this->gps_y, (float)$this->gps_x),
-                ),
-                'default',
-            );
+            $suggestion = $this->nearestAddressSuggestion();
         } catch (Throwable $e) {
             Log::warning(sprintf(
                 'Reverse geocoding for access point %s failed (%s).',
@@ -152,6 +143,63 @@ class AccessPoint extends AppEntity
         }
 
         return $suggestion->label;
+    }
+
+    /**
+     * The nearest address the geocoder knows, whole rather than only its label.
+     *
+     * A geocoder answering out of an address registry names the record it read, and a caller that
+     * wants to point somebody else at the same place needs that name rather than the wording. The
+     * lookup is the one behind {@see getNearestFoundAddress()} and is kept once for both.
+     *
+     * @return \Maps\Geocoder\Suggestion|null
+     */
+    public function nearestAddressSuggestion(): ?Suggestion
+    {
+        if (!(is_numeric($this->gps_y) && is_numeric($this->gps_x))) {
+            return null;
+        }
+
+        $geocoder = GeocoderFactory::create();
+
+        if ($geocoder === null) {
+            return null;
+        }
+
+        // The answer is the geocoder's, so a change of geocoder must not be served the old one.
+        return Cache::remember(
+            'access_point__address_lookup_' . md5($geocoder::class) . '_' . $this->id,
+            fn(): ?Suggestion => $geocoder->reverse(
+                new Position((float)$this->gps_y, (float)$this->gps_x),
+            ),
+            'default',
+        );
+    }
+
+    /**
+     * The number a national address registry keeps the nearest address under, where it is one.
+     *
+     * Only the Czech registry is answered about here, because the only thing this is handed to is
+     * a Czech distributor. A geocoder that names no record, or names one somewhere else, is no use
+     * for that and says so by answering with nothing.
+     *
+     * @return string|null
+     */
+    public function getNearestAddressRegistryNumber(): ?string
+    {
+        try {
+            $suggestion = $this->nearestAddressSuggestion();
+        } catch (Throwable) {
+            return null;
+        }
+
+        $reference = $suggestion?->reference;
+
+        if ($reference === null || preg_match('/^cz\|(\d+)$/', $reference, $named) !== 1) {
+            return null;
+        }
+
+        return $named[1];
     }
 
     /**

@@ -4,13 +4,19 @@
  *
  * Not something a server of ours may ask. The distributor puts the question about a fault
  * happening now behind a check for humans, and the answer is only handed to somebody who has
- * passed it - so this hands the operator the page and the address to paste into it, and stops
- * there. Nothing is fetched while this is drawn: the address shown is the one already looked up
- * and stored beside the mast.
+ * passed it - so this hands the operator the page and stops there.
  *
- * No search is spelled into the address of the page either. Nothing about how that page takes a
- * place is published, so a parameter invented here would either be ignored or break quietly on the
- * day the page changes, and pasting the address is one click that cannot rot.
+ * The place is spelled into the address of the page, by the number the national address registry
+ * keeps it under, which is what the outage widget on that page starts from. That parameter is not
+ * documented and was read off the widget, so it may stop working one day - which costs the
+ * convenience and nothing else, since the page still opens and the address stands written out in
+ * the row above this one, off the same lookup.
+ *
+ * Nothing is fetched while this is drawn: that row has asked already, and both read one answer.
+ *
+ * Offered only where there is something at the other end to find. The registry answers for more
+ * than one country and the distributor publishes for one, so a mast the registry places abroad
+ * gets no link - which is better than one leading to a page that cannot answer about it.
  *
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\AccessPoint $accessPoint
@@ -18,21 +24,30 @@
 
 use Cake\Core\Configure;
 
+/**
+ * What the outage widget calls the address it is to start on.
+ */
+$addressParameter = 'jlAddress';
+
 $faultsUrl = trim((string)Configure::read('PowerOutages.faultsUrl'));
-$nearest = $accessPoint->access_point_supply_addresses[0] ?? null;
-$address = $nearest === null ? '' : trim((string)$nearest->formatted_address);
+$registryNumber = $accessPoint->getNearestAddressRegistryNumber();
+
+// A mast the Czech registry does not place is one this distributor cannot be asked about, so the
+// whole row is left out rather than offering a link that leads nowhere useful.
+if (!Configure::read('PowerOutages.enabled') || $faultsUrl === '' || $registryNumber === null) {
+    return;
+}
+
+$faultsUrl .= (str_contains($faultsUrl, '?') ? '&' : '?')
+    . http_build_query([$addressParameter => $registryNumber]);
 ?>
-<?php if ($faultsUrl === '') : ?>
-    <?= __('Nowhere is configured to ask about a power failure.') ?>
-<?php else : ?>
-    <?= $this->Html->link(
-        __('Check for a Power Failure'),
-        $faultsUrl,
-        ['class' => 'button button-small win-link', 'target' => '_blank', 'rel' => 'noopener'],
-    ) ?>
-    <?php if ($address !== '') : ?>
-        <span class="text-muted">
-            <?= __('Address to enter:') ?> <code><?= h($address) ?></code>
-        </span>
-    <?php endif; ?>
-<?php endif; ?>
+<tr>
+    <th><?= __('Power Failure') ?></th>
+    <td class="actions">
+        <?= $this->Html->link(
+            __('Check for a Power Failure'),
+            $faultsUrl,
+            ['target' => '_blank', 'rel' => 'noopener'],
+        ) ?>
+    </td>
+</tr>
