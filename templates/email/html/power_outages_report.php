@@ -48,8 +48,8 @@ table {
                     ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id, '_full' => true],
                 ) ?>
             </td>
-            <td><?= h($outage?->begins_at?->nice()) ?></td>
-            <td><?= h($outage?->ends_at?->nice()) ?></td>
+            <td><?= h($outage?->begins_at) ?></td>
+            <td><?= h($outage?->ends_at) ?></td>
             <td>
                 <?= $link->certainty === OutageCertainty::Certain
                     ? '<strong>' . h($link->certainty->label()) . '</strong>'

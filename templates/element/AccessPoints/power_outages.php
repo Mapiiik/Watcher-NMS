@@ -37,7 +37,7 @@ $hasEan = trim((string)$accessPoint->electricity_ean) !== '';
             count($addresses),
         ) ?>
         <?php if ($accessPoint->supply_resolved !== null) : ?>
-            <?= __('Last looked up {0}.', $accessPoint->supply_resolved->nice()) ?>
+            <?= __('Last looked up {0}.', h($accessPoint->supply_resolved)) ?>
         <?php endif; ?>
     <?php endif; ?>
 

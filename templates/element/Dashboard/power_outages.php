@@ -27,7 +27,7 @@ $shown = 0;
                         <br><small><?= h($outage?->summary) ?></small>
                     </td>
                     <td>
-                        <?= h($outage?->begins_at?->nice()) ?>
+                        <?= h($outage?->begins_at) ?>
                         <br><small><?= $link->certainty === OutageCertainty::Certain
                             ? '<strong>' . h($link->certainty->label()) . '</strong>'
                             : h($link->certainty->label()) ?></small>

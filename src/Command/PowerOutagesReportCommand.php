@@ -155,8 +155,8 @@ class PowerOutagesReportCommand extends Command
         foreach ($links as $link) {
             $table[] = [
                 (string)$link->access_point?->name_for_lists,
-                (string)$link->power_outage?->begins_at?->nice(),
-                (string)$link->power_outage?->ends_at?->nice(),
+                (string)$link->power_outage?->begins_at,
+                (string)$link->power_outage?->ends_at,
                 $link->certainty->label(),
                 (string)$link->power_outage?->summary,
             ];

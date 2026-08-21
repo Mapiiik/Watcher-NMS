@@ -20,6 +20,6 @@ $stale = $registerRead === null || $registerRead->isPast() && $registerRead->dif
     <?php if ($registerRead === null) : ?>
         <?= __('The register has never been read, so there is nothing here to compare against.') ?>
     <?php else : ?>
-        <?= __('The register was last read {0}.', $registerRead->nice()) ?>
+        <?= __('The register was last read {0}.', h($registerRead)) ?>
     <?php endif; ?>
 </p>
