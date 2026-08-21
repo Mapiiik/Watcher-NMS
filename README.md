@@ -109,6 +109,88 @@ It only fills in units that say nothing about where they stand, never
 overwrites, and reports the units it could not place. There is nothing to
 schedule — a unit recorded from then on is placed as it is recorded.
 
+## Planned power outages (ČEZ Distribuce)
+
+An access point stands on somebody else's electricity, and the first anybody
+usually hears of a planned outage is the mast going quiet. The outages ČEZ
+Distribuce publishes are read on a schedule and matched against your access
+points, so that a mast due to lose power says so on its own page and on the
+dashboard beforehand.
+
+This is **off unless you turn it on**. What is read are undocumented endpoints
+of the public outage widget rather than an interface anybody promised — they
+carry no contract and can change without notice. Publishing planned outages is
+a duty laid on the distributor and nothing in its terms or its `robots.txt`
+forbids reading them, but read gently and say who you are:
+
+```sh
+export POWER_OUTAGES_ENABLED="true"
+export POWER_OUTAGES_USER_AGENT="Watcher NMS (nms@example.com)"
+```
+
+Reading it also needs the address registry configured (`ADDRESSES_API_URL`),
+which is the same one the address whisperer asks. The registry is what turns
+the coordinates of a mast into the number the distributor keeps its
+municipality under.
+
+Read the outages on a schedule, e.g. daily and early:
+
+```sh
+bin/cake power_outages_update
+```
+
+### Fill in the supply point
+
+There are two ways an outage can be matched to a mast, and they are not worth
+the same.
+
+Where the **EAN of the supply point** is filled in on the access point — the
+eighteen digits off the electricity bill — the distributor is asked about that
+supply point directly, and what it answers is about that mast and nothing else.
+Such an outage is shown as *certain*, and it is also the only way a withdrawn
+outage is ever noticed.
+
+Where it is not, the addresses nearest the mast stand in for it: the
+municipality is asked instead, and an outage is taken to be about the mast when
+it reaches one of those addresses. That is a good guess — the power reaching a
+mast usually comes from the buildings around it — but no more than a guess, so
+it is shown as *probable*, together with which address it was matched against
+and how far off that address stands. A mast on a roof draws from the building
+under it, which may be on another street; one standing in a field draws from a
+line the distributor lists by parcel, which is not looked at.
+
+So: a mast standing away from any village will report nothing at all until its
+supply point is filled in, and its page says so rather than showing an empty
+list.
+
+### When something looks wrong
+
+```sh
+# do all of it and keep none of it
+bin/cake power_outages_update --dry-run
+
+# one mast, to see what it is being told
+bin/cake power_outages_update --access-point <uuid> --dry-run
+
+# work every link out again from what is stored, asking nobody anything
+bin/cake power_outages_update --rematch
+
+# after changing the radius or the number of addresses kept
+bin/cake power_outages_update --force-resolve
+```
+
+`--file` replays answers that were kept, in a file keyed by the question each
+one answers — `{"town:533165": {…}, "ean:859…": {…}}`. That is what to send
+along with a report that the reading has gone wrong.
+
+How far around a mast an address may lie, how many are kept, and how long an
+outage is kept after it has happened are all settings under *Access Points →
+Power Outages*.
+
+Nothing here asks about a fault happening **now**: the distributor puts that
+question behind a check for humans. The access point page offers the link and
+the address to paste into it, and stops there.
+
 ## Requirements
 
 - PHP 8.2 or newer

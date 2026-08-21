@@ -90,6 +90,14 @@
                             <td><?= h($accessPoint->month_of_electricity_meter_reading) ?></td>
                         </tr>
                         <tr>
+                            <th><?= __('EAN of the Supply Point') ?></th>
+                            <td><?= h($accessPoint->electricity_ean) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= __('Electricity Meter Number') ?></th>
+                            <td><?= h($accessPoint->electricity_meter_number) ?></td>
+                        </tr>
+                        <tr>
                             <td colspan="2"></td>
                         </tr>
                         <tr>
@@ -129,6 +137,14 @@
                             <th><?= __('Nearest Found Address') ?></th>
                             <td><?= h($accessPoint->getNearestFoundAddress()) ?></td>
                         </tr>
+                        <tr>
+                            <th><?= __('Power Failure') ?></th>
+                            <td class="actions">
+                                <?= $this->element('AccessPoints/fault_check', [
+                                    'accessPoint' => $accessPoint,
+                                ]) ?>
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="column">
@@ -147,6 +163,13 @@
                     <?= $this->Text->autoParagraph(h($accessPoint->note)); ?>
                 </blockquote>
             </div>
+            <div class="related">
+                <h4><?= __('Planned Power Outages') ?></h4>
+                <?= $this->element('AccessPoints/power_outages', [
+                    'accessPoint' => $accessPoint,
+                ]) ?>
+            </div>
+            <hr>
             <div class="related">
                 <h4><?= __('Superordinate Access Points') ?></h4>
                 <?= $this->element('AccessPoints/path', [

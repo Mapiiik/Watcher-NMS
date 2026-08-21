@@ -43,6 +43,10 @@ class AccessPointsControllerTest extends TestCase
         'app.AccessPointTypes',
         'app.AccessPoints',
         'app.AccessPointContacts',
+        'app.AccessPointSupplyAddresses',
+        'app.PowerOutages',
+        'app.PowerOutageScopes',
+        'app.AccessPointPowerOutages',
         'app.Manufacturers',
         'app.PowerSupplyTypes',
         'app.PowerSupplies',
@@ -76,6 +80,52 @@ class AccessPointsControllerTest extends TestCase
         $this->get('/access-points?search=Lorem');
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * The detail says what is planned for the power, and on what grounds.
+     *
+     * The grounds matter as much as the verdict: an outage found through the addresses around a
+     * mast is a guess, and the page has to let the operator see what it was guessed from.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testViewShowsThePlannedOutagesAndWhatTheyRestOn(): void
+    {
+        $this->login();
+        $this->get('/access-points/view/3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(__('Planned Power Outages'));
+
+        // The one found through the supply point, and the one only guessed at from an address.
+        $this->assertResponseContains(__('Certain'));
+        $this->assertResponseContains(__('Probable'));
+        $this->assertResponseContains('Hlubocska 106 (42 m)');
+
+        // The supply point is shown, and so is the way to go and ask about a failure now.
+        $this->assertResponseContains('859182400000001231');
+        $this->assertResponseContains(__('Check for a Power Failure'));
+    }
+
+    /**
+     * A mast with nothing to go on says so rather than showing an empty list.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testViewSaysWhenThereIsNothingToGoOn(): void
+    {
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $alone = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Mast in a field']));
+
+        $this->login();
+        $this->get('/access-points/view/' . $alone->get('id'));
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(__('No address was found near this access point,'
+            . ' so only a supply point can reveal an outage.'));
     }
 
     /**

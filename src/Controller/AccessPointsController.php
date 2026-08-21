@@ -142,6 +142,12 @@ class AccessPointsController extends AppController
             'AccessPointTypes',
             'ParentAccessPoints',
             'AccessPointContacts',
+            'AccessPointSupplyAddresses',
+            'AccessPointPowerOutages' => [
+                'sort' => ['PowerOutages.begins_at' => 'ASC'],
+                'PowerOutages',
+                'AccessPointSupplyAddresses',
+            ],
             'CustomerConnections' => [
                 'sort' => ['CustomerConnections.name' => 'ASC'],
                 'CustomerPoints',

@@ -34,6 +34,17 @@
                     'type' => 'select',
                     'options' => $this->months(),
                 ]);
+                echo $this->Form->control('electricity_ean', [
+                    'label' => __('EAN of the Supply Point'),
+                    'help' => __(
+                        'Eighteen digits, off the electricity bill. With it an outage is known to'
+                        . ' be about this access point rather than guessed at from the addresses'
+                        . ' around it.',
+                    ),
+                ]);
+                echo $this->Form->control('electricity_meter_number', [
+                    'label' => __('Electricity Meter Number'),
+                ]);
                 echo $this->Form->control('contract_conditions');
                 echo $this->Form->control('note');
                 ?>
