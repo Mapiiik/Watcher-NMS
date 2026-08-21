@@ -342,13 +342,13 @@ class PowerOutagesUpdateCommandTest extends TestCase
     {
         $accessPoints = TableRegistry::getTableLocator()->get('AccessPoints');
         $accessPoint = $accessPoints->newEntity([
-            'name' => 'Vsetin mast',
-            'gps_x' => 17.9963,
-            'gps_y' => 49.3389,
+            'name' => 'Hradec Kralove mast',
+            'gps_x' => 15.8327,
+            'gps_y' => 50.2092,
         ]);
         $accessPoint->set('supply_resolved', '2026-08-20 00:00:00');
-        $accessPoint->set('supply_resolved_gps_x', 17.9963);
-        $accessPoint->set('supply_resolved_gps_y', 49.3389);
+        $accessPoint->set('supply_resolved_gps_x', 15.8327);
+        $accessPoint->set('supply_resolved_gps_y', 50.2092);
         $accessPoints->saveOrFail($accessPoint);
 
         $addresses = TableRegistry::getTableLocator()->get('AccessPointSupplyAddresses');
@@ -356,8 +356,8 @@ class PowerOutagesUpdateCommandTest extends TestCase
             'access_point_id' => $accessPoint->get('id'),
             'rank' => 1,
             'town_code' => $townCode,
-            'town_name' => 'Vsetin',
-            'street_name' => 'Namesti',
+            'town_name' => 'Hradec Kralove',
+            'street_name' => 'Kopretinova',
             'house_number' => 1,
             'number_type' => 'house',
         ]));

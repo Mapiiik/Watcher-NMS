@@ -133,11 +133,20 @@ which is the same one the address whisperer asks. The registry is what turns
 the coordinates of a mast into the number the distributor keeps its
 municipality under.
 
-Read the outages on a schedule, e.g. daily and early:
+Read the outages on a schedule, e.g. daily and early, and tell the operators
+what is coming on the mornings somebody is there to act on it:
 
 ```sh
-bin/cake power_outages_update
+# read what has been published, before anybody is at a desk
+17 4 * * *   cd /srv/watcher-nms && bin/cake power_outages_update >/dev/null
+
+# say what is coming; silent on the days there is nothing
+5 7 * * 1-5  cd /srv/watcher-nms && bin/cake power_outages_report >/dev/null
 ```
+
+The report sends nothing when nothing is coming, so it can be run daily without
+becoming the sort of mail people set a rule to file away unread. Outages also
+appear on the dashboard, and on the page of each access point they are over.
 
 ### Fill in the supply point
 

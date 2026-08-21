@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Dashboard;
 
 use App\Dashboard\Card\ElectricityMeterReadingsCard;
+use App\Dashboard\Card\PowerOutagesCard;
 use App\Dashboard\Card\RadarInterferencesCard;
 use App\Dashboard\Card\StaleDeviceDataCard;
+use App\Model\Table\AccessPointPowerOutagesTable;
 use App\Model\Table\AccessPointsTable;
 use App\Model\Table\RadarInterferencesTable;
 use App\Model\Table\RouterosDevicesTable;
@@ -48,6 +50,8 @@ final class DashboardCardRegistry implements CardRegistryInterface
         $access_points = $this->fetchTable(AccessPointsTable::class);
         /** @var \App\Model\Table\RadarInterferencesTable $interferences */
         $interferences = $this->fetchTable(RadarInterferencesTable::class);
+        /** @var \App\Model\Table\AccessPointPowerOutagesTable $power_outages */
+        $power_outages = $this->fetchTable(AccessPointPowerOutagesTable::class);
 
         $this->factories = [
             'pressing_tasks' => fn(): DashboardCardInterface => new PressingTasksCard($tasks),
@@ -58,6 +62,7 @@ final class DashboardCardRegistry implements CardRegistryInterface
             'electricity_meter_readings' =>
                 fn(): DashboardCardInterface => new ElectricityMeterReadingsCard($access_points),
             'radar_interferences' => fn(): DashboardCardInterface => new RadarInterferencesCard($interferences),
+            'power_outages' => fn(): DashboardCardInterface => new PowerOutagesCard($power_outages),
         ];
     }
 

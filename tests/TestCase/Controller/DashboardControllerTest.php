@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Controller;
 use App\Controller\DashboardController;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\Core\Configure;
+use Cake\I18n\DateTime;
 use Cake\Routing\Router;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
@@ -37,6 +38,10 @@ class DashboardControllerTest extends TestCase
         'app.RouterosDevices',
         'app.RouterosDeviceInterfaces',
         'app.RadarInterferences',
+        'app.AccessPointSupplyAddresses',
+        'app.PowerOutages',
+        'app.PowerOutageScopes',
+        'app.AccessPointPowerOutages',
         'app.TaskStates',
         'app.TaskTypes',
         'app.Tasks',
@@ -209,6 +214,7 @@ class DashboardControllerTest extends TestCase
             ['stale_device_data'],
             ['electricity_meter_readings'],
             ['radar_interferences'],
+            ['power_outages'],
         ];
     }
 
@@ -227,6 +233,39 @@ class DashboardControllerTest extends TestCase
         $this->assertResponseOk();
         // the fixtures share a MAC between an interference and a device interface
         $this->assertResponseContains('/routeros-devices/view/');
+    }
+
+    /**
+     * The outage card names the mast rather than the outage, and says how sure it is.
+     *
+     * What is known beats what is guessed, so the certain one has to come out above the probable
+     * one - on a busy morning the order is most of what the card is worth.
+     *
+     * @return void
+     * @link \App\Dashboard\Card\PowerOutagesCard::data()
+     */
+    public function testPowerOutagesAreListedByMastWithTheCertainOnesFirst(): void
+    {
+        $outages = $this->getTableLocator()->get('PowerOutages');
+        $outages->updateAll(
+            ['begins_at' => DateTime::now()->addDays(2), 'ends_at' => DateTime::now()->addDays(2)->addHours(4)],
+            [],
+        );
+        // The fixture calls one of them off, and a called-off outage is not news.
+        $outages->updateAll(['cancelled' => false], []);
+
+        $this->login();
+        $this->get('/dashboard/card/power_outages');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('/access-points/3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71');
+
+        $body = (string)$this->_response?->getBody();
+        $this->assertLessThan(
+            strpos($body, (string)__('Probable')),
+            strpos($body, (string)__('Certain')),
+            'What is known should be listed above what is only guessed at.',
+        );
     }
 
     /**
