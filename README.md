@@ -133,20 +133,30 @@ which is the same one the address whisperer asks. The registry is what turns
 the coordinates of a mast into the number the distributor keeps its
 municipality under.
 
-Read the outages on a schedule, e.g. daily and early, and tell the operators
-what is coming on the mornings somebody is there to act on it:
+Read the outages on a schedule and report them on one, e.g.:
 
 ```sh
 # read what has been published, before anybody is at a desk
-17 4 * * *   cd /srv/watcher-nms && bin/cake power_outages_update >/dev/null
+41 5 * * *  cd /srv/watcher-nms && bin/cake power_outages_update >/dev/null
 
-# say what is coming; silent on the days there is nothing
-5 7 * * 1-5  cd /srv/watcher-nms && bin/cake power_outages_report >/dev/null
+# say what is coming, once a week
+12 6 * * 1  cd /srv/watcher-nms && bin/cake power_outages_report >/dev/null
 ```
 
-The report sends nothing when nothing is coming, so it can be run daily without
-becoming the sort of mail people set a rule to file away unread. Outages also
-appear on the dashboard, and on the page of each access point they are over.
+**Pick your own minute rather than copying those.** What is read are endpoints
+nobody promised us, and an installation that runs on the hour - or on whatever
+minute this file happens to name - arrives together with everybody else who did
+the same.
+
+Read daily and reported weekly, because the distributor publishes a fortnight or
+so ahead: a daily mail would carry the same list six days out of seven, which is
+how a report earns a filing rule and stops being read. The day-to-day view is
+the dashboard, and the page of each access point an outage is over.
+
+That pairing is why **`report_within_days` has to stay comfortably above the gap
+between two reports**. At the default of fourteen a weekly report names every
+outage several times before it happens; set it below seven and outages start
+falling between two reports unreported.
 
 ### Fill in the supply point
 
