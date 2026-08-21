@@ -261,6 +261,87 @@ class PowerOutageMatcherTest extends TestCase
     }
 
     /**
+     * A house with no street is matched by its number, the way the village is addressed.
+     *
+     * Most of the countryside carries a house number and nothing else, and the distributor lists
+     * those under a street entry with no street in it. Reading that as a broken row rather than as
+     * the houses without a street was what made two thirds of the addresses invisible.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\PowerOutageMatcher::matchOne()
+     */
+    public function testAHouseWithNoStreetIsMatchedByItsNumber(): void
+    {
+        $accessPoint = $this->accessPoint(addresses: [
+            $this->address(houseNumber: 222, streetName: ''),
+        ]);
+        $outage = $this->outage(streets: [
+            $this->street(street: '', houseNums: '69, 150, 183, 211, 222, 265'),
+        ]);
+
+        $match = $this->matcher->matchOne($accessPoint, $outage);
+
+        $this->assertSame(OutageCertainty::Probable, $match?->certainty);
+        $this->assertSame(OutageMatch::Address, $match->matchedBy);
+    }
+
+    /**
+     * The same number in another part of the municipality is another house.
+     *
+     * A house number is unique within a part of a municipality, not within the whole of it - one
+     * municipality here carries number 95 in three of its parts - so without comparing the part,
+     * an outage in one village would be reported over a mast in the next.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\PowerOutageMatcher::matchOne()
+     */
+    public function testTheSameNumberInAnotherPartOfTheMunicipalityIsNotOurs(): void
+    {
+        $accessPoint = $this->accessPoint(addresses: [
+            $this->address(houseNumber: 95, streetName: '', townPart: 'Svetla'),
+        ]);
+        $outage = $this->outage(streets: [
+            $this->street(street: '', townPart: 'Borkov', houseNums: '95'),
+        ]);
+
+        $this->assertNull($this->matcher->matchOne($accessPoint, $outage));
+    }
+
+    /**
+     * A street of the same name in another part of the municipality is another street.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\PowerOutageMatcher::matchOne()
+     */
+    public function testTheSameStreetInAnotherPartOfTheMunicipalityIsNotOurs(): void
+    {
+        $accessPoint = $this->accessPoint(addresses: [
+            $this->address(houseNumber: 129, townPart: 'Kolin VI'),
+        ]);
+        $outage = $this->outage(streets: [
+            $this->street(townPart: 'Kolin IV', houseNums: '126-131'),
+        ]);
+
+        $this->assertNull($this->matcher->matchOne($accessPoint, $outage));
+    }
+
+    /**
+     * A house with no street is not matched against a street that has one.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\PowerOutageMatcher::matchOne()
+     */
+    public function testAHouseWithNoStreetIsNotMatchedAgainstANamedStreet(): void
+    {
+        $accessPoint = $this->accessPoint(addresses: [
+            $this->address(houseNumber: 217, streetName: ''),
+        ]);
+        $outage = $this->outage(streets: [$this->street(street: 'Bozkovska', houseNums: '217')]);
+
+        $this->assertNull($this->matcher->matchOne($accessPoint, $outage));
+    }
+
+    /**
      * A mast with no address around it and no supply point cannot be matched at all.
      *
      * Which is exactly the mast standing away from any village, and the reason the page has to say
@@ -334,6 +415,7 @@ class PowerOutageMatcherTest extends TestCase
         ?string $orientationLetter = null,
         ?int $distanceMetres = 42,
         string $streetName = 'Hlubocska',
+        string $townPart = 'Kolin VI',
     ): AccessPointSupplyAddress {
         return new AccessPointSupplyAddress([
             'id' => $id,
@@ -341,7 +423,7 @@ class PowerOutageMatcherTest extends TestCase
             'distance_metres' => $distanceMetres,
             'town_code' => 533165,
             'town_name' => 'Kolin',
-            'town_part_name' => 'Kolin VI',
+            'town_part_name' => $townPart,
             'street_name' => $streetName,
             'house_number' => $houseNumber,
             'orientation_number' => $orientationNumber,
@@ -367,11 +449,12 @@ class PowerOutageMatcherTest extends TestCase
         string $houseNums = '',
         string $evNums = '',
         string $streetNums = '',
+        string $townPart = 'Kolin VI',
     ): array {
         return [
             'town_code' => $townCode,
             'town' => 'Kolin',
-            'town_part' => 'Kolin VI',
+            'town_part' => $townPart,
             'street' => $street,
             'house_nums' => $houseNums,
             'ev_nums' => $evNums,

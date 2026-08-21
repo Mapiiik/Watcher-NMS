@@ -118,7 +118,14 @@ final class PowerOutageMatcher
         AccessPointSupplyAddress $address,
         array $street,
     ): ?OutageMatchResult {
-        if (!$this->isSameTown($address, $street) || !$this->isSameStreet($address, $street)) {
+        // Each part of an address is asked about on its own. Two municipalities can carry the same
+        // street name, one municipality can carry the same house number in several of its parts,
+        // and neither of those is caught by comparing the parts that happen to be filled in.
+        $sameAll = $this->isSameTown($address, $street)
+            && $this->isSameTownPart($address, $street)
+            && $this->isSameStreet($address, $street);
+
+        if (!$sameAll) {
             return null;
         }
 
@@ -184,7 +191,42 @@ final class PowerOutageMatcher
      */
     private function isSameStreet(AccessPointSupplyAddress $address, array $street): bool
     {
+        $ours = trim(strval($address->street_name));
+        $theirs = is_string($street['street'] ?? null) ? trim($street['street']) : '';
+
+        // Neither is on a street, which is how most of a village is addressed and is a thing the
+        // two have in common rather than a pair of blanks. What tells such addresses apart is the
+        // part of the municipality and the number, both asked about separately.
+        if ($ours === '' && $theirs === '') {
+            return true;
+        }
+
         return $this->isSameName($address->street_name, $street['street'] ?? null);
+    }
+
+    /**
+     * Whether the two are in one part of the municipality.
+     *
+     * Asked of every address, not only of those with no street: a house number is unique within a
+     * part of a municipality rather than within the whole of it, and a street name can repeat
+     * across parts as well.
+     *
+     * Where either side does not say, this cannot contradict anything and does not try to.
+     *
+     * @param \App\Model\Entity\AccessPointSupplyAddress $address One address near the mast.
+     * @param array<string, mixed> $street One street the outage reaches.
+     * @return bool
+     */
+    private function isSameTownPart(AccessPointSupplyAddress $address, array $street): bool
+    {
+        $ours = trim(strval($address->town_part_name));
+        $theirs = is_string($street['town_part'] ?? null) ? trim($street['town_part']) : '';
+
+        if ($ours === '' || $theirs === '') {
+            return true;
+        }
+
+        return $this->isSameName($address->town_part_name, $street['town_part'] ?? null);
     }
 
     /**

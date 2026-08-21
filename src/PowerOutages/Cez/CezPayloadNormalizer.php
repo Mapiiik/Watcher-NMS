@@ -174,11 +174,11 @@ final class CezPayloadNormalizer
             foreach (self::listOf($town['town_districts'] ?? null) as $townDistrict) {
                 foreach (self::listOf($townDistrict['town_parts'] ?? null) as $part) {
                     foreach (self::listOf($part['streets'] ?? null) as $street) {
+                        // A group with no street named is not a broken row: it is the houses of
+                        // this part of the municipality that have no street to be on, which is how
+                        // most of a village is addressed. Dropping it would make two thirds of the
+                        // addresses in the countryside impossible to match.
                         $streetName = self::stringOrNull($street['name'] ?? null);
-
-                        if ($streetName === null) {
-                            continue;
-                        }
 
                         // The three kinds of number are kept apart, because the distributor keeps
                         // them apart: a street listed by its registration numbers says nothing
