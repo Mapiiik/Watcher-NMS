@@ -98,6 +98,9 @@ class PowerOutagesReportCommandTest extends TestCase
         $this->assertExitSuccess();
         $this->assertMailCount(1);
         $this->assertMailSentTo('operator@example.com');
+        // Worded the same however many outages it carries, so a rule in somebody's mail can file
+        // it - which is the whole reason it does not count them.
+        $this->assertMailSentWith(__('Planned power outages over our access points'), 'subject');
         $this->assertMailContains('Kolin water tower');
         // The grounds travel with it: the operator has to know which of these to trust.
         $this->assertMailContains((string)__('Certain'));

@@ -182,12 +182,10 @@ class PowerOutagesReportCommand extends Command
             $mailer->addTo($recipient);
         }
 
-        $mailer->setSubject(__n(
-            'Planned power outage over an access point',
-            'Planned power outages over {0} access point entries',
-            count($links),
-            count($links),
-        ));
+        // The same words every time, whatever the report holds. A subject that counts what is
+        // inside it cannot be filed on by a rule in somebody's mail, which is the one thing a
+        // report arriving on a schedule has to allow.
+        $mailer->setSubject(__('Planned power outages over our access points'));
         $mailer->setEmailFormat('html');
 
         $mailer->viewBuilder()
