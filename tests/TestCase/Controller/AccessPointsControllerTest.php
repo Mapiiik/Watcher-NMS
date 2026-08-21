@@ -232,6 +232,47 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * How the outages were looked for is described as they were actually looked for.
+     *
+     * A mast with its supply point written down is asked about directly, so saying it was looked
+     * for around the addresses near it would describe a search that did not happen - and it is the
+     * sort of wording that quietly stops being true when the behaviour behind it moves.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testViewDescribesHowTheOutagesWereActuallyLookedFor(): void
+    {
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $withEan = $accessPoints->get('3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71');
+
+        $this->login();
+        $this->get('/access-points/view/' . $withEan->get('id'));
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(
+            __('The distributor is asked about the supply point, so what it names is this access point.'),
+        );
+        // The addresses are still compared, so that is said rather than implied - but not as the
+        // way the outages were looked for.
+        $this->assertResponseNotContains(__('Looked for around the {0} nearest addresses to the access point.', 2));
+        $this->assertResponseNotContains(
+            __('Without the EAN of the supply point the outages are only ever probable.'),
+        );
+
+        // The same mast once nobody has written its supply point down.
+        $withEan->set('electricity_ean', null);
+        $accessPoints->saveOrFail($withEan);
+
+        $this->get('/access-points/view/' . $withEan->get('id'));
+
+        $this->assertResponseContains(__('Looked for around the {0} nearest addresses to the access point.', 2));
+        $this->assertResponseContains(
+            __('Without the EAN of the supply point the outages are only ever probable.'),
+        );
+    }
+
+    /**
      * Test view method
      *
      * @return void
