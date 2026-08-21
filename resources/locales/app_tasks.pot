@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-19 22:08+0200\n"
+"POT-Creation-Date: 2026-08-21 11:26+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -181,26 +181,6 @@ msgstr ""
 
 #: ./templates/plugin/Tasks/TaskTypes/index.php:25
 msgid "Task Types"
-msgstr ""
-
-#: ./templates/plugin/Tasks/TaskTypes/index.php:60
-msgid "first"
-msgstr ""
-
-#: ./templates/plugin/Tasks/TaskTypes/index.php:61
-msgid "previous"
-msgstr ""
-
-#: ./templates/plugin/Tasks/TaskTypes/index.php:63
-msgid "next"
-msgstr ""
-
-#: ./templates/plugin/Tasks/TaskTypes/index.php:64
-msgid "last"
-msgstr ""
-
-#: ./templates/plugin/Tasks/TaskTypes/index.php:67
-msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
 
 #: ./templates/plugin/Tasks/TaskTypes/view.php:17

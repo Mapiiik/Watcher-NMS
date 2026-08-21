@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-19 22:08+0200\n"
-"PO-Revision-Date: 2026-08-19 22:11+0200\n"
+"POT-Creation-Date: 2026-08-21 11:26+0200\n"
+"PO-Revision-Date: 2026-08-21 11:34+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -184,30 +184,6 @@ msgstr "Nový typ úkolu"
 msgid "Task Types"
 msgstr "Typy úkolů"
 
-#: templates/plugin/Tasks/TaskTypes/index.php:60
-msgid "first"
-msgstr "první"
-
-#: templates/plugin/Tasks/TaskTypes/index.php:61
-msgid "previous"
-msgstr "předchozí"
-
-#: templates/plugin/Tasks/TaskTypes/index.php:63
-msgid "next"
-msgstr "další"
-
-#: templates/plugin/Tasks/TaskTypes/index.php:64
-msgid "last"
-msgstr "poslední"
-
-#: templates/plugin/Tasks/TaskTypes/index.php:67
-msgid ""
-"Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
-"total"
-msgstr ""
-"Stránka {{page}} z {{pages}}, zobrazující {{current}} záznamů z celkového "
-"počtu {{count}}"
-
 #: templates/plugin/Tasks/TaskTypes/view.php:17
 msgid "Delete Task Type"
 msgstr "Odstranit typ úkolu"
@@ -215,3 +191,18 @@ msgstr "Odstranit typ úkolu"
 #: templates/plugin/Tasks/TaskTypes/view.php:47
 msgid "Access Point Required"
 msgstr "Je vyžadován přístupový bod"
+
+#~ msgid "first"
+#~ msgstr "první"
+
+#~ msgid "previous"
+#~ msgstr "předchozí"
+
+#~ msgid "next"
+#~ msgstr "další"
+
+#~ msgid "last"
+#~ msgstr "poslední"
+
+#~ msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
+#~ msgstr "Stránka {{page}} z {{pages}}, zobrazující {{current}} záznamů z celkového počtu {{count}}"
