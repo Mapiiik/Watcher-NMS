@@ -193,7 +193,7 @@ class AccessPointLocationResolverTest extends TestCase
             $this->SupplyAddresses->find()->where(['access_point_id' => self::KOLIN_ID])->count(),
         );
         $this->assertSame(
-            'The address registry is not configured.',
+            'The national address registry is not configured.',
             $this->AccessPoints->get(self::KOLIN_ID)->get('supply_resolution_failed'),
         );
     }

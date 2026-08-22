@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-21 11:26+0200\n"
+"POT-Creation-Date: 2026-08-22 17:12+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -56,49 +56,6 @@ msgstr ""
 
 #: ./config/settings.php:109
 msgid "How far a registered station may stand from the access point of the radio unit and still be taken for the same place."
-msgstr ""
-
-#: ./src/Addresses/ApiClient.php:51
-msgid "Addresses API is not configured."
-msgstr ""
-
-#: ./src/Addresses/ApiClient.php:79
-msgid "Addresses API returned HTTP {0} ({1})"
-msgstr ""
-
-#: ./src/Addresses/ApiClient.php:82
-#: ./src/Agent/ApiClient.php:84
-#: ./src/Agent/ApiClient.php:92
-#: ./src/PowerOutages/Service/PowerOutagesUpdateService.php:349
-#: ./src/Rlan/ApiClient.php:287
-#: ./src/Rlan/Service/RlanStationsUpdateService.php:98
-msgid "Unknown error"
-msgstr ""
-
-#: ./src/Addresses/ApiClient.php:88
-msgid "Addresses API returned an invalid response."
-msgstr ""
-
-#: ./src/Addresses/ApiClient.php:129
-#: ./src/Addresses/ApiClient.php:150
-#: ./src/Addresses/ApiClient.php:207
-msgid "Addresses API is unreachable: {0}"
-msgstr ""
-
-#: ./src/Agent/ApiClient.php:28
-msgid "Watcher Agent is not configured."
-msgstr ""
-
-#: ./src/Agent/ApiClient.php:70
-msgid "Watcher Agent is unreachable: {0}"
-msgstr ""
-
-#: ./src/Agent/ApiClient.php:81
-msgid "Watcher Agent returned HTTP {0} ({1})"
-msgstr ""
-
-#: ./src/Agent/ApiClient.php:90
-msgid "Watcher Agent returned an unexpected response: {0}"
 msgstr ""
 
 #: ./src/Command/CustomerPointsUpdateCommand.php:76
@@ -1043,6 +1000,10 @@ msgstr ""
 msgid "Devices with Stale Data"
 msgstr ""
 
+#: ./src/Http/Answer.php:149
+msgid "The service is not configured."
+msgstr ""
+
 #: ./src/Model/Entity/AccessPoint.php:111
 #: ./src/Model/Entity/CustomerConnection.php:73
 #: ./templates/AccessPoints/edit.php:46
@@ -1067,12 +1028,12 @@ msgid "No address found for these GPS coordinates."
 msgstr ""
 
 #: ./src/Model/Entity/AccessPointSupplyAddress.php:90
-#: ./src/PowerOutages/Service/PowerOutageMatcher.php:320
+#: ./src/PowerOutages/Service/PowerOutageMatcher.php:362
 msgid "address not given"
 msgstr ""
 
 #: ./src/Model/Entity/AccessPointSupplyAddress.php:95
-#: ./src/PowerOutages/Service/PowerOutageMatcher.php:325
+#: ./src/PowerOutages/Service/PowerOutageMatcher.php:367
 msgid "{0} ({1} m)"
 msgstr ""
 
@@ -1228,7 +1189,11 @@ msgstr ""
 msgid "The access point has no coordinates to look up."
 msgstr ""
 
-#: ./src/PowerOutages/Service/PowerOutageMatcher.php:141
+#: ./src/PowerOutages/Service/AccessPointLocationResolver.php:93
+msgid "The national address registry is not configured."
+msgstr ""
+
+#: ./src/PowerOutages/Service/PowerOutageMatcher.php:148
 msgid "{0}, street only"
 msgstr ""
 
@@ -1240,21 +1205,17 @@ msgstr ""
 msgid "The outage {0} could not be saved: {1}"
 msgstr ""
 
-#: ./src/Rlan/ApiClient.php:63
+#: ./src/PowerOutages/Service/PowerOutagesUpdateService.php:349
+#: ./src/Rlan/Service/RlanStationsUpdateService.php:98
+msgid "Unknown error"
+msgstr ""
+
+#: ./src/Rlan/ApiClient.php:72
 msgid "The register of stations is not configured."
 msgstr ""
 
-#: ./src/Rlan/ApiClient.php:167
-#: ./src/Rlan/ApiClient.php:240
-msgid "The register of stations is unreachable: {0}"
-msgstr ""
-
-#: ./src/Rlan/ApiClient.php:259
+#: ./src/Rlan/ApiClient.php:273
 msgid "The register of stations did not hand over an access token."
-msgstr ""
-
-#: ./src/Rlan/ApiClient.php:283
-msgid "The register of stations answered {0} to {1} ({2})"
 msgstr ""
 
 #: ./src/Rlan/Provider/RlanStationPayloadNormalizer.php:131
@@ -1273,11 +1234,15 @@ msgstr ""
 msgid "Unexpected SNMP payload structure"
 msgstr ""
 
-#: ./src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:27
+#: ./src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:25
 msgid "Watcher Agent SNMP read failed for {0}: {1}"
 msgstr ""
 
-#: ./src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:34
+#: ./src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:28
+msgid "Watcher Agent is not configured."
+msgstr ""
+
+#: ./src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:36
 msgid "Watcher Agent returned empty SNMP data"
 msgstr ""
 

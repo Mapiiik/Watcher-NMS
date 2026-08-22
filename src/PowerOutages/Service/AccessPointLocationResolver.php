@@ -90,7 +90,7 @@ final class AccessPointLocationResolver
             // nothing is deleted and what stands goes on standing.
             $this->recordFailure(
                 $accessPoint,
-                $found->failure ?? __('The address registry is not configured.'),
+                $found->failure ?? __('The national address registry is not configured.'),
             );
 
             return -1;

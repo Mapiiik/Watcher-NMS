@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-21 11:26+0200\n"
-"PO-Revision-Date: 2026-08-21 11:34+0200\n"
+"POT-Creation-Date: 2026-08-22 17:12+0200\n"
+"PO-Revision-Date: 2026-08-22 17:22+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -81,46 +81,6 @@ msgid ""
 msgstr ""
 "Jak daleko od přístupového bodu rádiové jednotky může být umístěna "
 "registrovaná stanice, aby byla stále považována za stejné místo."
-
-#: src/Addresses/ApiClient.php:51
-msgid "Addresses API is not configured."
-msgstr "Rozhraní adres není nastaveno."
-
-#: src/Addresses/ApiClient.php:79
-msgid "Addresses API returned HTTP {0} ({1})"
-msgstr "Rozhraní adres odpovědělo HTTP {0} ({1})"
-
-#: src/Addresses/ApiClient.php:82 src/Agent/ApiClient.php:84
-#: src/Agent/ApiClient.php:92
-#: src/PowerOutages/Service/PowerOutagesUpdateService.php:349
-#: src/Rlan/ApiClient.php:287 src/Rlan/Service/RlanStationsUpdateService.php:98
-msgid "Unknown error"
-msgstr "Neznámá chyba"
-
-#: src/Addresses/ApiClient.php:88
-msgid "Addresses API returned an invalid response."
-msgstr "Rozhraní adres vrátilo neplatnou odpověď."
-
-#: src/Addresses/ApiClient.php:129 src/Addresses/ApiClient.php:150
-#: src/Addresses/ApiClient.php:207
-msgid "Addresses API is unreachable: {0}"
-msgstr "Rozhraní adres je nedostupné: {0}"
-
-#: src/Agent/ApiClient.php:28
-msgid "Watcher Agent is not configured."
-msgstr "Watcher Agent není nakonfigurován."
-
-#: src/Agent/ApiClient.php:70
-msgid "Watcher Agent is unreachable: {0}"
-msgstr "Watcher Agent je nedostupný: {0}"
-
-#: src/Agent/ApiClient.php:81
-msgid "Watcher Agent returned HTTP {0} ({1})"
-msgstr "Watcher Agent vrátil HTTP {0} ({1})"
-
-#: src/Agent/ApiClient.php:90
-msgid "Watcher Agent returned an unexpected response: {0}"
-msgstr "Watcher Agent vrátil neočekávanou odpověď: {0}"
 
 #: src/Command/CustomerPointsUpdateCommand.php:76
 msgid "The customer points data could not be downloaded. Please, try again."
@@ -1079,6 +1039,10 @@ msgstr "Naše zařízení rušící radar"
 msgid "Devices with Stale Data"
 msgstr "Zařízení s neaktuálními údaji"
 
+#: src/Http/Answer.php:149
+msgid "The service is not configured."
+msgstr "Služba není nakonfigurována."
+
 #: src/Model/Entity/AccessPoint.php:111
 #: src/Model/Entity/CustomerConnection.php:73
 #: templates/AccessPoints/edit.php:46 templates/AccessPoints/index.php:37
@@ -1101,12 +1065,12 @@ msgid "No address found for these GPS coordinates."
 msgstr "Pro tyto GPS souřadnice nebyla nalezena žádná adresa."
 
 #: src/Model/Entity/AccessPointSupplyAddress.php:90
-#: src/PowerOutages/Service/PowerOutageMatcher.php:320
+#: src/PowerOutages/Service/PowerOutageMatcher.php:362
 msgid "address not given"
 msgstr "adresa neuvedena"
 
 #: src/Model/Entity/AccessPointSupplyAddress.php:95
-#: src/PowerOutages/Service/PowerOutageMatcher.php:325
+#: src/PowerOutages/Service/PowerOutageMatcher.php:367
 msgid "{0} ({1} m)"
 msgstr "{0} ({1} m)"
 
@@ -1263,7 +1227,11 @@ msgstr "Uložené odpovědi na {0} nemají očekávanou podobu."
 msgid "The access point has no coordinates to look up."
 msgstr "Přístupový bod nemá souřadnice, podle kterých by šlo hledat."
 
-#: src/PowerOutages/Service/PowerOutageMatcher.php:141
+#: src/PowerOutages/Service/AccessPointLocationResolver.php:93
+msgid "The national address registry is not configured."
+msgstr "Národní adresní registr není nakonfigurován."
+
+#: src/PowerOutages/Service/PowerOutageMatcher.php:148
 msgid "{0}, street only"
 msgstr "{0}, jen ulice"
 
@@ -1279,21 +1247,18 @@ msgstr ""
 msgid "The outage {0} could not be saved: {1}"
 msgstr "Odstávku {0} se nepodařilo uložit: {1}"
 
-#: src/Rlan/ApiClient.php:63
+#: src/PowerOutages/Service/PowerOutagesUpdateService.php:349
+#: src/Rlan/Service/RlanStationsUpdateService.php:98
+msgid "Unknown error"
+msgstr "Neznámá chyba"
+
+#: src/Rlan/ApiClient.php:72
 msgid "The register of stations is not configured."
 msgstr "Registr stanic není nakonfigurován."
 
-#: src/Rlan/ApiClient.php:167 src/Rlan/ApiClient.php:240
-msgid "The register of stations is unreachable: {0}"
-msgstr "Registr stanic je nedostupný: {0}"
-
-#: src/Rlan/ApiClient.php:259
+#: src/Rlan/ApiClient.php:273
 msgid "The register of stations did not hand over an access token."
 msgstr "Registr stanic nevydal přístupový token."
-
-#: src/Rlan/ApiClient.php:283
-msgid "The register of stations answered {0} to {1} ({2})"
-msgstr "Registr stanic odpověděl {0} na {1} ({2})"
 
 #: src/Rlan/Provider/RlanStationPayloadNormalizer.php:131
 msgid "The register answered with something unexpected."
@@ -1311,11 +1276,15 @@ msgstr "Stanici {0} v registru se nepodařilo uložit: {1}"
 msgid "Unexpected SNMP payload structure"
 msgstr "Neočekávaná struktura datového bloku SNMP"
 
-#: src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:27
+#: src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:25
 msgid "Watcher Agent SNMP read failed for {0}: {1}"
 msgstr "Čtení SNMP Watcher Agentem selhalo pro {0}: {1}"
 
-#: src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:34
+#: src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:28
+msgid "Watcher Agent is not configured."
+msgstr "Watcher Agent není nakonfigurován."
+
+#: src/Snmp/Provider/RouterosSnmpProviderAgentPull.php:36
 msgid "Watcher Agent returned empty SNMP data"
 msgstr "Watcher Agent vrátil prázdná data SNMP"
 
@@ -4022,6 +3991,30 @@ msgstr "Verze"
 #: templates/layout/error.php:36
 msgid "Back"
 msgstr "Zpět"
+
+#~ msgid "Addresses API returned HTTP {0} ({1})"
+#~ msgstr "Rozhraní adres odpovědělo HTTP {0} ({1})"
+
+#~ msgid "Addresses API returned an invalid response."
+#~ msgstr "Rozhraní adres vrátilo neplatnou odpověď."
+
+#~ msgid "Addresses API is unreachable: {0}"
+#~ msgstr "Rozhraní adres je nedostupné: {0}"
+
+#~ msgid "Watcher Agent is unreachable: {0}"
+#~ msgstr "Watcher Agent je nedostupný: {0}"
+
+#~ msgid "Watcher Agent returned HTTP {0} ({1})"
+#~ msgstr "Watcher Agent vrátil HTTP {0} ({1})"
+
+#~ msgid "Watcher Agent returned an unexpected response: {0}"
+#~ msgstr "Watcher Agent vrátil neočekávanou odpověď: {0}"
+
+#~ msgid "The register of stations is unreachable: {0}"
+#~ msgstr "Registr stanic je nedostupný: {0}"
+
+#~ msgid "The register of stations answered {0} to {1} ({2})"
+#~ msgstr "Registr stanic odpověděl {0} na {1} ({2})"
 
 #~ msgid "The task state has been saved."
 #~ msgstr "Stav úkolu byl uložen."
