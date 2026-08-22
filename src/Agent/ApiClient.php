@@ -3,32 +3,39 @@ declare(strict_types=1);
 
 namespace App\Agent;
 
+use App\Http\Answer;
 use Cake\Core\Configure;
 use Cake\Http\Client;
-use Cake\Http\Client\Response;
-use RuntimeException;
 use Throwable;
 
+/**
+ * Talking to the Watcher Agent.
+ *
+ * Every reading comes back as an {@see \App\Http\Answer}, so the caller says what a failure is
+ * worth rather than the client deciding for it.
+ */
 class ApiClient
 {
     /**
-     * POST request to Watcher Agent
+     * Ask the agent to do one thing.
      *
      * @param string $function API function to call (e.g., 'snmp/read/routeros')
      * @param array<string, mixed> $data Data to send in the request body
      * @param int $timeout Timeout in seconds
-     * @return \Cake\Http\Client\Response
+     * @param string $expect The field the answer must carry to be one at all.
+     * @return \App\Http\Answer Answering with the body as it arrived.
      */
-    private static function postRequest(string $function, array $data = [], int $timeout = 30): Response
+    private static function ask(string $function, array $data = [], int $timeout = 30, string $expect = ''): Answer
     {
         $agentUrl = (string)Configure::read('Agent.url');
         $agentToken = (string)Configure::read('Agent.token');
 
+        // Not being configured is a state, not a failure - an installation without an agent says
+        // so by leaving the address empty, and nobody asked.
         if ($agentUrl === '' || $agentToken === '') {
-            throw new RuntimeException(__('Watcher Agent is not configured.'));
+            return Answer::notAsked();
         }
 
-        // Create HTTP client
         $http = new Client([
             'headers' => [
                 'Authorization' => 'Bearer ' . $agentToken,
@@ -37,13 +44,34 @@ class ApiClient
             'timeout' => $timeout,
         ]);
 
-        return $http->post(
-            $agentUrl . '/api/' . $function,
-            $data,
-            [
-                'type' => 'json',
-            ],
-        );
+        try {
+            $response = $http->post($agentUrl . '/api/' . $function, $data, ['type' => 'json']);
+        } catch (Throwable $e) {
+            return Answer::failed(__('Watcher Agent is unreachable: {0}', $e->getMessage()));
+        }
+
+        $body = $response->getJson();
+        $message = is_array($body) ? ($body['message'] ?? null) : null;
+        $message = is_scalar($message) ? (string)$message : null;
+
+        if (!$response->isOk()) {
+            return Answer::failed(__(
+                'Watcher Agent returned HTTP {0} ({1})',
+                $response->getStatusCode(),
+                $message ?? __('Unknown error'),
+            ));
+        }
+
+        // An answer with no verdict in it is not a verdict of no; it is an answer to a different
+        // question, and reading it as one would report a host as unreachable that was never asked.
+        if (!is_array($body) || ($expect !== '' && !isset($body[$expect]))) {
+            return Answer::failed(__(
+                'Watcher Agent returned an unexpected response: {0}',
+                $message ?? __('Unknown error'),
+            ));
+        }
+
+        return Answer::of($body);
     }
 
     /**
@@ -51,48 +79,18 @@ class ApiClient
      *
      * @param string $host Hostname or IP address of the RouterOS device
      * @param string $community SNMP community string
-     * @return array<string, mixed> Response data from Watcher Agent
-     * @throws \RuntimeException if the request fails or returns an error response
+     * @return \App\Http\Answer Answering with the reading as the agent took it.
      */
-    public static function snmpReadRouteros(string $host, string $community): array
+    public static function snmpReadRouteros(string $host, string $community): Answer
     {
-        try {
-            $response = self::postRequest(
-                function: 'snmp/read/routeros',
-                data: [
-                    'host' => $host,
-                    'community' => $community,
-                ],
-                timeout: 120, // SNMP read can take longer time
-            );
-        } catch (Throwable $e) {
-            throw new RuntimeException(
-                __('Watcher Agent is unreachable: {0}', $e->getMessage()),
-                $e->getCode(),
-                previous: $e,
-            );
-        }
-
-        $data = $response->getJson();
-        $message = is_array($data) ? ($data['message'] ?? null) : null;
-
-        if (!$response->isOk()) {
-            throw new RuntimeException(
-                __(
-                    'Watcher Agent returned HTTP {0} ({1})',
-                    $response->getStatusCode(),
-                    $message ?? __('Unknown error'),
-                ),
-            );
-        }
-
-        if (!is_array($data) || !isset($data['device'])) {
-            throw new RuntimeException(__(
-                'Watcher Agent returned an unexpected response: {0}',
-                $message ?? __('Unknown error'),
-            ));
-        }
-
-        return $data;
+        return self::ask(
+            function: 'snmp/read/routeros',
+            data: [
+                'host' => $host,
+                'community' => $community,
+            ],
+            timeout: 120, // SNMP read can take longer time
+            expect: 'device',
+        );
     }
 }

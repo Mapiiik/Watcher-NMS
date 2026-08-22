@@ -6,7 +6,6 @@ namespace App\Snmp\Provider;
 use App\Agent\ApiClient;
 use App\Snmp\Dto\RouterosSnmpData;
 use RuntimeException;
-use Throwable;
 
 final class RouterosSnmpProviderAgentPull implements RouterosSnmpProviderInterface
 {
@@ -20,15 +19,18 @@ final class RouterosSnmpProviderAgentPull implements RouterosSnmpProviderInterfa
      */
     public function read(string $host, string $community): RouterosSnmpData
     {
-        try {
-            $data = ApiClient::snmpReadRouteros($host, $community);
-        } catch (Throwable $e) {
-            throw new RuntimeException(
-                __('Watcher Agent SNMP read failed for {0}: {1}', $host, $e->getMessage()),
-                $e->getCode(),
-                previous: $e,
-            );
+        $answer = ApiClient::snmpReadRouteros($host, $community);
+
+        if (!$answer->ok()) {
+            throw new RuntimeException(__(
+                'Watcher Agent SNMP read failed for {0}: {1}',
+                $host,
+                $answer->failure ?? __('Watcher Agent is not configured.'),
+            ));
         }
+
+        /** @var array<string, mixed> $data */
+        $data = $answer->data;
 
         if ($data === []) {
             throw new RuntimeException(__('Watcher Agent returned empty SNMP data'));
