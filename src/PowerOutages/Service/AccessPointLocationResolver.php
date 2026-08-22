@@ -5,10 +5,10 @@ namespace App\PowerOutages\Service;
 
 use App\Addresses\ApiClient;
 use App\Model\Entity\AccessPoint;
+use Cake\Collection\CollectionInterface;
 use Cake\I18n\DateTime;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Settings\Utility\Settings;
-use Throwable;
 
 /**
  * Finding the addresses an access point stands among.
@@ -76,34 +76,37 @@ final class AccessPointLocationResolver
             return -1;
         }
 
-        try {
-            $found = ApiClient::reverse(
-                country: self::COUNTRY,
-                lat: (float)$accessPoint->gps_y,
-                lon: (float)$accessPoint->gps_x,
-                radiusM: (float)max(1, $this->radiusMetres),
-                limit: max(1, $this->limit),
-                include: ['raw'],
-            );
-        } catch (Throwable $e) {
+        $found = ApiClient::reverse(
+            country: self::COUNTRY,
+            lat: (float)$accessPoint->gps_y,
+            lon: (float)$accessPoint->gps_x,
+            radiusM: (float)max(1, $this->radiusMetres),
+            limit: max(1, $this->limit),
+            include: ['raw'],
+        );
+
+        if (!$found->ok()) {
             // The registry being unreachable must not blank a good answer from last month, so
             // nothing is deleted and what stands goes on standing.
-            $this->recordFailure($accessPoint, $e->getMessage());
+            $this->recordFailure(
+                $accessPoint,
+                $found->failure ?? __('The address registry is not configured.'),
+            );
 
             return -1;
         }
 
-        return $this->store($accessPoint, $found);
+        return $this->store($accessPoint, $found->data);
     }
 
     /**
      * Put down what the registry answered, in place of whatever was there before.
      *
      * @param \App\Model\Entity\AccessPoint $accessPoint The mast that was looked up.
-     * @param list<array<string, mixed>> $found What the registry answered, nearest first.
+     * @param \Cake\Collection\CollectionInterface<int, \App\Addresses\Dto\Address> $found Nearest first.
      * @return int
      */
-    private function store(AccessPoint $accessPoint, array $found): int
+    private function store(AccessPoint $accessPoint, CollectionInterface $found): int
     {
         $addresses = $this->fetchTable('AccessPointSupplyAddresses');
         $accessPoints = $this->fetchTable('AccessPoints');
@@ -112,15 +115,17 @@ final class AccessPointLocationResolver
         $rank = 0;
 
         foreach ($found as $match) {
-            $raw = $match['raw'] ?? null;
+            // The registry's own fields are kept where they arrived: they are RÚIAN's own words
+            // and mean nothing to the other country the same API answers for.
+            $raw = $match->raw['raw'] ?? null;
             $raw = is_array($raw) ? $raw : [];
             $rank++;
 
             $rows[] = $addresses->newEntity([
                 'access_point_id' => $accessPoint->id,
                 'rank' => $rank,
-                'distance_metres' => $this->intOrNull($match['distance_m'] ?? null),
-                'registry_ref' => $this->stringOrNull($match['registry_ref'] ?? null),
+                'distance_metres' => $this->intOrNull($match->distance),
+                'registry_ref' => $match->registryReference,
                 'town_code' => $this->intOrNull($raw['obec_kod'] ?? null),
                 'town_name' => $this->stringOrNull($raw['obec_nazev'] ?? null),
                 'town_part_name' => $this->stringOrNull($raw['cast_obce_nazev'] ?? null),
@@ -128,8 +133,8 @@ final class AccessPointLocationResolver
                 'house_number' => $this->intOrNull($raw['cislo_domovni'] ?? null),
                 'orientation_number' => $this->intOrNull($raw['cislo_orientacni'] ?? null),
                 'orientation_letter' => $this->stringOrNull($raw['cislo_orientacni_znak'] ?? null),
-                'number_type' => $this->stringOrNull($match['number_type'] ?? null),
-                'formatted_address' => $this->stringOrNull($match['formatted_address'] ?? null),
+                'number_type' => $match->numberType,
+                'formatted_address' => $match->formattedAddress,
             ]);
         }
 

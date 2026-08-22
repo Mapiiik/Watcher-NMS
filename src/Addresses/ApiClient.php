@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 namespace App\Addresses;
 
+use App\Addresses\Provider\AddressPayloadNormalizer;
+use App\Http\Answer;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Http\Client;
 use Cake\Http\Client\Response;
-use RuntimeException;
+use Closure;
 use Throwable;
 
 /**
@@ -46,12 +48,7 @@ class ApiClient
      */
     private static function url(string $path): string
     {
-        $apiUrl = (string)Configure::read('Addresses.url');
-        if ($apiUrl === '') {
-            throw new RuntimeException(__('Addresses API is not configured.'));
-        }
-
-        return $apiUrl . '/' . ltrim($path, '/');
+        return (string)Configure::read('Addresses.url') . '/' . ltrim($path, '/');
     }
 
     /**
@@ -65,30 +62,41 @@ class ApiClient
     }
 
     /**
-     * Validate the response and return the decoded JSON. Throws with the
-     * server's `detail` field on non-2xx responses.
+     * Read one thing from the registry.
      *
-     * @return array<int|string, mixed>
+     * Not being configured is a state, not a failure - an installation without an address registry
+     * says so by leaving the address empty, and nobody asked.
+     *
+     * @param \Closure(): \Cake\Http\Client\Response $ask How to ask.
+     * @return \App\Http\Answer Answering with the body as it arrived.
      */
-    private static function decodeOrThrow(Response $response): array
+    private static function read(Closure $ask): Answer
     {
+        if ((string)Configure::read('Addresses.url') === '') {
+            return Answer::notAsked();
+        }
+
+        try {
+            $response = $ask();
+        } catch (Throwable $e) {
+            return Answer::failed(__('Addresses API is unreachable: {0}', $e->getMessage()));
+        }
+
         $data = $response->getJson();
 
         if (!$response->isOk()) {
-            throw new RuntimeException(
-                __(
-                    'Addresses API returned HTTP {0} ({1})',
-                    $response->getStatusCode(),
-                    self::extractError($data) ?? __('Unknown error'),
-                ),
-            );
+            return Answer::failed(__(
+                'Addresses API returned HTTP {0} ({1})',
+                $response->getStatusCode(),
+                self::extractError($data) ?? __('Unknown error'),
+            ));
         }
 
         if (!is_array($data)) {
-            throw new RuntimeException(__('Addresses API returned an invalid response.'));
+            return Answer::failed(__('Addresses API returned an invalid response.'));
         }
 
-        return $data;
+        return Answer::of($data);
     }
 
     /**
@@ -118,57 +126,45 @@ class ApiClient
     /**
      * Liveness/readiness probe.
      *
-     * @return array<string, mixed> { status: "ok"|"degraded", db: "up"|"down" }
+     * @return \App\Http\Answer Answering with { status: "ok"|"degraded", db: "up"|"down" }.
+     * @psalm-suppress PossiblyUnusedMethod
      */
-    public static function health(): array
+    public static function health(): Answer
     {
-        try {
-            $response = self::getRequest(path: 'v1/health', timeout: 5);
-        } catch (Throwable $e) {
-            throw new RuntimeException(
-                __('Addresses API is unreachable: {0}', $e->getMessage()),
-                $e->getCode(),
-                previous: $e,
-            );
-        }
-
-        /** @var array<string, mixed> */
-        return self::decodeOrThrow($response);
+        return self::read(fn(): Response => self::getRequest(path: 'v1/health', timeout: 5));
     }
 
     /**
      * Dataset metadata - row counts and last-refresh timestamps per table.
      *
-     * @return array<string, mixed>
+     * @return \App\Http\Answer Answering with the metadata as the registry wrote it.
      */
-    public static function meta(): array
+    public static function meta(): Answer
     {
-        try {
-            $response = self::getRequest(path: 'v1/meta', timeout: 5);
-        } catch (Throwable $e) {
-            throw new RuntimeException(
-                __('Addresses API is unreachable: {0}', $e->getMessage()),
-                $e->getCode(),
-                previous: $e,
-            );
-        }
-
-        /** @var array<string, mixed> */
-        return self::decodeOrThrow($response);
+        return self::read(fn(): Response => self::getRequest(path: 'v1/meta', timeout: 5));
     }
 
     /**
      * Cached variant of meta(). TTL is governed by the `addresses_api` cache config.
      *
-     * @return array<string, mixed>
+     * @return \App\Http\Answer Answering with the metadata as the registry wrote it.
+     * @psalm-suppress PossiblyUnusedMethod
      */
-    public static function metaFromCache(): array
+    public static function metaFromCache(): Answer
     {
-        return Cache::remember(
-            'addresses_meta',
-            fn(): array => self::meta(),
-            'addresses_api',
-        );
+        $cached = Cache::read('addresses_meta', 'addresses_api');
+        if ($cached !== null) {
+            return Answer::of($cached);
+        }
+
+        $answer = self::meta();
+
+        // What is kept is the body as it arrived, and an answer that never came is not kept at all.
+        if ($answer->ok()) {
+            Cache::write('addresses_meta', $answer->data, 'addresses_api');
+        }
+
+        return $answer;
     }
 
     /**
@@ -178,8 +174,8 @@ class ApiClient
      * standing away from a village is from the nearest house. An empty answer is an answer: it
      * says there is nothing within the radius, not that something went wrong.
      *
-     * @param array<string> $include Optional ?include= values, e.g. ['raw']
-     * @return list<array<string, mixed>> Sorted by ascending distance_m.
+     * @param array<string> $include
+     * @return \App\Http\Answer Answering with addresses, nearest first.
      */
     public static function reverse(
         string $country,
@@ -188,7 +184,7 @@ class ApiClient
         float $radiusM = 500.0,
         int $limit = 10,
         array $include = [],
-    ): array {
+    ): Answer {
         $query = [
             'country' => $country,
             'lat' => $lat,
@@ -200,17 +196,7 @@ class ApiClient
             $query['include'] = implode(',', $include);
         }
 
-        try {
-            $response = self::getRequest(path: 'v1/reverse', query: $query);
-        } catch (Throwable $e) {
-            throw new RuntimeException(
-                __('Addresses API is unreachable: {0}', $e->getMessage()),
-                $e->getCode(),
-                previous: $e,
-            );
-        }
-
-        /** @var list<array<string, mixed>> */
-        return self::decodeOrThrow($response);
+        return self::read(fn(): Response => self::getRequest(path: 'v1/reverse', query: $query))
+            ->map(AddressPayloadNormalizer::addresses(...));
     }
 }
