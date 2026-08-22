@@ -23,7 +23,7 @@ class ApiClient
      * @param array<string, mixed> $data Data to send in the request body
      * @param int $timeout Timeout in seconds
      * @param string $expect The field the answer must carry to be one at all.
-     * @return \App\Http\Answer Answering with the body as it arrived.
+     * @return \App\Http\Answer<array<mixed>>
      */
     private static function ask(string $function, array $data = [], int $timeout = 30, string $expect = ''): Answer
     {
@@ -79,7 +79,7 @@ class ApiClient
      *
      * @param string $host Hostname or IP address of the RouterOS device
      * @param string $community SNMP community string
-     * @return \App\Http\Answer Answering with the reading as the agent took it.
+     * @return \App\Http\Answer<array<mixed>>
      */
     public static function snmpReadRouteros(string $host, string $community): Answer
     {

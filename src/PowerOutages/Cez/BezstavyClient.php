@@ -83,7 +83,7 @@ final class BezstavyClient
      * What is planned in one municipality, or nothing where the question was not answered.
      *
      * @param int $townCode The registry number of the municipality.
-     * @return \App\Http\Answer Answering with what is planned there.
+     * @return \App\Http\Answer<array<string, mixed>>
      */
     public function outagesInTown(int $townCode): Answer
     {
@@ -94,7 +94,7 @@ final class BezstavyClient
      * Read one thing, waiting out being told off.
      *
      * @param string $path What to read.
-     * @return \App\Http\Answer
+     * @return \App\Http\Answer<array<string, mixed>>
      */
     private function read(string $path): Answer
     {
@@ -143,7 +143,7 @@ final class BezstavyClient
      * A question that went unanswered, written down on the way out.
      *
      * @param string $why What went wrong.
-     * @return \App\Http\Answer
+     * @return \App\Http\Answer<never>
      */
     private static function unanswered(string $why): Answer
     {

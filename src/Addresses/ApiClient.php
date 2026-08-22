@@ -68,7 +68,7 @@ class ApiClient
      * says so by leaving the address empty, and nobody asked.
      *
      * @param \Closure(): \Cake\Http\Client\Response $ask How to ask.
-     * @return \App\Http\Answer Answering with the body as it arrived.
+     * @return \App\Http\Answer<array<int|string, mixed>>
      */
     private static function read(Closure $ask): Answer
     {
@@ -126,7 +126,7 @@ class ApiClient
     /**
      * Liveness/readiness probe.
      *
-     * @return \App\Http\Answer Answering with { status: "ok"|"degraded", db: "up"|"down" }.
+     * @return \App\Http\Answer<array<int|string, mixed>>
      * @psalm-suppress PossiblyUnusedMethod
      */
     public static function health(): Answer
@@ -137,7 +137,7 @@ class ApiClient
     /**
      * Dataset metadata - row counts and last-refresh timestamps per table.
      *
-     * @return \App\Http\Answer Answering with the metadata as the registry wrote it.
+     * @return \App\Http\Answer<array<int|string, mixed>>
      */
     public static function meta(): Answer
     {
@@ -147,7 +147,7 @@ class ApiClient
     /**
      * Cached variant of meta(). TTL is governed by the `addresses_api` cache config.
      *
-     * @return \App\Http\Answer Answering with the metadata as the registry wrote it.
+     * @return \App\Http\Answer<array<int|string, mixed>>
      * @psalm-suppress PossiblyUnusedMethod
      */
     public static function metaFromCache(): Answer
@@ -175,7 +175,7 @@ class ApiClient
      * says there is nothing within the radius, not that something went wrong.
      *
      * @param array<string> $include
-     * @return \App\Http\Answer Answering with addresses, nearest first.
+     * @return \App\Http\Answer<\Cake\Collection\CollectionInterface<int, \App\Addresses\Dto\Address>>
      */
     public static function reverse(
         string $country,

@@ -67,7 +67,7 @@ final class DipClient
      * What is planned at one supply point, or nothing where the question was not answered.
      *
      * @param string $ean The EAN of the supply point.
-     * @return \App\Http\Answer Answering with what is planned there.
+     * @return \App\Http\Answer<array<string, mixed>>
      */
     public function outagesAtSupplyPoint(string $ean): Answer
     {
@@ -127,7 +127,7 @@ final class DipClient
      * A question that went unanswered, written down on the way out.
      *
      * @param string $why What went wrong.
-     * @return \App\Http\Answer
+     * @return \App\Http\Answer<never>
      */
     private static function unanswered(string $why): Answer
     {

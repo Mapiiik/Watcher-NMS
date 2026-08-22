@@ -68,7 +68,7 @@ final class ApiClient
     /**
      * The stations registered to us, as the register lists them.
      *
-     * @return \App\Http\Answer Answering with the listing as it arrived.
+     * @return \App\Http\Answer<array<mixed>>
      */
     public function myStations(): Answer
     {
@@ -81,7 +81,7 @@ final class ApiClient
      * @param float $latitude Where to look from.
      * @param float $longitude Where to look from.
      * @param float $kilometres How far to look.
-     * @return \App\Http\Answer Answering with the listing as it arrived.
+     * @return \App\Http\Answer<array<mixed>>
      */
     public function stationsFromPosition(float $latitude, float $longitude, float $kilometres): Answer
     {
@@ -112,7 +112,7 @@ final class ApiClient
      *
      * @param string $path What to read.
      * @param bool $authenticated Whether the reading is one that has to be signed in for.
-     * @return \App\Http\Answer Answering with the body as it arrived.
+     * @return \App\Http\Answer<array<mixed>>
      */
     private function get(string $path, bool $authenticated): Answer
     {
@@ -276,7 +276,7 @@ final class ApiClient
      *
      * @param \Cake\Http\Client\Response $response What the register answered with.
      * @param string $path What was being read, for the message.
-     * @return \App\Http\Answer
+     * @return \App\Http\Answer<array<mixed>>
      */
     private function decode(Response $response, string $path): Answer
     {
