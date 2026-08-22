@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\PowerOutages\Cez;
 
 use App\Http\Answer;
+use App\Http\WritesDownFailuresTrait;
 use Cake\Core\Configure;
 use Cake\Http\Client;
 use Cake\Http\Client\Response;
@@ -23,6 +24,8 @@ use Throwable;
  */
 final class BezstavyClient
 {
+    use WritesDownFailuresTrait;
+
     /**
      * How many questions may go out before they have to be spaced.
      *
@@ -106,7 +109,10 @@ final class BezstavyClient
             $response = $this->request($path);
 
             if ($response === null) {
-                return Answer::failed(sprintf('The distributor is unreachable asking about %s.', $path));
+                return self::unanswered(
+                    sprintf('The distributor is unreachable asking about %s.', $path),
+                    'warning',
+                );
             }
 
             if ($response->getStatusCode() === 429) {
@@ -120,7 +126,7 @@ final class BezstavyClient
                     'The distributor answered %d asking about %s.',
                     $response->getStatusCode(),
                     $path,
-                ));
+                ), 'warning');
             }
 
             $body = $response->getJson();
@@ -129,27 +135,14 @@ final class BezstavyClient
                 return self::unanswered(sprintf(
                     'The distributor answered something that is not an object asking about %s.',
                     $path,
-                ));
+                ), 'warning');
             }
 
             /** @var array<string, mixed> $body */
             return Answer::of($body);
         }
 
-        return self::unanswered(sprintf('The distributor kept asking to be left alone about %s.', $path));
-    }
-
-    /**
-     * A question that went unanswered, written down on the way out.
-     *
-     * @param string $why What went wrong.
-     * @return \App\Http\Answer<never>
-     */
-    private static function unanswered(string $why): Answer
-    {
-        Log::warning($why);
-
-        return Answer::failed($why);
+        return self::unanswered(sprintf('The distributor kept asking to be left alone about %s.', $path), 'warning');
     }
 
     /**

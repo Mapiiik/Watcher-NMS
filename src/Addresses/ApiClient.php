@@ -5,6 +5,7 @@ namespace App\Addresses;
 
 use App\Addresses\Provider\AddressPayloadNormalizer;
 use App\Http\Answer;
+use App\Http\WritesDownFailuresTrait;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Http\Client;
@@ -25,6 +26,8 @@ use Throwable;
  */
 class ApiClient
 {
+    use WritesDownFailuresTrait;
+
     /**
      * Build the configured Cake HTTP client.
      */
@@ -79,13 +82,13 @@ class ApiClient
         try {
             $response = $ask();
         } catch (Throwable $e) {
-            return Answer::failed(__('Addresses API is unreachable: {0}', $e->getMessage()));
+            return self::unanswered(__('Addresses API is unreachable: {0}', $e->getMessage()));
         }
 
         $data = $response->getJson();
 
         if (!$response->isOk()) {
-            return Answer::failed(__(
+            return self::unanswered(__(
                 'Addresses API returned HTTP {0} ({1})',
                 $response->getStatusCode(),
                 self::extractError($data) ?? __('Unknown error'),
@@ -93,7 +96,7 @@ class ApiClient
         }
 
         if (!is_array($data)) {
-            return Answer::failed(__('Addresses API returned an invalid response.'));
+            return self::unanswered(__('Addresses API returned an invalid response.'));
         }
 
         return Answer::of($data);

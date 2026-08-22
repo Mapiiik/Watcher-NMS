@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Rlan;
 
 use App\Http\Answer;
+use App\Http\WritesDownFailuresTrait;
 use Cake\Cache\Cache;
 use Cake\Http\Client;
 use Cake\Http\Client\Response;
@@ -23,6 +24,8 @@ use Throwable;
  */
 final class ApiClient
 {
+    use WritesDownFailuresTrait;
+
     /**
      * How long an access token is kept between runs, at the most.
      *
@@ -286,7 +289,7 @@ final class ApiClient
         if (!$response->isOk()) {
             $error = $body['error'] ?? null;
 
-            return Answer::failed(__(
+            return self::unanswered(__(
                 'The register of stations answered {0} to {1} ({2})',
                 $response->getStatusCode(),
                 $path,

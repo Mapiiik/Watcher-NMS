@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace App\PowerOutages\Cez;
 
 use App\Http\Answer;
+use App\Http\WritesDownFailuresTrait;
 use Cake\Core\Configure;
 use Cake\Http\Client;
-use Cake\Log\Log;
 use Throwable;
 
 /**
@@ -23,6 +23,8 @@ use Throwable;
  */
 final class DipClient
 {
+    use WritesDownFailuresTrait;
+
     /**
      * How long to leave between questions.
      *
@@ -90,14 +92,14 @@ final class DipClient
             return self::unanswered(sprintf(
                 'The portal is unreachable asking about a supply point: %s',
                 $e->getMessage(),
-            ));
+            ), 'warning');
         }
 
         if (!$response->isOk()) {
             return self::unanswered(sprintf(
                 'The portal answered %d asking about a supply point.',
                 $response->getStatusCode(),
-            ));
+            ), 'warning');
         }
 
         $body = $response->getJson();
@@ -105,6 +107,7 @@ final class DipClient
         if (!is_array($body)) {
             return self::unanswered(
                 'The portal answered something that is not an object asking about a supply point.',
+                'warning',
             );
         }
 
@@ -116,24 +119,11 @@ final class DipClient
             return self::unanswered(sprintf(
                 'The portal answered with a status of %d inside the body.',
                 (int)$status,
-            ));
+            ), 'warning');
         }
 
         /** @var array<string, mixed> $body */
         return Answer::of($body);
-    }
-
-    /**
-     * A question that went unanswered, written down on the way out.
-     *
-     * @param string $why What went wrong.
-     * @return \App\Http\Answer<never>
-     */
-    private static function unanswered(string $why): Answer
-    {
-        Log::warning($why);
-
-        return Answer::failed($why);
     }
 
     /**
