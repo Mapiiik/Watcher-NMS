@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\PowerOutages\Cez;
 
+use App\Http\Answer;
 use Cake\Core\Configure;
 use Cake\Http\Client;
 use Cake\Log\Log;
@@ -66,12 +67,12 @@ final class DipClient
      * What is planned at one supply point, or nothing where the question was not answered.
      *
      * @param string $ean The EAN of the supply point.
-     * @return array<string, mixed>|null The answer, or null where there was none.
+     * @return \App\Http\Answer Answering with what is planned there.
      */
-    public function outagesAtSupplyPoint(string $ean): ?array
+    public function outagesAtSupplyPoint(string $ean): Answer
     {
         if ($this->url === '') {
-            return null;
+            return Answer::notAsked();
         }
 
         $this->space();
@@ -86,23 +87,25 @@ final class DipClient
             $response = (new Client(['headers' => $headers, 'timeout' => 30]))
                 ->post($this->url, ['eans' => [$ean]], ['type' => 'json']);
         } catch (Throwable $e) {
-            Log::warning(sprintf('The portal is unreachable asking about a supply point: %s', $e->getMessage()));
-
-            return null;
+            return self::unanswered(sprintf(
+                'The portal is unreachable asking about a supply point: %s',
+                $e->getMessage(),
+            ));
         }
 
         if (!$response->isOk()) {
-            Log::warning(sprintf('The portal answered %d asking about a supply point.', $response->getStatusCode()));
-
-            return null;
+            return self::unanswered(sprintf(
+                'The portal answered %d asking about a supply point.',
+                $response->getStatusCode(),
+            ));
         }
 
         $body = $response->getJson();
 
         if (!is_array($body)) {
-            Log::warning('The portal answered something that is not an object asking about a supply point.');
-
-            return null;
+            return self::unanswered(
+                'The portal answered something that is not an object asking about a supply point.',
+            );
         }
 
         // The portal reports what it thinks of the question inside the answer rather than in the
@@ -110,13 +113,27 @@ final class DipClient
         $status = $body['statusCode'] ?? null;
 
         if (is_numeric($status) && (int)$status !== 200) {
-            Log::warning(sprintf('The portal answered with a status of %d inside the body.', (int)$status));
-
-            return null;
+            return self::unanswered(sprintf(
+                'The portal answered with a status of %d inside the body.',
+                (int)$status,
+            ));
         }
 
         /** @var array<string, mixed> $body */
-        return $body;
+        return Answer::of($body);
+    }
+
+    /**
+     * A question that went unanswered, written down on the way out.
+     *
+     * @param string $why What went wrong.
+     * @return \App\Http\Answer
+     */
+    private static function unanswered(string $why): Answer
+    {
+        Log::warning($why);
+
+        return Answer::failed($why);
     }
 
     /**

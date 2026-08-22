@@ -72,7 +72,7 @@ class BezstavyClientTest extends TestCase
         $this->mockClientGet($this->url(533165), $this->newClientResponse(429, ['Retry-After: 5']));
         $this->mockClientGet($this->url(533165), $this->jsonResponse(['outages' => null]));
 
-        $this->assertSame(['outages' => null], $this->client()->outagesInTown(533165));
+        $this->assertSame(['outages' => null], $this->client()->outagesInTown(533165)->data);
         $this->assertContains(5.0, $this->waits);
     }
 
@@ -88,7 +88,7 @@ class BezstavyClientTest extends TestCase
         $this->mockClientGet($this->url(533165), $this->newClientResponse(429, []));
         $this->mockClientGet($this->url(533165), $this->jsonResponse(['outages' => null]));
 
-        $this->assertSame(['outages' => null], $this->client()->outagesInTown(533165));
+        $this->assertSame(['outages' => null], $this->client()->outagesInTown(533165)->data);
         $this->assertSame([2.0, 4.0], $this->waits);
     }
 
@@ -107,7 +107,7 @@ class BezstavyClientTest extends TestCase
             $this->mockClientGet($this->url(533165), $this->newClientResponse(429, []));
         }
 
-        $this->assertNull($this->client()->outagesInTown(533165));
+        $this->assertTrue($this->client()->outagesInTown(533165)->unanswered());
     }
 
     /**
@@ -120,7 +120,7 @@ class BezstavyClientTest extends TestCase
     {
         $this->mockClientGet($this->url(533165), $this->newClientResponse(500, []));
 
-        $this->assertNull($this->client()->outagesInTown(533165));
+        $this->assertTrue($this->client()->outagesInTown(533165)->unanswered());
     }
 
     /**
@@ -136,7 +136,7 @@ class BezstavyClientTest extends TestCase
             $this->newClientResponse(200, ['Content-Type: application/json'], '"nonsense"'),
         );
 
-        $this->assertNull($this->client()->outagesInTown(533165));
+        $this->assertTrue($this->client()->outagesInTown(533165)->unanswered());
     }
 
     /**
@@ -154,7 +154,7 @@ class BezstavyClientTest extends TestCase
 
         $this->assertSame(
             ['outages' => null, 'outages_in_town' => [['id' => '110061112294']]],
-            $this->client()->outagesInTown(533165),
+            $this->client()->outagesInTown(533165)->data,
         );
     }
 

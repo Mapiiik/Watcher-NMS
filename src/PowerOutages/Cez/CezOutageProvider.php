@@ -56,11 +56,11 @@ final class CezOutageProvider implements PowerOutageProviderInterface
         // The supply points first: they are the answers worth having, they are not metered, and a
         // run cut short by something going wrong will at least have got them.
         foreach ($query->eans as $ean) {
-            $payload = $this->dip->outagesAtSupplyPoint($ean);
+            $answer = $this->dip->outagesAtSupplyPoint($ean);
 
-            $readings[] = $payload === null
-                ? PowerOutageReading::unanswered(PowerOutageScope::forEan($ean))
-                : PowerOutageReading::ofEan($ean, CezPayloadNormalizer::fromEan($payload, $ean));
+            $readings[] = $answer->ok()
+                ? PowerOutageReading::ofEan($ean, CezPayloadNormalizer::fromEan($answer->data, $ean))
+                : PowerOutageReading::unanswered(PowerOutageScope::forEan($ean));
         }
 
         foreach ($query->townCodes as $townCode) {
@@ -100,9 +100,16 @@ final class CezOutageProvider implements PowerOutageProviderInterface
             }
         }
 
-        $payload = $this->bezstavy->outagesInTown($townCode);
+        $answer = $this->bezstavy->outagesInTown($townCode);
 
-        if ($payload !== null && $seconds > 0) {
+        if (!$answer->ok()) {
+            return null;
+        }
+
+        /** @var array<string, mixed> $payload */
+        $payload = $answer->data;
+
+        if ($seconds > 0) {
             Cache::pool('default')->set($key, $payload, $seconds);
         }
 

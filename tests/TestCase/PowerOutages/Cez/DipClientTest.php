@@ -31,7 +31,7 @@ class DipClientTest extends TestCase
         $body = ['data' => [['number' => '110061107633']], 'statusCode' => 200];
         $this->mockClientPost(self::URL, $this->jsonResponse($body));
 
-        $this->assertSame($body, $this->client()->outagesAtSupplyPoint('859182400000001231'));
+        $this->assertSame($body, $this->client()->outagesAtSupplyPoint('859182400000001231')->data);
     }
 
     /**
@@ -47,7 +47,10 @@ class DipClientTest extends TestCase
     {
         $this->mockClientPost(self::URL, $this->jsonResponse(['data' => [], 'statusCode' => 200]));
 
-        $this->assertSame(['data' => [], 'statusCode' => 200], $this->client()->outagesAtSupplyPoint('859182400000001231'));
+        $this->assertSame(
+            ['data' => [], 'statusCode' => 200],
+            $this->client()->outagesAtSupplyPoint('859182400000001231')->data,
+        );
     }
 
     /**
@@ -60,7 +63,7 @@ class DipClientTest extends TestCase
     {
         $this->mockClientPost(self::URL, $this->jsonResponse(['data' => [], 'statusCode' => 500]));
 
-        $this->assertNull($this->client()->outagesAtSupplyPoint('859182400000001231'));
+        $this->assertTrue($this->client()->outagesAtSupplyPoint('859182400000001231')->unanswered());
     }
 
     /**
@@ -73,7 +76,7 @@ class DipClientTest extends TestCase
     {
         $this->mockClientPost(self::URL, $this->newClientResponse(503, []));
 
-        $this->assertNull($this->client()->outagesAtSupplyPoint('859182400000001231'));
+        $this->assertTrue($this->client()->outagesAtSupplyPoint('859182400000001231')->unanswered());
     }
 
     /**
@@ -87,7 +90,11 @@ class DipClientTest extends TestCase
         $client = new DipClient('', '', function (): void {
         });
 
-        $this->assertNull($client->outagesAtSupplyPoint('859182400000001231'));
+        $answer = $client->outagesAtSupplyPoint('859182400000001231');
+
+        // nobody asked, which is not the same as having asked and got nothing back
+        $this->assertFalse($answer->asked);
+        $this->assertFalse($answer->unanswered());
     }
 
     /**

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Rlan;
 
+use App\Http\Answer;
 use Cake\Cache\Cache;
 use Cake\Http\Client;
 use Cake\Http\Client\Response;
@@ -67,9 +68,9 @@ final class ApiClient
     /**
      * The stations registered to us, as the register lists them.
      *
-     * @return array<mixed>
+     * @return \App\Http\Answer Answering with the listing as it arrived.
      */
-    public function myStations(): array
+    public function myStations(): Answer
     {
         return $this->get('/station/all-my-stations', authenticated: true);
     }
@@ -80,9 +81,9 @@ final class ApiClient
      * @param float $latitude Where to look from.
      * @param float $longitude Where to look from.
      * @param float $kilometres How far to look.
-     * @return array<mixed>
+     * @return \App\Http\Answer Answering with the listing as it arrived.
      */
-    public function stationsFromPosition(float $latitude, float $longitude, float $kilometres): array
+    public function stationsFromPosition(float $latitude, float $longitude, float $kilometres): Answer
     {
         // The distance is refused unless it is written with a decimal point.
         return $this->get(
@@ -111,9 +112,9 @@ final class ApiClient
      *
      * @param string $path What to read.
      * @param bool $authenticated Whether the reading is one that has to be signed in for.
-     * @return array<mixed>
+     * @return \App\Http\Answer Answering with the body as it arrived.
      */
-    private function get(string $path, bool $authenticated): array
+    private function get(string $path, bool $authenticated): Answer
     {
         $response = $this->send($path, $authenticated);
 
@@ -243,7 +244,12 @@ final class ApiClient
             );
         }
 
-        $data = $this->decode($response, '/user/login')['data'] ?? null;
+        $answer = $this->decode($response, '/user/login');
+        if (!$answer->ok()) {
+            throw new RuntimeException((string)$answer->failure);
+        }
+
+        $data = $answer->data['data'] ?? null;
         $data = is_array($data) ? $data : [];
 
         $userId = $data['id'] ?? null;
@@ -270,9 +276,9 @@ final class ApiClient
      *
      * @param \Cake\Http\Client\Response $response What the register answered with.
      * @param string $path What was being read, for the message.
-     * @return array<mixed>
+     * @return \App\Http\Answer
      */
-    private function decode(Response $response, string $path): array
+    private function decode(Response $response, string $path): Answer
     {
         $body = $response->getJson();
         $body = is_array($body) ? $body : [];
@@ -280,7 +286,7 @@ final class ApiClient
         if (!$response->isOk()) {
             $error = $body['error'] ?? null;
 
-            throw new RuntimeException(__(
+            return Answer::failed(__(
                 'The register of stations answered {0} to {1} ({2})',
                 $response->getStatusCode(),
                 $path,
@@ -288,6 +294,6 @@ final class ApiClient
             ));
         }
 
-        return $body;
+        return Answer::of($body);
     }
 }

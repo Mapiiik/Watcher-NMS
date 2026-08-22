@@ -7,6 +7,7 @@ use App\Rlan\ApiClient;
 use App\Rlan\Dto\RlanStationData;
 use Cake\I18n\DateTime;
 use Override;
+use RuntimeException;
 
 /**
  * The stations of the register, read from the register.
@@ -54,7 +55,13 @@ final class RlanStationProviderApi implements RlanStationProviderInterface
     #[Override]
     public function read(): array
     {
-        $stations = RlanStationPayloadNormalizer::stations($this->client->myStations());
+        $listing = $this->client->myStations();
+
+        if (!$listing->ok()) {
+            throw new RuntimeException((string)$listing->failure);
+        }
+
+        $stations = RlanStationPayloadNormalizer::stations($listing->data);
 
         if ($stations === []) {
             return [];
@@ -94,11 +101,17 @@ final class RlanStationProviderApi implements RlanStationProviderInterface
 
             $queries++;
 
-            $found = RlanStationPayloadNormalizer::parameters($this->client->stationsFromPosition(
+            $nearby = $this->client->stationsFromPosition(
                 (float)$station->latitude,
                 (float)$station->longitude,
                 self::SWEEP_RADIUS_KILOMETRES,
-            ));
+            );
+
+            if (!$nearby->ok()) {
+                throw new RuntimeException((string)$nearby->failure);
+            }
+
+            $found = RlanStationPayloadNormalizer::parameters($nearby->data);
 
             // Everything of ours that stands inside the circle has now been asked about, whether
             // the register published anything for it or not.

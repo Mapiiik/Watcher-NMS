@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\PowerOutages\Cez;
 
+use App\Http\Answer;
 use Cake\Core\Configure;
 use Cake\Http\Client;
 use Cake\Http\Client\Response;
@@ -82,9 +83,9 @@ final class BezstavyClient
      * What is planned in one municipality, or nothing where the question was not answered.
      *
      * @param int $townCode The registry number of the municipality.
-     * @return array<string, mixed>|null The answer, or null where there was none.
+     * @return \App\Http\Answer Answering with what is planned there.
      */
-    public function outagesInTown(int $townCode): ?array
+    public function outagesInTown(int $townCode): Answer
     {
         return $this->read('/cezd/api/inspecttown/' . $townCode);
     }
@@ -93,15 +94,19 @@ final class BezstavyClient
      * Read one thing, waiting out being told off.
      *
      * @param string $path What to read.
-     * @return array<string, mixed>|null
+     * @return \App\Http\Answer
      */
-    private function read(string $path): ?array
+    private function read(string $path): Answer
     {
+        if ($this->url === '') {
+            return Answer::notAsked();
+        }
+
         for ($attempt = 1; $attempt <= self::RATE_LIMIT_ATTEMPTS; $attempt++) {
             $response = $this->request($path);
 
             if ($response === null) {
-                return null;
+                return Answer::failed(sprintf('The distributor is unreachable asking about %s.', $path));
             }
 
             if ($response->getStatusCode() === 429) {
@@ -111,33 +116,40 @@ final class BezstavyClient
             }
 
             if (!$response->isOk()) {
-                Log::warning(sprintf(
+                return self::unanswered(sprintf(
                     'The distributor answered %d asking about %s.',
                     $response->getStatusCode(),
                     $path,
                 ));
-
-                return null;
             }
 
             $body = $response->getJson();
 
             if (!is_array($body)) {
-                Log::warning(sprintf(
+                return self::unanswered(sprintf(
                     'The distributor answered something that is not an object asking about %s.',
                     $path,
                 ));
-
-                return null;
             }
 
             /** @var array<string, mixed> $body */
-            return $body;
+            return Answer::of($body);
         }
 
-        Log::warning(sprintf('The distributor kept asking to be left alone about %s.', $path));
+        return self::unanswered(sprintf('The distributor kept asking to be left alone about %s.', $path));
+    }
 
-        return null;
+    /**
+     * A question that went unanswered, written down on the way out.
+     *
+     * @param string $why What went wrong.
+     * @return \App\Http\Answer
+     */
+    private static function unanswered(string $why): Answer
+    {
+        Log::warning($why);
+
+        return Answer::failed($why);
     }
 
     /**
