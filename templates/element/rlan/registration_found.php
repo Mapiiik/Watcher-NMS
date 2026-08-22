@@ -36,7 +36,7 @@ $explanation = match ($result) {
     title="<?= h($explanation) ?>"
 >
     <?php if ($station === null) : ?>
-        <?= __('None') ?>
+        <?= __x('registered station', 'None') ?>
     <?php else : ?>
         <?= h($station) ?><br>
         <small><?= h($stationType) ?></small>

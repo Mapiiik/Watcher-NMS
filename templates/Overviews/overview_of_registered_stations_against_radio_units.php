@@ -115,7 +115,7 @@ use App\Rlan\RegisteredStationComparison;
                             color: var(--color-message-error-text);"
                         title="<?= h(__('No radio unit records this station.')) ?>"
                     >
-                        <?= __('None') ?>
+                        <?= __x('radio unit', 'None') ?>
                     </td>
                     <?php else : ?>
                     <td>

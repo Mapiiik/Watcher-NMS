@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-22 17:37+0200\n"
+"POT-Creation-Date: 2026-08-22 17:58+0200\n"
 "PO-Revision-Date: 2026-08-22 17:39+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -501,9 +501,7 @@ msgstr ""
 
 #: src/Controller/AccessPointContactsController.php:232
 msgid "The access point contacts could not be updated. Please, try again."
-msgstr ""
-"Kontakty přístupového bodu se nepodařilo aktualizovat. Zkuste to prosím "
-"znovu."
+msgstr "Kontakty přístupového bodu nelze aktualizovat. Zkuste to prosím znovu."
 
 #: src/Controller/AccessPointContactsController.php:236
 msgid "The access point contacts have been updated."
@@ -715,7 +713,7 @@ msgstr "Platba pronajímateli byla uložena."
 #: src/Controller/LandlordPaymentsController.php:102
 #: src/Controller/LandlordPaymentsController.php:133
 msgid "The landlord payment could not be saved. Please, try again."
-msgstr "Platbu pronajímateli nebylo možné uložit. Zkuste to prosím znovu."
+msgstr "Platbu pronajímateli nelze uložit. Zkuste to prosím znovu."
 
 #: src/Controller/LandlordPaymentsController.php:156
 msgid "The landlord payment has been deleted."
@@ -723,7 +721,7 @@ msgstr "Platba pronajímateli byla odstraněna."
 
 #: src/Controller/LandlordPaymentsController.php:159
 msgid "The landlord payment could not be deleted. Please, try again."
-msgstr "Platbu pronajímateli nebylo možné smazat. Zkuste to prosím znovu."
+msgstr "Platbu pronajímateli nelze odstranit. Zkuste to prosím znovu."
 
 #: src/Controller/ManufacturersController.php:78
 #: src/Controller/ManufacturersController.php:102
@@ -751,7 +749,7 @@ msgstr "Účel platby byl uložen."
 #: src/Controller/PaymentPurposesController.php:83
 #: src/Controller/PaymentPurposesController.php:107
 msgid "The payment purpose could not be saved. Please, try again."
-msgstr "Účel platby nebylo možné uložit. Zkuste to prosím znovu."
+msgstr "Účel platby nelze uložit. Zkuste to prosím znovu."
 
 #: src/Controller/PaymentPurposesController.php:126
 msgid "The payment purpose has been deleted."
@@ -759,7 +757,7 @@ msgstr "Účel platby byl vymazán."
 
 #: src/Controller/PaymentPurposesController.php:129
 msgid "The payment purpose could not be deleted. Please, try again."
-msgstr "Účel platby nebylo možné vymazat. Zkuste to prosím znovu."
+msgstr "Účel platby nelze odstranit. Zkuste to prosím znovu."
 
 #: src/Controller/PowerSuppliesController.php:97
 #: src/Controller/PowerSuppliesController.php:126
@@ -970,7 +968,7 @@ msgstr "Úkol byl uložen."
 #: src/Controller/TasksController.php:444
 #: src/Controller/TasksController.php:519
 msgid "The task could not be saved. Please, try again."
-msgstr "Úkol nelze uložit. Prosím, zkuste to znovu."
+msgstr "Úkol nelze uložit. Zkuste to prosím znovu."
 
 #: src/Controller/TasksController.php:570
 msgid "The task has been deleted."
@@ -978,7 +976,7 @@ msgstr "Úkol byl odstraněn."
 
 #: src/Controller/TasksController.php:573
 msgid "The task could not be deleted. Please, try again."
-msgstr "Úkol nelze odstranit. Prosím, zkuste to znovu."
+msgstr "Úkol nelze odstranit. Zkuste to prosím znovu."
 
 #: src/Controller/TasksController.php:618
 msgid ""
@@ -1179,7 +1177,7 @@ msgstr "Nalezeno pouze bez adresy"
 
 #: src/Model/Table/AccessPointContactsTable.php:126
 msgid "The phone number is not valid."
-msgstr "Toto telefonní číslo není platné."
+msgstr "Telefonní číslo není platné."
 
 #: src/Model/Table/AccessPointsTable.php:159
 msgid "This is not a valid EAN of a supply point."
@@ -1783,13 +1781,13 @@ msgstr "Měsíc odečítání elektroměru"
 #: templates/CustomerPoints/view.php:47 templates/RadioUnits/export.php:41
 #: templates/RouterosDevices/export.php:44
 msgid "Gps Y"
-msgstr "Gps Y"
+msgstr "GPS Y"
 
 #: templates/AccessPointTypes/view.php:75 templates/AccessPoints/view.php:109
 #: templates/CustomerPoints/view.php:52 templates/RadioUnits/export.php:42
 #: templates/RouterosDevices/export.php:45
 msgid "Gps X"
-msgstr "Gps X"
+msgstr "GPS X"
 
 #: templates/AccessPointTypes/view.php:76 templates/AccessPoints/index.php:49
 #: templates/AccessPoints/view.php:114 templates/CustomerPoints/index.php:33
@@ -2965,9 +2963,14 @@ msgid "No radio unit records this station."
 msgstr "Tuto stanici neeviduje žádná rádiová jednotka."
 
 #: templates/Overviews/overview_of_registered_stations_against_radio_units.php:118
-#: templates/element/rlan/registration_found.php:39
+msgctxt "radio unit"
 msgid "None"
-msgstr "Žádné"
+msgstr "Žádná"
+
+#: templates/element/rlan/registration_found.php:39
+msgctxt "registered station"
+msgid "None"
+msgstr "Žádná"
 
 #: templates/PaymentPurposes/add.php:12 templates/PaymentPurposes/edit.php:20
 #: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:76
@@ -3649,7 +3652,7 @@ msgstr "Datum přijetí"
 #: templates/Tasks/view.php:90 templates/element/Dashboard/task_list.php:58
 #: templates/email/html/task_notification.php:80
 msgid "Estimated Date"
-msgstr "Předpokládaný datum řešení"
+msgstr "Předpokládané datum řešení"
 
 #: templates/Tasks/view.php:94 templates/email/html/task_notification.php:84
 msgid "Critical Date"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-22 17:37+0200\n"
+"POT-Creation-Date: 2026-08-22 17:58+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -3194,7 +3194,12 @@ msgid "No radio unit records this station."
 msgstr ""
 
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:118
+msgctxt "radio unit"
+msgid "None"
+msgstr ""
+
 #: ./templates/element/rlan/registration_found.php:39
+msgctxt "registered station"
 msgid "None"
 msgstr ""
 
