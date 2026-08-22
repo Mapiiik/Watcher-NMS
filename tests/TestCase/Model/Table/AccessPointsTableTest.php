@@ -5,7 +5,11 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Entity\AccessPoint;
 use App\Model\Table\AccessPointsTable;
+use App\Test\Traits\ConfigureTestTrait;
+use App\Test\Traits\IdentityColumnTrait;
 use App\Test\Traits\TableTestTrait;
+use Cake\Datasource\EntityInterface;
+use Cake\Http\TestSuite\HttpClientTrait;
 use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -16,6 +20,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
  */
 class AccessPointsTableTest extends TestCase
 {
+    use ConfigureTestTrait;
+    use HttpClientTrait;
+    use IdentityColumnTrait;
     use TableTestTrait;
 
     /**
@@ -51,6 +58,9 @@ class AccessPointsTableTest extends TestCase
         'app.CustomerConnections',
         'app.DeviceTypes',
         'app.RouterosDevices',
+        'app.TaskStates',
+        'app.TaskTypes',
+        'app.Tasks',
     ];
 
     /**
@@ -64,6 +74,10 @@ class AccessPointsTableTest extends TestCase
         parent::setUp();
         $config = $this->getTableLocator()->exists('AccessPoints') ? [] : ['className' => AccessPointsTable::class];
         $this->AccessPoints = $this->getTableLocator()->get('AccessPoints', $config);
+
+        // The tests say what the other application is for the length of them: an installation's
+        // own address would send them at whatever stands behind it.
+        $this->withConfigure(['Crm.url' => 'https://crm.example.com', 'Crm.key' => 'secret']);
     }
 
     /**
@@ -76,6 +90,8 @@ class AccessPointsTableTest extends TestCase
     {
         /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->AccessPoints);
+
+        $this->restoreConfigure();
 
         parent::tearDown();
     }
@@ -102,6 +118,168 @@ class AccessPointsTableTest extends TestCase
     public function testBuildRules(): void
     {
         $this->assertDanglingReferencesAreRefused($this->AccessPoints);
+    }
+
+    /**
+     * A place still carrying a task does not go.
+     *
+     * The task holds the place by a real foreign key, so before this the delete came back as an
+     * exception out of the database rather than as a refusal - and what the operator was shown
+     * was a failure of the application, not an answer.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::buildRules()
+     */
+    public function testAPlaceWithATaskOnItIsNotDeleted(): void
+    {
+        $place = $this->place();
+        $this->taskAt($place);
+
+        $this->assertFalse($this->AccessPoints->delete($place));
+        $this->assertNotSame([], $place->getError('tasks'));
+    }
+
+    /**
+     * Neither does one that another place stands under.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::buildRules()
+     */
+    public function testAPlaceWithAnotherOneUnderItIsNotDeleted(): void
+    {
+        $place = $this->place();
+        $this->place(['parent_access_point_id' => $place->get('id')]);
+
+        $this->assertFalse($this->AccessPoints->delete($place));
+        $this->assertNotSame([], $place->getError('child_access_points'));
+    }
+
+    /**
+     * A place nothing hangs on does go, which is what says the two refusals above are about what
+     * hangs on it rather than about deleting at all.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::buildRules()
+     */
+    public function testAPlaceNothingHangsOnIsDeleted(): void
+    {
+        $place = $this->place();
+        $this->answerWithReferences($place, ['contracts' => 0, 'tasks' => 0]);
+
+        $this->assertTrue($this->AccessPoints->delete($place));
+    }
+
+    /**
+     * A place the other application still names does not go either, however empty it looks here.
+     *
+     * @return void
+     * @link \App\Model\Rule\NotReferencedInCrmRule::__invoke()
+     */
+    public function testAPlaceTheOtherApplicationStillNamesIsNotDeleted(): void
+    {
+        $place = $this->place();
+        $this->answerWithReferences($place, ['contracts' => 2, 'tasks' => 0]);
+
+        $this->assertFalse($this->AccessPoints->delete($place));
+        $this->assertNotSame([], $place->getError('id'));
+    }
+
+    /**
+     * Nor does one the other application could not be asked about. A save that cannot be checked
+     * goes through; a delete that cannot be checked is the one that cannot be taken back.
+     *
+     * @return void
+     * @link \App\Model\Rule\NotReferencedInCrmRule::__invoke()
+     */
+    public function testAPlaceIsNotDeletedWhileTheOtherApplicationSaysNothing(): void
+    {
+        $place = $this->place();
+        $this->mockClientGet($this->referencesUrl($place), $this->newClientResponse(500));
+
+        $this->assertFalse($this->AccessPoints->delete($place));
+        $this->assertNotSame([], $place->getError('id'));
+    }
+
+    /**
+     * An installation that was never given a customer relationship management is not stopped by
+     * one - there is nothing over there to leave pointing nowhere.
+     *
+     * @return void
+     * @link \App\Model\Rule\NotReferencedInCrmRule::__invoke()
+     */
+    public function testAPlaceGoesWhereThereIsNoOtherApplication(): void
+    {
+        $this->withConfigure(['Crm.url' => '', 'Crm.key' => '']);
+
+        $this->assertTrue($this->AccessPoints->delete($this->place()));
+    }
+
+    /**
+     * Let the other application answer with what it holds against one place.
+     *
+     * @param \Cake\Datasource\EntityInterface $place The place being asked about.
+     * @param array<string, int> $references What it holds, by what the records are.
+     * @return void
+     */
+    private function answerWithReferences(EntityInterface $place, array $references): void
+    {
+        $this->mockClientGet(
+            $this->referencesUrl($place),
+            $this->newClientResponse(
+                200,
+                ['Content-Type: application/json'],
+                (string)json_encode(['references' => $references]),
+            ),
+        );
+    }
+
+    /**
+     * Where the other application is asked about one place, spelled the way the client asks.
+     *
+     * @param \Cake\Datasource\EntityInterface $place The place being asked about.
+     * @return string
+     */
+    private function referencesUrl(EntityInterface $place): string
+    {
+        return 'https://crm.example.com/api/access-points/' . $place->get('id') . '/references.json?'
+            . http_build_query(['api_key' => 'secret'], '', '&', PHP_QUERY_RFC3986);
+    }
+
+    /**
+     * A place of the network with nothing on it but a name.
+     *
+     * @param array<string, mixed> $data Anything the test wants said about it.
+     * @return \Cake\Datasource\EntityInterface
+     */
+    private function place(array $data = []): EntityInterface
+    {
+        return $this->AccessPoints->saveOrFail(
+            $this->AccessPoints->newEntity($data + ['name' => 'Written by the test']),
+        );
+    }
+
+    /**
+     * A task filed at a place, of whatever type and state the fixtures happen to carry.
+     *
+     * @param \Cake\Datasource\EntityInterface $place The place it is to be done at.
+     * @return void
+     */
+    private function taskAt(EntityInterface $place): void
+    {
+        $tasks = $this->getTableLocator()->get('Tasks');
+        $written = $tasks->find()->firstOrFail();
+
+        // the fixtures write the identity column with the values they carry, which leaves the
+        // identity itself where it started
+        $this->advanceIdentity('Tasks', 'nid');
+
+        $tasks->saveOrFail($tasks->newEntity([
+            'task_state_id' => $written->get('task_state_id'),
+            'task_type_id' => $written->get('task_type_id'),
+            'access_point_id' => $place->get('id'),
+            'subject' => 'Written by the test',
+            'priority' => 1,
+        ]));
     }
 
     /**

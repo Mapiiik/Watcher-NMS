@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Rule\NotReferencedInCrmRule;
 use App\Model\Table\Traits\ArchiveTrait;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
@@ -73,6 +74,12 @@ class AccessPointsTable extends AppTable
         $this->hasMany('AccessPointContacts', [
             'foreignKey' => 'access_point_id',
         ]);
+        // A place can stand under another one, and the one underneath keeps its own everything -
+        // so the one above is not to go out from under it.
+        $this->hasMany('ChildAccessPoints', [
+            'className' => 'AccessPoints',
+            'foreignKey' => 'parent_access_point_id',
+        ]);
         $this->hasMany('CustomerConnections', [
             'foreignKey' => 'access_point_id',
         ]);
@@ -92,6 +99,9 @@ class AccessPointsTable extends AppTable
             'foreignKey' => 'access_point_id',
         ]);
         $this->hasMany('RouterosDevices', [
+            'foreignKey' => 'access_point_id',
+        ]);
+        $this->hasMany('Tasks', [
             'foreignKey' => 'access_point_id',
         ]);
         // Both of these are worked out rather than kept by hand, and both go when the access point
@@ -538,6 +548,7 @@ class AccessPointsTable extends AppTable
         );
 
         $rules->addDelete($rules->isNotLinkedTo('AccessPointContacts'));
+        $rules->addDelete($rules->isNotLinkedTo('ChildAccessPoints'));
         $rules->addDelete($rules->isNotLinkedTo('CustomerConnections'));
         $rules->addDelete($rules->isNotLinkedTo('ElectricityMeterReadings'));
         $rules->addDelete($rules->isNotLinkedTo('IpAddressRanges'));
@@ -545,6 +556,15 @@ class AccessPointsTable extends AppTable
         $rules->addDelete($rules->isNotLinkedTo('PowerSupplies'));
         $rules->addDelete($rules->isNotLinkedTo('RadioUnits'));
         $rules->addDelete($rules->isNotLinkedTo('RouterosDevices'));
+        $rules->addDelete($rules->isNotLinkedTo('Tasks'));
+
+        // What the customer relationship management holds is not ours to look in, so the last
+        // word on letting a place go is asked for rather than looked up.
+        $rules->addDelete(
+            new NotReferencedInCrmRule(),
+            'notReferencedInCrm',
+            ['errorField' => 'id'],
+        );
 
         return $rules;
     }
