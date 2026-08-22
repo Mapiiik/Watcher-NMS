@@ -42,6 +42,11 @@ final class ApiClient
     private const RATE_LIMIT_MAXIMUM_WAIT = 60;
 
     /**
+     * What this service is called in the log.
+     */
+    private const SERVICE = 'The register of stations';
+
+    /**
      * The token in hand for the length of one run.
      */
     private ?string $accessToken = null;
@@ -168,7 +173,7 @@ final class ApiClient
             return (new Client(['headers' => $headers, 'timeout' => 60]))->get($url);
         } catch (Throwable $e) {
             throw new RuntimeException(
-                __('The register of stations is unreachable: {0}', $e->getMessage()),
+                (string)self::unreachable(self::SERVICE, $url, $e->getMessage())->failure,
                 $e->getCode(),
                 previous: $e,
             );
@@ -241,7 +246,7 @@ final class ApiClient
                 );
         } catch (Throwable $e) {
             throw new RuntimeException(
-                __('The register of stations is unreachable: {0}', $e->getMessage()),
+                (string)self::unreachable(self::SERVICE, $this->url . '/user/login', $e->getMessage())->failure,
                 $e->getCode(),
                 previous: $e,
             );
@@ -289,12 +294,12 @@ final class ApiClient
         if (!$response->isOk()) {
             $error = $body['error'] ?? null;
 
-            return self::unanswered(__(
-                'The register of stations answered {0} to {1} ({2})',
+            return self::refused(
+                self::SERVICE,
+                $this->url . $path,
                 $response->getStatusCode(),
-                $path,
-                is_scalar($error) ? (string)$error : __('Unknown error'),
-            ));
+                is_scalar($error) ? (string)$error : null,
+            );
         }
 
         return Answer::of($body);

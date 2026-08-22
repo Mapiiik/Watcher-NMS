@@ -51,6 +51,11 @@ final class BezstavyClient
     private const RATE_LIMIT_ATTEMPTS = 3;
 
     /**
+     * What this service is called in the log.
+     */
+    private const SERVICE = 'The distributor';
+
+    /**
      * How many questions have gone out during this run.
      */
     private int $asked = 0;
@@ -109,10 +114,7 @@ final class BezstavyClient
             $response = $this->request($path);
 
             if ($response === null) {
-                return self::unanswered(
-                    sprintf('The distributor is unreachable asking about %s.', $path),
-                    'warning',
-                );
+                return self::unreachable(self::SERVICE, $this->url . $path, 'no reply', 'warning');
             }
 
             if ($response->getStatusCode() === 429) {
@@ -122,27 +124,31 @@ final class BezstavyClient
             }
 
             if (!$response->isOk()) {
-                return self::unanswered(sprintf(
-                    'The distributor answered %d asking about %s.',
+                return self::refused(
+                    self::SERVICE,
+                    $this->url . $path,
                     $response->getStatusCode(),
-                    $path,
-                ), 'warning');
+                    null,
+                    'warning',
+                );
             }
 
             $body = $response->getJson();
 
             if (!is_array($body)) {
-                return self::unanswered(sprintf(
-                    'The distributor answered something that is not an object asking about %s.',
-                    $path,
-                ), 'warning');
+                return self::unexpected(self::SERVICE, $this->url . $path, 'not an object', 'warning');
             }
 
             /** @var array<string, mixed> $body */
             return Answer::of($body);
         }
 
-        return self::unanswered(sprintf('The distributor kept asking to be left alone about %s.', $path), 'warning');
+        return self::unexpected(
+            self::SERVICE,
+            $this->url . $path,
+            'it kept asking to be left alone',
+            'warning',
+        );
     }
 
     /**

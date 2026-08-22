@@ -29,6 +29,11 @@ class ApiClient
     use WritesDownFailuresTrait;
 
     /**
+     * What this service is called in the log.
+     */
+    private const SERVICE = 'The Addresses API';
+
+    /**
      * Build the configured Cake HTTP client.
      */
     private static function http(int $timeout = 30): Client
@@ -71,32 +76,31 @@ class ApiClient
      * says so by leaving the address empty, and nobody asked.
      *
      * @param \Closure(): \Cake\Http\Client\Response $ask How to ask.
+     * @param string $path What is being read, for the message.
      * @return \App\Http\Answer<array<int|string, mixed>>
      */
-    private static function read(Closure $ask): Answer
+    private static function read(Closure $ask, string $path): Answer
     {
         if ((string)Configure::read('Addresses.url') === '') {
             return Answer::notAsked();
         }
 
+        $where = self::url($path);
+
         try {
             $response = $ask();
         } catch (Throwable $e) {
-            return self::unanswered(__('Addresses API is unreachable: {0}', $e->getMessage()));
+            return self::unreachable(self::SERVICE, $where, $e->getMessage());
         }
 
         $data = $response->getJson();
 
         if (!$response->isOk()) {
-            return self::unanswered(__(
-                'Addresses API returned HTTP {0} ({1})',
-                $response->getStatusCode(),
-                self::extractError($data) ?? __('Unknown error'),
-            ));
+            return self::refused(self::SERVICE, $where, $response->getStatusCode(), self::extractError($data));
         }
 
         if (!is_array($data)) {
-            return self::unanswered(__('Addresses API returned an invalid response.'));
+            return self::unexpected(self::SERVICE, $where, 'not an object');
         }
 
         return Answer::of($data);
@@ -134,7 +138,7 @@ class ApiClient
      */
     public static function health(): Answer
     {
-        return self::read(fn(): Response => self::getRequest(path: 'v1/health', timeout: 5));
+        return self::read(fn(): Response => self::getRequest(path: 'v1/health', timeout: 5), 'v1/health');
     }
 
     /**
@@ -144,7 +148,7 @@ class ApiClient
      */
     public static function meta(): Answer
     {
-        return self::read(fn(): Response => self::getRequest(path: 'v1/meta', timeout: 5));
+        return self::read(fn(): Response => self::getRequest(path: 'v1/meta', timeout: 5), 'v1/meta');
     }
 
     /**
@@ -199,7 +203,7 @@ class ApiClient
             $query['include'] = implode(',', $include);
         }
 
-        return self::read(fn(): Response => self::getRequest(path: 'v1/reverse', query: $query))
+        return self::read(fn(): Response => self::getRequest(path: 'v1/reverse', query: $query), 'v1/reverse')
             ->map(AddressPayloadNormalizer::addresses(...));
     }
 }

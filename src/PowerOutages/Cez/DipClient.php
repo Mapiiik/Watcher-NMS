@@ -34,6 +34,11 @@ final class DipClient
     private const GAP_SECONDS = 0.25;
 
     /**
+     * What this service is called in the log.
+     */
+    private const SERVICE = 'The distributor';
+
+    /**
      * How many questions have gone out during this run.
      */
     private int $asked = 0;
@@ -89,26 +94,17 @@ final class DipClient
             $response = (new Client(['headers' => $headers, 'timeout' => 30]))
                 ->post($this->url, ['eans' => [$ean]], ['type' => 'json']);
         } catch (Throwable $e) {
-            return self::unanswered(sprintf(
-                'The portal is unreachable asking about a supply point: %s',
-                $e->getMessage(),
-            ), 'warning');
+            return self::unreachable(self::SERVICE, $this->url, $e->getMessage(), 'warning');
         }
 
         if (!$response->isOk()) {
-            return self::unanswered(sprintf(
-                'The portal answered %d asking about a supply point.',
-                $response->getStatusCode(),
-            ), 'warning');
+            return self::refused(self::SERVICE, $this->url, $response->getStatusCode(), null, 'warning');
         }
 
         $body = $response->getJson();
 
         if (!is_array($body)) {
-            return self::unanswered(
-                'The portal answered something that is not an object asking about a supply point.',
-                'warning',
-            );
+            return self::unexpected(self::SERVICE, $this->url, 'not an object', 'warning');
         }
 
         // The portal reports what it thinks of the question inside the answer rather than in the
@@ -116,10 +112,12 @@ final class DipClient
         $status = $body['statusCode'] ?? null;
 
         if (is_numeric($status) && (int)$status !== 200) {
-            return self::unanswered(sprintf(
-                'The portal answered with a status of %d inside the body.',
-                (int)$status,
-            ), 'warning');
+            return self::unexpected(
+                self::SERVICE,
+                $this->url,
+                sprintf('a status of %d inside the body', (int)$status),
+                'warning',
+            );
         }
 
         /** @var array<string, mixed> $body */
