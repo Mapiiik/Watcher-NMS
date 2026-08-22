@@ -183,7 +183,7 @@ class AccessPointsControllerTest extends TestCase
         $this->get('/access-points/view/3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71');
 
         $this->assertResponseOk();
-        $this->assertResponseNotContains(__('Check for a Power Failure'));
+        $this->assertResponseNotContains(__('Check for a Fault'));
         $this->assertResponseNotContains(__('Check for a Planned Outage'));
     }
 

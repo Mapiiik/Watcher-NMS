@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-22 17:12+0200\n"
+"POT-Creation-Date: 2026-08-22 17:37+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -3961,7 +3961,7 @@ msgid "Text"
 msgstr ""
 
 #: ./templates/element/AccessPoints/distributor_links.php:37
-msgid "Check for a Power Failure"
+msgid "Check for a Fault"
 msgstr ""
 
 #: ./templates/element/AccessPoints/distributor_links.php:38
@@ -3969,7 +3969,7 @@ msgid "Check for a Planned Outage"
 msgstr ""
 
 #: ./templates/element/AccessPoints/distributor_links.php:49
-msgid "At the Distributor"
+msgid "At the Electricity Distributor"
 msgstr ""
 
 #: ./templates/element/AccessPoints/power_outages.php:26

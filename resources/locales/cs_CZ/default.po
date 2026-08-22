@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-22 17:12+0200\n"
-"PO-Revision-Date: 2026-08-22 17:22+0200\n"
+"POT-Creation-Date: 2026-08-22 17:37+0200\n"
+"PO-Revision-Date: 2026-08-22 17:39+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -242,7 +242,7 @@ msgstr "Kde"
 
 #: src/Command/PowerOutagesReportCommand.php:188
 msgid "Planned power outages over our access points"
-msgstr "Plánované odstávky nad našimi přístupovými body"
+msgstr "Plánované odstávky elektřiny nad našimi přístupovými body"
 
 #: src/Command/PowerOutagesReportCommand.php:208
 msgid "The planned outages have been reported."
@@ -1029,7 +1029,7 @@ msgstr "Elektroměry k odečtení"
 #: src/Dashboard/Card/PowerOutagesCard.php:43
 #: templates/AccessPoints/view.php:162
 msgid "Planned Power Outages"
-msgstr "Plánované odstávky"
+msgstr "Plánované odstávky elektřiny"
 
 #: src/Dashboard/Card/RadarInterferencesCard.php:40
 msgid "Our Devices Interfering with Radar"
@@ -3668,7 +3668,7 @@ msgid "Text"
 msgstr "Text"
 
 #: templates/element/AccessPoints/distributor_links.php:37
-msgid "Check for a Power Failure"
+msgid "Check for a Fault"
 msgstr "Zkontrolovat poruchu"
 
 #: templates/element/AccessPoints/distributor_links.php:38
@@ -3676,8 +3676,8 @@ msgid "Check for a Planned Outage"
 msgstr "Ověřit plánovanou odstávku"
 
 #: templates/element/AccessPoints/distributor_links.php:49
-msgid "At the Distributor"
-msgstr "U distributora"
+msgid "At the Electricity Distributor"
+msgstr "U distributora elektřiny"
 
 #: templates/element/AccessPoints/power_outages.php:26
 msgid ""

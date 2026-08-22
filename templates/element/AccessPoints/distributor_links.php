@@ -34,7 +34,7 @@ $addressParameter = 'jlAddress';
 $registryNumber = $accessPoint->getNearestAddressRegistryNumber();
 
 $pages = [
-    __('Check for a Power Failure') => trim((string)Configure::read('PowerOutages.faultsUrl')),
+    __('Check for a Fault') => trim((string)Configure::read('PowerOutages.faultsUrl')),
     __('Check for a Planned Outage') => trim((string)Configure::read('PowerOutages.plannedUrl')),
 ];
 $pages = array_filter($pages, static fn(string $url): bool => $url !== '');
@@ -46,7 +46,7 @@ if (!Configure::read('PowerOutages.enabled') || $registryNumber === null || $pag
 }
 ?>
 <tr>
-    <th><?= __('At the Distributor') ?></th>
+    <th><?= __('At the Electricity Distributor') ?></th>
     <td class="actions">
         <?php foreach ($pages as $label => $url) : ?>
             <?= $this->Html->link(
