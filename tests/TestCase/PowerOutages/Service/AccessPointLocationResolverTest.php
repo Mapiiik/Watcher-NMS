@@ -173,6 +173,32 @@ class AccessPointLocationResolverTest extends TestCase
     }
 
     /**
+     * An installation that was never given an address registry is not a registry that is down,
+     * and the mast is left exactly as a failure would leave it - but the reason written against it
+     * says which of the two it was, because only one of them is worth waiting out.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\AccessPointLocationResolver::resolve()
+     */
+    public function testWithNoRegistryAtAllTheMastIsLeftAloneToo(): void
+    {
+        Configure::write('Addresses.url', '');
+
+        $before = $this->SupplyAddresses->find()->where(['access_point_id' => self::KOLIN_ID])->count();
+
+        $this->assertSame(-1, $this->resolver()->resolve($this->accessPoint()));
+
+        $this->assertSame(
+            $before,
+            $this->SupplyAddresses->find()->where(['access_point_id' => self::KOLIN_ID])->count(),
+        );
+        $this->assertSame(
+            'The address registry is not configured.',
+            $this->AccessPoints->get(self::KOLIN_ID)->get('supply_resolution_failed'),
+        );
+    }
+
+    /**
      * A mast whose coordinates nobody has set cannot be looked up, and says so.
      *
      * @return void
