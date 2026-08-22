@@ -27,8 +27,10 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('access_point_required') ?></th>
+                    <th><?= $this->Paginator->sort('name', __d('app_tasks', 'Name')) ?></th>
+                    <th><?=
+                        $this->Paginator->sort('access_point_required', __d('app_tasks', 'Access Point Required'))
+                    ?></th>
                     <th class="actions"><?= __d('app_tasks', 'Actions') ?></th>
                 </tr>
             </thead>

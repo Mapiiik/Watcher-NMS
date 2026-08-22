@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-21 11:26+0200\n"
-"PO-Revision-Date: 2026-08-21 11:34+0200\n"
+"POT-Creation-Date: 2026-08-22 20:47+0200\n"
+"PO-Revision-Date: 2026-08-22 20:52+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -76,31 +76,31 @@ msgstr "Datum vyřízení"
 #: templates/plugin/Tasks/TaskStates/view.php:10
 #: templates/plugin/Tasks/TaskTypes/add.php:10
 #: templates/plugin/Tasks/TaskTypes/edit.php:10
-#: templates/plugin/Tasks/TaskTypes/index.php:32
+#: templates/plugin/Tasks/TaskTypes/index.php:34
 #: templates/plugin/Tasks/TaskTypes/view.php:10
 msgid "Actions"
 msgstr "Akce"
 
 #: templates/element/Tasks/related.php:82
-#: templates/plugin/Tasks/TaskTypes/index.php:41
+#: templates/plugin/Tasks/TaskTypes/index.php:43
 msgid "View"
 msgstr "Zobrazit"
 
 #: templates/element/Tasks/related.php:86
-#: templates/plugin/Tasks/TaskTypes/index.php:43
+#: templates/plugin/Tasks/TaskTypes/index.php:45
 msgid "Edit"
 msgstr "Upravit"
 
 #: templates/element/Tasks/related.php:91
 #: templates/plugin/Tasks/TaskTypes/edit.php:12
-#: templates/plugin/Tasks/TaskTypes/index.php:48
+#: templates/plugin/Tasks/TaskTypes/index.php:50
 msgid "Delete"
 msgstr "Odstranit"
 
 #: templates/element/Tasks/related.php:94
 #: templates/plugin/Tasks/TaskStates/view.php:20
 #: templates/plugin/Tasks/TaskTypes/edit.php:15
-#: templates/plugin/Tasks/TaskTypes/index.php:50
+#: templates/plugin/Tasks/TaskTypes/index.php:52
 #: templates/plugin/Tasks/TaskTypes/view.php:20
 msgid "Are you sure you want to delete # {0}?"
 msgstr "Opravdu chcete odstranit # {0}?"
@@ -122,6 +122,9 @@ msgid "New Task State"
 msgstr "Nový stav úkolu"
 
 #: templates/plugin/Tasks/TaskStates/view.php:43
+#: templates/plugin/Tasks/TaskTypes/add.php:24
+#: templates/plugin/Tasks/TaskTypes/edit.php:32
+#: templates/plugin/Tasks/TaskTypes/index.php:30
 #: templates/plugin/Tasks/TaskTypes/view.php:43
 msgid "Name"
 msgstr "Jméno"
@@ -135,13 +138,13 @@ msgid "Completed"
 msgstr "Dokončeno"
 
 #: templates/plugin/Tasks/TaskStates/view.php:56
-#: templates/plugin/Tasks/TaskTypes/index.php:39
+#: templates/plugin/Tasks/TaskTypes/index.php:41
 #: templates/plugin/Tasks/TaskTypes/view.php:49
 msgid "Yes"
 msgstr "Ano"
 
 #: templates/plugin/Tasks/TaskStates/view.php:56
-#: templates/plugin/Tasks/TaskTypes/index.php:39
+#: templates/plugin/Tasks/TaskTypes/index.php:41
 #: templates/plugin/Tasks/TaskTypes/view.php:50
 msgid "No"
 msgstr "Ne"
@@ -161,8 +164,15 @@ msgstr "Seznam typů úkolů"
 msgid "Add Task Type"
 msgstr "Přidat typ úkolu"
 
-#: templates/plugin/Tasks/TaskTypes/add.php:28
-#: templates/plugin/Tasks/TaskTypes/edit.php:36
+#: templates/plugin/Tasks/TaskTypes/add.php:27
+#: templates/plugin/Tasks/TaskTypes/edit.php:35
+#: templates/plugin/Tasks/TaskTypes/index.php:32
+#: templates/plugin/Tasks/TaskTypes/view.php:47
+msgid "Access Point Required"
+msgstr "Je vyžadován přístupový bod"
+
+#: templates/plugin/Tasks/TaskTypes/add.php:31
+#: templates/plugin/Tasks/TaskTypes/edit.php:39
 msgid "Submit"
 msgstr "Potvrdit"
 
@@ -187,10 +197,6 @@ msgstr "Typy úkolů"
 #: templates/plugin/Tasks/TaskTypes/view.php:17
 msgid "Delete Task Type"
 msgstr "Odstranit typ úkolu"
-
-#: templates/plugin/Tasks/TaskTypes/view.php:47
-msgid "Access Point Required"
-msgstr "Je vyžadován přístupový bod"
 
 #~ msgid "first"
 #~ msgstr "první"
