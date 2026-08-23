@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-22 17:58+0200\n"
-"PO-Revision-Date: 2026-08-22 17:39+0200\n"
+"POT-Creation-Date: 2026-08-23 08:51+0200\n"
+"PO-Revision-Date: 2026-08-23 09:00+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: cs_CZ\n"
@@ -1175,11 +1175,36 @@ msgstr "Pouze neregistrované"
 msgid "Only Found Without the Address"
 msgstr "Nalezeno pouze bez adresy"
 
+#: src/Model/Rule/NotReferencedInCrmRule.php:38
+msgid ""
+"Watcher CRM could not be asked whether anything there still stands on this "
+"access point. Please, try again."
+msgstr ""
+"Nelze se zeptat Watcher CRM, zda na tomto přístupovém bodu ještě něco stojí. "
+"Zkuste to prosím znovu."
+
+#: src/Model/Rule/NotReferencedInCrmRule.php:50
+msgid ""
+"Watcher CRM still holds {0} record naming this access point. Move it "
+"elsewhere first."
+msgid_plural ""
+"Watcher CRM still holds {0} records naming this access point. Move them "
+"elsewhere first."
+msgstr[0] ""
+"Watcher CRM stále eviduje {0} záznam, který na tento přístupový bod "
+"odkazuje. Nejprve jej přesuňte jinam."
+msgstr[1] ""
+"Watcher CRM stále eviduje {0} záznamy, které na tento přístupový bod "
+"odkazují. Nejprve je přesuňte jinam."
+msgstr[2] ""
+"Watcher CRM stále eviduje {0} záznamů, které na tento přístupový bod "
+"odkazují. Nejprve je přesuňte jinam."
+
 #: src/Model/Table/AccessPointContactsTable.php:126
 msgid "The phone number is not valid."
 msgstr "Telefonní číslo není platné."
 
-#: src/Model/Table/AccessPointsTable.php:159
+#: src/Model/Table/AccessPointsTable.php:169
 msgid "This is not a valid EAN of a supply point."
 msgstr "Toto není platný EAN odběrného místa."
 

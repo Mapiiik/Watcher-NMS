@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-22 17:58+0200\n"
+"POT-Creation-Date: 2026-08-23 08:51+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1140,11 +1140,21 @@ msgstr ""
 msgid "Only Found Without the Address"
 msgstr ""
 
+#: ./src/Model/Rule/NotReferencedInCrmRule.php:38
+msgid "Watcher CRM could not be asked whether anything there still stands on this access point. Please, try again."
+msgstr ""
+
+#: ./src/Model/Rule/NotReferencedInCrmRule.php:50
+msgid "Watcher CRM still holds {0} record naming this access point. Move it elsewhere first."
+msgid_plural "Watcher CRM still holds {0} records naming this access point. Move them elsewhere first."
+msgstr[0] ""
+msgstr[1] ""
+
 #: ./src/Model/Table/AccessPointContactsTable.php:126
 msgid "The phone number is not valid."
 msgstr ""
 
-#: ./src/Model/Table/AccessPointsTable.php:159
+#: ./src/Model/Table/AccessPointsTable.php:169
 msgid "This is not a valid EAN of a supply point."
 msgstr ""
 
