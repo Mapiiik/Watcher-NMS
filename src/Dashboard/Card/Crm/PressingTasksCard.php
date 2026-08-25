@@ -25,7 +25,7 @@ class PressingTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function title(): string
     {
-        return __d('tasks', 'Urgent and Overdue Tasks');
+        return __d('app_tasks', 'Urgent and Overdue Tasks');
     }
 
     /**
@@ -48,7 +48,7 @@ class PressingTasksCard extends AbstractCrmTaskListCard
         return $this->payload(
             $this->tasks->pressing($within_days, $this->maximumRows()),
             ['pressing' => 1],
-            ['empty' => __d('tasks', 'Nothing is urgent or running late.')],
+            ['empty' => __d('app_tasks', 'Nothing is urgent or running late.')],
         );
     }
 }

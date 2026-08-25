@@ -25,7 +25,7 @@ class UnassignedTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function title(): string
     {
-        return __d('tasks', 'Unassigned Tasks');
+        return __d('app_tasks', 'Unassigned Tasks');
     }
 
     /**
@@ -46,7 +46,7 @@ class UnassignedTasksCard extends AbstractCrmTaskListCard
         return $this->payload(
             $this->tasks->unassigned($this->maximumRows()),
             ['user_id' => 'none'],
-            ['empty' => __d('tasks', 'Every unfinished task has somebody holding it.')],
+            ['empty' => __d('app_tasks', 'Every unfinished task has somebody holding it.')],
         );
     }
 }

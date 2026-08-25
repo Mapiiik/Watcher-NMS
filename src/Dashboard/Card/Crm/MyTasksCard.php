@@ -40,7 +40,7 @@ class MyTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function title(): string
     {
-        return __d('tasks', 'My Tasks');
+        return __d('app_tasks', 'My Tasks');
     }
 
     /**
@@ -64,7 +64,7 @@ class MyTasksCard extends AbstractCrmTaskListCard
                 'total' => 0,
                 'url' => Links::path('/tasks'),
                 'answer' => null,
-                'empty' => __d('tasks', 'You are holding no unfinished tasks.'),
+                'empty' => __d('app_tasks', 'You are holding no unfinished tasks.'),
             ];
         }
 
@@ -73,7 +73,7 @@ class MyTasksCard extends AbstractCrmTaskListCard
             // The listing over there is narrowed by the number it knows the person by, which is
             // not the number this application knows them by - so it is taken from the answer.
             fn(TaskPage $page): array => $page->userId === null ? [] : ['user_id' => $page->userId],
-            ['empty' => __d('tasks', 'You are holding no unfinished tasks.')],
+            ['empty' => __d('app_tasks', 'You are holding no unfinished tasks.')],
         );
     }
 }

@@ -25,7 +25,7 @@ class StaleTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function title(): string
     {
-        return __d('tasks', 'Stale Tasks');
+        return __d('app_tasks', 'Stale Tasks');
     }
 
     /**
@@ -48,7 +48,7 @@ class StaleTasksCard extends AbstractCrmTaskListCard
         return $this->payload(
             $this->tasks->stale($days, $this->maximumRows()),
             ['stale' => 1],
-            ['empty' => __d('tasks', 'Nothing has been left lying around.')],
+            ['empty' => __d('app_tasks', 'Nothing has been left lying around.')],
         );
     }
 }
