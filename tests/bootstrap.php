@@ -44,6 +44,9 @@ if (empty($_SERVER['HTTP_HOST'])) {
 // A test that wants one says so itself, with an address that goes nowhere.
 Configure::write('Crm.url', '');
 Configure::write('Crm.key', '');
+// And whose tasks these are: a suite that read the developer's own answer would test whichever
+// way that installation happens to be set up rather than the one the test is about.
+Configure::write('Crm.tasks', false);
 
 // DebugKit skips settings these connection config if PHP SAPI is CLI / PHPDBG.
 // But since PagesControllerTest is run with debug enabled and DebugKit is loaded

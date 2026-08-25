@@ -33,10 +33,12 @@ class DashboardController extends AppController
 
         $role = $identity['role'] ?? null;
         $user_id = $identity['id'] ?? null;
+        $username = $identity['username'] ?? null;
 
         return new DashboardCardRegistry(
             role: is_string($role) ? $role : null,
             user_id: is_string($user_id) ? $user_id : null,
+            username: is_string($username) ? $username : null,
         );
     }
 }

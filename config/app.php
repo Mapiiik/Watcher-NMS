@@ -284,6 +284,10 @@ return [
     'Crm' => [
         'url' => rtrim((string)env('WATCHER_CRM_URL', ''), '/'),
         'key' => (string)env('WATCHER_CRM_KEY', ''),
+        // Whether the tasks of this installation are the other application's rather than this
+        // one's. Off by default: an installation that has never heard of a customer relationship
+        // management still has work to write down.
+        'tasks' => filter_var(env('WATCHER_CRM_TASKS', false), FILTER_VALIDATE_BOOLEAN),
     ],
 
     'Agent' => [

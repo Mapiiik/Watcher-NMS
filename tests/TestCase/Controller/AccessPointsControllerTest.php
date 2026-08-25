@@ -385,6 +385,90 @@ class AccessPointsControllerTest extends TestCase
         );
     }
 
+    /**
+     * With the tasks kept elsewhere, the section is still there - fed over the bridge, with the
+     * way on to the other application instead of the actions that would write here.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testViewListsTheTasksTheOtherApplicationKeeps(): void
+    {
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $place = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Mast kept elsewhere']));
+
+        $this->withConfigure([
+            'Crm.url' => 'https://crm.example.com',
+            'Crm.key' => 'secret',
+            'Crm.tasks' => true,
+        ]);
+
+        $this->mockClientGet(
+            'https://crm.example.com/api/tasks/search.json?' . http_build_query(
+                ['access_point_id' => $place->get('id'), 'api_key' => 'secret'],
+                '',
+                '&',
+                PHP_QUERY_RFC3986,
+            ),
+            $this->newClientResponse(200, ['Content-Type: application/json'], (string)json_encode([
+                'tasks' => [[
+                    'id' => 'a26f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f',
+                    'nid' => 42,
+                    'subject' => 'Kept over there',
+                    'priority' => 0,
+                    'access_point_id' => $place->get('id'),
+                ]],
+                'total' => 1,
+            ])),
+        );
+
+        $this->login();
+        $this->get('/access-points/view/' . $place->get('id'));
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(__('Related Tasks'));
+        $this->assertResponseContains('Kept over there');
+
+        // the way on to where it is actually kept, and nothing that would write to it from here
+        $this->assertResponseContains('https://crm.example.com/tasks/view/a26f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f');
+        $this->assertResponseNotContains(__('New Task'));
+    }
+
+    /**
+     * A reading that never arrived says so. An empty section would read as a mast with nothing to
+     * be done at it, which is the one thing it must not be mistaken for.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testViewSaysWhenTheOtherApplicationDidNotAnswer(): void
+    {
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $place = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Mast nobody answered for']));
+
+        $this->withConfigure([
+            'Crm.url' => 'https://crm.example.com',
+            'Crm.key' => 'secret',
+            'Crm.tasks' => true,
+        ]);
+
+        $this->mockClientGet(
+            'https://crm.example.com/api/tasks/search.json?' . http_build_query(
+                ['access_point_id' => $place->get('id'), 'api_key' => 'secret'],
+                '',
+                '&',
+                PHP_QUERY_RFC3986,
+            ),
+            $this->newClientResponse(500),
+        );
+
+        $this->login();
+        $this->get('/access-points/view/' . $place->get('id'));
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(__('Data from Watcher CRM could not be loaded.'));
+    }
+
     public function testViewListsTheFarEndOfEveryRadioLink(): void
     {
         $map = $this->createMapTopology();

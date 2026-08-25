@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\DashboardController;
+use App\Test\Traits\ConfigureTestTrait;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\Core\Configure;
+use Cake\Http\TestSuite\HttpClientTrait;
 use Cake\I18n\DateTime;
 use Cake\Routing\Router;
 use Cake\TestSuite\IntegrationTestTrait;
@@ -19,7 +21,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(DashboardController::class)]
 class DashboardControllerTest extends TestCase
 {
+    use ConfigureTestTrait;
     use ControllerTestTrait;
+    use HttpClientTrait;
     use IntegrationTestTrait;
 
     /**
@@ -387,4 +391,135 @@ class DashboardControllerTest extends TestCase
 
         $this->assertResponseCode(404);
     }
+
+    /**
+     * With the tasks kept elsewhere, the same card is drawn from the other application - under
+     * the same id, so that a dashboard somebody has arranged survives the change.
+     *
+     * @return void
+     * @link \App\Dashboard\DashboardCardRegistry::get()
+     */
+    public function testTheTaskCardsAreAskedOfTheOtherApplicationWhereItKeepsThem(): void
+    {
+        $this->withConfigure([
+            'Crm.url' => 'https://crm.example.com',
+            'Crm.key' => 'secret',
+            'Crm.tasks' => true,
+        ]);
+
+        $this->mockClientGet(
+            'https://crm.example.com/api/tasks/search.json?' . http_build_query(
+                ['unassigned' => '1', 'active' => '1', 'limit' => '10', 'api_key' => 'secret'],
+                '',
+                '&',
+                PHP_QUERY_RFC3986,
+            ),
+            $this->newClientResponse(200, ['Content-Type: application/json'], (string)json_encode([
+                'tasks' => [[
+                    'id' => 'a26f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f',
+                    'nid' => 42,
+                    'subject' => 'Nobody has this one',
+                    'priority' => 0,
+                ]],
+                'total' => 4,
+            ])),
+        );
+
+        $this->login('network-manager');
+        $this->get('/dashboard/card/unassigned_tasks');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('Nobody has this one');
+        // the way on leads over there, because that is where it is kept
+        $this->assertResponseContains('https://crm.example.com/tasks/view/a26f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f');
+        // and it says how many there are, not only how many it drew
+        $this->assertResponseContains((string)__('and {0} more', 3));
+
+        $this->restoreConfigure();
+    }
+
+    /**
+     * A card that could not be filled says so. An empty one would read as an afternoon with
+     * nothing to do, which is the opposite of what an outage means.
+     *
+     * @return void
+     * @link \App\Dashboard\Card\Crm\AbstractCrmTaskListCard::payload()
+     */
+    public function testATaskCardSaysWhenTheOtherApplicationDidNotAnswer(): void
+    {
+        $this->withConfigure([
+            'Crm.url' => 'https://crm.example.com',
+            'Crm.key' => 'secret',
+            'Crm.tasks' => true,
+        ]);
+
+        $this->mockClientGet(
+            'https://crm.example.com/api/tasks/search.json?' . http_build_query(
+                ['unassigned' => '1', 'active' => '1', 'limit' => '10', 'api_key' => 'secret'],
+                '',
+                '&',
+                PHP_QUERY_RFC3986,
+            ),
+            $this->newClientResponse(500),
+        );
+
+        $this->login('network-manager');
+        $this->get('/dashboard/card/unassigned_tasks');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(__('Data from Watcher CRM could not be loaded.'));
+        $this->assertResponseNotContains((string)__d('tasks', 'Every unfinished task has somebody holding it.'));
+
+        $this->restoreConfigure();
+    }
+
+    /**
+     * The way on from "my tasks" has to name the person by the number the other application knows
+     * them by. This one has a number for them too and it means nothing over there - and a listing
+     * asked with no name at all falls back to whoever is signed in, which would look right often
+     * enough to go unnoticed.
+     *
+     * @return void
+     * @link \App\Dashboard\Card\Crm\MyTasksCard::data()
+     */
+    public function testTheWayOnToSomebodysOwnTasksNamesThemAsTheOtherApplicationDoes(): void
+    {
+        $this->withConfigure([
+            'Crm.url' => 'https://crm.example.com',
+            'Crm.key' => 'secret',
+            'Crm.tasks' => true,
+        ]);
+
+        $this->mockClientGet(
+            'https://crm.example.com/api/tasks/search.json?' . http_build_query(
+                ['user' => 'tester', 'active' => '1', 'limit' => '10', 'api_key' => 'secret'],
+                '',
+                '&',
+                PHP_QUERY_RFC3986,
+            ),
+            $this->newClientResponse(200, ['Content-Type: application/json'], (string)json_encode([
+                'tasks' => [[
+                    'id' => 'a26f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f',
+                    'nid' => 42,
+                    'subject' => 'Mine over there',
+                    'priority' => 0,
+                ]],
+                'total' => 3,
+                'user_id' => '5f7e1d2c-3b4a-4958-8a6b-7c8d9e0f1a2b',
+            ])),
+        );
+
+        $this->login();
+        $this->get('/dashboard/card/my_tasks');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('user_id=5f7e1d2c-3b4a-4958-8a6b-7c8d9e0f1a2b');
+        // and every other field the listing filters by is named, or whatever its operator last
+        // filtered by would still be narrowing what this points at
+        $this->assertResponseContains('show_completed=0');
+        $this->assertResponseContains('task_type_ids=');
+
+        $this->restoreConfigure();
+    }
+
 }

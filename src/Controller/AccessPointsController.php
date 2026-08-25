@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\CRM\TaskPage;
+use App\CRM\Tasks as CrmTasks;
 use App\Form\MapOptionsForm;
 use App\Maps\NetworkMap;
 use App\Model\Enum\MaximumAge;
@@ -221,13 +223,6 @@ class AccessPointsController extends AppController
                 ],
             ],
             'IpAddressRanges' => ['ParentIpAddressRanges'],
-            // The state comes along because the association is ordered by it, not only because
-            // the listing shows it.
-            'Tasks' => [
-                'TaskTypes',
-                'TaskStates',
-                'Users',
-            ],
             'Creators',
             'Modifiers',
             'Archivers',
@@ -261,10 +256,26 @@ class AccessPointsController extends AppController
         }
         unset($readingsCount);
 
+        // Where the tasks are the other application's, they are asked for rather than joined in -
+        // and what came of the asking travels with them, so the section can say it went unanswered
+        // instead of looking like a place with no work to do.
+        $tasksAnswer = null;
+        if (CrmTasks::areUsed()) {
+            $tasksAnswer = (new CrmTasks())->atAccessPoint((string)$accessPoint->id);
+            $accessPoint->set('tasks', $tasksAnswer->or(TaskPage::nothing())->tasks);
+            $accessPoint->clean();
+        } else {
+            $this->AccessPoints->loadInto($accessPoint, [
+                // The state comes along because the association is ordered by it, not only because
+                // the listing shows it.
+                'Tasks' => ['TaskTypes', 'TaskStates', 'Users'],
+            ]);
+        }
+
         $ancestors = $this->AccessPoints->getAncestors($accessPoint->id);
         $subtree = $this->AccessPoints->getSubtree($accessPoint->id);
 
-        $this->set(compact('accessPoint', 'ancestors', 'subtree'));
+        $this->set(compact('accessPoint', 'ancestors', 'subtree', 'tasksAnswer'));
     }
 
     /**

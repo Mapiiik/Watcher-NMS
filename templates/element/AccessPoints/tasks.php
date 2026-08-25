@@ -6,10 +6,23 @@
  * dates and the ways of reaching somebody, which the task's own page carries - this is a
  * list to find a task in, not to work from.
  *
+ * Where the tasks belong to the other application there is nothing to offer but a way over to
+ * it - editing one here would mean writing to a record this application does not keep. And a
+ * reading that never arrived says so, rather than looking like a place with no work to do.
+ *
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Task> $tasks
+ * @var \App\Http\Answer<mixed>|null $answer Set where the tasks came from the other application.
  */
+
+use App\CRM\Links;
+
+$answer ??= null;
+$elsewhere = $answer !== null;
 ?>
+<?php if ($elsewhere) : ?>
+    <?= $this->element('CRM/unavailable', ['answer' => $answer]) ?>
+<?php endif; ?>
 <?php if (!empty($tasks)) : ?>
 <div class="table-responsive">
     <table>
@@ -33,20 +46,28 @@
             </td>
             <td><?= $task->user !== null ? h($task->user->name) : '' ?></td>
             <td class="actions">
-                <?= $this->AuthLink->link(
-                    __('View'),
-                    ['controller' => 'Tasks', 'action' => 'view', $task->id],
-                ) ?>
-                <?= $this->AuthLink->link(
-                    __('Edit'),
-                    ['controller' => 'Tasks', 'action' => 'edit', $task->id],
-                    ['class' => 'win-link'],
-                ) ?>
-                <?= $this->AuthLink->postLink(
-                    __('Delete'),
-                    ['controller' => 'Tasks', 'action' => 'delete', $task->id],
-                    ['confirm' => __('Are you sure you want to delete # {0}?', $task->number)],
-                ) ?>
+                <?php if ($elsewhere) : ?>
+                    <?= $this->Html->link(
+                        __('View'),
+                        Links::path('/tasks/view/' . $task->id),
+                        ['target' => '_blank'],
+                    ) ?>
+                <?php else : ?>
+                    <?= $this->AuthLink->link(
+                        __('View'),
+                        ['controller' => 'Tasks', 'action' => 'view', $task->id],
+                    ) ?>
+                    <?= $this->AuthLink->link(
+                        __('Edit'),
+                        ['controller' => 'Tasks', 'action' => 'edit', $task->id],
+                        ['class' => 'win-link'],
+                    ) ?>
+                    <?= $this->AuthLink->postLink(
+                        __('Delete'),
+                        ['controller' => 'Tasks', 'action' => 'delete', $task->id],
+                        ['confirm' => __('Are you sure you want to delete # {0}?', $task->number)],
+                    ) ?>
+                <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; ?>

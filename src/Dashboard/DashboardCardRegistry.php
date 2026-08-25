@@ -3,6 +3,11 @@ declare(strict_types=1);
 
 namespace App\Dashboard;
 
+use App\CRM\Tasks as CrmTasks;
+use App\Dashboard\Card\Crm\MyTasksCard as CrmMyTasksCard;
+use App\Dashboard\Card\Crm\PressingTasksCard as CrmPressingTasksCard;
+use App\Dashboard\Card\Crm\StaleTasksCard as CrmStaleTasksCard;
+use App\Dashboard\Card\Crm\UnassignedTasksCard as CrmUnassignedTasksCard;
 use App\Dashboard\Card\ElectricityMeterReadingsCard;
 use App\Dashboard\Card\PowerOutagesCard;
 use App\Dashboard\Card\RadarInterferencesCard;
@@ -39,8 +44,10 @@ final class DashboardCardRegistry implements CardRegistryInterface
     /**
      * @param string|null $role The role of the signed-in operator.
      * @param string|null $user_id The signed-in operator.
+     * @param string|null $username The signed-in operator, by the name the other application also
+     *   knows them by - their identifiers here mean nothing over there.
      */
-    public function __construct(private ?string $role, ?string $user_id)
+    public function __construct(private ?string $role, ?string $user_id, ?string $username = null)
     {
         /** @var \App\Model\Table\TasksTable $tasks */
         $tasks = $this->fetchTable(TasksTable::class);
@@ -53,16 +60,41 @@ final class DashboardCardRegistry implements CardRegistryInterface
         /** @var \App\Model\Table\AccessPointPowerOutagesTable $power_outages */
         $power_outages = $this->fetchTable(AccessPointPowerOutagesTable::class);
 
-        $this->factories = [
-            'pressing_tasks' => fn(): DashboardCardInterface => new PressingTasksCard($tasks),
-            'my_tasks' => fn(): DashboardCardInterface => new MyTasksCard($tasks, $user_id),
-            'unassigned_tasks' => fn(): DashboardCardInterface => new UnassignedTasksCard($tasks),
-            'stale_tasks' => fn(): DashboardCardInterface => new StaleTasksCard($tasks),
+        // The task cards keep their ids whichever application is answering for them, so an
+        // operator who has arranged their dashboard keeps that arrangement when an installation
+        // hands its tasks over.
+        $taskCards = CrmTasks::areUsed()
+            ? $this->crmTaskCards(new CrmTasks(), $username)
+            : [
+                'pressing_tasks' => fn(): DashboardCardInterface => new PressingTasksCard($tasks),
+                'my_tasks' => fn(): DashboardCardInterface => new MyTasksCard($tasks, $user_id),
+                'unassigned_tasks' => fn(): DashboardCardInterface => new UnassignedTasksCard($tasks),
+                'stale_tasks' => fn(): DashboardCardInterface => new StaleTasksCard($tasks),
+            ];
+
+        $this->factories = $taskCards + [
             'stale_device_data' => fn(): DashboardCardInterface => new StaleDeviceDataCard($devices),
             'electricity_meter_readings' =>
                 fn(): DashboardCardInterface => new ElectricityMeterReadingsCard($access_points),
             'radar_interferences' => fn(): DashboardCardInterface => new RadarInterferencesCard($interferences),
             'power_outages' => fn(): DashboardCardInterface => new PowerOutagesCard($power_outages),
+        ];
+    }
+
+    /**
+     * The same four cards, asked of the other application instead of of this one.
+     *
+     * @param \App\CRM\Tasks $tasks The tasks of the other application.
+     * @param string|null $username The signed-in operator, by the shared name.
+     * @return array<string, callable(): \Dashboard\Card\DashboardCardInterface>
+     */
+    private function crmTaskCards(CrmTasks $tasks, ?string $username): array
+    {
+        return [
+            'pressing_tasks' => fn(): DashboardCardInterface => new CrmPressingTasksCard($tasks),
+            'my_tasks' => fn(): DashboardCardInterface => new CrmMyTasksCard($tasks, $username),
+            'unassigned_tasks' => fn(): DashboardCardInterface => new CrmUnassignedTasksCard($tasks),
+            'stale_tasks' => fn(): DashboardCardInterface => new CrmStaleTasksCard($tasks),
         ];
     }
 

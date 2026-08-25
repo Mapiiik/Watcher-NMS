@@ -13,6 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 use App\CRM\Links;
+use App\CRM\Tasks as CrmTasks;
 use App\Versioning;
 use Cake\Core\Configure;
 
@@ -118,15 +119,18 @@ $urlWithQuery = function ($query = []) use ($request) {
                     'LandlordPayments',
                 ])],
             ) ?>
-            <?= $this->AuthLink->link(
-                __('Tasks'),
-                ['controller' => 'Tasks', 'action' => 'index', 'plugin' => null],
-                ['class' => 'button button-small' . $buttonSelected([
-                    'Tasks',
-                    'TaskStates',
-                    'TaskTypes',
-                ])],
-            ) ?>
+            <?php // where the tasks are the other application's, this application does not offer them ?>
+            <?php if (!CrmTasks::areUsed()) : ?>
+                <?= $this->AuthLink->link(
+                    __('Tasks'),
+                    ['controller' => 'Tasks', 'action' => 'index', 'plugin' => null],
+                    ['class' => 'button button-small' . $buttonSelected([
+                        'Tasks',
+                        'TaskStates',
+                        'TaskTypes',
+                    ])],
+                ) ?>
+            <?php endif; ?>
             <?= $this->AuthLink->link(
                 __('Customer Points'),
                 ['controller' => 'CustomerPoints', 'action' => 'index', 'plugin' => null],

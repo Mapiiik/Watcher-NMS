@@ -4,6 +4,8 @@
  * @var \App\Model\Entity\AccessPoint $accessPoint
  * @var array<\App\Model\Entity\AccessPoint> $ancestors
  * @var array<\App\Model\Entity\AccessPoint> $subtree
+ * @var \App\Http\Answer<mixed>|null $tasksAnswer What came of asking the other application for
+ *   the tasks, or null where they are this application's own.
  */
 ?>
 <div class="row">
@@ -1036,18 +1038,21 @@
             <?php // Last of all: a mast collects tasks without limit, and everything above it
                   // is of a length one can foresee. ?>
             <div class="related">
-                <?= $this->AuthLink->link(
-                    __('New Task'),
-                    [
-                        'controller' => 'Tasks',
-                        'action' => 'add',
-                        '?' => ['access_point_id' => $accessPoint->id],
-                    ],
-                    ['class' => 'button button-small float-right win-link'],
-                ) ?>
+                <?php if ($tasksAnswer === null) : ?>
+                    <?= $this->AuthLink->link(
+                        __('New Task'),
+                        [
+                            'controller' => 'Tasks',
+                            'action' => 'add',
+                            '?' => ['access_point_id' => $accessPoint->id],
+                        ],
+                        ['class' => 'button button-small float-right win-link'],
+                    ) ?>
+                <?php endif; ?>
                 <h4 id="tasks"><?= __('Related Tasks') ?></h4>
                 <?= $this->element('AccessPoints/tasks', [
                     'tasks' => $accessPoint->tasks,
+                    'answer' => $tasksAnswer,
                 ]) ?>
             </div>
         </div>
