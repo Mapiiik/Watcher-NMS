@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api\Agent;
 
-use App\Controller\AppController;
+use App\Controller\Api\AppController;
 use App\Model\Table\DeviceTypesTable;
 use App\Provisioning\RouterOS\ProvisionScriptBuilder;
 use App\Snmp\Provider\RouterosSnmpProviderAgentPush;
@@ -11,8 +11,6 @@ use App\Snmp\Service\RouterosSnmpUpdateService;
 use Cake\Core\Configure;
 use Cake\Http\Exception\BadRequestException;
 use Cake\Http\Exception\UnauthorizedException;
-use Cake\View\JsonView;
-use Override;
 
 class ProvisionController extends AppController
 {
@@ -42,15 +40,6 @@ class ProvisionController extends AppController
         if ($authHeader !== 'Bearer ' . $authToken) {
             throw new UnauthorizedException('Invalid agent token');
         }
-    }
-
-    /**
-     * Returns supported output types
-     */
-    #[Override]
-    public function viewClasses(): array
-    {
-        return [JsonView::class];
     }
 
     /**

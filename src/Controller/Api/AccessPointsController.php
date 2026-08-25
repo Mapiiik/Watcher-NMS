@@ -3,10 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
-use App\Controller\AppController;
-use Cake\View\JsonView;
-use Override;
-
 /**
  * AccessPoints Controller
  *
@@ -14,15 +10,6 @@ use Override;
  */
 class AccessPointsController extends AppController
 {
-    /**
-     * Returns supported output types
-     */
-    #[Override]
-    public function viewClasses(): array
-    {
-        return [JsonView::class];
-    }
-
     /**
      * Index method
      *
