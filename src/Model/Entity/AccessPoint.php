@@ -44,6 +44,7 @@ use Throwable;
  * @property \App\Model\Entity\PowerSupply[] $power_supplies
  * @property \App\Model\Entity\RadioUnit[] $radio_units
  * @property \App\Model\Entity\RouterosDevice[] $routeros_devices
+ * @property \App\Model\Entity\Task[] $tasks
  *
  * @property string $name_for_lists
  *

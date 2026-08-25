@@ -42,6 +42,12 @@
             ) ?>
             <?= $this->AuthLink->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New Access Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?php // the tasks sit at the very bottom of a long page, so there is a way down to them ?>
+            <?= $this->AuthLink->link(
+                __('Tasks'),
+                ['action' => 'view', $accessPoint->id, '#' => 'tasks'],
+                ['class' => 'side-nav-item'],
+            ) ?>
         </div>
     </aside>
     <div class="column column-90">
@@ -942,6 +948,24 @@
                     </table>
                 </div>
                 <?php endif; ?>
+            </div>
+            <hr>
+            <?php // Last of all: a mast collects tasks without limit, and everything above it
+                  // is of a length one can foresee. ?>
+            <div class="related">
+                <?= $this->AuthLink->link(
+                    __('New Task'),
+                    [
+                        'controller' => 'Tasks',
+                        'action' => 'add',
+                        '?' => ['access_point_id' => $accessPoint->id],
+                    ],
+                    ['class' => 'button button-small float-right win-link'],
+                ) ?>
+                <h4 id="tasks"><?= __('Related Tasks') ?></h4>
+                <?= $this->element('AccessPoints/tasks', [
+                    'tasks' => $accessPoint->tasks,
+                ]) ?>
             </div>
         </div>
     </div>

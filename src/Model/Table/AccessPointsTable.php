@@ -101,8 +101,15 @@ class AccessPointsTable extends AppTable
         $this->hasMany('RouterosDevices', [
             'foreignKey' => 'access_point_id',
         ]);
+        // Ordered by the state rather than by whether it is finished, so that the unfinished
+        // come first and keep their own order among themselves.
         $this->hasMany('Tasks', [
             'foreignKey' => 'access_point_id',
+            'sort' => [
+                'TaskStates.priority' => 'DESC',
+                'Tasks.priority' => 'DESC',
+                'Tasks.nid' => 'DESC',
+            ],
         ]);
         // Both of these are worked out rather than kept by hand, and both go when the access point
         // does: they say something about a place that has stopped being one of ours.

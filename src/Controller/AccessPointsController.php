@@ -221,6 +221,13 @@ class AccessPointsController extends AppController
                 ],
             ],
             'IpAddressRanges' => ['ParentIpAddressRanges'],
+            // The state comes along because the association is ordered by it, not only because
+            // the listing shows it.
+            'Tasks' => [
+                'TaskTypes',
+                'TaskStates',
+                'Users',
+            ],
             'Creators',
             'Modifiers',
             'Archivers',

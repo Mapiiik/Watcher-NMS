@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Controller;
 use App\Controller\AccessPointsController;
 use App\Test\Traits\ConfigureTestTrait;
 use App\Test\Traits\ControllerTestTrait;
+use App\Test\Traits\IdentityColumnTrait;
 use Cake\Cache\Cache;
 use Cake\Http\TestSuite\HttpClientTrait;
 use Cake\I18n\DateTime;
@@ -24,6 +25,7 @@ class AccessPointsControllerTest extends TestCase
     use ConfigureTestTrait;
     use ControllerTestTrait;
     use HttpClientTrait;
+    use IdentityColumnTrait;
     use IntegrationTestTrait;
 
     /**
@@ -68,6 +70,9 @@ class AccessPointsControllerTest extends TestCase
         'app.RouterosDevices',
         'app.RouterosDeviceIps',
         'app.RouterosDeviceInterfaces',
+        'app.TaskStates',
+        'app.TaskTypes',
+        'app.Tasks',
     ];
 
     /**
@@ -311,6 +316,71 @@ class AccessPointsControllerTest extends TestCase
      * @return void
      * @link \App\Controller\AccessPointsController::view()
      */
+
+    /**
+     * The tasks of a place are listed on its card - all of them, with the unfinished above the
+     * rest.
+     *
+     * A mast gathers tasks for as long as it stands and the finished ones are the bulk of them,
+     * so hiding them would lose the history; ordering is what keeps the list useful instead.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testViewListsEveryTaskOfThePlaceUnfinishedFirst(): void
+    {
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $place = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Mast with a history']));
+
+        // The fixtures carry one state and it is an unfinished one, so the finished one this
+        // test needs is made here.
+        $taskStates = $this->getTableLocator()->get('TaskStates');
+        $unfinished = $taskStates->find()->firstOrFail();
+        $finished = $taskStates->saveOrFail($taskStates->newEntity([
+            'name' => 'Seen to',
+            'color' => '#f4f4f4',
+            'priority' => -50,
+            'completed' => true,
+        ]));
+
+        $taskType = $this->getTableLocator()->get('TaskTypes')->find()->firstOrFail();
+        $tasks = $this->getTableLocator()->get('Tasks');
+
+        // the fixtures write the identity column with the values they carry, which leaves the
+        // identity itself where it started
+        $this->advanceIdentity('Tasks', 'nid');
+
+        // Written finished first on purpose: were the list to follow the order they were made
+        // in, this test would pass for the wrong reason.
+        foreach ([$finished->get('id') => 'Long since seen to', $unfinished->get('id') => 'Still to do'] as $state => $subject) {
+            $tasks->saveOrFail($tasks->newEntity([
+                'task_state_id' => $state,
+                'task_type_id' => $taskType->get('id'),
+                'access_point_id' => $place->get('id'),
+                'subject' => $subject,
+                'priority' => 0,
+            ]));
+        }
+
+        $this->login();
+        $this->get('/access-points/view/' . $place->get('id'));
+
+        $this->assertResponseOk();
+        // The heading is translated, so it is looked up rather than hard coded.
+        $this->assertResponseContains(__('Related Tasks'));
+
+        // Both are there - finishing a task does not take it off the mast it was done at.
+        $this->assertResponseContains('Still to do');
+        $this->assertResponseContains('Long since seen to');
+
+        $body = (string)$this->_response?->getBody();
+        $this->assertLessThan(
+            strpos($body, 'Long since seen to'),
+            strpos($body, 'Still to do'),
+            'What is still to be done should be listed above what has been.',
+        );
+    }
+
     public function testViewListsTheFarEndOfEveryRadioLink(): void
     {
         $map = $this->createMapTopology();
