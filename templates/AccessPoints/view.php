@@ -42,16 +42,99 @@
             ) ?>
             <?= $this->AuthLink->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New Access Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-            <?php // the tasks sit at the very bottom of a long page, so there is a way down to them ?>
+        </div>
+        <?php // The card runs to a thousand lines, so every section is reachable without
+              // scrolling for it. Left out of a popup window, which is opened to read one
+              // thing rather than to wander around. ?>
+        <?php if (!($this->getRequest()->getQuery('win-link') == 'true')) : ?>
+        <div class="side-nav" style="position: fixed; bottom: 1rem;">
+            <h4 class="heading"><?= __('Sections') ?></h4>
+            <?= $this->AuthLink->link(
+                __('Access Point'),
+                ['action' => 'view', $accessPoint->id, '#' => 'access-point'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Power Outages'),
+                ['action' => 'view', $accessPoint->id, '#' => 'power-outages'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Superordinate Access Points'),
+                ['action' => 'view', $accessPoint->id, '#' => 'superordinate-access-points'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Subordinate Access Points'),
+                ['action' => 'view', $accessPoint->id, '#' => 'subordinate-access-points'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Access Point Contacts'),
+                ['action' => 'view', $accessPoint->id, '#' => 'access-point-contacts'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Electricity Meter Readings'),
+                ['action' => 'view', $accessPoint->id, '#' => 'electricity-meter-readings'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Landlord Payments'),
+                ['action' => 'view', $accessPoint->id, '#' => 'landlord-payments'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('IP Address Ranges'),
+                ['action' => 'view', $accessPoint->id, '#' => 'ip-address-ranges'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Power Supplies'),
+                ['action' => 'view', $accessPoint->id, '#' => 'power-supplies'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Radio Units'),
+                ['action' => 'view', $accessPoint->id, '#' => 'radio-units'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('RouterOS Devices'),
+                ['action' => 'view', $accessPoint->id, '#' => 'routeros-devices'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Radio Unit Links'),
+                ['action' => 'view', $accessPoint->id, '#' => 'radio-unit-links'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('RouterOS IP Links'),
+                ['action' => 'view', $accessPoint->id, '#' => 'routeros-ip-links'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('RouterOS Wireless Links'),
+                ['action' => 'view', $accessPoint->id, '#' => 'routeros-wireless-links'],
+                ['class' => 'side-nav-item'],
+            ) ?>
+            <?= $this->AuthLink->link(
+                __('Customer Connections'),
+                ['action' => 'view', $accessPoint->id, '#' => 'customer-connections'],
+                ['class' => 'side-nav-item'],
+            ) ?>
             <?= $this->AuthLink->link(
                 __('Tasks'),
                 ['action' => 'view', $accessPoint->id, '#' => 'tasks'],
                 ['class' => 'side-nav-item'],
             ) ?>
         </div>
+        <?php endif; ?>
     </aside>
     <div class="column column-90">
         <div class="accessPoints view content">
+            <a id="access-point"></a>
             <h3><?= h($accessPoint->name)
                 . ($accessPoint->isArchived() ? ' (' . __('archived') . ')' : '') ?></h3>
             <div class="row">
@@ -165,21 +248,21 @@
                 </blockquote>
             </div>
             <div class="related">
-                <h4><?= __('Planned Power Outages') ?></h4>
+                <h4 id="power-outages"><?= __('Planned Power Outages') ?></h4>
                 <?= $this->element('AccessPoints/power_outages', [
                     'accessPoint' => $accessPoint,
                 ]) ?>
             </div>
             <hr>
             <div class="related">
-                <h4><?= __('Superordinate Access Points') ?></h4>
+                <h4 id="superordinate-access-points"><?= __('Superordinate Access Points') ?></h4>
                 <?= $this->element('AccessPoints/path', [
                     'accessPoint' => $accessPoint,
                     'ancestors' => $ancestors,
                 ]) ?>
             </div>
             <div class="related">
-                <h4><?= __('Subordinate Access Points') ?></h4>
+                <h4 id="subordinate-access-points"><?= __('Subordinate Access Points') ?></h4>
                 <?= $this->element('AccessPoints/subtree', [
                     'accessPoint' => $accessPoint,
                     'subtree' => $subtree,
@@ -192,7 +275,7 @@
                     ['controller' => 'AccessPointContacts', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link'],
                 ) ?>
-                <h4><?= __('Related Access Point Contacts') ?></h4>
+                <h4 id="access-point-contacts"><?= __('Related Access Point Contacts') ?></h4>
                 <?php if (!empty($accessPoint->access_point_contacts)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -261,7 +344,7 @@
                     ['controller' => 'ElectricityMeterReadings', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link'],
                 ) ?>
-                <h4><?= __('Related Electricity Meter Readings') ?></h4>
+                <h4 id="electricity-meter-readings"><?= __('Related Electricity Meter Readings') ?></h4>
                 <?php if (!empty($accessPoint->electricity_meter_readings)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -334,7 +417,7 @@
                     ['controller' => 'LandlordPayments', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link'],
                 ) ?>
-                <h4><?= __('Related Landlord Payments') ?></h4>
+                <h4 id="landlord-payments"><?= __('Related Landlord Payments') ?></h4>
                 <?php if (!empty($accessPoint->landlord_payments)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -412,7 +495,7 @@
                     ['controller' => 'IpAddressRanges', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link'],
                 ) ?>
-                <h4><?= __('Related IP Address Ranges') ?></h4>
+                <h4 id="ip-address-ranges"><?= __('Related IP Address Ranges') ?></h4>
                 <?php if (!empty($accessPoint->ip_address_ranges)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -486,7 +569,7 @@
                     ['controller' => 'PowerSupplies', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link'],
                 ) ?>
-                <h4><?= __('Related Power Supplies') ?></h4>
+                <h4 id="power-supplies"><?= __('Related Power Supplies') ?></h4>
                 <?php if (!empty($accessPoint->power_supplies)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -551,7 +634,7 @@
                     ['controller' => 'RadioUnits', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link'],
                 ) ?>
-                <h4><?= __('Related Radio Units') ?></h4>
+                <h4 id="radio-units"><?= __('Related Radio Units') ?></h4>
                 <?= $this->element('RadioUnits/related', [
                     'radioUnits' => $accessPoint->radio_units,
                     'radio_link_column' => true,
@@ -565,7 +648,7 @@
                     ['controller' => 'RouterosDevices', 'action' => 'add'],
                     ['class' => 'button button-small float-right win-link'],
                 ) ?>
-                <h4><?= __('Related RouterOS Devices') ?></h4>
+                <h4 id="routeros-devices"><?= __('Related RouterOS Devices') ?></h4>
                 <?= $this->element('RouterosDevices/related', [
                     'routerosDevices' => $accessPoint->routeros_devices,
                     'device_type_column' => true,
@@ -573,7 +656,7 @@
             </div>
             <hr>
             <div class="related">
-                <h4><?= __('Related Radio Unit Links') ?></h4>
+                <h4 id="radio-unit-links"><?= __('Related Radio Unit Links') ?></h4>
                 <?php if (!empty($accessPoint->radio_units)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -643,7 +726,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related RouterOS IP Links') ?></h4>
+                <h4 id="routeros-ip-links"><?= __('Related RouterOS IP Links') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -764,7 +847,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related RouterOS Wireless Links') ?></h4>
+                <h4 id="routeros-wireless-links"><?= __('Related RouterOS Wireless Links') ?></h4>
                 <?php if (!empty($accessPoint->routeros_devices)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -884,7 +967,7 @@
             </div>
             <hr>
             <div class="related">
-                <h4><?= __('Related Customer Connections') ?></h4>
+                <h4 id="customer-connections"><?= __('Related Customer Connections') ?></h4>
                 <?php if (!empty($accessPoint->customer_connections)) : ?>
                 <div class="table-responsive">
                     <table>

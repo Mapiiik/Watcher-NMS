@@ -298,6 +298,10 @@ class AccessPointsControllerTest extends TestCase
         $this->assertResponseOk();
         // The heading is translated, so it is looked up rather than hard coded.
         $this->assertResponseContains(__('Subordinate Access Points'));
+        // Every section is reachable from the side of the page, the last of them included.
+        $this->assertResponseContains(__('Sections'));
+        $this->assertResponseContains('/access-points/' . $root->id . '#tasks');
+        $this->assertResponseContains('<h4 id="tasks">');
         $this->assertResponseContains('<a href="/access-points/' . $child->id . '">Tree child</a>');
         // Its own map is offered, nested under it and with every layer asked for.
         $this->assertResponseContains('/access-points/' . $root->id . '/map?');
