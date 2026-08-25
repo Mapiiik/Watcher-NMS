@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-22 20:47+0200\n"
+"POT-Creation-Date: 2026-08-25 21:59+0200\n"
 "PO-Revision-Date: 2026-08-22 20:52+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,6 +14,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
+
+#: src/Dashboard/Card/Crm/MyTasksCard.php:43
+msgid "My Tasks"
+msgstr "Moje úkoly"
+
+#: src/Dashboard/Card/Crm/MyTasksCard.php:67
+#: src/Dashboard/Card/Crm/MyTasksCard.php:76
+msgid "You are holding no unfinished tasks."
+msgstr "Nemáte žádné nedokončené úkoly."
+
+#: src/Dashboard/Card/Crm/PressingTasksCard.php:28
+msgid "Urgent and Overdue Tasks"
+msgstr "Naléhavé a zpožděné úkoly"
+
+#: src/Dashboard/Card/Crm/PressingTasksCard.php:51
+msgid "Nothing is urgent or running late."
+msgstr "Nic není naléhavé ani zpožděné."
+
+#: src/Dashboard/Card/Crm/StaleTasksCard.php:28
+msgid "Stale Tasks"
+msgstr "Zaseknuté úkoly"
+
+#: src/Dashboard/Card/Crm/StaleTasksCard.php:51
+msgid "Nothing has been left lying around."
+msgstr "Nic tu nezůstalo ležet."
+
+#: src/Dashboard/Card/Crm/UnassignedTasksCard.php:28
+msgid "Unassigned Tasks"
+msgstr "Nepřiřazené úkoly"
+
+#: src/Dashboard/Card/Crm/UnassignedTasksCard.php:49
+msgid "Every unfinished task has somebody holding it."
+msgstr "Za každým nedokončeným úkolem stojí někdo, kdo ho má na starosti."
 
 #: templates/element/Tasks/related.php:18
 msgid "Number"
@@ -210,5 +243,9 @@ msgstr "Odstranit typ úkolu"
 #~ msgid "last"
 #~ msgstr "poslední"
 
-#~ msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
-#~ msgstr "Stránka {{page}} z {{pages}}, zobrazující {{current}} záznamů z celkového počtu {{count}}"
+#~ msgid ""
+#~ "Page {{page}} of {{pages}}, showing {{current}} record(s) out of "
+#~ "{{count}} total"
+#~ msgstr ""
+#~ "Stránka {{page}} z {{pages}}, zobrazující {{current}} záznamů z celkového "
+#~ "počtu {{count}}"
