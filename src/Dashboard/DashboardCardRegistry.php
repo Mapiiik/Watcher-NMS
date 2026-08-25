@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace App\Dashboard;
 
 use App\CRM\Tasks as CrmTasks;
-use App\Dashboard\Card\Crm\MyTasksCard as CrmMyTasksCard;
-use App\Dashboard\Card\Crm\PressingTasksCard as CrmPressingTasksCard;
-use App\Dashboard\Card\Crm\StaleTasksCard as CrmStaleTasksCard;
-use App\Dashboard\Card\Crm\UnassignedTasksCard as CrmUnassignedTasksCard;
+use App\Dashboard\Card\CRM\MyTasksCard as CrmMyTasksCard;
+use App\Dashboard\Card\CRM\PressingTasksCard as CrmPressingTasksCard;
+use App\Dashboard\Card\CRM\StaleTasksCard as CrmStaleTasksCard;
+use App\Dashboard\Card\CRM\UnassignedTasksCard as CrmUnassignedTasksCard;
 use App\Dashboard\Card\ElectricityMeterReadingsCard;
 use App\Dashboard\Card\PowerOutagesCard;
 use App\Dashboard\Card\RadarInterferencesCard;

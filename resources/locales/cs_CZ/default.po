@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-25 21:38+0200\n"
+"POT-Creation-Date: 2026-08-25 22:15+0200\n"
 "PO-Revision-Date: 2026-08-23 09:00+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -3812,7 +3812,7 @@ msgstr[2] "Hledáno v okolí {0} nejbližších adres u přístupového bodu."
 msgid "Customer Connections Including Subordinates"
 msgstr "Připojení zákazníků včetně podřazených"
 
-#: templates/element/Crm/unavailable.php:20
+#: templates/element/CRM/unavailable.php:20
 #: templates/element/Dashboard/crm_task_list.php:37
 msgid "Data from Watcher CRM could not be loaded."
 msgstr "Data z Watcher CRM se nepodařilo načíst."

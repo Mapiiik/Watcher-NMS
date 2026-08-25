@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Dashboard\Card\Crm;
+namespace App\Dashboard\Card\CRM;
 
 use App\CRM\Links;
 use App\CRM\TaskPage;
@@ -14,7 +14,7 @@ use Override;
  * Whose they are is asked by username, the one name both applications call a person by - their
  * identifiers have nothing to do with each other.
  */
-class MyTasksCard extends AbstractCrmTaskListCard
+class MyTasksCard extends AbstractTaskListCard
 {
     /**
      * @param \App\CRM\Tasks $tasks The tasks of the other application.

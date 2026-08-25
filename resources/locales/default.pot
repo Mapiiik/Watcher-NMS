@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-25 21:38+0200\n"
+"POT-Creation-Date: 2026-08-25 22:15+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -4089,7 +4089,7 @@ msgstr[1] ""
 msgid "Customer Connections Including Subordinates"
 msgstr ""
 
-#: ./templates/element/Crm/unavailable.php:20
+#: ./templates/element/CRM/unavailable.php:20
 #: ./templates/element/Dashboard/crm_task_list.php:37
 msgid "Data from Watcher CRM could not be loaded."
 msgstr ""

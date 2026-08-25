@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Dashboard\Card\Crm;
+namespace App\Dashboard\Card\CRM;
 
 use Override;
 
 /**
- * The unfinished tasks of the other application that nobody is holding.
+ * The tasks of the other application that want attention.
  */
-class UnassignedTasksCard extends AbstractCrmTaskListCard
+class PressingTasksCard extends AbstractTaskListCard
 {
     /**
      * @return string
@@ -16,7 +16,7 @@ class UnassignedTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function id(): string
     {
-        return 'unassigned_tasks';
+        return 'pressing_tasks';
     }
 
     /**
@@ -25,7 +25,7 @@ class UnassignedTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function title(): string
     {
-        return __d('app_tasks', 'Unassigned Tasks');
+        return __d('app_tasks', 'Urgent and Overdue Tasks');
     }
 
     /**
@@ -34,7 +34,7 @@ class UnassignedTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function roles(): array
     {
-        return ['network-manager', 'sales-manager'];
+        return self::TASK_ROLES;
     }
 
     /**
@@ -43,10 +43,12 @@ class UnassignedTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function data(): array
     {
+        $within_days = $this->days('tasks.critical_within_days', 7);
+
         return $this->payload(
-            $this->tasks->unassigned($this->maximumRows()),
-            ['user_id' => 'none'],
-            ['empty' => __d('app_tasks', 'Every unfinished task has somebody holding it.')],
+            $this->tasks->pressing($within_days, $this->maximumRows()),
+            ['pressing' => 1],
+            ['empty' => __d('app_tasks', 'Nothing is urgent or running late.')],
         );
     }
 }

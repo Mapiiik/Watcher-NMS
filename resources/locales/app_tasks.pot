@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-25 21:59+0200\n"
+"POT-Creation-Date: 2026-08-25 22:18+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,36 +14,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ./src/Dashboard/Card/Crm/MyTasksCard.php:43
+#: ./src/Dashboard/Card/CRM/MyTasksCard.php:43
 msgid "My Tasks"
 msgstr ""
 
-#: ./src/Dashboard/Card/Crm/MyTasksCard.php:67
-#: ./src/Dashboard/Card/Crm/MyTasksCard.php:76
+#: ./src/Dashboard/Card/CRM/MyTasksCard.php:67
+#: ./src/Dashboard/Card/CRM/MyTasksCard.php:76
 msgid "You are holding no unfinished tasks."
 msgstr ""
 
-#: ./src/Dashboard/Card/Crm/PressingTasksCard.php:28
+#: ./src/Dashboard/Card/CRM/PressingTasksCard.php:28
 msgid "Urgent and Overdue Tasks"
 msgstr ""
 
-#: ./src/Dashboard/Card/Crm/PressingTasksCard.php:51
+#: ./src/Dashboard/Card/CRM/PressingTasksCard.php:51
 msgid "Nothing is urgent or running late."
 msgstr ""
 
-#: ./src/Dashboard/Card/Crm/StaleTasksCard.php:28
+#: ./src/Dashboard/Card/CRM/StaleTasksCard.php:28
 msgid "Stale Tasks"
 msgstr ""
 
-#: ./src/Dashboard/Card/Crm/StaleTasksCard.php:51
+#: ./src/Dashboard/Card/CRM/StaleTasksCard.php:51
 msgid "Nothing has been left lying around."
 msgstr ""
 
-#: ./src/Dashboard/Card/Crm/UnassignedTasksCard.php:28
+#: ./src/Dashboard/Card/CRM/UnassignedTasksCard.php:28
 msgid "Unassigned Tasks"
 msgstr ""
 
-#: ./src/Dashboard/Card/Crm/UnassignedTasksCard.php:49
+#: ./src/Dashboard/Card/CRM/UnassignedTasksCard.php:49
 msgid "Every unfinished task has somebody holding it."
 msgstr ""
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Dashboard\Card\Crm;
+namespace App\Dashboard\Card\CRM;
 
 use App\CRM\Links;
 use App\CRM\TaskPage;
@@ -23,7 +23,7 @@ use Override;
  * here, and it avoids a store that would have to be told apart per person - two operators sharing
  * one entry for "my tasks" is exactly the kind of quiet wrongness worth designing out.
  */
-abstract class AbstractCrmTaskListCard extends AbstractDashboardCard
+abstract class AbstractTaskListCard extends AbstractDashboardCard
 {
     /**
      * The roles that work with tasks at all.

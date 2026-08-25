@@ -277,7 +277,7 @@ class DashboardControllerTest extends TestCase
      * listing keeps in the session rather than leaving the last one used in force.
      *
      * @return void
-     * @link \App\Dashboard\Card\AbstractTaskListCard::listingUrl()
+     * @link \Tasks\Dashboard\Card\AbstractTaskListCard::listingUrl()
      */
     public function testTaskCardsLinkToTheirOwnSet(): void
     {
@@ -443,7 +443,7 @@ class DashboardControllerTest extends TestCase
      * nothing to do, which is the opposite of what an outage means.
      *
      * @return void
-     * @link \App\Dashboard\Card\Crm\AbstractCrmTaskListCard::payload()
+     * @link \App\Dashboard\Card\CRM\AbstractTaskListCard::payload()
      */
     public function testATaskCardSaysWhenTheOtherApplicationDidNotAnswer(): void
     {
@@ -480,7 +480,7 @@ class DashboardControllerTest extends TestCase
      * enough to go unnoticed.
      *
      * @return void
-     * @link \App\Dashboard\Card\Crm\MyTasksCard::data()
+     * @link \App\Dashboard\Card\CRM\MyTasksCard::data()
      */
     public function testTheWayOnToSomebodysOwnTasksNamesThemAsTheOtherApplicationDoes(): void
     {

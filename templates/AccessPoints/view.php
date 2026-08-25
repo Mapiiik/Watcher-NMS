@@ -295,10 +295,10 @@
                             <td><?= h($accessPointContact->name) ?></td>
                             <td><?= h($accessPointContact->phone) ?></td>
                             <td><?= h($accessPointContact->email) ?></td>
-                            <td><?= $this->element('Crm/number', [
+                            <td><?= $this->element('CRM/number', [
                                 'number' => $accessPointContact->customer_number,
                             ]) ?></td>
-                            <td><?= $this->element('Crm/number', [
+                            <td><?= $this->element('CRM/number', [
                                 'number' => $accessPointContact->contract_number,
                             ]) ?></td>
                             <td><?= $this->Text->autoParagraph(h($accessPointContact->note)); ?></td>

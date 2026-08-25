@@ -65,13 +65,13 @@
                         </tr>
                         <tr>
                             <th><?= __('Customer Number') ?></th>
-                            <td><?= $this->element('Crm/number', [
+                            <td><?= $this->element('CRM/number', [
                                 'number' => $accessPointContact->customer_number,
                             ]) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Contract Number') ?></th>
-                            <td><?= $this->element('Crm/number', [
+                            <td><?= $this->element('CRM/number', [
                                 'number' => $accessPointContact->contract_number,
                             ]) ?></td>
                         </tr>

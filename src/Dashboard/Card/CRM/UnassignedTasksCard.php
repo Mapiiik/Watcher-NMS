@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Dashboard\Card\Crm;
+namespace App\Dashboard\Card\CRM;
 
 use Override;
 
 /**
- * The tasks of the other application that have lain untouched for a while.
+ * The unfinished tasks of the other application that nobody is holding.
  */
-class StaleTasksCard extends AbstractCrmTaskListCard
+class UnassignedTasksCard extends AbstractTaskListCard
 {
     /**
      * @return string
@@ -16,7 +16,7 @@ class StaleTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function id(): string
     {
-        return 'stale_tasks';
+        return 'unassigned_tasks';
     }
 
     /**
@@ -25,7 +25,7 @@ class StaleTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function title(): string
     {
-        return __d('app_tasks', 'Stale Tasks');
+        return __d('app_tasks', 'Unassigned Tasks');
     }
 
     /**
@@ -43,12 +43,10 @@ class StaleTasksCard extends AbstractCrmTaskListCard
     #[Override]
     public function data(): array
     {
-        $days = $this->days('tasks.stale_after_days', 30);
-
         return $this->payload(
-            $this->tasks->stale($days, $this->maximumRows()),
-            ['stale' => 1],
-            ['empty' => __d('app_tasks', 'Nothing has been left lying around.')],
+            $this->tasks->unassigned($this->maximumRows()),
+            ['user_id' => 'none'],
+            ['empty' => __d('app_tasks', 'Every unfinished task has somebody holding it.')],
         );
     }
 }
