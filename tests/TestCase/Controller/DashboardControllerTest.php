@@ -521,5 +521,4 @@ class DashboardControllerTest extends TestCase
 
         $this->restoreConfigure();
     }
-
 }
