@@ -159,6 +159,13 @@ class ApiClient
      */
     public static function metaFromCache(): Answer
     {
+        // Asked before the cache rather than after it: a reading kept from an address that has
+        // since been taken out of the configuration is a reading of a registry this installation
+        // no longer has.
+        if ((string)Configure::read('Addresses.url') === '') {
+            return Answer::notAsked();
+        }
+
         $cached = Cache::read('addresses_meta', 'addresses_api');
         if ($cached !== null) {
             return Answer::of($cached);
