@@ -307,7 +307,7 @@ class TasksControllerTest extends TestCase
      * request, and this is the case that catches it being asked the other way.
      *
      * @return void
-     * @link \Tasks\Model\Table\TasksTable::isSomebodyElses()
+     * @link \Tasks\Model\Table\TasksTable::concernsSomebodyElse()
      */
     public function testATaskSavedByItsOwnHolderTellsThemNothing(): void
     {
