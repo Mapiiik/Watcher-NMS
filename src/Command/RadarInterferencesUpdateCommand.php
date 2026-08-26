@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\Model\Table\RadarInterferencesTable;
-use App\Service\OperatorReport;
+use App\Service\ErrorReport;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -117,7 +117,7 @@ class RadarInterferencesUpdateCommand extends Command
                 $e->getMessage(),
             ));
 
-            OperatorReport::send(
+            ErrorReport::send(
                 __('Radar interferences update failed'),
                 __(
                     'Radar interferences update failed.' . PHP_EOL . PHP_EOL

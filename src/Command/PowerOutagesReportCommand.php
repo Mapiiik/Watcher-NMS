@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\Model\Table\AccessPointPowerOutagesTable;
+use App\Service\ErrorReport;
 use App\Service\OperatorReport;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
@@ -88,7 +89,7 @@ class PowerOutagesReportCommand extends Command
 
             $io->error(__('Error during the planned outages report: {0}', $e->getMessage()));
 
-            OperatorReport::send(
+            ErrorReport::send(
                 __('Planned outages report failed'),
                 __(
                     'Reporting the planned outages failed.' . PHP_EOL . PHP_EOL . 'Error: {0}',

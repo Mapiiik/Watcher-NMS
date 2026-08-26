@@ -5,6 +5,7 @@ namespace App\Command;
 
 use App\Model\Entity\ElectricityMeterReading;
 use App\Model\Table\AccessPointsTable;
+use App\Service\ErrorReport;
 use App\Service\OperatorReport;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
@@ -151,7 +152,7 @@ class ElectricityMeterReadingsReportCommand extends Command
                 $e->getMessage(),
             ));
 
-            OperatorReport::send(
+            ErrorReport::send(
                 __('Electricity meter readings report failed'),
                 __(
                     'Electricity meter readings report failed.' . PHP_EOL . PHP_EOL

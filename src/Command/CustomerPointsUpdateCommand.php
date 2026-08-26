@@ -8,7 +8,7 @@ use App\Model\Table\CustomerConnectionsTable;
 use App\Model\Table\CustomerPointsTable;
 use App\Model\Table\RadioUnitsTable;
 use App\Model\Table\RouterosDevicesTable;
-use App\Service\OperatorReport;
+use App\Service\ErrorReport;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -195,7 +195,7 @@ class CustomerPointsUpdateCommand extends Command
                 $e->getMessage(),
             ));
 
-            OperatorReport::send(
+            ErrorReport::send(
                 __('Customer points update failed'),
                 __(
                     'Customer points update failed.' . PHP_EOL . PHP_EOL

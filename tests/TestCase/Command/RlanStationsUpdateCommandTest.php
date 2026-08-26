@@ -59,7 +59,7 @@ class RlanStationsUpdateCommandTest extends TestCase
         // The run reports a failure by mail, so a test of the failing path needs somebody to
         // report it to.
         $this->withConfigure([
-            'Report.emails' => ['nobody@example.com'],
+            'Report.errorEmails' => ['nobody@example.com'],
             'Rlan.url' => 'https://register.example.com/api/v1',
             'Rlan.email' => 'somebody@example.com',
             'Rlan.password' => 'not the real one',

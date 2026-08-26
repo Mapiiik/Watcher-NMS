@@ -69,7 +69,7 @@ class PowerOutagesUpdateCommandTest extends TestCase
             'PowerOutages.bezstavyCdnUrl' => 'https://cdn.example.com',
             'PowerOutages.dipUrl' => 'https://portal.example.com/shutdown-search',
             'PowerOutages.userAgent' => 'Watcher NMS (tests)',
-            'Report.emails' => ['operator@example.com'],
+            'Report.errorEmails' => ['operator@example.com'],
         ]);
 
         // The answers about a municipality are kept for a while, which would otherwise carry from

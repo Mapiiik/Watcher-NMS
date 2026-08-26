@@ -78,7 +78,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
         // The run reports a failure by mail, so a test of the failing path needs somebody to
         // report it to. Left to the configuration it is whatever the developer's `.env` says and
         // nothing at all on CI, where the report then goes nowhere.
-        $this->withConfigure(['Report.emails' => ['nobody@example.com']]);
+        $this->withConfigure(['Report.errorEmails' => ['nobody@example.com']]);
     }
 
     /**

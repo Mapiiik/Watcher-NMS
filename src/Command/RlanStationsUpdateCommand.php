@@ -8,7 +8,7 @@ use App\Rlan\Provider\RlanStationProviderApi;
 use App\Rlan\Provider\RlanStationProviderInterface;
 use App\Rlan\Provider\RlanStationProviderPayload;
 use App\Rlan\Service\RlanStationsUpdateService;
-use App\Service\OperatorReport;
+use App\Service\ErrorReport;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -78,7 +78,7 @@ class RlanStationsUpdateCommand extends Command
                 $e->getMessage(),
             ));
 
-            OperatorReport::send(
+            ErrorReport::send(
                 __('Reading the register of stations failed'),
                 __(
                     'Reading the register of stations failed.' . PHP_EOL . PHP_EOL

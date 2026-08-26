@@ -10,7 +10,7 @@ use App\PowerOutages\Provider\PowerOutageProviderPayload;
 use App\PowerOutages\Service\AccessPointLocationResolver;
 use App\PowerOutages\Service\PowerOutageMatcher;
 use App\PowerOutages\Service\PowerOutagesUpdateService;
-use App\Service\OperatorReport;
+use App\Service\ErrorReport;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
@@ -133,7 +133,7 @@ class PowerOutagesUpdateCommand extends Command
 
             $io->error(__('Error during the reading of the published outages: {0}', $e->getMessage()));
 
-            OperatorReport::send(
+            ErrorReport::send(
                 __('Reading the planned outages failed'),
                 __(
                     'Reading the planned outages published by the electricity distributor failed.'
