@@ -6,6 +6,7 @@ namespace App\CRM;
 use App\Http\Answer;
 use App\Model\Entity\Task;
 use Cake\Core\Configure;
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\Locator\LocatorAwareTrait;
 
 /**
@@ -158,18 +159,40 @@ class Tasks
         foreach (['task_state' => 'TaskStates', 'task_type' => 'TaskTypes', 'user' => 'AppUsers'] as $field => $table) {
             $nested = $row[$field] ?? null;
             if (is_array($nested)) {
-                $task->set($field, $this->fetchTable($table)->newEntity($nested, [
-                    'markClean' => true,
-                    'guard' => false,
-                    'useSetters' => false,
-                ]));
+                $task->set($field, $this->hydrated($table, $nested));
             }
         }
+
+        // and one of them is a list rather than a record, because a task can name more than one
+        // person: the one it is filed under and whoever else is out on it
+        $collaborators = [];
+        foreach ((array)($row['collaborators'] ?? []) as $person) {
+            if (is_array($person)) {
+                $collaborators[] = $this->hydrated('AppUsers', $person);
+            }
+        }
+        $task->set('collaborators', $collaborators);
 
         // filling the nested records in marked it changed, which it is not
         $task->clean();
 
         return $task;
+    }
+
+    /**
+     * One record the other application sent along with a task, as an entity of this one.
+     *
+     * @param string $table What the record is.
+     * @param array<mixed> $row The record as it came.
+     * @return \Cake\Datasource\EntityInterface
+     */
+    private function hydrated(string $table, array $row): EntityInterface
+    {
+        return $this->fetchTable($table)->newEntity($row, [
+            'markClean' => true,
+            'guard' => false,
+            'useSetters' => false,
+        ]);
     }
 
     /**

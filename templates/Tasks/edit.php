@@ -41,6 +41,13 @@
                         echo $this->Form->control('priority', ['options' => $task->getPriorityOptions()]);
                         echo $this->Form->control('task_state_id', ['options' => $taskStates]);
                         echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
+                        echo $this->Form->control('collaborators._ids', [
+                            'options' => $users,
+                            'multiple' => 'multiple',
+                            'style' => 'height: 100px;',
+                            'label' => __('Collaborators'),
+                            'title' => __('Anybody else working on this beside the user above.'),
+                        ]);
                         ?>
                     </div>
                     <div class="column">

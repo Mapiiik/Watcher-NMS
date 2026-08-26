@@ -268,7 +268,7 @@ class AccessPointsController extends AppController
             $this->AccessPoints->loadInto($accessPoint, [
                 // The state comes along because the association is ordered by it, not only because
                 // the listing shows it.
-                'Tasks' => ['TaskTypes', 'TaskStates', 'Users'],
+                'Tasks' => ['TaskTypes', 'TaskStates', 'Users', 'Collaborators'],
             ]);
         }
 

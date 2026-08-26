@@ -28,6 +28,7 @@ class TaskTypesController extends AppController
                 'AccessPoints',
                 'TaskStates',
                 'Users',
+                'Collaborators',
             ],
         ];
     }

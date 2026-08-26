@@ -120,6 +120,40 @@ class TasksTest extends TestCase
     }
 
     /**
+     * Whoever else is on a task comes over as a list, not as one more record.
+     *
+     * A task names one person it is filed under and any number of people out on it, so the two
+     * are read differently - and read wrong, the second would come out as an entity holding an
+     * entity, which no template would draw.
+     *
+     * @return void
+     * @link \App\CRM\Tasks::atAccessPoint()
+     */
+    public function testWhoElseIsOnATaskComesOverAsAList(): void
+    {
+        $place = $this->getTableLocator()->get('AccessPoints')->find()->firstOrFail();
+
+        $this->answerWith(['access_point_id' => (string)$place->get('id')], [[
+            'id' => 'a26f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f',
+            'nid' => 42,
+            'subject' => 'Two of us are going',
+            'priority' => 0,
+            'access_point_id' => $place->get('id'),
+            'task_state' => ['name' => 'New', 'color' => '#ffcccc'],
+            'task_type' => ['name' => 'Transmitter service'],
+            'user' => ['first_name' => 'Jane', 'last_name' => 'Doe'],
+            'collaborators' => [
+                ['first_name' => 'John', 'last_name' => 'Roe'],
+                ['first_name' => 'Rich', 'last_name' => 'Poe'],
+            ],
+        ]], 1);
+
+        $task = (new Tasks())->atAccessPoint((string)$place->get('id'))->orFail()->tasks[0];
+
+        $this->assertSame('John Roe, Rich Poe', $task->get('collaborator_names'));
+    }
+
+    /**
      * The other application holds the identifier of a place and nothing else about it, so the
      * place itself is looked up here - which is also what makes the summary line read in this
      * application's terms.

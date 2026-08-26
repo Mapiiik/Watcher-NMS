@@ -44,7 +44,13 @@ $elsewhere = $answer !== null;
             <td style="overflow-wrap: break-word; max-width: 600px;">
                 <?= nl2br(h($task->text ?? '')) ?>
             </td>
-            <td><?= $task->user !== null ? h($task->user->name) : '' ?></td>
+            <td><?= $task->user !== null ? h($task->user->name) : '' ?>
+                <?php if ($task->collaborator_names !== '') : ?>
+                    <br><small title="<?= h(__('Collaborators')) ?>">
+                        <?= h($task->collaborator_names) ?>
+                    </small>
+                <?php endif ?>
+            </td>
             <td class="actions">
                 <?php if ($elsewhere) : ?>
                     <?= $this->Html->link(

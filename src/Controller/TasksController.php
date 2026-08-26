@@ -9,6 +9,7 @@ use Cake\Form\Form;
 use Cake\Http\Response;
 use Cake\I18n\Date;
 use Cake\I18n\DateTime;
+use Cake\ORM\Association;
 use Cake\ORM\Query\SelectQuery;
 use Cake\Utility\Hash;
 use Cake\Validation\Validation;
@@ -198,15 +199,18 @@ class TasksController extends AppController
         } else {
             $user_id = $filter['user_id'] ?? $this->getRequest()->getAttribute('identity')['id'] ?? null;
         }
+        // Narrowed by the finders rather than by a condition of its own, so that the listing
+        // holds what the dashboard card pointing at it holds: somebody's work is the work they
+        // hold and the work they were put on, and nobody's is nobody's at all.
+        $narrowToUser = null;
         if (!empty($user_id)) {
             if ($user_id === 'none') {
-                $conditions[] = [
-                    'Users.id IS' => null,
-                ];
+                $narrowToUser = fn(SelectQuery $query): SelectQuery => $query->find('unassigned');
             } elseif (is_string($user_id) && Validation::uuid($user_id)) {
-                $conditions[] = [
-                    'Users.id' => $user_id,
-                ];
+                $narrowToUser = fn(SelectQuery $query): SelectQuery => $query->find(
+                    'forUser',
+                    user_id: $user_id,
+                );
             }
         }
 
@@ -299,12 +303,21 @@ class TasksController extends AppController
             contain: [
                 'AccessPoints',
                 'Users',
+                // Read one query at a time: the listing is ordered by columns of the tasks and
+                // of their states, which the `subquery` strategy would carry into a `GROUP BY`
+                // PostgreSQL rejects.
+                'Collaborators' => [
+                    'strategy' => Association::STRATEGY_SELECT,
+                ],
                 'TaskStates',
                 'TaskTypes',
             ],
             conditions: $conditions,
         );
 
+        if ($narrowToUser !== null) {
+            $narrowToUser($query);
+        }
         if ($pressing) {
             $query->find('pressing', within_days: (int)Settings::get(
                 'core.dashboard.tasks.critical_within_days',
@@ -350,7 +363,7 @@ class TasksController extends AppController
                     'TaskStates.completed' => false,
                 ]);
             })
-            ->notMatching('Users')
+            ->find('unassigned')
             ->count();
 
         // show warning if there are some unassigned tasks
@@ -402,6 +415,7 @@ class TasksController extends AppController
             'TaskStates',
             'TaskTypes',
             'Users',
+            'Collaborators',
         ]);
 
         $this->set(compact('task'));
@@ -492,7 +506,8 @@ class TasksController extends AppController
      */
     public function edit(?string $id = null): ?Response
     {
-        $task = $this->Tasks->get($id, contain: []);
+        // read so that the form comes up with the people already on it picked out
+        $task = $this->Tasks->get($id, contain: ['Collaborators']);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $task = $this->Tasks->patchEntity($task, $this->getRequest()->getData());
 
