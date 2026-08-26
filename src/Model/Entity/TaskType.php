@@ -26,6 +26,7 @@ class TaskType extends TasksTaskType
         'modified' => true,
         'modified_by' => true,
         'name' => true,
+        'report_on_completion' => true,
         'access_point_required' => true,
         'tasks' => true,
     ];

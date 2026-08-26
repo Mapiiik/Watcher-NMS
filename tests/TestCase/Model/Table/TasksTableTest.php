@@ -4,10 +4,12 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\TasksTable;
+use App\Test\Traits\ConfigureTestTrait;
 use App\Test\Traits\IdentityColumnTrait;
 use App\Test\Traits\TableTestTrait;
 use Cake\Datasource\EntityInterface;
 use Cake\ORM\TableRegistry;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
 
@@ -16,6 +18,8 @@ use Override;
  */
 class TasksTableTest extends TestCase
 {
+    use ConfigureTestTrait;
+    use EmailTrait;
     use IdentityColumnTrait;
     use TableTestTrait;
 
@@ -58,6 +62,10 @@ class TasksTableTest extends TestCase
         parent::setUp();
         $config = TableRegistry::getTableLocator()->exists('Tasks') ? [] : ['className' => TasksTable::class];
         $this->Tasks = TableRegistry::getTableLocator()->get('Tasks', $config);
+
+        // an email about a task links to it, and a link wants routes; a request and the console
+        // both bring their own, a bare test case does not
+        $this->loadRoutes();
     }
 
     /**
@@ -142,6 +150,33 @@ class TasksTableTest extends TestCase
     }
 
     /**
+     * Closing a task of a reporting type tells the report addresses.
+     *
+     * The decision itself is the plugin's and is asked after there; what this pins down is the
+     * half that is this application's - that the task can be read together with the access point
+     * it is filed under, and drawn into an email that way.
+     *
+     * @return void
+     * @link \Tasks\Model\Table\TasksTable::afterSaveCommit()
+     */
+    public function testClosingATaskOfAReportingTypeTellsTheReportAddresses(): void
+    {
+        $this->withConfigure(['Report.emails' => ['operations@example.com']]);
+
+        $type = $this->taskType(['report_on_completion' => true, 'access_point_required' => true]);
+        $task = $this->Tasks->saveOrFail($this->Tasks->newEntity(
+            ['access_point_id' => self::ACCESS_POINT_ID] + $this->task($type),
+        ));
+
+        $task->set('task_state_id', $this->stateId(completed: true));
+        $this->assertNotFalse($this->Tasks->save($task));
+
+        $this->assertMailCount(1);
+        $this->assertMailSentTo('operations@example.com');
+        $this->assertMailSubjectContains('Task completed');
+    }
+
+    /**
      * A task type asking for exactly what it is given.
      *
      * @param array<string, mixed> $flags What this type insists on.
@@ -165,13 +200,28 @@ class TasksTableTest extends TestCase
         // sequence where it started
         $this->advanceIdentity('Tasks', 'nid');
 
-        $states = $this->getTableLocator()->get('TaskStates');
-
         return [
             'task_type_id' => $type->get('id'),
-            'task_state_id' => $states->find()->firstOrFail()->get('id'),
+            // a task starts open; asked for by name because there is more than one state and an
+            // unordered `first()` over them would pick whichever the database felt like
+            'task_state_id' => $this->stateId(completed: false),
             'subject' => 'Written by the test',
             'priority' => 1,
         ];
+    }
+
+    /**
+     * The one state that is, or is not, a closed one.
+     *
+     * @param bool $completed Whether the state wanted is one that closes a task.
+     * @return string
+     */
+    private function stateId(bool $completed): string
+    {
+        return (string)$this->getTableLocator()->get('TaskStates')
+            ->find()
+            ->where(['completed' => $completed])
+            ->firstOrFail()
+            ->get('id');
     }
 }

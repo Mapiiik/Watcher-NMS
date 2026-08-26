@@ -31,6 +31,9 @@
                     <th><?=
                         $this->Paginator->sort('access_point_required', __d('app_tasks', 'Access Point Required'))
                     ?></th>
+                    <th><?=
+                        $this->Paginator->sort('report_on_completion', __d('app_tasks', 'Report on Completion'))
+                    ?></th>
                     <th class="actions"><?= __d('app_tasks', 'Actions') ?></th>
                 </tr>
             </thead>
@@ -39,6 +42,9 @@
                 <tr>
                     <td><?= h($taskType->name) ?></td>
                     <td><?= $taskType->access_point_required ? __d('app_tasks', 'Yes') : __d('app_tasks', 'No'); ?></td>
+                    <td><?= $taskType->report_on_completion
+                        ? __d('app_tasks', 'Yes')
+                        : __d('app_tasks', 'No'); ?></td>
                     <td class="actions">
                         <?= $this->AuthLink->link(__d('app_tasks', 'View'), ['action' => 'view', $taskType->id]) ?>
                         <?= $this->AuthLink->link(

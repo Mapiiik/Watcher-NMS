@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-25 22:18+0200\n"
+"POT-Creation-Date: 2026-08-26 11:12+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -108,31 +108,31 @@ msgstr ""
 #: ./templates/plugin/Tasks/TaskStates/view.php:10
 #: ./templates/plugin/Tasks/TaskTypes/add.php:10
 #: ./templates/plugin/Tasks/TaskTypes/edit.php:10
-#: ./templates/plugin/Tasks/TaskTypes/index.php:34
+#: ./templates/plugin/Tasks/TaskTypes/index.php:37
 #: ./templates/plugin/Tasks/TaskTypes/view.php:10
 msgid "Actions"
 msgstr ""
 
 #: ./templates/element/Tasks/related.php:82
-#: ./templates/plugin/Tasks/TaskTypes/index.php:43
+#: ./templates/plugin/Tasks/TaskTypes/index.php:49
 msgid "View"
 msgstr ""
 
 #: ./templates/element/Tasks/related.php:86
-#: ./templates/plugin/Tasks/TaskTypes/index.php:45
+#: ./templates/plugin/Tasks/TaskTypes/index.php:51
 msgid "Edit"
 msgstr ""
 
 #: ./templates/element/Tasks/related.php:91
 #: ./templates/plugin/Tasks/TaskTypes/edit.php:12
-#: ./templates/plugin/Tasks/TaskTypes/index.php:50
+#: ./templates/plugin/Tasks/TaskTypes/index.php:56
 msgid "Delete"
 msgstr ""
 
 #: ./templates/element/Tasks/related.php:94
 #: ./templates/plugin/Tasks/TaskStates/view.php:20
 #: ./templates/plugin/Tasks/TaskTypes/edit.php:15
-#: ./templates/plugin/Tasks/TaskTypes/index.php:52
+#: ./templates/plugin/Tasks/TaskTypes/index.php:58
 #: ./templates/plugin/Tasks/TaskTypes/view.php:20
 msgid "Are you sure you want to delete # {0}?"
 msgstr ""
@@ -170,19 +170,23 @@ msgid "Completed"
 msgstr ""
 
 #: ./templates/plugin/Tasks/TaskStates/view.php:56
-#: ./templates/plugin/Tasks/TaskTypes/index.php:41
+#: ./templates/plugin/Tasks/TaskTypes/index.php:44
+#: ./templates/plugin/Tasks/TaskTypes/index.php:46
 #: ./templates/plugin/Tasks/TaskTypes/view.php:49
+#: ./templates/plugin/Tasks/TaskTypes/view.php:55
 msgid "Yes"
 msgstr ""
 
 #: ./templates/plugin/Tasks/TaskStates/view.php:56
-#: ./templates/plugin/Tasks/TaskTypes/index.php:41
+#: ./templates/plugin/Tasks/TaskTypes/index.php:44
+#: ./templates/plugin/Tasks/TaskTypes/index.php:47
 #: ./templates/plugin/Tasks/TaskTypes/view.php:50
+#: ./templates/plugin/Tasks/TaskTypes/view.php:56
 msgid "No"
 msgstr ""
 
 #: ./templates/plugin/Tasks/TaskStates/view.php:65
-#: ./templates/plugin/Tasks/TaskTypes/view.php:59
+#: ./templates/plugin/Tasks/TaskTypes/view.php:65
 msgid "Related Tasks"
 msgstr ""
 
@@ -203,8 +207,20 @@ msgstr ""
 msgid "Access Point Required"
 msgstr ""
 
+#: ./templates/plugin/Tasks/TaskTypes/add.php:30
+#: ./templates/plugin/Tasks/TaskTypes/edit.php:38
+#: ./templates/plugin/Tasks/TaskTypes/index.php:35
+#: ./templates/plugin/Tasks/TaskTypes/view.php:53
+msgid "Report on Completion"
+msgstr ""
+
 #: ./templates/plugin/Tasks/TaskTypes/add.php:31
 #: ./templates/plugin/Tasks/TaskTypes/edit.php:39
+msgid "Tell the report addresses whenever a task of this type is closed."
+msgstr ""
+
+#: ./templates/plugin/Tasks/TaskTypes/add.php:38
+#: ./templates/plugin/Tasks/TaskTypes/edit.php:46
 msgid "Submit"
 msgstr ""
 

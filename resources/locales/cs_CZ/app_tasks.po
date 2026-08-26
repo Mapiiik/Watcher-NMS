@@ -231,6 +231,18 @@ msgstr "Typy úkolů"
 msgid "Delete Task Type"
 msgstr "Odstranit typ úkolu"
 
+#: ./templates/plugin/Tasks/TaskTypes/add.php:26
+#: ./templates/plugin/Tasks/TaskTypes/edit.php:34
+#: ./templates/plugin/Tasks/TaskTypes/index.php:32
+#: ./templates/plugin/Tasks/TaskTypes/view.php:47
+msgid "Report on Completion"
+msgstr "Hlásit dokončení"
+
+#: ./templates/plugin/Tasks/TaskTypes/add.php:28
+#: ./templates/plugin/Tasks/TaskTypes/edit.php:36
+msgid "Tell the report addresses whenever a task of this type is closed."
+msgstr "Poslat na reportovací adresy zprávu pokaždé, když se úkol tohoto typu uzavře."
+
 #~ msgid "first"
 #~ msgstr "první"
 

@@ -4062,6 +4062,14 @@ msgstr "Verze"
 msgid "Back"
 msgstr "Zpět"
 
+#: ./templates/email/html/task_completed.php:24
+msgid "Closed By"
+msgstr "Uzavřel"
+
+#: ./templates/email/html/task_completed.php:28
+msgid "Closed"
+msgstr "Uzavřeno"
+
 #~ msgid "Addresses API returned HTTP {0} ({1})"
 #~ msgstr "Rozhraní adres odpovědělo HTTP {0} ({1})"
 

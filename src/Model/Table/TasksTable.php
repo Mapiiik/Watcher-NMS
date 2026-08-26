@@ -63,6 +63,18 @@ class TasksTable extends TasksTasksTable
     }
 
     /**
+     * An email about a task shows the access point it is filed under, so that comes with it on
+     * top of the shared part.
+     *
+     * @return array<mixed>
+     */
+    #[Override]
+    public function reportContain(): array
+    {
+        return array_merge(parent::reportContain(), ['AccessPoints']);
+    }
+
+    /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *

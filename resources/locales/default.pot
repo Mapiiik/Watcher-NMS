@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-25 22:15+0200\n"
+"POT-Creation-Date: 2026-08-26 11:12+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -105,9 +105,9 @@ msgstr ""
 #: ./templates/cell/AccessPoint/display.php:12
 #: ./templates/element/RadioUnits/related.php:26
 #: ./templates/element/RouterosDevices/related.php:22
+#: ./templates/element/Tasks/email_detail.php:60
 #: ./templates/email/html/electricity_meter_readings_report.php:27
 #: ./templates/email/html/power_outages_report.php:32
-#: ./templates/email/html/task_notification.php:60
 msgid "Access Point"
 msgstr ""
 
@@ -929,49 +929,29 @@ msgstr ""
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:339
+#: ./src/Controller/TasksController.php:340
 msgid "none"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:440
-#: ./src/Controller/TasksController.php:515
+#: ./src/Controller/TasksController.php:436
+#: ./src/Controller/TasksController.php:506
 msgid "The task has been saved."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:444
-#: ./src/Controller/TasksController.php:519
+#: ./src/Controller/TasksController.php:440
+#: ./src/Controller/TasksController.php:510
 msgid "The task could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:570
+#: ./src/Controller/TasksController.php:561
 msgid "The task has been deleted."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:573
+#: ./src/Controller/TasksController.php:564
 msgid "The task could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:618
-msgid "The notification email could not be sent because the user does not have an email address."
-msgstr ""
-
-#: ./src/Controller/TasksController.php:631
-msgid "You have a new task # {0}"
-msgstr ""
-
-#: ./src/Controller/TasksController.php:632
-msgid "You have changes in task # {0}"
-msgstr ""
-
-#: ./src/Controller/TasksController.php:644
-msgid "Notification email sent."
-msgstr ""
-
-#: ./src/Controller/TasksController.php:648
-msgid "The notification email could not be sent."
-msgstr ""
-
-#: ./src/Controller/TasksController.php:359
+#: ./src/Controller/TasksController.php:360
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural "There were {0} unfinished tasks found that do not have a user assigned."
 msgstr[0] ""
@@ -1042,7 +1022,7 @@ msgstr ""
 #: ./src/Model/Entity/AppUser.php:87
 #: ./templates/Tasks/view.php:54
 #: ./templates/element/AccessPoints/tasks.php:35
-#: ./templates/email/html/task_notification.php:48
+#: ./templates/element/Tasks/email_detail.php:48
 msgid "User"
 msgstr ""
 
@@ -1178,7 +1158,7 @@ msgstr ""
 msgid "The highest frequency of the band cannot be below the lowest one."
 msgstr ""
 
-#: ./src/Model/Table/TasksTable.php:84
+#: ./src/Model/Table/TasksTable.php:96
 msgid "The specified task type requires the assignment of an access point."
 msgstr ""
 
@@ -1810,14 +1790,14 @@ msgstr ""
 #: ./templates/AccessPointContacts/view.php:59
 #: ./templates/AccessPoints/view.php:286
 #: ./templates/Tasks/view.php:67
-#: ./templates/email/html/task_notification.php:56
+#: ./templates/element/Tasks/email_detail.php:56
 msgid "Phone"
 msgstr ""
 
 #: ./templates/AccessPointContacts/view.php:63
 #: ./templates/AccessPoints/view.php:287
 #: ./templates/Tasks/view.php:63
-#: ./templates/email/html/task_notification.php:52
+#: ./templates/element/Tasks/email_detail.php:52
 msgid "Email"
 msgstr ""
 
@@ -3928,7 +3908,7 @@ msgstr ""
 #: ./templates/Tasks/map.php:15
 #: ./templates/Tasks/view.php:36
 #: ./templates/element/AccessPoints/tasks.php:31
-#: ./templates/email/html/task_notification.php:36
+#: ./templates/element/Tasks/email_detail.php:36
 msgid "Task Type"
 msgstr ""
 
@@ -3937,7 +3917,8 @@ msgstr ""
 #: ./templates/Tasks/map.php:24
 #: ./templates/Tasks/view.php:47
 #: ./templates/element/AccessPoints/tasks.php:32
-#: ./templates/email/html/task_notification.php:44
+#: ./templates/element/Tasks/email_detail.php:44
+#: ./templates/email/html/task_completed.php:19
 msgid "Task State"
 msgstr ""
 
@@ -3964,7 +3945,7 @@ msgstr ""
 
 #: ./templates/Tasks/index.php:101
 #: ./templates/Tasks/view.php:110
-#: ./templates/email/html/task_notification.php:124
+#: ./templates/element/Tasks/email_detail.php:124
 msgid "Summary Text"
 msgstr ""
 
@@ -3981,41 +3962,41 @@ msgid "Task No."
 msgstr ""
 
 #: ./templates/Tasks/view.php:43
-#: ./templates/email/html/task_notification.php:40
+#: ./templates/element/Tasks/email_detail.php:40
 msgid "Priority"
 msgstr ""
 
 #: ./templates/Tasks/view.php:86
-#: ./templates/email/html/task_notification.php:76
+#: ./templates/element/Tasks/email_detail.php:76
 msgid "Start Date"
 msgstr ""
 
 #: ./templates/Tasks/view.php:90
 #: ./templates/element/Dashboard/crm_task_list.php:72
 #: ./templates/element/Dashboard/task_list.php:58
-#: ./templates/email/html/task_notification.php:80
+#: ./templates/element/Tasks/email_detail.php:80
 msgid "Estimated Date"
 msgstr ""
 
 #: ./templates/Tasks/view.php:94
-#: ./templates/email/html/task_notification.php:84
+#: ./templates/element/Tasks/email_detail.php:84
 msgid "Critical Date"
 msgstr ""
 
 #: ./templates/Tasks/view.php:98
-#: ./templates/email/html/task_notification.php:88
+#: ./templates/element/Tasks/email_detail.php:88
 msgid "Finish Date"
 msgstr ""
 
 #: ./templates/Tasks/view.php:106
 #: ./templates/element/AccessPoints/tasks.php:33
-#: ./templates/email/html/task_notification.php:120
+#: ./templates/element/Tasks/email_detail.php:120
 msgid "Subject"
 msgstr ""
 
 #: ./templates/Tasks/view.php:116
 #: ./templates/element/AccessPoints/tasks.php:34
-#: ./templates/email/html/task_notification.php:130
+#: ./templates/element/Tasks/email_detail.php:130
 msgid "Text"
 msgstr ""
 
@@ -4137,29 +4118,33 @@ msgstr ""
 msgid "Default value:"
 msgstr ""
 
+#: ./templates/element/Tasks/email_detail.php:92
 #: ./templates/element/common/audit.php:9
-#: ./templates/email/html/task_notification.php:92
 msgid "Id"
 msgstr ""
 
+#: ./templates/element/Tasks/email_detail.php:96
 #: ./templates/element/common/audit.php:14
-#: ./templates/email/html/task_notification.php:96
 msgid "Created"
 msgstr ""
 
+#: ./templates/element/Tasks/email_detail.php:100
 #: ./templates/element/common/audit.php:19
-#: ./templates/email/html/task_notification.php:100
 msgid "Created By"
 msgstr ""
 
+#: ./templates/element/Tasks/email_detail.php:104
 #: ./templates/element/common/audit.php:33
-#: ./templates/email/html/task_notification.php:104
 msgid "Modified"
 msgstr ""
 
+#: ./templates/element/Tasks/email_detail.php:108
 #: ./templates/element/common/audit.php:38
-#: ./templates/email/html/task_notification.php:108
 msgid "Modified By"
+msgstr ""
+
+#: ./templates/element/Tasks/email_detail.php:116
+msgid "View Task"
 msgstr ""
 
 #: ./templates/element/common/audit.php:53
@@ -4290,8 +4275,12 @@ msgstr ""
 msgid "An outage found through the supply point is about that access point; one found through the addresses around it is likely rather than certain."
 msgstr ""
 
-#: ./templates/email/html/task_notification.php:116
-msgid "View Task"
+#: ./templates/email/html/task_completed.php:23
+msgid "Closed By"
+msgstr ""
+
+#: ./templates/email/html/task_completed.php:27
+msgid "Closed"
 msgstr ""
 
 #: ./templates/layout/default.php:108
