@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-26 11:12+0200\n"
+"POT-Creation-Date: 2026-08-26 20:56+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -113,23 +113,27 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: ./templates/element/Tasks/related.php:82
+#: ./templates/element/Tasks/related.php:64
+msgid "Collaborators"
+msgstr ""
+
+#: ./templates/element/Tasks/related.php:87
 #: ./templates/plugin/Tasks/TaskTypes/index.php:49
 msgid "View"
 msgstr ""
 
-#: ./templates/element/Tasks/related.php:86
+#: ./templates/element/Tasks/related.php:91
 #: ./templates/plugin/Tasks/TaskTypes/index.php:51
 msgid "Edit"
 msgstr ""
 
-#: ./templates/element/Tasks/related.php:91
+#: ./templates/element/Tasks/related.php:96
 #: ./templates/plugin/Tasks/TaskTypes/edit.php:12
 #: ./templates/plugin/Tasks/TaskTypes/index.php:56
 msgid "Delete"
 msgstr ""
 
-#: ./templates/element/Tasks/related.php:94
+#: ./templates/element/Tasks/related.php:99
 #: ./templates/plugin/Tasks/TaskStates/view.php:20
 #: ./templates/plugin/Tasks/TaskTypes/edit.php:15
 #: ./templates/plugin/Tasks/TaskTypes/index.php:58

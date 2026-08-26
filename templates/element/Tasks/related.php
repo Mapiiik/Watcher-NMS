@@ -61,7 +61,7 @@
                     ['controller' => 'AppUsers', 'action' => 'view', $task->user->id],
                 ) : '' ?>
                 <?php if ($task->collaborator_names !== '') : ?>
-                    <br><small title="<?= h(__('Collaborators')) ?>">
+                    <br><small title="<?= h(__d('app_tasks', 'Collaborators')) ?>">
                         <?= h($task->collaborator_names) ?>
                     </small>
                 <?php endif ?>

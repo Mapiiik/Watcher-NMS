@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-26 11:12+0200\n"
+"POT-Creation-Date: 2026-08-26 20:56+0200\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -109,8 +109,8 @@ msgstr "Aktualizace zákaznických bodů se nezdařila"
 msgid "Customer points update failed."
 msgstr "Aktualizace zákaznických bodů se nezdařila."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:75
-#: src/Command/PowerOutagesReportCommand.php:148
+#: src/Command/ElectricityMeterReadingsReportCommand.php:76
+#: src/Command/PowerOutagesReportCommand.php:149
 #: templates/AccessPointContacts/view.php:47 templates/AccessPoints/view.php:55
 #: templates/CustomerConnections/view.php:80
 #: templates/ElectricityMeterReadings/view.php:47
@@ -122,138 +122,138 @@ msgstr "Aktualizace zákaznických bodů se nezdařila."
 #: templates/PaymentPurposes/view.php:64 templates/PowerSupplies/view.php:61
 #: templates/PowerSupplyTypes/view.php:93 templates/RadioUnits/export.php:15
 #: templates/RadioUnits/view.php:57 templates/RouterosDevices/export.php:31
-#: templates/RouterosDevices/view.php:53 templates/Tasks/view.php:71
+#: templates/RouterosDevices/view.php:53 templates/Tasks/view.php:82
 #: templates/cell/AccessPoint/display.php:12
 #: templates/element/RadioUnits/related.php:26
 #: templates/element/RouterosDevices/related.php:22
-#: templates/element/Tasks/email_detail.php:60
+#: templates/element/Tasks/email_detail.php:64
 #: templates/email/html/electricity_meter_readings_report.php:27
 #: templates/email/html/power_outages_report.php:32
 msgid "Access Point"
 msgstr "Přístupový bod"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:76
+#: src/Command/ElectricityMeterReadingsReportCommand.php:77
 #: templates/AccessPoints/view.php:241
 #: templates/email/html/electricity_meter_readings_report.php:28
 msgid "Contract Conditions"
 msgstr "Podmínky smlouvy"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:77
+#: src/Command/ElectricityMeterReadingsReportCommand.php:78
 #: templates/email/html/electricity_meter_readings_report.php:29
 msgid "Last Reading Date"
 msgstr "Datum posledního čtení"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:78
+#: src/Command/ElectricityMeterReadingsReportCommand.php:79
 #: templates/email/html/electricity_meter_readings_report.php:30
 msgid "Last Reading Value"
 msgstr "Hodnota posledního čtení"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:79
+#: src/Command/ElectricityMeterReadingsReportCommand.php:80
 #: templates/email/html/electricity_meter_readings_report.php:31
 msgid "Number of days since last"
 msgstr "Počet dní od posledního"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:94
+#: src/Command/ElectricityMeterReadingsReportCommand.php:95
 #: templates/email/html/electricity_meter_readings_report.php:49
 msgid "Never"
 msgstr "Nikdy"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:100
-#: src/Command/PowerOutagesReportCommand.php:78
-#: src/Command/RadarInterferencesReportCommand.php:116
+#: src/Command/ElectricityMeterReadingsReportCommand.php:101
+#: src/Command/PowerOutagesReportCommand.php:79
+#: src/Command/RadarInterferencesReportCommand.php:117
 msgid "Nobody is configured to send the report to, so it stays here."
 msgstr ""
 "Není nastaven žádný příjemce, kterému by se měla zpráva odeslat, takže "
 "zůstává zde."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:112
+#: src/Command/ElectricityMeterReadingsReportCommand.php:113
 #: templates/AccessPoints/view.php:80
 #: templates/ElectricityMeterReadings/index.php:25
 #: templates/layout/default.php:290
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:120
+#: src/Command/ElectricityMeterReadingsReportCommand.php:121
 msgid "These electricity meter readings should take place in {month}."
 msgstr "Tyto odečty elektroměrů by měly probíhat v {month}."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:130
+#: src/Command/ElectricityMeterReadingsReportCommand.php:131
 msgid "The electricity meter readings to be made have been reported."
 msgstr "Byly nahlášeny odečty elektroměrů, které mají být provedeny."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:136
+#: src/Command/ElectricityMeterReadingsReportCommand.php:137
 msgid "The electricity meter readings to be made cannot be reported."
 msgstr "Odečty elektroměrů, které mají být provedeny, nelze nahlásit."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:140
+#: src/Command/ElectricityMeterReadingsReportCommand.php:141
 msgid "There is no need to take any electricity meter readings this month."
 msgstr "Tento měsíc není třeba provádět žádné odečty elektroměrů."
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:149
+#: src/Command/ElectricityMeterReadingsReportCommand.php:150
 msgid "Error during electricity meter readings report: {0}"
 msgstr "Chyba při hlášení odečtu elektroměru: {0}"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:155
+#: src/Command/ElectricityMeterReadingsReportCommand.php:156
 msgid "Electricity meter readings report failed"
 msgstr "Hlášení odečtu elektroměru se nezdařilo"
 
-#: src/Command/ElectricityMeterReadingsReportCommand.php:156
+#: src/Command/ElectricityMeterReadingsReportCommand.php:157
 msgid "Electricity meter readings report failed."
 msgstr "Hlášení odečtu elektroměru se nezdařilo."
 
-#: src/Command/PowerOutagesReportCommand.php:70
+#: src/Command/PowerOutagesReportCommand.php:71
 msgid "No planned outage is coming up over any of our access points."
 msgstr "Nad žádným naším přístupovým bodem se neblíží plánovaná odstávka."
 
-#: src/Command/PowerOutagesReportCommand.php:89
+#: src/Command/PowerOutagesReportCommand.php:90
 msgid "Error during the planned outages report: {0}"
 msgstr "Chyba při hlášení plánovaných odstávek: {0}"
 
-#: src/Command/PowerOutagesReportCommand.php:92
+#: src/Command/PowerOutagesReportCommand.php:93
 msgid "Planned outages report failed"
 msgstr "Hlášení plánovaných odstávek selhalo"
 
-#: src/Command/PowerOutagesReportCommand.php:93
+#: src/Command/PowerOutagesReportCommand.php:94
 msgid "Reporting the planned outages failed."
 msgstr "Hlášení plánovaných odstávek selhalo."
 
-#: src/Command/PowerOutagesReportCommand.php:149
+#: src/Command/PowerOutagesReportCommand.php:150
 #: templates/element/AccessPoints/power_outages.php:70
 #: templates/email/html/power_outages_report.php:33
 msgid "Begins"
 msgstr "Začíná"
 
-#: src/Command/PowerOutagesReportCommand.php:150
+#: src/Command/PowerOutagesReportCommand.php:151
 #: templates/element/AccessPoints/power_outages.php:71
 #: templates/email/html/power_outages_report.php:34
 msgid "Ends"
 msgstr "Končí"
 
-#: src/Command/PowerOutagesReportCommand.php:151
+#: src/Command/PowerOutagesReportCommand.php:152
 #: templates/element/AccessPoints/power_outages.php:72
 #: templates/email/html/power_outages_report.php:35
 msgid "Certainty"
 msgstr "Jistota"
 
-#: src/Command/PowerOutagesReportCommand.php:152
+#: src/Command/PowerOutagesReportCommand.php:153
 #: templates/element/AccessPoints/power_outages.php:74
 #: templates/email/html/power_outages_report.php:36
 msgid "Where"
 msgstr "Kde"
 
-#: src/Command/PowerOutagesReportCommand.php:188
+#: src/Command/PowerOutagesReportCommand.php:189
 msgid "Planned power outages over our access points"
 msgstr "Plánované odstávky elektřiny nad našimi přístupovými body"
 
-#: src/Command/PowerOutagesReportCommand.php:208
+#: src/Command/PowerOutagesReportCommand.php:209
 msgid "The planned outages have been reported."
 msgstr "Plánované odstávky byly nahlášeny."
 
-#: src/Command/PowerOutagesReportCommand.php:211
+#: src/Command/PowerOutagesReportCommand.php:212
 msgid "The planned outages cannot be reported."
 msgstr "Plánované odstávky nelze nahlásit."
 
-#: src/Command/PowerOutagesReportCommand.php:196
+#: src/Command/PowerOutagesReportCommand.php:197
 msgid ""
 "The distributor has published an outage over one of our access points in the "
 "next {0} days."
@@ -300,7 +300,7 @@ msgstr ""
 msgid "The kept answers could not be read: {0}"
 msgstr "Uložené odpovědi se nepodařilo přečíst: {0}"
 
-#: src/Command/RadarInterferencesReportCommand.php:93
+#: src/Command/RadarInterferencesReportCommand.php:94
 #: templates/AccessPointContacts/view.php:43
 #: templates/AccessPointTypes/view.php:43
 #: templates/AccessPointTypes/view.php:70 templates/AccessPoints/view.php:146
@@ -338,7 +338,7 @@ msgstr "Uložené odpovědi se nepodařilo přečíst: {0}"
 msgid "Name"
 msgstr "Jméno"
 
-#: src/Command/RadarInterferencesReportCommand.php:94
+#: src/Command/RadarInterferencesReportCommand.php:95
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:117
 #: templates/Overviews/overview_of_radio_units_against_devices.php:23
 #: templates/Overviews/overview_of_radio_units_against_devices.php:106
@@ -357,7 +357,7 @@ msgstr "Jméno"
 msgid "MAC Address"
 msgstr "MAC adresa"
 
-#: src/Command/RadarInterferencesReportCommand.php:95
+#: src/Command/RadarInterferencesReportCommand.php:96
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:116
 #: templates/RadarInterferences/add.php:29
 #: templates/RadarInterferences/edit.php:37
@@ -373,59 +373,59 @@ msgstr "MAC adresa"
 msgid "SSID"
 msgstr "SSID"
 
-#: src/Command/RadarInterferencesReportCommand.php:96
+#: src/Command/RadarInterferencesReportCommand.php:97
 #: templates/RadarInterferences/view.php:55
 msgid "Radio Name"
 msgstr "Název rádia"
 
-#: src/Command/RadarInterferencesReportCommand.php:97
+#: src/Command/RadarInterferencesReportCommand.php:98
 #: templates/RadarInterferences/view.php:59
 msgid "Signal"
 msgstr "Signál"
 
-#: src/Command/RadarInterferencesReportCommand.php:98
+#: src/Command/RadarInterferencesReportCommand.php:99
 #: templates/AccessPointTypes/view.php:71 templates/AccessPoints/view.php:150
 #: templates/element/AccessPoints/subtree.php:66
 msgid "Device Name"
 msgstr "Název zařízení"
 
-#: src/Command/RadarInterferencesReportCommand.php:99
+#: src/Command/RadarInterferencesReportCommand.php:100
 msgid "Interface Name"
 msgstr "Název rozhraní"
 
-#: src/Command/RadarInterferencesReportCommand.php:126
+#: src/Command/RadarInterferencesReportCommand.php:127
 msgid "Devices that interfere with radar found"
 msgstr "Nalezena zařízení, která ruší radar"
 
-#: src/Command/RadarInterferencesReportCommand.php:130
+#: src/Command/RadarInterferencesReportCommand.php:131
 msgid "Devices that interfere with radar ({count}) found."
 msgstr "Byla nalezena zařízení, která ruší radar ({count})."
 
-#: src/Command/RadarInterferencesReportCommand.php:135
+#: src/Command/RadarInterferencesReportCommand.php:136
 msgid "For more informations go here: {url}"
 msgstr "Pro více informací přejděte sem: {url}"
 
-#: src/Command/RadarInterferencesReportCommand.php:148
+#: src/Command/RadarInterferencesReportCommand.php:149
 msgid "Devices that interfere with radar found and reported."
 msgstr "Zařízení, která ruší radar, byla nalezena a nahlášena."
 
-#: src/Command/RadarInterferencesReportCommand.php:154
+#: src/Command/RadarInterferencesReportCommand.php:155
 msgid "Devices that interfere with radar found but cannot be reported."
 msgstr "Zařízení, která ruší radar, byla nalezena, ale nelze je nahlásit."
 
-#: src/Command/RadarInterferencesReportCommand.php:158
+#: src/Command/RadarInterferencesReportCommand.php:159
 msgid "No devices that interfere with radar found."
 msgstr "Nebyla nalezena žádná zařízení, která ruší radar."
 
-#: src/Command/RadarInterferencesReportCommand.php:167
+#: src/Command/RadarInterferencesReportCommand.php:168
 msgid "Error during radar interferences report: {0}"
 msgstr "Chyba při hlášení radarových interferencí: {0}"
 
-#: src/Command/RadarInterferencesReportCommand.php:173
+#: src/Command/RadarInterferencesReportCommand.php:174
 msgid "Radar interferences report failed"
 msgstr "Hlášení o radarových interferencích se nezdařilo"
 
-#: src/Command/RadarInterferencesReportCommand.php:174
+#: src/Command/RadarInterferencesReportCommand.php:175
 msgid "Radar interferences report failed."
 msgstr "Hlášení o radarových interferencích se nezdařilo."
 
@@ -957,29 +957,29 @@ msgstr ""
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr "Nepodařilo se aktualizovat data zařízení RouterOS přes SNMP: {0}"
 
-#: src/Controller/TasksController.php:340
+#: src/Controller/TasksController.php:353
 msgid "none"
 msgstr "žádný"
 
-#: src/Controller/TasksController.php:436
-#: src/Controller/TasksController.php:506
+#: src/Controller/TasksController.php:450
+#: src/Controller/TasksController.php:521
 msgid "The task has been saved."
 msgstr "Úkol byl uložen."
 
-#: src/Controller/TasksController.php:440
-#: src/Controller/TasksController.php:510
+#: src/Controller/TasksController.php:454
+#: src/Controller/TasksController.php:525
 msgid "The task could not be saved. Please, try again."
 msgstr "Úkol nelze uložit. Zkuste to prosím znovu."
 
-#: src/Controller/TasksController.php:561
+#: src/Controller/TasksController.php:576
 msgid "The task has been deleted."
 msgstr "Úkol byl odstraněn."
 
-#: src/Controller/TasksController.php:564
+#: src/Controller/TasksController.php:579
 msgid "The task could not be deleted. Please, try again."
 msgstr "Úkol nelze odstranit. Zkuste to prosím znovu."
 
-#: src/Controller/TasksController.php:360
+#: src/Controller/TasksController.php:373
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural ""
 "There were {0} unfinished tasks found that do not have a user assigned."
@@ -1050,41 +1050,41 @@ msgstr "adresa neuvedena"
 msgid "{0} ({1} m)"
 msgstr "{0} ({1} m)"
 
-#: src/Model/Entity/AppUser.php:87 templates/Tasks/view.php:54
+#: src/Model/Entity/AppUser.php:110 templates/Tasks/view.php:54
 #: templates/element/AccessPoints/tasks.php:35
 #: templates/element/Tasks/email_detail.php:48
 msgid "User"
 msgstr "Uživatel"
 
-#: src/Model/Entity/AppUser.php:88
+#: src/Model/Entity/AppUser.php:111
 msgid "Customer Service Technician"
 msgstr "Technik zákaznického servisu"
 
-#: src/Model/Entity/AppUser.php:89
+#: src/Model/Entity/AppUser.php:112
 msgid "Network Technician"
 msgstr "Síťový technik"
 
-#: src/Model/Entity/AppUser.php:90
+#: src/Model/Entity/AppUser.php:113
 msgid "Network Manager"
 msgstr "Správce sítě"
 
-#: src/Model/Entity/AppUser.php:91
+#: src/Model/Entity/AppUser.php:114
 msgid "Sales Representative"
 msgstr "Obchodní zástupce"
 
-#: src/Model/Entity/AppUser.php:92
+#: src/Model/Entity/AppUser.php:115
 msgid "Sales Manager"
 msgstr "Manažer prodeje"
 
-#: src/Model/Entity/AppUser.php:93
+#: src/Model/Entity/AppUser.php:116
 msgid "Bookkeeper"
 msgstr "Účetní"
 
-#: src/Model/Entity/AppUser.php:94
+#: src/Model/Entity/AppUser.php:117
 msgid "Admin"
 msgstr "Admin"
 
-#: src/Model/Entity/AppUser.php:95
+#: src/Model/Entity/AppUser.php:118
 msgid "API"
 msgstr "API"
 
@@ -1187,7 +1187,7 @@ msgstr "Telefonní číslo není platné."
 msgid "This is not a valid EAN of a supply point."
 msgstr "Toto není platný EAN odběrného místa."
 
-#: src/Model/Table/AppUsersTable.php:106
+#: src/Model/Table/AppUsersTable.php:114
 msgid "This account is still named on tasks. Move them to somebody else first."
 msgstr ""
 "Na tomto účtu jsou stále vedeny úkoly. Nejprve je přesuňte na někoho jiného."
@@ -1440,7 +1440,7 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/RouterosDeviceIps/add.php:37
 #: templates/RouterosDeviceIps/edit.php:45 templates/RouterosDevices/add.php:60
 #: templates/RouterosDevices/edit.php:68 templates/Settings/edit.php:42
-#: templates/Tasks/add.php:59 templates/Tasks/edit.php:73
+#: templates/Tasks/add.php:66 templates/Tasks/edit.php:80
 msgid "Submit"
 msgstr "Potvrdit"
 
@@ -1492,7 +1492,7 @@ msgstr "Potvrdit"
 #: templates/RouterosDevices/index.php:94
 #: templates/RouterosDevices/view.php:196
 #: templates/RouterosDevices/view.php:241 templates/Tasks/edit.php:16
-#: templates/element/AccessPoints/tasks.php:66
+#: templates/element/AccessPoints/tasks.php:72
 #: templates/element/RadioUnits/related.php:130
 #: templates/element/RouterosDevices/related.php:86
 msgid "Delete"
@@ -1562,7 +1562,7 @@ msgstr "Odstranit"
 #: templates/RouterosDevices/index.php:96 templates/RouterosDevices/view.php:20
 #: templates/RouterosDevices/view.php:202
 #: templates/RouterosDevices/view.php:243 templates/Tasks/edit.php:18
-#: templates/Tasks/view.php:15 templates/element/AccessPoints/tasks.php:68
+#: templates/Tasks/view.php:15 templates/element/AccessPoints/tasks.php:74
 #: templates/element/RadioUnits/related.php:132
 #: templates/element/RouterosDevices/related.php:88
 msgid "Are you sure you want to delete # {0}?"
@@ -1640,10 +1640,10 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/export.php:127
 #: templates/RouterosDevices/index.php:85
 #: templates/RouterosDevices/view.php:179
-#: templates/RouterosDevices/view.php:232 templates/Tasks/index.php:158
+#: templates/RouterosDevices/view.php:232 templates/Tasks/index.php:165
 #: templates/element/AccessPoints/subtree.php:94
-#: templates/element/AccessPoints/tasks.php:51
 #: templates/element/AccessPoints/tasks.php:57
+#: templates/element/AccessPoints/tasks.php:63
 #: templates/element/RadioUnits/related.php:121
 #: templates/element/RouterosDevices/related.php:77
 #: templates/email/html/electricity_meter_readings_report.php:52
@@ -1682,9 +1682,9 @@ msgstr "Zobrazit"
 #: templates/RouterosDevices/export.php:131
 #: templates/RouterosDevices/index.php:89
 #: templates/RouterosDevices/view.php:187
-#: templates/RouterosDevices/view.php:236 templates/Tasks/index.php:162
+#: templates/RouterosDevices/view.php:236 templates/Tasks/index.php:169
 #: templates/element/AccessPoints/subtree.php:98
-#: templates/element/AccessPoints/tasks.php:61
+#: templates/element/AccessPoints/tasks.php:67
 #: templates/element/RadioUnits/related.php:125
 #: templates/element/RouterosDevices/related.php:81
 msgid "Edit"
@@ -1695,14 +1695,14 @@ msgid "Delete Access Point Contact"
 msgstr "Odstranit kontakt přístupového bodu"
 
 #: templates/AccessPointContacts/view.php:59
-#: templates/AccessPoints/view.php:286 templates/Tasks/view.php:67
-#: templates/element/Tasks/email_detail.php:56
+#: templates/AccessPoints/view.php:286 templates/Tasks/view.php:78
+#: templates/element/Tasks/email_detail.php:60
 msgid "Phone"
 msgstr "Telefon"
 
 #: templates/AccessPointContacts/view.php:63
-#: templates/AccessPoints/view.php:287 templates/Tasks/view.php:63
-#: templates/element/Tasks/email_detail.php:52
+#: templates/AccessPoints/view.php:287 templates/Tasks/view.php:74
+#: templates/element/Tasks/email_detail.php:56
 msgid "Email"
 msgstr "E-mail"
 
@@ -3621,6 +3621,17 @@ msgstr "Seznam úkolů"
 msgid "Add Task"
 msgstr "Přidat úkol"
 
+#: templates/Tasks/add.php:34 templates/Tasks/edit.php:48
+#: templates/Tasks/index.php:136 templates/Tasks/view.php:61
+#: templates/element/AccessPoints/tasks.php:49
+#: templates/element/Tasks/email_detail.php:52
+msgid "Collaborators"
+msgstr "Spolupracovníci"
+
+#: templates/Tasks/add.php:35 templates/Tasks/edit.php:49
+msgid "Anybody else working on this beside the user above."
+msgstr "Kdo další na tom dělá vedle uživatele výše."
+
 #: templates/Tasks/edit.php:36 templates/Tasks/view.php:11
 msgid "Edit Task"
 msgstr "Upravit úkol"
@@ -3659,8 +3670,8 @@ msgstr "Rozbalitelný text"
 msgid "Number"
 msgstr "Číslo"
 
-#: templates/Tasks/index.php:101 templates/Tasks/view.php:110
-#: templates/element/Tasks/email_detail.php:124
+#: templates/Tasks/index.php:101 templates/Tasks/view.php:121
+#: templates/element/Tasks/email_detail.php:128
 msgid "Summary Text"
 msgstr "Souhrnný text"
 
@@ -3680,31 +3691,32 @@ msgstr "Úkol č."
 msgid "Priority"
 msgstr "Priorita"
 
-#: templates/Tasks/view.php:86 templates/element/Tasks/email_detail.php:76
+#: templates/Tasks/view.php:97 templates/element/Tasks/email_detail.php:80
 msgid "Start Date"
 msgstr "Datum přijetí"
 
-#: templates/Tasks/view.php:90 templates/element/Dashboard/crm_task_list.php:72
+#: templates/Tasks/view.php:101
+#: templates/element/Dashboard/crm_task_list.php:72
 #: templates/element/Dashboard/task_list.php:58
-#: templates/element/Tasks/email_detail.php:80
+#: templates/element/Tasks/email_detail.php:84
 msgid "Estimated Date"
 msgstr "Předpokládané datum řešení"
 
-#: templates/Tasks/view.php:94 templates/element/Tasks/email_detail.php:84
+#: templates/Tasks/view.php:105 templates/element/Tasks/email_detail.php:88
 msgid "Critical Date"
 msgstr "Nutné dořešit do"
 
-#: templates/Tasks/view.php:98 templates/element/Tasks/email_detail.php:88
+#: templates/Tasks/view.php:109 templates/element/Tasks/email_detail.php:92
 msgid "Finish Date"
 msgstr "Datum vyřízení"
 
-#: templates/Tasks/view.php:106 templates/element/AccessPoints/tasks.php:33
-#: templates/element/Tasks/email_detail.php:120
+#: templates/Tasks/view.php:117 templates/element/AccessPoints/tasks.php:33
+#: templates/element/Tasks/email_detail.php:124
 msgid "Subject"
 msgstr "Předmět"
 
-#: templates/Tasks/view.php:116 templates/element/AccessPoints/tasks.php:34
-#: templates/element/Tasks/email_detail.php:130
+#: templates/Tasks/view.php:127 templates/element/AccessPoints/tasks.php:34
+#: templates/element/Tasks/email_detail.php:134
 msgid "Text"
 msgstr "Text"
 
@@ -3838,32 +3850,32 @@ msgstr "Výchozí"
 msgid "Default value:"
 msgstr "Výchozí hodnota:"
 
-#: templates/element/Tasks/email_detail.php:92
+#: templates/element/Tasks/email_detail.php:96
 #: templates/element/common/audit.php:9
 msgid "Id"
 msgstr "ID"
 
-#: templates/element/Tasks/email_detail.php:96
+#: templates/element/Tasks/email_detail.php:100
 #: templates/element/common/audit.php:14
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: templates/element/Tasks/email_detail.php:100
+#: templates/element/Tasks/email_detail.php:104
 #: templates/element/common/audit.php:19
 msgid "Created By"
 msgstr "Vytvořil"
 
-#: templates/element/Tasks/email_detail.php:104
+#: templates/element/Tasks/email_detail.php:108
 #: templates/element/common/audit.php:33
 msgid "Modified"
 msgstr "Upraveno"
 
-#: templates/element/Tasks/email_detail.php:108
+#: templates/element/Tasks/email_detail.php:112
 #: templates/element/common/audit.php:38
 msgid "Modified By"
 msgstr "Upravil"
 
-#: templates/element/Tasks/email_detail.php:116
+#: templates/element/Tasks/email_detail.php:120
 msgid "View Task"
 msgstr "Zobrazit úkol"
 
