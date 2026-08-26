@@ -36,6 +36,13 @@ class TasksControllerTest extends TestCase
     private const ACCESS_POINT_ID = '1bd5e754-e102-46ad-8488-11b1b44bf026';
 
     /**
+     * The user the fixture task is assigned to.
+     *
+     * @var string
+     */
+    private const HOLDER_ID = '78215c1c-54ab-4da0-a482-ffe024a065e4';
+
+    /**
      * Fixtures
      *
      * @var array<string>
@@ -288,6 +295,46 @@ class TasksControllerTest extends TestCase
         $this->assertMailSentTo('operator@example.com');
         $this->assertMailSubjectContains('You have changes in task');
         $this->assertMailContainsHtml('Realign the sector antenna');
+    }
+
+    /**
+     * A task saved by the very person holding it tells them nothing - they are looking at it.
+     *
+     * The footprint of the save cannot answer who acted: where the same person saves a task they
+     * saved last time, the column is written with the value it already held and stays clean,
+     * which is indistinguishable from a save that never touched it. So who acted is asked of the
+     * request, and this is the case that catches it being asked the other way.
+     *
+     * @return void
+     * @link \Tasks\Model\Table\TasksTable::isSomebodyElses()
+     */
+    public function testATaskSavedByItsOwnHolderTellsThemNothing(): void
+    {
+        $this->loginAs(self::HOLDER_ID);
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/tasks/edit/' . $this->firstId('Tasks'), [
+            'subject' => 'Noted by the person holding it',
+        ]);
+
+        $this->assertRedirect();
+        $this->assertNoMailSent();
+    }
+
+    /**
+     * Signed in as somebody the fixtures actually carry, so that the identity has an id.
+     *
+     * `login()` makes one up on the spot, which is what most of these tests want - but a task
+     * being somebody's own is a question about who is signed in, and an identity with no id can
+     * never be anybody's.
+     *
+     * @param string $userId The user to sign in as.
+     * @return void
+     */
+    private function loginAs(string $userId): void
+    {
+        $this->session(['Auth' => $this->getTableLocator()->get('AppUsers')->get($userId)]);
     }
 
     /**
