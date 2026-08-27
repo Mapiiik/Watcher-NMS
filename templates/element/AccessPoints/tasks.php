@@ -53,11 +53,20 @@ $elsewhere = $answer !== null;
             </td>
             <td class="actions">
                 <?php if ($elsewhere) : ?>
+                    <?php $itsPage = Links::path('/tasks/view/' . $task->id) ?>
                     <?= $this->Html->link(
                         __('View'),
-                        Links::path('/tasks/view/' . $task->id),
+                        $itsPage,
                         ['target' => '_blank'],
                     ) ?>
+                    <?php if ($itsPage !== null) : ?>
+                        <?php // the task is kept over there, so that is the address worth having ?>
+                        <?= $this->element('common/copy_url', [
+                            'url' => $itsPage,
+                            'label' => __('Link'),
+                            'as_link' => true,
+                        ]) ?>
+                    <?php endif ?>
                 <?php else : ?>
                     <?= $this->AuthLink->link(
                         __('View'),
@@ -73,6 +82,18 @@ $elsewhere = $answer !== null;
                         ['controller' => 'Tasks', 'action' => 'delete', $task->id],
                         ['confirm' => __('Are you sure you want to delete # {0}?', $task->number)],
                     ) ?>
+                    <?= $this->element('common/copy_url', [
+                        // win-link null keeps the routing filter from marking the copied link as
+                        // one that belongs inside the popup window
+                        'url' => $this->Url->build(
+                            ['controller' => 'Tasks', 'action' => 'view', $task->id, '?' => ['win-link' => null]],
+                            ['fullBase' => true],
+                        ),
+                        // said shorter than on a page of its own: among three other actions
+                        // there is no room to spell out what the click does
+                        'label' => __('Link'),
+                        'as_link' => true,
+                    ]) ?>
                 <?php endif; ?>
             </td>
         </tr>

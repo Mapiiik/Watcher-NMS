@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-08-26 20:56+0200\n"
+"POT-Creation-Date: 2026-08-27 09:53+0200\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1492,7 +1492,7 @@ msgstr "Potvrdit"
 #: templates/RouterosDevices/index.php:94
 #: templates/RouterosDevices/view.php:196
 #: templates/RouterosDevices/view.php:241 templates/Tasks/edit.php:16
-#: templates/element/AccessPoints/tasks.php:72
+#: templates/element/AccessPoints/tasks.php:81
 #: templates/element/RadioUnits/related.php:130
 #: templates/element/RouterosDevices/related.php:86
 msgid "Delete"
@@ -1562,7 +1562,7 @@ msgstr "Odstranit"
 #: templates/RouterosDevices/index.php:96 templates/RouterosDevices/view.php:20
 #: templates/RouterosDevices/view.php:202
 #: templates/RouterosDevices/view.php:243 templates/Tasks/edit.php:18
-#: templates/Tasks/view.php:15 templates/element/AccessPoints/tasks.php:74
+#: templates/Tasks/view.php:15 templates/element/AccessPoints/tasks.php:83
 #: templates/element/RadioUnits/related.php:132
 #: templates/element/RouterosDevices/related.php:88
 msgid "Are you sure you want to delete # {0}?"
@@ -1642,8 +1642,8 @@ msgstr "Kontakty přístupových bodů"
 #: templates/RouterosDevices/view.php:179
 #: templates/RouterosDevices/view.php:232 templates/Tasks/index.php:165
 #: templates/element/AccessPoints/subtree.php:94
-#: templates/element/AccessPoints/tasks.php:57
-#: templates/element/AccessPoints/tasks.php:63
+#: templates/element/AccessPoints/tasks.php:58
+#: templates/element/AccessPoints/tasks.php:72
 #: templates/element/RadioUnits/related.php:121
 #: templates/element/RouterosDevices/related.php:77
 #: templates/email/html/electricity_meter_readings_report.php:52
@@ -1684,7 +1684,7 @@ msgstr "Zobrazit"
 #: templates/RouterosDevices/view.php:187
 #: templates/RouterosDevices/view.php:236 templates/Tasks/index.php:169
 #: templates/element/AccessPoints/subtree.php:98
-#: templates/element/AccessPoints/tasks.php:67
+#: templates/element/AccessPoints/tasks.php:76
 #: templates/element/RadioUnits/related.php:125
 #: templates/element/RouterosDevices/related.php:81
 msgid "Edit"
@@ -2795,6 +2795,8 @@ msgid "Recorded"
 msgstr "Evidováno"
 
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:41
+#: templates/Tasks/index.php:182 templates/element/AccessPoints/tasks.php:66
+#: templates/element/AccessPoints/tasks.php:94
 msgid "Link"
 msgstr "Odkaz"
 
@@ -3903,11 +3905,12 @@ msgstr "Archivováno"
 msgid "Archived By"
 msgstr "Archivoval"
 
-#: templates/element/common/copy_url.php:18
+#: templates/element/common/copy_url.php:26
 msgid "Copy Link"
 msgstr "Kopírovat odkaz"
 
-#: templates/element/common/copy_url.php:25
+#: templates/element/common/copy_url.php:39
+#: templates/element/common/copy_url.php:49
 msgid "Copied"
 msgstr "Zkopírováno"
 
