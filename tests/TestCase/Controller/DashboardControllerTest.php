@@ -7,6 +7,7 @@ use App\Controller\DashboardController;
 use App\Test\Traits\ConfigureTestTrait;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\Core\Configure;
+use Cake\Core\Plugin;
 use Cake\Http\TestSuite\HttpClientTrait;
 use Cake\I18n\DateTime;
 use Cake\Routing\Router;
@@ -53,6 +54,36 @@ class DashboardControllerTest extends TestCase
     ];
 
     /**
+     * The page must not sit at the bare `/dashboard`, whatever the router would otherwise
+     * make of it.
+     *
+     * A plugin that ships a webroot has it linked into the application's own under the
+     * plugin's name, and this plugin is named after the page it draws. A web server that
+     * answers directories itself - nginx does, with the `$uri/` of its `try_files` - takes
+     * that path before the router is asked, and finding no index file inside answers 403.
+     * Caddy does not, so a rename back to `index` would pass every test and every look at
+     * the development server, and break only where it is deployed.
+     *
+     * @return void
+     * @link \Dashboard\Controller\Trait\DashboardControllerTrait::cards()
+     */
+    public function testTheDashboardIsNotAtThePathItsOwnAssetsOwn(): void
+    {
+        // nothing is requested here, so the routes are not otherwise loaded
+        $this->loadRoutes();
+
+        $this->assertDirectoryExists(
+            Plugin::path('Dashboard') . 'webroot',
+            'The plugin has a webroot, which is what takes the path.',
+        );
+
+        $this->assertNotSame(
+            '/dashboard',
+            Router::url(['controller' => 'Dashboard', 'action' => 'cards', 'plugin' => null]),
+        );
+    }
+
+    /**
      * The root asks which page this user starts on, and the dashboard is the answer for
      * everybody who has not chosen another one.
      *
@@ -64,9 +95,9 @@ class DashboardControllerTest extends TestCase
         $this->login();
         $this->get('/');
 
-        $this->assertRedirect('/dashboard');
+        $this->assertRedirect('/dashboard/cards');
 
-        $this->get('/dashboard');
+        $this->get('/dashboard/cards');
 
         $this->assertResponseOk();
         $this->assertNotEmpty($this->viewVariable('cards'));
@@ -84,7 +115,7 @@ class DashboardControllerTest extends TestCase
         // the plugin that owns this setting merges it in as the application boots, which a
         // request is what brings about
         $this->login();
-        $this->get('/dashboard');
+        $this->get('/dashboard/cards');
         $this->assertResponseOk();
 
         $redirect = (string)Configure::read('Auth.AuthenticationComponent.loginRedirect');
@@ -93,9 +124,9 @@ class DashboardControllerTest extends TestCase
 
         $this->get($redirect);
 
-        $this->assertRedirect('/dashboard');
+        $this->assertRedirect('/dashboard/cards');
 
-        $this->get('/dashboard');
+        $this->get('/dashboard/cards');
 
         $this->assertResponseOk();
         $this->assertNotEmpty($this->viewVariable('cards'));
@@ -111,10 +142,10 @@ class DashboardControllerTest extends TestCase
     public function testIndex(): void
     {
         $this->login();
-        $this->get('/dashboard');
+        $this->get('/dashboard/cards');
 
         $this->assertResponseOk();
-        $this->assertResponseContains('class="dashboard index content"');
+        $this->assertResponseContains('class="dashboard cards content"');
         $this->assertResponseContains('class="dashboard-cards"');
         $this->assertResponseContains('class="related"');
         // served out of the plugin, so the path says which one it came from
@@ -151,7 +182,7 @@ class DashboardControllerTest extends TestCase
     public function testEveryRoleReachesTheDashboard(string $role): void
     {
         $this->login($role);
-        $this->get('/dashboard');
+        $this->get('/dashboard/cards');
 
         $this->assertResponseOk();
     }
@@ -182,7 +213,7 @@ class DashboardControllerTest extends TestCase
     public function testCardsAreChosenByRole(): void
     {
         $this->login('customer-service-technician');
-        $this->get('/dashboard');
+        $this->get('/dashboard/cards');
 
         $this->assertResponseOk();
 

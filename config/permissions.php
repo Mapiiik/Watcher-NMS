@@ -163,7 +163,7 @@ $permissions = [
             'plugin' => null,
             'controller' => 'Dashboard',
             'action' => [
-                'index',
+                'cards',
                 'card',
             ],
         ],
