@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-08-27 09:53+0200\n"
+"POT-Creation-Date: 2026-09-05 11:44+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -665,7 +665,7 @@ msgstr ""
 msgid "The electricity meter reading could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/HomeController.php:39
+#: ./src/Controller/HomeController.php:38
 msgid "The page you chose to start on is not open to you any more. Please pick another one in your settings."
 msgstr ""
 
@@ -1082,6 +1082,77 @@ msgstr ""
 
 #: ./src/Model/Enum/DeviceLinkScope.php:56
 msgid "Only Without a Link"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:38
+#: ./templates/layout/default.php:108
+msgid "Dashboard"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:39
+#: ./templates/AccessPoints/index.php:37
+#: ./templates/AccessPoints/map.php:21
+#: ./templates/layout/default.php:113
+#: ./templates/layout/default.php:280
+msgid "Access Points"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:40
+#: ./templates/AccessPoints/view.php:130
+#: ./templates/Tasks/index.php:91
+#: ./templates/Tasks/map.php:36
+#: ./templates/layout/default.php:125
+msgid "Tasks"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:41
+#: ./templates/CustomerPoints/index.php:25
+#: ./templates/layout/default.php:135
+#: ./templates/layout/default.php:309
+msgid "Customer Points"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:42
+#: ./templates/AccessPoints/view.php:90
+#: ./templates/IpAddressRanges/index.php:25
+#: ./templates/layout/default.php:144
+msgid "IP Address Ranges"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:43
+#: ./templates/AccessPoints/view.php:105
+#: ./templates/RouterosDevices/export.php:26
+#: ./templates/RouterosDevices/index.php:30
+#: ./templates/layout/default.php:151
+#: ./templates/layout/default.php:334
+msgid "RouterOS Devices"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:44
+#: ./templates/AccessPoints/map.php:34
+#: ./templates/RadioLinks/index.php:27
+#: ./templates/layout/default.php:161
+#: ./templates/layout/default.php:362
+msgid "Radio Links"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:45
+#: ./templates/AccessPoints/view.php:95
+#: ./templates/PowerSupplies/index.php:25
+#: ./templates/layout/default.php:169
+msgid "Power Supplies"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:46
+#: ./templates/Overviews/index.php:7
+#: ./templates/layout/default.php:176
+msgid "Overviews"
+msgstr ""
+
+#: ./src/Model/Enum/LandingPage.php:47
+#: ./templates/Settings/index.php:7
+#: ./templates/layout/default.php:183
+msgid "Settings"
 msgstr ""
 
 #: ./src/Model/Enum/MaximumAge.php:70
@@ -2023,22 +2094,8 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: ./templates/AccessPoints/index.php:37
-#: ./templates/AccessPoints/map.php:21
-#: ./templates/layout/default.php:113
-#: ./templates/layout/default.php:280
-msgid "Access Points"
-msgstr ""
-
 #: ./templates/AccessPoints/map.php:31
 msgid "Map Options"
-msgstr ""
-
-#: ./templates/AccessPoints/map.php:34
-#: ./templates/RadioLinks/index.php:27
-#: ./templates/layout/default.php:161
-#: ./templates/layout/default.php:362
-msgid "Radio Links"
 msgstr ""
 
 #: ./templates/AccessPoints/map.php:37
@@ -2126,18 +2183,6 @@ msgstr ""
 msgid "Landlord Payments"
 msgstr ""
 
-#: ./templates/AccessPoints/view.php:90
-#: ./templates/IpAddressRanges/index.php:25
-#: ./templates/layout/default.php:144
-msgid "IP Address Ranges"
-msgstr ""
-
-#: ./templates/AccessPoints/view.php:95
-#: ./templates/PowerSupplies/index.php:25
-#: ./templates/layout/default.php:169
-msgid "Power Supplies"
-msgstr ""
-
 #: ./templates/AccessPoints/view.php:100
 #: ./templates/RadioLinks/index.php:35
 #: ./templates/RadioUnits/export.php:10
@@ -2145,14 +2190,6 @@ msgstr ""
 #: ./templates/Settings/index.php:34
 #: ./templates/layout/default.php:367
 msgid "Radio Units"
-msgstr ""
-
-#: ./templates/AccessPoints/view.php:105
-#: ./templates/RouterosDevices/export.php:26
-#: ./templates/RouterosDevices/index.php:30
-#: ./templates/layout/default.php:151
-#: ./templates/layout/default.php:334
-msgid "RouterOS Devices"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:110
@@ -2164,13 +2201,6 @@ msgstr ""
 #: ./templates/element/AccessPoints/subtree.php:68
 #: ./templates/layout/default.php:314
 msgid "Customer Connections"
-msgstr ""
-
-#: ./templates/AccessPoints/view.php:130
-#: ./templates/Tasks/index.php:91
-#: ./templates/Tasks/map.php:36
-#: ./templates/layout/default.php:125
-msgid "Tasks"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:154
@@ -2675,22 +2705,22 @@ msgstr ""
 msgid "Antenna Gain"
 msgstr ""
 
-#: ./templates/AppUsers/user_settings.php:55
+#: ./templates/AppUsers/user_settings.php:56
 #: ./templates/layout/default.php:231
 msgid "Light"
 msgstr ""
 
-#: ./templates/AppUsers/user_settings.php:56
+#: ./templates/AppUsers/user_settings.php:57
 #: ./templates/layout/default.php:232
 msgid "Dark"
 msgstr ""
 
-#: ./templates/AppUsers/user_settings.php:57
+#: ./templates/AppUsers/user_settings.php:58
 #: ./templates/layout/default.php:233
 msgid "Contrast"
 msgstr ""
 
-#: ./templates/AppUsers/user_settings.php:58
+#: ./templates/AppUsers/user_settings.php:59
 #: ./templates/layout/default.php:234
 msgid "Legacy"
 msgstr ""
@@ -2820,12 +2850,6 @@ msgstr ""
 #: ./templates/CustomerPoints/index.php:21
 #: ./templates/CustomerPoints/view.php:30
 msgid "New Customer Point"
-msgstr ""
-
-#: ./templates/CustomerPoints/index.php:25
-#: ./templates/layout/default.php:135
-#: ./templates/layout/default.php:309
-msgid "Customer Points"
 msgstr ""
 
 #: ./templates/CustomerPoints/view.php:17
@@ -3035,11 +3059,6 @@ msgstr ""
 #: ./templates/Manufacturers/view.php:153
 #: ./templates/RadioUnitBands/view.php:130
 msgid "Related Radio Unit Types"
-msgstr ""
-
-#: ./templates/Overviews/index.php:7
-#: ./templates/layout/default.php:176
-msgid "Overviews"
 msgstr ""
 
 #: ./templates/Overviews/index.php:10
@@ -3822,13 +3841,8 @@ msgid "If you leave the field blank, it will not be saved in the DB and the defa
 msgstr ""
 
 #: ./templates/Settings/edit.php:30
-#: ./templates/element/Settings/FormFields.php:82
+#: ./templates/element/Settings/FormFields.php:94
 msgid "Setting: {path}"
-msgstr ""
-
-#: ./templates/Settings/index.php:7
-#: ./templates/layout/default.php:183
-msgid "Settings"
 msgstr ""
 
 #: ./templates/Settings/index.php:10
@@ -4130,12 +4144,13 @@ msgid "Nothing has been written for these in {0}."
 msgstr ""
 
 #: ./templates/element/Settings/FormFields.php:34
+#: ./templates/element/Settings/FormFields.php:51
 #: ./templates/layout/default.php:229
 msgid "Default"
 msgstr ""
 
-#: ./templates/element/Settings/FormFields.php:71
-#: ./templates/element/Settings/FormFields.php:110
+#: ./templates/element/Settings/FormFields.php:83
+#: ./templates/element/Settings/FormFields.php:122
 msgid "Default value:"
 msgstr ""
 
@@ -4303,10 +4318,6 @@ msgstr ""
 
 #: ./templates/email/html/task_completed.php:27
 msgid "Closed"
-msgstr ""
-
-#: ./templates/layout/default.php:108
-msgid "Dashboard"
 msgstr ""
 
 #: ./templates/layout/default.php:201
