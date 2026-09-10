@@ -28,6 +28,7 @@ use RuntimeException;
  *
  * @link https://book.cakephp.org/5/en/views.html#the-app-view
  * @property \CakeDC\Users\View\Helper\AuthLinkHelper $AuthLink
+ * @property \Files\View\Helper\RecordHelper $Record
  */
 class AppView extends View
 {

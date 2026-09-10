@@ -180,6 +180,14 @@ $urlWithQuery = function ($query = []) use ($request) {
                 ])],
             ) ?>
             <?= $this->AuthLink->link(
+                __('Files'),
+                ['controller' => 'Documents', 'action' => 'index', 'plugin' => 'Files'],
+                ['class' => 'button button-small' . $buttonSelected([
+                    'Documents',
+                    'Storage',
+                ])],
+            ) ?>
+            <?= $this->AuthLink->link(
                 __('Settings'),
                 ['controller' => 'Settings', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected([

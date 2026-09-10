@@ -46,4 +46,7 @@ return [
 
     // Maps
     'Maps' => [],
+
+    // Files
+    'Files' => [],
 ];
