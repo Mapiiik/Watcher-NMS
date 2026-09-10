@@ -644,6 +644,14 @@ return [
     ],
 
     /*
+     * Where the deployment keeps the files it owns, as opposed to the ones that came with the
+     * code. Free to point outside the application directory, and on a real deployment it does.
+     */
+    'Data' => [
+        'root' => (string)env('DATA_ROOT', ROOT . DS . 'data'),
+    ],
+
+    /*
      * What the pages offer. The rest of `UI` is written per request from the user's own
      * settings; this is only what the installation decides once.
      */
