@@ -100,7 +100,7 @@ $hasEan = trim((string)$accessPoint->electricity_ean) !== '';
                     <?= $this->Html->link(
                         __('Announcement'),
                         $outage->announcement_url,
-                        ['class' => 'win-link', 'target' => '_blank', 'rel' => 'noopener'],
+                        ['target' => '_blank', 'rel' => 'noopener'],
                     ) ?>
                 <?php endif; ?>
             </td>
