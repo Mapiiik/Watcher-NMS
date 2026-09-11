@@ -56,7 +56,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
             php-version: ${{ matrix.php-version }}
-            extensions: mbstring, intl, redis, snmp, pdo_${{ matrix.db-type }}
+            extensions: mbstring, intl, redis, snmp, imagick, pdo_${{ matrix.db-type }}
             coverage: pcov
 
       - name: Composer install
@@ -117,7 +117,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: mbstring, intl, redis, snmp
+          extensions: mbstring, intl, redis, snmp, imagick
           tools: cs2pr
           coverage: none
 

@@ -13,6 +13,9 @@ ENV WEB_DOCUMENT_ROOT="/app/webroot"
 # Copy app data
 COPY --chown="${APPLICATION_USER}":"${APPLICATION_USER}" ./ /app
 
+# imagick, with the delegates for HEIC, TIFF and PDF, comes from the base image along with
+# ghostscript. It is the one that reads what a phone and a scanner send and gd cannot.
+
 # Composer install
 RUN gosu "${APPLICATION_USER}" composer install -d /app --no-interaction --no-dev --optimize-autoloader
 

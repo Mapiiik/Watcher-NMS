@@ -11,6 +11,9 @@ RUN echo "Based on commit: $gitcommithash"
 ENV DEBUG="true"
 ENV WEB_DOCUMENT_ROOT="/app/webroot"
 
+# imagick, with the delegates for HEIC, TIFF and PDF, comes from the base image along with
+# ghostscript. It is the one that reads what a phone and a scanner send and gd cannot.
+
 # Install PCOV extension
 #
 # Coverage is measured when it is asked for rather than always. pcov costs something on every
