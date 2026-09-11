@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-09-05 11:44+0200\n"
+"POT-Creation-Date: 2026-09-11 02:13+0200\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -81,6 +81,66 @@ msgid ""
 msgstr ""
 "Jak daleko od přístupového bodu rádiové jednotky může být umístěna "
 "registrovaná stanice, aby byla stále považována za stejné místo."
+
+#: src/Command/BackupCommand.php:52
+msgid ""
+"Writes the database and everything under the data root into a directory of "
+"their own."
+msgstr "Zapíše databázi a všechno pod datovým kořenem do vlastního adresáře."
+
+#: src/Command/BackupCommand.php:57
+msgid ""
+"Where the backup is put. A directory named after the moment is made inside "
+"it."
+msgstr ""
+"Kam se záloha uloží. Uvnitř vznikne adresář pojmenovaný podle okamžiku."
+
+#: src/Command/BackupCommand.php:79
+msgid "What"
+msgstr "Co"
+
+#: src/Command/BackupCommand.php:79
+#: src/Command/PowerOutagesReportCommand.php:153
+#: templates/element/AccessPoints/power_outages.php:74
+#: templates/email/html/power_outages_report.php:36
+msgid "Where"
+msgstr "Kde"
+
+#: src/Command/BackupCommand.php:79
+msgid "Size"
+msgstr "Velikost"
+
+#: src/Command/BackupCommand.php:86
+msgid "The backup is in {0}."
+msgstr "Záloha je v {0}."
+
+#: src/Command/BackupCommand.php:98
+msgid "Error during the backup: {0}"
+msgstr "Chyba při zálohování: {0}"
+
+#: src/Command/BackupCommand.php:103
+msgid "Backup failed"
+msgstr "Záloha se nepovedla"
+
+#: src/Command/BackupCommand.php:105
+msgid "The backup did not run, and nothing was left behind."
+msgstr "Záloha neproběhla a nic po sobě nenechala."
+
+#: src/Command/BackupCommand.php:107
+msgid "Error: {0}"
+msgstr "Chyba: {0}"
+
+#: src/Command/BackupCommand.php:155
+msgid "Database ({0})"
+msgstr "Databáze ({0})"
+
+#: src/Command/BackupCommand.php:171
+msgid "Data root"
+msgstr "Datový kořen"
+
+#: src/Command/BackupCommand.php:187
+msgid "Run this where the client is, with the directory mounted into it:"
+msgstr "Spusťte tohle tam, kde je klient, s připojeným adresářem:"
 
 #: src/Command/CustomerPointsUpdateCommand.php:76
 msgid "The customer points data could not be downloaded. Please, try again."
@@ -169,7 +229,7 @@ msgstr ""
 #: src/Command/ElectricityMeterReadingsReportCommand.php:113
 #: templates/AccessPoints/view.php:80
 #: templates/ElectricityMeterReadings/index.php:25
-#: templates/layout/default.php:290
+#: templates/layout/default.php:298
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
@@ -234,12 +294,6 @@ msgstr "Končí"
 #: templates/email/html/power_outages_report.php:35
 msgid "Certainty"
 msgstr "Jistota"
-
-#: src/Command/PowerOutagesReportCommand.php:153
-#: templates/element/AccessPoints/power_outages.php:74
-#: templates/email/html/power_outages_report.php:36
-msgid "Where"
-msgstr "Kde"
 
 #: src/Command/PowerOutagesReportCommand.php:189
 msgid "Planned power outages over our access points"
@@ -450,6 +504,43 @@ msgstr "Aktualizace radarových interferencí se nezdařila"
 #: src/Command/RadarInterferencesUpdateCommand.php:122
 msgid "Radar interferences update failed."
 msgstr "Aktualizace radarových interferencí se nezdařila."
+
+#: src/Command/RestoreCommand.php:48
+msgid "Puts a backup back: the data root first, then the database."
+msgstr "Vrátí zálohu zpátky, nejdřív datový kořen a pak databázi."
+
+#: src/Command/RestoreCommand.php:53
+msgid "The directory one run of the backup wrote."
+msgstr "Adresář, který zapsal jeden běh zálohy."
+
+#: src/Command/RestoreCommand.php:58
+msgid ""
+"Go ahead even though the database already holds something, dropping it first."
+msgstr "Pokračovat, i když databáze už něco obsahuje, a napřed ji zahodit."
+
+#: src/Command/RestoreCommand.php:91
+msgid "The backup in {0} has been put back."
+msgstr "Záloha v {0} byla vrácena zpátky."
+
+#: src/Command/RestoreCommand.php:98
+msgid "Error during the restore: {0}"
+msgstr "Chyba při obnově: {0}"
+
+#: src/Command/RestoreCommand.php:149
+msgid "The data root is back."
+msgstr "Datový kořen je zpátky."
+
+#: src/Command/RestoreCommand.php:174
+msgid "Run this where the client is, with the backup mounted into it:"
+msgstr "Spusťte tohle tam, kde je klient, s připojenou zálohou:"
+
+#: src/Command/RestoreCommand.php:180
+msgid "The {0} database is back."
+msgstr "Databáze {0} je zpátky."
+
+#: src/Command/RestoreCommand.php:197
+msgid "Now run these, in this order:"
+msgstr "Teď spusťte tohle, v tomhle pořadí:"
 
 #: src/Command/RlanStationsUpdateCommand.php:68
 msgid "The register of stations has been read. Stations: {0}"
@@ -1124,7 +1215,7 @@ msgstr "Nástěnka"
 
 #: src/Model/Enum/LandingPage.php:39 templates/AccessPoints/index.php:37
 #: templates/AccessPoints/map.php:21 templates/layout/default.php:113
-#: templates/layout/default.php:280
+#: templates/layout/default.php:288
 msgid "Access Points"
 msgstr "Přístupové body"
 
@@ -1135,7 +1226,7 @@ msgid "Tasks"
 msgstr "Úkoly"
 
 #: src/Model/Enum/LandingPage.php:41 templates/CustomerPoints/index.php:25
-#: templates/layout/default.php:135 templates/layout/default.php:309
+#: templates/layout/default.php:135 templates/layout/default.php:317
 msgid "Customer Points"
 msgstr "Zákaznické body"
 
@@ -1147,13 +1238,13 @@ msgstr "Rozsahy IP adres"
 #: src/Model/Enum/LandingPage.php:43 templates/AccessPoints/view.php:105
 #: templates/RouterosDevices/export.php:26
 #: templates/RouterosDevices/index.php:30 templates/layout/default.php:151
-#: templates/layout/default.php:334
+#: templates/layout/default.php:342
 msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
 
 #: src/Model/Enum/LandingPage.php:44 templates/AccessPoints/map.php:34
 #: templates/RadioLinks/index.php:27 templates/layout/default.php:161
-#: templates/layout/default.php:362
+#: templates/layout/default.php:370
 msgid "Radio Links"
 msgstr "Rádiové spoje"
 
@@ -1168,7 +1259,7 @@ msgid "Overviews"
 msgstr "Přehledy"
 
 #: src/Model/Enum/LandingPage.php:47 templates/Settings/index.php:7
-#: templates/layout/default.php:183
+#: templates/layout/default.php:191
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -1667,7 +1758,7 @@ msgid "New Access Point Contact"
 msgstr "Nový kontakt přístupového bodu"
 
 #: templates/AccessPointContacts/index.php:25
-#: templates/AccessPoints/view.php:75 templates/layout/default.php:285
+#: templates/AccessPoints/view.php:75 templates/layout/default.php:293
 msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
@@ -2030,13 +2121,13 @@ msgid "Subordinate Access Points"
 msgstr "Podřazené přístupové body"
 
 #: templates/AccessPoints/view.php:85 templates/LandlordPayments/index.php:25
-#: templates/layout/default.php:295
+#: templates/layout/default.php:303
 msgid "Landlord Payments"
 msgstr "Platby pronajímateli"
 
 #: templates/AccessPoints/view.php:100 templates/RadioLinks/index.php:35
 #: templates/RadioUnits/export.php:10 templates/RadioUnits/index.php:29
-#: templates/Settings/index.php:34 templates/layout/default.php:367
+#: templates/Settings/index.php:34 templates/layout/default.php:375
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
@@ -2047,7 +2138,7 @@ msgstr "Propoje rádiových jednotek"
 #: templates/AccessPoints/view.php:125
 #: templates/CustomerConnections/index.php:31
 #: templates/element/AccessPoints/subtree.php:68
-#: templates/layout/default.php:314
+#: templates/layout/default.php:322
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
 
@@ -2457,19 +2548,19 @@ msgstr "Číslo dílu"
 msgid "Antenna Gain"
 msgstr "Zisk antény"
 
-#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:231
+#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:239
 msgid "Light"
 msgstr "Světlý"
 
-#: templates/AppUsers/user_settings.php:57 templates/layout/default.php:232
+#: templates/AppUsers/user_settings.php:57 templates/layout/default.php:240
 msgid "Dark"
 msgstr "Tmavý"
 
-#: templates/AppUsers/user_settings.php:58 templates/layout/default.php:233
+#: templates/AppUsers/user_settings.php:58 templates/layout/default.php:241
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: templates/AppUsers/user_settings.php:59 templates/layout/default.php:234
+#: templates/AppUsers/user_settings.php:59 templates/layout/default.php:242
 msgid "Legacy"
 msgstr "Starší"
 
@@ -2517,7 +2608,7 @@ msgid "New Customer Connection IP"
 msgstr "Nová IP připojení zákazníka"
 
 #: templates/CustomerConnectionIps/index.php:25
-#: templates/layout/default.php:319
+#: templates/layout/default.php:327
 msgid "Customer Connection Ips"
 msgstr "IP připojení zákazníků"
 
@@ -3155,7 +3246,7 @@ msgstr "Nové rušení radaru"
 msgid "Devices That Interfere"
 msgstr "Zařízení, která ruší"
 
-#: templates/RadarInterferences/index.php:35 templates/layout/default.php:349
+#: templates/RadarInterferences/index.php:35 templates/layout/default.php:357
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
@@ -3455,7 +3546,7 @@ msgid "New RouterOS Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:29
-#: templates/layout/default.php:339
+#: templates/layout/default.php:347
 msgid "RouterOS Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
 
@@ -3483,7 +3574,7 @@ msgstr "Upravit IP zařízení RouterOS"
 msgid "New RouterOS Device IP"
 msgstr "Nová IP zařízení RouterOS"
 
-#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:344
+#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:352
 msgid "RouterOS Device Ips"
 msgstr "IP zařízení RouterOS"
 
@@ -3562,7 +3653,7 @@ msgstr ""
 "Pokud pole ponecháte prázdné, nebude uloženo do databáze a bude použita "
 "výchozí hodnota."
 
-#: templates/Settings/edit.php:30 templates/element/Settings/FormFields.php:94
+#: templates/Settings/edit.php:30 templates/element/Settings/FormFields.php:93
 msgid "Setting: {path}"
 msgstr "Nastavení: {path}"
 
@@ -3822,6 +3913,7 @@ msgid "Customer Connections Including Subordinates"
 msgstr "Připojení zákazníků včetně podřazených"
 
 #: templates/element/CRM/unavailable.php:20
+#: templates/element/Crm/unavailable.php:20
 #: templates/element/Dashboard/crm_task_list.php:37
 msgid "Data from Watcher CRM could not be loaded."
 msgstr "Data z Watcher CRM se nepodařilo načíst."
@@ -3862,12 +3954,12 @@ msgstr "Za posledních {0} se u nich nic nezapsalo."
 
 #: templates/element/Settings/FormFields.php:34
 #: templates/element/Settings/FormFields.php:51
-#: templates/layout/default.php:229
+#: templates/layout/default.php:237
 msgid "Default"
 msgstr "Výchozí"
 
-#: templates/element/Settings/FormFields.php:83
-#: templates/element/Settings/FormFields.php:122
+#: templates/element/Settings/FormFields.php:82
+#: templates/element/Settings/FormFields.php:121
 msgid "Default value:"
 msgstr "Výchozí hodnota:"
 
@@ -4053,23 +4145,27 @@ msgstr "Uzavřel"
 msgid "Closed"
 msgstr "Uzavřeno"
 
-#: templates/layout/default.php:201
+#: templates/layout/default.php:183
+msgid "Files"
+msgstr "Soubory"
+
+#: templates/layout/default.php:209
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
 
-#: templates/layout/default.php:260
+#: templates/layout/default.php:268
 msgid "Logout"
 msgstr "Odhlášení"
 
-#: templates/layout/default.php:386
+#: templates/layout/default.php:394
 msgid "Changelog"
 msgstr "Seznam změn"
 
-#: templates/layout/default.php:387
+#: templates/layout/default.php:395
 msgid "Source Code"
 msgstr "Zdrojový kód"
 
-#: templates/layout/default.php:389
+#: templates/layout/default.php:397
 msgid "Version"
 msgstr "Verze"
 
