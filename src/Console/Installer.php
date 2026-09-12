@@ -50,15 +50,20 @@ class Installer
     ];
 
     /**
-     * What sits under the data root: where the documents the application keeps are kept.
+     * What sits under the data root: where the documents the application keeps are kept, and
+     * where what has been drawn from them is cached.
      *
      * These do not hang off the application directory - `DATA_ROOT` is free to point somewhere
      * else entirely, and on a real deployment it does.
+     *
+     * The previews are the one of the two that may be thrown away: they are drawn from the
+     * documents on demand, so an emptied directory fills itself again and a backup may skip it.
      *
      * @var list<string>
      */
     public const DATA_DIRS = [
         'files',
+        'files-previews',
     ];
 
     /**
