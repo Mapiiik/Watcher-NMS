@@ -15,11 +15,9 @@ declare(strict_types=1);
  */
 namespace App\View;
 
+use Cake\I18n\Date;
 use Cake\View\View;
-use IntlCalendar;
-use IntlDateFormatter;
 use Override;
-use RuntimeException;
 
 /**
  * Application View
@@ -89,30 +87,11 @@ class AppView extends View
      */
     public static function months(): array
     {
-        $formatter = new IntlDateFormatter(
-            locale: null,
-            dateType: IntlDateFormatter::FULL,
-            timeType: IntlDateFormatter::NONE,
-        );
-
-        $formatter->setPattern('LLLL');
-
-        $calendar = IntlCalendar::createInstance();
-
         $months = [];
 
         for ($m = 1; $m <= 12; $m++) {
-            $calendar->set(
-                IntlCalendar::FIELD_MONTH,
-                $m - 1, // IntlCalendar months are 0-based
-            );
-
-            $month = $formatter->format($calendar);
-
-            if ($month === false) {
-                throw new RuntimeException('Failed to format month name: ' . $formatter->getErrorMessage());
-            }
-            $months[$m] = $month;
+            // LLLL is the month standing on its own, which in Czech is "leden" and not "ledna"
+            $months[$m] = (string)Date::create(2000, $m, 1)->i18nFormat('LLLL');
         }
 
         return $months;
