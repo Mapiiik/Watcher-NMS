@@ -222,6 +222,9 @@ the row above.
 - PHP 8.2 or newer
 - PostgreSQL
 - Redis
+- PHP `imagick` extension, and ghostscript alongside it for PDFs (only for the
+  pictures of filed documents — without them a document is still filed and
+  handed over, it just has no thumbnail)
 - [Watcher Agent](https://github.com/Mapiiik/Watcher-Agent) — required only for
   SNMP reads and RouterOS provisioning. It is a separate service (run it in
   Docker, even on the same host; it supports the PROXY protocol behind a load
@@ -333,6 +336,34 @@ shown on load. Keep the `attribution` values — displaying them is a licence
 condition of both imagery providers.
 
 See `config/.env.example` for the full list of map related variables.
+
+### Pictures of filed documents
+
+Thumbnails and previews are drawn by ImageMagick from files somebody uploaded,
+so it is worth telling it what it may open. The images already do — they carry
+`docker/imagemagick-policy.xml` and copy it over the one ImageMagick ships.
+
+A bare-metal install has nobody to do that for it, and what a distribution
+ships varies: the one on Ubuntu 24.04 leaves every coder open, while others
+refuse PDF outright and draw no preview of a scan at all. If you want the
+previews, take that file as a starting point and put it where your build reads
+it:
+
+```bash
+sudo cp docker/imagemagick-policy.xml /etc/ImageMagick-7/policy.xml   # or -6
+```
+
+It allows the formats a scan or a photograph arrives in, lets ghostscript draw
+the first page of a PDF, and refuses everything else. Read it before you use it:
+it is commented throughout, and a deployment that files a format we did not
+think of will have to add it.
+
+Two things are worth knowing if you edit it. ImageMagick 6 and 7 ask for the
+ghostscript delegate under different names, which is why it is granted twice.
+And leave the `time` limit out: on ImageMagick 6 it counts the processor time of
+the whole process rather than of one conversion, so anything long-lived — a
+nightly batch of previews, a worker answering all day — ends up unable to draw
+at all.
 
 ### Customizing the compose stack
 
