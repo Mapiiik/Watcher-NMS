@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da1ec9bf7a5fb03ed0fbd8573b94ace9",
+    "content-hash": "cc4da261a01cc14f8d900948be8419c5",
     "packages": [
         {
             "name": "cakedc/auth",
@@ -7798,7 +7798,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.2"
+        "php": ">=8.2",
+        "ext-mbstring": "*",
+        "ext-pdo_pgsql": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
