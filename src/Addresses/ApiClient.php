@@ -77,9 +77,10 @@ class ApiClient
      *
      * @param \Closure(): \Cake\Http\Client\Response $ask How to ask.
      * @param string $path What is being read, for the message.
-     * @return \App\Http\Answer<array<int|string, mixed>>
+     * @param bool $missingIsAnAnswer Whether a 404 means the registry knows of no such thing.
+     * @return \App\Http\Answer<array<int|string, mixed>|null>
      */
-    private static function read(Closure $ask, string $path): Answer
+    private static function ask(Closure $ask, string $path, bool $missingIsAnAnswer = false): Answer
     {
         if ((string)Configure::read('Addresses.url') === '') {
             return Answer::notAsked();
@@ -93,6 +94,10 @@ class ApiClient
             return self::unreachable(self::SERVICE, $where, $e->getMessage());
         }
 
+        if ($missingIsAnAnswer && $response->getStatusCode() === 404) {
+            return Answer::of(null);
+        }
+
         $data = $response->getJson();
 
         if (!$response->isOk()) {
@@ -104,6 +109,55 @@ class ApiClient
         }
 
         return Answer::of($data);
+    }
+
+    /**
+     * Read one thing the other side is expected to hold.
+     *
+     * @param \Closure(): \Cake\Http\Client\Response $ask How to ask.
+     * @param string $path What is being read, for the message.
+     * @return \App\Http\Answer<array<int|string, mixed>>
+     */
+    private static function read(Closure $ask, string $path): Answer
+    {
+        /** @var \App\Http\Answer<array<int|string, mixed>> $answer */
+        $answer = self::ask($ask, $path, missingIsAnAnswer: false);
+
+        return $answer;
+    }
+
+    /**
+     * What is kept, or what the registry says now.
+     *
+     * The body as it arrived is what goes into the cache, never the addresses read out of it, and
+     * an answer that never came is not kept at all.
+     *
+     * @template TKept
+     * @param string $key Where the answer is kept.
+     * @param \Closure(): \App\Http\Answer<TKept> $ask How to ask, when there is nothing kept.
+     * @return \App\Http\Answer<TKept>
+     */
+    private static function remember(string $key, Closure $ask): Answer
+    {
+        // Asked before the cache rather than after it: a reading kept from an address that has
+        // since been taken out of the configuration is a reading of a registry this installation
+        // no longer has.
+        if ((string)Configure::read('Addresses.url') === '') {
+            return Answer::notAsked();
+        }
+
+        $cached = Cache::read($key, 'addresses_api');
+        if ($cached !== null) {
+            return Answer::of($cached);
+        }
+
+        $answer = $ask();
+
+        if ($answer->ok() && $answer->data !== null) {
+            Cache::write($key, $answer->data, 'addresses_api');
+        }
+
+        return $answer;
     }
 
     /**
@@ -159,26 +213,7 @@ class ApiClient
      */
     public static function metaFromCache(): Answer
     {
-        // Asked before the cache rather than after it: a reading kept from an address that has
-        // since been taken out of the configuration is a reading of a registry this installation
-        // no longer has.
-        if ((string)Configure::read('Addresses.url') === '') {
-            return Answer::notAsked();
-        }
-
-        $cached = Cache::read('addresses_meta', 'addresses_api');
-        if ($cached !== null) {
-            return Answer::of($cached);
-        }
-
-        $answer = self::meta();
-
-        // What is kept is the body as it arrived, and an answer that never came is not kept at all.
-        if ($answer->ok()) {
-            Cache::write('addresses_meta', $answer->data, 'addresses_api');
-        }
-
-        return $answer;
+        return self::remember('addresses_meta', self::meta(...));
     }
 
     /**
