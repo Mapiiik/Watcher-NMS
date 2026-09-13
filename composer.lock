@@ -5732,11 +5732,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.2.13",
+            "version": "2.2.14",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9ba9ac76ee9c5cf5b56d58eb5deec6315b7a0260",
-                "reference": "9ba9ac76ee9c5cf5b56d58eb5deec6315b7a0260",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9c672e7a8e791dfc3d30e55f683e73fc0b63a3ac",
+                "reference": "9c672e7a8e791dfc3d30e55f683e73fc0b63a3ac",
                 "shasum": ""
             },
             "require": {
@@ -5792,7 +5792,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-09-03T20:38:19+00:00"
+            "time": "2026-09-12T21:39:33+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -6271,16 +6271,16 @@
         },
         {
             "name": "psalm/phar",
-            "version": "6.17.0",
+            "version": "6.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/phar.git",
-                "reference": "0b7e538597a2b010dfa4d0c2c9a41c0ae39ded83"
+                "reference": "fa2a6ff9c8831dcb783b87e163e81c0b5605b5ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/phar/zipball/0b7e538597a2b010dfa4d0c2c9a41c0ae39ded83",
-                "reference": "0b7e538597a2b010dfa4d0c2c9a41c0ae39ded83",
+                "url": "https://api.github.com/repos/psalm/phar/zipball/fa2a6ff9c8831dcb783b87e163e81c0b5605b5ab",
+                "reference": "fa2a6ff9c8831dcb783b87e163e81c0b5605b5ab",
                 "shasum": ""
             },
             "require": {
@@ -6300,9 +6300,9 @@
             "description": "Composer-based Psalm Phar",
             "support": {
                 "issues": "https://github.com/psalm/phar/issues",
-                "source": "https://github.com/psalm/phar/tree/6.17.0"
+                "source": "https://github.com/psalm/phar/tree/6.17.1"
             },
-            "time": "2026-09-10T12:47:11+00:00"
+            "time": "2026-09-12T13:55:13+00:00"
         },
         {
             "name": "rector/rector",
