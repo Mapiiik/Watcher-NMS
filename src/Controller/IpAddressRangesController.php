@@ -91,7 +91,7 @@ class IpAddressRangesController extends AppController
         if ($this->getRequest()->is('post')) {
             $ipAddressRange = $this->IpAddressRanges->patchEntity(
                 $ipAddressRange,
-                $this->dataWithAdditionalParameters($this->IpAddressRanges, $this->getRequest()->getData()),
+                $this->dataWithNesting($this->IpAddressRanges, $this->getRequest()->getData()),
             );
             if ($this->IpAddressRanges->save($ipAddressRange)) {
                 $this->Flash->success(__('The IP address range has been saved.'));

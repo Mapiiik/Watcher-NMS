@@ -91,7 +91,7 @@ class LandlordPaymentsController extends AppController
         if ($this->getRequest()->is('post')) {
             $landlordPayment = $this->LandlordPayments->patchEntity(
                 $landlordPayment,
-                $this->dataWithAdditionalParameters($this->LandlordPayments, $this->getRequest()->getData()),
+                $this->dataWithNesting($this->LandlordPayments, $this->getRequest()->getData()),
             );
 
             if ($this->LandlordPayments->save($landlordPayment)) {

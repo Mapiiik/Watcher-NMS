@@ -91,7 +91,7 @@ class PowerSuppliesController extends AppController
         if ($this->getRequest()->is('post')) {
             $powerSupply = $this->PowerSupplies->patchEntity(
                 $powerSupply,
-                $this->dataWithAdditionalParameters($this->PowerSupplies, $this->getRequest()->getData()),
+                $this->dataWithNesting($this->PowerSupplies, $this->getRequest()->getData()),
             );
             if ($this->PowerSupplies->save($powerSupply)) {
                 $this->Flash->success(__('The power supply has been saved.'));

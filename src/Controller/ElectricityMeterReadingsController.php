@@ -87,7 +87,7 @@ class ElectricityMeterReadingsController extends AppController
         if ($this->getRequest()->is('post')) {
             $electricityMeterReading = $this->ElectricityMeterReadings->patchEntity(
                 $electricityMeterReading,
-                $this->dataWithAdditionalParameters($this->ElectricityMeterReadings, $this->getRequest()->getData()),
+                $this->dataWithNesting($this->ElectricityMeterReadings, $this->getRequest()->getData()),
             );
 
             if ($this->ElectricityMeterReadings->save($electricityMeterReading)) {

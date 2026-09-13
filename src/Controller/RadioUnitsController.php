@@ -112,7 +112,7 @@ class RadioUnitsController extends AppController
         if ($this->getRequest()->is('post')) {
             $radioUnit = $this->RadioUnits->patchEntity(
                 $radioUnit,
-                $this->dataWithAdditionalParameters($this->RadioUnits, $this->getRequest()->getData()),
+                $this->dataWithNesting($this->RadioUnits, $this->getRequest()->getData()),
             );
 
             if ($this->getRequest()->getData('refresh') == 'refresh') {

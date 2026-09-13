@@ -101,7 +101,7 @@ class AccessPointContactsController extends AppController
         if ($this->getRequest()->is('post')) {
             $accessPointContact = $this->AccessPointContacts->patchEntity(
                 $accessPointContact,
-                $this->dataWithAdditionalParameters($this->AccessPointContacts, $this->getRequest()->getData()),
+                $this->dataWithNesting($this->AccessPointContacts, $this->getRequest()->getData()),
             );
 
             if ($this->AccessPointContacts->save($accessPointContact)) {

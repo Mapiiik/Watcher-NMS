@@ -1,0 +1,290 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Controller\Traits;
+
+use Cake\Core\App;
+use Cake\Http\Response;
+use Cake\ORM\Table;
+
+/**
+ * The nesting the routes carry: reading it, keeping it honest, and handing it on.
+ *
+ * A page reached under an access point has a bar across the top saying which point is being looked
+ * at, and the forms under one leave that field out because the address already says it. Both rest
+ * on the address being right, which is what is looked after here.
+ *
+ * @psalm-require-extends \Cake\Controller\Controller
+ * @method \Cake\Http\ServerRequest getRequest()
+ * @property \Cake\Controller\Component\FlashComponent $Flash
+ */
+trait NestingTrait
+{
+    /**
+     * The nesting the routes carry, outermost first, and the table each id names.
+     *
+     * One deep here, where the customers of the other application are two. The shape is kept the
+     * same so that what is learned about one holds for the other.
+     *
+     * @var array<string, string>
+     */
+    private const NESTING = [
+        'access_point_id' => 'AccessPoints',
+    ];
+
+    /**
+     * Actions where a nesting naming the wrong record is put right.
+     *
+     * Only where the first thing passed is this table's own id, because that is what is
+     * asked where the record belongs. A nesting naming nothing at all is dropped whatever
+     * the action, which needs no id of the record to tell.
+     *
+     * @var list<string>
+     */
+    protected array $nestingAutoFix = ['view', 'edit'];
+
+    /**
+     * Actions that are sent to the nested address when they were asked for without it.
+     *
+     * Nothing by default, and deliberately so. Plenty of pages are meant to work either way -
+     * moving a record from one access point to another is done from a page that must be allowed
+     * to stand outside both - and sending those to a nesting would be in the way of the work.
+     *
+     * @var list<string>
+     */
+    protected array $nestingAutoAdd = [];
+
+    /*
+     * Access Point ID
+     */
+    protected ?string $access_point_id = null;
+
+    /**
+     * Load and set the ids the route carries.
+     *
+     * @return void
+     */
+    protected function loadNesting(): void
+    {
+        # Load selected access point ID from request
+        $this->access_point_id = $this->getRequest()->getParam('access_point_id');
+        $this->set('access_point_id', $this->access_point_id);
+    }
+
+    /**
+     * Send a request whose route does not hold up on to the URL that does.
+     *
+     * Three things can be wrong with a nested URL, and none of them deserves an error page - what
+     * the caller asked for is there, only somewhere else:
+     *
+     * - The route names an access point the record does not belong to. The nested routes match any
+     *   id against any record, so the page answers all the same, under a bar naming a point it has
+     *   nothing to do with. The record says where it belongs and is answered there.
+     * - The route names an access point that is not there at all, which is what a bookmark turns
+     *   into once the point behind it is deleted. Nothing can be nested under it, so the nesting is
+     *   dropped and the caller lands on the same action without it. That matters most for `add`,
+     *   where the form would otherwise fill a dead id in and the save fail on `existsIn` - with the
+     *   complaint on a field the form does not render, which reads as nothing at all.
+     * - The route carries no nesting at all, which loses the bar and with it the only thing saying
+     *   which point this record is under. Where a controller has said the action is about one of
+     *   its records, the record is asked where it belongs and the caller is sent there.
+     *
+     * Only reading is redirected. A `delete` arrives as a POST and would come back as a GET, which
+     * would leave the record standing and say it was removed; and a submitted `edit` or `add`
+     * carries the form, which a redirect would drop.
+     *
+     * @return \Cake\Http\Response|null
+     */
+    protected function redirectToWhereTheRecordBelongs(): ?Response
+    {
+        $request = $this->getRequest();
+
+        if (!$request->is('get')) {
+            return null;
+        }
+
+        $action = (string)$request->getParam('action');
+        $fixing = in_array($action, $this->nestingAutoFix, true);
+        $adding = in_array($action, $this->nestingAutoAdd, true);
+
+        $id = $request->getParam('pass.0');
+        $id = is_string($id) ? $id : null;
+        // Asked only where the controller said the first passed id is one of its own records. A
+        // nesting that names nothing is still dropped below, whatever the action - that one reads
+        // the id in the address rather than the one the action was handed.
+        $owner = $fixing || $adding ? $this->ownerOfTheRecordAsked($id) : [];
+        $corrections = [];
+        $gone = false;
+
+        foreach (self::NESTING as $field => $alias) {
+            $named = $this->{$field};
+
+            // the action is about that very record, and whether it is there is its own to answer
+            if ($named === $id) {
+                continue;
+            }
+
+            if ($named === null) {
+                $found = $adding ? $owner[$field] ?? $this->nestingBelow($field, $owner) : null;
+                if (is_string($found)) {
+                    $corrections[$field] = $found;
+                }
+                continue;
+            }
+
+            if ($gone) {
+                // an outer nesting that went leaves this one nowhere to hang
+                $corrections[$field] = null;
+                continue;
+            }
+
+            if ($fixing && array_key_exists($field, $owner) && $owner[$field] !== $named) {
+                $corrections[$field] = $owner[$field];
+                continue;
+            }
+
+            $table = $this->fetchTable($alias);
+            $primaryKey = $table->getPrimaryKey();
+
+            if (is_string($primaryKey) && !$table->exists([$primaryKey => $named])) {
+                $corrections[$field] = null;
+                $gone = true;
+            }
+        }
+
+        if ($corrections === []) {
+            return null;
+        }
+
+        if ($gone) {
+            $this->Flash->info(__('The record the address was filed under is no longer there.'));
+        }
+
+        $url = ['action' => $action];
+        foreach ((array)$request->getParam('pass') as $passed) {
+            $url[] = $passed;
+        }
+
+        return $this->redirect($url + $corrections);
+    }
+
+    /**
+     * An id the record does not carry itself, read off the nesting it does carry.
+     *
+     * There is only the one nesting here, so there is never anything underneath to ask - the other
+     * application, where a contract sits under a customer, is what this is for. It is kept so that
+     * the two read alike and a second nesting costs nothing but the constant.
+     *
+     * @param string $field The id that is missing.
+     * @param array<string, string|null> $owner What the record itself said.
+     * @return string|null
+     */
+    private function nestingBelow(string $field, array $owner): ?string
+    {
+        foreach (array_reverse(self::NESTING, true) as $inner => $alias) {
+            if ($inner === $field) {
+                // nothing is nested under the outermost, so there is nowhere left to ask
+                break;
+            }
+
+            $below = $owner[$inner] ?? $this->{$inner};
+            $table = $this->fetchTable($alias);
+            $primaryKey = $table->getPrimaryKey();
+
+            if (!is_string($below) || !is_string($primaryKey) || !$table->getSchema()->hasColumn($field)) {
+                continue;
+            }
+
+            $record = $table->find()
+                ->select([$field])
+                ->where([$primaryKey => $below])
+                ->disableHydration()
+                ->first();
+
+            if (is_array($record) && is_string($record[$field] ?? null)) {
+                return $record[$field];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Who the record the action was asked for belongs to, as far as the route's nesting goes.
+     *
+     * Which actions may be asked is the controller's to say, through `nestingAutoFix` and
+     * `nestingAutoAdd`: what is looked up is this table's own id, and an action whose first
+     * argument is something else would be asking a key a question it cannot answer.
+     *
+     * @param string|null $id Id the action was handed.
+     * @return array<string, string|null> Empty when there is no record to ask.
+     */
+    private function ownerOfTheRecordAsked(?string $id): array
+    {
+        if ($id === null) {
+            return [];
+        }
+
+        // A controller need not be named after a table - the settings and the pages are named
+        // after what they show - and in the web an alias no class answers to is an error rather
+        // than an empty answer, so it is asked for only once there is one to ask for.
+        $alias = (string)$this->defaultTable;
+        if ($alias === '' || App::className($alias, 'Model/Table', 'Table') === null) {
+            return [];
+        }
+
+        $table = $this->fetchTable();
+        $fields = array_intersect(array_keys(self::NESTING), $table->getSchema()->columns());
+        $primaryKey = $table->getPrimaryKey();
+
+        // a key of several columns is not something one passed id names
+        if ($fields === [] || !is_string($primaryKey)) {
+            return [];
+        }
+
+        $record = $table->find()
+            ->select($fields)
+            ->where([$primaryKey => $id])
+            ->disableHydration()
+            ->first();
+
+        // a record the route cannot name is a record the action will not find either, and saying so
+        // is its business rather than this one's
+        return is_array($record) ? $record : [];
+    }
+
+    /**
+     * Add the ids the route carries to the data a form submitted.
+     *
+     * The forms under an access point do not render that field: the route already says which point
+     * it is, and the template leaves it out for exactly that reason. It has to reach the entity as
+     * data rather than be set on it afterwards, or it misses the marshalling that checks and casts
+     * it, and the validator asking for it - it reads what the request carried, not what the entity
+     * ended up holding.
+     *
+     * Adding it after reading the request also settles which of the two wins: the route. Set on the
+     * entity beforehand, as this used to be, a hand-written request could name a different point in
+     * the body and have it override the one in the URL.
+     *
+     * This is for creating a record only. Which record an existing one belongs to is its own to
+     * say, and a route naming another one must not quietly move it there.
+     *
+     * @param \Cake\ORM\Table $table Table the data is being marshalled for.
+     * @param array<mixed> $data Data the request carried.
+     * @return array<mixed>
+     */
+    protected function dataWithNesting(Table $table, array $data): array
+    {
+        $parameters = [
+            'access_point_id' => $this->access_point_id,
+        ];
+
+        foreach ($parameters as $field => $value) {
+            if ($value !== null && $table->getSchema()->hasColumn($field)) {
+                $data[$field] = $value;
+            }
+        }
+
+        return $data;
+    }
+}
