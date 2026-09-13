@@ -20,7 +20,7 @@
         <div class="accessPointContacts form content">
             <?= $this->Form->create($accessPointContact) ?>
             <fieldset>
-                <legend><?= __('Add Access Point Contact') ?></legend>
+                <?= $this->legend(__('Add Access Point Contact')) ?>
                 <?php
                 echo $this->Form->control('name');
                 if (!isset($access_point_id)) {

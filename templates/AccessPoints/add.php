@@ -17,7 +17,7 @@
         <div class="accessPoints form content">
             <?= $this->Form->create($accessPoint) ?>
             <fieldset>
-                <legend><?= __('Add Access Point') ?></legend>
+                <?= $this->legend(__('Add Access Point')) ?>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('device_name');

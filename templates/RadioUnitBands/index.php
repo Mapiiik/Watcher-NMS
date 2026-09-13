@@ -22,7 +22,7 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __('Radio Unit Bands') ?></h3>
+    <?= $this->heading(__('Radio Unit Bands')) ?>
     <div class="table-responsive">
         <table>
             <thead>

@@ -28,7 +28,7 @@
         <div class="routerosDeviceInterfaces form content">
             <?= $this->Form->create($routerosDeviceInterface) ?>
             <fieldset>
-                <legend><?= __('Edit RouterOS Device Interface') ?></legend>
+                <?= $this->legend(__('Edit RouterOS Device Interface')) ?>
                 <div class="row">
                     <div class="column">
                         <?php

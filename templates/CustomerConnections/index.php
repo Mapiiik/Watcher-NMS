@@ -28,7 +28,7 @@
         ['action' => 'index', $finder === 'archived' ? 'active' : 'archived'],
         ['class' => 'button float-right'],
     ) ?>
-    <h3><?= __('Customer Connections') . ($finder === 'archived' ? ' (' . __('archived') . ')' : '') ?></h3>
+    <?= $this->heading(__('Customer Connections') . ($finder === 'archived' ? ' (' . __('archived') . ')' : '')) ?>
     <div class="table-responsive">
         <table>
             <thead>

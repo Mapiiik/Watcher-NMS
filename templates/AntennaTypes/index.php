@@ -22,7 +22,7 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __('Antenna Types') ?></h3>
+    <?= $this->heading(__('Antenna Types')) ?>
     <div class="table-responsive">
         <table>
             <thead>

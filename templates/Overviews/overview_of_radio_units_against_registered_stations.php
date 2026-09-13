@@ -65,7 +65,7 @@ $registrations = [
 <?= $this->Form->end() ?>
 
 <div class="overviews index content">
-    <h3><?= __('Overview of Radio Units Against Registered Stations') ?></h3>
+    <?= $this->heading(__('Overview of Radio Units Against Registered Stations')) ?>
 
     <p>
         <?= __(

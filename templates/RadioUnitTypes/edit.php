@@ -29,7 +29,7 @@
         <div class="radioUnitTypes form content">
             <?= $this->Form->create($radioUnitType) ?>
             <fieldset>
-                <legend><?= __('Edit Radio Unit Type') ?></legend>
+                <?= $this->legend(__('Edit Radio Unit Type')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('radio_unit_band_id', ['options' => $radioUnitBands, 'empty' => true]);

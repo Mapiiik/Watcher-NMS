@@ -22,7 +22,7 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __('Access Point Contacts') ?></h3>
+    <?= $this->heading(__('Access Point Contacts')) ?>
     <div class="table-responsive">
         <table>
             <thead>

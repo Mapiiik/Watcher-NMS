@@ -61,7 +61,7 @@ $verdicts = [
 <?= $this->Form->end() ?>
 
 <div class="overviews index content">
-    <h3><?= __('Overview of Device Radios Against Radio Units') ?></h3>
+    <?= $this->heading(__('Overview of Device Radios Against Radio Units')) ?>
 
     <p>
         <?= __(

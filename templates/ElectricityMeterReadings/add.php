@@ -20,7 +20,7 @@
         <div class="electricityMeterReadings form content">
             <?= $this->Form->create($electricityMeterReading) ?>
             <fieldset>
-                <legend><?= __('Add Electricity Meter Reading') ?></legend>
+                <?= $this->legend(__('Add Electricity Meter Reading')) ?>
                 <?php
                 echo $this->Form->control('name');
                 if (!isset($access_point_id)) {

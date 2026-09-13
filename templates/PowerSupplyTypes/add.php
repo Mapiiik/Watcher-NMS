@@ -20,7 +20,7 @@
         <div class="powerSupplyTypes form content">
             <?= $this->Form->create($powerSupplyType) ?>
             <fieldset>
-                <legend><?= __('Add Power Supply Type') ?></legend>
+                <?= $this->legend(__('Add Power Supply Type')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('manufacturer_id', ['options' => $manufacturers, 'empty' => true]);

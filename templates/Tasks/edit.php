@@ -33,7 +33,7 @@
             ]) ?>
             <?= $this->Form->create($task) ?>
             <fieldset>
-                <legend><?= __('Edit Task') ?></legend>
+                <?= $this->legend(__('Edit Task')) ?>
                 <div class="row">
                     <div class="column">
                         <?php

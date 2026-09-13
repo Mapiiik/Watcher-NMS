@@ -15,7 +15,7 @@
         <div class="deviceTypes form content">
             <?= $this->Form->create($deviceType) ?>
             <fieldset>
-                <legend><?= __('Add Device Type') ?></legend>
+                <?= $this->legend(__('Add Device Type')) ?>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('identifier');

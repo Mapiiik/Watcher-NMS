@@ -25,7 +25,7 @@
         <div class="radioUnits form content">
             <?= $this->Form->create($radioUnit) ?>
             <fieldset>
-                <legend><?= __('Edit Radio Unit') ?></legend>
+                <?= $this->legend(__('Edit Radio Unit')) ?>
                 <div class="row">
                     <div class="column">
                         <?php

@@ -26,7 +26,7 @@
 <div class="radioUnits index content">
     <?= $this->AuthLink->link(__('New Radio Unit'), ['action' => 'add'], ['class' => 'button float-right win-link']) ?>
     <?= $this->AuthLink->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Radio Units') ?></h3>
+    <?= $this->heading(__('Radio Units')) ?>
     <div class="table-responsive">
         <table>
             <thead>

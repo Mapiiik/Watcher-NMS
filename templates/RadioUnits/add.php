@@ -20,7 +20,7 @@
         <div class="radioUnits form content">
             <?= $this->Form->create($radioUnit, ['valueSources' => ['data', 'context', 'query']]) ?>
             <fieldset>
-                <legend><?= __('Add Radio Unit') ?></legend>
+                <?= $this->legend(__('Add Radio Unit')) ?>
                 <div class="row">
                     <div class="column">
                         <?php

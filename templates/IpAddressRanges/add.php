@@ -21,7 +21,7 @@
         <div class="ipAddressRanges form content">
             <?= $this->Form->create($ipAddressRange) ?>
             <fieldset>
-                <legend><?= __('Add IP Address Range') ?></legend>
+                <?= $this->legend(__('Add IP Address Range')) ?>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('ip_network', [

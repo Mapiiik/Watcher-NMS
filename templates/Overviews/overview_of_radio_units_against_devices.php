@@ -55,7 +55,7 @@ $checkedFields = [
 <?= $this->Form->end() ?>
 
 <div class="overviews index content">
-    <h3><?= __('Overview of Radio Units Against Devices') ?></h3>
+    <?= $this->heading(__('Overview of Radio Units Against Devices')) ?>
 
     <p>
         <?= __(

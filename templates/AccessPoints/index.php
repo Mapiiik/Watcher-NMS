@@ -34,7 +34,7 @@
         ['class' => 'button float-right'],
     ) ?>
     <?= $this->AuthLink->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Access Points') . ($finder === 'archived' ? ' (' . __('archived') . ')' : '') ?></h3>
+    <?= $this->heading(__('Access Points') . ($finder === 'archived' ? ' (' . __('archived') . ')' : '')) ?>
     <div class="table-responsive">
         <table>
             <thead>

@@ -42,8 +42,8 @@
         <div class="accessPoints form content">
             <?= $this->Form->create($accessPoint) ?>
             <fieldset>
-                <legend><?= __('Edit Access Point')
-                    . ($accessPoint->isArchived() ? ' (' . __('archived') . ')' : '') ?></legend>
+                <?= $this->legend(__('Edit Access Point')
+                    . ($accessPoint->isArchived() ? ' (' . __('archived') . ')' : '')) ?>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('device_name');

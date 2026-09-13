@@ -19,7 +19,7 @@
         <div class="customerPoints form content">
             <?= $this->Form->create($customerPoint) ?>
             <fieldset>
-                <legend><?= __('Add Customer Point') ?></legend>
+                <?= $this->legend(__('Add Customer Point')) ?>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('note');

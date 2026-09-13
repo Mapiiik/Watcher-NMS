@@ -15,7 +15,7 @@
         <div class="manufacturers form content">
             <?= $this->Form->create($manufacturer) ?>
             <fieldset>
-                <legend><?= __('Add Manufacturer') ?></legend>
+                <?= $this->legend(__('Add Manufacturer')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('note');

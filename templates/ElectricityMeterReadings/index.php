@@ -22,7 +22,7 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __('Electricity Meter Readings') ?></h3>
+    <?= $this->heading(__('Electricity Meter Readings')) ?>
     <div class="table-responsive">
         <table>
             <thead>

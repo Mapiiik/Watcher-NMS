@@ -19,7 +19,7 @@
         <div class="radioUnitBands form content">
             <?= $this->Form->create($radioUnitBand) ?>
             <fieldset>
-                <legend><?= __('Add Radio Unit Band') ?></legend>
+                <?= $this->legend(__('Add Radio Unit Band')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('color', ['type' => 'color']);

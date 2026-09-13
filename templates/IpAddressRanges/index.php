@@ -22,7 +22,7 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __('IP Address Ranges') ?></h3>
+    <?= $this->heading(__('IP Address Ranges')) ?>
     <div class="table-responsive">
         <table>
             <thead>

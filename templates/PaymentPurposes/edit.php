@@ -27,7 +27,7 @@
         <div class="paymentPurposes form content">
             <?= $this->Form->create($paymentPurpose) ?>
             <fieldset>
-                <legend><?= __('Edit Payment Purpose') ?></legend>
+                <?= $this->legend(__('Edit Payment Purpose')) ?>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('note');

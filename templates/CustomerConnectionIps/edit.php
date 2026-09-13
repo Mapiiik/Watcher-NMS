@@ -28,7 +28,7 @@
         <div class="customerConnectionIps form content">
             <?= $this->Form->create($customerConnectionIp) ?>
             <fieldset>
-                <legend><?= __('Edit Customer Connection IP') ?></legend>
+                <?= $this->legend(__('Edit Customer Connection IP')) ?>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('customer_connection_id', [

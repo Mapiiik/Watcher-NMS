@@ -17,7 +17,7 @@
         <div class="antennaTypes form content">
             <?= $this->Form->create($antennaType) ?>
             <fieldset>
-                <legend><?= __('Add Antenna Type') ?></legend>
+                <?= $this->legend(__('Add Antenna Type')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('radio_unit_band_id', ['options' => $radioUnitBands, 'empty' => true]);

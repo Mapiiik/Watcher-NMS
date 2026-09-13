@@ -21,7 +21,7 @@
         <div class="landlordPayments form content">
             <?= $this->Form->create($landlordPayment) ?>
             <fieldset>
-                <legend><?= __('Add Landlord Payment') ?></legend>
+                <?= $this->legend(__('Add Landlord Payment')) ?>
                 <?php
                 if (!isset($access_point_id)) {
                     echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);

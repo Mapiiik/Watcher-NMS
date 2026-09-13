@@ -27,7 +27,7 @@
         ['class' => 'button float-right win-link'],
     ) ?>
     <?= $this->AuthLink->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
-    <h3><?= __('RouterOS Devices') ?></h3>
+    <?= $this->heading(__('RouterOS Devices')) ?>
     <div class="table-responsive">
         <table>
             <thead>

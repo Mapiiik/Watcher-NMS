@@ -6,7 +6,7 @@
 ?>
 <div class="radarInterferences index content">
     <?= $this->AuthLink->link(__('Update Online'), ['action' => 'updateOnline'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Radar Interferences - Devices') ?></h3>
+    <?= $this->heading(__('Radar Interferences - Devices')) ?>
     <div class="table-responsive">
         <table>
             <thead>

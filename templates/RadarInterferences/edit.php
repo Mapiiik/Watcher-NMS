@@ -27,7 +27,7 @@
         <div class="radarInterferences form content">
             <?= $this->Form->create($radarInterference) ?>
             <fieldset>
-                <legend><?= __('Edit Radar Interference') ?></legend>
+                <?= $this->legend(__('Edit Radar Interference')) ?>
                 <?php
                 echo $this->Form->control('name');
                 echo $this->Form->control('mac_address', [

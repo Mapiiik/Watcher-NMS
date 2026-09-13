@@ -21,7 +21,7 @@
         <div class="customerConnections form content">
             <?= $this->Form->create($customerConnection) ?>
             <fieldset>
-                <legend><?= __('Add Customer Connection') ?></legend>
+                <?= $this->legend(__('Add Customer Connection')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('customer_point_id', ['options' => $customerPoints, 'empty' => true]);

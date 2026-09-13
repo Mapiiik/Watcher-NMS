@@ -46,8 +46,8 @@
         <div class="customerConnections form content">
             <?= $this->Form->create($customerConnection) ?>
             <fieldset>
-                <legend><?= __('Edit Customer Connection')
-                    . ($customerConnection->isArchived() ? ' (' . __('archived') . ')' : '') ?></legend>
+                <?= $this->legend(__('Edit Customer Connection')
+                    . ($customerConnection->isArchived() ? ' (' . __('archived') . ')' : '')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('customer_point_id', ['options' => $customerPoints, 'empty' => true]);

@@ -22,7 +22,7 @@
         <div class="routerosDevices form content">
             <?= $this->Form->create($routerosDevice) ?>
             <fieldset>
-                <legend><?= __('Add RouterOS Device') ?></legend>
+                <?= $this->legend(__('Add RouterOS Device')) ?>
                 <div class="row">
                     <div class="column">
                         <?php

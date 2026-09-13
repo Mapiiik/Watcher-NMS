@@ -44,7 +44,7 @@ use App\Rlan\RegisteredStationComparison;
 <?= $this->Form->end() ?>
 
 <div class="overviews index content">
-    <h3><?= __('Overview of Registered Stations Against Radio Units') ?></h3>
+    <?= $this->heading(__('Overview of Registered Stations Against Radio Units')) ?>
 
     <p>
         <?= __(

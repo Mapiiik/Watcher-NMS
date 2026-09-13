@@ -22,7 +22,7 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __('Customer Connection Ips') ?></h3>
+    <?= $this->heading(__('Customer Connection Ips')) ?>
     <div class="table-responsive">
         <table>
             <thead>

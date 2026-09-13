@@ -27,7 +27,7 @@
         <div class="accessPointTypes form content">
             <?= $this->Form->create($accessPointType) ?>
             <fieldset>
-                <legend><?= __('Edit Access Point Type') ?></legend>
+                <?= $this->legend(__('Edit Access Point Type')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('color', ['type' => 'color']);

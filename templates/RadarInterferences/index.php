@@ -32,7 +32,7 @@
         ['action' => 'updateOnline'],
         ['class' => 'button float-right'],
     ) ?>
-    <h3><?= __('Radar Interferences') ?></h3>
+    <?= $this->heading(__('Radar Interferences')) ?>
     <div class="table-responsive">
         <table>
             <thead>

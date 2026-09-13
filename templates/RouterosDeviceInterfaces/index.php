@@ -26,7 +26,7 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <h3><?= __('RouterOS Device Interfaces') ?></h3>
+    <?= $this->heading(__('RouterOS Device Interfaces')) ?>
     <div class="table-responsive">
         <table>
             <thead>

@@ -15,7 +15,7 @@
         <div class="radioLinks form content">
             <?= $this->Form->create($radioLink) ?>
             <fieldset>
-                <legend><?= __('Add Radio Link') ?></legend>
+                <?= $this->legend(__('Add Radio Link')) ?>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('distance');
