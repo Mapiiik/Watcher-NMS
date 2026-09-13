@@ -18,7 +18,7 @@
                 ],
             ) ?>
             <?= $this->AuthLink->link(
-                __('List RouterOS Device Ips'),
+                __('List RouterOS Device IPs'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item'],
             ) ?>

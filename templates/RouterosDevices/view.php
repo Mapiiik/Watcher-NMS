@@ -212,7 +212,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related RouterOS Device Ips') ?></h4>
+                <h4><?= __('Related RouterOS Device IPs') ?></h4>
                 <?php if (!empty($routerosDevice->routeros_device_ips)) : ?>
                 <div class="table-responsive">
                     <table>

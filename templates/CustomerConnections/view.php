@@ -125,7 +125,7 @@ use App\CRM\Links;
                 </blockquote>
             </div>
             <div class="related">
-                <h4><?= __('Related Customer Connection Ips') ?></h4>
+                <h4><?= __('Related Customer Connection IPs') ?></h4>
                 <?php if (!empty($customerConnection->customer_connection_ips)) : ?>
                 <div class="table-responsive">
                     <table>

@@ -321,7 +321,7 @@ $urlWithQuery = function ($query = []) use ($request) {
                 ['class' => 'button button-small' . $buttonSelected(['CustomerConnections'])],
             ) ?>
             <?= $this->AuthLink->link(
-                __('Customer Connection Ips'),
+                __('Customer Connection IPs'),
                 ['controller' => 'CustomerConnectionIps', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected(['CustomerConnectionIps'])],
             ) ?>
@@ -346,7 +346,7 @@ $urlWithQuery = function ($query = []) use ($request) {
                 ['class' => 'button button-small' . $buttonSelected(['RouterosDeviceInterfaces'])],
             ) ?>
             <?= $this->AuthLink->link(
-                __('RouterOS Device Ips'),
+                __('RouterOS Device IPs'),
                 ['controller' => 'RouterosDeviceIps', 'action' => 'index', 'plugin' => null],
                 ['class' => 'button button-small' . $buttonSelected(['RouterosDeviceIps'])],
             ) ?>

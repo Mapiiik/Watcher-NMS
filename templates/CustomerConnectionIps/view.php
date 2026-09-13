@@ -22,7 +22,7 @@
                 ],
             ) ?>
             <?= $this->AuthLink->link(
-                __('List Customer Connection Ips'),
+                __('List Customer Connection IPs'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item'],
             ) ?>

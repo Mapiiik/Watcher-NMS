@@ -10,7 +10,7 @@
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->AuthLink->link(
-                __('List RouterOS Device Ips'),
+                __('List RouterOS Device IPs'),
                 ['action' => 'index'],
                 ['class' => 'side-nav-item'],
             ) ?>
