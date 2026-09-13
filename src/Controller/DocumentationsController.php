@@ -33,4 +33,22 @@ class DocumentationsController extends AppController
     {
         return ['DocumentationTypes', 'AccessPoints'];
     }
+
+    /**
+     * What a folder may be filed against, where the address did not already say.
+     *
+     * Opened under an access point there is nothing to choose and nothing is offered. Opened from
+     * the shelf itself there is, because somebody now and then has a folder in hand before they
+     * have the record it belongs to.
+     *
+     * @return void
+     */
+    protected function setFormViewVars(): void
+    {
+        if ($this->access_point_id === null) {
+            $this->set('accessPoints', $this->Documentations->AccessPoints->find('list', order: [
+                'name',
+            ]));
+        }
+    }
 }
