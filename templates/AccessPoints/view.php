@@ -43,7 +43,7 @@
                 ],
             ) ?>
             <?= $this->AuthLink->link(
-                __('Documentations'),
+                __d('app_files', 'Documentations'),
                 ['controller' => 'Documentations', 'action' => 'index'],
                 ['class' => 'side-nav-item'],
             ) ?>
@@ -143,7 +143,7 @@
         <div class="accessPoints view content">
             <a id="access-point"></a>
             <?= $this->AuthLink->link(
-                __('Documentations'),
+                __d('app_files', 'Documentations'),
                 ['controller' => 'Documentations', 'action' => 'index'],
                 ['class' => 'button float-right'],
             ) ?>
