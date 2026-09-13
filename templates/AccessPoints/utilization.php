@@ -45,6 +45,6 @@
 <div class="accessPoints utilization content">
     <?= $this->AuthLink->link(__('List Access Points'), ['action' => 'index'], ['class' => 'button float-right']) ?>
     <?= $this->AuthLink->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
-    <?= $this->heading(__('Access Points Utilization')) ?>
+    <?= $this->heading(__('Access Points') . ' - ' . __('Utilization')) ?>
     <?= $this->element('AccessPoints/subtree', ['subtree' => $subtree]) ?>
 </div>

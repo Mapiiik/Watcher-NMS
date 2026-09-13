@@ -509,7 +509,7 @@ class AccessPointsControllerTest extends TestCase
 
         $this->assertResponseOk();
         // The heading is translated, so it is looked up rather than hard coded.
-        $this->assertResponseContains(__('Access Points Utilization'));
+        $this->assertResponseContains(__('Access Points') . ' - ' . __('Utilization'));
         // Unlike the subtree of a single access point, the roots are listed as links as well.
         $this->assertResponseContains('<a href="/access-points/' . $root->id . '">Tree root</a>');
         $this->assertResponseContains('<a href="/access-points/' . $child->id . '">Tree child</a>');

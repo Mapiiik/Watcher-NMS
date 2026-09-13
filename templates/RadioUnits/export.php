@@ -7,7 +7,7 @@ $this->setLayout('clean');
 ?>
 <div class="radioUnits index content">
     <?= $this->AuthLink->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
-    <?= $this->heading(__('Radio Units')) ?>
+    <?= $this->heading(__('Radio Units') . ' - ' . __('Export')) ?>
     <div class="table-responsive">
         <table>
             <thead>

@@ -23,7 +23,7 @@ $this->setLayout('clean');
 
 <div class="routerosDevices index content" style="clear: both;">
     <?= $this->AuthLink->link(__('Index'), ['action' => 'index'], ['class' => 'button float-right']) ?>
-    <?= $this->heading(__('RouterOS Devices')) ?>
+    <?= $this->heading(__('RouterOS Devices') . ' - ' . __('Export')) ?>
     <div class="table-responsive">
         <table>
             <thead>

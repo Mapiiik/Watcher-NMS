@@ -18,7 +18,7 @@
         ['action' => 'utilization'],
         ['class' => 'button float-right'],
     ) ?>
-    <?= $this->heading(__('Access Points')) ?>
+    <?= $this->heading(__('Access Points') . ' - ' . __('Map')) ?>
 <?= $this->element('Maps.Maps/overview', [
     'mapMarkers' => $mapMarkers,
     'mapPolylines' => $mapPolylines,
