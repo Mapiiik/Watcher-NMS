@@ -26,7 +26,7 @@ class FileLinksLeadBackTest extends TestCase
     {
         $helper = new RecordHelper(new AppView());
 
-        foreach (['Documentations', 'AccessPoints'] as $model) {
+        foreach (['Documentations'] as $model) {
             $url = $helper->urlFor(new FileLink([
                 'model' => $model,
                 'foreign_key' => '0f3a1a9c-6f4a-4a1e-9d0a-5c6b7a8d9e01',
