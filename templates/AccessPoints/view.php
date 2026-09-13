@@ -267,7 +267,6 @@
                     'accessPoint' => $accessPoint,
                 ]) ?>
             </div>
-            <hr>
             <div class="related">
                 <h4 id="superordinate-access-points"><?= __('Superordinate Access Points') ?></h4>
                 <?= $this->element('AccessPoints/path', [
@@ -351,7 +350,6 @@
                 </div>
                 <?php endif; ?>
             </div>
-            <hr>
             <div class="related">
                 <?= $this->AuthLink->link(
                     __('New Electricity Meter Reading'),
