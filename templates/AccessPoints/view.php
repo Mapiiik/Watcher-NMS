@@ -42,6 +42,11 @@
                     'class' => 'side-nav-item',
                 ],
             ) ?>
+            <?= $this->AuthLink->link(
+                __('Documentation'),
+                ['controller' => 'Documentations', 'action' => 'index'],
+                ['class' => 'side-nav-item'],
+            ) ?>
             <?= $this->AuthLink->link(__('List Access Points'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->AuthLink->link(__('New Access Point'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>

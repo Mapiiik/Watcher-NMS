@@ -268,6 +268,41 @@ $permissions = [
                 'view',
             ],
         ],
+        //documentation: whoever may look at a record may look at what is kept about it
+        [
+            'role' => '*',
+            'plugin' => null,
+            'controller' => [
+                'Documentations',
+            ],
+            'action' => [
+                'index',
+                'view',
+            ],
+        ],
+        //and keeping it up to date goes with doing the work it records
+        [
+            'role' => [
+                'customer-service-technician',
+                'network-technician',
+                'network-manager',
+                'sales-representative',
+                'sales-manager',
+                'bookkeeper',
+            ],
+            'plugin' => null,
+            'controller' => [
+                'Documentations',
+            ],
+            'action' => [
+                'add',
+                'edit',
+                'delete',
+                'addFiles',
+                'dropFile',
+                'moveFile',
+            ],
+        ],
         //allow tasks for technicians, sales and bookkeepers
         [
             'role' => [
