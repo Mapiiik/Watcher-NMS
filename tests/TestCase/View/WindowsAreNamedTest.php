@@ -35,6 +35,8 @@ class WindowsAreNamedTest extends TestCase
         'app.AntennaTypes',
         'app.PowerSupplyTypes',
         'app.RadioUnitTypes',
+        'app.AccessPointTypes',
+        'app.AccessPoints',
         'plugin.Files.Files',
         'plugin.Files.FileLinks',
     ];
@@ -70,6 +72,18 @@ class WindowsAreNamedTest extends TestCase
 
         $this->assertStringEndsWith('Manufacturers | Index', $listing);
         $this->assertStringEndsWith('Manufacturers | Add', $form);
+    }
+
+    /**
+     * @return void
+     */
+    public function testAnAgendaOfMoreThanOneWordIsSaidAsWords(): void
+    {
+        $this->login();
+        $this->get('/access-point-types');
+
+        $this->assertResponseOk();
+        $this->assertStringEndsWith('Access Point Types | Index', $this->titleOfTheResponse());
     }
 
     /**
