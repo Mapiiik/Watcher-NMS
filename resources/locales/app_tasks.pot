@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-09-11 08:58+0200\n"
+"POT-Creation-Date: 2026-09-13 19:43+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -52,10 +52,12 @@ msgid "Number"
 msgstr ""
 
 #: ./templates/element/Tasks/related.php:20
+#: ./templates/plugin/Tasks/TaskTypes/view.php:38
 msgid "Task Type"
 msgstr ""
 
 #: ./templates/element/Tasks/related.php:23
+#: ./templates/plugin/Tasks/TaskStates/view.php:38
 msgid "Task State"
 msgstr ""
 

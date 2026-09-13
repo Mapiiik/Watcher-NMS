@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-09-05 11:44+0200\n"
+"POT-Creation-Date: 2026-09-13 19:43+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -347,6 +347,10 @@ msgstr ""
 
 #: ./templates/AppUsers/view.php:20
 msgid "Delete User"
+msgstr ""
+
+#: ./templates/AppUsers/view.php:41
+msgid "User"
 msgstr ""
 
 #: ./templates/AppUsers/view.php:54
