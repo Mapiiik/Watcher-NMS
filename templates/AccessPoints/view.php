@@ -142,6 +142,11 @@
     <div class="column column-90">
         <div class="accessPoints view content">
             <a id="access-point"></a>
+            <?= $this->AuthLink->link(
+                __('Documentations'),
+                ['controller' => 'Documentations', 'action' => 'index'],
+                ['class' => 'button float-right'],
+            ) ?>
             <?= $this->record(
                 __('Access Point'),
                 $accessPoint->name . ($accessPoint->isArchived() ? ' (' . __('archived') . ')' : ''),

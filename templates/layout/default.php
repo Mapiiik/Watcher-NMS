@@ -178,9 +178,9 @@ $urlWithQuery = function ($query = []) use ($request) {
             ) ?>
             <?= $this->AuthLink->link(
                 __('Files'),
-                ['controller' => 'Documents', 'action' => 'index', 'plugin' => 'Files'],
+                ['controller' => 'FileLinks', 'action' => 'index', 'plugin' => 'Files'],
                 ['class' => 'button button-small' . $buttonSelected([
-                    'Documents',
+                    'FileLinks',
                     'Storage',
                 ])],
             ) ?>

@@ -651,6 +651,15 @@ return [
         'root' => (string)env('DATA_ROOT', ROOT . DS . 'data'),
     ],
 
+    'Files' => [
+        // where a file link leads back to, by the model it is filed against; what is not named
+        // here is simply not offered as a link
+        'records' => [
+            'AccessPoints' => ['plugin' => null, 'controller' => 'AccessPoints', 'action' => 'view'],
+            'Documentations' => ['plugin' => null, 'controller' => 'Documentations', 'action' => 'view'],
+        ],
+    ],
+
     /*
      * What the pages offer. The rest of `UI` is written per request from the user's own
      * settings; this is only what the installation decides once.
