@@ -54,8 +54,10 @@ use App\CRM\Links;
     </aside>
     <div class="column column-90">
         <div class="customerConnections view content">
-            <h3><?= h($customerConnection->name)
-                . ($customerConnection->isArchived() ? ' (' . __('archived') . ')' : '') ?></h3>
+            <?= $this->record(
+                __('Customer Connection'),
+                $customerConnection->name . ($customerConnection->isArchived() ? ' (' . __('archived') . ')' : ''),
+            ) ?>
             <div class="row">
                 <div class="column">
                     <table>

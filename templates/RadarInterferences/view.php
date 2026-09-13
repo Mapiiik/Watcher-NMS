@@ -35,7 +35,7 @@
     </aside>
     <div class="column column-90">
         <div class="radarInterferences view content">
-            <h3><?= h($radarInterference->name) ?></h3>
+            <?= $this->record(__('Radar Interference'), (string)$radarInterference->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

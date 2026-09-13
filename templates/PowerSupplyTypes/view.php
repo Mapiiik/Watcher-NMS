@@ -35,7 +35,7 @@
     </aside>
     <div class="column column-90">
         <div class="powerSupplyTypes view content">
-            <h3><?= h($powerSupplyType->name) ?></h3>
+            <?= $this->record(__('Power Supply Type'), (string)$powerSupplyType->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

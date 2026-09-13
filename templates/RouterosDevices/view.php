@@ -41,7 +41,7 @@
                     'confirm' => __('Are you sure you want to update data for # {0}?', $routerosDevice->id),
                     'class' => 'button float-right'],
             ) ?>
-            <h3><?= h($routerosDevice->name) ?></h3>
+            <?= $this->record(__('RouterOS Device'), (string)$routerosDevice->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

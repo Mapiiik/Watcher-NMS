@@ -27,7 +27,7 @@
     </aside>
     <div class="column column-90">
         <div class="antennaTypes view content">
-            <h3><?= h($antennaType->name) ?></h3>
+            <?= $this->record(__('Antenna Type'), (string)$antennaType->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

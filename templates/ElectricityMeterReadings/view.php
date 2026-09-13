@@ -35,7 +35,7 @@
     </aside>
     <div class="column column-90">
         <div class="electricityMeterReadings view content">
-            <h3><?= h($electricityMeterReading->name) ?></h3>
+            <?= $this->record(__('Electricity Meter Reading'), (string)$electricityMeterReading->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

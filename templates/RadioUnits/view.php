@@ -32,7 +32,7 @@
     </aside>
     <div class="column column-90">
         <div class="radioUnits view content">
-            <h3><?= h($radioUnit->name) ?></h3>
+            <?= $this->record(__('Radio Unit'), (string)$radioUnit->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

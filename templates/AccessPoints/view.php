@@ -142,8 +142,10 @@
     <div class="column column-90">
         <div class="accessPoints view content">
             <a id="access-point"></a>
-            <h3><?= h($accessPoint->name)
-                . ($accessPoint->isArchived() ? ' (' . __('archived') . ')' : '') ?></h3>
+            <?= $this->record(
+                __('Access Point'),
+                $accessPoint->name . ($accessPoint->isArchived() ? ' (' . __('archived') . ')' : ''),
+            ) ?>
             <div class="row">
                 <div class="column">
                     <table>

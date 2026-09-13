@@ -35,7 +35,7 @@
     </aside>
     <div class="column column-90">
         <div class="paymentPurposes view content">
-            <h3><?= h($paymentPurpose->name) ?></h3>
+            <?= $this->record(__('Payment Purpose'), (string)$paymentPurpose->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

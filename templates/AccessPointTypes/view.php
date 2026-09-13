@@ -35,7 +35,7 @@
     </aside>
     <div class="column column-90">
         <div class="accessPointTypes view content">
-            <h3><?= h($accessPointType->name) ?></h3>
+            <?= $this->record(__('Access Point Type'), (string)$accessPointType->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

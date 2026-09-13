@@ -27,7 +27,7 @@
     </aside>
     <div class="column column-90">
         <div class="deviceTypes view content">
-            <h3><?= h($deviceType->name) ?></h3>
+            <?= $this->record(__('Device Type'), (string)$deviceType->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

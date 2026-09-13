@@ -35,7 +35,7 @@
     </aside>
     <div class="column column-90">
         <div class="landlordPayments view content">
-            <h3><?= h($landlordPayment->name) ?></h3>
+            <?= $this->record(__('Landlord Payment'), (string)$landlordPayment->name) ?>
             <div class="row">
                 <div class="column">
                     <table>

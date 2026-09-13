@@ -35,7 +35,7 @@
     </aside>
     <div class="column column-90">
         <div class="customerConnectionIps view content">
-            <h3><?= h($customerConnectionIp->name) ?></h3>
+            <?= $this->record(__('Customer Connection IP'), (string)$customerConnectionIp->name) ?>
             <div class="row">
                 <div class="column">
                     <table>
