@@ -126,6 +126,13 @@ class RadarInterferencesReportCommand extends Command
                 }
                 $mailer->setSubject(__('Devices that interfere with radar found'));
 
+                // The report is worth little if the listing it points at cannot be opened from it.
+                $linkWarning = OperatorReport::linkWarning();
+                if ($linkWarning !== null) {
+                    Log::write('warning', $linkWarning);
+                    $io->warning($linkWarning);
+                }
+
                 try {
                     $mailer->deliver(
                         __(

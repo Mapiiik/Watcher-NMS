@@ -175,6 +175,13 @@ class PowerOutagesReportCommand extends Command
             ->setLayout('default')
             ->setTemplate('power-outages-report');
 
+        // The report is worth little if the masts it names cannot be opened from it.
+        $linkWarning = OperatorReport::linkWarning();
+        if ($linkWarning !== null) {
+            Log::write('warning', $linkWarning);
+            $io->warning($linkWarning);
+        }
+
         $mailer->setViewVars([
             'title' => __n(
                 'The distributor has published an outage over one of our access points in the next {0} days.',

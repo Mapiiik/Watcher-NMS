@@ -117,6 +117,13 @@ class ElectricityMeterReadingsReportCommand extends Command
                     ->setLayout('default')
                     ->setTemplate('electricity-meter-readings-report');
 
+                // The report is worth little if the masts it names cannot be opened from it.
+                $linkWarning = OperatorReport::linkWarning();
+                if ($linkWarning !== null) {
+                    Log::write('warning', $linkWarning);
+                    $io->warning($linkWarning);
+                }
+
                 $mailer->setViewVars([
                     'title' => __(
                         'These electricity meter readings should take place in {month}.',

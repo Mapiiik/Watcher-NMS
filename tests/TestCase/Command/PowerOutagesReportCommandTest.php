@@ -164,6 +164,47 @@ class PowerOutagesReportCommandTest extends TestCase
     }
 
     /**
+     * A report whose links lead nowhere says so on its way out.
+     *
+     * Sent from cron there is no request to take the host from, so asking for a full link without
+     * the installation's address written down quietly yields a relative one - which is dead in
+     * somebody's mail. The report still goes: half a report beats none, and the complaint is in
+     * the log for whoever set the installation up.
+     *
+     * @return void
+     * @link \App\Service\OperatorReport::linkWarning()
+     */
+    public function testAReportWhoseLinksLeadNowhereSaysSo(): void
+    {
+        $this->moveOutagesTo(DateTime::now()->addDays(3));
+        $this->withConfigure(['App.fullBaseUrl' => false]);
+
+        $this->exec('power_outages_report');
+
+        $this->assertExitSuccess();
+        $this->assertMailCount(1);
+        $this->assertErrorContains('APP_FULL_BASE_URL');
+    }
+
+    /**
+     * With the address written down there is nothing to complain about.
+     *
+     * @return void
+     * @link \App\Service\OperatorReport::linkWarning()
+     */
+    public function testAReportWhoseLinksLeadSomewhereKeepsQuiet(): void
+    {
+        $this->moveOutagesTo(DateTime::now()->addDays(3));
+        $this->withConfigure(['App.fullBaseUrl' => 'https://nms.example.com']);
+
+        $this->exec('power_outages_report');
+
+        $this->assertExitSuccess();
+        $this->assertMailContains('https://nms.example.com/access-points/');
+        $this->assertErrorEmpty();
+    }
+
+    /**
      * Put every outage of the fixture on one day, lasting four hours.
      *
      * @param \Cake\I18n\DateTime $begins When they are to begin.
