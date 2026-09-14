@@ -442,6 +442,29 @@ class AccessPointsTableTest extends TestCase
     }
 
     /**
+     * What a mast stands for is what hangs below it, not only what hangs on it.
+     *
+     * This is the number an outage is weighed by, and the one that would be quietly wrong: a mast
+     * counted by its own connections alone looks harmless while everything fed from it goes dark
+     * with it. The archived connection stays out, because a line nobody is on is nobody to tell.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::subtreeConnectionCounts()
+     */
+    public function testSubtreeConnectionCountsReachBelowEachAccessPoint(): void
+    {
+        $tree = $this->createTree();
+
+        $counts = $this->AccessPoints->subtreeConnectionCounts();
+
+        // The branch holds one of its own and the leaf's two.
+        $this->assertSame(3, $counts[$tree['root']->id]);
+        $this->assertSame(3, $counts[$tree['branch']->id]);
+        $this->assertSame(2, $counts[$tree['leaf']->id]);
+        $this->assertSame(0, $counts[$tree['sibling']->id]);
+    }
+
+    /**
      * Test getSubtree method for an access point without descendants
      *
      * @return void

@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\AccessPointPowerOutage> $links
  * @var int $total
+ * @var array<string, int> $counts Active customer connections under each mast, keyed by its id.
  */
 
 use App\Model\Enum\OutageCertainty;
@@ -31,6 +32,14 @@ $shown = 0;
                         <br><small><?= $link->certainty === OutageCertainty::Certain
                             ? '<strong>' . h($link->certainty->label()) . '</strong>'
                             : h($link->certainty->label()) ?></small>
+                    </td>
+                    <td>
+                        <?php // Everything fed from the mast, not only what hangs on it directly. ?>
+                        <?php // Drawn rather than named: the card is narrow, and the word for it is ?>
+                        <?php // longer than any number it could stand beside. The title says it. ?>
+                        <span title="<?= h(__('Customer connections affected')) ?>">
+                            &#128100; <?= $this->Number->format($counts[$accessPoint?->id] ?? 0) ?>
+                        </span>
                     </td>
                 </tr>
             <?php endforeach ?>

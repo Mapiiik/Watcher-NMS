@@ -4,6 +4,7 @@
  * @var iterable<\App\Model\Entity\AccessPointPowerOutage> $links
  * @var \App\Model\Enum\OutageHorizon $show
  * @var int $withinDays
+ * @var array<string, int> $counts Active customer connections under each mast, keyed by its id.
  */
 
 use App\Model\Enum\OutageCertainty;
@@ -54,6 +55,9 @@ $empty = true;
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('AccessPoints.name', __('Access Point')) ?></th>
+                    <?php // Not sortable: the number is worked out in a reading of its own, not ?>
+                    <?php // in the query the paginator orders, so there is no column to sort by. ?>
+                    <th><?= __('Connections') ?></th>
                     <th><?= $this->Paginator->sort('PowerOutages.begins_at', __('Begins')) ?></th>
                     <th><?= $this->Paginator->sort('PowerOutages.ends_at', __('Ends')) ?></th>
                     <th><?= $this->Paginator->sort('AccessPointPowerOutages.certainty', __('Certainty')) ?></th>
@@ -73,6 +77,10 @@ $empty = true;
                             $accessPoint->name_for_lists,
                             ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
                         ) ?>
+                    </td>
+                    <td>
+                        <?php // Everything fed from the mast, not only what hangs on it directly. ?>
+                        <?= $this->Number->format($counts[$accessPoint?->id] ?? 0) ?>
                     </td>
                     <td><?= h($outage?->begins_at) ?></td>
                     <td><?= h($outage?->ends_at) ?></td>

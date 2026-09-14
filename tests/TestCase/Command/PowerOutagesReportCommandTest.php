@@ -110,6 +110,9 @@ class PowerOutagesReportCommandTest extends TestCase
         $this->assertMailContains((string)OutageMatch::Ean->label());
         $this->assertMailContains((string)OutageMatch::Address->label());
         $this->assertMailContains('Hlubocska 106 (42 m)');
+        // and what the outage costs, which is what tells an urgent one from a quiet one
+        $this->assertMailContains((string)__('Connections'));
+        $this->assertOutputContains((string)__('Connections'));
     }
 
     /**

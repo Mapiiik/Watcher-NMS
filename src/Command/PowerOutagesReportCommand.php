@@ -5,6 +5,7 @@ namespace App\Command;
 
 use App\Model\Enum\OutageHorizon;
 use App\Model\Table\AccessPointPowerOutagesTable;
+use App\Model\Table\AccessPointsTable;
 use App\Service\ErrorReport;
 use App\Service\OperatorReport;
 use Cake\Command\Command;
@@ -73,7 +74,10 @@ class PowerOutagesReportCommand extends Command
                 return static::CODE_SUCCESS;
             }
 
-            $io->helper('Table')->output($this->asTable($links));
+            // What each outage costs, beside what it is. One reading for every mast at once.
+            $counts = $this->fetchTable(AccessPointsTable::class)->subtreeConnectionCounts();
+
+            $io->helper('Table')->output($this->asTable($links, $counts));
 
             if ($recipients === []) {
                 $io->warning(__('Nobody is configured to send the report to, so it stays here.'));
@@ -81,7 +85,7 @@ class PowerOutagesReportCommand extends Command
                 return static::CODE_SUCCESS;
             }
 
-            $this->send($recipients, $links, $withinDays, $io);
+            $this->send($recipients, $links, $counts, $withinDays, $io);
 
             return static::CODE_SUCCESS;
         } catch (Throwable $e) {
@@ -123,12 +127,14 @@ class PowerOutagesReportCommand extends Command
      * The same, as something the console can print.
      *
      * @param array<int, \App\Model\Entity\AccessPointPowerOutage> $links What is coming up.
+     * @param array<string, int> $counts Connections under each mast, keyed by its id.
      * @return array<int, array<int, string>>
      */
-    private function asTable(array $links): array
+    private function asTable(array $links, array $counts): array
     {
         $table = [[
             __('Access Point'),
+            __('Connections'),
             __('Begins'),
             __('Ends'),
             __('Certainty'),
@@ -138,6 +144,7 @@ class PowerOutagesReportCommand extends Command
         foreach ($links as $link) {
             $table[] = [
                 (string)$link->access_point?->name_for_lists,
+                (string)($counts[(string)$link->access_point_id] ?? 0),
                 (string)$link->power_outage?->begins_at,
                 (string)$link->power_outage?->ends_at,
                 $link->certainty->label(),
@@ -153,11 +160,12 @@ class PowerOutagesReportCommand extends Command
      *
      * @param array<int, string> $recipients Who to tell.
      * @param array<int, \App\Model\Entity\AccessPointPowerOutage> $links What is coming up.
+     * @param array<string, int> $counts Connections under each mast, keyed by its id.
      * @param int $withinDays How far ahead this looked.
      * @param \Cake\Console\ConsoleIo $io The console io.
      * @return void
      */
-    private function send(array $recipients, array $links, int $withinDays, ConsoleIo $io): void
+    private function send(array $recipients, array $links, array $counts, int $withinDays, ConsoleIo $io): void
     {
         $mailer = new Mailer('default');
 
@@ -190,6 +198,7 @@ class PowerOutagesReportCommand extends Command
                 $withinDays,
             ),
             'links' => $links,
+            'counts' => $counts,
         ]);
 
         try {

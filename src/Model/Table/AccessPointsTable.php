@@ -365,6 +365,30 @@ class AccessPointsTable extends AppTable
     }
 
     /**
+     * How many active customer connections each access point stands for.
+     *
+     * Its own and those of every access point fed from it, because a mast losing power takes the
+     * ones hanging off it with it - and a count of its own connections alone would understate what
+     * an outage costs, which is the one thing this number exists to say.
+     *
+     * Read for the whole forest in one go rather than a subtree at a time: a listing of outages
+     * names many masts, and asking per mast would be a query per row. Whoever wants one mast asks
+     * {@see self::getSubtree()} for it.
+     *
+     * @return array<string, int> Keyed by access point id.
+     */
+    public function subtreeConnectionCounts(): array
+    {
+        $counts = [];
+
+        foreach ($this->getSubtree() as $accessPoint) {
+            $counts[(string)$accessPoint->id] = $accessPoint->subtree_customer_connections_count;
+        }
+
+        return $counts;
+    }
+
+    /**
      * Drops the access points carrying more or fewer customer connections than asked for.
      *
      * An access point outside the thresholds itself stays in as long as one of its descendants

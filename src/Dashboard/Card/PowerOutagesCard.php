@@ -60,6 +60,9 @@ class PowerOutagesCard extends AbstractDashboardCard
         return [
             'links' => $query->limit($this->maximumRows())->all(),
             'total' => $total,
+            // What the outage costs, beside what it is. Read for every mast at once rather than
+            // per row - the whole forest is one query, a row apiece would be ten.
+            'counts' => $this->links->AccessPoints->subtreeConnectionCounts(),
         ];
     }
 }

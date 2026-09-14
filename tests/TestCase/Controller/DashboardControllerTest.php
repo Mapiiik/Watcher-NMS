@@ -319,6 +319,8 @@ class DashboardControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertResponseContains('/access-points/3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71');
+        // The card is too narrow for the word, so the number stands behind a mark that says it.
+        $this->assertResponseContains((string)__('Customer connections affected'));
 
         $body = (string)$this->_response?->getBody();
         $this->assertLessThan(

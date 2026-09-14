@@ -10,6 +10,7 @@
  * @var \App\View\AppView $this
  * @var string $title
  * @var iterable<\App\Model\Entity\AccessPointPowerOutage> $links
+ * @var array<string, int> $counts Active customer connections under each mast, keyed by its id.
  */
 
 use App\Model\Enum\OutageCertainty;
@@ -37,6 +38,7 @@ table {
     <thead>
         <tr>
             <th><?= __('Access Point') ?></th>
+            <th><?= __('Connections') ?></th>
             <th><?= __('Begins') ?></th>
             <th><?= __('Ends') ?></th>
             <th><?= __('Certainty') ?></th>
@@ -55,6 +57,10 @@ table {
                     $accessPoint->name_for_lists,
                     ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id, '_full' => true],
                 ) ?>
+            </td>
+            <td>
+                <?php // Everything fed from the mast, not only what hangs on it directly. ?>
+                <?= $this->Number->format($counts[(string)$link->access_point_id] ?? 0) ?>
             </td>
             <td><?= h($outage?->begins_at) ?></td>
             <td><?= h($outage?->ends_at) ?></td>

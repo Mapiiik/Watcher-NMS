@@ -655,6 +655,12 @@ class OverviewsControllerTest extends TestCase
         $this->assertResponseContains('Hlubocska 106 (42 m)');
         $this->assertResponseContains('Kolin VI, Hlubocska');
         $this->assertResponseContains('https://cdn.bezstavy.cz/pdf/301289778-d9ulv4tct0gcmo4g0kpg.pdf');
+        // and what the outage costs, which is the reason to read the row at all
+        $this->assertResponseContains((string)__('Connections'));
+        $this->assertArrayHasKey(
+            self::OUTAGE_ACCESS_POINT_ID,
+            (array)$this->viewVariable('counts'),
+        );
     }
 
     /**

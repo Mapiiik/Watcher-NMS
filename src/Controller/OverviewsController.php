@@ -11,6 +11,7 @@ use App\Model\Enum\OutageHorizon;
 use App\Model\Enum\RadioUnitComparisonScope;
 use App\Model\Enum\RlanRegistrationScope;
 use App\Model\Table\AccessPointPowerOutagesTable;
+use App\Model\Table\AccessPointsTable;
 use App\Model\Table\RadioUnitBandsTable;
 use App\Model\Table\RlanStationsTable;
 use App\Rlan\RadioUnitRegistrationComparison;
@@ -389,7 +390,11 @@ class OverviewsController extends AppController
             'order' => AccessPointPowerOutagesTable::WORST_FIRST,
         ]);
 
-        $this->set(compact('links', 'show', 'withinDays'));
+        // What each outage costs, beside what it is. The whole forest in one reading rather than
+        // a reading per row, because a page of outages names a page of masts.
+        $counts = $this->fetchTable(AccessPointsTable::class)->subtreeConnectionCounts();
+
+        $this->set(compact('links', 'show', 'withinDays', 'counts'));
     }
 
     /**
