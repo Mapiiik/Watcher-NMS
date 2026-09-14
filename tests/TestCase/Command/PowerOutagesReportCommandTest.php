@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Command;
 
+use App\Model\Enum\OutageMatch;
 use App\Test\Traits\ConfigureTestTrait;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\I18n\DateTime;
@@ -102,8 +103,13 @@ class PowerOutagesReportCommandTest extends TestCase
         // it - which is the whole reason it does not count them.
         $this->assertMailSentWith(__('Planned power outages over our access points'), 'subject');
         $this->assertMailContains('Kolin water tower');
-        // The grounds travel with it: the operator has to know which of these to trust.
+        // The grounds travel with it: the operator has to know which of these to trust, and what
+        // the trust rests on - said the same way the overview and the access point card say it.
         $this->assertMailContains((string)__('Certain'));
+        $this->assertMailContains((string)__('Found By'));
+        $this->assertMailContains((string)OutageMatch::Ean->label());
+        $this->assertMailContains((string)OutageMatch::Address->label());
+        $this->assertMailContains('Hlubocska 106 (42 m)');
     }
 
     /**

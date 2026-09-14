@@ -1,5 +1,12 @@
 <?php
 /**
+ * The outages coming up over our masts, as a table somebody can act on from their mail.
+ *
+ * The columns are the ones the overview and the access point card carry, in the same order. An
+ * operator who read one of those this morning should not have to work out that this is the same
+ * table wearing a different arrangement - and the grounds a link rests on belong in a column of
+ * their own here as much as there, because a guess filed beside a certainty reads as a certainty.
+ *
  * @var \App\View\AppView $this
  * @var string $title
  * @var iterable<\App\Model\Entity\AccessPointPowerOutage> $links
@@ -33,6 +40,7 @@ table {
             <th><?= __('Begins') ?></th>
             <th><?= __('Ends') ?></th>
             <th><?= __('Certainty') ?></th>
+            <th><?= __('Found By') ?></th>
             <th><?= __('Where') ?></th>
             <th><?= __('Announcement') ?></th>
         </tr>
@@ -54,6 +62,9 @@ table {
                 <?= $link->certainty === OutageCertainty::Certain
                     ? '<strong>' . h($link->certainty->label()) . '</strong>'
                     : h($link->certainty->label()) ?>
+            </td>
+            <td>
+                <?= h($link->matched_by->label()) ?>
                 <?php if ($link->match_note !== null) : ?>
                     <br><small><?= h($link->match_note) ?></small>
                 <?php endif; ?>
