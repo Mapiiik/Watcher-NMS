@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-09-14 16:42+0200\n"
+"POT-Creation-Date: 2026-09-14 17:38+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -71,10 +71,10 @@ msgid "What"
 msgstr ""
 
 #: ./src/Command/BackupCommand.php:79
-#: ./src/Command/PowerOutagesReportCommand.php:135
-#: ./templates/Overviews/overview_of_planned_power_outages.php:61
+#: ./src/Command/PowerOutagesReportCommand.php:141
+#: ./templates/Overviews/overview_of_planned_power_outages.php:65
 #: ./templates/element/AccessPoints/power_outages.php:74
-#: ./templates/email/html/power_outages_report.php:44
+#: ./templates/email/html/power_outages_report.php:46
 msgid "Where"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgid "Customer points update failed."
 msgstr ""
 
 #: ./src/Command/ElectricityMeterReadingsReportCommand.php:76
-#: ./src/Command/PowerOutagesReportCommand.php:131
+#: ./src/Command/PowerOutagesReportCommand.php:136
 #: ./templates/AccessPointContacts/view.php:47
 #: ./templates/AccessPoints/view.php:60
 #: ./templates/AccessPoints/view.php:151
@@ -148,7 +148,7 @@ msgstr ""
 #: ./templates/IpAddressRanges/view.php:55
 #: ./templates/LandlordPayments/view.php:43
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:114
-#: ./templates/Overviews/overview_of_planned_power_outages.php:56
+#: ./templates/Overviews/overview_of_planned_power_outages.php:57
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:100
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:134
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:92
@@ -165,7 +165,7 @@ msgstr ""
 #: ./templates/element/RouterosDevices/related.php:22
 #: ./templates/element/Tasks/email_detail.php:64
 #: ./templates/email/html/electricity_meter_readings_report.php:27
-#: ./templates/email/html/power_outages_report.php:39
+#: ./templates/email/html/power_outages_report.php:40
 msgid "Access Point"
 msgstr ""
 
@@ -196,7 +196,7 @@ msgid "Never"
 msgstr ""
 
 #: ./src/Command/ElectricityMeterReadingsReportCommand.php:101
-#: ./src/Command/PowerOutagesReportCommand.php:79
+#: ./src/Command/PowerOutagesReportCommand.php:83
 #: ./src/Command/RadarInterferencesReportCommand.php:117
 msgid "Nobody is configured to send the report to, so it stays here."
 msgstr ""
@@ -236,56 +236,62 @@ msgstr ""
 msgid "Electricity meter readings report failed."
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:71
+#: ./src/Command/PowerOutagesReportCommand.php:72
 msgid "No planned outage is coming up over any of our access points."
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:90
+#: ./src/Command/PowerOutagesReportCommand.php:94
 msgid "Error during the planned outages report: {0}"
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:93
+#: ./src/Command/PowerOutagesReportCommand.php:97
 msgid "Planned outages report failed"
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:94
+#: ./src/Command/PowerOutagesReportCommand.php:98
 msgid "Reporting the planned outages failed."
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:132
-#: ./templates/Overviews/overview_of_planned_power_outages.php:57
+#: ./src/Command/PowerOutagesReportCommand.php:137
+#: ./templates/Overviews/overview_of_planned_power_outages.php:60
+#: ./templates/email/html/power_outages_report.php:41
+msgid "Connections"
+msgstr ""
+
+#: ./src/Command/PowerOutagesReportCommand.php:138
+#: ./templates/Overviews/overview_of_planned_power_outages.php:61
 #: ./templates/element/AccessPoints/power_outages.php:70
-#: ./templates/email/html/power_outages_report.php:40
+#: ./templates/email/html/power_outages_report.php:42
 msgid "Begins"
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:133
-#: ./templates/Overviews/overview_of_planned_power_outages.php:58
+#: ./src/Command/PowerOutagesReportCommand.php:139
+#: ./templates/Overviews/overview_of_planned_power_outages.php:62
 #: ./templates/element/AccessPoints/power_outages.php:71
-#: ./templates/email/html/power_outages_report.php:41
+#: ./templates/email/html/power_outages_report.php:43
 msgid "Ends"
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:134
-#: ./templates/Overviews/overview_of_planned_power_outages.php:59
+#: ./src/Command/PowerOutagesReportCommand.php:140
+#: ./templates/Overviews/overview_of_planned_power_outages.php:63
 #: ./templates/element/AccessPoints/power_outages.php:72
-#: ./templates/email/html/power_outages_report.php:42
+#: ./templates/email/html/power_outages_report.php:44
 msgid "Certainty"
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:171
+#: ./src/Command/PowerOutagesReportCommand.php:179
 msgid "Planned power outages over our access points"
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:198
+#: ./src/Command/PowerOutagesReportCommand.php:207
 msgid "The planned outages have been reported."
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:201
+#: ./src/Command/PowerOutagesReportCommand.php:210
 msgid "The planned outages cannot be reported."
 msgstr ""
 
-#: ./src/Command/PowerOutagesReportCommand.php:186
+#: ./src/Command/PowerOutagesReportCommand.php:194
 msgid "The distributor has published an outage over one of our access points in the next {0} days."
 msgid_plural "The distributor has published outages over our access points in the next {0} days."
 msgstr[0] ""
@@ -1067,7 +1073,7 @@ msgstr ""
 #: ./src/Dashboard/Card/PowerOutagesCard.php:43
 #: ./templates/AccessPoints/view.php:265
 #: ./templates/Overviews/index.php:29
-#: ./templates/Overviews/overview_of_planned_power_outages.php:37
+#: ./templates/Overviews/overview_of_planned_power_outages.php:38
 msgid "Planned Power Outages"
 msgstr ""
 
@@ -1509,7 +1515,7 @@ msgstr ""
 #: ./templates/Manufacturers/view.php:69
 #: ./templates/Manufacturers/view.php:121
 #: ./templates/Manufacturers/view.php:162
-#: ./templates/Overviews/overview_of_planned_power_outages.php:62
+#: ./templates/Overviews/overview_of_planned_power_outages.php:66
 #: ./templates/PaymentPurposes/add.php:10
 #: ./templates/PaymentPurposes/edit.php:10
 #: ./templates/PaymentPurposes/index.php:31
@@ -1833,7 +1839,7 @@ msgstr ""
 #: ./templates/LandlordPayments/index.php:11
 #: ./templates/Manufacturers/index.php:11
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:24
-#: ./templates/Overviews/overview_of_planned_power_outages.php:18
+#: ./templates/Overviews/overview_of_planned_power_outages.php:19
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:31
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:41
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:18
@@ -3276,7 +3282,7 @@ msgid "Only Not Recorded"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:64
-#: ./templates/Overviews/overview_of_planned_power_outages.php:36
+#: ./templates/Overviews/overview_of_planned_power_outages.php:37
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:58
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:68
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:47
@@ -3328,41 +3334,41 @@ msgstr ""
 msgid "A radio unit is the record of this radio."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_planned_power_outages.php:25
+#: ./templates/Overviews/overview_of_planned_power_outages.php:26
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:45
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:55
 msgid "Show"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_planned_power_outages.php:40
-#: ./templates/email/html/power_outages_report.php:31
+#: ./templates/Overviews/overview_of_planned_power_outages.php:41
+#: ./templates/email/html/power_outages_report.php:32
 msgid "An outage found through the supply point is about that access point; one found through the addresses around it is likely rather than certain."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_planned_power_outages.php:60
+#: ./templates/Overviews/overview_of_planned_power_outages.php:64
 #: ./templates/element/AccessPoints/power_outages.php:73
-#: ./templates/email/html/power_outages_report.php:43
+#: ./templates/email/html/power_outages_report.php:45
 msgid "Found By"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_planned_power_outages.php:83
+#: ./templates/Overviews/overview_of_planned_power_outages.php:91
 #: ./templates/element/AccessPoints/power_outages.php:89
 msgid "(called off)"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_planned_power_outages.php:95
+#: ./templates/Overviews/overview_of_planned_power_outages.php:103
 #: ./templates/element/AccessPoints/power_outages.php:101
-#: ./templates/email/html/power_outages_report.php:45
-#: ./templates/email/html/power_outages_report.php:75
+#: ./templates/email/html/power_outages_report.php:47
+#: ./templates/email/html/power_outages_report.php:81
 msgid "Announcement"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_planned_power_outages.php:108
-#: ./templates/element/Dashboard/power_outages.php:13
+#: ./templates/Overviews/overview_of_planned_power_outages.php:116
+#: ./templates/element/Dashboard/power_outages.php:14
 msgid "No planned outage is known for any of our access points."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_planned_power_outages.php:44
+#: ./templates/Overviews/overview_of_planned_power_outages.php:45
 msgid "Beginning within a day from now."
 msgid_plural "Beginning within the next {0} days."
 msgstr[0] ""
@@ -4311,7 +4317,7 @@ msgstr ""
 
 #: ./templates/element/Dashboard/crm_task_list.php:82
 #: ./templates/element/Dashboard/electricity_meter_readings.php:31
-#: ./templates/element/Dashboard/power_outages.php:44
+#: ./templates/element/Dashboard/power_outages.php:53
 #: ./templates/element/Dashboard/radar_interferences.php:34
 #: ./templates/element/Dashboard/stale_device_data.php:37
 #: ./templates/element/Dashboard/task_list.php:68
@@ -4324,6 +4330,10 @@ msgstr ""
 
 #: ./templates/element/Dashboard/electricity_meter_readings.php:23
 msgid "never"
+msgstr ""
+
+#: ./templates/element/Dashboard/power_outages.php:40
+msgid "Customer connections affected"
 msgstr ""
 
 #: ./templates/element/Dashboard/radar_interferences.php:11

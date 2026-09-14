@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-09-14 16:42+0200\n"
+"POT-Creation-Date: 2026-09-14 17:38+0200\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -100,10 +100,10 @@ msgid "What"
 msgstr "Co"
 
 #: src/Command/BackupCommand.php:79
-#: src/Command/PowerOutagesReportCommand.php:135
-#: templates/Overviews/overview_of_planned_power_outages.php:61
+#: src/Command/PowerOutagesReportCommand.php:141
+#: templates/Overviews/overview_of_planned_power_outages.php:65
 #: templates/element/AccessPoints/power_outages.php:74
-#: templates/email/html/power_outages_report.php:44
+#: templates/email/html/power_outages_report.php:46
 msgid "Where"
 msgstr "Kde"
 
@@ -171,14 +171,14 @@ msgid "Customer points update failed."
 msgstr "Aktualizace zákaznických bodů se nezdařila."
 
 #: src/Command/ElectricityMeterReadingsReportCommand.php:76
-#: src/Command/PowerOutagesReportCommand.php:131
+#: src/Command/PowerOutagesReportCommand.php:136
 #: templates/AccessPointContacts/view.php:47 templates/AccessPoints/view.php:60
 #: templates/AccessPoints/view.php:151
 #: templates/CustomerConnections/view.php:82
 #: templates/ElectricityMeterReadings/view.php:47
 #: templates/IpAddressRanges/view.php:55 templates/LandlordPayments/view.php:43
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:114
-#: templates/Overviews/overview_of_planned_power_outages.php:56
+#: templates/Overviews/overview_of_planned_power_outages.php:57
 #: templates/Overviews/overview_of_radio_units_against_devices.php:100
 #: templates/Overviews/overview_of_radio_units_against_registered_stations.php:134
 #: templates/Overviews/overview_of_registered_stations_against_radio_units.php:92
@@ -191,7 +191,7 @@ msgstr "Aktualizace zákaznických bodů se nezdařila."
 #: templates/element/RouterosDevices/related.php:22
 #: templates/element/Tasks/email_detail.php:64
 #: templates/email/html/electricity_meter_readings_report.php:27
-#: templates/email/html/power_outages_report.php:39
+#: templates/email/html/power_outages_report.php:40
 msgid "Access Point"
 msgstr "Přístupový bod"
 
@@ -222,7 +222,7 @@ msgid "Never"
 msgstr "Nikdy"
 
 #: src/Command/ElectricityMeterReadingsReportCommand.php:101
-#: src/Command/PowerOutagesReportCommand.php:79
+#: src/Command/PowerOutagesReportCommand.php:83
 #: src/Command/RadarInterferencesReportCommand.php:117
 msgid "Nobody is configured to send the report to, so it stays here."
 msgstr ""
@@ -264,56 +264,62 @@ msgstr "Hlášení odečtu elektroměru se nezdařilo"
 msgid "Electricity meter readings report failed."
 msgstr "Hlášení odečtu elektroměru se nezdařilo."
 
-#: src/Command/PowerOutagesReportCommand.php:71
+#: src/Command/PowerOutagesReportCommand.php:72
 msgid "No planned outage is coming up over any of our access points."
 msgstr "Nad žádným naším přístupovým bodem se neblíží plánovaná odstávka."
 
-#: src/Command/PowerOutagesReportCommand.php:90
+#: src/Command/PowerOutagesReportCommand.php:94
 msgid "Error during the planned outages report: {0}"
 msgstr "Chyba při hlášení plánovaných odstávek: {0}"
 
-#: src/Command/PowerOutagesReportCommand.php:93
+#: src/Command/PowerOutagesReportCommand.php:97
 msgid "Planned outages report failed"
 msgstr "Hlášení plánovaných odstávek selhalo"
 
-#: src/Command/PowerOutagesReportCommand.php:94
+#: src/Command/PowerOutagesReportCommand.php:98
 msgid "Reporting the planned outages failed."
 msgstr "Hlášení plánovaných odstávek selhalo."
 
-#: src/Command/PowerOutagesReportCommand.php:132
-#: templates/Overviews/overview_of_planned_power_outages.php:57
+#: src/Command/PowerOutagesReportCommand.php:137
+#: templates/Overviews/overview_of_planned_power_outages.php:60
+#: templates/email/html/power_outages_report.php:41
+msgid "Connections"
+msgstr "Přípojky"
+
+#: src/Command/PowerOutagesReportCommand.php:138
+#: templates/Overviews/overview_of_planned_power_outages.php:61
 #: templates/element/AccessPoints/power_outages.php:70
-#: templates/email/html/power_outages_report.php:40
+#: templates/email/html/power_outages_report.php:42
 msgid "Begins"
 msgstr "Začíná"
 
-#: src/Command/PowerOutagesReportCommand.php:133
-#: templates/Overviews/overview_of_planned_power_outages.php:58
+#: src/Command/PowerOutagesReportCommand.php:139
+#: templates/Overviews/overview_of_planned_power_outages.php:62
 #: templates/element/AccessPoints/power_outages.php:71
-#: templates/email/html/power_outages_report.php:41
+#: templates/email/html/power_outages_report.php:43
 msgid "Ends"
 msgstr "Končí"
 
-#: src/Command/PowerOutagesReportCommand.php:134
-#: templates/Overviews/overview_of_planned_power_outages.php:59
+#: src/Command/PowerOutagesReportCommand.php:140
+#: templates/Overviews/overview_of_planned_power_outages.php:63
 #: templates/element/AccessPoints/power_outages.php:72
-#: templates/email/html/power_outages_report.php:42
+#: templates/email/html/power_outages_report.php:44
 msgid "Certainty"
 msgstr "Jistota"
 
-#: src/Command/PowerOutagesReportCommand.php:171
+#: src/Command/PowerOutagesReportCommand.php:179
 msgid "Planned power outages over our access points"
 msgstr "Plánované odstávky elektřiny nad našimi přístupovými body"
 
-#: src/Command/PowerOutagesReportCommand.php:198
+#: src/Command/PowerOutagesReportCommand.php:207
 msgid "The planned outages have been reported."
 msgstr "Plánované odstávky byly nahlášeny."
 
-#: src/Command/PowerOutagesReportCommand.php:201
+#: src/Command/PowerOutagesReportCommand.php:210
 msgid "The planned outages cannot be reported."
 msgstr "Plánované odstávky nelze nahlásit."
 
-#: src/Command/PowerOutagesReportCommand.php:186
+#: src/Command/PowerOutagesReportCommand.php:194
 msgid ""
 "The distributor has published an outage over one of our access points in the "
 "next {0} days."
@@ -1108,7 +1114,7 @@ msgstr "Elektroměry k odečtení"
 
 #: src/Dashboard/Card/PowerOutagesCard.php:43
 #: templates/AccessPoints/view.php:265 templates/Overviews/index.php:29
-#: templates/Overviews/overview_of_planned_power_outages.php:37
+#: templates/Overviews/overview_of_planned_power_outages.php:38
 msgid "Planned Power Outages"
 msgstr "Plánované odstávky elektřiny"
 
@@ -1455,8 +1461,8 @@ msgid ""
 "APP_FULL_BASE_URL is not set, so the links in this report are relative and "
 "will not lead anywhere from somebody's mail."
 msgstr ""
-"Není nastaveno APP_FULL_BASE_URL, takže odkazy v tomto reportu jsou relativní "
-"a z e-mailu nikam nepovedou."
+"Není nastaveno APP_FULL_BASE_URL, takže odkazy v tomto reportu jsou "
+"relativní a z e-mailu nikam nepovedou."
 
 #: src/Snmp/Provider/RouterosSnmpPayloadNormalizer.php:24
 msgid "Unexpected SNMP payload structure"
@@ -1535,7 +1541,7 @@ msgstr "Není nainstalováno přes Git"
 #: templates/Manufacturers/edit.php:10 templates/Manufacturers/index.php:31
 #: templates/Manufacturers/view.php:10 templates/Manufacturers/view.php:69
 #: templates/Manufacturers/view.php:121 templates/Manufacturers/view.php:162
-#: templates/Overviews/overview_of_planned_power_outages.php:62
+#: templates/Overviews/overview_of_planned_power_outages.php:66
 #: templates/PaymentPurposes/add.php:10 templates/PaymentPurposes/edit.php:10
 #: templates/PaymentPurposes/index.php:31 templates/PaymentPurposes/view.php:10
 #: templates/PaymentPurposes/view.php:70 templates/PowerSupplies/add.php:12
@@ -1768,7 +1774,7 @@ msgstr "Upravit kontakt přístupového bodu"
 #: templates/IpAddressRanges/index.php:11
 #: templates/LandlordPayments/index.php:11 templates/Manufacturers/index.php:11
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:24
-#: templates/Overviews/overview_of_planned_power_outages.php:18
+#: templates/Overviews/overview_of_planned_power_outages.php:19
 #: templates/Overviews/overview_of_radio_units_against_devices.php:31
 #: templates/Overviews/overview_of_radio_units_against_registered_stations.php:41
 #: templates/Overviews/overview_of_registered_stations_against_radio_units.php:18
@@ -2991,7 +2997,7 @@ msgid "Only Not Recorded"
 msgstr "Pouze neevidované"
 
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:64
-#: templates/Overviews/overview_of_planned_power_outages.php:36
+#: templates/Overviews/overview_of_planned_power_outages.php:37
 #: templates/Overviews/overview_of_radio_units_against_devices.php:58
 #: templates/Overviews/overview_of_radio_units_against_registered_stations.php:68
 #: templates/Overviews/overview_of_registered_stations_against_radio_units.php:47
@@ -3060,14 +3066,14 @@ msgstr "Toto rádio nic neeviduje, a jeho pásmo říká, že by mělo."
 msgid "A radio unit is the record of this radio."
 msgstr "Toto rádio eviduje rádiová jednotka."
 
-#: templates/Overviews/overview_of_planned_power_outages.php:25
+#: templates/Overviews/overview_of_planned_power_outages.php:26
 #: templates/Overviews/overview_of_radio_units_against_devices.php:45
 #: templates/Overviews/overview_of_radio_units_against_registered_stations.php:55
 msgid "Show"
 msgstr "Zobrazit"
 
-#: templates/Overviews/overview_of_planned_power_outages.php:40
-#: templates/email/html/power_outages_report.php:31
+#: templates/Overviews/overview_of_planned_power_outages.php:41
+#: templates/email/html/power_outages_report.php:32
 msgid ""
 "An outage found through the supply point is about that access point; one "
 "found through the addresses around it is likely rather than certain."
@@ -3075,30 +3081,30 @@ msgstr ""
 "Odstávka nalezená přes odběrné místo se týká daného přístupového bodu; "
 "odstávka nalezená přes okolní adresy je spíš pravděpodobná než jistá."
 
-#: templates/Overviews/overview_of_planned_power_outages.php:60
+#: templates/Overviews/overview_of_planned_power_outages.php:64
 #: templates/element/AccessPoints/power_outages.php:73
-#: templates/email/html/power_outages_report.php:43
+#: templates/email/html/power_outages_report.php:45
 msgid "Found By"
 msgstr "Nalezeno podle"
 
-#: templates/Overviews/overview_of_planned_power_outages.php:83
+#: templates/Overviews/overview_of_planned_power_outages.php:91
 #: templates/element/AccessPoints/power_outages.php:89
 msgid "(called off)"
 msgstr "(zrušeno)"
 
-#: templates/Overviews/overview_of_planned_power_outages.php:95
+#: templates/Overviews/overview_of_planned_power_outages.php:103
 #: templates/element/AccessPoints/power_outages.php:101
-#: templates/email/html/power_outages_report.php:45
-#: templates/email/html/power_outages_report.php:75
+#: templates/email/html/power_outages_report.php:47
+#: templates/email/html/power_outages_report.php:81
 msgid "Announcement"
 msgstr "Oznámení"
 
-#: templates/Overviews/overview_of_planned_power_outages.php:108
-#: templates/element/Dashboard/power_outages.php:13
+#: templates/Overviews/overview_of_planned_power_outages.php:116
+#: templates/element/Dashboard/power_outages.php:14
 msgid "No planned outage is known for any of our access points."
 msgstr "U žádného našeho přístupového bodu není známa plánovaná odstávka."
 
-#: templates/Overviews/overview_of_planned_power_outages.php:44
+#: templates/Overviews/overview_of_planned_power_outages.php:45
 msgid "Beginning within a day from now."
 msgid_plural "Beginning within the next {0} days."
 msgstr[0] "Se začátkem do jednoho dne."
@@ -4032,7 +4038,7 @@ msgstr "Data z Watcher CRM se nepodařilo načíst."
 
 #: templates/element/Dashboard/crm_task_list.php:82
 #: templates/element/Dashboard/electricity_meter_readings.php:31
-#: templates/element/Dashboard/power_outages.php:44
+#: templates/element/Dashboard/power_outages.php:53
 #: templates/element/Dashboard/radar_interferences.php:34
 #: templates/element/Dashboard/stale_device_data.php:37
 #: templates/element/Dashboard/task_list.php:68
@@ -4047,6 +4053,10 @@ msgstr ""
 #: templates/element/Dashboard/electricity_meter_readings.php:23
 msgid "never"
 msgstr "nikdy"
+
+#: templates/element/Dashboard/power_outages.php:40
+msgid "Customer connections affected"
+msgstr "Dotčené zákaznické přípojky"
 
 #: templates/element/Dashboard/radar_interferences.php:11
 msgid "No device of ours is reported as interfering."
