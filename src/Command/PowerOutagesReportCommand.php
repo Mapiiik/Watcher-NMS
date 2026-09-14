@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Model\Enum\OutageHorizon;
 use App\Model\Table\AccessPointPowerOutagesTable;
 use App\Service\ErrorReport;
 use App\Service\OperatorReport;
@@ -10,7 +11,6 @@ use Cake\Command\Command;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use Exception;
@@ -109,28 +109,10 @@ class PowerOutagesReportCommand extends Command
      */
     private function upcoming(int $withinDays): array
     {
-        $now = DateTime::now();
-
         /** @var array<int, \App\Model\Entity\AccessPointPowerOutage> $links */
         $links = $this->fetchTable(AccessPointPowerOutagesTable::class)
-            ->find()
-            ->contain(['AccessPoints', 'PowerOutages'])
-            ->where([
-                'PowerOutages.cancelled' => false,
-                'PowerOutages.begins_at IS NOT' => null,
-                'PowerOutages.begins_at <=' => $now->addDays(max(0, $withinDays)),
-                'OR' => [
-                    'PowerOutages.ends_at IS' => null,
-                    'PowerOutages.ends_at >=' => $now,
-                ],
-                'AccessPoints.archived IS' => null,
-            ])
-            // What is known before what is guessed, the same way the dashboard card orders it and
-            // leaning on the same accident of `certain` sorting before `probable`.
-            ->orderBy([
-                'AccessPointPowerOutages.certainty' => 'ASC',
-                'PowerOutages.begins_at' => 'ASC',
-            ])
+            ->find('inHorizon', horizon: OutageHorizon::Soon, withinDays: $withinDays)
+            ->orderBy(AccessPointPowerOutagesTable::WORST_FIRST)
             ->all()
             ->toList();
 

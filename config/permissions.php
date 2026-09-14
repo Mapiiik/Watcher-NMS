@@ -418,6 +418,7 @@ $permissions = [
                 'overviewOfDeviceRadiosAgainstRadioUnits',
                 'overviewOfRadioUnitsAgainstRegisteredStations',
                 'overviewOfRegisteredStationsAgainstRadioUnits',
+                'overviewOfPlannedPowerOutages',
             ],
         ],
     ],

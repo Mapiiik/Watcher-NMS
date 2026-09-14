@@ -4,8 +4,11 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use App\Model\Enum\OutageCertainty;
+use App\Model\Enum\OutageHorizon;
 use App\Model\Enum\OutageMatch;
 use Cake\Database\Type\EnumType;
+use Cake\I18n\DateTime;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -37,6 +40,21 @@ use Override;
  */
 class AccessPointPowerOutagesTable extends AppTable
 {
+    /**
+     * What is known before what is guessed, and the soonest of each first.
+     *
+     * This leans on `certain` sorting before `probable`, which the two words happen to do - the
+     * test of this table is what would notice if either of them were ever renamed. Kept here
+     * because the dashboard card, the morning report and the overview all have to agree about
+     * which outage a reader sees first.
+     *
+     * @var array<string, string>
+     */
+    public const WORST_FIRST = [
+        'AccessPointPowerOutages.certainty' => 'ASC',
+        'PowerOutages.begins_at' => 'ASC',
+    ];
+
     /**
      * Initialize method
      *
@@ -78,6 +96,54 @@ class AccessPointPowerOutagesTable extends AppTable
         $this->belongsTo('AccessPointSupplyAddresses', [
             'foreignKey' => 'access_point_supply_address_id',
         ]);
+    }
+
+    /**
+     * The outages over our access points, as far ahead as the caller is looking.
+     *
+     * The one place the question is written down. The dashboard card, the morning report and the
+     * overview the card links to all ask it, and a card that counts one thing while the page it
+     * points at lists another is worse than no link at all.
+     *
+     * No ordering is set here on purpose: the overview hands this query to the paginator, and an
+     * order applied inside a finder is applied first and would beat the column the reader clicked.
+     * Whoever wants the usual order asks for {@see self::WORST_FIRST} by name.
+     *
+     * @param \Cake\ORM\Query\SelectQuery<\App\Model\Entity\AccessPointPowerOutage> $query The query to narrow.
+     * @param \App\Model\Enum\OutageHorizon $horizon How far to look.
+     * @param int $withinDays How soon an outage has to begin, where the horizon asks.
+     * @return \Cake\ORM\Query\SelectQuery<\App\Model\Entity\AccessPointPowerOutage>
+     */
+    public function findInHorizon(
+        SelectQuery $query,
+        OutageHorizon $horizon,
+        int $withinDays,
+    ): SelectQuery {
+        $now = DateTime::now();
+
+        $query->contain(['AccessPoints', 'PowerOutages']);
+
+        // Everything on record, called off and finished and given up alike. Asked for by somebody
+        // looking back at what happened rather than ahead at what is coming.
+        if ($horizon === OutageHorizon::All) {
+            return $query;
+        }
+
+        $query->where([
+            'PowerOutages.cancelled' => false,
+            'PowerOutages.begins_at IS NOT' => null,
+            'OR' => [
+                'PowerOutages.ends_at IS' => null,
+                'PowerOutages.ends_at >=' => $now,
+            ],
+            'AccessPoints.archived IS' => null,
+        ]);
+
+        if ($horizon === OutageHorizon::Soon) {
+            $query->where(['PowerOutages.begins_at <=' => $now->addDays(max(0, $withinDays))]);
+        }
+
+        return $query;
     }
 
     /**

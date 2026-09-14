@@ -7,6 +7,7 @@ use App\Controller\OverviewsController;
 use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
 use App\Model\Enum\DeviceLinkScope;
+use App\Model\Enum\OutageHorizon;
 use App\Model\Enum\RadioUnitComparisonScope;
 use App\Model\Enum\RlanRegistrationScope;
 use App\Rlan\RadioUnitRegistrationComparison;
@@ -34,6 +35,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RadioUnitRegistrationComparison::class)]
 #[UsesClass(RegisteredStationComparison::class)]
 #[UsesClass(RlanRegistrationScope::class)]
+#[UsesClass(OutageHorizon::class)]
 class OverviewsControllerTest extends TestCase
 {
     use ControllerTestTrait;
@@ -61,6 +63,13 @@ class OverviewsControllerTest extends TestCase
     private const CUSTOMER_CONNECTION_ID = '2561f92d-4edc-4357-91b6-990e74e1ef64';
 
     /**
+     * The access point the outages of the fixture are about.
+     *
+     * @var string
+     */
+    private const OUTAGE_ACCESS_POINT_ID = '3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71';
+
+    /**
      * Fixtures
      *
      * @var array<string>
@@ -82,6 +91,10 @@ class OverviewsControllerTest extends TestCase
         'app.RouterosDeviceInterfaces',
         'app.RouterosDeviceIps',
         'app.RlanStations',
+        'app.AccessPointSupplyAddresses',
+        'app.PowerOutages',
+        'app.PowerOutageScopes',
+        'app.AccessPointPowerOutages',
     ];
 
     /**
@@ -613,6 +626,150 @@ class OverviewsControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertNull($this->viewVariable('registerRead'));
+    }
+
+    /**
+     * The outages overview renders, and opens on what the dashboard card counts.
+     *
+     * The default is the one thing here worth pinning: the card ends on `and so many more` and
+     * links here, so a page that opened on anything else would be answering a question nobody
+     * asked it.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfPlannedPowerOutages()
+     */
+    public function testOverviewOfPlannedPowerOutages(): void
+    {
+        $this->moveLiveOutage(DateTime::now()->addDays(3));
+
+        $this->login();
+        $this->get('/overviews/overview-of-planned-power-outages');
+
+        $this->assertResponseOk();
+        $this->assertSame(OutageHorizon::Soon, $this->viewVariable('show'));
+
+        // The row carries what the two listings it was built from carry: the mast it is about,
+        // what the match rests on, where the power goes off, and the way to the announcement.
+        $this->assertResponseContains('/access-points/' . self::OUTAGE_ACCESS_POINT_ID);
+        $this->assertResponseContains('Kolin water tower');
+        $this->assertResponseContains('Hlubocska 106 (42 m)');
+        $this->assertResponseContains('Kolin VI, Hlubocska');
+        $this->assertResponseContains('https://cdn.bezstavy.cz/pdf/301289778-d9ulv4tct0gcmo4g0kpg.pdf');
+    }
+
+    /**
+     * Each horizon builds a different query, so each is asked for.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfPlannedPowerOutages()
+     */
+    public function testOverviewOfPlannedPowerOutagesAtEveryHorizon(): void
+    {
+        $this->moveLiveOutage(DateTime::now()->addDays(3));
+
+        foreach (OutageHorizon::cases() as $horizon) {
+            $this->login();
+            $this->get('/overviews/overview-of-planned-power-outages?show=' . $horizon->value);
+
+            $this->assertResponseOk();
+            $this->assertSame($horizon, $this->viewVariable('show'));
+        }
+
+        // What is coming up leaves out the outage that was called off; everything known keeps it.
+        $this->assertCount(1, $this->linksListed('?show=' . OutageHorizon::Soon->value));
+        $this->assertCount(2, $this->linksListed('?show=' . OutageHorizon::All->value));
+    }
+
+    /**
+     * A horizon the address names and we do not is answered with the usual one rather than with an
+     * error.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfPlannedPowerOutages()
+     */
+    public function testOverviewOfPlannedPowerOutagesFallsBackToComingUp(): void
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-planned-power-outages?show=whenever');
+
+        $this->assertResponseOk();
+        $this->assertSame(OutageHorizon::Soon, $this->viewVariable('show'));
+    }
+
+    /**
+     * The search builds a different query than the plain listing does, so it is asked for.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfPlannedPowerOutages()
+     */
+    public function testOverviewOfPlannedPowerOutagesWithSearch(): void
+    {
+        $this->login();
+        $this->get('/overviews/overview-of-planned-power-outages?show=all&search=Hlubocska');
+
+        $this->assertResponseOk();
+        $this->assertCount(1, $this->linksListed('?show=all&search=Hlubocska'));
+    }
+
+    /**
+     * Reached from a mast, the overview is about that mast.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfPlannedPowerOutages()
+     */
+    public function testOverviewOfPlannedPowerOutagesNarrowsToOneAccessPoint(): void
+    {
+        $listed = $this->linksListed(
+            '?show=all',
+            '/access-points/' . self::OUTAGE_ACCESS_POINT_ID,
+        );
+        $this->assertCount(2, $listed);
+
+        $elsewhere = $this->linksListed('?show=all', '/access-points/' . self::ACCESS_POINT_ID);
+        $this->assertSame([], $elsewhere);
+    }
+
+    /**
+     * Put the outage of the fixture that was not called off on a given day, lasting an hour.
+     *
+     * The fixture is written against fixed moments, so the outage is moved onto the days these
+     * ask about rather than the question being moved onto it.
+     *
+     * @param \Cake\I18n\DateTime $begins When it is to begin.
+     * @return void
+     */
+    private function moveLiveOutage(DateTime $begins): void
+    {
+        $outages = $this->getTableLocator()->get('PowerOutages');
+
+        $outage = $outages->get('b1b2c3d4-0001-4a5b-9a4a-2c0f4d5e6a71');
+        $outage->set('begins_at', $begins);
+        $outage->set('ends_at', $begins->addHours(1));
+        $outages->saveOrFail($outage);
+    }
+
+    /**
+     * The links the outages overview lists, as the action answers with them.
+     *
+     * @param string $query What to ask it, from the question mark on.
+     * @param string $prefix The mast to ask it under, if any.
+     * @return array<string>
+     */
+    private function linksListed(string $query, string $prefix = ''): array
+    {
+        $this->login();
+        $this->get($prefix . '/overviews/overview-of-planned-power-outages' . $query);
+        $this->assertResponseOk();
+
+        /** @var \Cake\Datasource\Paging\PaginatedInterface<int, \App\Model\Entity\AccessPointPowerOutage> $links */
+        $links = $this->viewVariable('links');
+
+        $ids = [];
+        foreach ($links as $link) {
+            $ids[] = (string)$link->id;
+        }
+
+        return $ids;
     }
 
     /**

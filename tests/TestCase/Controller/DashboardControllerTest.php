@@ -329,6 +329,67 @@ class DashboardControllerTest extends TestCase
     }
 
     /**
+     * The card ends on a link to the listing that holds the rest of them.
+     *
+     * The card says how many more there are; without somewhere to go, saying so is only a way of
+     * telling somebody they cannot see it.
+     *
+     * @return void
+     * @link \App\Dashboard\Card\PowerOutagesCard::data()
+     */
+    public function testThePowerOutageCardLeadsToTheRest(): void
+    {
+        $outages = $this->getTableLocator()->get('PowerOutages');
+        $outages->updateAll(
+            ['begins_at' => DateTime::now()->addDays(2), 'ends_at' => DateTime::now()->addDays(2)->addHours(4)],
+            [],
+        );
+        $outages->updateAll(['cancelled' => false], []);
+
+        // More outages over one mast than a card will draw. Made here rather than by shrinking the
+        // card, because the row limit is a setting and a setting moved in one test is a setting
+        // moved for the ones after it.
+        $this->crowdTheCard(10);
+
+        $this->login();
+        $this->get('/dashboard/card/power_outages');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains((string)__('and {0} more', 2));
+        $this->assertResponseContains('/overviews/overview-of-planned-power-outages');
+    }
+
+    /**
+     * Put more outages over one mast than a card has room for.
+     *
+     * @param int $count How many to add.
+     * @return void
+     */
+    private function crowdTheCard(int $count): void
+    {
+        $outages = $this->getTableLocator()->get('PowerOutages');
+        $links = $this->getTableLocator()->get('AccessPointPowerOutages');
+
+        for ($i = 0; $i < $count; $i++) {
+            $outage = $outages->saveOrFail($outages->newEntity([
+                'distributor' => 'CEZD',
+                'outage_number' => 'crowd-' . $i,
+                'begins_at' => DateTime::now()->addDays(2),
+                'ends_at' => DateTime::now()->addDays(2)->addHours(4),
+                'cancelled' => false,
+                'summary' => 'Somewhere ' . $i,
+            ]));
+
+            $links->saveOrFail($links->newEntity([
+                'access_point_id' => '3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71',
+                'power_outage_id' => $outage->id,
+                'certainty' => 'probable',
+                'matched_by' => 'street',
+            ]));
+        }
+    }
+
+    /**
      * The link under a card has to reproduce that card's set, so it names every filter the
      * listing keeps in the session rather than leaving the last one used in force.
      *

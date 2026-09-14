@@ -23,6 +23,17 @@
         </div>
 
         <div class="related">
+            <h4><?= __('Access Point Related') ?></h4>
+            <div>
+                <?= $this->AuthLink->link(
+                    __('Planned Power Outages'),
+                    ['action' => 'overviewOfPlannedPowerOutages'],
+                    ['class' => 'side-nav-item'],
+                ) ?>
+            </div>
+        </div>
+
+        <div class="related">
             <h4><?= __('Radio Related') ?></h4>
             <div>
                 <?= $this->AuthLink->link(

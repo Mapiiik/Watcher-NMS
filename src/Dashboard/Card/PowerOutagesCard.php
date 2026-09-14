@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Dashboard\Card;
 
+use App\Model\Enum\OutageHorizon;
 use App\Model\Table\AccessPointPowerOutagesTable;
-use Cake\I18n\DateTime;
 use Dashboard\Card\AbstractDashboardCard;
 use Override;
 use Settings\Utility\Settings;
@@ -50,27 +50,10 @@ class PowerOutagesCard extends AbstractDashboardCard
     public function data(): array
     {
         $withinDays = (int)Settings::get('core.access_points.power_outages.report_within_days', 14);
-        $now = DateTime::now();
 
-        $query = $this->links->find()
-            ->contain(['AccessPoints', 'PowerOutages'])
-            ->where([
-                'PowerOutages.cancelled' => false,
-                'PowerOutages.begins_at IS NOT' => null,
-                'PowerOutages.begins_at <=' => $now->addDays(max(0, $withinDays)),
-                'OR' => [
-                    'PowerOutages.ends_at IS' => null,
-                    'PowerOutages.ends_at >=' => $now,
-                ],
-                'AccessPoints.archived IS' => null,
-            ])
-            // What is known before what is guessed, and the soonest of each first. This leans on
-            // `certain` sorting before `probable`, which the two words happen to do - the test of
-            // this card is what would notice if either of them were ever renamed.
-            ->orderBy([
-                'AccessPointPowerOutages.certainty' => 'ASC',
-                'PowerOutages.begins_at' => 'ASC',
-            ]);
+        $query = $this->links
+            ->find('inHorizon', horizon: OutageHorizon::Soon, withinDays: $withinDays)
+            ->orderBy(AccessPointPowerOutagesTable::WORST_FIRST);
 
         $total = $query->count();
 

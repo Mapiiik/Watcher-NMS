@@ -7,8 +7,10 @@ use App\Devices\DeviceRadioComparison;
 use App\Devices\RadioUnitComparison;
 use App\Model\Enum\DeviceLinkScope;
 use App\Model\Enum\MaximumAge;
+use App\Model\Enum\OutageHorizon;
 use App\Model\Enum\RadioUnitComparisonScope;
 use App\Model\Enum\RlanRegistrationScope;
+use App\Model\Table\AccessPointPowerOutagesTable;
 use App\Model\Table\RadioUnitBandsTable;
 use App\Model\Table\RlanStationsTable;
 use App\Rlan\RadioUnitRegistrationComparison;
@@ -16,6 +18,7 @@ use App\Rlan\RegisteredStationComparison;
 use Cake\Core\Configure;
 use Cake\I18n\DateTime;
 use Cake\Validation\Validation;
+use Settings\Utility\Settings;
 
 /**
  * Overviews Controller
@@ -331,6 +334,62 @@ class OverviewsController extends AppController
         $this->set('ourAccount', $ours);
         $this->set('summary', $comparison->summary($conditions));
         $this->set('registerRead', $this->registerRead());
+    }
+
+    /**
+     * Overview of the planned outages over our access points
+     *
+     * What the dashboard card shows the top of and the morning report puts in the post, at a
+     * length neither of those can carry. It opens on the card's own selection so that the `and so
+     * many more` the card ends on lands on exactly those, and widens from there.
+     *
+     * @return void Renders view
+     */
+    public function overviewOfPlannedPowerOutages(): void
+    {
+        $conditions = [];
+
+        if ($this->access_point_id !== null) {
+            $conditions[] = ['AccessPointPowerOutages.access_point_id' => $this->access_point_id];
+        }
+
+        $search = $this->getRequest()->getQuery('search');
+        if (!empty($search)) {
+            $conditions[] = [
+                'OR' => [
+                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
+                    'PowerOutages.summary ILIKE' => '%' . trim((string)$search) . '%',
+                    'PowerOutages.town_name ILIKE' => '%' . trim((string)$search) . '%',
+                    'PowerOutages.outage_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'AccessPointPowerOutages.match_note ILIKE' => '%' . trim((string)$search) . '%',
+                ],
+            ];
+        }
+
+        // The card's own question is the default, so that arriving here from the card shows what
+        // the card counted. An address naming no horizon we know is answered with that rather
+        // than with an error.
+        $show = $this->getRequest()->getQuery('show');
+        $show = OutageHorizon::tryFrom(is_string($show) ? $show : '') ?? OutageHorizon::Soon;
+
+        $withinDays = (int)Settings::get('core.access_points.power_outages.report_within_days', 14);
+
+        $query = $this->fetchTable(AccessPointPowerOutagesTable::class)
+            ->find('inHorizon', horizon: $show, withinDays: $withinDays)
+            ->where($conditions);
+
+        $links = $this->paginate($query, [
+            'sortableFields' => [
+                'AccessPoints.name',
+                'PowerOutages.begins_at',
+                'PowerOutages.ends_at',
+                'AccessPointPowerOutages.certainty',
+                'PowerOutages.summary',
+            ],
+            'order' => AccessPointPowerOutagesTable::WORST_FIRST,
+        ]);
+
+        $this->set(compact('links', 'show', 'withinDays'));
     }
 
     /**
