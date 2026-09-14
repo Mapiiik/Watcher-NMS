@@ -197,6 +197,7 @@ $permissions = [
             'controller' => [
                 'AccessPoints',
                 'IpAddressRanges',
+                'PowerOutages',
                 'RouterosDevices',
             ],
             'action' => [

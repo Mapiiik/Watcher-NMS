@@ -148,6 +148,13 @@ return function (RouteBuilder $routes): void {
                 ],
             ],
         ]);
+        // What the distributor is about to cut the power to, read by the application that keeps
+        // the customers hanging off it. Listing only - the outages are the distributor's to say.
+        $builder->resources('PowerOutages', [
+            'only' => [
+                'index',
+            ],
+        ]);
         $builder->resources('IpAddressRanges', [
             'map' => [
                 'search' => [
