@@ -249,8 +249,10 @@
                 </div>
                 <?php endif; ?>
             </div>
-            <hr>
-            <div class="related">
+        </div>
+        <br>
+        <div class="routerosDevices view content">
+            <div>
                 <h4><?= __('Related RouterOS IP Links') ?></h4>
                 <?php if (!empty($routerosDevice->routeros_ip_links)) : ?>
                 <div class="table-responsive">

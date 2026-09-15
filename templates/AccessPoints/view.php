@@ -281,8 +281,10 @@
                     'subtree' => $subtree,
                 ]) ?>
             </div>
-            <hr>
-            <div class="related">
+        </div>
+        <br>
+        <div class="accessPoints view content">
+            <div>
                 <?= $this->AuthLink->link(
                     __('New Access Point Contact'),
                     ['controller' => 'AccessPointContacts', 'action' => 'add'],
@@ -500,8 +502,10 @@
                 </div>
                 <?php endif; ?>
             </div>
-            <hr>
-            <div class="related">
+        </div>
+        <br>
+        <div class="accessPoints view content">
+            <div>
                 <?= $this->AuthLink->link(
                     __('New IP Address Range'),
                     ['controller' => 'IpAddressRanges', 'action' => 'add'],
@@ -666,8 +670,10 @@
                     'device_type_column' => true,
                 ]) ?>
             </div>
-            <hr>
-            <div class="related">
+        </div>
+        <br>
+        <div class="accessPoints view content">
+            <div>
                 <h4 id="radio-unit-links"><?= __('Related Radio Unit Links') ?></h4>
                 <?php if (!empty($accessPoint->radio_units)) : ?>
                 <div class="table-responsive">
@@ -977,8 +983,10 @@
                 </div>
                 <?php endif; ?>
             </div>
-            <hr>
-            <div class="related">
+        </div>
+        <br>
+        <div class="accessPoints view content">
+            <div>
                 <h4 id="customer-connections"><?= __('Related Customer Connections') ?></h4>
                 <?php if (!empty($accessPoint->customer_connections)) : ?>
                 <div class="table-responsive">
@@ -1044,10 +1052,10 @@
                 </div>
                 <?php endif; ?>
             </div>
-            <hr>
-            <?php // Last of all: a mast collects tasks without limit, and everything above it
-                  // is of a length one can foresee. ?>
-            <div class="related">
+        </div>
+        <br>
+        <div class="accessPoints view content">
+            <div>
                 <?php if ($tasksAnswer === null) : ?>
                     <?= $this->AuthLink->link(
                         __('New Task'),
