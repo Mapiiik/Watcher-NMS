@@ -578,6 +578,41 @@ class TasksControllerTest extends TestCase
     }
 
     /**
+     * Asked to leave the collaborators out, the listing goes by who holds the task alone - the
+     * work somebody was only put on drops out, and nobody's means nobody holds it.
+     *
+     * @return void
+     * @link \App\Controller\TasksController::index()
+     */
+    public function testTheListingMayLeaveTheCollaboratorsOut(): void
+    {
+        $person = $this->firstId('AppUsers');
+        $helping = $this->openTask(['user_id' => null]);
+        $holding = $this->openTask(['user_id' => $person]);
+
+        $links = $this->getTableLocator()->get('TaskCollaborators');
+        $links->saveOrFail($links->newEntity(['task_id' => $helping->id, 'user_id' => $person]));
+
+        $this->login();
+
+        $this->get('/tasks?show_completed=0&ignore_collaborators=0&user_id=' . $person);
+        $listed = $this->listedTaskIds();
+        $this->assertContains($helping->id, $listed);
+        $this->assertContains($holding->id, $listed);
+
+        $this->get('/tasks?show_completed=0&ignore_collaborators=1&user_id=' . $person);
+        $listed = $this->listedTaskIds();
+        $this->assertNotContains($helping->id, $listed);
+        $this->assertContains($holding->id, $listed);
+
+        $this->get('/tasks?show_completed=0&ignore_collaborators=0&user_id=none');
+        $this->assertNotContains($helping->id, $this->listedTaskIds());
+
+        $this->get('/tasks?show_completed=0&ignore_collaborators=1&user_id=none');
+        $this->assertContains($helping->id, $this->listedTaskIds());
+    }
+
+    /**
      * An unfinished task, in a state that counts as unfinished.
      *
      * @param array<string, mixed> $data What this task differs by.
