@@ -7,6 +7,8 @@ use App\Model\Entity\AccessPoint;
 use App\Model\Entity\Task;
 use App\Model\Entity\TaskType;
 use App\Test\Traits\ConfigureTestTrait;
+use Cake\I18n\Date;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
 use Override;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -169,5 +171,38 @@ class TaskTest extends TestCase
         ]);
 
         $this->assertSame('Antenna realignment, +420 601 234 567', $task->summary_text);
+    }
+
+    /**
+     * A list names a task by its number, the day it was made and what it is about.
+     *
+     * @return void
+     * @link \Tasks\Model\Entity\Task::_getNameForLists()
+     */
+    public function testNameForLists(): void
+    {
+        $task = new Task([
+            'nid' => 123,
+            'subject' => 'Antenna realignment',
+            'created' => new DateTime('2026-06-03 14:27:00'),
+        ]);
+
+        $this->assertSame('#123 - ' . new Date('2026-06-03') . ' - Antenna realignment', $task->name_for_lists);
+    }
+
+    /**
+     * A task not saved yet has no day to name.
+     *
+     * @return void
+     * @link \Tasks\Model\Entity\Task::_getNameForLists()
+     */
+    public function testNameForListsWithoutTheDay(): void
+    {
+        $task = new Task([
+            'nid' => 123,
+            'subject' => 'Antenna realignment',
+        ]);
+
+        $this->assertSame('#123 - Antenna realignment', $task->name_for_lists);
     }
 }
