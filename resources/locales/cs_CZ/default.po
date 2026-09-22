@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-09-19 09:07+0200\n"
+"POT-Creation-Date: 2026-09-23 00:13+0200\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -232,7 +232,7 @@ msgstr ""
 #: src/Command/ElectricityMeterReadingsReportCommand.php:113
 #: templates/AccessPoints/view.php:85
 #: templates/ElectricityMeterReadings/index.php:25
-#: templates/layout/default.php:295
+#: templates/layout/default.php:319
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
@@ -1222,57 +1222,58 @@ msgstr "Pouze se zákaznickým bodem"
 msgid "Only Without a Link"
 msgstr "Pouze bez vazby"
 
-#: src/Model/Enum/LandingPage.php:38 templates/layout/default.php:105
+#: src/Model/Enum/LandingPage.php:38 templates/layout/default.php:129
 msgid "Dashboard"
 msgstr "Nástěnka"
 
 #: src/Model/Enum/LandingPage.php:39 templates/AccessPoints/index.php:37
 #: templates/AccessPoints/map.php:21 templates/AccessPoints/utilization.php:48
-#: templates/layout/default.php:110 templates/layout/default.php:285
+#: templates/Settings/index.php:29 templates/layout/default.php:134
+#: templates/layout/default.php:309
 msgid "Access Points"
 msgstr "Přístupové body"
 
 #: src/Model/Enum/LandingPage.php:40 templates/AccessPoints/view.php:135
 #: templates/Tasks/index.php:96 templates/Tasks/map.php:36
-#: templates/layout/default.php:122
+#: templates/layout/default.php:146
 msgid "Tasks"
 msgstr "Úkoly"
 
 #: src/Model/Enum/LandingPage.php:41 templates/CustomerPoints/index.php:25
-#: templates/layout/default.php:132 templates/layout/default.php:314
+#: templates/layout/default.php:156 templates/layout/default.php:338
 msgid "Customer Points"
 msgstr "Zákaznické body"
 
 #: src/Model/Enum/LandingPage.php:42 templates/AccessPoints/view.php:95
-#: templates/IpAddressRanges/index.php:25 templates/layout/default.php:141
+#: templates/IpAddressRanges/index.php:25 templates/layout/default.php:165
 msgid "IP Address Ranges"
 msgstr "Rozsahy IP adres"
 
 #: src/Model/Enum/LandingPage.php:43 templates/AccessPoints/view.php:110
 #: templates/RouterosDevices/export.php:26
-#: templates/RouterosDevices/index.php:30 templates/layout/default.php:148
-#: templates/layout/default.php:339
+#: templates/RouterosDevices/index.php:30 templates/layout/default.php:172
+#: templates/layout/default.php:363
 msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
 
 #: src/Model/Enum/LandingPage.php:44 templates/AccessPoints/map.php:34
-#: templates/RadioLinks/index.php:27 templates/layout/default.php:158
-#: templates/layout/default.php:367
+#: templates/RadioLinks/index.php:27 templates/layout/default.php:182
+#: templates/layout/default.php:391
 msgid "Radio Links"
 msgstr "Rádiové spoje"
 
 #: src/Model/Enum/LandingPage.php:45 templates/AccessPoints/view.php:100
-#: templates/PowerSupplies/index.php:25 templates/layout/default.php:166
+#: templates/PowerSupplies/index.php:25 templates/layout/default.php:190
 msgid "Power Supplies"
 msgstr "Napájecí zdroje"
 
 #: src/Model/Enum/LandingPage.php:46 templates/Overviews/index.php:7
-#: templates/layout/default.php:173
+#: templates/layout/default.php:197
 msgid "Overviews"
 msgstr "Přehledy"
 
 #: src/Model/Enum/LandingPage.php:47 templates/Settings/index.php:7
-#: templates/layout/default.php:188
+#: templates/layout/default.php:212
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -1797,7 +1798,7 @@ msgid "New Access Point Contact"
 msgstr "Nový kontakt přístupového bodu"
 
 #: templates/AccessPointContacts/index.php:25
-#: templates/AccessPoints/view.php:80 templates/layout/default.php:290
+#: templates/AccessPoints/view.php:80 templates/layout/default.php:314
 msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
@@ -1942,7 +1943,7 @@ msgid "Note"
 msgstr "Poznámka"
 
 #: templates/AccessPointTypes/add.php:12 templates/AccessPointTypes/edit.php:20
-#: templates/AccessPointTypes/view.php:25 templates/Settings/index.php:71
+#: templates/AccessPointTypes/view.php:25 templates/Settings/index.php:76
 msgid "List Access Point Types"
 msgstr "Seznam typů přístupových bodů"
 
@@ -2168,13 +2169,13 @@ msgid "Subordinate Access Points"
 msgstr "Podřazené přístupové body"
 
 #: templates/AccessPoints/view.php:90 templates/LandlordPayments/index.php:25
-#: templates/layout/default.php:300
+#: templates/layout/default.php:324
 msgid "Landlord Payments"
 msgstr "Platby pronajímateli"
 
 #: templates/AccessPoints/view.php:105 templates/RadioLinks/index.php:35
 #: templates/RadioUnits/export.php:10 templates/RadioUnits/index.php:29
-#: templates/Settings/index.php:34 templates/layout/default.php:372
+#: templates/Settings/index.php:39 templates/layout/default.php:396
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
@@ -2185,7 +2186,7 @@ msgstr "Propoje rádiových jednotek"
 #: templates/AccessPoints/view.php:130
 #: templates/CustomerConnections/index.php:31
 #: templates/element/AccessPoints/subtree.php:68
-#: templates/layout/default.php:319
+#: templates/layout/default.php:343
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
 
@@ -2556,7 +2557,7 @@ msgstr "Upravit typ antény"
 msgid "New Antenna Type"
 msgstr "Nový typ antény"
 
-#: templates/AntennaTypes/index.php:25 templates/Settings/index.php:108
+#: templates/AntennaTypes/index.php:25 templates/Settings/index.php:113
 msgid "Antenna Types"
 msgstr "Typy antén"
 
@@ -2601,19 +2602,19 @@ msgstr "Číslo dílu"
 msgid "Antenna Gain"
 msgstr "Zisk antény"
 
-#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:236
+#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:260
 msgid "Light"
 msgstr "Světlý"
 
-#: templates/AppUsers/user_settings.php:57 templates/layout/default.php:237
+#: templates/AppUsers/user_settings.php:57 templates/layout/default.php:261
 msgid "Dark"
 msgstr "Tmavý"
 
-#: templates/AppUsers/user_settings.php:58 templates/layout/default.php:238
+#: templates/AppUsers/user_settings.php:58 templates/layout/default.php:262
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: templates/AppUsers/user_settings.php:59 templates/layout/default.php:239
+#: templates/AppUsers/user_settings.php:59 templates/layout/default.php:263
 msgid "Legacy"
 msgstr "Starší"
 
@@ -2661,7 +2662,7 @@ msgid "New Customer Connection IP"
 msgstr "Nová IP připojení zákazníka"
 
 #: templates/CustomerConnectionIps/index.php:25
-#: templates/layout/default.php:324
+#: templates/layout/default.php:348
 msgid "Customer Connection IPs"
 msgstr "IP připojení zákazníků"
 
@@ -2766,7 +2767,7 @@ msgstr "Upravit typ zařízení"
 msgid "New Device Type"
 msgstr "Nový typ zařízení"
 
-#: templates/DeviceTypes/index.php:21 templates/Settings/index.php:87
+#: templates/DeviceTypes/index.php:21 templates/Settings/index.php:92
 msgid "Device Types"
 msgstr "Typy zařízení"
 
@@ -2910,8 +2911,8 @@ msgstr "Upravit výrobce"
 msgid "New Manufacturer"
 msgstr "Nový výrobce"
 
-#: templates/Manufacturers/index.php:25 templates/Settings/index.php:113
-#: templates/Settings/index.php:129
+#: templates/Manufacturers/index.php:25 templates/Settings/index.php:118
+#: templates/Settings/index.php:134
 msgid "Manufacturers"
 msgstr "Výrobci"
 
@@ -2939,11 +2940,11 @@ msgstr "Proud"
 msgid "Related Radio Unit Types"
 msgstr "Související typy rádiových jednotek"
 
-#: templates/Overviews/index.php:10 templates/Settings/index.php:137
+#: templates/Overviews/index.php:10 templates/Settings/index.php:142
 msgid "Documentation Related"
 msgstr "Související s dokumentací"
 
-#: templates/Overviews/index.php:26 templates/Settings/index.php:68
+#: templates/Overviews/index.php:26 templates/Settings/index.php:73
 msgid "Access Point Related"
 msgstr "Související s přístupovým bodem"
 
@@ -3272,7 +3273,7 @@ msgid "None"
 msgstr "Žádná"
 
 #: templates/PaymentPurposes/add.php:12 templates/PaymentPurposes/edit.php:20
-#: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:76
+#: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:81
 msgid "List Payment Purposes"
 msgstr "Seznam účelů platby"
 
@@ -3336,7 +3337,7 @@ msgstr "Upravit typ napájecího zdroje"
 msgid "New Power Supply Type"
 msgstr "Nový typ napájecího zdroje"
 
-#: templates/PowerSupplyTypes/index.php:25 templates/Settings/index.php:124
+#: templates/PowerSupplyTypes/index.php:25 templates/Settings/index.php:129
 msgid "Power Supply Types"
 msgstr "Typy napájecích zdrojů"
 
@@ -3360,11 +3361,11 @@ msgid "Update Online"
 msgstr "Aktualizovat online"
 
 #: templates/RadarInterferences/devices.php:9
-#: templates/RadarInterferences/index.php:35 templates/layout/default.php:354
+#: templates/RadarInterferences/index.php:35 templates/layout/default.php:378
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
-#: templates/RadarInterferences/devices.php:9 templates/Settings/index.php:29
+#: templates/RadarInterferences/devices.php:9 templates/Settings/index.php:34
 msgid "Devices"
 msgstr "Zařízení"
 
@@ -3556,7 +3557,7 @@ msgstr "Upravit pásmo rádiových jednotek"
 msgid "New Radio Unit Band"
 msgstr "Nové pásmo rádiových jednotek"
 
-#: templates/RadioUnitBands/index.php:25 templates/Settings/index.php:103
+#: templates/RadioUnitBands/index.php:25 templates/Settings/index.php:108
 msgid "Radio Unit Bands"
 msgstr "Pásma rádiových jednotek"
 
@@ -3593,7 +3594,7 @@ msgstr "Upravit typ rádiové jednotky"
 msgid "New Radio Unit Type"
 msgstr "Nový typ rádiové jednotky"
 
-#: templates/RadioUnitTypes/index.php:25 templates/Settings/index.php:98
+#: templates/RadioUnitTypes/index.php:25 templates/Settings/index.php:103
 msgid "Radio Unit Types"
 msgstr "Typy rádiových jednotek"
 
@@ -3679,7 +3680,7 @@ msgid "New RouterOS Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:29
-#: templates/layout/default.php:344
+#: templates/layout/default.php:368
 msgid "RouterOS Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
 
@@ -3711,7 +3712,7 @@ msgstr "Upravit IP zařízení RouterOS"
 msgid "New RouterOS Device IP"
 msgstr "Nová IP zařízení RouterOS"
 
-#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:349
+#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:373
 msgid "RouterOS Device IPs"
 msgstr "IP zařízení RouterOS"
 
@@ -3814,45 +3815,45 @@ msgstr "Seznam uživatelů"
 msgid "Application Settings"
 msgstr "Nastavení aplikace"
 
-#: templates/Settings/index.php:39
+#: templates/Settings/index.php:44
 msgid "Dashboard Configuration"
 msgstr "Nastavení nástěnky"
 
-#: templates/Settings/index.php:47
+#: templates/Settings/index.php:52
 msgid "Access Point Functions"
 msgstr "Funkce přístupového bodu"
 
-#: templates/Settings/index.php:50
+#: templates/Settings/index.php:55
 msgid "Update Phone Number Format"
 msgstr "Aktualizace formátu telefonního čísla"
 
-#: templates/Settings/index.php:58
+#: templates/Settings/index.php:63
 msgid "Do you really want to update all phones for all access point contacts?"
 msgstr ""
 "Opravdu chcete aktualizovat všechny telefony u všech kontaktů přístupových "
 "bodů?"
 
-#: templates/Settings/index.php:84
+#: templates/Settings/index.php:89
 msgid "RouterOS Device Related"
 msgstr "Související se zařízením RouterOS"
 
-#: templates/Settings/index.php:95
+#: templates/Settings/index.php:100
 msgid "Radio Link Related"
 msgstr "Související s rádiovým spojem"
 
-#: templates/Settings/index.php:121
+#: templates/Settings/index.php:126
 msgid "Power Supply Related"
 msgstr "Související s napájecím zdrojem"
 
-#: templates/Settings/index.php:148
+#: templates/Settings/index.php:153
 msgid "Task Related"
 msgstr "Související s úkolem"
 
-#: templates/Settings/index.php:151
+#: templates/Settings/index.php:156
 msgid "List Task States"
 msgstr "Seznam stavů úkolů"
 
-#: templates/Settings/index.php:156
+#: templates/Settings/index.php:161
 msgid "List Task Types"
 msgstr "Seznam typů úkolů"
 
@@ -4076,7 +4077,7 @@ msgstr "Za posledních {0} se u nich nic nezapsalo."
 
 #: templates/element/Settings/FormFields.php:34
 #: templates/element/Settings/FormFields.php:51
-#: templates/layout/default.php:234
+#: templates/layout/default.php:258
 msgid "Default"
 msgstr "Výchozí"
 
@@ -4259,27 +4260,27 @@ msgstr "Uzavřel"
 msgid "Closed"
 msgstr "Uzavřeno"
 
-#: templates/layout/default.php:180
+#: templates/layout/default.php:204
 msgid "Files"
 msgstr "Soubory"
 
-#: templates/layout/default.php:206
+#: templates/layout/default.php:230
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
 
-#: templates/layout/default.php:265
+#: templates/layout/default.php:289
 msgid "Logout"
 msgstr "Odhlášení"
 
-#: templates/layout/default.php:391
+#: templates/layout/default.php:415
 msgid "Changelog"
 msgstr "Seznam změn"
 
-#: templates/layout/default.php:392
+#: templates/layout/default.php:416
 msgid "Source Code"
 msgstr "Zdrojový kód"
 
-#: templates/layout/default.php:394
+#: templates/layout/default.php:418
 msgid "Version"
 msgstr "Verze"
 
