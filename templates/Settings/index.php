@@ -26,6 +26,11 @@
             <h4><?= __('Application Settings') ?></h4>
             <div>
                 <?= $this->AuthLink->link(
+                    __('Access Points'),
+                    ['controller' => 'Settings', 'action' => 'edit', 'core.access_points'],
+                    ['class' => 'side-nav-item'],
+                ) ?>
+                <?= $this->AuthLink->link(
                     __('Devices'),
                     ['controller' => 'Settings', 'action' => 'edit', 'core.devices'],
                     ['class' => 'side-nav-item'],
