@@ -414,11 +414,22 @@ $permissions = [
                 'Overviews',
             ],
             'action' => [
-                'index',
                 'overviewOfRadioUnitsAgainstDevices',
                 'overviewOfDeviceRadiosAgainstRadioUnits',
                 'overviewOfRadioUnitsAgainstRegisteredStations',
                 'overviewOfRegisteredStationsAgainstRadioUnits',
+            ],
+        ],
+        // planned outages are no secret and anyone may be asked about one; the rack itself only
+        // lists what whoever opened it may follow, so it is open to everyone as well
+        [
+            'role' => '*',
+            'plugin' => null,
+            'controller' => [
+                'Overviews',
+            ],
+            'action' => [
+                'index',
                 'overviewOfPlannedPowerOutages',
             ],
         ],

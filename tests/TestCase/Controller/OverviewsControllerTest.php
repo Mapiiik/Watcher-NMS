@@ -703,6 +703,33 @@ class OverviewsControllerTest extends TestCase
     }
 
     /**
+     * Planned outages are open to every role, and so is the rack that leads to them. The rest of
+     * the rack stays with the network staff and is left out of it for everyone else.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfPlannedPowerOutages()
+     */
+    public function testPlannedPowerOutagesAreOpenToEveryRole(): void
+    {
+        $this->login('bookkeeper');
+        $this->get('/overviews');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('/overviews/overview-of-planned-power-outages');
+        $this->assertResponseNotContains('/overviews/overview-of-radio-units-against-devices');
+
+        $this->login('bookkeeper');
+        $this->get('/overviews/overview-of-planned-power-outages');
+
+        $this->assertResponseOk();
+
+        $this->login('bookkeeper');
+        $this->get('/overviews/overview-of-radio-units-against-devices');
+
+        $this->assertRedirect();
+    }
+
+    /**
      * The search builds a different query than the plain listing does, so it is asked for.
      *
      * @return void
