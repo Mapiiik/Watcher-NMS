@@ -34,9 +34,13 @@ $cakeDescription = 'Watcher NMS | ' . (string)Configure::read('App.company');
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+    <?= $this->Html->css([
+        '/vendor/normalize/normalize.min.css',
+        '/vendor/milligram/milligram.min.css',
+        'cake',
+    ]) ?>
     
-    <?= $this->Html->script('https://code.jquery.com/jquery.min.js') ?>
+    <?= $this->Html->script('/vendor/jquery/jquery.min.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
