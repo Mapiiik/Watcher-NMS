@@ -52,6 +52,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
+            "Access\\": "plugins/Access/src/",
             "App\\": "src/",
             "Dashboard\\": "plugins/Dashboard/src/",
             "Files\\": "plugins/Files/src/",
@@ -62,6 +63,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Access\\Test\\": "plugins/Access/tests/",
             "App\\Test\\": "tests/",
             "Dashboard\\Test\\": "plugins/Dashboard/tests/",
             "Files\\Test\\": "plugins/Files/tests/",
