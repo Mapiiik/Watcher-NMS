@@ -156,6 +156,15 @@ return [
             'duration' => '+1 day',
             'url' => env('CACHE_ADDRESSES_URL', null),
         ],
+        // failed sign-ins; every server an installation runs on has to share them, so that a guesser
+        // is not let in by being sent to another one
+        'login_throttle' => [
+            'className' => FileEngine::class,
+            'prefix' => 'login_throttle_',
+            'path' => CACHE . 'login_throttle' . DS,
+            'duration' => '+1 day',
+            'url' => env('CACHE_LOGIN_THROTTLE_URL', null),
+        ],
     ],
 
     /*
@@ -565,7 +574,7 @@ return [
      */
     'Session' => [
         'defaults' => 'database',
-        'timeout' => 1440,
+        'timeout' => 480,
     ],
 
     /**
