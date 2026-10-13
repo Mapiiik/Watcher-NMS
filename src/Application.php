@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App;
 
+use Access\Authentication\BearerRequest;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
@@ -118,24 +119,18 @@ class Application extends BaseApplication
                     ->setXssProtection()
                     ->noOpen()
                     ->noSniff(),
+            )
+
+            // Cross Site Request Forgery (CSRF) Protection Middleware
+            // https://book.cakephp.org/5/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
+            ->add(
+                (new CsrfProtectionMiddleware([
+                    'httponly' => true,
+                ]))->skipCheckCallback(
+                    // an API client that names itself with a Bearer token has no cookie to forge
+                    BearerRequest::isApi(...),
+                ),
             );
-
-        // Cross Site Request Forgery (CSRF) Protection Middleware
-        // https://book.cakephp.org/5/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
-        $csrf = new CsrfProtectionMiddleware([
-            'httponly' => true,
-        ]);
-
-        // Token check will be skipped when callback returns `true`.
-        $csrf->skipCheckCallback(function ($request) {
-            // Skip token check for API URLs.
-            if ($request->getParam('prefix') === 'Api/Agent') {
-                return true;
-            }
-        });
-
-        // Ensure routing middleware is added to the queue before CSRF protection middleware.
-        $middlewareQueue->add($csrf);
 
         return $middlewareQueue;
     }

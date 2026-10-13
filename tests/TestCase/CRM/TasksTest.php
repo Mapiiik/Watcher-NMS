@@ -273,6 +273,6 @@ class TasksTest extends TestCase
     private function urlFor(array $query): string
     {
         return 'https://crm.example.com/api/tasks/search.json?'
-            . http_build_query($query + ['api_key' => 'secret'], '', '&', PHP_QUERY_RFC3986);
+            . http_build_query($query, '', '&', PHP_QUERY_RFC3986);
     }
 }

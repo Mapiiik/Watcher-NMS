@@ -81,6 +81,7 @@ class AppUserTest extends TestCase
 
         $this->assertSame([
             'admin',
+            'agent',
             'api',
             'bookkeeper',
             'customer-service-technician',

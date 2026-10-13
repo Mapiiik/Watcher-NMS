@@ -242,8 +242,7 @@ class AccessPointsTableTest extends TestCase
      */
     private function referencesUrl(EntityInterface $place): string
     {
-        return 'https://crm.example.com/api/access-points/' . $place->get('id') . '/references.json?'
-            . http_build_query(['api_key' => 'secret'], '', '&', PHP_QUERY_RFC3986);
+        return 'https://crm.example.com/api/access-points/' . $place->get('id') . '/references.json';
     }
 
     /**

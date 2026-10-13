@@ -132,7 +132,9 @@ class ApiClient
 
         try {
             $client = new Client(['timeout' => self::TIMEOUT]);
-            $response = $client->get($where, $query + ['api_key' => Configure::read('Crm.key')]);
+            $response = $client->get($where, $query, [
+                'headers' => ['Authorization' => 'Bearer ' . Configure::read('Crm.key')],
+            ]);
         } catch (Throwable $e) {
             return self::unreachable(self::SERVICE, $where, $e->getMessage());
         }

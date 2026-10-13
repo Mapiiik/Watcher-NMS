@@ -62,14 +62,16 @@ class CustomerPointsUpdateCommand extends Command
             $customerConnectionIpsTable = $this->fetchTable(CustomerConnectionIpsTable::class);
 
             $url = $args->getArgument('url');
+            $context = null;
             if (!isset($url)) {
-                $url =
-                    Configure::read('Crm.url')
-                    . '/api/customers/customer-points.json?api_key='
-                    . Configure::read('Crm.key');
+                $url = Configure::read('Crm.url') . '/api/customers/customer-points.json';
+                // the key goes in the header, out of the address and the logs that keep it
+                $context = stream_context_create(['http' => [
+                    'header' => 'Authorization: Bearer ' . Configure::read('Crm.key'),
+                ]]);
             }
 
-            $json = file_get_contents($url);
+            $json = file_get_contents($url, false, $context);
 
             if ($json === false) {
                 throw new RuntimeException(

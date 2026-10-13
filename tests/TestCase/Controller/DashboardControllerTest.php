@@ -528,7 +528,7 @@ class DashboardControllerTest extends TestCase
 
         $this->mockClientGet(
             'https://crm.example.com/api/tasks/search.json?' . http_build_query(
-                ['unassigned' => '1', 'active' => '1', 'limit' => '10', 'api_key' => 'secret'],
+                ['unassigned' => '1', 'active' => '1', 'limit' => '10'],
                 '',
                 '&',
                 PHP_QUERY_RFC3986,
@@ -574,7 +574,7 @@ class DashboardControllerTest extends TestCase
 
         $this->mockClientGet(
             'https://crm.example.com/api/tasks/search.json?' . http_build_query(
-                ['unassigned' => '1', 'active' => '1', 'limit' => '10', 'api_key' => 'secret'],
+                ['unassigned' => '1', 'active' => '1', 'limit' => '10'],
                 '',
                 '&',
                 PHP_QUERY_RFC3986,
@@ -611,7 +611,7 @@ class DashboardControllerTest extends TestCase
 
         $this->mockClientGet(
             'https://crm.example.com/api/tasks/search.json?' . http_build_query(
-                ['user' => 'tester', 'active' => '1', 'limit' => '10', 'api_key' => 'secret'],
+                ['user' => 'tester', 'active' => '1', 'limit' => '10'],
                 '',
                 '&',
                 PHP_QUERY_RFC3986,

@@ -406,7 +406,7 @@ class AccessPointsControllerTest extends TestCase
 
         $this->mockClientGet(
             'https://crm.example.com/api/tasks/search.json?' . http_build_query(
-                ['access_point_id' => $place->get('id'), 'api_key' => 'secret'],
+                ['access_point_id' => $place->get('id')],
                 '',
                 '&',
                 PHP_QUERY_RFC3986,
@@ -455,7 +455,7 @@ class AccessPointsControllerTest extends TestCase
 
         $this->mockClientGet(
             'https://crm.example.com/api/tasks/search.json?' . http_build_query(
-                ['access_point_id' => $place->get('id'), 'api_key' => 'secret'],
+                ['access_point_id' => $place->get('id')],
                 '',
                 '&',
                 PHP_QUERY_RFC3986,

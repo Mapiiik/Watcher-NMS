@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api\Agent;
 
+use Access\Authentication\AuthLog;
 use App\Controller\Api\AppController;
 use App\Model\Table\DeviceTypesTable;
 use App\Provisioning\RouterOS\ProvisionScriptBuilder;
@@ -17,29 +18,34 @@ class ProvisionController extends AppController
     /**
      * Controller initialization hook.
      *
-     * Disables form protection for Agent API endpoints and authenticates
-     * the Watcher Agent using a pre-shared token.
+     * Lets in a Watcher Agent signed in as an account with the role `agent`. The token from the
+     * environment still lets one in as well, and is logged, until every agent has an account.
      *
      * @return void
-     * @throws \Cake\Http\Exception\UnauthorizedException if the authentication token is missing or invalid
+     * @throws \Cake\Http\Exception\UnauthorizedException if the agent is not who it says it is
      */
     public function initialize(): void
     {
         parent::initialize();
 
-        // Disable FormProtection for API endpoints
-        $this->getEventManager()->off($this->FormProtection);
+        $identity = $this->getRequest()->getAttribute('identity');
+        if ($identity !== null && ($identity['role'] ?? null) === 'agent') {
+            return;
+        }
 
-        // Authenticate agent using a pre-shared token
         $authToken = (string)Configure::read('Agent.provisionToken');
-        if ($authToken === '') {
-            throw new UnauthorizedException('Watcher Agent token in Watcher NMS is not configured');
+        if (
+            $authToken !== ''
+            && hash_equals('Bearer ' . $authToken, $this->getRequest()->getHeaderLine('Authorization'))
+        ) {
+            AuthLog::notice('agent signed in with the token from the environment', [
+                'ip' => AuthLog::address($this->getRequest()),
+            ]);
+
+            return;
         }
 
-        $authHeader = $this->getRequest()->getHeaderLine('Authorization');
-        if ($authHeader !== 'Bearer ' . $authToken) {
-            throw new UnauthorizedException('Invalid agent token');
-        }
+        throw new UnauthorizedException('Invalid agent token');
     }
 
     /**
