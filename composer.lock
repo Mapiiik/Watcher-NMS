@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc4da261a01cc14f8d900948be8419c5",
+    "content-hash": "1053239777abef4cf1f4524e2c806dd9",
     "packages": [
         {
             "name": "cakedc/auth",
@@ -4836,6 +4836,218 @@
                 }
             ],
             "time": "2026-07-28T07:35:25+00:00"
+        },
+        {
+            "name": "tecnickcom/tc-lib-barcode",
+            "version": "2.17.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tecnickcom/tc-lib-barcode.git",
+                "reference": "10dc5667938dfc03910909aba379a17c7613f583"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-barcode/zipball/10dc5667938dfc03910909aba379a17c7613f583",
+                "reference": "10dc5667938dfc03910909aba379a17c7613f583",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-pcre": "*",
+                "php": "^8.2",
+                "tecnickcom/tc-lib-color": "^3.0"
+            },
+            "require-dev": {
+                "carthage-software/mago": "1.55.0",
+                "ext-gd": "*",
+                "pdepend/pdepend": "^2.16",
+                "phpunit/phpunit": "^11.5 || ^12.5 || ^13.3"
+            },
+            "suggest": {
+                "ext-bcmath": "Speeds up the arbitrary precision arithmetic used by the IMB and PDF417 barcode types (a pure-PHP implementation is used when missing)",
+                "ext-gd": "Required by getGd(), and by getPngData() and getPng() when Imagick is not used",
+                "ext-imagick": "Alternative PNG renderer used by getPngData() when the extension is loaded"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Com\\Tecnick\\Barcode\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP library to generate 73 types of linear, 2D and postal barcodes as SVG, PNG, HTML or GD images",
+            "homepage": "https://tcpdf.org",
+            "keywords": [
+                "2D Barcode",
+                "AZTEC Rune",
+                "CODABAR",
+                "CODE 11",
+                "CODE 128",
+                "CODE 16K",
+                "CODE 32",
+                "CODE 39",
+                "CODE 49",
+                "CODE 93",
+                "DMRE",
+                "Deutsche Post",
+                "EAN 13",
+                "EAN 2",
+                "EAN 5",
+                "EAN 8",
+                "ECC200",
+                "GB T 21049",
+                "GS1 DataBar",
+                "GS1-14",
+                "HIBC",
+                "Han Xin Code",
+                "IATA 2 of 5",
+                "ISO IEC 15438",
+                "ISO IEC 16022",
+                "ISO IEC 18004",
+                "ISO IEC 20830",
+                "ISO IEC 21471",
+                "ISO IEC 24724",
+                "ISO IEC 24778",
+                "ITF-14",
+                "Intelligent Mail Barcode",
+                "Interleaved 2 of 5",
+                "Japan Post",
+                "KIX",
+                "LOGMARS",
+                "Linear barcode",
+                "MSI",
+                "Mailmark",
+                "Matrix 2 of 5",
+                "Micro QR Code",
+                "Onecode",
+                "PHARMACODE",
+                "PHARMACODE TWO-TRACKS",
+                "POSTNET",
+                "PZN",
+                "Plessey",
+                "RMS4CC",
+                "SSCC-18",
+                "Standard 2 of 5",
+                "Telepen",
+                "UPC-A",
+                "UPC-E",
+                "australia post",
+                "aztec",
+                "barcode",
+                "datamatrix",
+                "gs1",
+                "gs1-128",
+                "identcode",
+                "leitcode",
+                "matrix barcode",
+                "pdf417",
+                "planet",
+                "png",
+                "postal barcode",
+                "qr-code",
+                "royal mail",
+                "stacked barcode",
+                "svg",
+                "tc-lib-barcode",
+                "upc"
+            ],
+            "support": {
+                "issues": "https://github.com/tecnickcom/tc-lib-barcode/issues",
+                "source": "https://github.com/tecnickcom/tc-lib-barcode"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/tecnickcom",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-10T08:35:28+00:00"
+        },
+        {
+            "name": "tecnickcom/tc-lib-color",
+            "version": "3.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tecnickcom/tc-lib-color.git",
+                "reference": "00084f4a4c4664c3309efab7d328d912f998e336"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-color/zipball/00084f4a4c4664c3309efab7d328d912f998e336",
+                "reference": "00084f4a4c4664c3309efab7d328d912f998e336",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "carthage-software/mago": "1.55.0",
+                "pdepend/pdepend": "^2.16",
+                "phpunit/phpunit": "^11.5 || ^12.5 || ^13.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Com\\Tecnick\\Color\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP library to manipulate various color representations",
+            "homepage": "https://tcpdf.org",
+            "keywords": [
+                "cielab",
+                "cmyk",
+                "color",
+                "colors",
+                "colour",
+                "colours",
+                "css",
+                "gray",
+                "grayscale",
+                "hsl",
+                "hsla",
+                "javascript",
+                "lab",
+                "pdf",
+                "rgb",
+                "rgba",
+                "separation",
+                "spot",
+                "tc-lib-color",
+                "web"
+            ],
+            "support": {
+                "issues": "https://github.com/tecnickcom/tc-lib-color/issues",
+                "source": "https://github.com/tecnickcom/tc-lib-color"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/tecnickcom",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-10T08:23:17+00:00"
         }
     ],
     "packages-dev": [

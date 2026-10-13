@@ -9,9 +9,6 @@
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-use Cake\Http\ServerRequest;
-use Cake\Utility\Hash;
-
 /*
  * This is a quick roles-permissions implementation
  * Rules are evaluated top-down, first matching rule will apply
@@ -112,21 +109,13 @@ $permissions = [
                 'linkSocial',
                 'callbackLinkSocial',
                 'userSettings',
+                // everybody looks after their own one-time codes; taking them away from an account
+                // (resetOneTimePasswordAuthenticator) is left to the admins
+                'oneTimePassword',
+                'disableOneTimePassword',
+                'newRecoveryCodes',
+                'recoveryCodes',
             ],
-        ],
-        [
-            'role' => '*',
-            'plugin' => null,
-            'controller' => 'AppUsers',
-            'action' => 'resetOneTimePasswordAuthenticator',
-            'allowed' => function (array $user, $role, ServerRequest $request) {
-                $userId = Hash::get($request->getAttribute('params'), 'pass.0');
-                if (!empty($userId) && !empty($user)) {
-                    return $userId === $user['id'];
-                }
-
-                return false;
-            },
         ],
         //the root is where everybody arrives and is only ever a redirect, so no role may be
         //stopped at it - the page it then sends them to is what gets checked, there

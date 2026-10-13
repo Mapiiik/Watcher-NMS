@@ -28,7 +28,8 @@
         "josegonzalez/dotenv": "^4.0",
         "league/flysystem": "^3.36",
         "league/oauth2-google": "^5.0",
-        "mobiledetect/mobiledetectlib": "^4.10"
+        "mobiledetect/mobiledetectlib": "^4.10",
+        "tecnickcom/tc-lib-barcode": "^2.16"
     },
     "require-dev": {
         "cakedc/cakephp-phpstan": "^4.2",
