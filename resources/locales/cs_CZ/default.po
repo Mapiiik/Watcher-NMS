@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-10-03 08:45+0200\n"
+"POT-Creation-Date: 2026-10-13 21:47+0200\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -143,30 +143,30 @@ msgstr "Datový kořen"
 msgid "Run this where the client is, with the directory mounted into it:"
 msgstr "Spusťte toto tam, kde je klient, s připojeným adresářem:"
 
-#: src/Command/CustomerPointsUpdateCommand.php:76
+#: src/Command/CustomerPointsUpdateCommand.php:78
 msgid "The customer points data could not be downloaded. Please, try again."
 msgstr "Data zákaznických bodů se nepodařilo stáhnout. Zkuste to prosím znovu."
 
-#: src/Command/CustomerPointsUpdateCommand.php:86
+#: src/Command/CustomerPointsUpdateCommand.php:88
 msgid ""
 "The customer points data could not be decoded. Please, check the source data."
 msgstr ""
 "Data zákaznických bodů se nepodařilo dekódovat. Zkontrolujte prosím zdrojová "
 "data."
 
-#: src/Command/CustomerPointsUpdateCommand.php:185
+#: src/Command/CustomerPointsUpdateCommand.php:187
 msgid "The customer points data have been updated."
 msgstr "Data zákaznických bodů byla aktualizována."
 
-#: src/Command/CustomerPointsUpdateCommand.php:193
+#: src/Command/CustomerPointsUpdateCommand.php:195
 msgid "Error during customer points update: {0}"
 msgstr "Chyba při aktualizaci zákaznických bodů: {0}"
 
-#: src/Command/CustomerPointsUpdateCommand.php:199
+#: src/Command/CustomerPointsUpdateCommand.php:201
 msgid "Customer points update failed"
 msgstr "Aktualizace zákaznických bodů se nezdařila"
 
-#: src/Command/CustomerPointsUpdateCommand.php:200
+#: src/Command/CustomerPointsUpdateCommand.php:202
 msgid "Customer points update failed."
 msgstr "Aktualizace zákaznických bodů se nezdařila."
 
@@ -1162,43 +1162,47 @@ msgstr "adresa neuvedena"
 msgid "{0} ({1} m)"
 msgstr "{0} ({1} m)"
 
-#: src/Model/Entity/AppUser.php:110 templates/Tasks/view.php:54
+#: src/Model/Entity/AppUser.php:23 templates/Tasks/view.php:54
 #: templates/element/AccessPoints/tasks.php:35
 #: templates/element/Tasks/email_detail.php:48
 msgid "User"
 msgstr "Uživatel"
 
-#: src/Model/Entity/AppUser.php:111
+#: src/Model/Entity/AppUser.php:24
 msgid "Customer Service Technician"
 msgstr "Technik zákaznického servisu"
 
-#: src/Model/Entity/AppUser.php:112
+#: src/Model/Entity/AppUser.php:25
 msgid "Network Technician"
 msgstr "Síťový technik"
 
-#: src/Model/Entity/AppUser.php:113
+#: src/Model/Entity/AppUser.php:26
 msgid "Network Manager"
 msgstr "Správce sítě"
 
-#: src/Model/Entity/AppUser.php:114
+#: src/Model/Entity/AppUser.php:27
 msgid "Sales Representative"
 msgstr "Obchodní zástupce"
 
-#: src/Model/Entity/AppUser.php:115
+#: src/Model/Entity/AppUser.php:28
 msgid "Sales Manager"
 msgstr "Manažer prodeje"
 
-#: src/Model/Entity/AppUser.php:116
+#: src/Model/Entity/AppUser.php:29
 msgid "Bookkeeper"
 msgstr "Účetní"
 
-#: src/Model/Entity/AppUser.php:117
+#: src/Model/Entity/AppUser.php:30
 msgid "Admin"
 msgstr "Admin"
 
-#: src/Model/Entity/AppUser.php:118
+#: src/Model/Entity/AppUser.php:31
 msgid "API"
 msgstr "API"
+
+#: src/Model/Entity/AppUser.php:32
+msgid "Agent"
+msgstr "Agent"
 
 #: src/Model/Entity/PowerOutage.php:98
 msgid "date not given"
@@ -1228,7 +1232,7 @@ msgstr "Nástěnka"
 
 #: src/Model/Enum/LandingPage.php:39 templates/AccessPoints/index.php:37
 #: templates/AccessPoints/map.php:21 templates/AccessPoints/utilization.php:48
-#: templates/Settings/index.php:29 templates/layout/default.php:137
+#: templates/Settings/index.php:34 templates/layout/default.php:137
 #: templates/layout/default.php:312
 msgid "Access Points"
 msgstr "Přístupové body"
@@ -1366,7 +1370,7 @@ msgstr "Telefonní číslo není platné."
 msgid "This is not a valid EAN of a supply point."
 msgstr "Toto není platný EAN odběrného místa."
 
-#: src/Model/Table/AppUsersTable.php:114
+#: src/Model/Table/AppUsersTable.php:102
 msgid "This account is still named on tasks. Move them to somebody else first."
 msgstr ""
 "Na tomto účtu jsou stále vedeny úkoly. Nejprve je přesuňte na někoho jiného."
@@ -1943,7 +1947,7 @@ msgid "Note"
 msgstr "Poznámka"
 
 #: templates/AccessPointTypes/add.php:12 templates/AccessPointTypes/edit.php:20
-#: templates/AccessPointTypes/view.php:25 templates/Settings/index.php:76
+#: templates/AccessPointTypes/view.php:25 templates/Settings/index.php:81
 msgid "List Access Point Types"
 msgstr "Seznam typů přístupových bodů"
 
@@ -2175,7 +2179,7 @@ msgstr "Platby pronajímateli"
 
 #: templates/AccessPoints/view.php:105 templates/RadioLinks/index.php:35
 #: templates/RadioUnits/export.php:10 templates/RadioUnits/index.php:29
-#: templates/Settings/index.php:39 templates/layout/default.php:399
+#: templates/Settings/index.php:44 templates/layout/default.php:399
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
@@ -2557,7 +2561,7 @@ msgstr "Upravit typ antény"
 msgid "New Antenna Type"
 msgstr "Nový typ antény"
 
-#: templates/AntennaTypes/index.php:25 templates/Settings/index.php:113
+#: templates/AntennaTypes/index.php:25 templates/Settings/index.php:118
 msgid "Antenna Types"
 msgstr "Typy antén"
 
@@ -2601,22 +2605,6 @@ msgstr "Číslo dílu"
 #: templates/RadioUnitBands/view.php:86
 msgid "Antenna Gain"
 msgstr "Zisk antény"
-
-#: templates/AppUsers/user_settings.php:56 templates/layout/default.php:263
-msgid "Light"
-msgstr "Světlý"
-
-#: templates/AppUsers/user_settings.php:57 templates/layout/default.php:264
-msgid "Dark"
-msgstr "Tmavý"
-
-#: templates/AppUsers/user_settings.php:58 templates/layout/default.php:265
-msgid "Contrast"
-msgstr "Kontrast"
-
-#: templates/AppUsers/user_settings.php:59 templates/layout/default.php:266
-msgid "Legacy"
-msgstr "Starší"
 
 #: templates/CustomerConnectionIps/add.php:13
 #: templates/CustomerConnectionIps/edit.php:21
@@ -2767,7 +2755,7 @@ msgstr "Upravit typ zařízení"
 msgid "New Device Type"
 msgstr "Nový typ zařízení"
 
-#: templates/DeviceTypes/index.php:21 templates/Settings/index.php:92
+#: templates/DeviceTypes/index.php:21 templates/Settings/index.php:97
 msgid "Device Types"
 msgstr "Typy zařízení"
 
@@ -2911,8 +2899,8 @@ msgstr "Upravit výrobce"
 msgid "New Manufacturer"
 msgstr "Nový výrobce"
 
-#: templates/Manufacturers/index.php:25 templates/Settings/index.php:118
-#: templates/Settings/index.php:134
+#: templates/Manufacturers/index.php:25 templates/Settings/index.php:123
+#: templates/Settings/index.php:139
 msgid "Manufacturers"
 msgstr "Výrobci"
 
@@ -2940,11 +2928,11 @@ msgstr "Proud"
 msgid "Related Radio Unit Types"
 msgstr "Související typy rádiových jednotek"
 
-#: templates/Overviews/index.php:10 templates/Settings/index.php:142
+#: templates/Overviews/index.php:10 templates/Settings/index.php:147
 msgid "Documentation Related"
 msgstr "Související s dokumentací"
 
-#: templates/Overviews/index.php:26 templates/Settings/index.php:73
+#: templates/Overviews/index.php:26 templates/Settings/index.php:78
 msgid "Access Point Related"
 msgstr "Související s přístupovým bodem"
 
@@ -3273,7 +3261,7 @@ msgid "None"
 msgstr "Žádná"
 
 #: templates/PaymentPurposes/add.php:12 templates/PaymentPurposes/edit.php:20
-#: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:81
+#: templates/PaymentPurposes/view.php:25 templates/Settings/index.php:86
 msgid "List Payment Purposes"
 msgstr "Seznam účelů platby"
 
@@ -3337,7 +3325,7 @@ msgstr "Upravit typ napájecího zdroje"
 msgid "New Power Supply Type"
 msgstr "Nový typ napájecího zdroje"
 
-#: templates/PowerSupplyTypes/index.php:25 templates/Settings/index.php:129
+#: templates/PowerSupplyTypes/index.php:25 templates/Settings/index.php:134
 msgid "Power Supply Types"
 msgstr "Typy napájecích zdrojů"
 
@@ -3365,7 +3353,7 @@ msgstr "Aktualizovat online"
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
-#: templates/RadarInterferences/devices.php:9 templates/Settings/index.php:34
+#: templates/RadarInterferences/devices.php:9 templates/Settings/index.php:39
 msgid "Devices"
 msgstr "Zařízení"
 
@@ -3557,7 +3545,7 @@ msgstr "Upravit pásmo rádiových jednotek"
 msgid "New Radio Unit Band"
 msgstr "Nové pásmo rádiových jednotek"
 
-#: templates/RadioUnitBands/index.php:25 templates/Settings/index.php:108
+#: templates/RadioUnitBands/index.php:25 templates/Settings/index.php:113
 msgid "Radio Unit Bands"
 msgstr "Pásma rádiových jednotek"
 
@@ -3594,7 +3582,7 @@ msgstr "Upravit typ rádiové jednotky"
 msgid "New Radio Unit Type"
 msgstr "Nový typ rádiové jednotky"
 
-#: templates/RadioUnitTypes/index.php:25 templates/Settings/index.php:103
+#: templates/RadioUnitTypes/index.php:25 templates/Settings/index.php:108
 msgid "Radio Unit Types"
 msgstr "Typy rádiových jednotek"
 
@@ -3811,49 +3799,53 @@ msgstr "Uživatelský profil"
 msgid "List Users"
 msgstr "Seznam uživatelů"
 
-#: templates/Settings/index.php:26
+#: templates/Settings/index.php:23
+msgid "Sign-in Security Configuration"
+msgstr "Nastavení zabezpečení přihlášení"
+
+#: templates/Settings/index.php:31
 msgid "Application Settings"
 msgstr "Nastavení aplikace"
 
-#: templates/Settings/index.php:44
+#: templates/Settings/index.php:49
 msgid "Dashboard Configuration"
 msgstr "Nastavení nástěnky"
 
-#: templates/Settings/index.php:52
+#: templates/Settings/index.php:57
 msgid "Access Point Functions"
 msgstr "Funkce přístupového bodu"
 
-#: templates/Settings/index.php:55
+#: templates/Settings/index.php:60
 msgid "Update Phone Number Format"
 msgstr "Aktualizace formátu telefonního čísla"
 
-#: templates/Settings/index.php:63
+#: templates/Settings/index.php:68
 msgid "Do you really want to update all phones for all access point contacts?"
 msgstr ""
 "Opravdu chcete aktualizovat všechny telefony u všech kontaktů přístupových "
 "bodů?"
 
-#: templates/Settings/index.php:89
+#: templates/Settings/index.php:94
 msgid "RouterOS Device Related"
 msgstr "Související se zařízením RouterOS"
 
-#: templates/Settings/index.php:100
+#: templates/Settings/index.php:105
 msgid "Radio Link Related"
 msgstr "Související s rádiovým spojem"
 
-#: templates/Settings/index.php:126
+#: templates/Settings/index.php:131
 msgid "Power Supply Related"
 msgstr "Související s napájecím zdrojem"
 
-#: templates/Settings/index.php:153
+#: templates/Settings/index.php:158
 msgid "Task Related"
 msgstr "Související s úkolem"
 
-#: templates/Settings/index.php:156
+#: templates/Settings/index.php:161
 msgid "List Task States"
 msgstr "Seznam stavů úkolů"
 
-#: templates/Settings/index.php:161
+#: templates/Settings/index.php:166
 msgid "List Task Types"
 msgstr "Seznam typů úkolů"
 
@@ -4267,6 +4259,26 @@ msgstr "Soubory"
 #: templates/layout/default.php:233
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
+
+#: templates/layout/default.php:263
+#: templates/plugin/Access/Users/user_settings.php:56
+msgid "Light"
+msgstr "Světlý"
+
+#: templates/layout/default.php:264
+#: templates/plugin/Access/Users/user_settings.php:57
+msgid "Dark"
+msgstr "Tmavý"
+
+#: templates/layout/default.php:265
+#: templates/plugin/Access/Users/user_settings.php:58
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: templates/layout/default.php:266
+#: templates/plugin/Access/Users/user_settings.php:59
+msgid "Legacy"
+msgstr "Starší"
 
 #: templates/layout/default.php:292
 msgid "Logout"
