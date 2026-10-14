@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-10-14 23:34+0200\n"
+"POT-Creation-Date: 2026-10-15 00:30+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1122,51 +1122,51 @@ msgstr ""
 msgid "{0} ({1} m)"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:39
+#: ./src/Model/Entity/PowerOutage.php:98
+msgid "date not given"
+msgstr ""
+
+#: ./src/Model/Entity/User.php:39
 #: ./templates/Tasks/view.php:54
 #: ./templates/element/AccessPoints/tasks.php:35
 #: ./templates/element/Tasks/email_detail.php:48
 msgid "User"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:40
+#: ./src/Model/Entity/User.php:40
 msgid "Customer Service Technician"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:41
+#: ./src/Model/Entity/User.php:41
 msgid "Network Technician"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:42
+#: ./src/Model/Entity/User.php:42
 msgid "Network Manager"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:43
+#: ./src/Model/Entity/User.php:43
 msgid "Sales Representative"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:44
+#: ./src/Model/Entity/User.php:44
 msgid "Sales Manager"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:45
+#: ./src/Model/Entity/User.php:45
 msgid "Bookkeeper"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:46
+#: ./src/Model/Entity/User.php:46
 msgid "Admin"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:47
+#: ./src/Model/Entity/User.php:47
 msgid "API"
 msgstr ""
 
-#: ./src/Model/Entity/AppUser.php:48
+#: ./src/Model/Entity/User.php:48
 msgid "Agent"
-msgstr ""
-
-#: ./src/Model/Entity/PowerOutage.php:98
-msgid "date not given"
 msgstr ""
 
 #: ./src/Model/Enum/DeviceLinkScope.php:53
@@ -1332,10 +1332,6 @@ msgstr ""
 msgid "This is not a valid EAN of a supply point."
 msgstr ""
 
-#: ./src/Model/Table/AppUsersTable.php:102
-msgid "This account is still named on tasks. Move them to somebody else first."
-msgstr ""
-
 #: ./src/Model/Table/DocumentationsTable.php:79
 msgid "This documentation type is filed under an access point."
 msgstr ""
@@ -1355,6 +1351,10 @@ msgstr ""
 
 #: ./src/Model/Table/TasksTable.php:96
 msgid "The specified task type requires the assignment of an access point."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:102
+msgid "This account is still named on tasks. Move them to somebody else first."
 msgstr ""
 
 #: ./src/PowerOutages/Cez/CezPayloadNormalizer.php:404

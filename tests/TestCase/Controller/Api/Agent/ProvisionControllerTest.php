@@ -28,7 +28,7 @@ class ProvisionControllerTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.AppUsers',
+        'app.Users',
     ];
 
     /**
@@ -117,7 +117,7 @@ class ProvisionControllerTest extends TestCase
      */
     private function addAccount(string $role, string $key): void
     {
-        $users = $this->getTableLocator()->get('AppUsers');
+        $users = $this->getTableLocator()->get('Users');
         $users->deleteAll(['1 = 1']);
         $user = $users->newEmptyEntity();
         $user->patch([

@@ -40,7 +40,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.AppUsers',
+        'app.Users',
         'app.AccessPointTypes',
         'app.AccessPoints',
         'app.CustomerPoints',

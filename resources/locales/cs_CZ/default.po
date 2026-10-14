@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-10-14 23:34+0200\n"
+"POT-Creation-Date: 2026-10-15 00:30+0200\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1162,51 +1162,51 @@ msgstr "adresa neuvedena"
 msgid "{0} ({1} m)"
 msgstr "{0} ({1} m)"
 
-#: src/Model/Entity/AppUser.php:39 templates/Tasks/view.php:54
+#: src/Model/Entity/PowerOutage.php:98
+msgid "date not given"
+msgstr "datum neuvedeno"
+
+#: src/Model/Entity/User.php:39 templates/Tasks/view.php:54
 #: templates/element/AccessPoints/tasks.php:35
 #: templates/element/Tasks/email_detail.php:48
 msgid "User"
 msgstr "Uživatel"
 
-#: src/Model/Entity/AppUser.php:40
+#: src/Model/Entity/User.php:40
 msgid "Customer Service Technician"
 msgstr "Technik zákaznického servisu"
 
-#: src/Model/Entity/AppUser.php:41
+#: src/Model/Entity/User.php:41
 msgid "Network Technician"
 msgstr "Síťový technik"
 
-#: src/Model/Entity/AppUser.php:42
+#: src/Model/Entity/User.php:42
 msgid "Network Manager"
 msgstr "Správce sítě"
 
-#: src/Model/Entity/AppUser.php:43
+#: src/Model/Entity/User.php:43
 msgid "Sales Representative"
 msgstr "Obchodní zástupce"
 
-#: src/Model/Entity/AppUser.php:44
+#: src/Model/Entity/User.php:44
 msgid "Sales Manager"
 msgstr "Manažer prodeje"
 
-#: src/Model/Entity/AppUser.php:45
+#: src/Model/Entity/User.php:45
 msgid "Bookkeeper"
 msgstr "Účetní"
 
-#: src/Model/Entity/AppUser.php:46
+#: src/Model/Entity/User.php:46
 msgid "Admin"
 msgstr "Admin"
 
-#: src/Model/Entity/AppUser.php:47
+#: src/Model/Entity/User.php:47
 msgid "API"
 msgstr "API"
 
-#: src/Model/Entity/AppUser.php:48
+#: src/Model/Entity/User.php:48
 msgid "Agent"
 msgstr "Agent"
-
-#: src/Model/Entity/PowerOutage.php:98
-msgid "date not given"
-msgstr "datum neuvedeno"
 
 #: src/Model/Enum/DeviceLinkScope.php:53
 #: src/Model/Enum/RadioUnitComparisonScope.php:48
@@ -1369,11 +1369,6 @@ msgstr "Telefonní číslo není platné."
 msgid "This is not a valid EAN of a supply point."
 msgstr "Toto není platný EAN odběrného místa."
 
-#: src/Model/Table/AppUsersTable.php:102
-msgid "This account is still named on tasks. Move them to somebody else first."
-msgstr ""
-"Na tomto účtu jsou stále vedeny úkoly. Nejprve je přesuňte na někoho jiného."
-
 #: src/Model/Table/DocumentationsTable.php:79
 msgid "This documentation type is filed under an access point."
 msgstr "Tento typ dokumentace se zakládá pod přístupový bod."
@@ -1394,6 +1389,11 @@ msgstr "Horní frekvence pásma nemůže být nižší než dolní."
 #: src/Model/Table/TasksTable.php:96
 msgid "The specified task type requires the assignment of an access point."
 msgstr "Zadaný typ úkolu vyžaduje přiřazení přístupového bodu."
+
+#: src/Model/Table/UsersTable.php:102
+msgid "This account is still named on tasks. Move them to somebody else first."
+msgstr ""
+"Na tomto účtu jsou stále vedeny úkoly. Nejprve je přesuňte na někoho jiného."
 
 #: src/PowerOutages/Cez/CezPayloadNormalizer.php:404
 msgid "The distributor answered about {0} in a shape that could not be read."

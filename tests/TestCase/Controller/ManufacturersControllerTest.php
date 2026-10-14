@@ -28,7 +28,7 @@ class ManufacturersControllerTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.AppUsers',
+        'app.Users',
         'app.Manufacturers',
         'app.RadioUnitBands',
         'app.AntennaTypes',

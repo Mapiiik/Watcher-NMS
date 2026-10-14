@@ -38,7 +38,7 @@ class RadarInterferencesUpdateCommandTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.AppUsers',
+        'app.Users',
         'app.RadarInterferences',
     ];
 

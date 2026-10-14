@@ -16,7 +16,7 @@ use Tasks\Model\Table\TasksTable as TasksTasksTable;
  *
  * @property \App\Model\Table\TaskStatesTable&\Cake\ORM\Association\BelongsTo $TaskStates
  * @property \App\Model\Table\TaskTypesTable&\Cake\ORM\Association\BelongsTo $TaskTypes
- * @property \App\Model\Table\AppUsersTable&\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @method \App\Model\Entity\Task newEmptyEntity()
  * @method \App\Model\Entity\Task newEntity(array $data, array $options = [])

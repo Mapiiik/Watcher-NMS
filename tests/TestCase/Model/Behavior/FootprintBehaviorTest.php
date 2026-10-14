@@ -23,7 +23,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class FootprintBehaviorTest extends TestCase
 {
     /**
-     * The user from the AppUsers fixture, standing in for whoever is logged in.
+     * The user from the Users fixture, standing in for whoever is logged in.
      *
      * @var string
      */
@@ -42,7 +42,7 @@ class FootprintBehaviorTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.AppUsers',
+        'app.Users',
         'app.Manufacturers',
     ];
 
@@ -120,7 +120,7 @@ class FootprintBehaviorTest extends TestCase
     {
         // a second user to tell the two columns apart - the columns are foreign keys, so the one
         // that created the record has to be a user that is really there
-        $users = $this->getTableLocator()->get('AppUsers');
+        $users = $this->getTableLocator()->get('Users');
         $creator = $users->newEmptyEntity();
         $creator->patch(['username' => 'author', 'role' => 'admin', 'active' => true]);
         $creator->set('password', 'irrelevant-for-this-test', ['setter' => false]);

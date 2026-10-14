@@ -156,7 +156,7 @@ class Tasks
             'useSetters' => false,
         ]);
 
-        foreach (['task_state' => 'TaskStates', 'task_type' => 'TaskTypes', 'user' => 'AppUsers'] as $field => $table) {
+        foreach (['task_state' => 'TaskStates', 'task_type' => 'TaskTypes', 'user' => 'Users'] as $field => $table) {
             $nested = $row[$field] ?? null;
             if (is_array($nested)) {
                 $task->set($field, $this->hydrated($table, $nested));
@@ -168,7 +168,7 @@ class Tasks
         $collaborators = [];
         foreach ((array)($row['collaborators'] ?? []) as $person) {
             if (is_array($person)) {
-                $collaborators[] = $this->hydrated('AppUsers', $person);
+                $collaborators[] = $this->hydrated('Users', $person);
             }
         }
         $task->set('collaborators', $collaborators);

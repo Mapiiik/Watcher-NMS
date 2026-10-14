@@ -29,7 +29,7 @@ class CustomerConnectionIpsTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.AppUsers',
+        'app.Users',
         'app.CustomerPoints',
         'app.CustomerConnections',
         'app.CustomerConnectionIps',
