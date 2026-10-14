@@ -19,11 +19,6 @@
                     ['controller' => 'AppUsers', 'action' => 'index'],
                     ['class' => 'side-nav-item'],
                 ) ?>
-                <?= $this->AuthLink->link(
-                    __('Sign-in Security Configuration'),
-                    ['controller' => 'Settings', 'action' => 'edit', 'access.security'],
-                    ['class' => 'side-nav-item'],
-                ) ?>
             </div>
         </div>
 
@@ -31,17 +26,22 @@
             <h4><?= __('Application Settings') ?></h4>
             <div>
                 <?= $this->AuthLink->link(
-                    __('Access Points'),
+                    __('Sign-in Security Configuration'),
+                    ['controller' => 'Settings', 'action' => 'edit', 'access.security'],
+                    ['class' => 'side-nav-item'],
+                ) ?>
+                <?= $this->AuthLink->link(
+                    __('Access Points Configuration'),
                     ['controller' => 'Settings', 'action' => 'edit', 'core.access_points'],
                     ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
-                    __('Devices'),
+                    __('Devices Configuration'),
                     ['controller' => 'Settings', 'action' => 'edit', 'core.devices'],
                     ['class' => 'side-nav-item'],
                 ) ?>
                 <?= $this->AuthLink->link(
-                    __('Radio Units'),
+                    __('Radio Units Configuration'),
                     ['controller' => 'Settings', 'action' => 'edit', 'core.radio_units'],
                     ['class' => 'side-nav-item'],
                 ) ?>

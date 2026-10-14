@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-10-13 22:49+0200\n"
+"POT-Creation-Date: 2026-10-14 23:34+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1196,7 +1196,6 @@ msgstr ""
 #: ./templates/AccessPoints/index.php:37
 #: ./templates/AccessPoints/map.php:21
 #: ./templates/AccessPoints/utilization.php:48
-#: ./templates/Settings/index.php:34
 #: ./templates/layout/default.php:137
 #: ./templates/layout/default.php:312
 msgid "Access Points"
@@ -2324,7 +2323,6 @@ msgstr ""
 #: ./templates/RadioLinks/index.php:35
 #: ./templates/RadioUnits/export.php:10
 #: ./templates/RadioUnits/index.php:29
-#: ./templates/Settings/index.php:44
 #: ./templates/layout/default.php:399
 msgid "Radio Units"
 msgstr ""
@@ -3590,7 +3588,6 @@ msgid "Radar Interferences"
 msgstr ""
 
 #: ./templates/RadarInterferences/devices.php:9
-#: ./templates/Settings/index.php:39
 msgid "Devices"
 msgstr ""
 
@@ -4069,12 +4066,24 @@ msgstr ""
 msgid "List Users"
 msgstr ""
 
-#: ./templates/Settings/index.php:23
+#: ./templates/Settings/index.php:26
+msgid "Application Settings"
+msgstr ""
+
+#: ./templates/Settings/index.php:29
 msgid "Sign-in Security Configuration"
 msgstr ""
 
-#: ./templates/Settings/index.php:31
-msgid "Application Settings"
+#: ./templates/Settings/index.php:34
+msgid "Access Points Configuration"
+msgstr ""
+
+#: ./templates/Settings/index.php:39
+msgid "Devices Configuration"
+msgstr ""
+
+#: ./templates/Settings/index.php:44
+msgid "Radio Units Configuration"
 msgstr ""
 
 #: ./templates/Settings/index.php:49

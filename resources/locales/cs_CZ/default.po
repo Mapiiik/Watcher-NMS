@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-10-13 22:49+0200\n"
+"POT-Creation-Date: 2026-10-14 23:34+0200\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1232,8 +1232,7 @@ msgstr "Nástěnka"
 
 #: src/Model/Enum/LandingPage.php:39 templates/AccessPoints/index.php:37
 #: templates/AccessPoints/map.php:21 templates/AccessPoints/utilization.php:48
-#: templates/Settings/index.php:34 templates/layout/default.php:137
-#: templates/layout/default.php:312
+#: templates/layout/default.php:137 templates/layout/default.php:312
 msgid "Access Points"
 msgstr "Přístupové body"
 
@@ -2179,7 +2178,7 @@ msgstr "Platby pronajímateli"
 
 #: templates/AccessPoints/view.php:105 templates/RadioLinks/index.php:35
 #: templates/RadioUnits/export.php:10 templates/RadioUnits/index.php:29
-#: templates/Settings/index.php:44 templates/layout/default.php:399
+#: templates/layout/default.php:399
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
@@ -3353,7 +3352,7 @@ msgstr "Aktualizovat online"
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
-#: templates/RadarInterferences/devices.php:9 templates/Settings/index.php:39
+#: templates/RadarInterferences/devices.php:9
 msgid "Devices"
 msgstr "Zařízení"
 
@@ -3799,17 +3798,29 @@ msgstr "Uživatelský profil"
 msgid "List Users"
 msgstr "Seznam uživatelů"
 
-#: templates/Settings/index.php:23
-msgid "Sign-in Security Configuration"
-msgstr "Nastavení zabezpečení přihlášení"
-
-#: templates/Settings/index.php:31
+#: templates/Settings/index.php:26
 msgid "Application Settings"
 msgstr "Nastavení aplikace"
 
+#: templates/Settings/index.php:29
+msgid "Sign-in Security Configuration"
+msgstr "Konfigurace zabezpečení přihlášení"
+
+#: templates/Settings/index.php:34
+msgid "Access Points Configuration"
+msgstr "Konfigurace přístupových bodů"
+
+#: templates/Settings/index.php:39
+msgid "Devices Configuration"
+msgstr "Konfigurace zařízení"
+
+#: templates/Settings/index.php:44
+msgid "Radio Units Configuration"
+msgstr "Konfigurace rádiových jednotek"
+
 #: templates/Settings/index.php:49
 msgid "Dashboard Configuration"
-msgstr "Nastavení nástěnky"
+msgstr "Konfigurace nástěnky"
 
 #: templates/Settings/index.php:57
 msgid "Access Point Functions"
