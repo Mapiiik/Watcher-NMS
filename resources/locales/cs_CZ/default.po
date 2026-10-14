@@ -3817,7 +3817,7 @@ msgstr "Nastavení aplikace"
 
 #: templates/Settings/index.php:44
 msgid "Dashboard Configuration"
-msgstr "Nastavení nástěnky"
+msgstr "Konfigurace nástěnky"
 
 #: templates/Settings/index.php:52
 msgid "Access Point Functions"
