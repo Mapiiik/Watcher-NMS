@@ -3,13 +3,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Api\Agent;
 
-use Access\Authentication\AuthLog;
 use App\Controller\Api\AppController;
 use App\Model\Table\DeviceTypesTable;
 use App\Provisioning\RouterOS\ProvisionScriptBuilder;
 use App\Snmp\Provider\RouterosSnmpProviderAgentPush;
 use App\Snmp\Service\RouterosSnmpUpdateService;
-use Cake\Core\Configure;
 use Cake\Http\Exception\BadRequestException;
 use Cake\Http\Exception\UnauthorizedException;
 
@@ -18,8 +16,7 @@ class ProvisionController extends AppController
     /**
      * Controller initialization hook.
      *
-     * Lets in a Watcher Agent signed in as an account with the role `agent`. The token from the
-     * environment still lets one in as well, and is logged, until every agent has an account.
+     * Lets in only a Watcher Agent signed in as an account with the role `agent`.
      *
      * @return void
      * @throws \Cake\Http\Exception\UnauthorizedException if the agent is not who it says it is
@@ -30,18 +27,6 @@ class ProvisionController extends AppController
 
         $identity = $this->getRequest()->getAttribute('identity');
         if ($identity !== null && ($identity['role'] ?? null) === 'agent') {
-            return;
-        }
-
-        $authToken = (string)Configure::read('Agent.provisionToken');
-        if (
-            $authToken !== ''
-            && hash_equals('Bearer ' . $authToken, $this->getRequest()->getHeaderLine('Authorization'))
-        ) {
-            AuthLog::notice('agent signed in with the token from the environment', [
-                'ip' => AuthLog::address($this->getRequest()),
-            ]);
-
             return;
         }
 

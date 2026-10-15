@@ -39,7 +39,6 @@ class ProvisionControllerTest extends TestCase
     {
         parent::setUp();
 
-        Configure::write('Agent.provisionToken', '');
         Log::drop('auth');
         Log::setConfig('auth', ['className' => ArrayLog::class, 'scopes' => ['auth']]);
     }
@@ -71,28 +70,8 @@ class ProvisionControllerTest extends TestCase
     }
 
     /**
-     * The token from the environment still lets an agent in, and says so in the log, so that the
-     * agents left on it can be found.
-     *
-     * @return void
-     */
-    public function testTheTokenFromTheEnvironmentStillLetsAnAgentIn(): void
-    {
-        Configure::write('Agent.provisionToken', 'environment-token');
-
-        $this->push('environment-token');
-
-        $this->assertResponseCode(400);
-        /** @var \Cake\Log\Engine\ArrayLog $log */
-        $log = Log::engine('auth');
-        $this->assertStringContainsString(
-            'agent signed in with the token from the environment',
-            implode("\n", $log->read()),
-        );
-    }
-
-    /**
-     * Anybody else is turned away: a wrong token, and an account of another role.
+     * Anybody else is turned away: a wrong token, an account of another role, and the token the
+     * environment used to hold, which lets nobody in any more.
      *
      * @return void
      */
@@ -105,6 +84,9 @@ class ProvisionControllerTest extends TestCase
         $this->assertResponseCode(401);
 
         $this->push('api-key');
+        $this->assertResponseCode(401);
+
+        $this->push('environment-token');
         $this->assertResponseCode(401);
     }
 

@@ -315,8 +315,6 @@ return [
     'Agent' => [
         'url' => rtrim((string)env('WATCHER_AGENT_URL', ''), '/'),
         'token' => (string)env('WATCHER_AGENT_TOKEN', ''),
-        // what an agent has to present to be let in here, as opposed to what this one presents
-        'provisionToken' => (string)env('WATCHER_AGENT_NMS_TOKEN', ''),
     ],
 
     'RadarInterferences' => [
