@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\CRM\Provider\CustomerPointPayloadNormalizer;
 use App\Model\Table\CustomerConnectionIpsTable;
 use App\Model\Table\CustomerConnectionsTable;
 use App\Model\Table\CustomerPointsTable;
@@ -18,7 +19,6 @@ use Cake\Database\Expression\QueryExpression;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\Utility\Text;
-use InvalidArgumentException;
 use Override;
 use RuntimeException;
 use SplObjectStorage;
@@ -80,29 +80,25 @@ class CustomerPointsUpdateCommand extends Command
             }
 
             $startTime = new DateTime();
-            // TODO: implement DTO class
-            $importCustomerPoints = json_decode($json);
+            $decoded = json_decode($json, true);
 
-            if (!is_array($importCustomerPoints)) {
+            if (!is_array($decoded)) {
                 throw new RuntimeException(
                     __('The customer points data could not be decoded. Please, check the source data.'),
                 );
             }
 
-            foreach ($importCustomerPoints as $importCustomerPoint) {
-                // validate data structure
-                $this->assertValidCustomerPoint($importCustomerPoint);
-
-                if (!empty($importCustomerPoint->gps_x) && !empty($importCustomerPoint->gps_y)) {
+            foreach (CustomerPointPayloadNormalizer::customerPoints($decoded) as $importCustomerPoint) {
+                if ($importCustomerPoint->hasLocation()) {
                     $customerPoint = $customerPointsTable->findOrNewEntity([
-                        'gps_x' => $importCustomerPoint->gps_x,
-                        'gps_y' => $importCustomerPoint->gps_y,
+                        'gps_x' => $importCustomerPoint->gpsX,
+                        'gps_y' => $importCustomerPoint->gpsY,
                     ]);
 
                     // update data
                     $customerPoint = $customerPointsTable->patchEntity($customerPoint, [
-                        'name' => $importCustomerPoint->name ?? null,
-                        'note' => $importCustomerPoint->note ?? null,
+                        'name' => $importCustomerPoint->name,
+                        'note' => $importCustomerPoint->note,
                     ]);
                     $customerPoint->modified = DateTime::now();
 
@@ -118,23 +114,20 @@ class CustomerPointsUpdateCommand extends Command
                 }
 
                 // save customer connections
-                foreach ($importCustomerPoint->CustomerConnections as $importCustomerConnection) {
-                    // validate data structure
-                    $this->assertValidCustomerConnection($importCustomerConnection);
-
+                foreach ($importCustomerPoint->connections as $importCustomerConnection) {
                     $customerConnection = $customerConnectionsTable->findOrNewEntity([
-                        'customer_number' => $importCustomerConnection->customer_number,
-                        'contract_number' => $importCustomerConnection->contract_number,
+                        'customer_number' => $importCustomerConnection->customerNumber,
+                        'contract_number' => $importCustomerConnection->contractNumber,
                     ]);
 
                     // update data
                     $customerConnection = $customerConnectionsTable->patchEntity($customerConnection, [
                         'customer_point_id' => $customerPoint->id ?? null,
-                        'access_point_id' => $importCustomerConnection->access_point_id ?? null,
-                        'customer_url' => $importCustomerConnection->customer_url ?? null,
-                        'contract_url' => $importCustomerConnection->contract_url ?? null,
-                        'name' => $importCustomerConnection->name ?? null,
-                        'note' => $importCustomerConnection->note ?? null,
+                        'access_point_id' => $importCustomerConnection->accessPointId,
+                        'customer_url' => $importCustomerConnection->customerUrl,
+                        'contract_url' => $importCustomerConnection->contractUrl,
+                        'name' => $importCustomerConnection->name,
+                        'note' => $importCustomerConnection->note,
                         'archived' => null, // unarchive if it was archived before
                         'archived_by' => null, // unarchive if it was archived before
                     ]);
@@ -143,31 +136,28 @@ class CustomerPointsUpdateCommand extends Command
                     if (!$customerConnectionsTable->save($customerConnection)) {
                         Log::warning(
                             'The customer connection could not be saved.'
-                            . ' (' . $importCustomerConnection->contract_number . ')',
+                            . ' (' . $importCustomerConnection->contractNumber . ')',
                         );
                     } else {
                         // save customer connection IP addresses
-                        foreach ($importCustomerConnection->CustomerConnectionIps as $importCustomerConnectionIp) {
-                            // validate data structure
-                            $this->assertValidCustomerConnectionIp($importCustomerConnectionIp);
-
+                        foreach ($importCustomerConnection->ips as $importCustomerConnectionIp) {
                             $customerConnectionIp = $customerConnectionIpsTable->findOrNewEntity([
                                 'customer_connection_id' => $customerConnection->id,
-                                'ip_address' => $importCustomerConnectionIp->ip_address,
+                                'ip_address' => $importCustomerConnectionIp->ipAddress,
                             ]);
 
                             // update data
                             $customerConnectionIp = $customerConnectionIpsTable
                                 ->patchEntity($customerConnectionIp, [
-                                    'name' => $importCustomerConnectionIp->name ?? null,
-                                    'note' => $importCustomerConnectionIp->note ?? null,
+                                    'name' => $importCustomerConnectionIp->name,
+                                    'note' => $importCustomerConnectionIp->note,
                                 ]);
                             $customerConnectionIp->modified = DateTime::now();
 
                             if (!$customerConnectionIpsTable->save($customerConnectionIp)) {
                                 Log::warning(
                                     'The customer connection IP address could not be saved.'
-                                    . ' (' . $importCustomerConnectionIp->ip_address . ')',
+                                    . ' (' . $importCustomerConnectionIp->ipAddress . ')',
                                 );
                             }
                         }
@@ -207,91 +197,6 @@ class CustomerPointsUpdateCommand extends Command
             );
 
             return static::CODE_ERROR;
-        }
-    }
-
-    /**
-     * Validates structure of imported customer points JSON.
-     *
-     * @phpstan-assert object{
-     *     gps_x: mixed,
-     *     gps_y: mixed,
-     *     name?: mixed,
-     *     note?: mixed,
-     *     CustomerConnections: array<int, mixed>
-     * } $customerPoint
-     */
-    private function assertValidCustomerPoint(mixed $customerPoint): void
-    {
-        if (!is_object($customerPoint)) {
-            throw new InvalidArgumentException('CustomerPoint must be an object.');
-        }
-
-        if (!property_exists($customerPoint, 'gps_x') || !property_exists($customerPoint, 'gps_y')) {
-            throw new InvalidArgumentException('gps_x and gps_y must exist.');
-        }
-
-        if (
-            !property_exists($customerPoint, 'CustomerConnections')
-            || !is_array($customerPoint->CustomerConnections)
-        ) {
-            throw new InvalidArgumentException('CustomerConnections must be an array.');
-        }
-    }
-
-    /**
-     * Validates structure of a single customer connection.
-     *
-     * @phpstan-assert object{
-     *     customer_number: mixed,
-     *     contract_number: mixed,
-     *     access_point_id?: mixed,
-     *     customer_url?: mixed,
-     *     contract_url?: mixed,
-     *     name?: mixed,
-     *     note?: mixed,
-     *     CustomerConnectionIps: array<int, mixed>
-     * } $connection
-     */
-    private function assertValidCustomerConnection(mixed $connection): void
-    {
-        if (!is_object($connection)) {
-            throw new InvalidArgumentException('CustomerConnection must be an object.');
-        }
-
-        if (!property_exists($connection, 'customer_number')) {
-            throw new InvalidArgumentException('customer_number is missing.');
-        }
-
-        if (!property_exists($connection, 'contract_number')) {
-            throw new InvalidArgumentException('contract_number is missing.');
-        }
-
-        if (
-            !property_exists($connection, 'CustomerConnectionIps')
-            || !is_array($connection->CustomerConnectionIps)
-        ) {
-            throw new InvalidArgumentException('CustomerConnectionIps must be an array.');
-        }
-    }
-
-    /**
-     * Validates structure of a single customer connection IP.
-     *
-     * @phpstan-assert object{
-     *     ip_address: mixed,
-     *     name?: mixed,
-     *     note?: mixed
-     * } $ip
-     */
-    private function assertValidCustomerConnectionIp(mixed $ip): void
-    {
-        if (!is_object($ip)) {
-            throw new InvalidArgumentException('CustomerConnectionIp must be an object.');
-        }
-
-        if (!property_exists($ip, 'ip_address')) {
-            throw new InvalidArgumentException('ip_address is missing.');
         }
     }
 
