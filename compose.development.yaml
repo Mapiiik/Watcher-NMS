@@ -2,7 +2,7 @@ services:
   webserver-dev:
     build:
       context: .
-      dockerfile: docker/Dockerfile.dev-frankenphp
+      dockerfile: docker/Dockerfile.development
       args:
         - buildno
         - gitcommithash
