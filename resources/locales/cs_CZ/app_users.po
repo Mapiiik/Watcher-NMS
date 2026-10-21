@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CakeDC Users\n"
-"POT-Creation-Date: 2026-10-13 22:49+0200\n"
+"POT-Creation-Date: 2026-10-21 23:58+0200\n"
 "PO-Revision-Date: 2026-08-21 11:34+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: Martin Patočka <mapik@mapik.net>\n"
@@ -55,34 +55,34 @@ msgstr "Počet řádků na stránku"
 msgid "Theme"
 msgstr "Motiv"
 
-#: templates/plugin/Access/Users/user_settings.php:63
+#: templates/plugin/Access/Users/user_settings.php:62
 msgid "Landing Page"
 msgstr "Výchozí stránka"
 
-#: templates/plugin/Access/Users/user_settings.php:68
-#: templates/plugin/Access/Users/user_settings.php:76
-#: templates/plugin/Access/Users/user_settings.php:84
-#: templates/plugin/Access/Users/user_settings.php:94
+#: templates/plugin/Access/Users/user_settings.php:67
+#: templates/plugin/Access/Users/user_settings.php:75
+#: templates/plugin/Access/Users/user_settings.php:83
+#: templates/plugin/Access/Users/user_settings.php:93
 msgid "Tasks"
 msgstr "Úkoly"
 
-#: templates/plugin/Access/Users/user_settings.php:70
+#: templates/plugin/Access/Users/user_settings.php:69
 msgid "Show Tasks for All Users by Default"
 msgstr "Ve výchozím stavu zobrazovat úkoly všech uživatelů"
 
-#: templates/plugin/Access/Users/user_settings.php:78
+#: templates/plugin/Access/Users/user_settings.php:77
 msgid "Use Expandable Text by Default"
 msgstr "Ve výchozím stavu používat rozbalitelný text"
 
-#: templates/plugin/Access/Users/user_settings.php:86
+#: templates/plugin/Access/Users/user_settings.php:85
 msgid "Show Only These Task Types by Default"
 msgstr "Ve výchozím stavu zobrazovat jen tyto typy úkolů"
 
-#: templates/plugin/Access/Users/user_settings.php:96
+#: templates/plugin/Access/Users/user_settings.php:95
 msgid "Show Only These Task States by Default"
 msgstr "Ve výchozím stavu zobrazovat jen tyto stavy úkolů"
 
-#: templates/plugin/Access/Users/user_settings.php:104
+#: templates/plugin/Access/Users/user_settings.php:103
 msgid "Submit"
 msgstr "Odeslat"
 
