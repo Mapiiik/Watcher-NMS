@@ -26,6 +26,7 @@
         "cakephp/plugin-installer": "^2.0",
         "composer/composer": "^2.9",
         "dereuromark/cakephp-audit-stash": "^2.0.1",
+        "firebase/php-jwt": "^7.2",
         "giggsey/libphonenumber-for-php": "^9.0",
         "josegonzalez/dotenv": "^4.0",
         "league/flysystem": "^3.36",
