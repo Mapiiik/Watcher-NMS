@@ -363,7 +363,7 @@
                         <?php foreach ($routerosDevice->routeros_wireless_links as $routerosWirelessLink) : ?>
                         <tr>
                             <td><?= h($routerosWirelessLink->name) ?></td>
-                            <td><?= h($routerosWirelessLink->neighbouring_interface->name) ?></td>
+                            <td><?= h($routerosWirelessLink->neighbouring_interface?->name) ?></td>
                             <td><?=
                                 isset(
                                     $routerosWirelessLink

@@ -898,7 +898,7 @@
                                         ],
                                     ) : '' ?></td>
                                 <td><?= h($routerosWirelessLink->name) ?></td>
-                                <td><?= h($routerosWirelessLink->neighbouring_interface->name) ?></td>
+                                <td><?= h($routerosWirelessLink->neighbouring_interface?->name) ?></td>
                                 <td><?=
                                     isset(
                                         $routerosWirelessLink

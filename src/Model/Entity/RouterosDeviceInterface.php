@@ -26,7 +26,7 @@ namespace App\Model\Entity;
  * @property \App\Model\Entity\RouterosDevice $routeros_device
  * @property \App\Model\Entity\RouterosDeviceInterface $neighbouring_station
  * @property \App\Model\Entity\RouterosDeviceInterface $neighbouring_access_point
- * @property \App\Model\Entity\RouterosDeviceInterface $neighbouring_interface
+ * @property \App\Model\Entity\RouterosDeviceInterface|null $neighbouring_interface
  *
  * @property string $name_for_lists
  */

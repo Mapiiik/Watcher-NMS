@@ -21,14 +21,14 @@ $shown = 0;
                 <?php $outage = $link->power_outage ?>
                 <tr>
                     <td>
-                        <?= $accessPoint === null ? '' : $this->Html->link(
+                        <?= $this->Html->link(
                             $accessPoint->name_for_lists,
                             ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
                         ) ?>
-                        <br><small><?= h($outage?->summary) ?></small>
+                        <br><small><?= h($outage->summary) ?></small>
                     </td>
                     <td>
-                        <?= h($outage?->begins_at) ?>
+                        <?= h($outage->begins_at) ?>
                         <br><small><?= $link->certainty === OutageCertainty::Certain
                             ? '<strong>' . h($link->certainty->label()) . '</strong>'
                             : h($link->certainty->label()) ?></small>
@@ -38,7 +38,7 @@ $shown = 0;
                         <?php // Drawn rather than named: the card is narrow, and the word for it is ?>
                         <?php // longer than any number it could stand beside. The title says it. ?>
                         <span title="<?= h(__('Customer connections affected')) ?>">
-                            &#128100; <?= $this->Number->format($counts[$accessPoint?->id] ?? 0) ?>
+                            &#128100; <?= $this->Number->format($counts[$accessPoint->id] ?? 0) ?>
                         </span>
                     </td>
                 </tr>

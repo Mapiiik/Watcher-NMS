@@ -73,22 +73,22 @@ $empty = true;
                     <?php $outage = $link->power_outage ?>
                 <tr>
                     <td>
-                        <?= $accessPoint === null ? '' : $this->Html->link(
+                        <?= $this->Html->link(
                             $accessPoint->name_for_lists,
                             ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
                         ) ?>
                     </td>
                     <td>
                         <?php // Everything fed from the mast, not only what hangs on it directly. ?>
-                        <?= $this->Number->format($counts[$accessPoint?->id] ?? 0) ?>
+                        <?= $this->Number->format($counts[$accessPoint->id] ?? 0) ?>
                     </td>
-                    <td><?= h($outage?->begins_at) ?></td>
-                    <td><?= h($outage?->ends_at) ?></td>
+                    <td><?= h($outage->begins_at) ?></td>
+                    <td><?= h($outage->ends_at) ?></td>
                     <td>
                         <?= $link->certainty === OutageCertainty::Certain
                             ? '<strong>' . h($link->certainty->label()) . '</strong>'
                             : h($link->certainty->label()) ?>
-                        <?= $outage?->cancelled ? h(__('(called off)')) : '' ?>
+                        <?= $outage->cancelled ? h(__('(called off)')) : '' ?>
                     </td>
                     <td>
                         <?= h($link->matched_by->label()) ?>
@@ -96,9 +96,9 @@ $empty = true;
                             <br><span class="text-muted"><?= h($link->match_note) ?></span>
                         <?php endif; ?>
                     </td>
-                    <td><?= h($outage?->summary) ?></td>
+                    <td><?= h($outage->summary) ?></td>
                     <td class="actions">
-                        <?php if ($outage?->announcement_url !== null) : ?>
+                        <?php if ($outage->announcement_url !== null) : ?>
                             <?= $this->Html->link(
                                 __('Announcement'),
                                 $outage->announcement_url,
