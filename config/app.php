@@ -307,11 +307,15 @@ return [
         // one's. Off by default: an installation that has never heard of a customer relationship
         // management still has work to write down.
         'tasks' => filter_var(env('WATCHER_CRM_TASKS', false), FILTER_VALIDATE_BOOLEAN),
+        // off only against a development Watcher CRM with a certificate of its own
+        'verifyTls' => filter_var(env('WATCHER_CRM_VERIFY_TLS', true), FILTER_VALIDATE_BOOLEAN),
     ],
 
     'Agent' => [
         'url' => rtrim((string)env('WATCHER_AGENT_URL', ''), '/'),
         'token' => (string)env('WATCHER_AGENT_TOKEN', ''),
+        // off only against a development agent with a certificate of its own
+        'verifyTls' => filter_var(env('WATCHER_AGENT_VERIFY_TLS', true), FILTER_VALIDATE_BOOLEAN),
     ],
 
     'RadarInterferences' => [

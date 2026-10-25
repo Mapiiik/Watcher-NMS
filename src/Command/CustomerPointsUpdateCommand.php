@@ -65,10 +65,12 @@ class CustomerPointsUpdateCommand extends Command
             $context = null;
             if (!isset($url)) {
                 $url = Configure::read('Crm.url') . '/api/customers/customer-points.json';
-                // the key goes in the header, out of the address and the logs that keep it
-                $context = stream_context_create(['http' => [
-                    'header' => 'Authorization: Bearer ' . Configure::read('Crm.key'),
-                ]]);
+                $verify = Configure::read('Crm.verifyTls') !== false;
+                $context = stream_context_create([
+                    // the key goes in the header, out of the address and the logs that keep it
+                    'http' => ['header' => 'Authorization: Bearer ' . Configure::read('Crm.key')],
+                    'ssl' => ['verify_peer' => $verify, 'verify_peer_name' => $verify],
+                ]);
             }
 
             $json = file_get_contents($url, false, $context);

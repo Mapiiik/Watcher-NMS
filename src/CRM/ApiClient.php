@@ -131,7 +131,16 @@ class ApiClient
         $where = self::addressOf($path);
 
         try {
-            $client = new Client(['timeout' => self::TIMEOUT]);
+            $verify = Configure::read('Crm.verifyTls') !== false;
+
+            $client = new Client([
+                'timeout' => self::TIMEOUT,
+                // the name is checked by `ssl_verify_peer_name` in the stream adapter, by
+                // `ssl_verify_host` in curl
+                'ssl_verify_peer' => $verify,
+                'ssl_verify_peer_name' => $verify,
+                'ssl_verify_host' => $verify,
+            ]);
             $response = $client->get($where, $query, [
                 'headers' => ['Authorization' => 'Bearer ' . Configure::read('Crm.key')],
             ]);

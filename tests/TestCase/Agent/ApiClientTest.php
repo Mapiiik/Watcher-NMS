@@ -1,0 +1,89 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Test\TestCase\Agent;
+
+use App\Agent\ApiClient;
+use App\Test\Traits\ConfigureTestTrait;
+use Cake\Http\TestSuite\HttpClientTrait;
+use Cake\TestSuite\TestCase;
+use Override;
+use PHPUnit\Framework\Attributes\CoversClass;
+use Psr\Http\Message\RequestInterface;
+
+/**
+ * App\Agent\ApiClient Test Case
+ */
+#[CoversClass(ApiClient::class)]
+class ApiClientTest extends TestCase
+{
+    use ConfigureTestTrait;
+    use HttpClientTrait;
+
+    /**
+     * setUp method
+     *
+     * @return void
+     */
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withConfigure([
+            'Agent.url' => 'https://agent.example.com',
+            'Agent.token' => 'secret',
+        ]);
+    }
+
+    /**
+     * tearDown method
+     *
+     * @return void
+     */
+    #[Override]
+    protected function tearDown(): void
+    {
+        $this->restoreConfigure();
+
+        parent::tearDown();
+    }
+
+    /**
+     * The certificate is checked unless the installation says otherwise, which only a development
+     * agent with a certificate of its own has any business doing.
+     *
+     * @return void
+     * @link \App\Agent\ApiClient::snmpReadRouteros()
+     */
+    public function testTheCertificateIsCheckedUnlessTurnedOff(): void
+    {
+        $checked = [];
+        $this->mockClientPost(
+            'https://agent.example.com/api/snmp/read/routeros',
+            $this->newClientResponse(
+                200,
+                ['Content-Type: application/json'],
+                (string)json_encode(['device' => ['name' => 'Hilltop']]),
+            ),
+            ['match' => function (RequestInterface $request, array $options) use (&$checked): bool {
+                $this->assertSame('Bearer secret', $request->getHeaderLine('Authorization'));
+                $checked[] = [
+                    $options['ssl_verify_peer'],
+                    $options['ssl_verify_peer_name'],
+                    $options['ssl_verify_host'],
+                ];
+
+                return true;
+            }],
+        );
+
+        $this->withConfigure(['Agent.verifyTls' => true]);
+        $this->assertTrue(ApiClient::snmpReadRouteros('192.0.2.1', 'public')->ok());
+
+        $this->withConfigure(['Agent.verifyTls' => false]);
+        $this->assertTrue(ApiClient::snmpReadRouteros('192.0.2.1', 'public')->ok());
+
+        $this->assertSame([[true, true, true], [false, false, false]], $checked);
+    }
+}
