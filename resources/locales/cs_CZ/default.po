@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-10-21 23:58+0200\n"
+"POT-Creation-Date: 2026-10-27 17:20+0100\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -143,30 +143,30 @@ msgstr "Datový kořen"
 msgid "Run this where the client is, with the directory mounted into it:"
 msgstr "Spusťte toto tam, kde je klient, s připojeným adresářem:"
 
-#: src/Command/CustomerPointsUpdateCommand.php:78
+#: src/Command/CustomerPointsUpdateCommand.php:80
 msgid "The customer points data could not be downloaded. Please, try again."
 msgstr "Data zákaznických bodů se nepodařilo stáhnout. Zkuste to prosím znovu."
 
-#: src/Command/CustomerPointsUpdateCommand.php:87
+#: src/Command/CustomerPointsUpdateCommand.php:89
 msgid ""
 "The customer points data could not be decoded. Please, check the source data."
 msgstr ""
 "Data zákaznických bodů se nepodařilo dekódovat. Zkontrolujte prosím zdrojová "
 "data."
 
-#: src/Command/CustomerPointsUpdateCommand.php:177
+#: src/Command/CustomerPointsUpdateCommand.php:179
 msgid "The customer points data have been updated."
 msgstr "Data zákaznických bodů byla aktualizována."
 
-#: src/Command/CustomerPointsUpdateCommand.php:185
+#: src/Command/CustomerPointsUpdateCommand.php:187
 msgid "Error during customer points update: {0}"
 msgstr "Chyba při aktualizaci zákaznických bodů: {0}"
 
-#: src/Command/CustomerPointsUpdateCommand.php:191
+#: src/Command/CustomerPointsUpdateCommand.php:193
 msgid "Customer points update failed"
 msgstr "Aktualizace zákaznických bodů se nezdařila"
 
-#: src/Command/CustomerPointsUpdateCommand.php:192
+#: src/Command/CustomerPointsUpdateCommand.php:194
 msgid "Customer points update failed."
 msgstr "Aktualizace zákaznických bodů se nezdařila."
 
@@ -1033,25 +1033,25 @@ msgstr "IP RouterOS zařízení byla odstraněna."
 msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr "IP adresu zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:176
-#: src/Controller/RouterosDevicesController.php:210
+#: src/Controller/RouterosDevicesController.php:177
+#: src/Controller/RouterosDevicesController.php:211
 msgid "The RouterOS device has been saved."
 msgstr "Zařízení RouterOS bylo uloženo."
 
-#: src/Controller/RouterosDevicesController.php:180
-#: src/Controller/RouterosDevicesController.php:214
+#: src/Controller/RouterosDevicesController.php:181
+#: src/Controller/RouterosDevicesController.php:215
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr "Zařízení RouterOS nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:241
+#: src/Controller/RouterosDevicesController.php:242
 msgid "The RouterOS device has been deleted."
 msgstr "Zařízení RouterOS bylo odstraněno."
 
-#: src/Controller/RouterosDevicesController.php:244
+#: src/Controller/RouterosDevicesController.php:245
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr "Zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:270
+#: src/Controller/RouterosDevicesController.php:271
 msgid ""
 "Cannot update RouterOS device data via SNMP. Missing IP address or SNMP "
 "community."
@@ -1059,12 +1059,12 @@ msgstr ""
 "Nelze aktualizovat data zařízení RouterOS prostřednictvím protokolu SNMP. "
 "Chybí IP adresa nebo SNMP komunita."
 
-#: src/Controller/RouterosDevicesController.php:289
+#: src/Controller/RouterosDevicesController.php:290
 msgid "The RouterOS device data has been updated via SNMP."
 msgstr ""
 "Údaje o zařízení RouterOS byly aktualizovány prostřednictvím protokolu SNMP."
 
-#: src/Controller/RouterosDevicesController.php:301
+#: src/Controller/RouterosDevicesController.php:302
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr "Nepodařilo se aktualizovat data zařízení RouterOS přes SNMP: {0}"
 
@@ -1197,14 +1197,18 @@ msgid "Bookkeeper"
 msgstr "Účetní"
 
 #: src/Model/Entity/User.php:46
+msgid "Manager"
+msgstr "Manažer"
+
+#: src/Model/Entity/User.php:47
 msgid "Admin"
 msgstr "Admin"
 
-#: src/Model/Entity/User.php:47
+#: src/Model/Entity/User.php:48
 msgid "API"
 msgstr "API"
 
-#: src/Model/Entity/User.php:48
+#: src/Model/Entity/User.php:49
 msgid "Agent"
 msgstr "Agent"
 
@@ -1500,7 +1504,7 @@ msgstr "Nepodařilo se uložit rozhraní zařízení RouterOS"
 msgid "Failed to save RouterOS device IP"
 msgstr "Nepodařilo se uložit IP adresu zařízení RouterOS"
 
-#: src/Versioning.php:53 src/Versioning.php:76
+#: src/Versioning.php:56 src/Versioning.php:79
 msgid "Not installed via Git"
 msgstr "Není nainstalováno přes Git"
 
