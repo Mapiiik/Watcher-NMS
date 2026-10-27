@@ -408,6 +408,7 @@ $permissions = [
             ],
             'plugin' => null,
             'controller' => [
+                'DocumentationTypes',
                 'TaskStates',
                 'TaskTypes',
             ],

@@ -27,6 +27,7 @@ class ManagerRoleTest extends TestCase
      */
     protected array $fixtures = [
         'app.Users',
+        'plugin.Files.DocumentationTypes',
         'app.TaskStates',
         'app.TaskTypes',
     ];
@@ -39,6 +40,7 @@ class ManagerRoleTest extends TestCase
     public static function pagesOfTheManager(): array
     {
         return [
+            'documentation types' => ['/documentation-types/add'],
             'task states' => ['/task-states/add'],
             'task types' => ['/task-types/add'],
         ];
