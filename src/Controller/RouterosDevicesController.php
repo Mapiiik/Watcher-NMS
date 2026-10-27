@@ -134,6 +134,7 @@ class RouterosDevicesController extends AppController
                 'superuser',
                 'admin',
                 'network-manager',
+                'manager',
             ])
         ) {
             $routerosDevice->username = CredentialsGenerator::getUsername($routerosDevice);

@@ -85,6 +85,7 @@ class UserTest extends TestCase
             'api',
             'bookkeeper',
             'customer-service-technician',
+            'manager',
             'network-manager',
             'network-technician',
             'sales-manager',
