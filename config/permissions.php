@@ -9,6 +9,11 @@
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+use Cake\Http\ServerRequest;
+use Cake\ORM\TableRegistry;
+use Cake\Validation\Validation;
+use Files\Service\Documentations;
+
 /*
  * This is a quick roles-permissions implementation
  * Rules are evaluated top-down, first matching rule will apply
@@ -246,9 +251,17 @@ $permissions = [
                 'view',
             ],
         ],
-        //documentation: whoever may look at a record may look at what is kept about it
+        //documentation: the staff who may look at a record may look at what is kept about it
         [
-            'role' => $staff,
+            'role' => [
+                'customer-service-technician',
+                'network-technician',
+                'network-manager',
+                'sales-representative',
+                'sales-manager',
+                'bookkeeper',
+                'manager',
+            ],
             'plugin' => null,
             'controller' => [
                 'Documentations',
@@ -257,6 +270,41 @@ $permissions = [
                 'index',
                 'view',
             ],
+        ],
+        //and fetch back the files kept in it - those only, should anything else ever be filed
+        [
+            'role' => [
+                'customer-service-technician',
+                'network-technician',
+                'network-manager',
+                'sales-representative',
+                'sales-manager',
+                'bookkeeper',
+                'manager',
+            ],
+            'plugin' => 'Files',
+            'controller' => [
+                'FileLinks',
+            ],
+            'action' => [
+                'download',
+                'open',
+                'thumbnail',
+                'preview',
+            ],
+            //Keep it last: the rule is read key by key and this one ends the reading.
+            'allowed' => function ($_user, $_role, ServerRequest $request): bool {
+                $id = $request->getParam('pass.0');
+
+                if (!is_string($id) || !Validation::uuid($id)) {
+                    return false;
+                }
+
+                return TableRegistry::getTableLocator()->get('Files.FileLinks')->exists([
+                    'FileLinks.id' => $id,
+                    'FileLinks.model' => Documentations::MODEL,
+                ]);
+            },
         ],
         //and keeping it up to date goes with doing the work it records
         [

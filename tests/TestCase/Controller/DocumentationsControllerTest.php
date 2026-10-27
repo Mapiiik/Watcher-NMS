@@ -182,6 +182,61 @@ class DocumentationsControllerTest extends TestCase
     }
 
     /**
+     * Whoever may look at the documentation may fetch back the files in it, not only an admin, and
+     * a plain user neither. The list of everything filed, and unfiling one outside the
+     * documentation, stay with the administrator.
+     *
+     * @link \Files\Controller\FileLinksController::download()
+     * @return void
+     */
+    public function testWhoeverReadsTheDocumentationFetchesItsFiles(): void
+    {
+        $documentation = $this->documentations()->saveOrFail($this->documentations()->newEntity([
+            'documentation_type_id' => $this->kind(),
+            'access_point_id' => self::ACCESS_POINT_ID,
+            'name' => 'The installation',
+        ]));
+
+        $storage = new FileStorage();
+        $file = $storage->store('rack 3, port 12', 'text/plain');
+        $link = $storage->link(
+            $file,
+            Documentations::MODEL,
+            (string)$documentation->id,
+            Documentations::ATTACHMENT,
+            Documentations::UPLOADED,
+        );
+
+        $this->login('user');
+
+        $this->get('/documentations/view/' . $documentation->id);
+        $this->assertRedirect('/');
+        $this->get('/files/file-links/download/' . $link->id);
+        $this->assertRedirect('/');
+
+        $this->login('network-technician');
+
+        $this->get('/documentations/view/' . $documentation->id);
+        $this->assertResponseOk();
+        $this->assertResponseContains('/files/file-links/download/' . $link->id);
+
+        $this->get('/files/file-links/download/' . $link->id);
+        $this->assertResponseOk();
+        $this->assertNotNull($this->_response);
+        $this->assertSame('rack 3, port 12', (string)$this->_response->getBody());
+
+        $this->get('/files/file-links/open/' . $link->id);
+        $this->assertResponseOk();
+
+        $this->get('/files/file-links');
+        $this->assertRedirect('/');
+
+        $this->post('/files/file-links/delete/' . $link->id);
+        $this->assertRedirect('/');
+        $this->assertTrue($storage->has($file));
+    }
+
+    /**
      * Every page of the agenda answers. Little is asked of them beyond that, but a page that has
      * stopped rendering at all is worth hearing about from the suite rather than from somebody
      * clicking.
