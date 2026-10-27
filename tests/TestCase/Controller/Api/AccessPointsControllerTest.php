@@ -64,6 +64,26 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * The access points are handed to the role the CRM signs in with, not to the agent, which
+     * talks to the endpoints of its own.
+     *
+     * @return void
+     * @link \App\Controller\Api\AccessPointsController::index()
+     */
+    public function testTheOtherMachineRolesAreNotHandedTheAccessPoints(): void
+    {
+        $this->configRequest(['headers' => ['Accept' => 'application/json']]);
+
+        $this->login('api');
+        $this->get('/api/access-points.json');
+        $this->assertResponseOk();
+
+        $this->login('agent');
+        $this->get('/api/access-points.json');
+        $this->assertResponseCode(403);
+    }
+
+    /**
      * A single record serializes.
      *
      * @return void
