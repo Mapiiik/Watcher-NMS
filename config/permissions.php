@@ -401,6 +401,22 @@ $permissions = [
                 'overviewOfPlannedPowerOutages',
             ],
         ],
+        //what a manager may do beyond the other roles, each thing given to it on its own
+        [
+            'role' => [
+                'manager',
+            ],
+            'plugin' => null,
+            'controller' => [
+                'TaskStates',
+                'TaskTypes',
+            ],
+            'action' => [
+                'add',
+                'edit',
+                'delete',
+            ],
+        ],
     ],
 ];
 
