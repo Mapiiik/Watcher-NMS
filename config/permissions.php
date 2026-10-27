@@ -49,6 +49,21 @@ use Cake\Utility\Hash;
  */
 
 /*
+ * The people working in the application. The machine roles talk to it through the Api prefix and
+ * are let in by rules of their own, so the ordinary pages are not theirs - not even the ones open
+ * to everybody else.
+ */
+$staff = [
+    'user',
+    'customer-service-technician',
+    'network-technician',
+    'network-manager',
+    'sales-representative',
+    'sales-manager',
+    'bookkeeper',
+];
+
+/*
  * Default permissions
  */
 $permissions = [
@@ -113,9 +128,9 @@ $permissions = [
             'controller' => '*',
             'action' => '*',
         ],
-        //specific actions allowed for the all roles in Users plugin
+        //specific actions allowed for all the staff in Users plugin
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => 'AppUsers',
             'action' => [
@@ -127,7 +142,7 @@ $permissions = [
             ],
         ],
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => 'AppUsers',
             'action' => 'resetOneTimePasswordAuthenticator',
@@ -163,7 +178,7 @@ $permissions = [
         ],
         //the maps ask this for addresses, so every role that is shown a map needs it
         [
-            'role' => '*',
+            'role' => $staff,
             'prefix' => 'Api',
             'plugin' => null,
             'controller' => [
@@ -200,9 +215,9 @@ $permissions = [
                 'search',
             ],
         ],
-        //all roles access
+        //what all the staff may look at
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => [
                 'Settings',
@@ -212,7 +227,7 @@ $permissions = [
             ],
         ],
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => [
                 'AccessPoints',
@@ -225,7 +240,7 @@ $permissions = [
             ],
         ],
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => [
                 'AccessPointContacts',
@@ -238,7 +253,7 @@ $permissions = [
             ],
         ],
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => [
                 'RouterosDevices',
@@ -252,7 +267,7 @@ $permissions = [
             ],
         ],
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => [
                 'CustomerConnections',
@@ -265,7 +280,7 @@ $permissions = [
         ],
         //documentation: whoever may look at a record may look at what is kept about it
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => [
                 'Documentations',
@@ -417,7 +432,7 @@ $permissions = [
         // planned outages are no secret and anyone may be asked about one; the rack itself only
         // lists what whoever opened it may follow, so it is open to everyone as well
         [
-            'role' => '*',
+            'role' => $staff,
             'plugin' => null,
             'controller' => [
                 'Overviews',
