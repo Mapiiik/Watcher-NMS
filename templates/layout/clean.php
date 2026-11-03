@@ -32,7 +32,10 @@ $cakeDescription = 'Watcher NMS | ' . (string)Configure::read('App.company');
         <?= $cakeDescription ?> |
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
+    <?php // the ICO is for those that cannot take the SVG, and its size keeps those that can on the SVG ?>
+    <?= $this->Html->meta('icon', 'favicon.ico', ['sizes' => '32x32']) ?>
+    <?= $this->Html->meta('icon', 'favicon.svg', ['type' => 'image/svg+xml']) ?>
+    <?= $this->Html->meta(['rel' => 'apple-touch-icon', 'link' => 'apple-touch-icon.png']) ?>
 
     <?= $this->Html->css([
         '/vendor/normalize/normalize.min.css',
@@ -49,7 +52,9 @@ $cakeDescription = 'Watcher NMS | ' . (string)Configure::read('App.company');
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="/"><span>Watcher</span> NMS</a>
+            <a href="/"><?=
+                $this->Html->image('/favicon.svg', ['alt' => '', 'class' => 'top-nav-logo'])
+            ?><span>Watcher</span> NMS</a>
         </div>
         <div class="top-nav-links">
         </div>
