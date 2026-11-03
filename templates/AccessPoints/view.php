@@ -54,7 +54,7 @@
               // scrolling for it. Left out of a popup window, which is opened to read one
               // thing rather than to wander around. ?>
         <?php if (!($this->getRequest()->getQuery('win-link') == 'true')) : ?>
-        <div class="side-nav" style="position: fixed; bottom: 1rem;">
+        <div class="side-nav side-nav-fixed">
             <h4 class="heading"><?= __('Sections') ?></h4>
             <?= $this->AuthLink->link(
                 __('Access Point'),
