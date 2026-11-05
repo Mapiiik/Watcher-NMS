@@ -160,7 +160,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
         $this->exec('customer_points_update --help');
 
         $this->assertExitSuccess();
-        $this->assertOutputContains('url');
+        $this->assertOutputContains('--file');
     }
 
     /**
@@ -172,7 +172,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
      */
     public function testExecuteImportsAPointWithWhatHangsOffIt(): void
     {
-        $this->exec('customer_points_update ' . $this->sourceListing('CT-1'));
+        $this->exec('customer_points_update --file ' . $this->sourceListing('CT-1'));
 
         $this->assertExitSuccess();
         $this->assertTrue(
@@ -195,7 +195,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
      */
     public function testExecutePassesOverAConnectionWithoutAContractNumber(): void
     {
-        $this->exec('customer_points_update ' . $this->source((string)json_encode([
+        $this->exec('customer_points_update --file ' . $this->source((string)json_encode([
             [
                 'gps_x' => 50.1,
                 'gps_y' => 14.4,
@@ -294,7 +294,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
 
         // Named the way the connection that is already here names itself, so that the listing
         // finds that one rather than filing a second connection under the same contract.
-        $this->exec('customer_points_update ' . $this->sourceListing(self::KNOWN_CONTRACT, self::KNOWN_CONTRACT));
+        $this->exec('customer_points_update --file ' . $this->sourceListing(self::KNOWN_CONTRACT, self::KNOWN_CONTRACT));
 
         $this->assertExitSuccess();
         $this->assertNull(
@@ -311,7 +311,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
      */
     public function testExecuteLeavesEverythingWhenTheSourceMakesNoSense(): void
     {
-        $this->exec('customer_points_update ' . $this->source('not json at all'));
+        $this->exec('customer_points_update --file ' . $this->source('not json at all'));
 
         $this->assertExitError();
         $this->assertTrue(
@@ -329,7 +329,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
      */
     public function testExecuteLeavesEverythingWhenTheSourceListsNothing(): void
     {
-        $this->exec('customer_points_update ' . $this->source('[]'));
+        $this->exec('customer_points_update --file ' . $this->source('[]'));
 
         $this->assertExitError();
         $this->assertTrue(
@@ -357,7 +357,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
         $connection = $this->connectionCarrying($carried);
 
         // Listed under another contract, so the one above stops being listed.
-        $this->exec('customer_points_update ' . $this->sourceListing('C-2'));
+        $this->exec('customer_points_update --file ' . $this->sourceListing('C-2'));
 
         $this->assertExitSuccess();
 
@@ -391,7 +391,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
     {
         $connection = $this->connectionCarrying('nothing');
 
-        $this->exec('customer_points_update ' . $this->sourceListing('C-2'));
+        $this->exec('customer_points_update --file ' . $this->sourceListing('C-2'));
 
         $this->assertExitSuccess();
         $this->assertFalse($this->getTableLocator()->get('CustomerConnections')->exists(['id' => $connection]));

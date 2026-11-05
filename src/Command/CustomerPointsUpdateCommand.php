@@ -18,7 +18,7 @@ use RuntimeException;
 use Throwable;
 
 /**
- * Reads the customer points of the CRM, or a listing named on the command line.
+ * Reads the customer points of the CRM, or a kept listing named on the command line.
  */
 class CustomerPointsUpdateCommand extends Command
 {
@@ -31,8 +31,8 @@ class CustomerPointsUpdateCommand extends Command
     #[Override]
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
-        $parser->addArgument('url', [
-            'help' => 'URL from which to load data',
+        $parser->addOption('file', [
+            'help' => 'Path to a kept listing to replay instead of asking the CRM',
             'required' => false,
         ]);
 
@@ -50,8 +50,10 @@ class CustomerPointsUpdateCommand extends Command
     public function execute(Arguments $args, ConsoleIo $io)
     {
         try {
-            $url = $args->getArgument('url');
-            $provider = $url === null ? new CustomerPointProviderApi() : $this->listingAt($url);
+            $file = $args->getOption('file');
+            $provider = is_string($file) && $file !== ''
+                ? $this->keptListing($file)
+                : new CustomerPointProviderApi();
 
             (new CustomerPointsUpdateService($provider))->updateNow();
 
@@ -85,26 +87,22 @@ class CustomerPointsUpdateCommand extends Command
     /**
      * The listing the command line names.
      *
-     * @param string $url Where it is.
+     * @param string $path Where it is.
      * @return \App\CRM\Provider\CustomerPointProviderInterface
      * @throws \RuntimeException When it cannot be read.
      */
-    private function listingAt(string $url): CustomerPointProviderInterface
+    private function keptListing(string $path): CustomerPointProviderInterface
     {
-        $json = file_get_contents($url);
+        $json = is_readable($path) ? file_get_contents($path) : false;
 
         if ($json === false) {
-            throw new RuntimeException(
-                __('The customer points data could not be downloaded. Please, try again.'),
-            );
+            throw new RuntimeException(__('The kept reading could not be read: {0}', $path));
         }
 
         $decoded = json_decode($json, true);
 
         if (!is_array($decoded)) {
-            throw new RuntimeException(
-                __('The customer points data could not be decoded. Please, check the source data.'),
-            );
+            throw new RuntimeException(__('The kept reading is not a reading: {0}', $path));
         }
 
         return new CustomerPointProviderPayload($decoded);
