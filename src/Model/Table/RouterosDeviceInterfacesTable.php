@@ -31,6 +31,14 @@ use Override;
 class RouterosDeviceInterfacesTable extends AppTable
 {
     /**
+     * What an interface measures, as against what somebody set on it. It moves with every reading,
+     * so it stays out of the audit log, where it was most of what the log held.
+     *
+     * @var array<string>
+     */
+    private const MEASURED = ['noise_floor', 'client_count', 'overall_tx_ccq'];
+
+    /**
      * Initialize method
      *
      * @param array<string, mixed> $config The configuration for the Table.
@@ -40,6 +48,9 @@ class RouterosDeviceInterfacesTable extends AppTable
     public function initialize(array $config): void
     {
         parent::initialize($config);
+
+        $audit = $this->behaviors()->get('AuditLog');
+        $audit->setConfig('blacklist', array_merge((array)$audit->getConfig('blacklist'), self::MEASURED), false);
 
         $this->setTable('routeros_device_interfaces');
         $this->setDisplayField('name_for_lists');

@@ -53,6 +53,36 @@ class RouterosDeviceInterfacesTableTest extends TestCase
     }
 
     /**
+     * What an interface measures moves with every reading and stays out of the audit log, while
+     * what somebody set is what the log is there for.
+     *
+     * @return void
+     */
+    public function testOnlyWhatSomebodySetIsAudited(): void
+    {
+        $interfaces = $this->RouterosDeviceInterfaces;
+        $connection = $interfaces->getConnection();
+        $connection->execute('DELETE FROM audit_logs');
+
+        $logged = fn(): int => (int)$connection
+            ->selectQuery(['c' => 'count(*)'], 'audit_logs')
+            ->execute()
+            ->fetchAll('assoc')[0]['c'];
+
+        $interface = $interfaces->find()->firstOrFail();
+
+        $interfaces->saveOrFail($interfaces->patchEntity($interface, [
+            'noise_floor' => -104,
+            'client_count' => 17,
+            'overall_tx_ccq' => 86,
+        ]));
+        $this->assertSame(0, $logged(), 'A reading is not a change anybody made.');
+
+        $interfaces->saveOrFail($interfaces->patchEntity($interface, ['ssid' => 'Another network']));
+        $this->assertSame(1, $logged());
+    }
+
+    /**
      * tearDown method
      *
      * @return void
