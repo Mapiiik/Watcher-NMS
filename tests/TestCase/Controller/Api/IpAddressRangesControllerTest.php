@@ -120,6 +120,7 @@ class IpAddressRangesControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertResponseContains('"message"');
+        $this->assertResponseContains('"ipAddressRange"');
     }
 
     /**
@@ -138,6 +139,7 @@ class IpAddressRangesControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertResponseContains('"message"');
+        $this->assertResponseContains('"ipAddressRange"');
     }
 
     /**

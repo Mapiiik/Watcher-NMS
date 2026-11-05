@@ -138,7 +138,7 @@ class IpAddressRangesController extends AppController
         $message = $this->IpAddressRanges->save($ipAddressRange) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,
-            'accessPoint' => $ipAddressRange,
+            'ipAddressRange' => $ipAddressRange,
         ]);
         $this->viewBuilder()->setOption('serialize', ['ipAddressRange', 'message']);
     }
@@ -159,7 +159,7 @@ class IpAddressRangesController extends AppController
         $message = $this->IpAddressRanges->save($ipAddressRange) ? 'Saved' : 'Error';
         $this->set([
             'message' => $message,
-            'accessPoint' => $ipAddressRange,
+            'ipAddressRange' => $ipAddressRange,
         ]);
         $this->viewBuilder()->setOption('serialize', ['ipAddressRange', 'message']);
     }
