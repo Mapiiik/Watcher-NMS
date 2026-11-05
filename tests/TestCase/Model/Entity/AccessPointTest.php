@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Model\Entity;
 
 use App\Model\Entity\AccessPoint;
+use App\Model\Entity\ElectricityMeterReading;
 use App\Test\Traits\ConfigureTestTrait;
 use Cake\Cache\Cache;
 use Cake\Http\TestSuite\HttpClientTrait;
+use Cake\I18n\Date;
 use Cake\TestSuite\TestCase;
 use Maps\Geocoder\AddressRegistryGeocoder;
 use Override;
@@ -169,5 +171,37 @@ class AccessPointTest extends TestCase
                 (string)json_encode([$match]),
             ),
         );
+    }
+
+    /**
+     * Each reading says what was used per day since the one before it. Two of one day say nothing
+     * about a day, and neither does a reading nobody wrote a value for.
+     *
+     * @return void
+     */
+    public function testDailyConsumptionIsCountedBetweenReadings(): void
+    {
+        $reading = fn(string $day, ?float $value): ElectricityMeterReading => new ElectricityMeterReading([
+            'reading_date' => new Date($day),
+            'reading_value' => $value,
+        ]);
+
+        $newest = $reading('2026-10-11', 130.0);
+        $sameDay = $reading('2026-10-01', 100.0);
+        $repeated = $reading('2026-10-01', 90.0);
+        $noValue = $reading('2026-09-20', null);
+        $oldest = $reading('2026-09-10', 10.0);
+
+        $accessPoint = new AccessPoint([
+            'electricity_meter_readings' => [$newest, $sameDay, $repeated, $noValue, $oldest],
+        ]);
+
+        $accessPoint->workOutDailyConsumption();
+
+        $this->assertSame(3.0, $newest->daily_consumption);
+        $this->assertNull($sameDay->daily_consumption, 'Two readings of one day have no day between them.');
+        $this->assertNull($repeated->daily_consumption, 'A reading without a value has nothing to subtract.');
+        $this->assertNull($noValue->daily_consumption);
+        $this->assertNull($oldest->daily_consumption, 'There is nothing before the first reading.');
     }
 }

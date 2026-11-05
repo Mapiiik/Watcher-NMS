@@ -228,33 +228,7 @@ class AccessPointsController extends AppController
             'Archivers',
         ]);
 
-        // Calculation of daily consumption
-        $readingsCount = count($accessPoint->electricity_meter_readings);
-        for ($i = 0; $i < $readingsCount - 1; $i++) {
-            $new = $accessPoint->electricity_meter_readings[$i];
-            $old = $accessPoint->electricity_meter_readings[$i + 1];
-
-            // Don't handle differences between records from the same day
-            if ($new->reading_date == $old->reading_date) {
-                continue;
-            }
-            // Check that reading dates are set
-            if (!isset($new->reading_date)) {
-                continue;
-            }
-            if (!isset($old->reading_date)) {
-                continue;
-            }
-
-            $new->daily_consumption =
-                ($new->reading_value - $old->reading_value) / (float)$new->reading_date->diffInDays($old->reading_date);
-
-            $accessPoint->electricity_meter_readings[$i] = $new;
-
-            unset($new);
-            unset($old);
-        }
-        unset($readingsCount);
+        $accessPoint->workOutDailyConsumption();
 
         // Where the tasks are the other application's, they are asked for rather than joined in -
         // and what came of the asking travels with them, so the section can say it went unanswered

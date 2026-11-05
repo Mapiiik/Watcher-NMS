@@ -236,6 +236,34 @@ class AccessPoint extends AppEntity
     }
 
     /**
+     * Works out how much was used per day between each two electricity meter readings.
+     *
+     * The readings come newest first. Two of one day say nothing about a day, and a reading without
+     * a day or a value has nothing to count from.
+     *
+     * @return void
+     */
+    public function workOutDailyConsumption(): void
+    {
+        $readings = array_values($this->electricity_meter_readings ?? []);
+
+        foreach ($readings as $index => $new) {
+            $old = $readings[$index + 1] ?? null;
+
+            if (
+                $old === null
+                || !isset($new->reading_date, $old->reading_date, $new->reading_value, $old->reading_value)
+                || $new->reading_date->equals($old->reading_date)
+            ) {
+                continue;
+            }
+
+            $new->daily_consumption = ($new->reading_value - $old->reading_value)
+                / (float)$new->reading_date->diffInDays($old->reading_date);
+        }
+    }
+
+    /**
      * Indicates whether the entity is archived.
      *
      * Returns true when the `archived` timestamp is set, meaning the record
