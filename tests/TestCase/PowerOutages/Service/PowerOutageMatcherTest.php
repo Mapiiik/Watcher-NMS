@@ -89,6 +89,27 @@ class PowerOutageMatcherTest extends TestCase
     }
 
     /**
+     * Filling in the supply point turns the guessing off. Where the distributor lists it and this
+     * outage is not about it, the street next door says nothing: the mast is fed from elsewhere.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\PowerOutageMatcher::matchOne()
+     */
+    public function testASupplyPointTheOutageDoesNotNameTurnsTheGuessingOff(): void
+    {
+        $accessPoint = $this->accessPoint(
+            ean: '859182400000001231',
+            addresses: [$this->address(houseNumber: 129)],
+        );
+        $outage = $this->outage(
+            scopes: ['ean:859182400000009999'],
+            streets: [$this->street(houseNums: '126-131')],
+        );
+
+        $this->assertNull($this->matcher->matchOne($accessPoint, $outage));
+    }
+
+    /**
      * The distributor wrote down which buildings go dark, and ours is not one of them.
      *
      * The one thing the matcher says that rules a mast out rather than in, and worth its own test:

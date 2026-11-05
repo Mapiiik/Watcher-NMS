@@ -66,6 +66,12 @@ final class PowerOutageMatcher
             return $certain;
         }
 
+        // The supply point is the answer where it is known: what the addresses around the mast
+        // would add is a guess at something already settled.
+        if (trim(strval($accessPoint->electricity_ean)) !== '') {
+            return null;
+        }
+
         $best = null;
 
         foreach ($accessPoint->access_point_supply_addresses ?? [] as $address) {
