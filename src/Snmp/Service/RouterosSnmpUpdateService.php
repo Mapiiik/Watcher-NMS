@@ -92,9 +92,12 @@ final class RouterosSnmpUpdateService
             $accessPoint = $routerosDevices->AccessPoints
                 ->find('active')
                 ->where([
-                    ":rosName ILIKE AccessPoints.device_name || '%'",
+                    "AccessPoints.device_name <> ''",
+                    'LOWER(LEFT(:rosName, LENGTH(AccessPoints.device_name))) = LOWER(AccessPoints.device_name)',
                 ])
                 ->bind(':rosName', $devicePatch['name'], 'string')
+                // the longest name is what the device means, the shorter one only happens to fit
+                ->orderByDesc('LENGTH(AccessPoints.device_name)')
                 ->first();
 
             if ($accessPoint) {

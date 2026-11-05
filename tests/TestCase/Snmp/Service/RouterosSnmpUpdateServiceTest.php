@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Snmp\Service;
 
 use App\Model\Entity\RouterosDevice;
+use App\Model\Table\AccessPointsTable;
 use App\Model\Table\RouterosDevicesTable;
 use App\Snmp\Provider\RouterosSnmpProviderAgentPush;
 use App\Snmp\Service\RouterosSnmpUpdateService;
@@ -82,6 +83,63 @@ class RouterosSnmpUpdateServiceTest extends TestCase
         $routerosDevice = $this->updateFromAgent(self::ACTIVE_ACCESS_POINT_DEVICE_NAME . ' - sector 1');
 
         $this->assertSame(self::ACTIVE_ACCESS_POINT_ID, $routerosDevice->access_point_id);
+    }
+
+    /**
+     * Writes down an access point devices answer to.
+     *
+     * @param string $deviceName What their names start with.
+     * @return string Its id.
+     */
+    private function accessPointNamed(string $deviceName): string
+    {
+        $accessPoints = $this->fetchTable(AccessPointsTable::class);
+
+        return (string)$accessPoints->saveOrFail(
+            $accessPoints->newEntity(['name' => 'Mast ' . $deviceName, 'device_name' => $deviceName]),
+        )->get('id');
+    }
+
+    /**
+     * Where a device's name starts with what two masts answer to, the longer one is what it means:
+     * the shorter would take every device of the other. Rewritten at every reading, the wrong
+     * answer would also overwrite whatever an operator had put right by hand.
+     *
+     * @return void
+     */
+    public function testTheLongestMatchingNameDecides(): void
+    {
+        $this->accessPointNamed('hora');
+        $north = $this->accessPointNamed('hora-sever');
+
+        $this->assertSame($north, $this->updateFromAgent('hora-sever-1')->access_point_id);
+    }
+
+    /**
+     * What a mast answers to is a name to compare with, not a pattern to read.
+     *
+     * @return void
+     */
+    public function testANameIsNotReadAsAPattern(): void
+    {
+        $this->accessPointNamed('ho_a');
+
+        $this->assertNull($this->updateFromAgent('hora-1')->access_point_id);
+    }
+
+    /**
+     * Every name starts with nothing, so a mast with none written down answers to nobody.
+     *
+     * @return void
+     */
+    public function testAnEmptyNameAnswersToNobody(): void
+    {
+        $this->fetchTable(AccessPointsTable::class)->updateAll(
+            ['device_name' => ''],
+            ['id' => $this->accessPointNamed('nameless')],
+        );
+
+        $this->assertNull($this->updateFromAgent('A name no access point answers to')->access_point_id);
     }
 
     /**
