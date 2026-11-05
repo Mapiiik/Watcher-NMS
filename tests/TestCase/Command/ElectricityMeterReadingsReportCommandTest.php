@@ -7,6 +7,7 @@ use App\Command\ElectricityMeterReadingsReportCommand;
 use App\Test\Traits\ConfigureTestTrait;
 use Cake\Chronos\Chronos;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\I18n\I18n;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -120,6 +121,31 @@ class ElectricityMeterReadingsReportCommandTest extends TestCase
         $this->assertExitSuccess();
         $this->assertMailSentTo('meters@example.com');
         $this->assertMailContains('http://localhost/access-points/' . self::ACCESS_POINT_ID);
+    }
+
+    /**
+     * The first days of January can still lie in the last week of the year before, and the month
+     * is named by the calendar year rather than by the week the day falls into.
+     *
+     * Where a week belongs depends on the language, so it is asked in the one that shows it.
+     *
+     * @return void
+     * @link \App\Command\ElectricityMeterReadingsReportCommand::execute()
+     */
+    public function testTheMonthIsNamedByTheCalendarYear(): void
+    {
+        Chronos::setTestNow(new Chronos('2027-01-01'));
+        $locale = I18n::getLocale();
+        I18n::setLocale('cs_CZ');
+
+        try {
+            $this->exec('electricity_meter_readings_report meters@example.com');
+        } finally {
+            I18n::setLocale($locale);
+        }
+
+        $this->assertExitSuccess();
+        $this->assertMailSubjectContains('2027');
     }
 
     /**

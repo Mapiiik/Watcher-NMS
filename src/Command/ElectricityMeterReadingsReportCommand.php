@@ -110,7 +110,7 @@ class ElectricityMeterReadingsReportCommand extends Command
                     $mailer->addTo($recipient);
                 }
 
-                $mailer->setSubject(__('Electricity Meter Readings') . ' - ' . $now->i18nFormat('LLLL YYYY'));
+                $mailer->setSubject(__('Electricity Meter Readings') . ' - ' . $now->i18nFormat('LLLL yyyy'));
                 $mailer->setEmailFormat('html');
 
                 $mailer->viewBuilder()
@@ -127,7 +127,7 @@ class ElectricityMeterReadingsReportCommand extends Command
                 $mailer->setViewVars([
                     'title' => __(
                         'These electricity meter readings should take place in {month}.',
-                        ['month' => $now->i18nFormat('LLLL YYYY')],
+                        ['month' => $now->i18nFormat('LLLL yyyy')],
                     ),
                     'accessPoints' => $accessPoints,
                 ]);
