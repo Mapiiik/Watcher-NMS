@@ -199,6 +199,7 @@ return function (RouteBuilder $routes): void {
         //controllers related to access points
         $accessPointControllers = [
             'AccessPointContacts',
+            'Documentations',
             'ElectricityMeterReadings',
             'IpAddressRanges',
             'LandlordPayments',

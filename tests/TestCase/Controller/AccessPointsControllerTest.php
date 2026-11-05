@@ -490,6 +490,25 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * The papers of a mast are opened from its card, so what comes up is the papers of that mast
+     * rather than the whole shelf.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testTheCardLeadsToTheDocumentationOfThatAccessPoint(): void
+    {
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $place = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Mast with papers']));
+
+        $this->login();
+        $this->get('/access-points/' . $place->id);
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('/access-points/' . $place->id . '/documentations');
+    }
+
+    /**
      * Test utilization method
      *
      * @return void
