@@ -934,6 +934,38 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * What a device calls its interfaces is read off the device, so it is not ours to trust. The
+     * bubbles are HTML, and a name written into one as it came would run in whoever opens the map.
+     *
+     * @return void
+     * @link \App\Maps\NetworkMap::addWirelessLinks()
+     */
+    public function testMapEscapesTheNamesReadOffTheDevices(): void
+    {
+        $this->createMapTopology();
+        $this->getTableLocator()->get('RouterosDeviceInterfaces')->updateAll(
+            ['name' => '<img src=x onerror=alert(1)>'],
+            ['ssid' => 'ap-link'],
+        );
+
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-points/map', ['routeros_wireless_links' => 1]);
+
+        $this->assertResponseOk();
+
+        $written = '';
+        foreach ($this->markersDrawn() as $marker) {
+            $written .= $marker->content;
+        }
+
+        $this->assertStringContainsString('&lt;img src=x onerror=alert(1)&gt;', $written);
+        $this->assertStringNotContainsString('<img', $written);
+    }
+
+    /**
      * A customer hanging off the access point is drawn only when the operator asked for customers.
      * There are far more of them than there are access points, so they are left off by default.
      *

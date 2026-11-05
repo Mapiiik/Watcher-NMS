@@ -495,12 +495,16 @@ final class NetworkMap
             $neighbouringInterface = $routerosWirelessLink->neighbouring_interface;
             $neighbouringDevice = $neighbouringInterface?->routeros_device;
 
+            // Read off the devices, so not ours to trust, and the bubbles are HTML.
+            $nearName = h((string)$routerosWirelessLink->name);
+            $farName = h((string)$neighbouringInterface?->name);
+
             // add informations about wireless link to map marker for access point
             $content .=
                 '<li>'
-                . ' (' . $routerosWirelessLink->name . ') - '
+                . ' (' . $nearName . ') - '
                 . ($neighbouringDevice !== null ? $this->deviceLink($neighbouringDevice) : '')
-                . ' (' . $neighbouringInterface?->name . ')'
+                . ' (' . $farName . ')'
                 . '</li>';
 
             if ($neighbouringInterface === null || $neighbouringDevice === null) {
@@ -509,9 +513,9 @@ final class NetworkMap
 
             // what the far end is told about the link, whichever kind of place it turns out to be
             $told = $this->deviceLink($neighbouringDevice)
-                . ' (' . $neighbouringInterface->name . ') - '
+                . ' (' . $farName . ') - '
                 . $this->deviceLink($routerosDevice)
-                . ' (' . $routerosWirelessLink->name . ')';
+                . ' (' . $nearName . ')';
 
             // add map polyline and marker for wireless link (to access point)
             if (
