@@ -131,6 +131,7 @@ final class ApiClient
         // second refusal is the account being refused, not the token having run out.
         if ($authenticated && $response->getStatusCode() === 401) {
             $this->accessToken = null;
+            Cache::delete($this->tokenKey());
             $response = $this->send($path, $authenticated);
         }
 
@@ -212,7 +213,7 @@ final class ApiClient
             return $this->accessToken;
         }
 
-        $cacheKey = 'rlan_access_token_' . sha1($this->url . '|' . $this->email);
+        $cacheKey = $this->tokenKey();
 
         $cached = Cache::read($cacheKey);
         if (is_string($cached) && $cached !== '') {
@@ -228,6 +229,16 @@ final class ApiClient
         }
 
         return $this->accessToken = $token;
+    }
+
+    /**
+     * What the token of this account is kept under between runs.
+     *
+     * @return string
+     */
+    private function tokenKey(): string
+    {
+        return 'rlan_access_token_' . sha1($this->url . '|' . $this->email);
     }
 
     /**
