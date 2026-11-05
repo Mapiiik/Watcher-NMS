@@ -8,11 +8,13 @@ use Cake\Cache\Cache;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\Http\Client\Response;
 use Cake\Http\TestSuite\HttpClientTrait;
+use Cake\I18n\DateTime;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * App\Command\PowerOutagesUpdateCommand Test Case
@@ -201,6 +203,51 @@ class PowerOutagesUpdateCommandTest extends TestCase
         );
 
         $this->assertNotEmpty($secondMast);
+    }
+
+    /**
+     * An outage that has happened stops being published, and is kept for a while all the same: why
+     * a mast was dark last Tuesday is what the table is for. One still to come that nobody names
+     * any more was called off, and goes straight away.
+     *
+     * @param string $ended When the outage ends, against now.
+     * @param int $kept How many of the fixture's outages are expected to stay.
+     * @return void
+     * @link \App\PowerOutages\Service\PowerOutagesUpdateService::sweepOutages()
+     */
+    #[DataProvider('outagesNobodyNamesAnyMore')]
+    public function testAnOutageThatHappenedIsKeptForAWhile(string $ended, int $kept): void
+    {
+        $this->putMastInTown(self::KOLIN_ID, 533165);
+        $this->moveScopesTo('town:533165');
+        $this->outages()->updateAll(['ends_at' => DateTime::now()->modify($ended)], ['1 = 1']);
+        // Read by the run before this one: the clock of the tests stands still.
+        TableRegistry::getTableLocator()->get('PowerOutageScopes')->updateAll(
+            ['modified' => DateTime::now()->subDays(1)],
+            ['1 = 1'],
+        );
+
+        $this->mockClientGet(
+            'https://outages.example.com/cezd/api/inspecttown/533165',
+            $this->jsonResponse(['outages' => null]),
+        );
+
+        $this->exec('power_outages_update --resolve-limit=0');
+
+        $this->assertExitSuccess();
+        $this->assertSame($kept, $this->outages()->find()->count());
+    }
+
+    /**
+     * @return array<string, array{string, int}>
+     */
+    public static function outagesNobodyNamesAnyMore(): array
+    {
+        return [
+            'ended two days ago' => ['-2 days', 2],
+            'ended a month ago' => ['-30 days', 0],
+            'called off before it came' => ['+3 days', 0],
+        ];
     }
 
     /**

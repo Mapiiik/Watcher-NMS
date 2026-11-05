@@ -381,10 +381,14 @@ final class PowerOutagesUpdateService
             ]);
         }
 
-        // An outage no reading stands behind any more is one nobody publishes.
+        // An outage still to come that no reading stands behind any more was called off. One that
+        // has ended stopped being published by happening, and is left to the sweep below.
         $orphaned = $outages->find()
             ->leftJoinWith('PowerOutageScopes')
-            ->where(['PowerOutageScopes.id IS' => null])
+            ->where([
+                'PowerOutageScopes.id IS' => null,
+                'OR' => ['PowerOutages.ends_at IS' => null, 'PowerOutages.ends_at >=' => DateTime::now()],
+            ])
             ->all()
             ->extract('id')
             ->toList();
