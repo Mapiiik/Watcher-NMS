@@ -151,6 +151,26 @@ class AccessPointLocationResolverTest extends TestCase
     }
 
     /**
+     * The mast is in the audit log. The addresses keep none, but the transaction around them would
+     * keep the mast out as well.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\AccessPointLocationResolver::resolve()
+     */
+    public function testTheMastThatWasLookedUpIsLogged(): void
+    {
+        $this->mockRegistry([$this->match()]);
+        $connection = $this->AccessPoints->getConnection();
+        $connection->execute('DELETE FROM audit_logs');
+
+        $this->resolver()->resolve($this->accessPoint());
+
+        $logged = $connection->execute('SELECT source FROM audit_logs')->fetchAll('assoc');
+
+        $this->assertSame(['AccessPoints'], array_column($logged, 'source'));
+    }
+
+    /**
      * The registry being unreachable leaves what was found before it standing.
      *
      * @return void

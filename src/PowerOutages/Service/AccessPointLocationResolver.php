@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\PowerOutages\Service;
 
 use App\Addresses\ApiClient;
+use App\Model\Audit\AuditTrail;
 use App\Model\Entity\AccessPoint;
 use Cake\Collection\CollectionInterface;
 use Cake\I18n\DateTime;
@@ -138,7 +139,11 @@ final class AccessPointLocationResolver
             ]);
         }
 
-        $replace = function () use ($accessPoint, $accessPoints, $addresses, $rows): void {
+        // The addresses keep no audit log, but the mast does, and nothing written inside a
+        // transaction reaches it on its own.
+        $trail = new AuditTrail();
+
+        $replace = function () use ($accessPoint, $accessPoints, $addresses, $rows, $trail): void {
             $addresses->deleteAll(['access_point_id' => $accessPoint->id]);
 
             if ($rows !== []) {
@@ -149,10 +154,11 @@ final class AccessPointLocationResolver
             $accessPoint->set('supply_resolution_failed', null);
             $accessPoint->set('supply_resolved_gps_x', (float)$accessPoint->gps_x);
             $accessPoint->set('supply_resolved_gps_y', (float)$accessPoint->gps_y);
-            $accessPoints->saveOrFail($accessPoint);
+            $accessPoints->saveOrFail($accessPoint, $trail->options());
         };
 
         $addresses->getConnection()->transactional($replace);
+        $trail->flush($accessPoints, $accessPoint);
 
         $accessPoint->set('access_point_supply_addresses', $rows);
 

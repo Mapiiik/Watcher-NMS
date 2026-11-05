@@ -338,6 +338,8 @@ class PowerOutagesUpdateCommandTest extends TestCase
             'https://portal.example.com/shutdown-search',
             $this->jsonResponse(['statusCode' => 200, 'data' => []]),
         );
+        $connection = $addresses->getConnection();
+        $connection->execute('DELETE FROM audit_logs');
 
         $this->exec(sprintf(
             'power_outages_update --dry-run --force-resolve --access-point=%s',
@@ -349,6 +351,11 @@ class PowerOutagesUpdateCommandTest extends TestCase
             0,
             $addresses->find()->where(['access_point_id' => self::KOLIN_ID])->count(),
             'A dry run kept the addresses it looked up.',
+        );
+        $this->assertSame(
+            0,
+            (int)$connection->execute('SELECT count(*) FROM audit_logs')->fetchColumn(0),
+            'A dry run left an entry in the audit log.',
         );
     }
 
