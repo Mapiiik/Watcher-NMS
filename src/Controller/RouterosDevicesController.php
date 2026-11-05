@@ -292,7 +292,7 @@ class RouterosDevicesController extends AppController
             return $this->afterEditRedirect(['action' => 'view', $updatedDevice->id]);
         } catch (RuntimeException $e) {
             Log::error(sprintf(
-                'SNMP update failed for RouterOS device %d (%s): %s',
+                'SNMP update failed for RouterOS device %s (%s): %s',
                 $routerosDevice->id,
                 $routerosDevice->ip_address,
                 $e->getMessage(),
