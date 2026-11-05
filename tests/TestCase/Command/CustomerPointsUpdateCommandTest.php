@@ -229,6 +229,24 @@ class CustomerPointsUpdateCommandTest extends TestCase
     }
 
     /**
+     * An empty list reads perfectly well and says something no running network ever says. Taken at
+     * its word it would throw away everything here, so it is treated as what it is.
+     *
+     * @return void
+     * @link \App\Command\CustomerPointsUpdateCommand::execute()
+     */
+    public function testExecuteLeavesEverythingWhenTheSourceListsNothing(): void
+    {
+        $this->exec('customer_points_update ' . $this->source('[]'));
+
+        $this->assertExitError();
+        $this->assertTrue(
+            $this->getTableLocator()->get('CustomerConnections')
+                ->exists(['contract_number' => self::KNOWN_CONTRACT]),
+        );
+    }
+
+    /**
      * A connection the CRM has stopped listing, but which something here still hangs off, is put
      * away rather than thrown away.
      *

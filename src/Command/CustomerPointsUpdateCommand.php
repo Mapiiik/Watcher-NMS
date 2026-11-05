@@ -90,6 +90,14 @@ class CustomerPointsUpdateCommand extends Command
                 );
             }
 
+            // Emptying the mirror is the one thing this must never do by accident, and a network
+            // with nobody on it is not a thing to find out from a listing that went blank.
+            if ($decoded === []) {
+                throw new RuntimeException(
+                    __('The customer points data named nobody at all, so nothing was changed.'),
+                );
+            }
+
             foreach (CustomerPointPayloadNormalizer::customerPoints($decoded) as $importCustomerPoint) {
                 if ($importCustomerPoint->hasLocation()) {
                     $customerPoint = $customerPointsTable->findOrNewEntity([
