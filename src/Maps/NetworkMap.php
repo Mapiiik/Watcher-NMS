@@ -5,7 +5,6 @@ namespace App\Maps;
 
 use App\Form\MapOptionsForm;
 use App\Model\Entity\AccessPoint;
-use App\Model\Entity\CustomerConnection;
 use App\Model\Entity\CustomerPoint;
 use App\Model\Entity\RouterosDevice;
 use App\Model\Enum\MaximumAge;
@@ -28,20 +27,13 @@ use Maps\Position;
  * Which of the layers are drawn is the operator's choice, and each of them says for itself what it
  * has to read and what it draws. Nothing is read for a layer that was not asked for.
  *
- * The bubbles are written here rather than in the template because a marker carries its own, and
+ * The popups are written here rather than in the template because a marker carries its own, and
  * one is built out of several layers at once - the access point, its devices, and every link of
  * each. The helper is handed in rather than reached for, so that what writes them can be swapped.
  */
 final class NetworkMap
 {
     use LocatorAwareTrait;
-
-    /**
-     * A bubble is read while the map is still wanted, so what it points at opens beside it.
-     *
-     * @var array<string, string>
-     */
-    private const LINK_OPTIONS = ['target' => '_blank'];
 
     /**
      * What colour says which layer a line belongs to.
@@ -69,13 +61,21 @@ final class NetworkMap
     private const CUSTOMER_POINT_COLOR = '#65ba4a';
 
     /**
-     * @param \Cake\View\Helper\HtmlHelper $html What the bubbles are written with.
+     * What the popups are written with.
+     *
+     * @var \App\Maps\NetworkMapPopup
+     */
+    private NetworkMapPopup $popup;
+
+    /**
+     * @param \Cake\View\Helper\HtmlHelper $html What the links in the popups are written with.
      * @param \App\Model\Enum\MaximumAge $maximumAge How old a reading may be and still be drawn.
      */
     public function __construct(
-        private readonly HtmlHelper $html,
+        HtmlHelper $html,
         private readonly MaximumAge $maximumAge = MaximumAge::FALLBACK,
     ) {
+        $this->popup = new NetworkMapPopup($html);
     }
 
     /**
@@ -149,26 +149,10 @@ final class NetworkMap
                 );
                 $linkedCustomers = $options->getData('linked_customers') == 1;
 
-                $content =
-                    '<b>'
-                    . $this->html->link(
-                        $accessPoint->name ?? '(' . $accessPoint->id . ')',
-                        ['controller' => 'AccessPoints', 'action' => 'view', $accessPoint->id],
-                        self::LINK_OPTIONS,
-                    )
-                    . '</b>' . '<br>' . '<br>';
+                $content = $this->popup->placeHeading($accessPoint) . '<br>' . '<br>';
 
                 foreach ($accessPoint->routeros_devices as $routerosDevice) {
-                    $content .=
-                        $this->html->link(
-                            $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
-                            [
-                                'controller' => 'RouterosDevices',
-                                'action' => 'view',
-                                $routerosDevice->id,
-                            ],
-                            self::LINK_OPTIONS,
-                        ) . '<br>';
+                    $content .= $this->popup->deviceLink($routerosDevice) . '<br>';
 
                     $content .= '<ul>';
 
@@ -394,7 +378,7 @@ final class NetworkMap
      * @param bool $linkedCustomers Whether the ends standing at a customer are wanted.
      * @param array<string, \Maps\Marker> $mapMarkers Markers gathered so far.
      * @param array<string, \Maps\Polyline> $mapPolylines Lines gathered so far.
-     * @return string What to add to the bubble of the access point.
+     * @return string What to add to the popup of the access point.
      */
     private function addIpLinks(
         AccessPoint $accessPoint,
@@ -411,22 +395,18 @@ final class NetworkMap
             $neighbouringAddress = $routerosIpLink->neighbouring_ip_address;
             $neighbouringDevice = $neighbouringAddress->routeros_device ?? null;
 
+            $nearAddress = (string)$routerosIpLink->ip_address;
+            $farAddress = (string)$neighbouringAddress->ip_address;
+
             // add informations about IP link to map marker for access point
-            $content .=
-                '<li>'
-                . ' (' . $routerosIpLink->ip_address . ') - '
-                . ($neighbouringDevice !== null ? $this->deviceLink($neighbouringDevice) : '')
-                . ' (' . $neighbouringAddress->ip_address . ')' . '</li>';
+            $content .= $this->popup->linkRow($nearAddress, $neighbouringDevice, $farAddress);
 
             if ($neighbouringDevice === null) {
                 continue;
             }
 
             // what the far end is told about the link, whichever kind of place it turns out to be
-            $told = $this->deviceLink($neighbouringDevice)
-                . ' (' . $neighbouringAddress->ip_address . ') - '
-                . $this->deviceLink($routerosDevice)
-                . ' (' . $routerosIpLink->ip_address . ')';
+            $told = $this->popup->linkSummary($neighbouringDevice, $farAddress, $routerosDevice, $nearAddress);
 
             // add map polyline and marker for IP link (to access point)
             if (
@@ -456,7 +436,7 @@ final class NetworkMap
                     $neighbouringDevice->customer_connection->customer_point,
                     self::IP_LINK_COLOR,
                     self::WEIGHT_TO_CUSTOMER,
-                    $this->connectionLink($neighbouringDevice->customer_connection) . '<br>' . $told,
+                    $this->popup->connectionLink($neighbouringDevice->customer_connection) . '<br>' . $told,
                     $mapMarkers,
                     $mapPolylines,
                 );
@@ -478,7 +458,7 @@ final class NetworkMap
      * @param bool $linkedCustomers Whether the ends standing at a customer are wanted.
      * @param array<string, \Maps\Marker> $mapMarkers Markers gathered so far.
      * @param array<string, \Maps\Polyline> $mapPolylines Lines gathered so far.
-     * @return string What to add to the bubble of the access point.
+     * @return string What to add to the popup of the access point.
      */
     private function addWirelessLinks(
         AccessPoint $accessPoint,
@@ -495,27 +475,18 @@ final class NetworkMap
             $neighbouringInterface = $routerosWirelessLink->neighbouring_interface;
             $neighbouringDevice = $neighbouringInterface?->routeros_device;
 
-            // Read off the devices, so not ours to trust, and the bubbles are HTML.
-            $nearName = h((string)$routerosWirelessLink->name);
-            $farName = h((string)$neighbouringInterface?->name);
+            $nearName = (string)$routerosWirelessLink->name;
+            $farName = (string)$neighbouringInterface?->name;
 
             // add informations about wireless link to map marker for access point
-            $content .=
-                '<li>'
-                . ' (' . $nearName . ') - '
-                . ($neighbouringDevice !== null ? $this->deviceLink($neighbouringDevice) : '')
-                . ' (' . $farName . ')'
-                . '</li>';
+            $content .= $this->popup->linkRow($nearName, $neighbouringDevice, $farName);
 
             if ($neighbouringInterface === null || $neighbouringDevice === null) {
                 continue;
             }
 
             // what the far end is told about the link, whichever kind of place it turns out to be
-            $told = $this->deviceLink($neighbouringDevice)
-                . ' (' . $farName . ') - '
-                . $this->deviceLink($routerosDevice)
-                . ' (' . $nearName . ')';
+            $told = $this->popup->linkSummary($neighbouringDevice, $farName, $routerosDevice, $nearName);
 
             // add map polyline and marker for wireless link (to access point)
             if (
@@ -545,7 +516,7 @@ final class NetworkMap
                     $neighbouringDevice->customer_connection->customer_point,
                     self::WIRELESS_LINK_COLOR,
                     self::WEIGHT_TO_CUSTOMER,
-                    $this->connectionLink($neighbouringDevice->customer_connection) . '<br>' . $told,
+                    $this->popup->connectionLink($neighbouringDevice->customer_connection) . '<br>' . $told,
                     $mapMarkers,
                     $mapPolylines,
                 );
@@ -573,7 +544,7 @@ final class NetworkMap
      * @param bool $linkedCustomers Whether the ends standing at a customer are wanted.
      * @param array<string, \Maps\Marker> $mapMarkers Markers gathered so far.
      * @param array<string, \Maps\Polyline> $mapPolylines Lines gathered so far.
-     * @return string What to add to the bubble of the access point.
+     * @return string What to add to the popup of the access point.
      */
     private function addRadioLinks(
         AccessPoint $accessPoint,
@@ -591,29 +562,14 @@ final class NetworkMap
 
             $radioLink = $radioUnit->radio_link;
 
-            $content .=
-                $this->html->link(
-                    $radioUnit->name ?? '(' . $radioUnit->id . ')',
-                    ['controller' => 'RadioUnits', 'action' => 'view', $radioUnit->id],
-                    self::LINK_OPTIONS,
-                ) . '<br>';
+            $content .= $this->popup->radioUnitLink($radioUnit) . '<br>';
 
             $content .= '<ul>';
 
             foreach ($radioUnit->neighbouring_radio_units as $farEnd) {
                 // what the link and the far end of it are called, which is both what this access
                 // point is told about them and what they are told about this one
-                $told = $this->html->link(
-                    $radioLink->name ?? '(' . $radioLink->id . ')',
-                    ['controller' => 'RadioLinks', 'action' => 'view', $radioLink->id],
-                    self::LINK_OPTIONS,
-                )
-                . ' - '
-                . $this->html->link(
-                    $farEnd->name ?? '(' . $farEnd->id . ')',
-                    ['controller' => 'RadioUnits', 'action' => 'view', $farEnd->id],
-                    self::LINK_OPTIONS,
-                );
+                $told = $this->popup->radioLinkSummary($radioLink, $farEnd);
 
                 // add informations about the radio link to map marker for access point
                 $content .= '<li>' . $told . '</li>';
@@ -647,7 +603,7 @@ final class NetworkMap
                         $farEnd->customer_connection->customer_point,
                         self::RADIO_LINK_COLOR,
                         self::WEIGHT_TO_CUSTOMER,
-                        $this->connectionLink($farEnd->customer_connection) . '<br>' . $told,
+                        $this->popup->connectionLink($farEnd->customer_connection) . '<br>' . $told,
                         $mapMarkers,
                         $mapPolylines,
                         $radioLink->id,
@@ -668,14 +624,14 @@ final class NetworkMap
      * about the link - the three go together, and every layer wants all three.
      *
      * A place nobody has surveyed is not drawn: a line to nowhere is worse than no line, and the
-     * bubble would name a link the map does not show.
+     * popup would name a link the map does not show.
      *
      * @param \App\Model\Entity\AccessPoint $accessPoint The access point being drawn.
      * @param \Maps\Position $from Where it stands.
      * @param \App\Model\Entity\AccessPoint|\App\Model\Entity\CustomerPoint $place The other end.
      * @param string $color What colour says which layer the line belongs to.
      * @param int $weight How heavy the line is drawn.
-     * @param string $told What to add to the bubble of the place.
+     * @param string $told What to add to the popup of the place.
      * @param array<string, \Maps\Marker> $mapMarkers Markers gathered so far.
      * @param array<string, \Maps\Polyline> $mapPolylines Lines gathered so far.
      * @param string|null $link The link itself, where two of them between one pair are two lines.
@@ -738,52 +694,9 @@ final class NetworkMap
             color: $ours
                 ? ($place->access_point_type->color ?? self::ACCESS_POINT_COLOR)
                 : self::CUSTOMER_POINT_COLOR,
-            content: '<b>'
-                . $this->html->link(
-                    $named,
-                    [
-                        'controller' => $ours ? 'AccessPoints' : 'CustomerPoints',
-                        'action' => 'view',
-                        $place->id,
-                    ],
-                    self::LINK_OPTIONS,
-                )
-                . '</b>'
-                . '<br>',
+            content: $this->popup->placeHeading($place) . '<br>',
             locked: false,
         );
-    }
-
-    /**
-     * A device, written the way every bubble writes one.
-     *
-     * @param \App\Model\Entity\RouterosDevice $routerosDevice The device to name.
-     * @return string
-     */
-    private function deviceLink(RouterosDevice $routerosDevice): string
-    {
-        return $this->html->link(
-            $routerosDevice->name ?? '(' . $routerosDevice->id . ')',
-            ['controller' => 'RouterosDevices', 'action' => 'view', $routerosDevice->id],
-            self::LINK_OPTIONS,
-        );
-    }
-
-    /**
-     * A customer connection, written the way every bubble writes one.
-     *
-     * @param \App\Model\Entity\CustomerConnection $customerConnection The connection to name.
-     * @return string
-     */
-    private function connectionLink(CustomerConnection $customerConnection): string
-    {
-        return '<b>'
-            . $this->html->link(
-                $customerConnection->name ?? '(' . $customerConnection->id . ')',
-                ['controller' => 'CustomerConnections', 'action' => 'view', $customerConnection->id],
-                self::LINK_OPTIONS,
-            )
-            . '</b>';
     }
 
     /**
