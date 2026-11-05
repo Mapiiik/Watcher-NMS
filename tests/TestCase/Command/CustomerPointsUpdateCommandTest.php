@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Command;
 use App\Command\CustomerPointsUpdateCommand;
 use App\Test\Traits\ConfigureTestTrait;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Http\TestSuite\HttpClientTrait;
 use Cake\I18n\DateTime;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
@@ -26,6 +27,7 @@ class CustomerPointsUpdateCommandTest extends TestCase
     use ConfigureTestTrait;
     use ConsoleIntegrationTestTrait;
     use EmailTrait;
+    use HttpClientTrait;
 
     /**
      * The connection the fixture holds, which it holds as archived.
@@ -181,6 +183,96 @@ class CustomerPointsUpdateCommandTest extends TestCase
         );
         $this->assertTrue(
             $this->getTableLocator()->get('CustomerConnectionIps')->exists(['ip_address' => '10.0.0.1']),
+        );
+    }
+
+    /**
+     * A contract without a number yet has nothing to be recognised by, so it waits for one. The
+     * rest of the listing is not held up for it.
+     *
+     * @return void
+     * @link \App\CRM\Service\CustomerPointsUpdateService::updateNow()
+     */
+    public function testExecutePassesOverAConnectionWithoutAContractNumber(): void
+    {
+        $this->exec('customer_points_update ' . $this->source((string)json_encode([
+            [
+                'gps_x' => 50.1,
+                'gps_y' => 14.4,
+                'name' => 'Imported point',
+                'CustomerConnections' => [
+                    [
+                        'customer_number' => 'C-1',
+                        'contract_number' => null,
+                        'name' => 'Not numbered yet',
+                        'CustomerConnectionIps' => [],
+                    ],
+                    [
+                        'customer_number' => 'C-1',
+                        'contract_number' => 'CT-1',
+                        'name' => 'Imported connection',
+                        'CustomerConnectionIps' => [],
+                    ],
+                ],
+            ],
+        ])));
+
+        $this->assertExitSuccess();
+
+        $connections = $this->getTableLocator()->get('CustomerConnections');
+        $this->assertTrue($connections->exists(['contract_number' => 'CT-1']));
+        $this->assertFalse($connections->exists(['name' => 'Not numbered yet']));
+    }
+
+    /**
+     * Named no source, the run asks the CRM itself, and with the key in the header.
+     *
+     * @return void
+     * @link \App\CRM\ApiClient::customerPoints()
+     */
+    public function testExecuteAsksTheCrmWhereNoSourceIsNamed(): void
+    {
+        $this->withConfigure(['Crm.url' => 'https://crm.example.com', 'Crm.key' => 'secret']);
+
+        $this->mockClientGet(
+            'https://crm.example.com/api/customers/customer-points.json',
+            $this->newClientResponse(
+                200,
+                ['Content-Type: application/json'],
+                (string)file_get_contents($this->sourceListing('CT-1')),
+            ),
+            ['headers' => ['Authorization' => 'Bearer secret']],
+        );
+
+        $this->exec('customer_points_update');
+
+        $this->assertExitSuccess();
+        $this->assertTrue(
+            $this->getTableLocator()->get('CustomerConnections')->exists(['contract_number' => 'CT-1']),
+        );
+    }
+
+    /**
+     * The CRM not answering is no news about the network, so nothing here changes because of it.
+     *
+     * @return void
+     * @link \App\CRM\Provider\CustomerPointProviderApi::read()
+     */
+    public function testExecuteLeavesEverythingWhenTheCrmDoesNotAnswer(): void
+    {
+        $this->withConfigure(['Crm.url' => 'https://crm.example.com', 'Crm.key' => 'secret']);
+
+        $this->mockClientGet(
+            'https://crm.example.com/api/customers/customer-points.json',
+            $this->newClientResponse(503),
+        );
+
+        $this->exec('customer_points_update');
+
+        $this->assertExitError();
+        $this->assertTrue(
+            $this->getTableLocator()->get('CustomerConnections')
+                ->exists(['contract_number' => self::KNOWN_CONTRACT]),
         );
     }
 

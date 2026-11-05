@@ -37,6 +37,14 @@ class ApiClient
     private const TIMEOUT = 10;
 
     /**
+     * How long to wait for the listing of every customer point, in seconds.
+     *
+     * The other application puts it together on the spot, addresses looked up and all, and nobody
+     * is waiting at a page for it.
+     */
+    private const LISTING_TIMEOUT = 300;
+
+    /**
      * How much of what the other application keeps stands on one place of the network.
      *
      * The answer is counts by what the records are, so a caller can say which of them is in the
@@ -114,13 +122,24 @@ class ApiClient
     }
 
     /**
+     * Every customer point the other application knows, with what hangs off each.
+     *
+     * @return \App\Http\Answer<array<mixed>>
+     */
+    public static function customerPoints(): Answer
+    {
+        return self::fetch('/api/customers/customer-points.json', timeout: self::LISTING_TIMEOUT);
+    }
+
+    /**
      * Whatever the other application answers with, read no further than into an array.
      *
      * @param string $path What to read.
      * @param array<string, string> $query What to narrow it by.
+     * @param int $timeout How long to wait, in seconds.
      * @return \App\Http\Answer<array<mixed>>
      */
-    private static function fetch(string $path, array $query = []): Answer
+    private static function fetch(string $path, array $query = [], int $timeout = self::TIMEOUT): Answer
     {
         // Not being configured is a state, not a failure - an installation without a customer
         // relationship management says so by leaving the address empty, and nobody asked.
@@ -134,7 +153,7 @@ class ApiClient
             $verify = Configure::read('Crm.verifyTls') !== false;
 
             $client = new Client([
-                'timeout' => self::TIMEOUT,
+                'timeout' => $timeout,
                 // the name is checked by `ssl_verify_peer_name` in the stream adapter, by
                 // `ssl_verify_host` in curl
                 'ssl_verify_peer' => $verify,
