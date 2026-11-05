@@ -26,32 +26,8 @@ class RouterosDevicesController extends AppController
      */
     public function index(): void
     {
-        // filter
-        $conditions = [];
-        if ($this->access_point_id !== null) {
-            $conditions[] = [
-                'RouterosDevices.access_point_id' => $this->access_point_id,
-            ];
-        }
         $maximumAge = MaximumAge::fromQuery($this->getRequest()->getQuery('maximum_age'));
-        $conditions[] = ['RouterosDevices.modified >' => $maximumAge->since()];
-
-        // search
-        $search = $this->getRequest()->getQuery('search');
-        if (!empty($search)) {
-            $conditions[] = [
-                'OR' => [
-                    'RouterosDevices.name ILIKE' => '%' . trim((string)$search) . '%',
-                    'RouterosDevices.ip_address::character varying ILIKE' => '%' . trim((string)$search) . '%',
-                    'RouterosDevices.system_description ILIKE' => '%' . trim((string)$search) . '%',
-                    'RouterosDevices.board_name ILIKE' => '%' . trim((string)$search) . '%',
-                    'RouterosDevices.serial_number ILIKE' => '%' . trim((string)$search) . '%',
-                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
-                    'DeviceTypes.name ILIKE' => '%' . trim((string)$search) . '%',
-                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
-                ],
-            ];
-        }
+        $conditions = $this->listingConditions($maximumAge);
 
         $this->paginate = [
             'order' => ['name' => 'ASC'],
@@ -313,32 +289,8 @@ class RouterosDevicesController extends AppController
      */
     public function export(): void
     {
-        // filter
-        $conditions = [];
-        if ($this->access_point_id !== null) {
-            $conditions[] = [
-                'RouterosDevices.access_point_id' => $this->access_point_id,
-            ];
-        }
         $maximumAge = MaximumAge::fromQuery($this->getRequest()->getQuery('maximum_age'));
-        $conditions[] = ['RouterosDevices.modified >' => $maximumAge->since()];
-
-        // search
-        $search = $this->getRequest()->getQuery('search');
-        if (!empty($search)) {
-            $conditions[] = [
-                'OR' => [
-                    'RouterosDevices.name ILIKE' => '%' . trim((string)$search) . '%',
-                    'RouterosDevices.ip_address::character varying ILIKE' => '%' . trim((string)$search) . '%',
-                    'RouterosDevices.system_description ILIKE' => '%' . trim((string)$search) . '%',
-                    'RouterosDevices.board_name ILIKE' => '%' . trim((string)$search) . '%',
-                    'RouterosDevices.serial_number ILIKE' => '%' . trim((string)$search) . '%',
-                    'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
-                    'DeviceTypes.name ILIKE' => '%' . trim((string)$search) . '%',
-                    'CustomerConnections.name ILIKE' => '%' . trim((string)$search) . '%',
-                ],
-            ];
-        }
+        $conditions = $this->listingConditions($maximumAge);
 
         $routerosDevices = $this->RouterosDevices->find(
             'all',
@@ -358,5 +310,40 @@ class RouterosDevicesController extends AppController
         );
 
         $this->set(compact('routerosDevices', 'maximumAge'));
+    }
+
+    /**
+     * What the listing and its export are narrowed by.
+     *
+     * @param \App\Model\Enum\MaximumAge $maximumAge How old a reading may be.
+     * @return array<array<string, mixed>>
+     */
+    private function listingConditions(MaximumAge $maximumAge): array
+    {
+        $conditions = [['RouterosDevices.modified >' => $maximumAge->since()]];
+
+        if ($this->access_point_id !== null) {
+            $conditions[] = ['RouterosDevices.access_point_id' => $this->access_point_id];
+        }
+
+        $search = trim((string)$this->getRequest()->getQuery('search'));
+
+        if ($search !== '') {
+            $like = '%' . $search . '%';
+            $conditions[] = [
+                'OR' => [
+                    'RouterosDevices.name ILIKE' => $like,
+                    'RouterosDevices.ip_address::character varying ILIKE' => $like,
+                    'RouterosDevices.system_description ILIKE' => $like,
+                    'RouterosDevices.board_name ILIKE' => $like,
+                    'RouterosDevices.serial_number ILIKE' => $like,
+                    'AccessPoints.name ILIKE' => $like,
+                    'DeviceTypes.name ILIKE' => $like,
+                    'CustomerConnections.name ILIKE' => $like,
+                ],
+            ];
+        }
+
+        return $conditions;
     }
 }
