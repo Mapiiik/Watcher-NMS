@@ -151,15 +151,39 @@ class AuditTrailTest extends TestCase
             $maker->set('name', 'Renamed ' . $position);
         }
 
-        $makers->saveManyOrFail($batch, (new AuditTrail())->options());
+        $makers->saveManyOrFail($batch, AuditTrail::batchOptions());
 
         $this->assertSame(2, $this->logged());
-        $this->assertSame(
-            1,
-            (int)$makers->getConnection()
-                ->execute('SELECT count(DISTINCT transaction_key) FROM audit_logs')
-                ->fetchColumn(0),
-        );
+        $this->assertSame(1, $this->acts());
+    }
+
+    /**
+     * A batch of deletes writes itself out as well, every record once and all of them one act.
+     * Each batch needs a trail of its own: the behaviour does not empty the one it is handed.
+     *
+     * @return void
+     */
+    public function testABatchOfDeletesIsLoggedOnceAsOneAct(): void
+    {
+        $makers = $this->getTableLocator()->get('Manufacturers');
+        $copy = $makers->find()->firstOrFail()->toArray();
+        unset($copy['id']);
+
+        $batch = [];
+        for ($number = 0; $number < 3; $number++) {
+            $maker = $makers->newEntity(
+                ['name' => 'Copy ' . $number] + $copy,
+                ['validate' => false, 'accessibleFields' => ['*' => true]],
+            );
+            $makers->saveOrFail($maker, ['checkRules' => false]);
+            $batch[] = $maker;
+        }
+        $makers->getConnection()->execute('DELETE FROM audit_logs');
+
+        $makers->deleteManyOrFail($batch, AuditTrail::batchOptions());
+
+        $this->assertSame(3, $this->logged());
+        $this->assertSame(1, $this->acts());
     }
 
     /**
@@ -192,5 +216,15 @@ class AuditTrailTest extends TestCase
             ->fetchAll('assoc');
 
         return (int)$rows[0]['c'];
+    }
+
+    /**
+     * @return int How many acts the audit log holds.
+     */
+    private function acts(): int
+    {
+        return (int)$this->getTableLocator()->get('Manufacturers')->getConnection()
+            ->execute('SELECT count(DISTINCT transaction_key) FROM audit_logs')
+            ->fetchColumn(0);
     }
 }

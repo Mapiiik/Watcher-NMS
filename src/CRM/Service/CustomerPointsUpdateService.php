@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\CRM\Service;
 
 use App\CRM\Provider\CustomerPointProviderInterface;
+use App\Model\Audit\AuditTrail;
 use App\Model\Table\CustomerConnectionIpsTable;
 use App\Model\Table\CustomerConnectionsTable;
 use App\Model\Table\CustomerPointsTable;
@@ -190,6 +191,7 @@ final class CustomerPointsUpdateService
             $customerConnectionIpsTable->find()
                 ->where(['CustomerConnectionIps.modified <' => $startTime])
                 ->all(),
+            AuditTrail::batchOptions(),
         );
 
         /**
@@ -288,6 +290,7 @@ final class CustomerPointsUpdateService
                         ->notExists($hasIp);
                 })
                 ->all(),
+            AuditTrail::batchOptions(),
         );
 
         /**
@@ -311,6 +314,7 @@ final class CustomerPointsUpdateService
                         ->notExists($hasConnection);
                 })
                 ->all(),
+            AuditTrail::batchOptions(),
         );
     }
 }

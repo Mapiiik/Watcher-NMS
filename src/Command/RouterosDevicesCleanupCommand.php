@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Model\Audit\AuditTrail;
 use App\Model\Table\RouterosDeviceInterfacesTable;
 use App\Model\Table\RouterosDeviceIpsTable;
 use App\Model\Table\RouterosDevicesTable;
@@ -56,7 +57,10 @@ class RouterosDevicesCleanupCommand extends Command
 
             foreach ([RouterosDeviceInterfacesTable::class, RouterosDeviceIpsTable::class] as $class) {
                 $table = $this->fetchTable($class);
-                $table->deleteManyOrFail($table->find()->where(['modified <' => $threshold])->all());
+                $table->deleteManyOrFail(
+                    $table->find()->where(['modified <' => $threshold])->all(),
+                    AuditTrail::batchOptions(),
+                );
             }
 
             // A device is refused while anything of it is left, and one refusal stops the whole batch.
@@ -67,6 +71,7 @@ class RouterosDevicesCleanupCommand extends Command
                     ->notMatching('RouterosDeviceInterfaces')
                     ->notMatching('RouterosDeviceIps')
                     ->all(),
+                AuditTrail::batchOptions(),
             );
 
             $io->success(__('The stale RouterOS records have been removed.'));

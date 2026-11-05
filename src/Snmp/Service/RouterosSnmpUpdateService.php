@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Snmp\Service;
 
+use App\Model\Audit\AuditTrail;
 use App\Model\Entity\RouterosDevice;
 use App\Model\Table\RouterosDeviceInterfacesTable;
 use App\Model\Table\RouterosDeviceIpsTable;
@@ -172,6 +173,7 @@ final class RouterosSnmpUpdateService
                 'routeros_device_id' => $routerosDevice->id,
                 'modified <' => $startTime,
             ])->all(),
+            AuditTrail::batchOptions(),
         );
 
         // 3) IPs upsert
@@ -207,6 +209,7 @@ final class RouterosSnmpUpdateService
                 'routeros_device_id' => $routerosDevice->id,
                 'modified <' => $startTime,
             ])->all(),
+            AuditTrail::batchOptions(),
         );
 
         return $routerosDevice;

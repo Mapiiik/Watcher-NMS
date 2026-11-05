@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Model\Audit\AuditTrail;
 use App\Model\Table\RadarInterferencesTable;
 use App\Service\ErrorReport;
 use Cake\Command\Command;
@@ -97,6 +98,7 @@ class RadarInterferencesUpdateCommand extends Command
                         ->find()
                         ->where(['modified <' => $start_time])
                         ->all(),
+                    AuditTrail::batchOptions(),
                 );
 
                 Log::write('debug', 'The radar interferences table has been updated.');
