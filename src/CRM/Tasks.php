@@ -7,6 +7,7 @@ use App\Http\Answer;
 use App\Model\Entity\Task;
 use Cake\Core\Configure;
 use Cake\Datasource\EntityInterface;
+use Cake\I18n\Date;
 use Cake\ORM\Locator\LocatorAwareTrait;
 
 /**
@@ -29,6 +30,25 @@ use Cake\ORM\Locator\LocatorAwareTrait;
 class Tasks
 {
     use LocatorAwareTrait;
+
+    /**
+     * How a record that is kept elsewhere is read: neither new nor changed, and as it came.
+     *
+     * @var array<string, bool>
+     */
+    private const AS_READ = [
+        'markNew' => false,
+        'markClean' => true,
+        'guard' => false,
+        'useSetters' => false,
+    ];
+
+    /**
+     * The days a task can name. They arrive as text and a page has to print them as days.
+     *
+     * @var array<string>
+     */
+    private const DAYS = ['estimated_date', 'critical_date'];
 
     /**
      * Whether the tasks shown here are the other application's.
@@ -150,12 +170,14 @@ class Tasks
      */
     private function taskFrom(array $row): Task
     {
-        $task = new Task($row, [
-            'markNew' => false,
-            'markClean' => true,
-            'guard' => false,
-            'useSetters' => false,
-        ]);
+        $task = new Task($row, self::AS_READ);
+
+        foreach (self::DAYS as $field) {
+            $day = $row[$field] ?? null;
+            if (is_string($day) && $day !== '') {
+                $task->set($field, new Date($day));
+            }
+        }
 
         foreach (['task_state' => 'TaskStates', 'task_type' => 'TaskTypes', 'user' => 'Users'] as $field => $table) {
             $nested = $row[$field] ?? null;
@@ -189,11 +211,9 @@ class Tasks
      */
     private function hydrated(string $table, array $row): EntityInterface
     {
-        return $this->fetchTable($table)->newEntity($row, [
-            'markClean' => true,
-            'guard' => false,
-            'useSetters' => false,
-        ]);
+        $entity = $this->fetchTable($table)->getEntityClass();
+
+        return new $entity($row, self::AS_READ);
     }
 
     /**

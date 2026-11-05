@@ -6,6 +6,7 @@ namespace App\Test\TestCase\CRM;
 use App\CRM\Tasks;
 use App\Test\Traits\ConfigureTestTrait;
 use Cake\Http\TestSuite\HttpClientTrait;
+use Cake\I18n\Date;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -120,6 +121,57 @@ class TasksTest extends TestCase
         $this->assertStringContainsString('background-color:', $task->get('style'));
         $this->assertSame(__d('tasks', 'Urgent'), $task->getPriorityName());
         $this->assertSame('Jane Doe', $task->get('user')->get('name'));
+    }
+
+    /**
+     * What comes along with a task keeps what it came with, its identifier included, and is no more
+     * new than the task itself.
+     *
+     * @return void
+     */
+    public function testTheRecordsThatComeAlongAreReadAsTheyCame(): void
+    {
+        $place = $this->getTableLocator()->get('AccessPoints')->find()->firstOrFail();
+        $userId = 'b37f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f';
+
+        $this->answerWith(['access_point_id' => (string)$place->get('id')], [[
+            'id' => 'a26f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f',
+            'nid' => 42,
+            'priority' => 0,
+            'access_point_id' => $place->get('id'),
+            'user' => ['id' => $userId, 'first_name' => 'Jane', 'last_name' => 'Doe'],
+        ]], 1);
+
+        $user = (new Tasks())->atAccessPoint((string)$place->get('id'))->orFail()->tasks[0]->get('user');
+
+        $this->assertSame($userId, $user->get('id'));
+        $this->assertFalse($user->isNew());
+    }
+
+    /**
+     * The days of a task arrive as text and are read as days, so that a page prints them the way it
+     * prints any other day.
+     *
+     * @return void
+     */
+    public function testTheDaysOfATaskAreDays(): void
+    {
+        $place = $this->getTableLocator()->get('AccessPoints')->find()->firstOrFail();
+
+        $this->answerWith(['access_point_id' => (string)$place->get('id')], [[
+            'id' => 'a26f0ae4-3d9c-4a4f-9a2e-0f1b2c3d4e5f',
+            'nid' => 42,
+            'priority' => 0,
+            'access_point_id' => $place->get('id'),
+            'critical_date' => '2026-12-31',
+            'estimated_date' => null,
+        ]], 1);
+
+        $task = (new Tasks())->atAccessPoint((string)$place->get('id'))->orFail()->tasks[0];
+
+        $this->assertInstanceOf(Date::class, $task->get('critical_date'));
+        $this->assertSame('2026-12-31', $task->get('critical_date')->toDateString());
+        $this->assertNull($task->get('estimated_date'));
     }
 
     /**
