@@ -7,7 +7,6 @@ use App\Rlan\ApiClient;
 use App\Rlan\Dto\RlanStationData;
 use Cake\I18n\DateTime;
 use Override;
-use RuntimeException;
 
 /**
  * The stations of the register, read from the register.
@@ -55,13 +54,9 @@ final class RlanStationProviderApi implements RlanStationProviderInterface
     #[Override]
     public function read(): array
     {
-        $listing = $this->client->myStations();
-
-        if (!$listing->ok()) {
-            throw new RuntimeException((string)$listing->failure);
-        }
-
-        $stations = RlanStationPayloadNormalizer::stations($listing->data);
+        $stations = RlanStationPayloadNormalizer::stations(
+            $this->client->myStations()->orFail(self::notConfigured()),
+        );
 
         if ($stations === []) {
             return [];
@@ -107,11 +102,7 @@ final class RlanStationProviderApi implements RlanStationProviderInterface
                 self::SWEEP_RADIUS_KILOMETRES,
             );
 
-            if (!$nearby->ok()) {
-                throw new RuntimeException((string)$nearby->failure);
-            }
-
-            $found = RlanStationPayloadNormalizer::parameters($nearby->data);
+            $found = RlanStationPayloadNormalizer::parameters($nearby->orFail(self::notConfigured()));
 
             // Everything of ours that stands inside the circle has now been asked about, whether
             // the register published anything for it or not.
@@ -150,5 +141,15 @@ final class RlanStationProviderApi implements RlanStationProviderInterface
             * cos(deg2rad(((float)$station->latitude + (float)$centre->latitude) / 2));
 
         return sqrt($northwards ** 2 + $eastwards ** 2) <= self::SWEEP_RADIUS_KILOMETRES * 1000;
+    }
+
+    /**
+     * What a run is told where there is no register to ask.
+     *
+     * @return string
+     */
+    private static function notConfigured(): string
+    {
+        return __('The register of stations is not configured.');
     }
 }

@@ -93,6 +93,37 @@ class ApiClientTest extends TestCase
     }
 
     /**
+     * The register turning the sign-in away is an answer like any other, and the caller says what
+     * it is worth.
+     *
+     * @return void
+     * @link \App\Rlan\ApiClient::myStations()
+     */
+    public function testARefusedSignInIsAnAnswer(): void
+    {
+        $this->mockClientPost(self::URL . '/user/login', $this->answer(403, []));
+
+        $answer = $this->client()->myStations();
+
+        $this->assertFalse($answer->ok());
+        $this->assertTrue($answer->unanswered());
+    }
+
+    /**
+     * An installation without the register was not asked anything, which is not a failure.
+     *
+     * @return void
+     * @link \App\Rlan\ApiClient::myStations()
+     */
+    public function testWithoutAConfigurationNothingIsAsked(): void
+    {
+        $answer = (new ApiClient('', '', ''))->myStations();
+
+        $this->assertFalse($answer->ok());
+        $this->assertFalse($answer->unanswered());
+    }
+
+    /**
      * @return \App\Rlan\ApiClient
      */
     private function client(): ApiClient

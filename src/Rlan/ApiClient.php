@@ -68,9 +68,6 @@ final class ApiClient
         private readonly string $password,
         private $sleeper = null,
     ) {
-        if ($this->url === '' || $this->email === '' || $this->password === '') {
-            throw new RuntimeException(__('The register of stations is not configured.'));
-        }
     }
 
     /**
@@ -124,15 +121,23 @@ final class ApiClient
      */
     private function get(string $path, bool $authenticated): Answer
     {
-        $response = $this->send($path, $authenticated);
+        if ($this->url === '' || $this->email === '' || $this->password === '') {
+            return Answer::notAsked();
+        }
 
-        // A token is good for months and this is the only thing that says otherwise, so being
-        // turned away is answered by asking for another one rather than by giving up. Once: a
-        // second refusal is the account being refused, not the token having run out.
-        if ($authenticated && $response->getStatusCode() === 401) {
-            $this->accessToken = null;
-            Cache::delete($this->tokenKey());
+        try {
             $response = $this->send($path, $authenticated);
+
+            // A token is good for months and this is the only thing that says otherwise, so being
+            // turned away is answered by asking for another one rather than by giving up. Once: a
+            // second refusal is the account being refused, not the token having run out.
+            if ($authenticated && $response->getStatusCode() === 401) {
+                $this->accessToken = null;
+                Cache::delete($this->tokenKey());
+                $response = $this->send($path, $authenticated);
+            }
+        } catch (RuntimeException $failure) {
+            return Answer::failed($failure->getMessage());
         }
 
         return $this->decode($response, $path);
