@@ -38,7 +38,7 @@ class RlanStationsUpdateCommand extends Command
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser->addOption('file', [
-            'help' => 'Path to a kept reading to replay instead of asking the register',
+            'help' => 'Path to a file with the stations, to use instead of asking the register',
             'required' => false,
         ]);
 
@@ -59,7 +59,7 @@ class RlanStationsUpdateCommand extends Command
             $file = $args->getOption('file');
 
             $provider = is_string($file) && $file !== ''
-                ? $this->keptReading($file)
+                ? $this->stationsFromFile($file)
                 : $this->register();
 
             $stations = (new RlanStationsUpdateService($provider))->updateNow();
@@ -106,34 +106,34 @@ class RlanStationsUpdateCommand extends Command
     }
 
     /**
-     * A reading that was kept, as it was written down.
+     * The stations of the file the command line names.
      *
      * The file holds either the listing of the stations on its own, or that listing together with
      * the readings of technical parameters that went with it.
      *
-     * @param string $path Where the reading was kept.
+     * @param string $path Where the file is.
      * @return \App\Rlan\Provider\RlanStationProviderInterface
-     * @throws \RuntimeException When the file cannot be read or is not a reading.
+     * @throws \RuntimeException When the file cannot be read or holds no list of stations.
      */
-    private function keptReading(string $path): RlanStationProviderInterface
+    private function stationsFromFile(string $path): RlanStationProviderInterface
     {
         $contents = is_readable($path) ? file_get_contents($path) : false;
 
         if ($contents === false) {
-            throw new RuntimeException(__('The kept reading could not be read: {0}', $path));
+            throw new RuntimeException(__('The file {0} could not be read.', $path));
         }
 
         $reading = json_decode($contents, true);
 
         if (!is_array($reading)) {
-            throw new RuntimeException(__('The kept reading is not a reading: {0}', $path));
+            throw new RuntimeException(__('The file {0} does not contain a list of stations.', $path));
         }
 
         $stations = $reading['stations'] ?? $reading;
         $parameters = $reading['parameters'] ?? [];
 
         if (!is_array($stations) || !is_array($parameters)) {
-            throw new RuntimeException(__('The kept reading is not a reading: {0}', $path));
+            throw new RuntimeException(__('The file {0} does not contain a list of stations.', $path));
         }
 
         /** @var list<array<mixed>> $parameters */

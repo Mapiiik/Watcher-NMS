@@ -156,7 +156,7 @@ class RlanStationsUpdateCommandTest extends TestCase
     }
 
     /**
-     * A kept reading may carry the technical parameters that went with it.
+     * A file may carry the technical parameters that went with it.
      *
      * @return void
      * @link \App\Command\RlanStationsUpdateCommand::execute()

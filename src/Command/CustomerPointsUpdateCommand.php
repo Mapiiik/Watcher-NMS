@@ -18,7 +18,7 @@ use RuntimeException;
 use Throwable;
 
 /**
- * Reads the customer points of the CRM, or a kept listing named on the command line.
+ * Reads the customer points of the CRM, or of a file named on the command line.
  */
 class CustomerPointsUpdateCommand extends Command
 {
@@ -32,7 +32,7 @@ class CustomerPointsUpdateCommand extends Command
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser->addOption('file', [
-            'help' => 'Path to a kept listing to replay instead of asking the CRM',
+            'help' => 'Path to a file with the customer points, to use instead of asking the CRM',
             'required' => false,
         ]);
 
@@ -52,7 +52,7 @@ class CustomerPointsUpdateCommand extends Command
         try {
             $file = $args->getOption('file');
             $provider = is_string($file) && $file !== ''
-                ? $this->keptListing($file)
+                ? $this->customerPointsFromFile($file)
                 : new CustomerPointProviderApi();
 
             (new CustomerPointsUpdateService($provider))->updateNow();
@@ -85,24 +85,24 @@ class CustomerPointsUpdateCommand extends Command
     }
 
     /**
-     * The listing the command line names.
+     * The customer points of the file the command line names.
      *
      * @param string $path Where it is.
      * @return \App\CRM\Provider\CustomerPointProviderInterface
      * @throws \RuntimeException When it cannot be read.
      */
-    private function keptListing(string $path): CustomerPointProviderInterface
+    private function customerPointsFromFile(string $path): CustomerPointProviderInterface
     {
         $json = is_readable($path) ? file_get_contents($path) : false;
 
         if ($json === false) {
-            throw new RuntimeException(__('The kept reading could not be read: {0}', $path));
+            throw new RuntimeException(__('The file {0} could not be read.', $path));
         }
 
         $decoded = json_decode($json, true);
 
         if (!is_array($decoded)) {
-            throw new RuntimeException(__('The kept reading is not a reading: {0}', $path));
+            throw new RuntimeException(__('The file {0} does not contain customer points.', $path));
         }
 
         return new CustomerPointProviderPayload($decoded);
