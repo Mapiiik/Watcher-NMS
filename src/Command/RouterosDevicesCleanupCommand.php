@@ -54,16 +54,20 @@ class RouterosDevicesCleanupCommand extends Command
         try {
             $threshold = DateTime::now()->subDays((int)$args->getOption('days'));
 
-            foreach (
-                [
-                    RouterosDevicesTable::class,
-                    RouterosDeviceInterfacesTable::class,
-                    RouterosDeviceIpsTable::class,
-                ] as $class
-            ) {
+            foreach ([RouterosDeviceInterfacesTable::class, RouterosDeviceIpsTable::class] as $class) {
                 $table = $this->fetchTable($class);
                 $table->deleteManyOrFail($table->find()->where(['modified <' => $threshold])->all());
             }
+
+            // A device is refused while anything of it is left, and one refusal stops the whole batch.
+            $devices = $this->fetchTable(RouterosDevicesTable::class);
+            $devices->deleteManyOrFail(
+                $devices->find()
+                    ->where(['RouterosDevices.modified <' => $threshold])
+                    ->notMatching('RouterosDeviceInterfaces')
+                    ->notMatching('RouterosDeviceIps')
+                    ->all(),
+            );
 
             $io->success(__('The stale RouterOS records have been removed.'));
 

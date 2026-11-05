@@ -54,6 +54,44 @@ class RouterosDevicesCleanupCommandTest extends TestCase
     }
 
     /**
+     * A device that stopped reporting goes together with what was read off it.
+     *
+     * @return void
+     */
+    public function testADeviceThatStoppedReportingGoesWithWhatWasReadOffIt(): void
+    {
+        $this->heardFrom('RouterosDevices', 400);
+        $this->heardFrom('RouterosDeviceInterfaces', 400);
+        $this->heardFrom('RouterosDeviceIps', 400);
+
+        $this->exec('routeros_devices_cleanup');
+
+        $this->assertExitSuccess();
+        $this->assertSame(0, $this->left('RouterosDevices'));
+        $this->assertSame(0, $this->left('RouterosDeviceInterfaces'));
+        $this->assertSame(0, $this->left('RouterosDeviceIps'));
+    }
+
+    /**
+     * A device stays while something of it is still heard from, and does not stop the rest.
+     *
+     * @return void
+     */
+    public function testADeviceStaysWhileSomethingOfItIsStillHeardFrom(): void
+    {
+        $this->heardFrom('RouterosDevices', 400);
+        $this->heardFrom('RouterosDeviceInterfaces', 10);
+        $this->heardFrom('RouterosDeviceIps', 400);
+
+        $this->exec('routeros_devices_cleanup');
+
+        $this->assertExitSuccess();
+        $this->assertSame(1, $this->left('RouterosDevices'));
+        $this->assertSame(1, $this->left('RouterosDeviceInterfaces'));
+        $this->assertSame(0, $this->left('RouterosDeviceIps'));
+    }
+
+    /**
      * How long is too long can be said for the run.
      *
      * @return void
