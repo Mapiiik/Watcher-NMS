@@ -43,7 +43,6 @@ final class RouterosSnmpUpdateService
      * @param string $deviceTypeId Device type identifier
      * @param bool $assignAccessPointByDeviceName Whether to assign an access point by device name
      * @param bool $assignCustomerConnectionByIp Whether to assign a customer connection by IP address
-     * @param int $cleanupDays Number of days after which stale data should be removed
      * @return \App\Model\Entity\RouterosDevice The updated RouterOS device entity
      * @throws \RuntimeException When persistence of device, interfaces, or IPs fails
      */
@@ -53,7 +52,6 @@ final class RouterosSnmpUpdateService
         string $deviceTypeId,
         bool $assignAccessPointByDeviceName = false,
         bool $assignCustomerConnectionByIp = false,
-        int $cleanupDays = 365,
     ): RouterosDevice {
         $startTime = DateTime::now();
 
@@ -209,19 +207,6 @@ final class RouterosSnmpUpdateService
                 'routeros_device_id' => $routerosDevice->id,
                 'modified <' => $startTime,
             ])->all(),
-        );
-
-        // 4) Cleanup old data
-        $threshold = DateTime::now()->subDays($cleanupDays);
-
-        $routerosDevices->deleteMany(
-            $routerosDevices->find()->where(['modified <' => $threshold])->all(),
-        );
-        $routerosDeviceInterfaces->deleteMany(
-            $routerosDeviceInterfaces->find()->where(['modified <' => $threshold])->all(),
-        );
-        $routerosDeviceIps->deleteMany(
-            $routerosDeviceIps->find()->where(['modified <' => $threshold])->all(),
         );
 
         return $routerosDevice;

@@ -48,6 +48,13 @@ The currently generated password for each device is shown on its detail page.
 
 Otherwise the script only logs the provisioning status and performs no changes.
 
+What a device stops reporting is removed as it reports. What stops reporting
+altogether is removed by a nightly run, after a year unless told otherwise:
+
+```sh
+bin/cake routeros_devices_cleanup
+```
+
 ## Register of stations (ČTÚ RLAN portal)
 
 Radio units on the bands operated under the general authorisation VO-R/12 are
