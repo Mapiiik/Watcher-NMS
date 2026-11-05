@@ -82,6 +82,9 @@ class TasksTest extends TestCase
 
         $this->withConfigure(['Crm.url' => 'https://crm.example.com', 'Crm.tasks' => false]);
         $this->assertFalse(Tasks::areUsed(), 'An address to ask at is not a wish to use them.');
+
+        $this->withConfigure(['Crm.tasks' => true, 'Crm.key' => '']);
+        $this->assertFalse(Tasks::areUsed(), 'Without a key nobody gets asked, so nothing would ever come back.');
     }
 
     /**

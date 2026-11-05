@@ -38,7 +38,8 @@ class Tasks
     public static function areUsed(): bool
     {
         return Configure::read('Crm.tasks') === true
-            && (string)Configure::read('Crm.url') !== '';
+            && (string)Configure::read('Crm.url') !== ''
+            && (string)Configure::read('Crm.key') !== '';
     }
 
     /**

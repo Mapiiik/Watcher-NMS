@@ -164,7 +164,7 @@ class HomeControllerTest extends TestCase
      */
     public function testTheTasksAreNotLandedOnWhereTheyAreTheOtherApplications(): void
     {
-        $this->withConfigure(['Crm.url' => 'https://crm.example.com', 'Crm.tasks' => true]);
+        $this->withConfigure(['Crm.key' => 'secret', 'Crm.url' => 'https://crm.example.com', 'Crm.tasks' => true]);
 
         $this->login('admin', ['landing_page' => 'tasks']);
         $this->get('/');

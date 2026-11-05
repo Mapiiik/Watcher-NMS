@@ -81,7 +81,7 @@ class LandingPageTest extends TestCase
     {
         $this->assertArrayHasKey(LandingPage::Tasks->value, LandingPage::options());
 
-        $this->withConfigure(['Crm.url' => 'https://crm.example.com', 'Crm.tasks' => true]);
+        $this->withConfigure(['Crm.key' => 'secret', 'Crm.url' => 'https://crm.example.com', 'Crm.tasks' => true]);
 
         $this->assertArrayNotHasKey(LandingPage::Tasks->value, LandingPage::options());
     }
