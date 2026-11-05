@@ -111,6 +111,7 @@ abstract class AbstractTaskListCard extends AbstractDashboardCard
     {
         return Links::path('/tasks?' . http_build_query($filter + [
             'user_id' => '',
+            'ignore_collaborators' => 0,
             'pressing' => 0,
             'stale' => 0,
             'show_completed' => 0,
