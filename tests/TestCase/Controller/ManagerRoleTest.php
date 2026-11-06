@@ -28,6 +28,8 @@ class ManagerRoleTest extends TestCase
     protected array $fixtures = [
         'app.Users',
         'plugin.Files.DocumentationTypes',
+        'plugin.Files.Files',
+        'plugin.Files.RemovedFileLinks',
         'app.TaskStates',
         'app.TaskTypes',
     ];
@@ -41,6 +43,7 @@ class ManagerRoleTest extends TestCase
     {
         return [
             'documentation types' => ['/documentation-types/add'],
+            'trash' => ['/files/trash'],
             'task states' => ['/task-states/add'],
             'task types' => ['/task-types/add'],
         ];

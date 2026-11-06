@@ -211,6 +211,7 @@ $urlWithQuery = function ($query = []) use ($request) {
                 ['class' => 'button button-small' . $buttonSelected([
                     'FileLinks',
                     'Storage',
+                    'Trash',
                 ])],
             ) ?>
             <?= $this->AuthLink->link(
