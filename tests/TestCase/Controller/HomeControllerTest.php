@@ -201,4 +201,29 @@ class HomeControllerTest extends TestCase
         // the plain user role is not let into the tasks
         $this->assertNotContains(LandingPage::Tasks->value, $offered);
     }
+
+    /**
+     * What the layout offers is kept for the session, anything else in the address is left out:
+     * it would otherwise stay in the session and reach the locale.
+     *
+     * @return void
+     * @link \App\Controller\AppController::beforeFilter()
+     */
+    public function testOnlyTheOfferedLanguageAndThemeAreKept(): void
+    {
+        $this->login();
+
+        $this->get('/?language=hr_HR&theme=dark');
+        $this->assertSession('hr_HR', 'Config.UI.language');
+        $this->assertSession('dark', 'Config.UI.theme');
+
+        $this->session(['Config' => ['UI' => []]]);
+        $this->get('/?language=xx_XX&theme=../evil');
+        $this->assertSession(null, 'Config.UI.language');
+        $this->assertSession(null, 'Config.UI.theme');
+
+        $this->get('/?language[]=hr_HR&theme[]=dark');
+        $this->assertResponseCode(302);
+        $this->assertSession(null, 'Config.UI.language');
+    }
 }
