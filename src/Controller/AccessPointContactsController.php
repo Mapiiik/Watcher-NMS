@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Audit\AuditTrail;
 use App\Phones\Formatter as PhoneFormatter;
 use Cake\Http\Response;
-use Cake\Utility\Text;
-use SplObjectStorage;
 
 /**
  * AccessPointContacts Controller
@@ -220,12 +219,7 @@ class AccessPointContactsController extends AppController
         if (
             $this->AccessPointContacts->saveMany(
                 $contacts,
-                [
-                    // saveMany audit options kept intentionally: audit-stash groups the batch
-                    // under one transaction id only when they're passed
-                    '_auditQueue' => new SplObjectStorage(),
-                    '_auditTransaction' => Text::uuid(),
-                ],
+                AuditTrail::batchOptions(),
             ) === false
         ) {
             $this->Flash->error(

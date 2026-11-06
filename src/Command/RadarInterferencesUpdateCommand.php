@@ -13,10 +13,8 @@ use Cake\Console\ConsoleOptionParser;
 use Cake\Core\Configure;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
-use Cake\Utility\Text;
 use Override;
 use RuntimeException;
-use SplObjectStorage;
 use Throwable;
 
 /**
@@ -81,10 +79,7 @@ class RadarInterferencesUpdateCommand extends Command
                             'radio_name' => trim($data[4]),
                         ],
                         null,
-                        [
-                            '_auditQueue' => new SplObjectStorage(),
-                            '_auditTransaction' => Text::uuid(),
-                        ],
+                        AuditTrail::batchOptions(),
                     );
 
                     $radarInterference->modified = new DateTime();
