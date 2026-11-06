@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-10-27 17:20+0100\n"
+"POT-Creation-Date: 2026-11-06 03:09+0100\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -82,6 +82,10 @@ msgstr ""
 "Jak daleko od přístupového bodu rádiové jednotky může být umístěna "
 "registrovaná stanice, aby byla stále považována za stejné místo."
 
+#: src/CRM/Service/CustomerPointsUpdateService.php:54
+msgid "The customer points data named nobody at all, so nothing was changed."
+msgstr "Data zákaznických bodů neobsahují žádný bod, proto se nic nezměnilo."
+
 #: src/Command/BackupCommand.php:52
 msgid ""
 "Writes the database and everything under the data root into a directory of "
@@ -143,32 +147,30 @@ msgstr "Datový kořen"
 msgid "Run this where the client is, with the directory mounted into it:"
 msgstr "Spusťte toto tam, kde je klient, s připojeným adresářem:"
 
-#: src/Command/CustomerPointsUpdateCommand.php:80
-msgid "The customer points data could not be downloaded. Please, try again."
-msgstr "Data zákaznických bodů se nepodařilo stáhnout. Zkuste to prosím znovu."
-
-#: src/Command/CustomerPointsUpdateCommand.php:89
-msgid ""
-"The customer points data could not be decoded. Please, check the source data."
-msgstr ""
-"Data zákaznických bodů se nepodařilo dekódovat. Zkontrolujte prosím zdrojová "
-"data."
-
-#: src/Command/CustomerPointsUpdateCommand.php:179
+#: src/Command/CustomerPointsUpdateCommand.php:61
 msgid "The customer points data have been updated."
 msgstr "Data zákaznických bodů byla aktualizována."
 
-#: src/Command/CustomerPointsUpdateCommand.php:187
+#: src/Command/CustomerPointsUpdateCommand.php:69
 msgid "Error during customer points update: {0}"
 msgstr "Chyba při aktualizaci zákaznických bodů: {0}"
 
-#: src/Command/CustomerPointsUpdateCommand.php:193
+#: src/Command/CustomerPointsUpdateCommand.php:75
 msgid "Customer points update failed"
 msgstr "Aktualizace zákaznických bodů se nezdařila"
 
-#: src/Command/CustomerPointsUpdateCommand.php:194
+#: src/Command/CustomerPointsUpdateCommand.php:76
 msgid "Customer points update failed."
 msgstr "Aktualizace zákaznických bodů se nezdařila."
+
+#: src/Command/CustomerPointsUpdateCommand.php:99
+#: src/Command/RlanStationsUpdateCommand.php:123
+msgid "The file {0} could not be read."
+msgstr "Soubor {0} nelze přečíst."
+
+#: src/Command/CustomerPointsUpdateCommand.php:105
+msgid "The file {0} does not contain customer points."
+msgstr "Soubor {0} neobsahuje zákaznické body."
 
 #: src/Command/ElectricityMeterReadingsReportCommand.php:76
 #: src/Command/PowerOutagesReportCommand.php:136
@@ -232,7 +234,7 @@ msgstr ""
 #: src/Command/ElectricityMeterReadingsReportCommand.php:113
 #: templates/AccessPoints/view.php:85
 #: templates/ElectricityMeterReadings/index.php:25
-#: templates/layout/default.php:318
+#: templates/layout/default.php:323
 msgid "Electricity Meter Readings"
 msgstr "Odečty elektroměrů"
 
@@ -495,25 +497,25 @@ msgstr "Hlášení o radarových interferencích se nezdařilo"
 msgid "Radar interferences report failed."
 msgstr "Hlášení o radarových interferencích se nezdařilo."
 
-#: src/Command/RadarInterferencesUpdateCommand.php:103
+#: src/Command/RadarInterferencesUpdateCommand.php:100
 #: src/Controller/RadarInterferencesController.php:150
 msgid "The radar interferences table has been updated."
 msgstr "Tabulka radarových rušení byla aktualizována."
 
-#: src/Command/RadarInterferencesUpdateCommand.php:106
+#: src/Command/RadarInterferencesUpdateCommand.php:103
 #: src/Controller/RadarInterferencesController.php:152
 msgid "The radar interferences table could not be updated. Please, try again."
 msgstr "Tabulku radarových rušení nelze aktualizovat. Opakujte akci."
 
-#: src/Command/RadarInterferencesUpdateCommand.php:115
+#: src/Command/RadarInterferencesUpdateCommand.php:112
 msgid "Error during radar interferences update: {0}"
 msgstr "Chyba při aktualizaci radarových interferencí: {0}"
 
-#: src/Command/RadarInterferencesUpdateCommand.php:121
+#: src/Command/RadarInterferencesUpdateCommand.php:118
 msgid "Radar interferences update failed"
 msgstr "Aktualizace radarových interferencí se nezdařila"
 
-#: src/Command/RadarInterferencesUpdateCommand.php:122
+#: src/Command/RadarInterferencesUpdateCommand.php:119
 msgid "Radar interferences update failed."
 msgstr "Aktualizace radarových interferencí se nezdařila."
 
@@ -570,44 +572,56 @@ msgstr "Čtení registru stanic se nezdařilo"
 msgid "Reading the register of stations failed."
 msgstr "Čtení registru stanic se nezdařilo."
 
-#: src/Command/RlanStationsUpdateCommand.php:123
-msgid "The kept reading could not be read: {0}"
-msgstr "Nelze načíst údaj o pokračování ve čtení: {0}"
-
 #: src/Command/RlanStationsUpdateCommand.php:129
 #: src/Command/RlanStationsUpdateCommand.php:136
-msgid "The kept reading is not a reading: {0}"
-msgstr "Pokračování čtení není čtením: {0}"
+msgid "The file {0} does not contain a list of stations."
+msgstr "Soubor {0} neobsahuje seznam stanic."
 
-#: src/Controller/AccessPointContactsController.php:108
-#: src/Controller/AccessPointContactsController.php:139
+#: src/Command/RouterosDevicesCleanupCommand.php:77
+msgid "The stale RouterOS records have been removed."
+msgstr "Zastaralé záznamy RouterOS byly odstraněny."
+
+#: src/Command/RouterosDevicesCleanupCommand.php:83
+msgid "Error during RouterOS records cleanup: {0}"
+msgstr "Chyba při úklidu záznamů RouterOS: {0}"
+
+#: src/Command/RouterosDevicesCleanupCommand.php:86
+msgid "RouterOS records cleanup failed"
+msgstr "Úklid záznamů RouterOS se nezdařil"
+
+#: src/Command/RouterosDevicesCleanupCommand.php:87
+msgid "RouterOS records cleanup failed."
+msgstr "Úklid záznamů RouterOS se nezdařil."
+
+#: src/Controller/AccessPointContactsController.php:107
+#: src/Controller/AccessPointContactsController.php:138
 msgid "The access point contact has been saved."
 msgstr "Kontakt přístupového bodu byl uložen."
 
-#: src/Controller/AccessPointContactsController.php:112
-#: src/Controller/AccessPointContactsController.php:143
+#: src/Controller/AccessPointContactsController.php:111
+#: src/Controller/AccessPointContactsController.php:142
 msgid "The access point contact could not be saved. Please, try again."
 msgstr "Kontakt přístupového bodu nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointContactsController.php:166
+#: src/Controller/AccessPointContactsController.php:165
 msgid "The access point contact has been deleted."
 msgstr "Kontakt přístupového bodu byl odstraněn."
 
-#: src/Controller/AccessPointContactsController.php:169
+#: src/Controller/AccessPointContactsController.php:168
 msgid "The access point contact could not be deleted. Please, try again."
 msgstr "Kontakt přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointContactsController.php:212
+#: src/Controller/AccessPointContactsController.php:211
 msgid "Phone numbers that could not be read were left as they are ({0}): {1}"
 msgstr ""
 "Telefonní čísla, která nebylo možné přečíst, byla ponechána v původním znění "
 "({0}): {1}"
 
-#: src/Controller/AccessPointContactsController.php:232
+#: src/Controller/AccessPointContactsController.php:226
 msgid "The access point contacts could not be updated. Please, try again."
 msgstr "Kontakty přístupového bodu nelze aktualizovat. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointContactsController.php:236
+#: src/Controller/AccessPointContactsController.php:230
 msgid "The access point contacts have been updated."
 msgstr "Kontakty přístupového bodu byly aktualizovány."
 
@@ -629,37 +643,37 @@ msgstr "Typ přístupového bodu byl odstraněn."
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
+#: src/Controller/AccessPointsController.php:266
 #: src/Controller/AccessPointsController.php:292
-#: src/Controller/AccessPointsController.php:318
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
+#: src/Controller/AccessPointsController.php:270
 #: src/Controller/AccessPointsController.php:296
-#: src/Controller/AccessPointsController.php:322
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:355
+#: src/Controller/AccessPointsController.php:329
 msgid "The access point has been archived."
 msgstr "Přístupový bod byl archivován."
 
-#: src/Controller/AccessPointsController.php:359
+#: src/Controller/AccessPointsController.php:333
 msgid "The access point could not be archived. Please try again."
 msgstr "Přístupový bod se nepodařilo archivovat. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:386
+#: src/Controller/AccessPointsController.php:360
 msgid "The access point has been restored."
 msgstr "Přístupový bod byl obnoven."
 
-#: src/Controller/AccessPointsController.php:391
+#: src/Controller/AccessPointsController.php:365
 msgid "The access point could not be restored. Please try again."
 msgstr "Přístupový bod se nepodařilo obnovit. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:410
+#: src/Controller/AccessPointsController.php:384
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:413
+#: src/Controller/AccessPointsController.php:387
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
@@ -1033,25 +1047,25 @@ msgstr "IP RouterOS zařízení byla odstraněna."
 msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr "IP adresu zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:177
-#: src/Controller/RouterosDevicesController.php:211
+#: src/Controller/RouterosDevicesController.php:153
+#: src/Controller/RouterosDevicesController.php:187
 msgid "The RouterOS device has been saved."
 msgstr "Zařízení RouterOS bylo uloženo."
 
-#: src/Controller/RouterosDevicesController.php:181
-#: src/Controller/RouterosDevicesController.php:215
+#: src/Controller/RouterosDevicesController.php:157
+#: src/Controller/RouterosDevicesController.php:191
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr "Zařízení RouterOS nelze uložit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:242
+#: src/Controller/RouterosDevicesController.php:218
 msgid "The RouterOS device has been deleted."
 msgstr "Zařízení RouterOS bylo odstraněno."
 
-#: src/Controller/RouterosDevicesController.php:245
+#: src/Controller/RouterosDevicesController.php:221
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr "Zařízení RouterOS nelze odstranit. Opakujte akci."
 
-#: src/Controller/RouterosDevicesController.php:271
+#: src/Controller/RouterosDevicesController.php:247
 msgid ""
 "Cannot update RouterOS device data via SNMP. Missing IP address or SNMP "
 "community."
@@ -1059,12 +1073,12 @@ msgstr ""
 "Nelze aktualizovat data zařízení RouterOS prostřednictvím protokolu SNMP. "
 "Chybí IP adresa nebo SNMP komunita."
 
-#: src/Controller/RouterosDevicesController.php:290
+#: src/Controller/RouterosDevicesController.php:266
 msgid "The RouterOS device data has been updated via SNMP."
 msgstr ""
 "Údaje o zařízení RouterOS byly aktualizovány prostřednictvím protokolu SNMP."
 
-#: src/Controller/RouterosDevicesController.php:302
+#: src/Controller/RouterosDevicesController.php:278
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr "Nepodařilo se aktualizovat data zařízení RouterOS přes SNMP: {0}"
 
@@ -1153,12 +1167,12 @@ msgid "No address found for these GPS coordinates."
 msgstr "Pro tyto GPS souřadnice nebyla nalezena žádná adresa."
 
 #: src/Model/Entity/AccessPointSupplyAddress.php:90
-#: src/PowerOutages/Service/PowerOutageMatcher.php:362
+#: src/PowerOutages/Service/PowerOutageMatcher.php:368
 msgid "address not given"
 msgstr "adresa neuvedena"
 
 #: src/Model/Entity/AccessPointSupplyAddress.php:95
-#: src/PowerOutages/Service/PowerOutageMatcher.php:367
+#: src/PowerOutages/Service/PowerOutageMatcher.php:373
 msgid "{0} ({1} m)"
 msgstr "{0} ({1} m)"
 
@@ -1230,57 +1244,57 @@ msgstr "Pouze se zákaznickým bodem"
 msgid "Only Without a Link"
 msgstr "Pouze bez vazby"
 
-#: src/Model/Enum/LandingPage.php:38 templates/layout/default.php:129
+#: src/Model/Enum/LandingPage.php:38 templates/layout/default.php:134
 msgid "Dashboard"
 msgstr "Nástěnka"
 
 #: src/Model/Enum/LandingPage.php:39 templates/AccessPoints/index.php:37
 #: templates/AccessPoints/map.php:21 templates/AccessPoints/utilization.php:48
-#: templates/layout/default.php:134 templates/layout/default.php:308
+#: templates/layout/default.php:139 templates/layout/default.php:313
 msgid "Access Points"
 msgstr "Přístupové body"
 
 #: src/Model/Enum/LandingPage.php:40 templates/AccessPoints/view.php:135
 #: templates/Tasks/index.php:96 templates/Tasks/map.php:36
-#: templates/layout/default.php:146
+#: templates/layout/default.php:151
 msgid "Tasks"
 msgstr "Úkoly"
 
 #: src/Model/Enum/LandingPage.php:41 templates/CustomerPoints/index.php:25
-#: templates/layout/default.php:156 templates/layout/default.php:337
+#: templates/layout/default.php:161 templates/layout/default.php:342
 msgid "Customer Points"
 msgstr "Zákaznické body"
 
 #: src/Model/Enum/LandingPage.php:42 templates/AccessPoints/view.php:95
-#: templates/IpAddressRanges/index.php:25 templates/layout/default.php:165
+#: templates/IpAddressRanges/index.php:25 templates/layout/default.php:170
 msgid "IP Address Ranges"
 msgstr "Rozsahy IP adres"
 
 #: src/Model/Enum/LandingPage.php:43 templates/AccessPoints/view.php:110
 #: templates/RouterosDevices/export.php:26
-#: templates/RouterosDevices/index.php:30 templates/layout/default.php:172
-#: templates/layout/default.php:362
+#: templates/RouterosDevices/index.php:30 templates/layout/default.php:177
+#: templates/layout/default.php:367
 msgid "RouterOS Devices"
 msgstr "Zařízení RouterOS"
 
 #: src/Model/Enum/LandingPage.php:44 templates/AccessPoints/map.php:34
-#: templates/RadioLinks/index.php:27 templates/layout/default.php:182
-#: templates/layout/default.php:390
+#: templates/RadioLinks/index.php:27 templates/layout/default.php:187
+#: templates/layout/default.php:395
 msgid "Radio Links"
 msgstr "Rádiové spoje"
 
 #: src/Model/Enum/LandingPage.php:45 templates/AccessPoints/view.php:100
-#: templates/PowerSupplies/index.php:25 templates/layout/default.php:190
+#: templates/PowerSupplies/index.php:25 templates/layout/default.php:195
 msgid "Power Supplies"
 msgstr "Napájecí zdroje"
 
 #: src/Model/Enum/LandingPage.php:46 templates/Overviews/index.php:7
-#: templates/layout/default.php:197
+#: templates/layout/default.php:202
 msgid "Overviews"
 msgstr "Přehledy"
 
 #: src/Model/Enum/LandingPage.php:47 templates/Settings/index.php:7
-#: templates/layout/default.php:212
+#: templates/layout/default.php:217
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -1415,15 +1429,15 @@ msgstr "Uložené odpovědi na {0} se nepodařilo přečíst."
 msgid "The kept answers at {0} are not what was expected."
 msgstr "Uložené odpovědi na {0} nemají očekávanou podobu."
 
-#: src/PowerOutages/Service/AccessPointLocationResolver.php:74
+#: src/PowerOutages/Service/AccessPointLocationResolver.php:75
 msgid "The access point has no coordinates to look up."
 msgstr "Přístupový bod nemá souřadnice, podle kterých by šlo hledat."
 
-#: src/PowerOutages/Service/AccessPointLocationResolver.php:93
+#: src/PowerOutages/Service/AccessPointLocationResolver.php:94
 msgid "The national address registry is not configured."
 msgstr "Národní adresní registr není nakonfigurován."
 
-#: src/PowerOutages/Service/PowerOutageMatcher.php:148
+#: src/PowerOutages/Service/PowerOutageMatcher.php:154
 msgid "{0}, street only"
 msgstr "{0}, jen ulice"
 
@@ -1444,17 +1458,17 @@ msgstr "Odstávku {0} se nepodařilo uložit: {1}"
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
-#: src/Rlan/ApiClient.php:72
-msgid "The register of stations is not configured."
-msgstr "Registr stanic není nakonfigurován."
-
-#: src/Rlan/ApiClient.php:273
+#: src/Rlan/ApiClient.php:289
 msgid "The register of stations did not hand over an access token."
 msgstr "Registr stanic nevydal přístupový token."
 
 #: src/Rlan/Provider/RlanStationPayloadNormalizer.php:131
 msgid "The register answered with something unexpected."
 msgstr "Registr odpověděl něčím nečekaným."
+
+#: src/Rlan/Provider/RlanStationProviderApi.php:153
+msgid "The register of stations is not configured."
+msgstr "Registr stanic není nakonfigurován."
 
 #: src/Rlan/Service/RlanStationsUpdateService.php:52
 msgid "The register named no stations at all, so nothing was changed."
@@ -1492,15 +1506,15 @@ msgstr "Watcher Agent vrátil prázdná data SNMP"
 msgid "Empty SNMP payload provided by agent"
 msgstr "Agent poskytl prázdné SNMP-údaje"
 
-#: src/Snmp/Service/RouterosSnmpUpdateService.php:128
+#: src/Snmp/Service/RouterosSnmpUpdateService.php:130
 msgid "Failed to save RouterOS device"
 msgstr "Nepodařilo se uložit zařízení RouterOS"
 
-#: src/Snmp/Service/RouterosSnmpUpdateService.php:164
+#: src/Snmp/Service/RouterosSnmpUpdateService.php:166
 msgid "Failed to save RouterOS device interface"
 msgstr "Nepodařilo se uložit rozhraní zařízení RouterOS"
 
-#: src/Snmp/Service/RouterosSnmpUpdateService.php:199
+#: src/Snmp/Service/RouterosSnmpUpdateService.php:202
 msgid "Failed to save RouterOS device IP"
 msgstr "Nepodařilo se uložit IP adresu zařízení RouterOS"
 
@@ -1805,7 +1819,7 @@ msgid "New Access Point Contact"
 msgstr "Nový kontakt přístupového bodu"
 
 #: templates/AccessPointContacts/index.php:25
-#: templates/AccessPoints/view.php:80 templates/layout/default.php:313
+#: templates/AccessPoints/view.php:80 templates/layout/default.php:318
 msgid "Access Point Contacts"
 msgstr "Kontakty přístupových bodů"
 
@@ -2176,13 +2190,13 @@ msgid "Subordinate Access Points"
 msgstr "Podřazené přístupové body"
 
 #: templates/AccessPoints/view.php:90 templates/LandlordPayments/index.php:25
-#: templates/layout/default.php:323
+#: templates/layout/default.php:328
 msgid "Landlord Payments"
 msgstr "Platby pronajímateli"
 
 #: templates/AccessPoints/view.php:105 templates/RadioLinks/index.php:35
 #: templates/RadioUnits/export.php:10 templates/RadioUnits/index.php:29
-#: templates/layout/default.php:395
+#: templates/layout/default.php:400
 msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
@@ -2193,7 +2207,7 @@ msgstr "Propoje rádiových jednotek"
 #: templates/AccessPoints/view.php:130
 #: templates/CustomerConnections/index.php:31
 #: templates/element/AccessPoints/subtree.php:68
-#: templates/layout/default.php:342
+#: templates/layout/default.php:347
 msgid "Customer Connections"
 msgstr "Připojení zákazníků"
 
@@ -2653,7 +2667,7 @@ msgid "New Customer Connection IP"
 msgstr "Nová IP připojení zákazníka"
 
 #: templates/CustomerConnectionIps/index.php:25
-#: templates/layout/default.php:347
+#: templates/layout/default.php:352
 msgid "Customer Connection IPs"
 msgstr "IP připojení zákazníků"
 
@@ -3352,7 +3366,7 @@ msgid "Update Online"
 msgstr "Aktualizovat online"
 
 #: templates/RadarInterferences/devices.php:9
-#: templates/RadarInterferences/index.php:35 templates/layout/default.php:377
+#: templates/RadarInterferences/index.php:35 templates/layout/default.php:382
 msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
@@ -3671,7 +3685,7 @@ msgid "New RouterOS Device Interface"
 msgstr "Nové rozhraní zařízení RouterOS"
 
 #: templates/RouterosDeviceInterfaces/index.php:29
-#: templates/layout/default.php:367
+#: templates/layout/default.php:372
 msgid "RouterOS Device Interfaces"
 msgstr "Rozhraní zařízení RouterOS"
 
@@ -3703,7 +3717,7 @@ msgstr "Upravit IP zařízení RouterOS"
 msgid "New RouterOS Device IP"
 msgstr "Nová IP zařízení RouterOS"
 
-#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:372
+#: templates/RouterosDeviceIps/index.php:29 templates/layout/default.php:377
 msgid "RouterOS Device IPs"
 msgstr "IP zařízení RouterOS"
 
@@ -4084,7 +4098,7 @@ msgstr "Za posledních {0} se u nich nic nezapsalo."
 
 #: templates/element/Settings/FormFields.php:34
 #: templates/element/Settings/FormFields.php:51
-#: templates/layout/default.php:258
+#: templates/layout/default.php:263
 msgid "Default"
 msgstr "Výchozí"
 
@@ -4267,48 +4281,65 @@ msgstr "Uzavřel"
 msgid "Closed"
 msgstr "Uzavřeno"
 
-#: templates/layout/default.php:204
+#: templates/layout/default.php:209
 msgid "Files"
 msgstr "Soubory"
 
-#: templates/layout/default.php:230
+#: templates/layout/default.php:235
 msgid "Customer Relationship Management"
 msgstr "Řízení vztahů se zákazníky"
 
-#: templates/layout/default.php:260
+#: templates/layout/default.php:265
 #: templates/plugin/Access/Users/user_settings.php:56
 msgid "Light"
 msgstr "Světlý"
 
-#: templates/layout/default.php:261
+#: templates/layout/default.php:266
 #: templates/plugin/Access/Users/user_settings.php:57
 msgid "Dark"
 msgstr "Tmavý"
 
-#: templates/layout/default.php:262
+#: templates/layout/default.php:267
 #: templates/plugin/Access/Users/user_settings.php:58
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: templates/layout/default.php:288
+#: templates/layout/default.php:293
 msgid "Logout"
 msgstr "Odhlášení"
 
-#: templates/layout/default.php:414
+#: templates/layout/default.php:419
 msgid "Changelog"
 msgstr "Seznam změn"
 
-#: templates/layout/default.php:415
+#: templates/layout/default.php:420
 msgid "Source Code"
 msgstr "Zdrojový kód"
 
-#: templates/layout/default.php:417
+#: templates/layout/default.php:422
 msgid "Version"
 msgstr "Verze"
 
-#: templates/layout/error.php:40
+#: templates/layout/error.php:43
 msgid "Back"
 msgstr "Zpět"
+
+#~ msgid "The customer points data could not be downloaded. Please, try again."
+#~ msgstr ""
+#~ "Data zákaznických bodů se nepodařilo stáhnout. Zkuste to prosím znovu."
+
+#~ msgid ""
+#~ "The customer points data could not be decoded. Please, check the source "
+#~ "data."
+#~ msgstr ""
+#~ "Data zákaznických bodů se nepodařilo dekódovat. Zkontrolujte prosím "
+#~ "zdrojová data."
+
+#~ msgid "The kept reading could not be read: {0}"
+#~ msgstr "Nelze načíst údaj o pokračování ve čtení: {0}"
+
+#~ msgid "The kept reading is not a reading: {0}"
+#~ msgstr "Pokračování čtení není čtením: {0}"
 
 #~ msgid "Legacy"
 #~ msgstr "Starší"
