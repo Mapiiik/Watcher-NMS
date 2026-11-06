@@ -33,6 +33,13 @@ use Override;
 class LandlordPaymentsTable extends AppTable
 {
     /**
+     * Where a payment holds the electricity details to let go of once it is saved.
+     *
+     * @var string
+     */
+    private const EMPTIED_DETAIL = 'emptied_electricity_detail';
+
+    /**
      * Initialize method
      *
      * @param array<string, mixed> $config The configuration for the Table.
@@ -157,10 +164,27 @@ class LandlordPaymentsTable extends AppTable
                 && $electricityDetail->high_rate_price_per_kwh === null
             ) {
                 if (!$electricityDetail->isNew()) {
-                    $this->LandlordPaymentsElectricityDetails->delete($electricityDetail);
+                    // goes only with a payment that saves, a refused one keeps what it had
+                    $landlordPayment->set(self::EMPTIED_DETAIL, $electricityDetail);
                 }
                 $landlordPayment->landlord_payments_electricity_detail = null;
             }
+        }
+    }
+
+    /**
+     * Lets go of the electricity details a saved payment was emptied of.
+     *
+     * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event The event.
+     * @param \App\Model\Entity\LandlordPayment $landlordPayment The payment saved.
+     * @return void
+     */
+    public function afterSave(EventInterface $event, LandlordPayment $landlordPayment): void
+    {
+        $electricityDetail = $landlordPayment->get(self::EMPTIED_DETAIL);
+        if ($electricityDetail !== null) {
+            $this->LandlordPaymentsElectricityDetails->delete($electricityDetail);
+            $landlordPayment->unset(self::EMPTIED_DETAIL);
         }
     }
 }

@@ -86,4 +86,42 @@ class LandlordPaymentsTableTest extends TestCase
     {
         $this->assertDanglingReferencesAreRefused($this->LandlordPayments);
     }
+
+    /**
+     * The electricity detail of a payment emptied in the form goes with the payment saved. A payment
+     * refused keeps it: the form says nothing was saved.
+     *
+     * @return void
+     * @link \App\Model\Table\LandlordPaymentsTable::afterMarshal()
+     */
+    public function testAnEmptiedDetailGoesOnlyWithAPaymentSaved(): void
+    {
+        $paymentId = 'd6382ef3-3477-487e-82ff-f47f5a93bae9';
+        $details = $this->LandlordPayments->LandlordPaymentsElectricityDetails;
+        $details->deleteAll(['landlord_payment_id' => $paymentId]);
+        $details->saveOrFail($details->newEntity([
+            'landlord_payment_id' => $paymentId,
+            'low_rate_kwh_used' => 10,
+            'low_rate_price_per_kwh' => 1,
+            'high_rate_kwh_used' => 10,
+            'high_rate_price_per_kwh' => 2,
+        ], ['validate' => false]), ['checkRules' => false]);
+        $emptied = [
+            'landlord_payments_electricity_detail' => [
+                'low_rate_kwh_used' => '',
+                'low_rate_price_per_kwh' => '',
+                'high_rate_kwh_used' => '',
+                'high_rate_price_per_kwh' => '',
+            ],
+        ];
+        $read = fn() => $this->LandlordPayments->get($paymentId, contain: ['LandlordPaymentsElectricityDetails']);
+
+        $refused = $this->LandlordPayments->patchEntity($read(), ['amount_paid' => 'not a number'] + $emptied);
+        $this->assertTrue($refused->hasErrors());
+        $this->assertSame(1, $details->find()->where(['landlord_payment_id' => $paymentId])->count());
+
+        $saved = $this->LandlordPayments->patchEntity($read(), $emptied);
+        $this->LandlordPayments->saveOrFail($saved);
+        $this->assertSame(0, $details->find()->where(['landlord_payment_id' => $paymentId])->count());
+    }
 }

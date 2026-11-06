@@ -39,7 +39,7 @@ class LandlordPaymentsController extends AppController
         }
 
         $this->paginate = [
-            'order' => ['name' => 'ASC'],
+            'order' => ['payment_date' => 'DESC'],
         ];
 
         $landlordPayments = $this->paginate($this->LandlordPayments->find(
