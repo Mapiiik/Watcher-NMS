@@ -280,4 +280,91 @@ class RadioUnitsControllerTest extends TestCase
             $this->getTableLocator()->get('RadioUnits')->get($radioUnitId)->customer_connection_id,
         );
     }
+
+    /**
+     * An antenna of another band stays on offer for the unit that has it. Left out of the list,
+     * saving a note would take the antenna away.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitsController::edit()
+     */
+    public function testEditKeepsTheAntennaOfAnotherBand(): void
+    {
+        $this->login();
+        $radioUnitId = $this->firstId('RadioUnits');
+        $antennaTypes = $this->getTableLocator()->get('AntennaTypes');
+        $antennaId = $this->firstId('AntennaTypes');
+        $antennaTypes->updateAll(['radio_unit_band_id' => null], ['id' => $antennaId]);
+        $this->getTableLocator()->get('RadioUnits')->updateAll(['antenna_type_id' => $antennaId], ['id' => $radioUnitId]);
+        $other = $this->addBand();
+        $antennaTypes->updateAll(['radio_unit_band_id' => $other], ['id' => $antennaId]);
+
+        $this->get('/radio-units/edit/' . $radioUnitId);
+
+        $this->assertResponseOk();
+        $this->assertArrayHasKey($antennaId, $this->viewVariable('antennaTypes')->toArray());
+    }
+
+    /**
+     * Refreshing the form after picking another type offers what fits the new type.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitsController::edit()
+     */
+    public function testRefreshingTheFormReadsTheTypePicked(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $radioUnitId = $this->firstId('RadioUnits');
+        $picked = $this->getTableLocator()->get('RadioUnitTypes')->saveOrFail(
+            $this->getTableLocator()->get('RadioUnitTypes')->newEntity(
+                ['name' => 'Another type', 'radio_unit_band_id' => $this->addBand()],
+                ['validate' => false],
+            ),
+            ['checkRules' => false],
+        );
+
+        $this->post('/radio-units/edit/' . $radioUnitId, [
+            'refresh' => 'refresh',
+            'radio_unit_type_id' => $picked->id,
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertSame($picked->id, $this->viewVariable('radioUnit')->radio_unit_type_id);
+    }
+
+    /**
+     * A type of no band offers the antennas of no band, it does not fall over.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitsController::edit()
+     */
+    public function testATypeOfNoBandStillDrawsTheForm(): void
+    {
+        $this->login();
+        $radioUnitId = $this->firstId('RadioUnits');
+        $typeId = $this->getTableLocator()->get('RadioUnits')->get($radioUnitId)->radio_unit_type_id;
+        $this->getTableLocator()->get('RadioUnitTypes')->updateAll(['radio_unit_band_id' => null], ['id' => $typeId]);
+
+        $this->get('/radio-units/edit/' . $radioUnitId);
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * Adds a band nothing else belongs to.
+     *
+     * @return string
+     */
+    private function addBand(): string
+    {
+        $bands = $this->getTableLocator()->get('RadioUnitBands');
+
+        return (string)$bands->saveOrFail(
+            $bands->newEntity(['name' => '17 GHz'], ['validate' => false]),
+            ['checkRules' => false],
+        )->id;
+    }
 }

@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\RadioUnit;
 use Cake\Http\Response;
+use Cake\ORM\Query\SelectQuery;
 
 /**
  * RadioUnits Controller
@@ -137,15 +139,7 @@ class RadioUnitsController extends AppController
             ->all();
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name'])->all();
 
-        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', order: ['name']);
-
-        if (isset($radioUnit->radio_unit_type_id)) {
-            $antennaTypes->where(['OR' => [
-                'radio_unit_band_id' => $this->RadioUnits->RadioUnitTypes
-                    ->get($radioUnit->radio_unit_type_id)->radio_unit_band_id,
-                'radio_unit_band_id IS NULL',
-            ]]);
-        }
+        $antennaTypes = $this->antennaTypesFor($radioUnit);
 
         $this->set(compact(
             'radioUnit',
@@ -170,10 +164,11 @@ class RadioUnitsController extends AppController
     {
         $radioUnit = $this->RadioUnits->get($id, contain: []);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+            $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->getRequest()->getData());
+
             if ($this->getRequest()->getData('refresh') == 'refresh') {
                 // only refresh
             } else {
-                $radioUnit = $this->RadioUnits->patchEntity($radioUnit, $this->getRequest()->getData());
                 if ($this->RadioUnits->save($radioUnit)) {
                     $this->Flash->success(__('The radio unit has been saved.'));
 
@@ -193,15 +188,7 @@ class RadioUnitsController extends AppController
             ->all();
         $radioLinks = $this->RadioUnits->RadioLinks->find('list', order: ['name'])->all();
 
-        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', order: ['name']);
-
-        if (isset($radioUnit->radio_unit_type_id)) {
-            $antennaTypes->where(['OR' => [
-                'radio_unit_band_id' => $this->RadioUnits->RadioUnitTypes
-                    ->get($radioUnit->radio_unit_type_id)->radio_unit_band_id,
-                'radio_unit_band_id IS NULL',
-            ]]);
-        }
+        $antennaTypes = $this->antennaTypesFor($radioUnit);
 
         $this->set(compact(
             'radioUnit',
@@ -213,6 +200,29 @@ class RadioUnitsController extends AppController
         ));
 
         return null;
+    }
+
+    /**
+     * The antenna types to offer for a unit: those of its band and those of no band, and the one
+     * it has, which saving the form would otherwise take away.
+     *
+     * @param \App\Model\Entity\RadioUnit $radioUnit The unit.
+     * @return \Cake\ORM\Query\SelectQuery<\App\Model\Entity\AntennaType>
+     */
+    private function antennaTypesFor(RadioUnit $radioUnit): SelectQuery
+    {
+        $antennaTypes = $this->RadioUnits->AntennaTypes->find('list', order: ['name']);
+        if (!isset($radioUnit->radio_unit_type_id)) {
+            return $antennaTypes;
+        }
+
+        $band = $this->RadioUnits->RadioUnitTypes->get($radioUnit->radio_unit_type_id)->radio_unit_band_id;
+        $fitting = ['radio_unit_band_id IS NULL', 'AntennaTypes.id IS' => $radioUnit->antenna_type_id];
+        if ($band !== null) {
+            $fitting['radio_unit_band_id'] = $band;
+        }
+
+        return $antennaTypes->where(['OR' => $fitting]);
     }
 
     /**
