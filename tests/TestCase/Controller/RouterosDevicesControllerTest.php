@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\RouterosDevicesController;
 use App\Test\Traits\ControllerTestTrait;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -142,6 +143,36 @@ class RouterosDevicesControllerTest extends TestCase
         $this->post('/routeros-devices/delete/' . $this->firstId('RouterosDevices'));
 
         $this->assertRedirect();
+    }
+
+    /**
+     * What a device says about itself comes from the network, and whoever runs the device can
+     * make it say anything, so the export writes it out as text.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDevicesController::export()
+     */
+    public function testTheExportWritesOutWhatADeviceSaysAsText(): void
+    {
+        $interfaces = $this->getTableLocator()->get('RouterosDeviceInterfaces');
+        $interface = $interfaces->find()->firstOrFail();
+        $interface->set('ssid', '<img src=x onerror=alert(1)>');
+        $interface->set('band', '<b>2ghz</b>');
+        $interfaces->saveOrFail($interface);
+        // the export leaves out what has not answered lately
+        $this->getTableLocator()->get('RouterosDevices')->updateAll(
+            ['modified' => DateTime::now()],
+            ['id' => $interface->get('routeros_device_id')],
+        );
+
+        $this->login();
+        $this->get('/routeros-devices/export');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('&lt;img src=x onerror=alert(1)&gt;');
+        $this->assertResponseContains('&lt;b&gt;2ghz&lt;/b&gt;');
+        $this->assertResponseNotContains('<img src=x');
+        $this->assertResponseNotContains('<b>2ghz');
     }
 
     /**

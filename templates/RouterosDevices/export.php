@@ -85,7 +85,7 @@ $this->setLayout('clean');
                             <?php if ($routerosDevice->routeros_device_interfaces !== null) {
                                 foreach ($routerosDevice->routeros_device_interfaces as $routeros_device_interface) {
                                     if (isset($routeros_device_interface->mac_address)) {
-                                        echo $routeros_device_interface->mac_address . '<br>';
+                                        echo h($routeros_device_interface->mac_address) . '<br>';
                                     }
                                 }
                             }
@@ -95,7 +95,7 @@ $this->setLayout('clean');
                             <?php if ($routerosDevice->routeros_device_interfaces !== null) {
                                 foreach ($routerosDevice->routeros_device_interfaces as $routeros_device_interface) {
                                     if (isset($routeros_device_interface->mac_address)) {
-                                        echo $routeros_device_interface->band . '<br>';
+                                        echo h($routeros_device_interface->band) . '<br>';
                                     }
                                 }
                             }
@@ -105,7 +105,7 @@ $this->setLayout('clean');
                             <?php if ($routerosDevice->routeros_device_interfaces !== null) {
                                 foreach ($routerosDevice->routeros_device_interfaces as $routeros_device_interface) {
                                     if (isset($routeros_device_interface->mac_address)) {
-                                        echo $routeros_device_interface->ssid . '<br>';
+                                        echo h($routeros_device_interface->ssid) . '<br>';
                                     }
                                 }
                             }
