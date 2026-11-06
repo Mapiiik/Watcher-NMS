@@ -16,6 +16,13 @@ class UsersTableTest extends TestCase
     use TableTestTrait;
 
     /**
+     * What the form of an account says when it saves.
+     *
+     * @var array<string, array<string, bool>>
+     */
+    private const FORM = ['accessibleFields' => ['first_name' => true, 'holds_tasks' => true]];
+
+    /**
      * Test subject
      *
      * @var \App\Model\Table\UsersTable
@@ -91,7 +98,7 @@ class UsersTableTest extends TestCase
         /** @var \App\Model\Entity\User $user */
         $user = $this->Users->find()->orderBy(['id'])->firstOrFail();
 
-        $saved = $this->Users->save($this->Users->patchEntity($user, ['holds_tasks' => false]));
+        $saved = $this->Users->save($this->Users->patchEntity($user, ['holds_tasks' => false], self::FORM));
 
         $this->assertFalse($saved);
         $this->assertArrayHasKey('holdsNoTasks', $user->getError('holds_tasks'));
@@ -114,7 +121,7 @@ class UsersTableTest extends TestCase
         $tasks = $this->getTableLocator()->get('Tasks');
         $tasks->updateAll(['user_id' => null], ['user_id' => $user->id]);
 
-        $saved = $this->Users->save($this->Users->patchEntity($user, ['holds_tasks' => false]));
+        $saved = $this->Users->save($this->Users->patchEntity($user, ['holds_tasks' => false], self::FORM));
 
         $this->assertNotFalse($saved);
         $this->assertFalse($this->Users->get($user->id)->holds_tasks);
@@ -134,7 +141,7 @@ class UsersTableTest extends TestCase
         /** @var \App\Model\Entity\User $user */
         $user = $this->Users->find()->orderBy(['id'])->firstOrFail();
 
-        $saved = $this->Users->save($this->Users->patchEntity($user, ['first_name' => 'Renamed']));
+        $saved = $this->Users->save($this->Users->patchEntity($user, ['first_name' => 'Renamed'], self::FORM));
 
         $this->assertNotFalse($saved);
     }

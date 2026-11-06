@@ -117,6 +117,27 @@ class TasksTableTest extends TestCase
     }
 
     /**
+     * Naming a colleague on a task leaves their account as it is, whatever comes along with the
+     * name.
+     *
+     * @return void
+     * @link \App\Model\Entity\Task
+     */
+    public function testNamingACollaboratorDoesNotRewriteTheirAccount(): void
+    {
+        $colleague = $this->getTableLocator()->get('Users')->find()->firstOrFail();
+
+        /** @var \App\Model\Table\TasksTable $tasks */
+        $tasks = $this->getTableLocator()->get('Tasks');
+        $task = $tasks->newEntity(['collaborators' => [
+            ['id' => $colleague->get('id'), 'role' => 'admin', 'email' => 'someone@example.com'],
+        ]]);
+
+        $this->assertFalse($task->collaborators[0]->isDirty('role'));
+        $this->assertFalse($task->collaborators[0]->isDirty('email'));
+    }
+
+    /**
      * A type that insists on an access point refuses a task that names none, and takes the same
      * task once it does.
      *

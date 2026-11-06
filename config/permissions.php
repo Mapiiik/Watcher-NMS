@@ -184,8 +184,20 @@ $permissions = [
             ],
             'action' => [
                 'index',
-                'view',
                 'search',
+            ],
+        ],
+        [
+            'role' => [
+                'api',
+            ],
+            'prefix' => 'Api',
+            'plugin' => null,
+            'controller' => [
+                'IpAddressRanges',
+            ],
+            'action' => [
+                'view',
             ],
         ],
         //what all the staff may look at
@@ -516,5 +528,15 @@ if (file_exists($localPermissionsFile)) {
         $permissions = array_merge_recursive($localPermissions, $permissions);
     }
 }
+
+/*
+ * A rule that names no prefix is about the ordinary pages. Rbac would read it as any prefix and
+ * open the controller of the same name under Api, past what guards a form. The key goes first
+ * because a rule is read in order and ends at `allowed`.
+ */
+$permissions['CakeDC/Auth.permissions'] = array_map(
+    fn(array $rule): array => array_merge(['prefix' => false], $rule),
+    $permissions['CakeDC/Auth.permissions'],
+);
 
 return $permissions;

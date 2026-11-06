@@ -122,7 +122,7 @@ class FootprintBehaviorTest extends TestCase
         // that created the record has to be a user that is really there
         $users = $this->getTableLocator()->get('Users');
         $creator = $users->newEmptyEntity();
-        $creator->patch(['username' => 'author', 'role' => 'admin', 'active' => true]);
+        $creator->patch(['username' => 'author', 'role' => 'admin', 'active' => true], ['guard' => false]);
         $creator->set('password', 'irrelevant-for-this-test', ['setter' => false]);
         $users->saveOrFail($creator);
 

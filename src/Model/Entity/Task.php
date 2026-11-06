@@ -45,7 +45,6 @@ class Task extends TasksTask
         'access_point_id' => true,
         'task_state' => true,
         'task_type' => true,
-        'user' => true,
         'collaborators' => true,
         'access_point' => true,
     ];

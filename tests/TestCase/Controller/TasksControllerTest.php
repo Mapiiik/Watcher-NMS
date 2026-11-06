@@ -133,7 +133,9 @@ class TasksControllerTest extends TestCase
         // itself enforces - so the tasks are moved away first, exactly as it asks
         $this->getTableLocator()->get('Tasks')
             ->updateAll(['user_id' => null], ['user_id' => $integration->id]);
-        $users->saveOrFail($users->patchEntity($integration, ['holds_tasks' => false]));
+        $users->saveOrFail($users->patchEntity($integration, ['holds_tasks' => false], [
+            'accessibleFields' => ['holds_tasks' => true],
+        ]));
 
         $this->login();
         $this->get('/tasks/add');
