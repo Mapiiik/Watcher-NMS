@@ -23,6 +23,15 @@ namespace App\Model\Entity;
 class DeviceType extends AppEntity
 {
     /**
+     * What reads a device, left out wherever the record is written out whole.
+     *
+     * @var list<string>
+     */
+    protected array $_hidden = [
+        'snmp_community',
+    ];
+
+    /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
      * Note that when '*' is set to true, this allows all unspecified fields to

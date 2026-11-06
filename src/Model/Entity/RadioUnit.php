@@ -50,6 +50,16 @@ use Cake\Core\Configure;
 class RadioUnit extends AppEntity
 {
     /**
+     * The way into the device, left out wherever the record is written out whole.
+     *
+     * @var list<string>
+     */
+    protected array $_hidden = [
+        'device_login',
+        'device_password',
+    ];
+
+    /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
      * Note that when '*' is set to true, this allows all unspecified fields to

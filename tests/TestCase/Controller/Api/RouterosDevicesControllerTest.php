@@ -73,6 +73,23 @@ class RouterosDevicesControllerTest extends TestCase
     }
 
     /**
+     * What the CRM is handed about a device leaves out what reads it.
+     *
+     * @return void
+     * @link \App\Controller\Api\RouterosDevicesController::search()
+     */
+    public function testTheCommunityIsLeftOut(): void
+    {
+        $this->login('api');
+        $this->configRequest(['headers' => ['Accept' => 'application/json']]);
+        $this->get('/api/routeros-devices/search.json');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('"device_type"');
+        $this->assertResponseNotContains('snmp_community');
+    }
+
+    /**
      * A single record serializes.
      *
      * @return void

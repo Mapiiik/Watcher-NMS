@@ -84,6 +84,29 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * The way into a device does not travel with the place it stands at.
+     *
+     * @return void
+     * @link \App\Controller\Api\AccessPointsController::view()
+     */
+    public function testTheWayIntoADeviceIsLeftOut(): void
+    {
+        $unit = $this->getTableLocator()->get('RadioUnits')->find()
+            ->where(['access_point_id IS NOT' => null])
+            ->firstOrFail();
+
+        $this->login();
+        $this->configRequest(['headers' => ['Accept' => 'application/json']]);
+        $this->get('/api/access-points/' . $unit->get('access_point_id') . '.json');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('"radio_units"');
+        $this->assertResponseNotContains('device_login');
+        $this->assertResponseNotContains('device_password');
+        $this->assertResponseNotContains('snmp_community');
+    }
+
+    /**
      * A single record serializes.
      *
      * @return void
