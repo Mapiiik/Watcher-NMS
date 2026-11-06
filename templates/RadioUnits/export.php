@@ -83,7 +83,7 @@ $this->setLayout('clean');
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->radio_unit_type->manufacturer !== null ? $this->Html->link(
+                        <?= $radioUnit->radio_unit_type?->manufacturer !== null ? $this->Html->link(
                             $radioUnit->radio_unit_type->manufacturer->name
                             ?? '(' . $radioUnit->radio_unit_type->manufacturer->id . ')',
                             [
@@ -94,7 +94,7 @@ $this->setLayout('clean');
                         ) : '' ?>
                     </td>
                     <td>
-                        <?= $radioUnit->radio_unit_type->radio_unit_band !== null ? $this->Html->link(
+                        <?= $radioUnit->radio_unit_type?->radio_unit_band !== null ? $this->Html->link(
                             $radioUnit->radio_unit_type->radio_unit_band->name
                             ?? '(' . $radioUnit->radio_unit_type->radio_unit_band->id . ')',
                             [

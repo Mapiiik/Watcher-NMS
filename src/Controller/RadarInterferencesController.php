@@ -145,6 +145,8 @@ class RadarInterferencesController extends AppController
      */
     public function updateOnline(): ?Response
     {
+        $this->getRequest()->allowMethod(['post']);
+
         $runner = new CommandRunner(new Application(dirname(__DIR__) . '/../config'), 'cake');
         if ($runner->run(['cake', 'radar_interferences_update']) === 0) {
             $this->Flash->success(__('The radar interferences table has been updated.'));

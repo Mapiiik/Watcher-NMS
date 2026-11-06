@@ -379,11 +379,11 @@
                                 '' : $this->Number->format($electricityMeterReading->reading_value, [
                                     'after' => ' kWh',
                                 ]) ?></td>
-                            <td><?= $electricityMeterReading->daily_consumption ?
+                            <td><?= $electricityMeterReading->daily_consumption !== null ?
                                 $this->Number->format($electricityMeterReading->daily_consumption, [
                                     'after' => ' kWh',
                                 ]) : '' ?></td>
-                            <td><?= $electricityMeterReading->daily_consumption ?
+                            <td><?= $electricityMeterReading->daily_consumption !== null ?
                                 $this->Number->format($electricityMeterReading->daily_consumption * 365, [
                                     'after' => ' kWh',
                                 ]) : '' ?></td>

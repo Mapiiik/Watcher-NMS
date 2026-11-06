@@ -203,4 +203,19 @@ class RadarInterferencesControllerTest extends TestCase
             $this->getTableLocator()->get('RadarInterferences')->get($radarInterferenceId)->name,
         );
     }
+
+    /**
+     * Updating changes data and keeps a process busy, so a link on a foreign page must not start it.
+     *
+     * @return void
+     * @link \App\Controller\RadarInterferencesController::updateOnline()
+     */
+    public function testUpdatingOnlineHasToBePosted(): void
+    {
+        $this->login();
+
+        $this->get('/radar-interferences/update-online');
+
+        $this->assertResponseCode(405);
+    }
 }

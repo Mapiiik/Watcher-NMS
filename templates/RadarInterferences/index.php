@@ -27,7 +27,7 @@
         ['action' => 'devices'],
         ['class' => 'button float-right'],
     ) ?>
-    <?= $this->AuthLink->link(
+    <?= $this->AuthLink->postLink(
         __('Update Online'),
         ['action' => 'updateOnline'],
         ['class' => 'button float-right'],

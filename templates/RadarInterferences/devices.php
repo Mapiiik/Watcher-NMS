@@ -5,7 +5,11 @@
  */
 ?>
 <div class="radarInterferences index content">
-    <?= $this->AuthLink->link(__('Update Online'), ['action' => 'updateOnline'], ['class' => 'button float-right']) ?>
+    <?= $this->AuthLink->postLink(
+        __('Update Online'),
+        ['action' => 'updateOnline'],
+        ['class' => 'button float-right'],
+    ) ?>
     <?= $this->heading(__('Radar Interferences') . ' - ' . __('Devices')) ?>
     <div class="table-responsive">
         <table>
