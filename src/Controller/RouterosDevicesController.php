@@ -11,6 +11,7 @@ use Cake\Http\Response;
 use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use RuntimeException;
+use function Cake\Core\toBool;
 
 /**
  * RouterosDevices Controller
@@ -320,7 +321,10 @@ class RouterosDevicesController extends AppController
      */
     private function listingConditions(MaximumAge $maximumAge): array
     {
-        $conditions = [['RouterosDevices.modified >' => $maximumAge->since()]];
+        // what is older than the age asked for, the devices the dashboard warns about
+        $stale = toBool($this->getRequest()->getQuery('stale')) ?? false;
+        $modified = $stale ? 'RouterosDevices.modified <=' : 'RouterosDevices.modified >';
+        $conditions = [[$modified => $maximumAge->since()]];
 
         if ($this->access_point_id !== null) {
             $conditions[] = ['RouterosDevices.access_point_id' => $this->access_point_id];

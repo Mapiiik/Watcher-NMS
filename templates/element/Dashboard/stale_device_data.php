@@ -33,7 +33,12 @@ $shown = 0;
     </table>
 
     <?php if ($total > $shown) : ?>
-        <?php $url = ['controller' => 'RouterosDevices', 'action' => 'index', 'access_point_id' => false] ?>
+        <?php $url = [
+            'controller' => 'RouterosDevices',
+            'action' => 'index',
+            'access_point_id' => false,
+            '?' => ['stale' => 1],
+        ] ?>
         <p><?= $this->Html->link(__('and {0} more', $total - $shown), $url) ?></p>
     <?php endif ?>
 <?php endif ?>

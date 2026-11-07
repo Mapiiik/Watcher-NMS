@@ -17,6 +17,13 @@
     <div class="column">
         <?= $this->element('common/maximum_age', ['maximumAge' => $maximumAge]) ?>
     </div>
+    <div class="column">
+        <?= $this->Form->control('stale', [
+            'label' => __('Untouched for a While Only'),
+            'type' => 'checkbox',
+            'onchange' => $this::SUBMIT_ON_CHANGE,
+        ]) ?>
+    </div>
 </div>
 <?= $this->Form->end() ?>
 

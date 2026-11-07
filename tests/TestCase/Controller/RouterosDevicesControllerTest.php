@@ -62,6 +62,34 @@ class RouterosDevicesControllerTest extends TestCase
     }
 
     /**
+     * The dashboard warns about devices not read for a while and leads here, so the listing can show
+     * just those, and only those.
+     *
+     * @return void
+     * @link \App\Controller\RouterosDevicesController::index()
+     */
+    public function testTheListingShowsTheDevicesNotReadForAWhile(): void
+    {
+        $devices = $this->getTableLocator()->get('RouterosDevices');
+        $devices->updateAll(['name' => 'Read today', 'modified' => DateTime::now()], ['1 = 1']);
+        $stale = $devices->saveOrFail($devices->newEntity([
+            'name' => 'Not read for a month',
+            'serial_number' => 'STALE-1',
+        ]));
+        $devices->updateAll(['modified' => DateTime::now()->subDays(30)], ['id' => $stale->get('id')]);
+
+        $this->login();
+
+        $this->get('/routeros-devices');
+        $this->assertResponseContains('Read today');
+        $this->assertResponseNotContains('Not read for a month');
+
+        $this->get('/routeros-devices?stale=1');
+        $this->assertResponseNotContains('Read today');
+        $this->assertResponseContains('Not read for a month');
+    }
+
+    /**
      * The listing renders with the search filled in, which builds a different query than the plain
      * listing does and is therefore worth requesting on its own.
      *
