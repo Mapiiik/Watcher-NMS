@@ -44,6 +44,41 @@ class PowerSuppliesControllerTest extends TestCase
     ];
 
     /**
+     * Rows of the same name, which is most of them, stand in one order on every page.
+     *
+     * @return void
+     * @link \App\Controller\PowerSuppliesController::index()
+     */
+    public function testRowsOfTheSameNameKeepTheirOrder(): void
+    {
+        $powerSupplies = $this->getTableLocator()->get('PowerSupplies');
+
+        foreach (['ffffffff-0000-4000-8000-000000000000', '00000000-0000-4000-8000-000000000000'] as $id) {
+            $powerSupply = $powerSupplies->newEntity(['name' => 'Same name']);
+            $powerSupply->set('id', $id);
+            $powerSupplies->saveOrFail($powerSupply);
+        }
+
+        $this->login();
+        $this->get('/power-supplies?search=Same name');
+
+        $this->assertResponseOk();
+
+        /** @var iterable<\App\Model\Entity\PowerSupply> $listed */
+        $listed = $this->viewVariable('powerSupplies');
+
+        $ids = [];
+        foreach ($listed as $powerSupply) {
+            $ids[] = $powerSupply->id;
+        }
+
+        $this->assertSame(
+            ['00000000-0000-4000-8000-000000000000', 'ffffffff-0000-4000-8000-000000000000'],
+            $ids,
+        );
+    }
+
+    /**
      * The listing renders.
      *
      * @return void

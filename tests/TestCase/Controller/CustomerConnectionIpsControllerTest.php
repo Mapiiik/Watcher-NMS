@@ -35,6 +35,46 @@ class CustomerConnectionIpsControllerTest extends TestCase
     ];
 
     /**
+     * Rows of the same name, which is most of them, stand in one order on every page.
+     *
+     * @return void
+     * @link \App\Controller\CustomerConnectionIpsController::index()
+     */
+    public function testRowsOfTheSameNameKeepTheirOrder(): void
+    {
+        $ips = $this->getTableLocator()->get('CustomerConnectionIps');
+        $connection = $this->getTableLocator()->get('CustomerConnections')->find()->firstOrFail();
+
+        foreach (['ffffffff-0000-4000-8000-000000000000', '00000000-0000-4000-8000-000000000000'] as $id) {
+            $ip = $ips->newEntity([
+                'name' => 'Same name',
+                'ip_address' => '10.0.0.1',
+                'customer_connection_id' => $connection->get('id'),
+            ]);
+            $ip->set('id', $id);
+            $ips->saveOrFail($ip);
+        }
+
+        $this->login();
+        $this->get('/customer-connection-ips?search=Same name');
+
+        $this->assertResponseOk();
+
+        /** @var iterable<\App\Model\Entity\CustomerConnectionIp> $listed */
+        $listed = $this->viewVariable('customerConnectionIps');
+
+        $ids = [];
+        foreach ($listed as $ip) {
+            $ids[] = $ip->id;
+        }
+
+        $this->assertSame(
+            ['00000000-0000-4000-8000-000000000000', 'ffffffff-0000-4000-8000-000000000000'],
+            $ids,
+        );
+    }
+
+    /**
      * The listing renders.
      *
      * @return void

@@ -41,7 +41,8 @@ class PowerSuppliesController extends AppController
         }
 
         $this->paginate = [
-            'order' => ['name' => 'ASC'],
+            // Most have no name, and rows that tie would change places between the pages.
+            'order' => ['name' => 'ASC', 'id' => 'ASC'],
         ];
 
         $powerSupplies = $this->paginate($this->PowerSupplies->find(
