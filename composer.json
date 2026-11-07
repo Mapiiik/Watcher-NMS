@@ -29,7 +29,7 @@
         "giggsey/libphonenumber-for-php": "^9.0",
         "josegonzalez/dotenv": "^4.0",
         "league/flysystem": "^3.36",
-        "league/oauth2-google": "^5.0",
+        "league/oauth2-client": "^2.9",
         "mlocati/ip-lib": "^1.22",
         "mobiledetect/mobiledetectlib": "^4.10",
         "tecnickcom/tc-lib-barcode": "^2.16"
