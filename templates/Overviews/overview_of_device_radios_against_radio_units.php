@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\RouterosDeviceInterface> $deviceRadios
- * @var iterable<\App\Model\Entity\RadioUnitBand> $radioUnitBands
+ * @var \Cake\Collection\CollectionInterface<string, string> $radioUnitBands
  * @var array<string, int> $summary
  * @var bool $onlyMissing
  * @var \App\Model\Enum\MaximumAge $maximumAge
@@ -76,7 +76,7 @@ $verdicts = [
         ) ?>
     </p>
 
-    <?php if (empty($summary)) : ?>
+    <?php if ($radioUnitBands->isEmpty()) : ?>
     <p>
         <?= $this->Html->link(
             __('No band asks for its device radios to be recorded yet.'),

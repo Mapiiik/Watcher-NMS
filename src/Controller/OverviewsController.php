@@ -191,7 +191,8 @@ class OverviewsController extends AppController
         // Only the bands that ask for anything can appear, so only they are offered to filter by.
         $radioUnitBands = $this->fetchTable(RadioUnitBandsTable::class)
             ->find('list', order: ['name'])
-            ->where(['devices_require_radio_unit' => true]);
+            ->where(['devices_require_radio_unit' => true])
+            ->all();
 
         $this->set(compact('deviceRadios', 'radioUnitBands', 'onlyMissing', 'maximumAge', 'link'));
         $this->set('summary', $comparison->summary($conditions));

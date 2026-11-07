@@ -187,6 +187,28 @@ class OverviewsControllerTest extends TestCase
     }
 
     /**
+     * Whether any band asks is a question about the bands, and a search nothing answers must not
+     * be told that none does.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfDeviceRadiosAgainstRadioUnits()
+     */
+    public function testNoBandAskingIsNotConfusedWithAnEmptySearch(): void
+    {
+        $noBandAsks = (string)__('No band asks for its device radios to be recorded yet.');
+
+        $this->login();
+        $this->get('/overviews/overview-of-device-radios-against-radio-units');
+        $this->assertResponseContains($noBandAsks);
+
+        $this->requiringBand();
+
+        $this->get('/overviews/overview-of-device-radios-against-radio-units?search=nothing-answers-this');
+        $this->assertResponseOk();
+        $this->assertResponseNotContains($noBandAsks);
+    }
+
+    /**
      * A device nothing has been read off for longer than the maximum age is left out, radios and
      * counts alike.
      *
