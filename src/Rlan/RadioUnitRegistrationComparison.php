@@ -82,6 +82,12 @@ final class RadioUnitRegistrationComparison
     public const REGISTERED_BY_NAME = 'registered_by_name';
 
     /**
+     * The station was found by that number, and the inventory holds another address than the
+     * register does. Unlike an address nobody wrote down, this is a disagreement.
+     */
+    public const REGISTERED_UNDER_ANOTHER_ADDRESS = 'registered_under_another_address';
+
+    /**
      * The station was found by the address it is registered under, and nothing else had to be
      * right for it to be found.
      */
@@ -98,17 +104,24 @@ final class RadioUnitRegistrationComparison
     private const COORDINATE_TOLERANCE_LIMIT = 100000;
 
     /**
-     * The address a station is registered under, as the register writes it back.
+     * Whether the inventory holds an address for the unit.
      *
      * The inventory keeps whatever identifies the station in `station_address`, and only the units
      * of the bands registered by address hold a MAC address there - so the shape is what says
      * whether there is an address to compare, exactly as it does when the unit is compared with
-     * its device. The register's side is written into that same shape as it is read, so nothing
-     * has to be picked apart here.
+     * its device.
+     */
+    private const HOLDS_A_MAC_ADDRESS =
+        "RadioUnits.station_address ~ '" . RadioUnitComparison::MAC_ADDRESS_PATTERN . "'";
+
+    /**
+     * The address a station is registered under, as the register writes it back.
+     *
+     * The register's side is written into the same shape as the inventory's as it is read, so
+     * nothing has to be picked apart here.
      */
     private const MATCHES_THE_MAC_ADDRESS =
-        "RadioUnits.station_address ~ '" . RadioUnitComparison::MAC_ADDRESS_PATTERN . "'"
-        . ' AND LOWER(BTRIM(RadioUnits.station_address)) = %1$s.mac_address';
+        self::HOLDS_A_MAC_ADDRESS . ' AND LOWER(BTRIM(RadioUnits.station_address)) = %1$s.mac_address';
 
     /**
      * The name the registration was filed under, which is what the authorization number holds.
@@ -294,10 +307,16 @@ final class RadioUnitRegistrationComparison
      */
     public function differences(SelectQuery $query): ExpressionInterface
     {
-        return $query->expr()->or(array_map(
+        $differences = array_map(
             fn(ExpressionInterface $check): ExpressionInterface => $query->expr()->eq($check, self::DIFFERS),
             array_values($this->checks($query)),
-        ));
+        );
+        $differences[] = $query->expr()->eq(
+            $this->registrationCheck($query),
+            self::REGISTERED_UNDER_ANOTHER_ADDRESS,
+        );
+
+        return $query->expr()->or($differences);
     }
 
     /**
@@ -319,7 +338,8 @@ final class RadioUnitRegistrationComparison
      *
      * A unit found by name is registered, and the overview says so - but nothing about it has been
      * checked against the address the registration was actually issued against, which is the one
-     * identifier the regulator goes by. It is the list of what is left to write down.
+     * identifier the regulator goes by. It is the list of what is left to write down, so a unit
+     * holding another address is not on it: that one is among the differences.
      *
      * @param \Cake\ORM\Query\SelectQuery<\App\Model\Entity\RadioUnit> $query Query to build it for.
      * @return \Cake\Database\ExpressionInterface
@@ -490,6 +510,8 @@ final class RadioUnitRegistrationComparison
             ->then(self::NOT_REGISTERED, 'string')
             ->when($query->expr($this->matching(self::MATCHES_THE_MAC_ADDRESS, 'RlanStations')))
             ->then(self::REGISTERED_BY_MAC_ADDRESS, 'string')
+            ->when($query->expr(self::HOLDS_A_MAC_ADDRESS . ' AND RlanStations.mac_address IS NOT NULL'))
+            ->then(self::REGISTERED_UNDER_ANOTHER_ADDRESS, 'string')
             ->else(self::REGISTERED_BY_NAME, 'string');
     }
 

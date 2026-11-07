@@ -533,6 +533,34 @@ class OverviewsControllerTest extends TestCase
     }
 
     /**
+     * A unit holding another address than the register is shown as the disagreement it is, in the
+     * listing opened by default as well as in the counts.
+     *
+     * @return void
+     * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
+     */
+    public function testAnotherAddressIsShownAsADifference(): void
+    {
+        $this->registeredUnit($this->registeredBand('Registered band'), 'Another address', [
+            'station_address' => '11:00:00:00:03:01',
+            'authorization_number' => '000005',
+        ]);
+
+        $this->login();
+        $this->get('/overviews/overview-of-radio-units-against-registered-stations');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('Another address');
+        $this->assertResponseContains((string)__('Found by the number, the address differs'));
+        $this->assertResponseContains('The address recorded here is not the registered one.');
+        $this->assertResponseContains('var(--color-message-error-bg)');
+        $this->assertResponseNotContains('The address is not recorded here.');
+
+        $verdict = RadioUnitRegistrationComparison::REGISTERED_UNDER_ANOTHER_ADDRESS;
+        $this->assertSame(1, $this->viewVariable('summary')['registration_check'][$verdict]);
+    }
+
+    /**
      * The filters build a different query than the plain listing does, so each is asked for.
      *
      * @return void
@@ -845,6 +873,42 @@ class OverviewsControllerTest extends TestCase
         $bands->saveOrFail($band);
 
         return (string)$band->get('id');
+    }
+
+    /**
+     * Add a band whose units are registered.
+     *
+     * @param string $name What to call it.
+     * @return string Id of the band.
+     */
+    private function registeredBand(string $name): string
+    {
+        $bands = $this->getTableLocator()->get('RadioUnitBands');
+
+        $band = $bands->newEntity(['name' => $name, 'units_require_rlan_registration' => true]);
+        $bands->saveOrFail($band);
+
+        return (string)$band->get('id');
+    }
+
+    /**
+     * Add a radio unit on the given band.
+     *
+     * @param string $bandId Band it is on.
+     * @param string $name What to find it by.
+     * @param array<string, mixed> $record The rest of what the records hold of it.
+     * @return void
+     */
+    private function registeredUnit(string $bandId, string $name, array $record): void
+    {
+        $types = $this->getTableLocator()->get('RadioUnitTypes');
+        $type = $types->newEntity(['name' => $name . ' type', 'radio_unit_band_id' => $bandId]);
+        $types->saveOrFail($type);
+
+        $radioUnits = $this->radioUnitsTable();
+        $radioUnits->saveOrFail($radioUnits->newEntity(
+            ['name' => $name, 'radio_unit_type_id' => $type->get('id')] + $record,
+        ));
     }
 
     /**

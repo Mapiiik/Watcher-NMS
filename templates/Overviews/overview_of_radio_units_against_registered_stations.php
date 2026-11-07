@@ -30,6 +30,7 @@ $checkedFields = [
 
 $registrations = [
     RadioUnitRegistrationComparison::REGISTERED_BY_MAC_ADDRESS => __('Found by the address'),
+    RadioUnitRegistrationComparison::REGISTERED_UNDER_ANOTHER_ADDRESS => __('Found by the number, the address differs'),
     RadioUnitRegistrationComparison::REGISTERED_BY_NAME => __('Found by the number only'),
     RadioUnitRegistrationComparison::NOT_REGISTERED => __('Not registered'),
 ];

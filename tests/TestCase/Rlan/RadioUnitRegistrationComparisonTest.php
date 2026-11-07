@@ -146,6 +146,78 @@ class RadioUnitRegistrationComparisonTest extends TestCase
     }
 
     /**
+     * Found by the number with another address on the unit is a disagreement, not an address left
+     * to write down, so it stands among the differences and off the list of what is left.
+     *
+     * @return void
+     * @link \App\Rlan\RadioUnitRegistrationComparison::differences()
+     */
+    public function testAnotherAddressThanTheRegisteredOneIsADifference(): void
+    {
+        $band = $this->band('Registered band', registered: true);
+        $this->radioUnit(
+            'Another address',
+            $band,
+            stationAddress: '11:00:00:00:03:01',
+            authorizationNumber: '000005',
+        );
+
+        $listed = $this->listed('Another address');
+
+        $this->assertSame(
+            RadioUnitRegistrationComparison::REGISTERED_UNDER_ANOTHER_ADDRESS,
+            $listed->get('registration_check'),
+        );
+        $this->assertSame(8039, $listed->get('station_id'));
+        $this->assertSame(['Another address'], $this->namesAmongTheDifferences());
+        $this->assertSame([], $this->namesFoundWithoutTheAddress());
+    }
+
+    /**
+     * Nothing written down where an address would go is what is left to do, and no difference.
+     *
+     * @return void
+     * @link \App\Rlan\RadioUnitRegistrationComparison::foundWithoutTheAddress()
+     */
+    public function testNoAddressOnTheUnitIsLeftToWriteDown(): void
+    {
+        $band = $this->band('Registered band', registered: true);
+        $this->radioUnit(
+            'No address yet',
+            $band,
+            stationAddress: 'not an address at all',
+            authorizationNumber: '000005',
+        );
+
+        $this->assertSame([], $this->namesAmongTheDifferences());
+        $this->assertSame(['No address yet'], $this->namesFoundWithoutTheAddress());
+    }
+
+    /**
+     * A station the register holds no address for has nothing to disagree with.
+     *
+     * @return void
+     * @link \App\Rlan\RadioUnitRegistrationComparison::query()
+     */
+    public function testAStationWithoutAnAddressDisagreesWithNoAddress(): void
+    {
+        $this->station(9003, 'No address', null, type: 'fs');
+
+        $band = $this->band('Registered band', registered: true);
+        $this->radioUnit(
+            'Unit of that station',
+            $band,
+            stationAddress: '11:00:00:00:03:02',
+            authorizationNumber: 'No address',
+        );
+
+        $this->assertSame(
+            RadioUnitRegistrationComparison::REGISTERED_BY_NAME,
+            $this->listed('Unit of that station')->get('registration_check'),
+        );
+    }
+
+    /**
      * The number the register keeps the station under is not what the authorization number holds,
      * and a unit carrying one must not be taken for registered because the digits happen to exist.
      *
@@ -556,7 +628,7 @@ class RadioUnitRegistrationComparisonTest extends TestCase
      *
      * @param int $stationId The number the register keeps it under.
      * @param string $name What the registration was filed under.
-     * @param string $macAddress The address it is registered by.
+     * @param string|null $macAddress The address it is registered by.
      * @param string $type The kind of station.
      * @param bool|null $withParameters True for parameters, false for looked and none, null for
      *   never looked.
@@ -567,7 +639,7 @@ class RadioUnitRegistrationComparisonTest extends TestCase
     private function station(
         int $stationId,
         string $name,
-        string $macAddress,
+        ?string $macAddress,
         string $type,
         ?bool $withParameters = true,
         float $latitude = 50.599546047948,
@@ -627,6 +699,32 @@ class RadioUnitRegistrationComparisonTest extends TestCase
             'tx_frequency' => $txFrequency,
             'channel_width' => $channelWidth,
         ]));
+    }
+
+    /**
+     * The units the overview lists among the differences.
+     *
+     * @return array<mixed>
+     */
+    private function namesAmongTheDifferences(): array
+    {
+        $comparison = new RadioUnitRegistrationComparison();
+        $query = $comparison->query();
+
+        return $query->where($comparison->differences($query))->all()->extract('name')->toList();
+    }
+
+    /**
+     * The units the overview lists as found without the address.
+     *
+     * @return array<mixed>
+     */
+    private function namesFoundWithoutTheAddress(): array
+    {
+        $comparison = new RadioUnitRegistrationComparison();
+        $query = $comparison->query();
+
+        return $query->where($comparison->foundWithoutTheAddress($query))->all()->extract('name')->toList();
     }
 
     /**

@@ -5,7 +5,8 @@
  * How the station was found is worth a column of its own while the addresses are still being
  * written down: a unit found only by the number the registration was filed under is registered,
  * but nothing about it has been checked against the address the registration was actually issued
- * against - so it is a thing to finish rather than a thing that is wrong.
+ * against - so it is a thing to finish rather than a thing that is wrong. One that holds another
+ * address than the register does is wrong.
  *
  * @var \App\View\AppView $this
  * @var string $result One of the \App\Rlan\RadioUnitRegistrationComparison verdicts.
@@ -16,7 +17,8 @@
 use App\Rlan\RadioUnitRegistrationComparison;
 
 $colour = match ($result) {
-    RadioUnitRegistrationComparison::NOT_REGISTERED => 'error',
+    RadioUnitRegistrationComparison::NOT_REGISTERED,
+    RadioUnitRegistrationComparison::REGISTERED_UNDER_ANOTHER_ADDRESS => 'error',
     RadioUnitRegistrationComparison::REGISTERED_BY_NAME => 'warning',
     default => null,
 };
@@ -26,6 +28,11 @@ $explanation = match ($result) {
         __('Nothing in the register answers for this radio unit.'),
     RadioUnitRegistrationComparison::REGISTERED_BY_NAME =>
         __('Found by the number the registration was filed under. The address is not recorded here.'),
+    RadioUnitRegistrationComparison::REGISTERED_UNDER_ANOTHER_ADDRESS =>
+        __(
+            'Found by the number the registration was filed under. '
+            . 'The address recorded here is not the registered one.',
+        ),
     default =>
         __('Found by the address the registration was issued against.'),
 };
