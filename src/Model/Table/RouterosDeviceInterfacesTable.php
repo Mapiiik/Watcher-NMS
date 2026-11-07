@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Validation\NetworkValidation;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -117,6 +118,10 @@ class RouterosDeviceInterfacesTable extends AppTable
 
         $validator
             ->scalar('mac_address')
+            ->add('mac_address', 'macaddr', [
+                'rule' => NetworkValidation::macaddr(...),
+                'message' => __('This is not a MAC address.'),
+            ])
             ->allowEmptyString('mac_address');
 
         $validator
@@ -161,6 +166,10 @@ class RouterosDeviceInterfacesTable extends AppTable
 
         $validator
             ->scalar('bssid')
+            ->add('bssid', 'macaddr', [
+                'rule' => NetworkValidation::macaddr(...),
+                'message' => __('This is not a MAC address.'),
+            ])
             ->allowEmptyString('bssid');
 
         return $validator;

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Validation\NetworkValidation;
 use Cake\ORM\Association;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
@@ -117,6 +118,10 @@ class RouterosDevicesTable extends AppTable
 
         $validator
             ->scalar('ip_address')
+            ->add('ip_address', 'inet', [
+                'rule' => NetworkValidation::inet(...),
+                'message' => __d('cake', 'The provided value must be an IP address'),
+            ])
             ->maxLength('ip_address', 39)
             ->allowEmptyString('ip_address');
 

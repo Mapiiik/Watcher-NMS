@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Validation\NetworkValidation;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -82,11 +83,19 @@ class IpAddressRangesTable extends AppTable
 
         $validator
             ->scalar('ip_network')
+            ->add('ip_network', 'cidr', [
+                'rule' => NetworkValidation::cidr(...),
+                'message' => __('This is not the address of a network.'),
+            ])
             ->requirePresence('ip_network', 'create')
             ->notEmptyString('ip_network');
 
         $validator
             ->scalar('ip_gateway')
+            ->add('ip_gateway', 'inet', [
+                'rule' => NetworkValidation::inet(...),
+                'message' => __d('cake', 'The provided value must be an IP address'),
+            ])
             ->maxLength('ip_gateway', 39)
             ->allowEmptyString('ip_gateway');
 

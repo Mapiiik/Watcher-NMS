@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Validation\NetworkValidation;
 use Cake\Validation\Validator;
 use Override;
 
@@ -42,6 +43,7 @@ class RadarInterferencesTable extends AppTable
         $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('StringModifications');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Footprint');
 
@@ -70,6 +72,10 @@ class RadarInterferencesTable extends AppTable
 
         $validator
             ->scalar('mac_address')
+            ->add('mac_address', 'macaddr', [
+                'rule' => NetworkValidation::macaddr(...),
+                'message' => __('This is not a MAC address.'),
+            ])
             ->allowEmptyString('mac_address');
 
         $validator
