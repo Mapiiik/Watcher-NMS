@@ -519,17 +519,20 @@ class OverviewsControllerTest extends TestCase
     }
 
     /**
-     * The overview against the register renders.
+     * The overview against the register opens on the differences and counts every unit.
      *
      * @return void
      * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
      */
     public function testOverviewOfRadioUnitsAgainstRegisteredStations(): void
     {
-        $this->login();
-        $this->get('/overviews/overview-of-radio-units-against-registered-stations');
+        $this->registeredUnits();
 
-        $this->assertResponseOk();
+        $this->assertSame(['Another address', 'Retuned'], $this->registeredUnitsListed());
+
+        /** @var array<string, array<string, int>> $summary */
+        $summary = $this->viewVariable('summary');
+        $this->assertSame(6, array_sum($summary['registration_check']));
     }
 
     /**
@@ -561,38 +564,53 @@ class OverviewsControllerTest extends TestCase
     }
 
     /**
-     * The filters build a different query than the plain listing does, so each is asked for.
+     * Each filter leaves what it names and nothing else.
      *
      * @return void
      * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
      */
     public function testOverviewOfRadioUnitsAgainstRegisteredStationsFiltered(): void
     {
-        $this->login();
-        $this->get(
-            '/overviews/overview-of-radio-units-against-registered-stations'
-            . '?show=all&search=Lorem&radio_unit_band_id=04c8767f-d828-42dd-8950-6500917fc0ce',
-        );
+        $otherBand = $this->registeredUnits();
 
-        $this->assertResponseOk();
+        $this->assertSame(['Retuned'], $this->registeredUnitsListed('?show=all&search=Retuned'));
+        $this->assertSame(
+            ['On another band'],
+            $this->registeredUnitsListed('?show=all&radio_unit_band_id=' . $otherBand),
+        );
+        $this->assertSame(
+            ['On another band'],
+            $this->registeredUnitsListed('?show=all', '/access-points/' . self::ACCESS_POINT_ID),
+        );
     }
 
     /**
-     * Each listing the scope offers is a different query, so each is asked for.
+     * Each listing the scope offers holds its own units.
      *
      * @return void
      * @link \App\Controller\OverviewsController::overviewOfRadioUnitsAgainstRegisteredStations()
      */
-    public function testEveryRegistrationScopeRenders(): void
+    public function testEveryRegistrationScopeListsItsOwnUnits(): void
     {
-        $this->login();
+        $this->registeredUnits();
 
-        foreach (RlanRegistrationScope::cases() as $scope) {
-            $this->get(
-                '/overviews/overview-of-radio-units-against-registered-stations?show=' . $scope->value,
-            );
+        $expected = [
+            RlanRegistrationScope::Differences->value => ['Another address', 'Retuned'],
+            RlanRegistrationScope::NotRegistered->value => ['Not registered', 'On another band'],
+            RlanRegistrationScope::WithoutTheAddress->value => ['No address yet'],
+            RlanRegistrationScope::All->value => [
+                'Agrees',
+                'Another address',
+                'No address yet',
+                'Not registered',
+                'On another band',
+                'Retuned',
+            ],
+        ];
 
-            $this->assertResponseOk();
+        $this->assertCount(count(RlanRegistrationScope::cases()), $expected);
+        foreach ($expected as $scope => $names) {
+            $this->assertSame($names, $this->registeredUnitsListed('?show=' . $scope), $scope);
         }
     }
 
@@ -604,10 +622,9 @@ class OverviewsControllerTest extends TestCase
      */
     public function testAnUnknownRegistrationScopeFallsBackToTheDifferences(): void
     {
-        $this->login();
-        $this->get('/overviews/overview-of-radio-units-against-registered-stations?show=nonsense');
+        $this->registeredUnits();
 
-        $this->assertResponseOk();
+        $this->assertSame(['Another address', 'Retuned'], $this->registeredUnitsListed('?show=nonsense'));
         $this->assertSame(RlanRegistrationScope::Differences, $this->viewVariable('show'));
     }
 
@@ -873,6 +890,60 @@ class OverviewsControllerTest extends TestCase
         $bands->saveOrFail($band);
 
         return (string)$band->get('id');
+    }
+
+    /**
+     * Add a unit for each way the overview against the register can come out.
+     *
+     * @return string Id of a band only one of them is on, which stands at an access point.
+     */
+    private function registeredUnits(): string
+    {
+        $band = $this->registeredBand('Registered band');
+
+        $this->registeredUnit($band, 'Agrees', ['station_address' => '04:d6:aa:a6:df:74']);
+        $this->registeredUnit($band, 'Retuned', ['station_address' => '04:d6:aa:a6:df:74', 'tx_frequency' => 58320]);
+        $this->registeredUnit($band, 'Another address', [
+            'station_address' => '11:00:00:00:03:01',
+            'authorization_number' => '000005',
+        ]);
+        $this->registeredUnit($band, 'No address yet', [
+            'station_address' => 'not an address at all',
+            'authorization_number' => '000005',
+        ]);
+        $this->registeredUnit($band, 'Not registered', ['station_address' => '11:00:00:00:03:02']);
+
+        $otherBand = $this->registeredBand('Other registered band');
+        $this->registeredUnit($otherBand, 'On another band', [
+            'station_address' => '11:00:00:00:03:03',
+            'access_point_id' => self::ACCESS_POINT_ID,
+        ]);
+
+        return $otherBand;
+    }
+
+    /**
+     * The names the overview against the register lists, as the action answers with them.
+     *
+     * @param string $query What to narrow the overview down to, as a query string.
+     * @param string $prefix Where the address starts, for an overview under an access point.
+     * @return list<string>
+     */
+    private function registeredUnitsListed(string $query = '', string $prefix = ''): array
+    {
+        $this->login();
+        $this->get($prefix . '/overviews/overview-of-radio-units-against-registered-stations' . $query);
+        $this->assertResponseOk();
+
+        /** @var \Cake\Datasource\Paging\PaginatedInterface<int, \App\Model\Entity\RadioUnit> $radioUnits */
+        $radioUnits = $this->viewVariable('radioUnits');
+
+        $names = [];
+        foreach ($radioUnits as $radioUnit) {
+            $names[] = (string)$radioUnit->name;
+        }
+
+        return $names;
     }
 
     /**
