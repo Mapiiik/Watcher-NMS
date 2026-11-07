@@ -55,11 +55,14 @@ class MaximumAgeTest extends TestCase
      */
     public function testTheMomentIsThatManyDaysBack(): void
     {
+        $frozen = DateTime::getTestNow();
         $now = new DateTime('2026-08-11 12:00:00');
         DateTime::setTestNow($now);
 
-        $this->assertEquals($now->subDays(28), MaximumAge::FourWeeks->since());
-
-        DateTime::setTestNow(null);
+        try {
+            $this->assertEquals($now->subDays(28), MaximumAge::FourWeeks->since());
+        } finally {
+            DateTime::setTestNow($frozen);
+        }
     }
 }
