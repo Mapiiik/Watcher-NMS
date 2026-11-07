@@ -302,6 +302,28 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * The new task the page offers is filed under the access point it was offered from.
+     *
+     * @return void
+     * @link \App\Controller\TasksController::add()
+     */
+    public function testViewOffersANewTaskUnderTheAccessPoint(): void
+    {
+        $url = '/access-points/' . self::ACTIVE_ACCESS_POINT_ID . '/tasks/add';
+
+        $this->login();
+        $this->get('/access-points/' . self::ACTIVE_ACCESS_POINT_ID);
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('href="' . $url . '"');
+
+        $this->get($url);
+
+        $this->assertResponseOk();
+        $this->assertSame(self::ACTIVE_ACCESS_POINT_ID, $this->viewVariable('task')->access_point_id);
+    }
+
+    /**
      * Test view method
      *
      * @return void

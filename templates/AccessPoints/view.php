@@ -1062,7 +1062,7 @@
                         [
                             'controller' => 'Tasks',
                             'action' => 'add',
-                            '?' => ['access_point_id' => $accessPoint->id],
+                            'access_point_id' => $accessPoint->id,
                         ],
                         ['class' => 'button button-small float-right win-link'],
                     ) ?>
