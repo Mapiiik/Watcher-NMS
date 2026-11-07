@@ -185,6 +185,22 @@ class RadarInterferencesController extends AppController
         $radarInterferences->select(['routeros_device_interface_id' => 'RouterosDeviceInterfaces.id']);
         $radarInterferences->select(['routeros_device_interface_name' => 'RouterosDeviceInterfaces.name']);
 
-        $this->set('radarInterferences', $this->paginate($radarInterferences));
+        $this->set('radarInterferences', $this->paginate($radarInterferences, [
+            'sortableFields' => [
+                'id',
+                'name',
+                'mac_address',
+                'ssid',
+                'signal',
+                'radio_name',
+                'RouterosDevices.name',
+                'RouterosDeviceInterfaces.name',
+            ],
+            'order' => [
+                'name' => 'ASC',
+                'RouterosDevices.name' => 'ASC',
+                'RouterosDeviceInterfaces.name' => 'ASC',
+            ],
+        ]));
     }
 }

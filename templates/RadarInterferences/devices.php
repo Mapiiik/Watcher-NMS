@@ -21,8 +21,11 @@
                     <th><?= $this->Paginator->sort('ssid') ?></th>
                     <th><?= $this->Paginator->sort('signal') ?></th>
                     <th><?= $this->Paginator->sort('radio_name') ?></th>
-                    <th><?= $this->Paginator->sort('routeros_device_id') ?></th>
-                    <th><?= $this->Paginator->sort('routeros_device_interface_id') ?></th>
+                    <th><?= $this->Paginator->sort('RouterosDevices.name', __('RouterOS Device')) ?></th>
+                    <th><?= $this->Paginator->sort(
+                        'RouterosDeviceInterfaces.name',
+                        __('RouterOS Device Interface'),
+                    ) ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -38,7 +41,8 @@
                     <td><?= h($radarInterference->radio_name) ?></td>
                     <td>
                         <?= $this->Html->link(
-                            $radarInterference->get('routeros_device_name'),
+                            $radarInterference->get('routeros_device_name')
+                                ?? '(' . $radarInterference->get('routeros_device_id') . ')',
                             [
                                 'controller' => 'RouterosDevices',
                                 'action' => 'view',
@@ -48,7 +52,8 @@
                     </td>
                     <td>
                         <?= $this->Html->link(
-                            $radarInterference->get('routeros_device_interface_name'),
+                            $radarInterference->get('routeros_device_interface_name')
+                                ?? '(' . $radarInterference->get('routeros_device_interface_id') . ')',
                             [
                                 'controller' => 'RouterosDeviceInterfaces',
                                 'action' => 'view',

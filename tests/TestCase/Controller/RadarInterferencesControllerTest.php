@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\RadarInterferencesController;
+use App\Model\Entity\RadarInterference;
 use App\Test\Traits\ControllerTestTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
@@ -217,5 +218,141 @@ class RadarInterferencesControllerTest extends TestCase
         $this->get('/radar-interferences/update-online');
 
         $this->assertResponseCode(405);
+    }
+
+    /**
+     * The devices are listed by what is shown of them, whichever way the heading is clicked.
+     *
+     * @return void
+     * @link \App\Controller\RadarInterferencesController::devices()
+     */
+    public function testDevicesAreSortedByTheNameOfTheDevice(): void
+    {
+        $this->interferingDevice('22:00:00:00:00:01', 'Device A', 'Interface Z');
+        $this->interferingDevice('22:00:00:00:00:02', 'Device Z', 'Interface A');
+
+        $this->login();
+
+        $this->get('/radar-interferences/devices?sort=RouterosDevices.name&direction=desc');
+        $this->assertResponseOk();
+        $this->assertSame('Device Z', $this->firstListed()->get('routeros_device_name'));
+        $this->assertResponseContains('sort=RouterosDevices.name');
+
+        $this->get('/radar-interferences/devices?sort=RouterosDevices.name&direction=asc');
+        $this->assertSame('Device A', $this->firstListed()->get('routeros_device_name'));
+
+        $this->get('/radar-interferences/devices?sort=RouterosDeviceInterfaces.name&direction=asc');
+        $this->assertSame('Device Z', $this->firstListed()->get('routeros_device_name'));
+        $this->assertResponseContains('sort=RouterosDeviceInterfaces.name');
+    }
+
+    /**
+     * With nothing clicked the same page always holds the same rows.
+     *
+     * @return void
+     * @link \App\Controller\RadarInterferencesController::devices()
+     */
+    public function testDevicesAreListedByTheNameOfTheInterference(): void
+    {
+        $this->interferingDevice('22:00:00:00:00:02', 'Second device', 'Interface', 'B interference');
+        $this->interferingDevice('22:00:00:00:00:01', 'First device', 'Interface', 'A interference');
+
+        $this->login();
+        $this->get('/radar-interferences/devices');
+
+        $this->assertResponseOk();
+        $this->assertSame('First device', $this->firstListed()->get('routeros_device_name'));
+    }
+
+    /**
+     * A device nobody has named, or an interface, is still listed and can still be opened.
+     *
+     * @return void
+     * @link \App\Controller\RadarInterferencesController::devices()
+     */
+    public function testADeviceWithoutANameIsListedByItsId(): void
+    {
+        $this->interferingDevice('22:00:00:00:00:03', null, null);
+
+        $this->login();
+        $this->get('/radar-interferences/devices?sort=name');
+
+        $this->assertResponseOk();
+
+        $unnamed = $this->listedByDeviceName(null);
+        $this->assertResponseContains('(' . $unnamed->get('routeros_device_id') . ')');
+        $this->assertResponseContains('(' . $unnamed->get('routeros_device_interface_id') . ')');
+    }
+
+    /**
+     * Add an interference reported of a device of ours.
+     *
+     * @param string $macAddress The address they share.
+     * @param string|null $deviceName What the device is called.
+     * @param string|null $interfaceName What its interface is called.
+     * @param string $interferenceName What the register calls the interference.
+     * @return void
+     */
+    private function interferingDevice(
+        string $macAddress,
+        ?string $deviceName,
+        ?string $interfaceName,
+        string $interferenceName = 'Interference',
+    ): void {
+        $devices = $this->getTableLocator()->get('RouterosDevices');
+        $device = $devices->saveOrFail($devices->newEntity(['name' => $deviceName]));
+
+        $interfaces = $this->getTableLocator()->get('RouterosDeviceInterfaces');
+        $interfaces->saveOrFail($interfaces->newEntity([
+            'routeros_device_id' => $device->get('id'),
+            'name' => $interfaceName,
+            'mac_address' => $macAddress,
+        ]));
+
+        $interferences = $this->getTableLocator()->get('RadarInterferences');
+        $interferences->saveOrFail($interferences->newEntity([
+            'name' => $interferenceName,
+            'mac_address' => $macAddress,
+            'signal' => 1,
+        ]));
+    }
+
+    /**
+     * The first row of the listing just requested, leaving out what the fixtures hold.
+     *
+     * @return \App\Model\Entity\RadarInterference
+     */
+    private function firstListed(): RadarInterference
+    {
+        /** @var iterable<\App\Model\Entity\RadarInterference> $listed */
+        $listed = $this->viewVariable('radarInterferences');
+
+        foreach ($listed as $radarInterference) {
+            if ($radarInterference->mac_address !== '11:22:33:44:55:66') {
+                return $radarInterference;
+            }
+        }
+
+        $this->fail('Nothing but the fixture is listed.');
+    }
+
+    /**
+     * The row of the listing just requested for the device of that name.
+     *
+     * @param string|null $name What the device is called.
+     * @return \App\Model\Entity\RadarInterference
+     */
+    private function listedByDeviceName(?string $name): RadarInterference
+    {
+        /** @var iterable<\App\Model\Entity\RadarInterference> $listed */
+        $listed = $this->viewVariable('radarInterferences');
+
+        foreach ($listed as $radarInterference) {
+            if ($radarInterference->get('routeros_device_name') === $name) {
+                return $radarInterference;
+            }
+        }
+
+        $this->fail('The device is not listed.');
     }
 }
