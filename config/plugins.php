@@ -49,4 +49,9 @@ return [
 
     // Files
     'Files' => [],
+
+    // The jobs, what runs when and the queue they run from
+    'Queue' => [],
+    'QueueScheduler' => [],
+    'Scheduler' => [],
 ];

@@ -15,6 +15,7 @@
       <directory>plugins/Dashboard/tests/TestCase/</directory>
       <directory>plugins/Files/tests/TestCase/</directory>
       <directory>plugins/Maps/tests/TestCase/</directory>
+      <directory>plugins/Scheduler/tests/TestCase/</directory>
       <directory>plugins/Settings/tests/TestCase/</directory>
       <directory>plugins/Tasks/tests/TestCase/</directory>
     </testsuite>

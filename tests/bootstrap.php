@@ -123,4 +123,6 @@ $migrator->runMany([
     [],
     ['plugin' => 'Settings'],
     ['plugin' => 'Files'],
+    ['plugin' => 'Queue'],
+    ['plugin' => 'QueueScheduler'],
 ]);
