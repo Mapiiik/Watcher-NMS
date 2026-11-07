@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Dashboard\Card;
 
-use App\Dashboard\DashboardCardRegistry;
+use App\Model\Entity\User;
 use App\Model\Table\RadarInterferencesTable;
 use Dashboard\Card\AbstractDashboardCard;
 use Override;
@@ -47,7 +47,7 @@ class RadarInterferencesCard extends AbstractDashboardCard
     #[Override]
     public function roles(): array
     {
-        return DashboardCardRegistry::WHOLE_OFFICE;
+        return User::OFFICE_ROLES;
     }
 
     /**

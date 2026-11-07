@@ -9,6 +9,7 @@
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+use App\Model\Entity\User;
 use Cake\Http\ServerRequest;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validation;
@@ -55,16 +56,7 @@ use Files\Service\Documentations;
  * are let in by rules of their own, so the ordinary pages are not theirs - not even the ones open
  * to everybody else.
  */
-$staff = [
-    'user',
-    'customer-service-technician',
-    'network-technician',
-    'network-manager',
-    'sales-representative',
-    'sales-manager',
-    'bookkeeper',
-    'manager',
-];
+$staff = User::OFFICE_ROLES;
 
 /*
  * Default permissions
