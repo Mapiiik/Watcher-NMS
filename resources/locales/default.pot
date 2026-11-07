@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-11-06 15:38+0100\n"
+"POT-Creation-Date: 2026-11-07 15:03+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -77,7 +77,7 @@ msgstr ""
 #: ./src/Command/BackupCommand.php:79
 #: ./src/Command/PowerOutagesReportCommand.php:141
 #: ./templates/Overviews/overview_of_planned_power_outages.php:65
-#: ./templates/element/AccessPoints/power_outages.php:74
+#: ./templates/element/AccessPoints/power_outages.php:64
 #: ./templates/email/html/power_outages_report.php:46
 msgid "Where"
 msgstr ""
@@ -155,7 +155,7 @@ msgstr ""
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:114
 #: ./templates/Overviews/overview_of_planned_power_outages.php:57
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:100
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:134
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:135
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:92
 #: ./templates/PaymentPurposes/view.php:64
 #: ./templates/PowerSupplies/view.php:61
@@ -265,21 +265,21 @@ msgstr ""
 
 #: ./src/Command/PowerOutagesReportCommand.php:138
 #: ./templates/Overviews/overview_of_planned_power_outages.php:61
-#: ./templates/element/AccessPoints/power_outages.php:70
+#: ./templates/element/AccessPoints/power_outages.php:60
 #: ./templates/email/html/power_outages_report.php:42
 msgid "Begins"
 msgstr ""
 
 #: ./src/Command/PowerOutagesReportCommand.php:139
 #: ./templates/Overviews/overview_of_planned_power_outages.php:62
-#: ./templates/element/AccessPoints/power_outages.php:71
+#: ./templates/element/AccessPoints/power_outages.php:61
 #: ./templates/email/html/power_outages_report.php:43
 msgid "Ends"
 msgstr ""
 
 #: ./src/Command/PowerOutagesReportCommand.php:140
 #: ./templates/Overviews/overview_of_planned_power_outages.php:63
-#: ./templates/element/AccessPoints/power_outages.php:72
+#: ./templates/element/AccessPoints/power_outages.php:62
 #: ./templates/email/html/power_outages_report.php:44
 msgid "Certainty"
 msgstr ""
@@ -475,12 +475,12 @@ msgid "Radar interferences report failed."
 msgstr ""
 
 #: ./src/Command/RadarInterferencesUpdateCommand.php:100
-#: ./src/Controller/RadarInterferencesController.php:150
+#: ./src/Controller/RadarInterferencesController.php:152
 msgid "The radar interferences table has been updated."
 msgstr ""
 
 #: ./src/Command/RadarInterferencesUpdateCommand.php:103
-#: ./src/Controller/RadarInterferencesController.php:152
+#: ./src/Controller/RadarInterferencesController.php:154
 msgid "The radar interferences table could not be updated. Please, try again."
 msgstr ""
 
@@ -669,25 +669,25 @@ msgstr ""
 msgid "The antenna type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AppController.php:97
+#: ./src/Controller/AppController.php:111
 msgid "Unable to find results on page {0}. Redirect to page 1."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionIpsController.php:84
-#: ./src/Controller/CustomerConnectionIpsController.php:115
+#: ./src/Controller/CustomerConnectionIpsController.php:85
+#: ./src/Controller/CustomerConnectionIpsController.php:116
 msgid "The customer connection IP has been saved."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionIpsController.php:88
-#: ./src/Controller/CustomerConnectionIpsController.php:119
+#: ./src/Controller/CustomerConnectionIpsController.php:89
+#: ./src/Controller/CustomerConnectionIpsController.php:120
 msgid "The customer connection IP could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionIpsController.php:142
+#: ./src/Controller/CustomerConnectionIpsController.php:143
 msgid "The customer connection IP has been deleted."
 msgstr ""
 
-#: ./src/Controller/CustomerConnectionIpsController.php:145
+#: ./src/Controller/CustomerConnectionIpsController.php:146
 msgid "The customer connection IP could not be deleted. Please, try again."
 msgstr ""
 
@@ -855,21 +855,21 @@ msgstr ""
 msgid "The payment purpose could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/PowerSuppliesController.php:97
-#: ./src/Controller/PowerSuppliesController.php:126
+#: ./src/Controller/PowerSuppliesController.php:98
+#: ./src/Controller/PowerSuppliesController.php:127
 msgid "The power supply has been saved."
 msgstr ""
 
-#: ./src/Controller/PowerSuppliesController.php:101
-#: ./src/Controller/PowerSuppliesController.php:130
+#: ./src/Controller/PowerSuppliesController.php:102
+#: ./src/Controller/PowerSuppliesController.php:131
 msgid "The power supply could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/PowerSuppliesController.php:153
+#: ./src/Controller/PowerSuppliesController.php:154
 msgid "The power supply has been deleted."
 msgstr ""
 
-#: ./src/Controller/PowerSuppliesController.php:156
+#: ./src/Controller/PowerSuppliesController.php:157
 msgid "The power supply could not be deleted. Please, try again."
 msgstr ""
 
@@ -909,21 +909,21 @@ msgstr ""
 msgid "The radar interference could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:106
-#: ./src/Controller/RadioLinksController.php:130
+#: ./src/Controller/RadioLinksController.php:107
+#: ./src/Controller/RadioLinksController.php:131
 msgid "The radio link has been saved."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:110
-#: ./src/Controller/RadioLinksController.php:134
+#: ./src/Controller/RadioLinksController.php:111
+#: ./src/Controller/RadioLinksController.php:135
 msgid "The radio link could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:153
+#: ./src/Controller/RadioLinksController.php:154
 msgid "The radio link has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioLinksController.php:156
+#: ./src/Controller/RadioLinksController.php:157
 msgid "The radio link could not be deleted. Please, try again."
 msgstr ""
 
@@ -963,21 +963,21 @@ msgstr ""
 msgid "The radio unit type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:122
-#: ./src/Controller/RadioUnitsController.php:178
+#: ./src/Controller/RadioUnitsController.php:135
+#: ./src/Controller/RadioUnitsController.php:184
 msgid "The radio unit has been saved."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:126
-#: ./src/Controller/RadioUnitsController.php:182
+#: ./src/Controller/RadioUnitsController.php:139
+#: ./src/Controller/RadioUnitsController.php:188
 msgid "The radio unit could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:230
+#: ./src/Controller/RadioUnitsController.php:251
 msgid "The radio unit has been deleted."
 msgstr ""
 
-#: ./src/Controller/RadioUnitsController.php:233
+#: ./src/Controller/RadioUnitsController.php:254
 msgid "The radio unit could not be deleted. Please, try again."
 msgstr ""
 
@@ -1017,33 +1017,33 @@ msgstr ""
 msgid "The RouterOS device IP could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:153
-#: ./src/Controller/RouterosDevicesController.php:187
+#: ./src/Controller/RouterosDevicesController.php:154
+#: ./src/Controller/RouterosDevicesController.php:188
 msgid "The RouterOS device has been saved."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:157
-#: ./src/Controller/RouterosDevicesController.php:191
+#: ./src/Controller/RouterosDevicesController.php:158
+#: ./src/Controller/RouterosDevicesController.php:192
 msgid "The RouterOS device could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:218
+#: ./src/Controller/RouterosDevicesController.php:219
 msgid "The RouterOS device has been deleted."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:221
+#: ./src/Controller/RouterosDevicesController.php:222
 msgid "The RouterOS device could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:247
+#: ./src/Controller/RouterosDevicesController.php:248
 msgid "Cannot update RouterOS device data via SNMP. Missing IP address or SNMP community."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:266
+#: ./src/Controller/RouterosDevicesController.php:267
 msgid "The RouterOS device data has been updated via SNMP."
 msgstr ""
 
-#: ./src/Controller/RouterosDevicesController.php:278
+#: ./src/Controller/RouterosDevicesController.php:279
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr ""
 
@@ -1083,22 +1083,22 @@ msgstr ""
 msgid "The record the address was filed under is no longer there."
 msgstr ""
 
-#: ./src/Dashboard/Card/ElectricityMeterReadingsCard.php:43
+#: ./src/Dashboard/Card/ElectricityMeterReadingsCard.php:44
 msgid "Electricity Meters to Read"
 msgstr ""
 
-#: ./src/Dashboard/Card/PowerOutagesCard.php:43
+#: ./src/Dashboard/Card/PowerOutagesCard.php:44
 #: ./templates/AccessPoints/view.php:265
 #: ./templates/Overviews/index.php:29
 #: ./templates/Overviews/overview_of_planned_power_outages.php:38
 msgid "Planned Power Outages"
 msgstr ""
 
-#: ./src/Dashboard/Card/RadarInterferencesCard.php:40
+#: ./src/Dashboard/Card/RadarInterferencesCard.php:41
 msgid "Our Devices Interfering with Radar"
 msgstr ""
 
-#: ./src/Dashboard/Card/StaleDeviceDataCard.php:42
+#: ./src/Dashboard/Card/StaleDeviceDataCard.php:43
 msgid "Devices with Stale Data"
 msgstr ""
 
@@ -1143,50 +1143,54 @@ msgstr ""
 msgid "date not given"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:39
+#: ./src/Model/Entity/User.php:36
 #: ./templates/Tasks/view.php:54
 #: ./templates/element/AccessPoints/tasks.php:35
 #: ./templates/element/Tasks/email_detail.php:48
 msgid "User"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:40
+#: ./src/Model/Entity/User.php:37
 msgid "Customer Service Technician"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:41
+#: ./src/Model/Entity/User.php:38
 msgid "Network Technician"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:42
+#: ./src/Model/Entity/User.php:39
 msgid "Network Manager"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:43
+#: ./src/Model/Entity/User.php:40
 msgid "Sales Representative"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:44
+#: ./src/Model/Entity/User.php:41
 msgid "Sales Manager"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:45
+#: ./src/Model/Entity/User.php:42
 msgid "Bookkeeper"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:46
+#: ./src/Model/Entity/User.php:43
 msgid "Manager"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:47
+#: ./src/Model/Entity/User.php:44
 msgid "Admin"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:48
+#: ./src/Model/Entity/User.php:45
 msgid "API"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:49
+#: ./src/Model/Entity/User.php:46
+msgid "Watcher CRM"
+msgstr ""
+
+#: ./src/Model/Entity/User.php:47
 msgid "Agent"
 msgstr ""
 
@@ -1247,7 +1251,7 @@ msgstr ""
 #: ./src/Model/Enum/LandingPage.php:43
 #: ./templates/AccessPoints/view.php:110
 #: ./templates/RouterosDevices/export.php:26
-#: ./templates/RouterosDevices/index.php:30
+#: ./templates/RouterosDevices/index.php:37
 #: ./templates/layout/default.php:177
 #: ./templates/layout/default.php:368
 msgid "RouterOS Devices"
@@ -1349,7 +1353,7 @@ msgstr[1] ""
 msgid "The phone number is not valid."
 msgstr ""
 
-#: ./src/Model/Table/AccessPointsTable.php:176
+#: ./src/Model/Table/AccessPointsTable.php:180
 msgid "This is not a valid EAN of a supply point."
 msgstr ""
 
@@ -1357,16 +1361,26 @@ msgstr ""
 msgid "This documentation type is filed under an access point."
 msgstr ""
 
+#: ./src/Model/Table/IpAddressRangesTable.php:93
+msgid "This is not the address of a network."
+msgstr ""
+
 #: ./src/Model/Table/LandlordPaymentsElectricityDetailsTable.php:117
 msgid "This field cannot be left empty"
 msgstr ""
 
-#: ./src/Model/Table/RadioUnitBandsTable.php:102
-#: ./src/Model/Table/RadioUnitBandsTable.php:106
+#: ./src/Model/Table/RadarInterferencesTable.php:77
+#: ./src/Model/Table/RouterosDeviceInterfacesTable.php:123
+#: ./src/Model/Table/RouterosDeviceInterfacesTable.php:171
+msgid "This is not a MAC address."
+msgstr ""
+
+#: ./src/Model/Table/RadioUnitBandsTable.php:109
+#: ./src/Model/Table/RadioUnitBandsTable.php:113
 msgid "Give the band both of its edges, or neither of them."
 msgstr ""
 
-#: ./src/Model/Table/RadioUnitBandsTable.php:114
+#: ./src/Model/Table/RadioUnitBandsTable.php:121
 msgid "The highest frequency of the band cannot be below the lowest one."
 msgstr ""
 
@@ -1556,7 +1570,7 @@ msgstr ""
 #: ./templates/PowerSupplyTypes/view.php:10
 #: ./templates/PowerSupplyTypes/view.php:101
 #: ./templates/RadarInterferences/add.php:10
-#: ./templates/RadarInterferences/devices.php:22
+#: ./templates/RadarInterferences/devices.php:29
 #: ./templates/RadarInterferences/edit.php:10
 #: ./templates/RadarInterferences/index.php:45
 #: ./templates/RadarInterferences/view.php:10
@@ -1578,7 +1592,7 @@ msgstr ""
 #: ./templates/RadioUnits/add.php:15
 #: ./templates/RadioUnits/edit.php:15
 #: ./templates/RadioUnits/export.php:43
-#: ./templates/RadioUnits/index.php:54
+#: ./templates/RadioUnits/index.php:58
 #: ./templates/RadioUnits/view.php:10
 #: ./templates/RouterosDeviceInterfaces/add.php:11
 #: ./templates/RouterosDeviceInterfaces/edit.php:11
@@ -1591,7 +1605,7 @@ msgstr ""
 #: ./templates/RouterosDevices/add.php:13
 #: ./templates/RouterosDevices/edit.php:13
 #: ./templates/RouterosDevices/export.php:46
-#: ./templates/RouterosDevices/index.php:45
+#: ./templates/RouterosDevices/index.php:52
 #: ./templates/RouterosDevices/view.php:10
 #: ./templates/RouterosDevices/view.php:159
 #: ./templates/RouterosDevices/view.php:223
@@ -1600,7 +1614,7 @@ msgstr ""
 #: ./templates/Tasks/edit.php:14
 #: ./templates/Tasks/index.php:113
 #: ./templates/Tasks/view.php:10
-#: ./templates/element/AccessPoints/power_outages.php:75
+#: ./templates/element/AccessPoints/power_outages.php:65
 #: ./templates/element/AccessPoints/subtree.php:70
 #: ./templates/element/AccessPoints/tasks.php:36
 #: ./templates/element/RadioUnits/related.php:57
@@ -1716,7 +1730,7 @@ msgstr ""
 #: ./templates/PowerSupplyTypes/edit.php:13
 #: ./templates/PowerSupplyTypes/index.php:64
 #: ./templates/PowerSupplyTypes/view.php:134
-#: ./templates/RadarInterferences/devices.php:66
+#: ./templates/RadarInterferences/devices.php:75
 #: ./templates/RadarInterferences/edit.php:12
 #: ./templates/RadarInterferences/index.php:68
 #: ./templates/RadarInterferences/view.php:138
@@ -1730,14 +1744,14 @@ msgstr ""
 #: ./templates/RadioUnitTypes/index.php:65
 #: ./templates/RadioUnits/edit.php:17
 #: ./templates/RadioUnits/export.php:154
-#: ./templates/RadioUnits/index.php:128
+#: ./templates/RadioUnits/index.php:132
 #: ./templates/RouterosDeviceInterfaces/edit.php:13
 #: ./templates/RouterosDeviceInterfaces/index.php:99
 #: ./templates/RouterosDeviceIps/edit.php:13
 #: ./templates/RouterosDeviceIps/index.php:70
 #: ./templates/RouterosDevices/edit.php:15
 #: ./templates/RouterosDevices/export.php:136
-#: ./templates/RouterosDevices/index.php:94
+#: ./templates/RouterosDevices/index.php:101
 #: ./templates/RouterosDevices/view.php:196
 #: ./templates/RouterosDevices/view.php:241
 #: ./templates/Tasks/edit.php:16
@@ -1806,7 +1820,7 @@ msgstr ""
 #: ./templates/PowerSupplyTypes/index.php:66
 #: ./templates/PowerSupplyTypes/view.php:20
 #: ./templates/PowerSupplyTypes/view.php:136
-#: ./templates/RadarInterferences/devices.php:68
+#: ./templates/RadarInterferences/devices.php:77
 #: ./templates/RadarInterferences/edit.php:15
 #: ./templates/RadarInterferences/index.php:70
 #: ./templates/RadarInterferences/view.php:20
@@ -1824,7 +1838,7 @@ msgstr ""
 #: ./templates/RadioUnitTypes/view.php:20
 #: ./templates/RadioUnits/edit.php:19
 #: ./templates/RadioUnits/export.php:156
-#: ./templates/RadioUnits/index.php:130
+#: ./templates/RadioUnits/index.php:134
 #: ./templates/RadioUnits/view.php:19
 #: ./templates/RouterosDeviceInterfaces/edit.php:16
 #: ./templates/RouterosDeviceInterfaces/index.php:101
@@ -1834,7 +1848,7 @@ msgstr ""
 #: ./templates/RouterosDeviceIps/view.php:20
 #: ./templates/RouterosDevices/edit.php:18
 #: ./templates/RouterosDevices/export.php:138
-#: ./templates/RouterosDevices/index.php:96
+#: ./templates/RouterosDevices/index.php:103
 #: ./templates/RouterosDevices/view.php:20
 #: ./templates/RouterosDevices/view.php:202
 #: ./templates/RouterosDevices/view.php:243
@@ -1866,7 +1880,7 @@ msgstr ""
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:24
 #: ./templates/Overviews/overview_of_planned_power_outages.php:19
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:31
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:41
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:42
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:18
 #: ./templates/PaymentPurposes/index.php:11
 #: ./templates/PowerSupplies/index.php:11
@@ -1925,7 +1939,7 @@ msgstr ""
 #: ./templates/PowerSupplies/index.php:75
 #: ./templates/PowerSupplyTypes/index.php:55
 #: ./templates/PowerSupplyTypes/view.php:125
-#: ./templates/RadarInterferences/devices.php:57
+#: ./templates/RadarInterferences/devices.php:66
 #: ./templates/RadarInterferences/index.php:59
 #: ./templates/RadarInterferences/view.php:121
 #: ./templates/RadioLinks/index.php:125
@@ -1934,11 +1948,11 @@ msgstr ""
 #: ./templates/RadioUnitBands/view.php:159
 #: ./templates/RadioUnitTypes/index.php:56
 #: ./templates/RadioUnits/export.php:145
-#: ./templates/RadioUnits/index.php:119
+#: ./templates/RadioUnits/index.php:123
 #: ./templates/RouterosDeviceInterfaces/index.php:90
 #: ./templates/RouterosDeviceIps/index.php:61
 #: ./templates/RouterosDevices/export.php:127
-#: ./templates/RouterosDevices/index.php:85
+#: ./templates/RouterosDevices/index.php:92
 #: ./templates/RouterosDevices/view.php:179
 #: ./templates/RouterosDevices/view.php:232
 #: ./templates/Tasks/index.php:170
@@ -1981,7 +1995,7 @@ msgstr ""
 #: ./templates/PowerSupplies/index.php:79
 #: ./templates/PowerSupplyTypes/index.php:59
 #: ./templates/PowerSupplyTypes/view.php:129
-#: ./templates/RadarInterferences/devices.php:61
+#: ./templates/RadarInterferences/devices.php:70
 #: ./templates/RadarInterferences/index.php:63
 #: ./templates/RadarInterferences/view.php:129
 #: ./templates/RadioLinks/index.php:129
@@ -1990,11 +2004,11 @@ msgstr ""
 #: ./templates/RadioUnitBands/view.php:163
 #: ./templates/RadioUnitTypes/index.php:60
 #: ./templates/RadioUnits/export.php:149
-#: ./templates/RadioUnits/index.php:123
+#: ./templates/RadioUnits/index.php:127
 #: ./templates/RouterosDeviceInterfaces/index.php:94
 #: ./templates/RouterosDeviceIps/index.php:65
 #: ./templates/RouterosDevices/export.php:131
-#: ./templates/RouterosDevices/index.php:89
+#: ./templates/RouterosDevices/index.php:96
 #: ./templates/RouterosDevices/view.php:187
 #: ./templates/RouterosDevices/view.php:236
 #: ./templates/Tasks/index.php:174
@@ -2275,6 +2289,7 @@ msgstr ""
 #: ./templates/AccessPoints/map.php:53
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:113
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:104
+#: ./templates/RadarInterferences/devices.php:24
 #: ./templates/RadarInterferences/view.php:75
 #: ./templates/RouterosDeviceInterfaces/add.php:28
 #: ./templates/RouterosDeviceInterfaces/edit.php:36
@@ -2343,7 +2358,7 @@ msgstr ""
 #: ./templates/AccessPoints/view.php:105
 #: ./templates/RadioLinks/index.php:35
 #: ./templates/RadioUnits/export.php:10
-#: ./templates/RadioUnits/index.php:29
+#: ./templates/RadioUnits/index.php:33
 #: ./templates/layout/default.php:401
 msgid "Radio Units"
 msgstr ""
@@ -2675,7 +2690,7 @@ msgid "Related Radio Units"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:663
-#: ./templates/RouterosDevices/index.php:25
+#: ./templates/RouterosDevices/index.php:32
 #: ./templates/RouterosDevices/view.php:29
 msgid "New RouterOS Device"
 msgstr ""
@@ -2836,7 +2851,7 @@ msgstr ""
 #: ./templates/Manufacturers/view.php:159
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:120
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:102
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:136
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:137
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:94
 #: ./templates/RadioUnitBands/view.php:34
 #: ./templates/RadioUnitTypes/view.php:47
@@ -2867,7 +2882,7 @@ msgstr ""
 #: ./templates/AntennaTypes/view.php:69
 #: ./templates/Manufacturers/view.php:66
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:26
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:144
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:145
 #: ./templates/RadioUnitBands/view.php:86
 msgid "Antenna Gain"
 msgstr ""
@@ -2893,7 +2908,7 @@ msgstr ""
 #: ./templates/RadioUnits/add.php:66
 #: ./templates/RadioUnits/edit.php:71
 #: ./templates/RadioUnits/export.php:37
-#: ./templates/RadioUnits/index.php:52
+#: ./templates/RadioUnits/index.php:56
 #: ./templates/RadioUnits/view.php:186
 #: ./templates/RouterosDeviceIps/add.php:32
 #: ./templates/RouterosDeviceIps/edit.php:40
@@ -2902,7 +2917,7 @@ msgstr ""
 #: ./templates/RouterosDevices/add.php:45
 #: ./templates/RouterosDevices/edit.php:53
 #: ./templates/RouterosDevices/export.php:35
-#: ./templates/RouterosDevices/index.php:39
+#: ./templates/RouterosDevices/index.php:46
 #: ./templates/RouterosDevices/view.php:95
 #: ./templates/RouterosDevices/view.php:221
 #: ./templates/element/RadioUnits/related.php:52
@@ -2937,7 +2952,7 @@ msgstr ""
 #: ./templates/CustomerConnections/view.php:58
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:115
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:101
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:135
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:136
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:93
 #: ./templates/RadioUnits/export.php:16
 #: ./templates/RadioUnits/view.php:70
@@ -3254,7 +3269,7 @@ msgid "Regulatory"
 msgstr ""
 
 #: ./templates/Overviews/index.php:55
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:69
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:70
 msgid "Overview of Radio Units Against Registered Stations"
 msgstr ""
 
@@ -3288,7 +3303,7 @@ msgstr ""
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:64
 #: ./templates/Overviews/overview_of_planned_power_outages.php:37
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:58
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:68
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:69
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:47
 msgid "List Overviews"
 msgstr ""
@@ -3310,7 +3325,7 @@ msgstr ""
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:24
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:108
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:24
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:142
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:143
 #: ./templates/RadarInterferences/view.php:82
 #: ./templates/RouterosDeviceInterfaces/view.php:84
 #: ./templates/RouterosDevices/view.php:151
@@ -3319,7 +3334,7 @@ msgstr ""
 
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:121
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:99
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:133
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:134
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:91
 #: ./templates/RadioUnits/view.php:35
 msgid "Radio Unit"
@@ -3340,7 +3355,7 @@ msgstr ""
 
 #: ./templates/Overviews/overview_of_planned_power_outages.php:26
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:45
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:55
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:56
 msgid "Show"
 msgstr ""
 
@@ -3350,18 +3365,18 @@ msgid "An outage found through the supply point is about that access point; one 
 msgstr ""
 
 #: ./templates/Overviews/overview_of_planned_power_outages.php:64
-#: ./templates/element/AccessPoints/power_outages.php:73
+#: ./templates/element/AccessPoints/power_outages.php:63
 #: ./templates/email/html/power_outages_report.php:45
 msgid "Found By"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_planned_power_outages.php:91
-#: ./templates/element/AccessPoints/power_outages.php:89
+#: ./templates/element/AccessPoints/power_outages.php:79
 msgid "(called off)"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_planned_power_outages.php:103
-#: ./templates/element/AccessPoints/power_outages.php:101
+#: ./templates/element/AccessPoints/power_outages.php:91
 #: ./templates/email/html/power_outages_report.php:47
 #: ./templates/email/html/power_outages_report.php:81
 msgid "Announcement"
@@ -3406,7 +3421,7 @@ msgid "Each radio unit is put next to the device carrying the same serial number
 msgstr ""
 
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:74
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:87
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:88
 msgid "Checked"
 msgstr ""
 
@@ -3419,12 +3434,12 @@ msgid "Not read yet"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:20
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:34
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:35
 msgid "Not registered"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:25
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:143
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:144
 #: ./templates/RadioLinks/index.php:39
 #: ./templates/RadioUnits/export.php:24
 #: ./templates/RadioUnits/view.php:117
@@ -3433,12 +3448,12 @@ msgid "Channel Width"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:27
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:145
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:146
 msgid "Power"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:28
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:146
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:147
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:90
 msgid "Coordinates"
 msgstr ""
@@ -3448,14 +3463,18 @@ msgid "Found by the address"
 msgstr ""
 
 #: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:33
+msgid "Found by the number, the address differs"
+msgstr ""
+
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:34
 msgid "Found by the number only"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:72
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:73
 msgid "Each radio unit of a band whose units are registered is put next to the station the regulator has registered for it - found by the address the unit is recorded under, or failing that by the number the registration was filed under. A unit nothing answers for is one the register does not know about, whatever the records here say. Nothing is corrected, only reported."
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:139
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:140
 #: ./templates/RadioLinks/view.php:44
 #: ./templates/RadioUnits/export.php:40
 #: ./templates/RadioUnits/view.php:198
@@ -3463,16 +3482,16 @@ msgstr ""
 msgid "Authorization Number"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:141
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:142
 #: ./templates/Overviews/overview_of_registered_stations_against_radio_units.php:86
 msgid "Station"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:213
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:214
 msgid "{0} m"
 msgstr ""
 
-#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:218
+#: ./templates/Overviews/overview_of_radio_units_against_registered_stations.php:219
 msgid "{0} m away"
 msgstr ""
 
@@ -3501,7 +3520,7 @@ msgctxt "radio unit"
 msgid "None"
 msgstr ""
 
-#: ./templates/element/rlan/registration_found.php:39
+#: ./templates/element/rlan/registration_found.php:46
 msgctxt "registered station"
 msgid "None"
 msgstr ""
@@ -3597,19 +3616,24 @@ msgstr ""
 msgid "Add Radar Interference"
 msgstr ""
 
-#: ./templates/RadarInterferences/devices.php:8
+#: ./templates/RadarInterferences/devices.php:9
 #: ./templates/RadarInterferences/index.php:31
 msgid "Update Online"
 msgstr ""
 
-#: ./templates/RadarInterferences/devices.php:9
+#: ./templates/RadarInterferences/devices.php:13
 #: ./templates/RadarInterferences/index.php:35
 #: ./templates/layout/default.php:383
 msgid "Radar Interferences"
 msgstr ""
 
-#: ./templates/RadarInterferences/devices.php:9
+#: ./templates/RadarInterferences/devices.php:13
 msgid "Devices"
+msgstr ""
+
+#: ./templates/RadarInterferences/devices.php:27
+#: ./templates/RouterosDeviceInterfaces/view.php:38
+msgid "RouterOS Device Interface"
 msgstr ""
 
 #: ./templates/RadarInterferences/edit.php:30
@@ -3895,9 +3919,9 @@ msgid "Index"
 msgstr ""
 
 #: ./templates/RadioUnits/export.php:10
-#: ./templates/RadioUnits/index.php:28
+#: ./templates/RadioUnits/index.php:29
 #: ./templates/RouterosDevices/export.php:26
-#: ./templates/RouterosDevices/index.php:29
+#: ./templates/RouterosDevices/index.php:36
 msgid "Export"
 msgstr ""
 
@@ -3964,10 +3988,6 @@ msgstr ""
 msgid "Delete RouterOS Device Interface"
 msgstr ""
 
-#: ./templates/RouterosDeviceInterfaces/view.php:38
-msgid "RouterOS Device Interface"
-msgstr ""
-
 #: ./templates/RouterosDeviceIps/add.php:13
 #: ./templates/RouterosDeviceIps/edit.php:21
 #: ./templates/RouterosDeviceIps/view.php:25
@@ -4032,6 +4052,11 @@ msgstr ""
 #: ./templates/RouterosDevices/view.php:128
 #: ./templates/element/RouterosDevices/related.php:34
 msgid "Software Version"
+msgstr ""
+
+#: ./templates/RouterosDevices/index.php:22
+#: ./templates/Tasks/index.php:78
+msgid "Untouched for a While Only"
 msgstr ""
 
 #: ./templates/RouterosDevices/view.php:17
@@ -4207,10 +4232,6 @@ msgstr ""
 msgid "Show Completed"
 msgstr ""
 
-#: ./templates/Tasks/index.php:78
-msgid "Untouched for a While Only"
-msgstr ""
-
 #: ./templates/Tasks/index.php:85
 msgid "Expandable Text"
 msgstr ""
@@ -4297,33 +4318,23 @@ msgstr ""
 msgid "The addresses around this access point could not be looked up: {0}"
 msgstr ""
 
-#: ./templates/element/AccessPoints/power_outages.php:36
-msgid "No address was found near it, so nothing else is compared."
-msgstr ""
-
-#: ./templates/element/AccessPoints/power_outages.php:38
+#: ./templates/element/AccessPoints/power_outages.php:35
 msgid "No address was found near this access point, so only a supply point can reveal an outage."
 msgstr ""
 
-#: ./templates/element/AccessPoints/power_outages.php:55
+#: ./templates/element/AccessPoints/power_outages.php:45
 msgid "Last looked up {0}."
 msgstr ""
 
-#: ./templates/element/AccessPoints/power_outages.php:60
+#: ./templates/element/AccessPoints/power_outages.php:50
 msgid "Without the EAN of the supply point the outages are only ever probable."
 msgstr ""
 
-#: ./templates/element/AccessPoints/power_outages.php:65
+#: ./templates/element/AccessPoints/power_outages.php:55
 msgid "No planned outage is known for this access point."
 msgstr ""
 
-#: ./templates/element/AccessPoints/power_outages.php:43
-msgid "The {0} nearest address is compared as well."
-msgid_plural "The {0} nearest addresses are compared as well."
-msgstr[0] ""
-msgstr[1] ""
-
-#: ./templates/element/AccessPoints/power_outages.php:48
+#: ./templates/element/AccessPoints/power_outages.php:38
 msgid "Looked for around {0} address near the access point."
 msgid_plural "Looked for around the {0} nearest addresses to the access point."
 msgstr[0] ""
@@ -4341,8 +4352,8 @@ msgstr ""
 #: ./templates/element/Dashboard/crm_task_list.php:82
 #: ./templates/element/Dashboard/electricity_meter_readings.php:31
 #: ./templates/element/Dashboard/power_outages.php:53
-#: ./templates/element/Dashboard/radar_interferences.php:34
-#: ./templates/element/Dashboard/stale_device_data.php:37
+#: ./templates/element/Dashboard/radar_interferences.php:36
+#: ./templates/element/Dashboard/stale_device_data.php:42
 #: ./templates/element/Dashboard/task_list.php:68
 msgid "and {0} more"
 msgstr ""
@@ -4516,7 +4527,7 @@ msgid "The register holds the same."
 msgstr ""
 
 #: ./templates/element/registration_comparison_result.php:38
-#: ./templates/element/rlan/registration_found.php:26
+#: ./templates/element/rlan/registration_found.php:28
 msgid "Nothing in the register answers for this radio unit."
 msgstr ""
 
@@ -4528,11 +4539,15 @@ msgstr ""
 msgid "The register was last read {0}."
 msgstr ""
 
-#: ./templates/element/rlan/registration_found.php:28
+#: ./templates/element/rlan/registration_found.php:30
 msgid "Found by the number the registration was filed under. The address is not recorded here."
 msgstr ""
 
-#: ./templates/element/rlan/registration_found.php:30
+#: ./templates/element/rlan/registration_found.php:32
+msgid "Found by the number the registration was filed under. The address recorded here is not the registered one."
+msgstr ""
+
+#: ./templates/element/rlan/registration_found.php:37
 msgid "Found by the address the registration was issued against."
 msgstr ""
 
@@ -4553,17 +4568,17 @@ msgid "Customer Relationship Management"
 msgstr ""
 
 #: ./templates/layout/default.php:266
-#: ./templates/plugin/Access/Users/user_settings.php:56
+#: ./templates/plugin/Access/Users/user_settings.php:59
 msgid "Light"
 msgstr ""
 
 #: ./templates/layout/default.php:267
-#: ./templates/plugin/Access/Users/user_settings.php:57
+#: ./templates/plugin/Access/Users/user_settings.php:60
 msgid "Dark"
 msgstr ""
 
 #: ./templates/layout/default.php:268
-#: ./templates/plugin/Access/Users/user_settings.php:58
+#: ./templates/plugin/Access/Users/user_settings.php:61
 msgid "Contrast"
 msgstr ""
 

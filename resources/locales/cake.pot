@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP 5.4.4\n"
-"POT-Creation-Date: 2026-11-06 03:09+0100\n"
+"POT-Creation-Date: 2026-11-07 15:03+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -13,6 +13,15 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./src/Model/Table/CustomerConnectionIpsTable.php:79
+#: ./src/Model/Table/IpAddressRangesTable.php:102
+#: ./src/Model/Table/RadioUnitsTable.php:172
+#: ./src/Model/Table/RouterosDeviceIpsTable.php:108
+#: ./src/Model/Table/RouterosDevicesTable.php:123
+#: ./vendor/cakephp/cakephp/src/Validation/Validator.php:2128
+msgid "The provided value must be an IP address"
+msgstr ""
 
 #: ./templates/Error/error400.php:25
 #: ./templates/Error/error500.php:39
@@ -368,10 +377,6 @@ msgstr ""
 
 #: ./vendor/cakephp/cakephp/src/Validation/Validator.php:2099
 msgid "The provided value must be one of `{0}`"
-msgstr ""
-
-#: ./vendor/cakephp/cakephp/src/Validation/Validator.php:2128
-msgid "The provided value must be an IP address"
 msgstr ""
 
 #: ./vendor/cakephp/cakephp/src/Validation/Validator.php:2155

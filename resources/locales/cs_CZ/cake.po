@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP 5.x\n"
-"POT-Creation-Date: 2026-11-06 03:09+0100\n"
+"POT-Creation-Date: 2026-11-07 15:03+0100\n"
 "PO-Revision-Date: 2026-08-08 16:01+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,6 +14,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
+
+#: src/Model/Table/CustomerConnectionIpsTable.php:79
+#: src/Model/Table/IpAddressRangesTable.php:102
+#: src/Model/Table/RadioUnitsTable.php:172
+#: src/Model/Table/RouterosDeviceIpsTable.php:108
+#: src/Model/Table/RouterosDevicesTable.php:123
+#: vendor/cakephp/cakephp/src/Validation/Validator.php:2128
+msgid "The provided value must be an IP address"
+msgstr "Zadaná hodnota musí být IP adresa"
 
 #: templates/Error/error400.php:25 templates/Error/error500.php:39
 msgid "Error"
@@ -388,10 +397,6 @@ msgstr "Zadanou hodnotou musí být e-mailová adresa"
 #: vendor/cakephp/cakephp/src/Validation/Validator.php:2099
 msgid "The provided value must be one of `{0}`"
 msgstr "Zadaná hodnota musí být jedna z `{0}`"
-
-#: vendor/cakephp/cakephp/src/Validation/Validator.php:2128
-msgid "The provided value must be an IP address"
-msgstr "Zadaná hodnota musí být IP adresa"
 
 #: vendor/cakephp/cakephp/src/Validation/Validator.php:2155
 msgid "The provided value must be an IPv4 address"
