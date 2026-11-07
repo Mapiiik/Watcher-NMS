@@ -87,6 +87,7 @@ class RouterosDevicesControllerTest extends TestCase
         $this->get('/routeros-devices?stale=1');
         $this->assertResponseNotContains('Read today');
         $this->assertResponseContains('Not read for a month');
+        $this->assertResponseContains('/routeros-devices/export?stale=1');
     }
 
     /**

@@ -33,7 +33,11 @@
         ['action' => 'add'],
         ['class' => 'button float-right win-link'],
     ) ?>
-    <?= $this->AuthLink->link(__('Export'), ['action' => 'export'], ['class' => 'button float-right']) ?>
+    <?= $this->AuthLink->link(
+        __('Export'),
+        ['action' => 'export', '?' => $this->getRequest()->getQueryParams()],
+        ['class' => 'button float-right'],
+    ) ?>
     <?= $this->heading(__('RouterOS Devices')) ?>
     <div class="table-responsive">
         <table>
