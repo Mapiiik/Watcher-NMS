@@ -296,6 +296,50 @@ class DashboardControllerTest extends TestCase
     }
 
     /**
+     * The card is offered to every role and the listing behind it is not, so whoever may open the
+     * listing is led there and everybody else only told how many more there are.
+     *
+     * @return void
+     * @link \App\Dashboard\Card\RadarInterferencesCard::data()
+     */
+    public function testTheRadarCardLeadsToTheRestOnlyWhoeverMayOpenIt(): void
+    {
+        $this->crowdTheRadarCard(11);
+
+        $this->login();
+        $this->get('/dashboard/card/radar_interferences');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('href="/radar-interferences/devices"');
+
+        $this->login('network-technician');
+        $this->get('/dashboard/card/radar_interferences');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains((string)__('and {0} more', 2));
+        $this->assertResponseNotContains('/radar-interferences/devices');
+    }
+
+    /**
+     * Put more interferences of our devices on the register than a card has room for.
+     *
+     * @param int $count How many to add.
+     * @return void
+     */
+    private function crowdTheRadarCard(int $count): void
+    {
+        $interferences = $this->getTableLocator()->get('RadarInterferences');
+
+        for ($i = 0; $i < $count; $i++) {
+            $interferences->saveOrFail($interferences->newEntity([
+                'name' => 'Interference ' . $i,
+                'mac_address' => $interferences->find()->firstOrFail()->get('mac_address'),
+                'signal' => 1,
+            ]));
+        }
+    }
+
+    /**
      * The outage card names the mast rather than the outage, and says how sure it is.
      *
      * What is known beats what is guessed, so the certain one has to come out above the probable

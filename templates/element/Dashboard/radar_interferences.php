@@ -30,7 +30,10 @@ $shown = 0;
     </table>
 
     <?php if ($total > $shown) : ?>
+        <?php // The card is offered to every role, the listing is not - whoever may not open it ?>
+        <?php // is told there is more all the same, just without somewhere to go. ?>
         <?php $url = ['controller' => 'RadarInterferences', 'action' => 'devices', 'access_point_id' => false] ?>
-        <p><?= $this->Html->link(__('and {0} more', $total - $shown), $url) ?></p>
+        <?php $more = __('and {0} more', $total - $shown) ?>
+        <p><?= $this->AuthLink->link($more, $url) ?: h($more) ?></p>
     <?php endif ?>
 <?php endif ?>
