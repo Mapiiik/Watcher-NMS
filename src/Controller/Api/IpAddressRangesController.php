@@ -130,6 +130,7 @@ class IpAddressRangesController extends AppController
      * Add method
      *
      * @return void Redirects on successful add, renders view otherwise.
+     * @deprecated Nothing in the applications calls this, so it goes in the next major version.
      */
     public function add(): void
     {
@@ -149,6 +150,7 @@ class IpAddressRangesController extends AppController
      * @param string|null $id IP Address Range id.
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @deprecated Nothing in the applications calls this, so it goes in the next major version.
      */
     public function edit(?string $id = null): void
     {
@@ -170,6 +172,7 @@ class IpAddressRangesController extends AppController
      * @param string|null $id IP Address Range id.
      * @return void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @deprecated Nothing in the applications calls this, so it goes in the next major version.
      */
     public function delete(?string $id = null): void
     {
