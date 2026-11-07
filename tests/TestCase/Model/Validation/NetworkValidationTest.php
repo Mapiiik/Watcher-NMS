@@ -105,6 +105,7 @@ class NetworkValidationTest extends TestCase
      * @return void
      */
     #[TestWith(['08:00:2b:01:02:03'])]
+    #[TestWith(['8:0:2b:1:2:3'])]
     #[TestWith(['08-00-2b-01-02-03'])]
     #[TestWith(['08002b:010203'])]
     #[TestWith(['08002b-010203'])]

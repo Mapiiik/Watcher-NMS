@@ -57,7 +57,7 @@ final class NetworkValidation
     public static function macaddr(mixed $value): bool
     {
         return is_string($value) && preg_match(
-            '/^(?:[0-9a-f]{2}(?:([:-])[0-9a-f]{2})(?:\1[0-9a-f]{2}){4}'
+            '/^(?:[0-9a-f]{1,2}(?:([:-])[0-9a-f]{1,2})(?:\1[0-9a-f]{1,2}){4}'
             . '|[0-9a-f]{6}[:-][0-9a-f]{6}'
             . '|[0-9a-f]{4}([.-])[0-9a-f]{4}\2[0-9a-f]{4}'
             . '|[0-9a-f]{12})$/iD',
