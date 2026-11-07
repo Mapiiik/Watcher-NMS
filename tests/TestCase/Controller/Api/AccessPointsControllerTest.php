@@ -24,6 +24,13 @@ class AccessPointsControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
+     * The access point the fixtures leave in use.
+     *
+     * @var string
+     */
+    private const ACTIVE_ACCESS_POINT_ID = '1bd5e754-e102-46ad-8488-11b1b44bf026';
+
+    /**
      * Fixtures
      *
      * @var array<string>
@@ -156,6 +163,49 @@ class AccessPointsControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertResponseContains('"message"');
+    }
+
+    /**
+     * The staff write on the pages, where archiving is left to an admin. Here neither the session
+     * nor a token that proves nothing lets them change a record or add one.
+     *
+     * @return void
+     * @link \App\Controller\Api\AccessPointsController::edit()
+     * @link \App\Controller\Api\AccessPointsController::add()
+     */
+    public function testTheStaffDoNotWriteThroughTheApi(): void
+    {
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $count = $accessPoints->find()->count();
+        $address = '/api/access-points/' . self::ACTIVE_ACCESS_POINT_ID . '.json';
+        $archived = ['archived' => '2026-01-01 00:00:00'];
+
+        $this->login('network-manager');
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        // Headers last for one request.
+        $withTheSession = ['headers' => ['Accept' => 'application/json']];
+        $withAToken = ['headers' => ['Accept' => 'application/json', 'Authorization' => 'Bearer junk']];
+
+        $this->configRequest($withTheSession);
+        $this->patch($address, $archived);
+        $this->assertResponseCode(403);
+
+        $this->configRequest($withTheSession);
+        $this->post('/api/access-points.json', ['name' => 'Written by the staff']);
+        $this->assertResponseCode(403);
+
+        $this->configRequest($withAToken);
+        $this->patch($address, $archived);
+        $this->assertResponseCode(401);
+
+        $this->configRequest($withAToken);
+        $this->post('/api/access-points.json', ['name' => 'Written by the staff']);
+        $this->assertResponseCode(401);
+
+        $this->assertNull($accessPoints->get(self::ACTIVE_ACCESS_POINT_ID)->get('archived'));
+        $this->assertSame($count, $accessPoints->find()->count());
     }
 
     /**
