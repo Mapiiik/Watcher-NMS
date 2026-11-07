@@ -31,21 +31,11 @@ $hasEan = trim((string)$accessPoint->electricity_ean) !== '';
             'The addresses around this access point could not be looked up: {0}',
             h($accessPoint->supply_resolution_failed),
         ) ?>
-    <?php elseif ($addresses === []) : ?>
-        <?php if ($hasEan) : ?>
-            <?= __('No address was found near it, so nothing else is compared.') ?>
-        <?php else : ?>
-            <?= __('No address was found near this access point, so only a supply point can reveal an outage.') ?>
-        <?php endif; ?>
-    <?php else : ?>
-        <?php // The addresses are compared whether or not the supply point is known: an outage the ?>
-        <?php // distributor did not name against it can still reach one of them. ?>
-        <?= $hasEan ? __n(
-            'The {0} nearest address is compared as well.',
-            'The {0} nearest addresses are compared as well.',
-            count($addresses),
-            count($addresses),
-        ) : __n(
+    <?php elseif (!$hasEan && $addresses === []) : ?>
+        <?= __('No address was found near this access point, so only a supply point can reveal an outage.') ?>
+    <?php elseif (!$hasEan) : ?>
+        <?php // With the supply point known the addresses around the mast are not looked at. ?>
+        <?= __n(
             'Looked for around {0} address near the access point.',
             'Looked for around the {0} nearest addresses to the access point.',
             count($addresses),

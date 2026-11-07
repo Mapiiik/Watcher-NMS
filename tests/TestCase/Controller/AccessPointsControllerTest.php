@@ -259,9 +259,10 @@ class AccessPointsControllerTest extends TestCase
         $this->assertResponseContains(
             __('The distributor is asked about the supply point, so what it names is this access point.'),
         );
-        // The addresses are still compared, so that is said rather than implied - but not as the
-        // way the outages were looked for.
+        // The supply point settles it, so nothing is said of the addresses around the mast.
         $this->assertResponseNotContains(__('Looked for around the {0} nearest addresses to the access point.', 2));
+        $this->assertResponseNotContains('nearest addresses are compared as well');
+        $this->assertResponseNotContains('Last looked up');
         $this->assertResponseNotContains(
             __('Without the EAN of the supply point the outages are only ever probable.'),
         );
@@ -276,6 +277,28 @@ class AccessPointsControllerTest extends TestCase
         $this->assertResponseContains(
             __('Without the EAN of the supply point the outages are only ever probable.'),
         );
+    }
+
+    /**
+     * With the supply point known the addresses around the mast are not looked at, so finding none
+     * of them is nothing to report either.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::view()
+     */
+    public function testViewOfAMastWithASupplyPointAndNoAddressSaysNothingOfAddresses(): void
+    {
+        $withEan = '3f6f6b19-6a0e-4a5b-9a4a-2c0f4d5e6a71';
+        $this->getTableLocator()->get('AccessPointSupplyAddresses')->deleteAll(['access_point_id' => $withEan]);
+
+        $this->login();
+        $this->get('/access-points/view/' . $withEan);
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(
+            __('The distributor is asked about the supply point, so what it names is this access point.'),
+        );
+        $this->assertResponseNotContains('No address was found');
     }
 
     /**
