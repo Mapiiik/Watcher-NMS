@@ -753,6 +753,64 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * What an address edited by hand carries instead of an id is no choice of anything, and the
+     * map is drawn without it.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapLeavesOutWhatIsNoId(): void
+    {
+        $this->login();
+
+        $this->get('/access-points/map?access_point_id=nonsense');
+        $this->assertResponseOk();
+
+        $this->get('/access-points/map?routeros_device_id=nonsense&access_point_id=' . self::ARCHIVED_ACCESS_POINT_ID);
+        $this->assertResponseOk();
+    }
+
+    /**
+     * Sent through the form it is refused with what the form says of itself.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapRefusesWhatIsNoId(): void
+    {
+        $this->login();
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->post('/access-points/map', ['access_point_id' => 'nonsense']);
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('There was a problem setting your map options.');
+    }
+
+    /**
+     * A device only narrows the map of its access point down, so only there is one offered.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapOffersTheDevicesOfTheAccessPointChosen(): void
+    {
+        $this->login();
+
+        $this->get('/access-points/map');
+        $this->assertResponseOk();
+        $this->assertSame([], $this->viewVariable('routerosDevicesFilter'));
+
+        $this->get('/access-points/map?access_point_id=' . self::ARCHIVED_ACCESS_POINT_ID);
+        $this->assertResponseOk();
+
+        /** @var \Cake\ORM\Query\SelectQuery<array<string>> $offered */
+        $offered = $this->viewVariable('routerosDevicesFilter');
+        $this->assertSame(['8a6bef12-429a-49b6-8cc2-8481567bc1a2'], array_keys($offered->toArray()));
+    }
+
+    /**
      * An access point that is no longer in use is put away rather than taken away: it is marked as
      * archived, and it is still there afterwards.
      *

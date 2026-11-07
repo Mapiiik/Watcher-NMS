@@ -40,6 +40,20 @@ class RadioLinksControllerTest extends TestCase
     ];
 
     /**
+     * What an address edited by hand carries instead of an id narrows nothing down.
+     *
+     * @return void
+     * @link \App\Controller\RadioLinksController::index()
+     */
+    public function testABandThatIsNoIdIsLeftOut(): void
+    {
+        $this->login();
+        $this->get('/radio-links?radio_unit_band_id=nonsense');
+
+        $this->assertResponseOk();
+    }
+
+    /**
      * The listing renders.
      *
      * @return void

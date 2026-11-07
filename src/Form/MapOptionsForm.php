@@ -39,7 +39,30 @@ class MapOptionsForm extends Form
     #[Override]
     public function validationDefault(Validator $validator): Validator
     {
-        return $validator;
+        return $validator
+            ->uuid('access_point_id')
+            ->allowEmptyString('access_point_id')
+            ->uuid('routeros_device_id')
+            ->allowEmptyString('routeros_device_id');
+    }
+
+    /**
+     * Executes the form, leaving out what was refused so that no query is built from it.
+     *
+     * @param array<mixed> $data Form data.
+     * @param array<string, mixed> $options Options of the execution.
+     * @return bool
+     */
+    #[Override]
+    public function execute(array $data, array $options = []): bool
+    {
+        if (parent::execute($data, $options)) {
+            return true;
+        }
+
+        $this->setData(array_diff_key($data, $this->getErrors()));
+
+        return false;
     }
 
     /**

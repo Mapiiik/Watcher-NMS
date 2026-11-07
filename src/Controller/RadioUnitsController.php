@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Model\Entity\RadioUnit;
 use Cake\Http\Response;
 use Cake\ORM\Query\SelectQuery;
+use Cake\Validation\Validation;
 
 /**
  * RadioUnits Controller
@@ -59,7 +60,7 @@ class RadioUnitsController extends AppController
             ];
         }
         $radio_unit_band_id = $this->getRequest()->getQuery('radio_unit_band_id');
-        if (!empty($radio_unit_band_id)) {
+        if (is_string($radio_unit_band_id) && Validation::uuid($radio_unit_band_id)) {
             $conditions[] = [
                 'RadioUnitTypes.radio_unit_band_id' => $radio_unit_band_id,
             ];

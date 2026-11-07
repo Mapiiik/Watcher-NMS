@@ -431,12 +431,13 @@ class AccessPointsController extends AppController
         $this->set('mapOptions', $mapOptions);
 
         $accessPointsFilter = $this->AccessPoints->find('active')->find('list', order: ['name']);
-        $routerosDevicesFilter = $this->AccessPoints->RouterosDevices->find('list', order: ['name']);
 
+        // A device narrows the map of its access point, so without one there is nothing to offer.
+        $routerosDevicesFilter = [];
         if ($mapOptions->getData('access_point_id') != '') {
-            $routerosDevicesFilter->where([
-                'access_point_id' => $mapOptions->getData('access_point_id'),
-            ]);
+            $routerosDevicesFilter = $this->AccessPoints->RouterosDevices
+                ->find('list', order: ['name'])
+                ->where(['access_point_id' => $mapOptions->getData('access_point_id')]);
         }
 
         $map = (new NetworkMap(new HtmlHelper(new View())))->draw($mapOptions);
