@@ -63,14 +63,13 @@ class PaymentPurposesTableTest extends TestCase
     }
 
     /**
-     * A new record with nothing filled in is refused - see the trait for why that is the question
-     * worth asking here.
+     * Every column may stay empty here, so what can go wrong is the validator itself - see the
+     * trait.
      *
      * @return void
-     * @link \App\Model\Table\PaymentPurposesTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
-        $this->assertEmptyRecordIsRefused($this->PaymentPurposes);
+        $this->assertValidatorIsNotEmpty($this->PaymentPurposes);
     }
 }

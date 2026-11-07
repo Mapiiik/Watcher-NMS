@@ -203,6 +203,7 @@ class AccessPointPowerOutagesTable extends AppTable
         $rules->add($rules->isUnique(['access_point_id', 'power_outage_id']));
         $rules->add($rules->existsIn(['access_point_id'], 'AccessPoints'));
         $rules->add($rules->existsIn(['power_outage_id'], 'PowerOutages'));
+        $rules->add($rules->existsIn(['access_point_supply_address_id'], 'AccessPointSupplyAddresses'));
 
         return $rules;
     }

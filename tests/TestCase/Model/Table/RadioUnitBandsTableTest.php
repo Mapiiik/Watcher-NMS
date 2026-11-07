@@ -79,14 +79,14 @@ class RadioUnitBandsTableTest extends TestCase
     }
 
     /**
-     * A new record with nothing filled in is refused - see the trait for why that is the question
-     * worth asking here.
+     * Every column may stay empty here, so what can go wrong is the validator itself - see the
+     * trait.
      *
      * @return void
      */
     public function testValidationDefault(): void
     {
-        $this->assertEmptyRecordIsRefused($this->RadioUnitBands);
+        $this->assertValidatorIsNotEmpty($this->RadioUnitBands);
     }
 
     /**
