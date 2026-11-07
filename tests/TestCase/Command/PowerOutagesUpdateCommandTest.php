@@ -178,6 +178,14 @@ class PowerOutagesUpdateCommandTest extends TestCase
         $this->moveScopesTo('town:533165');
         $this->addOutageOfTown('110061188888', 569810, 'town:569810');
 
+        // Read by the run before this one, the clock of the tests stands still. All of them are still
+        // to come, so that nothing but the sweep of what was answered can take them away.
+        TableRegistry::getTableLocator()->get('PowerOutageScopes')->updateAll(
+            ['modified' => DateTime::now()->subDays(1)],
+            ['1 = 1'],
+        );
+        $this->outages()->updateAll(['ends_at' => DateTime::now()->addDays(3)], ['1 = 1']);
+
         $this->mockClientGet(
             'https://outages.example.com/cezd/api/inspecttown/533165',
             $this->jsonResponse(['outages' => null]),
@@ -203,6 +211,41 @@ class PowerOutagesUpdateCommandTest extends TestCase
         );
 
         $this->assertNotEmpty($secondMast);
+    }
+
+    /**
+     * An outage named again with nothing changed stays. Saving what has not changed writes nothing,
+     * so only the stamp of the run keeps its scope from the sweep, and the outage goes with it.
+     *
+     * @return void
+     * @link \App\PowerOutages\Service\PowerOutagesUpdateService::updateNow()
+     */
+    public function testAnOutageNamedAgainUnchangedStays(): void
+    {
+        $this->mockClientPost(
+            'https://portal.example.com/shutdown-search',
+            $this->jsonResponse(['statusCode' => 200, 'data' => [[
+                'number' => '110061199999',
+                'date' => '2099-09-07T00:00:00',
+                'fromTime' => '1970-01-01T07:30:00',
+                'toTime' => '1970-01-01T15:00:00',
+                'cancelled' => false,
+                'parts' => [['description' => 'Kolin', 'city' => 'Kolin']],
+            ]]]),
+        );
+        $run = 'power_outages_update --resolve-limit=0 --access-point=' . self::KOLIN_ID;
+        $this->exec($run);
+        $this->assertExitSuccess();
+        TableRegistry::getTableLocator()->get('PowerOutageScopes')->updateAll(
+            ['modified' => DateTime::now()->subDays(1)],
+            ['1 = 1'],
+        );
+        Cache::clear();
+
+        $this->exec($run);
+
+        $this->assertExitSuccess();
+        $this->assertTrue($this->outages()->exists(['outage_number' => '110061199999']));
     }
 
     /**

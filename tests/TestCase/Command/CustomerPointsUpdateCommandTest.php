@@ -303,6 +303,64 @@ class CustomerPointsUpdateCommandTest extends TestCase
     }
 
     /**
+     * What the source lists again with nothing changed stays. Saving what has not changed writes
+     * nothing, so only the stamp of the run keeps it from the clean-up. Each level is asked about
+     * in the shape the clean-up would take it in: a connection with neither an address nor a
+     * device goes, one with a device is archived, and a point goes once it has no connection.
+     *
+     * @return void
+     * @link \App\CRM\Service\CustomerPointsUpdateService::updateNow()
+     */
+    public function testExecuteKeepsWhatTheSourceListsAgainUnchanged(): void
+    {
+        $connection = fn(string $contract, array $ips = []): array => [
+            'customer_number' => 'C-1',
+            'contract_number' => $contract,
+            'name' => 'Imported connection',
+            'CustomerConnectionIps' => $ips,
+        ];
+        $listing = $this->source((string)json_encode([
+            [
+                'gps_x' => 50.1,
+                'gps_y' => 14.4,
+                'name' => 'Imported point',
+                'CustomerConnections' => [
+                    $connection('WITH-AN-ADDRESS', [['ip_address' => '10.0.0.1']]),
+                    $connection('WITHOUT-AN-ADDRESS'),
+                    $connection('CARRYING-A-DEVICE'),
+                ],
+            ],
+            ['gps_x' => 50.2, 'gps_y' => 14.5, 'name' => 'Point with no connection', 'CustomerConnections' => []],
+        ]));
+        $this->exec('customer_points_update --file ' . $listing);
+        $this->assertExitSuccess();
+
+        $points = $this->getTableLocator()->get('CustomerPoints');
+        $connections = $this->getTableLocator()->get('CustomerConnections');
+        $ips = $this->getTableLocator()->get('CustomerConnectionIps');
+        $devices = $this->getTableLocator()->get('RouterosDevices');
+        $devices->saveOrFail($devices->newEntity([
+            'name' => 'Carried device',
+            'serial_number' => 'CARRIED',
+            'customer_connection_id' => $connections->find()
+                ->where(['contract_number' => 'CARRYING-A-DEVICE'])
+                ->firstOrFail()
+                ->get('id'),
+        ]));
+        foreach ([$points, $connections, $ips] as $table) {
+            $table->updateAll(['modified' => DateTime::now()->subDays(1)], ['1 = 1']);
+        }
+
+        $this->exec('customer_points_update --file ' . $listing);
+
+        $this->assertExitSuccess();
+        $this->assertTrue($ips->exists(['ip_address' => '10.0.0.1']));
+        $this->assertTrue($connections->exists(['contract_number' => 'WITHOUT-AN-ADDRESS']));
+        $this->assertTrue($connections->exists(['contract_number' => 'CARRYING-A-DEVICE', 'archived IS' => null]));
+        $this->assertTrue($points->exists(['name' => 'Point with no connection']));
+    }
+
+    /**
      * A source that cannot be read as what it should be is not something to carry on from: taking
      * it for an empty list would archive every connection there is.
      *

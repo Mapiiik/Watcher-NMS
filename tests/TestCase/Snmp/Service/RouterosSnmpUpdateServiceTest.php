@@ -8,6 +8,7 @@ use App\Model\Table\AccessPointsTable;
 use App\Model\Table\RouterosDevicesTable;
 use App\Snmp\Provider\RouterosSnmpProviderAgentPush;
 use App\Snmp\Service\RouterosSnmpUpdateService;
+use Cake\I18n\DateTime;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\TestSuite\TestCase;
 
@@ -143,12 +144,58 @@ class RouterosSnmpUpdateServiceTest extends TestCase
     }
 
     /**
+     * A device read again with nothing changed keeps its interfaces and addresses, and counts as
+     * seen. Saving what has not changed writes nothing, so only the stamp of the run keeps them
+     * from the sweep, and the device from the clean-up of those not seen for long.
+     *
+     * @return void
+     * @link \App\Snmp\Service\RouterosSnmpUpdateService::updateNow()
+     */
+    public function testADeviceReadAgainUnchangedKeepsWhatHangsOffIt(): void
+    {
+        $interfaces = [[
+            'interface_index' => 7,
+            'name' => 'ether7',
+            'comment' => null,
+            'interface_admin_status' => 1,
+            'interface_oper_status' => 1,
+            'interface_type' => 6,
+            'mac_address' => 'aa:bb:cc:00:00:07',
+            'ssid' => null,
+            'bssid' => null,
+            'band' => null,
+            'frequency' => null,
+            'noise_floor' => null,
+            'client_count' => null,
+            'overall_tx_ccq' => null,
+        ]];
+        $addresses = [['interface_index' => 7, 'ip_address' => '192.0.2.7/24', 'name' => 'ether7']];
+        $device = $this->updateFromAgent('A device read twice', $interfaces, $addresses);
+        $yesterday = DateTime::now()->subDays(1);
+        foreach (['RouterosDevices', 'RouterosDeviceInterfaces', 'RouterosDeviceIps'] as $table) {
+            $this->fetchTable($table)->updateAll(['modified' => $yesterday], ['1 = 1']);
+        }
+
+        $this->updateFromAgent('A device read twice', $interfaces, $addresses);
+
+        $hanging = ['routeros_device_id' => $device->id, 'interface_index' => 7];
+        $this->assertTrue($this->fetchTable('RouterosDeviceInterfaces')->exists($hanging));
+        $this->assertTrue($this->fetchTable('RouterosDeviceIps')->exists($hanging));
+        $this->assertGreaterThan(
+            $yesterday,
+            $this->fetchTable(RouterosDevicesTable::class)->get($device->id)->modified,
+        );
+    }
+
+    /**
      * Runs a synchronization over a payload of the shape the agent pushes.
      *
      * @param string $name Device name to report.
+     * @param list<array<string, mixed>> $interfaces Interfaces to report.
+     * @param list<array<string, mixed>> $ipAddresses Addresses to report.
      * @return \App\Model\Entity\RouterosDevice
      */
-    private function updateFromAgent(string $name): RouterosDevice
+    private function updateFromAgent(string $name, array $interfaces = [], array $ipAddresses = []): RouterosDevice
     {
         $service = new RouterosSnmpUpdateService(new RouterosSnmpProviderAgentPush([
             'device' => [
@@ -160,8 +207,8 @@ class RouterosSnmpUpdateServiceTest extends TestCase
                 'software_version' => '7.15.3',
                 'firmware_version' => '7.15.3',
             ],
-            'interfaces' => [],
-            'ip_addresses' => [],
+            'interfaces' => $interfaces,
+            'ip_addresses' => $ipAddresses,
         ]));
 
         return $service->updateNow(

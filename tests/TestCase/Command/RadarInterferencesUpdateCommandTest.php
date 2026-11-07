@@ -6,6 +6,7 @@ namespace App\Test\TestCase\Command;
 use App\Command\RadarInterferencesUpdateCommand;
 use App\Test\Traits\ConfigureTestTrait;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 use Override;
@@ -176,6 +177,27 @@ class RadarInterferencesUpdateCommandTest extends TestCase
 
         $this->assertExitSuccess();
         $this->assertFalse($radarInterferences->exists(['mac_address' => self::KNOWN_MAC]));
+    }
+
+    /**
+     * A device the list names again with nothing changed stays. Saving what has not changed writes
+     * nothing, so only the stamp of the run keeps it from being forgotten.
+     *
+     * @return void
+     * @link \App\Command\RadarInterferencesUpdateCommand::execute()
+     */
+    public function testExecuteKeepsADeviceTheListNamesAgainUnchanged(): void
+    {
+        $radarInterferences = $this->getTableLocator()->get('RadarInterferences');
+        $file = $this->csv('Radar one;aa:bb:cc:dd:ee:ff;Some SSID;-70;Radio one' . PHP_EOL);
+        $this->exec('radar_interferences_update ' . $file);
+        $this->assertExitSuccess();
+        $radarInterferences->updateAll(['modified' => DateTime::now()->subDays(1)], ['1 = 1']);
+
+        $this->exec('radar_interferences_update ' . $file);
+
+        $this->assertExitSuccess();
+        $this->assertTrue($radarInterferences->exists(['mac_address' => 'aa:bb:cc:dd:ee:ff']));
     }
 
     /**

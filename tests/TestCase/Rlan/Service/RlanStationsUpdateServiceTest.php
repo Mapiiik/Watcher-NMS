@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Rlan\Service;
 
 use App\Rlan\Provider\RlanStationProviderPayload;
 use App\Rlan\Service\RlanStationsUpdateService;
+use Cake\I18n\DateTime;
 use Cake\ORM\Table;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -98,6 +99,23 @@ class RlanStationsUpdateServiceTest extends TestCase
         $station = $this->stations()->find()->where(['station_id' => 8039])->firstOrFail();
 
         $this->assertSame('Filed under something else now', $station->get('name'));
+    }
+
+    /**
+     * A station the register names again with nothing changed stays.
+     *
+     * @return void
+     * @link \App\Rlan\Service\RlanStationsUpdateService::updateNow()
+     */
+    public function testAStationReadAgainUnchangedStays(): void
+    {
+        $listing = $this->listing([['id' => 8039, 'n' => 'The same name']]);
+        (new RlanStationsUpdateService(new RlanStationProviderPayload($listing)))->updateNow();
+        $this->stations()->updateAll(['modified' => DateTime::now()->subDays(1)], ['1 = 1']);
+
+        (new RlanStationsUpdateService(new RlanStationProviderPayload($listing)))->updateNow();
+
+        $this->assertTrue($this->stations()->exists(['station_id' => 8039]));
     }
 
     /**
