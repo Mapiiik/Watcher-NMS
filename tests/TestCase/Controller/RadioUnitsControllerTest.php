@@ -49,6 +49,59 @@ class RadioUnitsControllerTest extends TestCase
     ];
 
     /**
+     * The export holds what the listing it was opened from holds.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitsController::export()
+     */
+    public function testTheExportIsNarrowedDownAsTheListingIs(): void
+    {
+        $band = $this->addBand();
+        $types = $this->getTableLocator()->get('RadioUnitTypes');
+        $type = $types->saveOrFail($types->newEntity(['name' => 'Exported type', 'radio_unit_band_id' => $band]));
+
+        $radioUnits = $this->getTableLocator()->get('RadioUnits');
+        $radioUnits->saveOrFail($radioUnits->newEntity([
+            'name' => 'Unit under the route',
+            'radio_unit_type_id' => $type->get('id'),
+            'access_point_id' => self::ACCESS_POINT_ID,
+        ]));
+
+        $this->login();
+
+        $this->get('/radio-units/export');
+        $this->assertResponseOk();
+        $this->assertSame(['Lorem ipsum dolor sit amet', 'Unit under the route'], $this->exported());
+
+        $this->get('/access-points/' . self::ACCESS_POINT_ID . '/radio-units/export');
+        $this->assertSame(['Unit under the route'], $this->exported());
+
+        $this->get('/radio-units/export?search=under the route');
+        $this->assertSame(['Unit under the route'], $this->exported());
+
+        $this->get('/radio-units/export?radio_unit_band_id=' . $band);
+        $this->assertSame(['Unit under the route'], $this->exported());
+    }
+
+    /**
+     * The way to the export carries what the listing is narrowed down to, the nesting and the
+     * search alike.
+     *
+     * @return void
+     * @link \App\Controller\RadioUnitsController::index()
+     */
+    public function testTheListingLeadsToItsOwnExport(): void
+    {
+        $this->login();
+        $this->get('/access-points/' . self::ACCESS_POINT_ID . '/radio-units?search=mast');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(
+            'href="/access-points/' . self::ACCESS_POINT_ID . '/radio-units/export?search=mast"',
+        );
+    }
+
+    /**
      * The listing renders.
      *
      * @return void
@@ -351,6 +404,24 @@ class RadioUnitsControllerTest extends TestCase
         $this->get('/radio-units/edit/' . $radioUnitId);
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * The names of the units on the export just requested.
+     *
+     * @return list<string|null>
+     */
+    private function exported(): array
+    {
+        /** @var iterable<\App\Model\Entity\RadioUnit> $radioUnits */
+        $radioUnits = $this->viewVariable('radioUnits');
+
+        $names = [];
+        foreach ($radioUnits as $radioUnit) {
+            $names[] = $radioUnit->name;
+        }
+
+        return $names;
     }
 
     /**

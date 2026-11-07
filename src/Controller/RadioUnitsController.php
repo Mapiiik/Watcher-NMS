@@ -21,6 +21,36 @@ class RadioUnitsController extends AppController
      */
     public function index(): void
     {
+        $this->paginate = [
+            'order' => ['name' => 'ASC'],
+        ];
+
+        $radioUnits = $this->paginate($this->RadioUnits->find(
+            'all',
+            contain: [
+                'AccessPoints',
+                'CustomerConnections',
+                'AntennaTypes',
+                'RadioLinks',
+                'RadioUnitTypes' => [
+                    'RadioUnitBands',
+                ],
+            ],
+            conditions: $this->listingConditions(),
+        ));
+
+        $radioUnitBands = $this->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', order: ['name']);
+
+        $this->set(compact('radioUnits', 'radioUnitBands'));
+    }
+
+    /**
+     * What the listing and its export are narrowed down to, so that both hold the same units.
+     *
+     * @return array<mixed>
+     */
+    private function listingConditions(): array
+    {
         // filter
         $conditions = [];
         if ($this->access_point_id !== null) {
@@ -53,27 +83,7 @@ class RadioUnitsController extends AppController
             ];
         }
 
-        $this->paginate = [
-            'order' => ['name' => 'ASC'],
-        ];
-
-        $radioUnits = $this->paginate($this->RadioUnits->find(
-            'all',
-            contain: [
-                'AccessPoints',
-                'CustomerConnections',
-                'AntennaTypes',
-                'RadioLinks',
-                'RadioUnitTypes' => [
-                    'RadioUnitBands',
-                ],
-            ],
-            conditions: $conditions,
-        ));
-
-        $radioUnitBands = $this->RadioUnits->RadioUnitTypes->RadioUnitBands->find('list', order: ['name']);
-
-        $this->set(compact('radioUnits', 'radioUnitBands'));
+        return $conditions;
     }
 
     /**
@@ -269,6 +279,7 @@ class RadioUnitsController extends AppController
                 'RadioLinks',
                 'AntennaTypes',
             ],
+            conditions: $this->listingConditions(),
             order: [
                 'RadioLinks.name' => 'ASC',
                 'RadioUnits.name' => 'ASC',
