@@ -58,10 +58,17 @@ final class RegisteredStationComparison
 
     /**
      * Whether a candidate unit is recorded under the name this registration was filed under.
+     *
+     * Both ends of a link are filed under one name, so the name only counts for a unit whose address
+     * no station is registered under. One carrying the address of a station records that station.
      */
     private const CARRIES_THE_NAME =
         "BTRIM(COALESCE(RecordingUnit.authorization_number, '')) <> ''"
-        . ' AND BTRIM(RecordingUnit.authorization_number) = RlanStations.name';
+        . ' AND BTRIM(RecordingUnit.authorization_number) = RlanStations.name'
+        . ' AND NOT EXISTS ('
+            . 'SELECT 1 FROM rlan_stations RegisteredAddress'
+            . ' WHERE RegisteredAddress.mac_address = LOWER(BTRIM(RecordingUnit.station_address))'
+        . ')';
 
     /**
      * The registered stations, each with the radio unit that records it.

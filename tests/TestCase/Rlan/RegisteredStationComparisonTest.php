@@ -91,6 +91,50 @@ class RegisteredStationComparisonTest extends TestCase
     }
 
     /**
+     * Both ends of a link are filed under one number, so a unit at the other end records the other
+     * station and leaves this one with nothing recording it.
+     *
+     * @return void
+     * @link \App\Rlan\RegisteredStationComparison::query()
+     */
+    public function testAUnitCarryingTheAddressOfTheOtherEndRecordsThatOne(): void
+    {
+        $this->station(8040, '000005', '04:d6:aa:a2:2c:52');
+
+        $band = $this->band('Registered band', registered: true);
+        $this->radioUnit(
+            'Unit at the other end',
+            $band,
+            stationAddress: '04:d6:aa:a2:2c:52',
+            authorizationNumber: '000005',
+        );
+
+        $this->assertSame(RegisteredStationComparison::MISSING, $this->listed(8039)->get('radio_unit_check'));
+        $this->assertSame('Unit at the other end', $this->listed(8040)->get('radio_unit_name'));
+    }
+
+    /**
+     * An address no station is registered under says nothing against the number.
+     *
+     * @return void
+     * @link \App\Rlan\RegisteredStationComparison::query()
+     */
+    public function testAnAddressNobodyIsRegisteredUnderLeavesTheNumberStanding(): void
+    {
+        $this->station(8040, '000005', '04:d6:aa:a2:2c:52');
+
+        $band = $this->band('Registered band', registered: true);
+        $this->radioUnit(
+            'Unit with a mistyped address',
+            $band,
+            stationAddress: '11:00:00:00:04:01',
+            authorizationNumber: '000005',
+        );
+
+        $this->assertSame('Unit with a mistyped address', $this->listed(8039)->get('radio_unit_name'));
+    }
+
+    /**
      * A unit on a band nobody registers still records the station. Narrowing this by band would
      * hide the very mismatch the listing is read to find, so the band is shown and not filtered.
      *
@@ -138,6 +182,27 @@ class RegisteredStationComparisonTest extends TestCase
             [RegisteredStationComparison::MISSING => 1],
             (new RegisteredStationComparison())->summary(),
         );
+    }
+
+    /**
+     * Add a station to the mirror of the register.
+     *
+     * @param int $stationId The number the register keeps it under.
+     * @param string $name What the registration was filed under.
+     * @param string $macAddress The address it is registered by.
+     * @return void
+     */
+    private function station(int $stationId, string $name, string $macAddress): void
+    {
+        $stations = $this->getTableLocator()->get('RlanStations');
+
+        $stations->saveOrFail($stations->newEntity([
+            'station_id' => $stationId,
+            'user_id' => 329,
+            'name' => $name,
+            'type' => 'fs',
+            'mac_address' => $macAddress,
+        ]));
     }
 
     /**
