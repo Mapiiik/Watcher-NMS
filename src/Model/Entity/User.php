@@ -43,6 +43,7 @@ class User extends AccessUser
             'manager' => __('Manager'),
             'admin' => __('Admin'),
             'api' => __('API'),
+            'watcher-crm' => __('Watcher CRM'),
             'agent' => __('Agent'),
         ];
     }

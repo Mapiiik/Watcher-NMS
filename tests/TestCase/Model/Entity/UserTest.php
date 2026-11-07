@@ -91,6 +91,7 @@ class UserTest extends TestCase
             'sales-manager',
             'sales-representative',
             'user',
+            'watcher-crm',
         ], $roles);
     }
 

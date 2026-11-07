@@ -51,6 +51,15 @@ class ApiPermissionsTest extends TestCase
             'RouterosDevices::index',
             'RouterosDevices::search',
         ],
+        'watcher-crm' => [
+            'AccessPoints::index',
+            'Agent/Provision::routeros',
+            'IpAddressRanges::index',
+            'IpAddressRanges::search',
+            'IpAddressRanges::view',
+            'PowerOutages::index',
+            'RouterosDevices::search',
+        ],
         'agent' => [
             'Agent/Provision::routeros',
         ],

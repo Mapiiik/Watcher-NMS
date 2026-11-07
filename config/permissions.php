@@ -169,6 +169,50 @@ $permissions = [
             'action' => '*',
             'bypassAuth' => true,
         ],
+        //the CRM, with a role of its own: what it shows and offers from here and nothing else.
+        //`api` below stays for whoever signs in with it
+        [
+            'role' => [
+                'watcher-crm',
+            ],
+            'prefix' => 'Api',
+            'plugin' => null,
+            'controller' => [
+                'AccessPoints',
+                'IpAddressRanges',
+                'PowerOutages',
+            ],
+            'action' => [
+                'index',
+            ],
+        ],
+        [
+            'role' => [
+                'watcher-crm',
+            ],
+            'prefix' => 'Api',
+            'plugin' => null,
+            'controller' => [
+                'IpAddressRanges',
+                'RouterosDevices',
+            ],
+            'action' => [
+                'search',
+            ],
+        ],
+        [
+            'role' => [
+                'watcher-crm',
+            ],
+            'prefix' => 'Api',
+            'plugin' => null,
+            'controller' => [
+                'IpAddressRanges',
+            ],
+            'action' => [
+                'view',
+            ],
+        ],
         //API access
         [
             'role' => [
