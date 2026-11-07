@@ -245,6 +245,59 @@ class DashboardControllerTest extends TestCase
     }
 
     /**
+     * The cards meant for the whole office reach all of it.
+     *
+     * @return void
+     * @link \App\Dashboard\DashboardCardRegistry::forRole()
+     */
+    public function testTheCardsForTheWholeOfficeReachEveryoneInIt(): void
+    {
+        $roles = [
+            'user',
+            'customer-service-technician',
+            'network-technician',
+            'network-manager',
+            'sales-representative',
+            'sales-manager',
+            'bookkeeper',
+            'manager',
+            'admin',
+        ];
+
+        foreach ($roles as $role) {
+            $this->login($role);
+            $this->get('/dashboard/cards');
+            $this->assertResponseOk();
+
+            /** @var list<\Dashboard\Card\DashboardCardInterface> $cards */
+            $cards = $this->viewVariable('cards');
+            $ids = array_map(fn($card): string => $card->id(), $cards);
+
+            $this->assertContains('stale_device_data', $ids, $role);
+            $this->assertContains('power_outages', $ids, $role);
+            $this->assertContains('radar_interferences', $ids, $role);
+            $this->assertContains('electricity_meter_readings', $ids, $role);
+        }
+    }
+
+    /**
+     * An account another system signs in with has nobody to read a dashboard, so it stays empty.
+     *
+     * @return void
+     * @link \App\Dashboard\DashboardCardRegistry::forRole()
+     */
+    public function testTheMachineRolesAreOfferedNoCards(): void
+    {
+        foreach (['api', 'watcher-crm', 'agent'] as $role) {
+            $this->login($role);
+            $this->get('/dashboard/cards');
+
+            $this->assertResponseOk();
+            $this->assertSame([], $this->viewVariable('cards'), $role);
+        }
+    }
+
+    /**
      * Each card answers with the bare fragment when fetched on its own.
      *
      * @param string $id The card to fetch.

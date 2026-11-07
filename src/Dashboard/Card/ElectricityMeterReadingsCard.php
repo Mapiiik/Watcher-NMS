@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Dashboard\Card;
 
+use App\Dashboard\DashboardCardRegistry;
 use App\Model\Entity\AccessPoint;
 use App\Model\Table\AccessPointsTable;
 use Cake\I18n\DateTime;
@@ -41,6 +42,15 @@ class ElectricityMeterReadingsCard extends AbstractDashboardCard
     public function title(): string
     {
         return __('Electricity Meters to Read');
+    }
+
+    /**
+     * @return list<string>
+     */
+    #[Override]
+    public function roles(): array
+    {
+        return DashboardCardRegistry::WHOLE_OFFICE;
     }
 
     /**

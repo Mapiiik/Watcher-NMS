@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Dashboard\Card;
 
+use App\Dashboard\DashboardCardRegistry;
 use App\Model\Table\RadarInterferencesTable;
 use Dashboard\Card\AbstractDashboardCard;
 use Override;
@@ -38,6 +39,15 @@ class RadarInterferencesCard extends AbstractDashboardCard
     public function title(): string
     {
         return __('Our Devices Interfering with Radar');
+    }
+
+    /**
+     * @return list<string>
+     */
+    #[Override]
+    public function roles(): array
+    {
+        return DashboardCardRegistry::WHOLE_OFFICE;
     }
 
     /**

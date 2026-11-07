@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Dashboard\Card;
 
+use App\Dashboard\DashboardCardRegistry;
 use App\Model\Enum\OutageHorizon;
 use App\Model\Table\AccessPointPowerOutagesTable;
 use Dashboard\Card\AbstractDashboardCard;
@@ -41,6 +42,15 @@ class PowerOutagesCard extends AbstractDashboardCard
     public function title(): string
     {
         return __('Planned Power Outages');
+    }
+
+    /**
+     * @return list<string>
+     */
+    #[Override]
+    public function roles(): array
+    {
+        return DashboardCardRegistry::WHOLE_OFFICE;
     }
 
     /**
