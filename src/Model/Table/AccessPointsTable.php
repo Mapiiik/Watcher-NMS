@@ -19,6 +19,7 @@ use Override;
  * @property \App\Model\Table\AccessPointPowerOutagesTable&\Cake\ORM\Association\HasMany $AccessPointPowerOutages
  * @property \App\Model\Table\PowerOutagesTable&\Cake\ORM\Association\BelongsToMany $PowerOutages
  * @property \App\Model\Table\CustomerConnectionsTable&\Cake\ORM\Association\HasMany $CustomerConnections
+ * @property \App\Model\Table\DocumentationsTable&\Cake\ORM\Association\HasMany $Documentations
  * @property \App\Model\Table\ElectricityMeterReadingsTable&\Cake\ORM\Association\HasMany $ElectricityMeterReadings
  * @property \App\Model\Table\IpAddressRangesTable&\Cake\ORM\Association\HasMany $IpAddressRanges
  * @property \App\Model\Table\LandlordPaymentsTable&\Cake\ORM\Association\HasMany $landlordPayments
@@ -81,6 +82,9 @@ class AccessPointsTable extends AppTable
             'foreignKey' => 'parent_access_point_id',
         ]);
         $this->hasMany('CustomerConnections', [
+            'foreignKey' => 'access_point_id',
+        ]);
+        $this->hasMany('Documentations', [
             'foreignKey' => 'access_point_id',
         ]);
         $this->hasMany('ElectricityMeterReadings', [
@@ -581,6 +585,7 @@ class AccessPointsTable extends AppTable
         $rules->addDelete($rules->isNotLinkedTo('AccessPointContacts'));
         $rules->addDelete($rules->isNotLinkedTo('ChildAccessPoints'));
         $rules->addDelete($rules->isNotLinkedTo('CustomerConnections'));
+        $rules->addDelete($rules->isNotLinkedTo('Documentations'));
         $rules->addDelete($rules->isNotLinkedTo('ElectricityMeterReadings'));
         $rules->addDelete($rules->isNotLinkedTo('IpAddressRanges'));
         $rules->addDelete($rules->isNotLinkedTo('LandlordPayments'));

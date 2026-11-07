@@ -62,6 +62,8 @@ class AccessPointsTableTest extends TestCase
         'app.TaskTypes',
         'app.Tasks',
         'app.TaskCollaborators',
+        'plugin.Files.DocumentationTypes',
+        'plugin.Files.Documentations',
     ];
 
     /**
@@ -152,6 +154,33 @@ class AccessPointsTableTest extends TestCase
 
         $this->assertFalse($this->AccessPoints->delete($place));
         $this->assertNotSame([], $place->getError('child_access_points'));
+    }
+
+    /**
+     * Nor does one with a folder of documentation filed under it.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointsTable::buildRules()
+     */
+    public function testAPlaceWithDocumentationIsNotDeleted(): void
+    {
+        $place = $this->place();
+        $kinds = $this->getTableLocator()->get('DocumentationTypes');
+        $kind = $kinds->saveOrFail($kinds->newEntity([
+            'name' => 'Written by the test',
+            'position' => 0,
+            'currently_offered' => true,
+            'date_required' => false,
+        ]));
+        $documentations = $this->getTableLocator()->get('Documentations');
+        $documentations->saveOrFail($documentations->newEntity([
+            'documentation_type_id' => $kind->get('id'),
+            'name' => 'Written by the test',
+            'access_point_id' => $place->get('id'),
+        ]));
+
+        $this->assertFalse($this->AccessPoints->delete($place));
+        $this->assertNotSame([], $place->getError('documentations'));
     }
 
     /**

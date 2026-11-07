@@ -84,4 +84,23 @@ class IpAddressRangesTableTest extends TestCase
     {
         $this->assertDanglingReferencesAreRefused($this->IpAddressRanges);
     }
+
+    /**
+     * A range with another one under it stays and says why. The key would refuse it too, by an
+     * exception the operator sees as an error page. Once nothing is under it, it goes.
+     *
+     * @return void
+     * @link \App\Model\Table\IpAddressRangesTable::buildRules()
+     */
+    public function testARangeWithAnotherOneUnderItIsNotDeleted(): void
+    {
+        $parent = $this->IpAddressRanges->get('fa060f68-b28c-40fe-b734-1abb6a78c179');
+
+        $this->assertFalse($this->IpAddressRanges->delete($parent));
+        $this->assertNotSame([], $parent->getError('child_ip_address_ranges'));
+
+        $this->IpAddressRanges->deleteOrFail($this->IpAddressRanges->get('c22cef67-ab70-4363-af2d-a3e7456c1ea5'));
+
+        $this->assertTrue($this->IpAddressRanges->delete($this->IpAddressRanges->get($parent->get('id'))));
+    }
 }

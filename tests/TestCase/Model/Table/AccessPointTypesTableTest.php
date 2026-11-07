@@ -70,4 +70,16 @@ class AccessPointTypesTableTest extends TestCase
     {
         $this->assertValidatorIsNotEmpty($this->AccessPointTypes);
     }
+
+    /**
+     * The colour of a type ends up in a style attribute, so only a colour gets in.
+     *
+     * @return void
+     * @link \App\Model\Table\AccessPointTypesTable::validationDefault()
+     */
+    public function testOnlyAColorIsStored(): void
+    {
+        $this->assertSame([], $this->AccessPointTypes->newEntity(['color' => '#ffcdd2'])->getError('color'));
+        $this->assertNotSame([], $this->AccessPointTypes->newEntity(['color' => '"><img'])->getError('color'));
+    }
 }

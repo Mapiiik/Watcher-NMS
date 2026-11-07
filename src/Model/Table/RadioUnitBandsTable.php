@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Entity\RadioUnitBand;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -72,6 +73,12 @@ class RadioUnitBandsTable extends AppTable
         $validator
             ->scalar('name')
             ->allowEmptyString('name');
+
+        $validator
+            ->scalar('color')
+            ->maxLength('color', 7)
+            ->regex('color', RadioUnitBand::COLOR_PATTERN)
+            ->notEmptyString('color');
 
         $validator
             ->scalar('note')

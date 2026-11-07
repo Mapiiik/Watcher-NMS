@@ -90,6 +90,18 @@ class RadioUnitBandsTableTest extends TestCase
     }
 
     /**
+     * The colour of a band ends up in a style attribute, so only a colour gets in.
+     *
+     * @return void
+     * @link \App\Model\Table\RadioUnitBandsTable::validationDefault()
+     */
+    public function testOnlyAColorIsStored(): void
+    {
+        $this->assertSame([], $this->RadioUnitBands->newEntity(['color' => '#ffcdd2'])->getError('color'));
+        $this->assertNotSame([], $this->RadioUnitBands->newEntity(['color' => '"><img'])->getError('color'));
+    }
+
+    /**
      * A band given only one of its edges is refused.
      *
      * Saved, it would be a band recognised by no frequency at all, and the overview that reads the

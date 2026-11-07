@@ -13,6 +13,7 @@ use Override;
  *
  * @property \App\Model\Table\AccessPointsTable&\Cake\ORM\Association\BelongsTo $AccessPoints
  * @property \App\Model\Table\IpAddressRangesTable&\Cake\ORM\Association\BelongsTo $ParentIpAddressRanges
+ * @property \App\Model\Table\IpAddressRangesTable&\Cake\ORM\Association\HasMany $ChildIpAddressRanges
  * @method \App\Model\Entity\IpAddressRange newEmptyEntity()
  * @method \App\Model\Entity\IpAddressRange newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\IpAddressRange[] newEntities(array $data, array $options = [])
@@ -56,6 +57,10 @@ class IpAddressRangesTable extends AppTable
             'className' => 'IpAddressRanges',
             'foreignKey' => 'parent_ip_address_range_id',
             'conditions' => ['ParentIpAddressRanges.for_subnets' => true],
+        ]);
+        $this->hasMany('ChildIpAddressRanges', [
+            'className' => 'IpAddressRanges',
+            'foreignKey' => 'parent_ip_address_range_id',
         ]);
     }
 
@@ -149,6 +154,8 @@ class IpAddressRangesTable extends AppTable
             $rules->existsIn('parent_ip_address_range_id', 'ParentIpAddressRanges'),
             ['errorField' => 'parent_ip_address_range_id'],
         );
+
+        $rules->addDelete($rules->isNotLinkedTo('ChildIpAddressRanges'));
 
         return $rules;
     }

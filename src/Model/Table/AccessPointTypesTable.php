@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Entity\AccessPointType;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Override;
@@ -69,6 +70,7 @@ class AccessPointTypesTable extends AppTable
         $validator
             ->scalar('color')
             ->maxLength('color', 7)
+            ->regex('color', AccessPointType::COLOR_PATTERN)
             ->notEmptyString('color');
 
         $validator
