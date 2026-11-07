@@ -201,6 +201,29 @@ class RadarInterferencesUpdateCommandTest extends TestCase
     }
 
     /**
+     * A device the list gives no network or radio name for is the same device the next time. The
+     * update finds it by what the list says, so what is empty has to stay stored as empty.
+     *
+     * @return void
+     * @link \App\Command\RadarInterferencesUpdateCommand::execute()
+     */
+    public function testExecuteFindsADeviceTheListGivesNoNamesForAgain(): void
+    {
+        $radarInterferences = $this->getTableLocator()->get('RadarInterferences');
+        $device = $radarInterferences->find()->where(['mac_address' => 'aa:bb:cc:dd:ee:ff']);
+        $file = $this->csv('Radar one;aa:bb:cc:dd:ee:ff;;-70;' . PHP_EOL);
+        $this->exec('radar_interferences_update ' . $file);
+        $this->assertExitSuccess();
+        $id = (clone $device)->firstOrFail()->get('id');
+
+        $this->exec('radar_interferences_update ' . $file);
+
+        $this->assertExitSuccess();
+        $this->assertSame(1, (clone $device)->count());
+        $this->assertSame($id, (clone $device)->firstOrFail()->get('id'));
+    }
+
+    /**
      * Nothing to read is not something to carry on from: emptying the table because the list could
      * not be fetched would lose what is known for a reason that says nothing about it. Somebody is
      * told, rather than the run passing for a quiet one.

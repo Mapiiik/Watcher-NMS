@@ -88,4 +88,18 @@ class RadarInterferencesTableTest extends TestCase
     {
         $this->assertValidatorIsNotEmpty($this->RadarInterferences);
     }
+
+    /**
+     * A form sends an empty MAC address as an empty text, which the column would refuse.
+     *
+     * @return void
+     * @link \App\Model\Table\RadarInterferencesTable::beforeMarshal()
+     */
+    public function testAnEmptyMacAddressIsNone(): void
+    {
+        $radarInterference = $this->RadarInterferences->newEntity(['mac_address' => '', 'ssid' => '']);
+
+        $this->assertNull($radarInterference->get('mac_address'));
+        $this->assertSame('', $radarInterference->get('ssid'));
+    }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use App\Model\Validation\NetworkValidation;
+use ArrayObject;
+use Cake\Event\EventInterface;
 use Cake\Validation\Validator;
 use Override;
 
@@ -43,7 +45,6 @@ class RadarInterferencesTable extends AppTable
         $this->setDisplayField('name_for_lists');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('StringModifications');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Footprint');
 
@@ -51,6 +52,21 @@ class RadarInterferencesTable extends AppTable
             'foreignKey' => 'mac_address',
             'bindingKey' => 'mac_address',
         ]);
+    }
+
+    /**
+     * An empty MAC address is none, as the column takes nothing else. The other columns stay as they
+     * came, as the update finds a device by what the list says.
+     *
+     * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event The event.
+     * @param \ArrayObject<string, mixed> $data The data.
+     * @return void
+     */
+    public function beforeMarshal(EventInterface $event, ArrayObject $data): void
+    {
+        if (($data['mac_address'] ?? null) === '') {
+            $data['mac_address'] = null;
+        }
     }
 
     /**
