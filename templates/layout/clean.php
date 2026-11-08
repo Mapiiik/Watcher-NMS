@@ -38,7 +38,7 @@ $cakeDescription = 'Watcher NMS | ' . (string)Configure::read('App.company');
     <?= $this->Html->meta(['rel' => 'apple-touch-icon', 'link' => 'apple-touch-icon.png']) ?>
 
     <?= $this->Html->css([
-        '/vendor/normalize/normalize.min.css',
+        '/vendor/normalize/normalize.css',
         '/vendor/milligram/milligram.min.css',
         'cake',
     ]) ?>
