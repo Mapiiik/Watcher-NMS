@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-11-07 15:03+0100\n"
+"POT-Creation-Date: 2026-11-11 10:28+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1047,29 +1047,29 @@ msgstr ""
 msgid "Failed to update RouterOS device data via SNMP: {0}"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:369
+#: ./src/Controller/TasksController.php:365
 msgid "none"
 msgstr ""
 
-#: ./src/Controller/TasksController.php:466
-#: ./src/Controller/TasksController.php:537
+#: ./src/Controller/TasksController.php:490
+#: ./src/Controller/TasksController.php:561
 msgid "The task has been saved."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:470
-#: ./src/Controller/TasksController.php:541
+#: ./src/Controller/TasksController.php:494
+#: ./src/Controller/TasksController.php:565
 msgid "The task could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:592
+#: ./src/Controller/TasksController.php:616
 msgid "The task has been deleted."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:595
+#: ./src/Controller/TasksController.php:619
 msgid "The task could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/TasksController.php:389
+#: ./src/Controller/TasksController.php:385
 msgid "There was {0} unfinished task found that does not have a user assigned."
 msgid_plural "There were {0} unfinished tasks found that do not have a user assigned."
 msgstr[0] ""
@@ -1143,54 +1143,54 @@ msgstr ""
 msgid "date not given"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:36
+#: ./src/Model/Entity/User.php:52
 #: ./templates/Tasks/view.php:54
 #: ./templates/element/AccessPoints/tasks.php:35
 #: ./templates/element/Tasks/email_detail.php:48
 msgid "User"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:37
+#: ./src/Model/Entity/User.php:53
 msgid "Customer Service Technician"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:38
+#: ./src/Model/Entity/User.php:54
 msgid "Network Technician"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:39
+#: ./src/Model/Entity/User.php:55
 msgid "Network Manager"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:40
+#: ./src/Model/Entity/User.php:56
 msgid "Sales Representative"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:41
+#: ./src/Model/Entity/User.php:57
 msgid "Sales Manager"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:42
+#: ./src/Model/Entity/User.php:58
 msgid "Bookkeeper"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:43
+#: ./src/Model/Entity/User.php:59
 msgid "Manager"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:44
+#: ./src/Model/Entity/User.php:60
 msgid "Admin"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:45
+#: ./src/Model/Entity/User.php:61
 msgid "API"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:46
+#: ./src/Model/Entity/User.php:62
 msgid "Watcher CRM"
 msgstr ""
 
-#: ./src/Model/Entity/User.php:47
+#: ./src/Model/Entity/User.php:63
 msgid "Agent"
 msgstr ""
 
@@ -1251,7 +1251,7 @@ msgstr ""
 #: ./src/Model/Enum/LandingPage.php:43
 #: ./templates/AccessPoints/view.php:110
 #: ./templates/RouterosDevices/export.php:26
-#: ./templates/RouterosDevices/index.php:37
+#: ./templates/RouterosDevices/index.php:43
 #: ./templates/layout/default.php:177
 #: ./templates/layout/default.php:368
 msgid "RouterOS Devices"
@@ -1369,7 +1369,7 @@ msgstr ""
 msgid "This field cannot be left empty"
 msgstr ""
 
-#: ./src/Model/Table/RadarInterferencesTable.php:77
+#: ./src/Model/Table/RadarInterferencesTable.php:93
 #: ./src/Model/Table/RouterosDeviceInterfacesTable.php:123
 #: ./src/Model/Table/RouterosDeviceInterfacesTable.php:171
 msgid "This is not a MAC address."
@@ -1605,7 +1605,7 @@ msgstr ""
 #: ./templates/RouterosDevices/add.php:13
 #: ./templates/RouterosDevices/edit.php:13
 #: ./templates/RouterosDevices/export.php:46
-#: ./templates/RouterosDevices/index.php:52
+#: ./templates/RouterosDevices/index.php:58
 #: ./templates/RouterosDevices/view.php:10
 #: ./templates/RouterosDevices/view.php:159
 #: ./templates/RouterosDevices/view.php:223
@@ -1751,7 +1751,7 @@ msgstr ""
 #: ./templates/RouterosDeviceIps/index.php:70
 #: ./templates/RouterosDevices/edit.php:15
 #: ./templates/RouterosDevices/export.php:136
-#: ./templates/RouterosDevices/index.php:101
+#: ./templates/RouterosDevices/index.php:107
 #: ./templates/RouterosDevices/view.php:196
 #: ./templates/RouterosDevices/view.php:241
 #: ./templates/Tasks/edit.php:16
@@ -1848,7 +1848,7 @@ msgstr ""
 #: ./templates/RouterosDeviceIps/view.php:20
 #: ./templates/RouterosDevices/edit.php:18
 #: ./templates/RouterosDevices/export.php:138
-#: ./templates/RouterosDevices/index.php:103
+#: ./templates/RouterosDevices/index.php:109
 #: ./templates/RouterosDevices/view.php:20
 #: ./templates/RouterosDevices/view.php:202
 #: ./templates/RouterosDevices/view.php:243
@@ -1952,7 +1952,7 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:90
 #: ./templates/RouterosDeviceIps/index.php:61
 #: ./templates/RouterosDevices/export.php:127
-#: ./templates/RouterosDevices/index.php:92
+#: ./templates/RouterosDevices/index.php:98
 #: ./templates/RouterosDevices/view.php:179
 #: ./templates/RouterosDevices/view.php:232
 #: ./templates/Tasks/index.php:170
@@ -2008,7 +2008,7 @@ msgstr ""
 #: ./templates/RouterosDeviceInterfaces/index.php:94
 #: ./templates/RouterosDeviceIps/index.php:65
 #: ./templates/RouterosDevices/export.php:131
-#: ./templates/RouterosDevices/index.php:96
+#: ./templates/RouterosDevices/index.php:102
 #: ./templates/RouterosDevices/view.php:187
 #: ./templates/RouterosDevices/view.php:236
 #: ./templates/Tasks/index.php:174
@@ -2690,7 +2690,7 @@ msgid "Related Radio Units"
 msgstr ""
 
 #: ./templates/AccessPoints/view.php:663
-#: ./templates/RouterosDevices/index.php:32
+#: ./templates/RouterosDevices/index.php:34
 #: ./templates/RouterosDevices/view.php:29
 msgid "New RouterOS Device"
 msgstr ""
@@ -2917,7 +2917,7 @@ msgstr ""
 #: ./templates/RouterosDevices/add.php:45
 #: ./templates/RouterosDevices/edit.php:53
 #: ./templates/RouterosDevices/export.php:35
-#: ./templates/RouterosDevices/index.php:46
+#: ./templates/RouterosDevices/index.php:52
 #: ./templates/RouterosDevices/view.php:95
 #: ./templates/RouterosDevices/view.php:221
 #: ./templates/element/RadioUnits/related.php:52
@@ -3921,7 +3921,7 @@ msgstr ""
 #: ./templates/RadioUnits/export.php:10
 #: ./templates/RadioUnits/index.php:29
 #: ./templates/RouterosDevices/export.php:26
-#: ./templates/RouterosDevices/index.php:36
+#: ./templates/RouterosDevices/index.php:39
 msgid "Export"
 msgstr ""
 
@@ -4054,9 +4054,8 @@ msgstr ""
 msgid "Software Version"
 msgstr ""
 
-#: ./templates/RouterosDevices/index.php:22
-#: ./templates/Tasks/index.php:78
-msgid "Untouched for a While Only"
+#: ./templates/RouterosDevices/index.php:24
+msgid "With Stale Data Only"
 msgstr ""
 
 #: ./templates/RouterosDevices/view.php:17
@@ -4230,6 +4229,10 @@ msgstr ""
 
 #: ./templates/Tasks/index.php:71
 msgid "Show Completed"
+msgstr ""
+
+#: ./templates/Tasks/index.php:78
+msgid "Stale Only"
 msgstr ""
 
 #: ./templates/Tasks/index.php:85
