@@ -56,7 +56,7 @@
         <tbody>
             <?php foreach ($versions['shown'] as $version) : ?>
                 <tr>
-                    <td><?= h($version['version'] ?? __('Unknown')) ?></td>
+                    <td><?= h($version['version'] ?? __x('software version', 'Unknown')) ?></td>
                     <td><?= $this->Number->format($version['devices']) ?></td>
                 </tr>
             <?php endforeach ?>
