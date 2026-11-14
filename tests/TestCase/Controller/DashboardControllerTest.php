@@ -304,6 +304,7 @@ class DashboardControllerTest extends TestCase
             $this->assertContains('power_outages', $ids, $role);
             $this->assertContains('radar_interferences', $ids, $role);
             $this->assertContains('electricity_meter_readings', $ids, $role);
+            $this->assertContains('statistics', $ids, $role);
         }
     }
 
@@ -356,6 +357,7 @@ class DashboardControllerTest extends TestCase
             ['radar_interferences'],
             ['power_outages'],
             ['scheduler'],
+            ['statistics'],
         ];
     }
 

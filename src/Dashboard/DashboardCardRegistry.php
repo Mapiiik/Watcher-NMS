@@ -12,9 +12,12 @@ use App\Dashboard\Card\ElectricityMeterReadingsCard;
 use App\Dashboard\Card\PowerOutagesCard;
 use App\Dashboard\Card\RadarInterferencesCard;
 use App\Dashboard\Card\StaleDeviceDataCard;
+use App\Dashboard\Card\StatisticsCard;
 use App\Model\Table\AccessPointPowerOutagesTable;
 use App\Model\Table\AccessPointsTable;
 use App\Model\Table\RadarInterferencesTable;
+use App\Model\Table\RadioLinksTable;
+use App\Model\Table\RadioUnitsTable;
 use App\Model\Table\RouterosDevicesTable;
 use App\Model\Table\TasksTable;
 use Cake\ORM\Locator\LocatorAwareTrait;
@@ -61,6 +64,10 @@ final class DashboardCardRegistry implements CardRegistryInterface
         $interferences = $this->fetchTable(RadarInterferencesTable::class);
         /** @var \App\Model\Table\AccessPointPowerOutagesTable $power_outages */
         $power_outages = $this->fetchTable(AccessPointPowerOutagesTable::class);
+        /** @var \App\Model\Table\RadioUnitsTable $radio_units */
+        $radio_units = $this->fetchTable(RadioUnitsTable::class);
+        /** @var \App\Model\Table\RadioLinksTable $radio_links */
+        $radio_links = $this->fetchTable(RadioLinksTable::class);
 
         // The task cards keep their ids whichever application is answering for them, so an
         // operator who has arranged their dashboard keeps that arrangement when an installation
@@ -86,6 +93,13 @@ final class DashboardCardRegistry implements CardRegistryInterface
                 fn(): DashboardCardInterface => new ElectricityMeterReadingsCard($access_points),
             'radar_interferences' => fn(): DashboardCardInterface => new RadarInterferencesCard($interferences),
             'power_outages' => fn(): DashboardCardInterface => new PowerOutagesCard($power_outages),
+            // how the month went rather than what is waiting, so after all the work
+            'statistics' => fn(): DashboardCardInterface => new StatisticsCard(
+                $access_points,
+                $devices,
+                $radio_units,
+                $radio_links,
+            ),
         ];
     }
 
