@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-11-11 10:28+0100\n"
+"POT-Creation-Date: 2026-11-14 16:08+0100\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1140,6 +1140,67 @@ msgstr "Naše zařízení rušící radar"
 msgid "Devices with Stale Data"
 msgstr "Zařízení s neaktuálními údaji"
 
+#: src/Dashboard/Card/StatisticsCard.php:61
+msgid "Statistics"
+msgstr "Statistiky"
+
+#: src/Dashboard/Card/StatisticsCard.php:104 src/Model/Enum/LandingPage.php:39
+#: templates/AccessPoints/index.php:37 templates/AccessPoints/map.php:21
+#: templates/AccessPoints/utilization.php:48 templates/layout/default.php:139
+#: templates/layout/default.php:314
+msgid "Access Points"
+msgstr "Přístupové body"
+
+#: src/Dashboard/Card/StatisticsCard.php:107
+msgid "Active"
+msgstr "Aktivní"
+
+#: src/Dashboard/Card/StatisticsCard.php:115
+#: src/Dashboard/Card/StatisticsCard.php:296
+msgid "Added"
+msgstr "Přidáno"
+
+#: src/Dashboard/Card/StatisticsCard.php:122
+#: templates/element/common/audit.php:95
+msgid "Archived"
+msgstr "Archivováno"
+
+#: src/Dashboard/Card/StatisticsCard.php:132 src/Model/Enum/LandingPage.php:43
+#: templates/AccessPoints/view.php:110 templates/RouterosDevices/export.php:26
+#: templates/RouterosDevices/index.php:43 templates/layout/default.php:177
+#: templates/layout/default.php:368
+msgid "RouterOS Devices"
+msgstr "Zařízení RouterOS"
+
+#: src/Dashboard/Card/StatisticsCard.php:135
+msgid "Reporting"
+msgstr "Hlásí se"
+
+#: src/Dashboard/Card/StatisticsCard.php:140
+msgid "Not Reporting"
+msgstr "Nehlásí se"
+
+#: src/Dashboard/Card/StatisticsCard.php:151
+msgid "Seen for the First Time"
+msgstr "Poprvé zaznamenáno"
+
+#: src/Dashboard/Card/StatisticsCard.php:159
+#: templates/AccessPoints/view.php:105 templates/RadioLinks/index.php:35
+#: templates/RadioUnits/export.php:10 templates/RadioUnits/index.php:33
+#: templates/layout/default.php:401
+msgid "Radio Units"
+msgstr "Rádiové jednotky"
+
+#: src/Dashboard/Card/StatisticsCard.php:164 src/Model/Enum/LandingPage.php:44
+#: templates/AccessPoints/map.php:34 templates/RadioLinks/index.php:27
+#: templates/layout/default.php:187 templates/layout/default.php:396
+msgid "Radio Links"
+msgstr "Rádiové spoje"
+
+#: src/Dashboard/Card/StatisticsCard.php:288
+msgid "On Record"
+msgstr "V evidenci"
+
 #: src/Http/Answer.php:149
 msgid "The service is not configured."
 msgstr "Služba není nakonfigurována."
@@ -1252,12 +1313,6 @@ msgstr "Pouze bez vazby"
 msgid "Dashboard"
 msgstr "Nástěnka"
 
-#: src/Model/Enum/LandingPage.php:39 templates/AccessPoints/index.php:37
-#: templates/AccessPoints/map.php:21 templates/AccessPoints/utilization.php:48
-#: templates/layout/default.php:139 templates/layout/default.php:314
-msgid "Access Points"
-msgstr "Přístupové body"
-
 #: src/Model/Enum/LandingPage.php:40 templates/AccessPoints/view.php:135
 #: templates/Tasks/index.php:96 templates/Tasks/map.php:36
 #: templates/layout/default.php:151
@@ -1273,19 +1328,6 @@ msgstr "Zákaznické body"
 #: templates/IpAddressRanges/index.php:25 templates/layout/default.php:170
 msgid "IP Address Ranges"
 msgstr "Rozsahy IP adres"
-
-#: src/Model/Enum/LandingPage.php:43 templates/AccessPoints/view.php:110
-#: templates/RouterosDevices/export.php:26
-#: templates/RouterosDevices/index.php:43 templates/layout/default.php:177
-#: templates/layout/default.php:368
-msgid "RouterOS Devices"
-msgstr "Zařízení RouterOS"
-
-#: src/Model/Enum/LandingPage.php:44 templates/AccessPoints/map.php:34
-#: templates/RadioLinks/index.php:27 templates/layout/default.php:187
-#: templates/layout/default.php:396
-msgid "Radio Links"
-msgstr "Rádiové spoje"
 
 #: src/Model/Enum/LandingPage.php:45 templates/AccessPoints/view.php:100
 #: templates/PowerSupplies/index.php:25 templates/layout/default.php:195
@@ -2208,12 +2250,6 @@ msgstr "Podřazené přístupové body"
 #: templates/layout/default.php:329
 msgid "Landlord Payments"
 msgstr "Platby pronajímateli"
-
-#: templates/AccessPoints/view.php:105 templates/RadioLinks/index.php:35
-#: templates/RadioUnits/export.php:10 templates/RadioUnits/index.php:33
-#: templates/layout/default.php:401
-msgid "Radio Units"
-msgstr "Rádiové jednotky"
 
 #: templates/AccessPoints/view.php:115
 msgid "Radio Unit Links"
@@ -3390,6 +3426,7 @@ msgid "Radar Interferences"
 msgstr "Rušení radarů"
 
 #: templates/RadarInterferences/devices.php:13
+#: templates/element/Dashboard/statistics.php:53
 msgid "Devices"
 msgstr "Zařízení"
 
@@ -3776,6 +3813,7 @@ msgstr "Název desky"
 
 #: templates/RouterosDevices/export.php:39
 #: templates/RouterosDevices/view.php:128
+#: templates/element/Dashboard/statistics.php:52
 #: templates/element/RouterosDevices/related.php:34
 msgid "Software Version"
 msgstr "Verze softwaru"
@@ -4108,6 +4146,19 @@ msgstr "Na každé zařízení se v poslední době něco zapsalo."
 msgid "Nothing has been written for these in {0}."
 msgstr "Za posledních {0} se u nich nic nezapsalo."
 
+#: templates/element/Dashboard/statistics.php:44
+msgid "A device reports when the agent has written to it within {0}."
+msgstr "Zařízení se hlásí, když do něj agent zapsal během posledních {0}."
+
+#: templates/element/Dashboard/statistics.php:65
+msgid "Other Versions"
+msgstr "Ostatní verze"
+
+#: templates/element/Dashboard/statistics.php:59
+msgctxt "software version"
+msgid "Unknown"
+msgstr "Neznámá"
+
 #: templates/element/Settings/FormFields.php:34
 #: templates/element/Settings/FormFields.php:51
 #: templates/layout/default.php:264
@@ -4163,10 +4214,6 @@ msgstr "Zrušeno"
 #: templates/element/common/audit.php:79
 msgid "Revoked By"
 msgstr "Zrušil"
-
-#: templates/element/common/audit.php:95
-msgid "Archived"
-msgstr "Archivováno"
 
 #: templates/element/common/audit.php:100
 msgid "Archived By"
