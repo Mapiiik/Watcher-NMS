@@ -20,6 +20,8 @@ use App\Model\Table\TasksTable;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Dashboard\Card\CardRegistryInterface;
 use Dashboard\Card\DashboardCardInterface;
+use Scheduler\Dashboard\Card\SchedulerCard;
+use Scheduler\Service\SchedulerHealth;
 use Tasks\Dashboard\Card\MyTasksCard;
 use Tasks\Dashboard\Card\PressingTasksCard;
 use Tasks\Dashboard\Card\StaleTasksCard;
@@ -72,7 +74,13 @@ final class DashboardCardRegistry implements CardRegistryInterface
                 'stale_tasks' => fn(): DashboardCardInterface => new StaleTasksCard($tasks),
             ];
 
-        $this->factories = $taskCards + [
+        $this->factories = [
+            // First, being the one card that says the application itself is unwell - and fetched
+            // only once it scrolls into view, which at the bottom of the page would be never.
+            'scheduler' => fn(): DashboardCardInterface => new SchedulerCard(new SchedulerHealth()),
+        ];
+        $this->factories += $taskCards;
+        $this->factories += [
             'stale_device_data' => fn(): DashboardCardInterface => new StaleDeviceDataCard($devices),
             'electricity_meter_readings' =>
                 fn(): DashboardCardInterface => new ElectricityMeterReadingsCard($access_points),
