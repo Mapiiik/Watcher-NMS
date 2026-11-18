@@ -55,7 +55,6 @@ class IpAddressRangesTableTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->IpAddressRanges);
 
         parent::tearDown();

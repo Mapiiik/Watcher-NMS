@@ -58,7 +58,6 @@ class DeviceTypesTableTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->DeviceTypes);
 
         parent::tearDown();

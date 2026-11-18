@@ -61,7 +61,6 @@ class RadioUnitsTableTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->RadioUnits);
 
         parent::tearDown();

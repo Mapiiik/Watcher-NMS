@@ -61,7 +61,6 @@ class RouterosDevicesTableTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->RouterosDevices);
 
         parent::tearDown();

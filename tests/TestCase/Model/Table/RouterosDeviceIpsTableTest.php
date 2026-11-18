@@ -60,7 +60,6 @@ class RouterosDeviceIpsTableTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->RouterosDeviceIps);
 
         parent::tearDown();

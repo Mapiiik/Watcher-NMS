@@ -59,7 +59,6 @@ class AccessPointSupplyAddressesTableTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->AccessPointSupplyAddresses);
 
         parent::tearDown();

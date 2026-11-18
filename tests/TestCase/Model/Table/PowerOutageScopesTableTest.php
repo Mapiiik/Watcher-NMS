@@ -59,7 +59,6 @@ class PowerOutageScopesTableTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->PowerOutageScopes);
 
         parent::tearDown();

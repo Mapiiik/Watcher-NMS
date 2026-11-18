@@ -55,7 +55,6 @@ class CustomerPointsTableTest extends TestCase
     #[Override]
     protected function tearDown(): void
     {
-        /** @phpstan-ignore unset.possiblyHookedProperty */
         unset($this->CustomerPoints);
 
         parent::tearDown();
