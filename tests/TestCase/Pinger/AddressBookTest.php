@@ -195,8 +195,8 @@ class AddressBookTest extends TestCase
 
     /**
      * An address is listed once, under the name written down for it, and only devices of the access
-     * point heard from lately are listed. A power supply is listed where it has an address, and a
-     * radio unit with its manufacturer where its type names one.
+     * point heard from lately are listed. A power supply is listed where it has an address, as a
+     * power supply where it has no name, and a device with its manufacturer where its type names one.
      *
      * @return void
      * @link \App\Pinger\AddressBook::build()
@@ -212,11 +212,13 @@ class AddressBookTest extends TestCase
         $this->routerosDevice('Not heard from', $root, '10.9.20.2', DateTime::now()->subDays(30));
         $this->routerosDevice('At a customer', $root, '10.9.20.3', customerConnectionId: $customer);
         $this->powerSupply('UPS', $root, '10.9.20.202');
+        $this->powerSupply(null, $root, '10.9.20.206', 'ACME Power');
         $this->powerSupply('Battery', $root, null);
 
         $this->assertEquals(
             [
                 new Host('Of no type', '10.9.20.4', false, PingerHostKind::RadioUnit),
+                new Host('Power Supply', '10.9.20.206', false, PingerHostKind::PowerSupply, 'ACME Power'),
                 new Host('UPS', '10.9.20.202', false, PingerHostKind::PowerSupply),
                 new Host('Written down', '10.9.20.1', false, PingerHostKind::RadioUnit, 'ACME Radio'),
             ],
@@ -379,43 +381,62 @@ class AddressBookTest extends TestCase
         string $ipAddress,
         ?string $manufacturer = null,
     ): void {
-        $typeId = null;
-        if ($manufacturer !== null) {
-            $manufacturers = $this->getTableLocator()->get('Manufacturers');
-            $maker = $manufacturers->saveOrFail($manufacturers->newEntity(['name' => $manufacturer]));
-            $types = $this->getTableLocator()->get('RadioUnitTypes');
-            $type = $types->saveOrFail($types->newEntity([
-                'name' => $name . ' type',
-                'manufacturer_id' => $maker->get('id'),
-            ]));
-            $typeId = $type->get('id');
-        }
-
         $table = $this->getTableLocator()->get('RadioUnits');
         $table->saveOrFail($table->newEntity([
             'name' => $name,
             'access_point_id' => $accessPointId,
             'ip_address' => $ipAddress,
-            'radio_unit_type_id' => $typeId,
+            'radio_unit_type_id' => $this->typeBy('RadioUnitTypes', $manufacturer),
         ]));
     }
 
     /**
-     * Add a power supply.
+     * Add a power supply, of a type by the given manufacturer if one is given.
      *
-     * @param string $name What it is called.
+     * @param string|null $name What it is called, if anything.
      * @param string $accessPointId The access point it stands at.
      * @param string|null $ipAddress Its address, if it has one.
+     * @param string|null $manufacturer Who made it.
      * @return void
      */
-    private function powerSupply(string $name, string $accessPointId, ?string $ipAddress): void
-    {
+    private function powerSupply(
+        ?string $name,
+        string $accessPointId,
+        ?string $ipAddress,
+        ?string $manufacturer = null,
+    ): void {
         $table = $this->getTableLocator()->get('PowerSupplies');
         $table->saveOrFail($table->newEntity([
             'name' => $name,
             'access_point_id' => $accessPointId,
             'ip_address' => $ipAddress,
+            'power_supply_type_id' => $this->typeBy('PowerSupplyTypes', $manufacturer),
         ]));
+    }
+
+    /**
+     * Add a type of device by the given manufacturer, if one is given.
+     *
+     * @param string $types The table of the types.
+     * @param string|null $manufacturer Who makes it.
+     * @return string|null Id of the type.
+     */
+    private function typeBy(string $types, ?string $manufacturer): ?string
+    {
+        if ($manufacturer === null) {
+            return null;
+        }
+
+        $manufacturers = $this->getTableLocator()->get('Manufacturers');
+        $maker = $manufacturers->find()->where(['name' => $manufacturer])->first()
+            ?? $manufacturers->saveOrFail($manufacturers->newEntity(['name' => $manufacturer]));
+        $table = $this->getTableLocator()->get($types);
+        $type = $table->saveOrFail($table->newEntity([
+            'name' => $manufacturer . ' type',
+            'manufacturer_id' => $maker->get('id'),
+        ]));
+
+        return $type->get('id');
     }
 
     /**

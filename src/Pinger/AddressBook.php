@@ -200,6 +200,7 @@ final class AddressBook
 
         /** @var iterable<\App\Model\Entity\PowerSupply> $powerSupplies */
         $powerSupplies = $this->fetchTable('PowerSupplies')->find()
+            ->contain(['PowerSupplyTypes.Manufacturers'])
             ->where([
                 'PowerSupplies.access_point_id IN' => $accessPointIds,
                 'PowerSupplies.ip_address IS NOT' => null,
@@ -212,6 +213,7 @@ final class AddressBook
                 $powerSupply->name ?? __('Power Supply'),
                 $powerSupply->ip_address,
                 PingerHostKind::PowerSupply,
+                $powerSupply->power_supply_type?->manufacturer?->name,
             );
         }
 
