@@ -3,15 +3,16 @@ declare(strict_types=1);
 
 namespace App\Pinger;
 
-use App\Model\Entity\AccessPoint;
 use App\Model\Entity\CustomerConnection;
 use App\Model\Entity\CustomerConnectionIp;
 use App\Model\Enum\MaximumAge;
+use App\Model\Enum\PingerHostKind;
 use Cake\Core\Configure;
 use Cake\ORM\Locator\LocatorAwareTrait;
 
 /**
- * What the NMS knows to ping, put into tabs.
+ * What the NMS knows to ping: the tree of active access points with their addresses, and the tabs
+ * of McLEI's Pinger put together from it.
  *
  * A tab lists the devices of its access points first and their customers after, both by access
  * point in the order of the tree. Customers of no active access point get a tab of their own.
@@ -31,47 +32,85 @@ final class AddressBook
     private const PPPOE_SESSION_PREFIX = '<pppoe-';
 
     /**
-     * The tabs in the order they are shown in.
+     * The active access points with their addresses.
      *
-     * @return list<\App\Pinger\Tab>
+     * An archived access point is left out, and what hangs below it is hung on its nearest active
+     * ancestor, so that a tree stays whole.
+     *
+     * @return \App\Pinger\Network
      */
-    public function build(): array
+    public function network(): Network
     {
         /** @var \App\Model\Table\AccessPointsTable $accessPointsTable */
         $accessPointsTable = $this->fetchTable('AccessPoints');
 
         /** @var array<string, \App\Model\Entity\AccessPoint> $accessPoints */
         $accessPoints = [];
-        /** @var array<string, string> $tabOf */
-        $tabOf = [];
-        $root = null;
+        /** @var array<string, string|null> $parentOf */
+        $parentOf = [];
+        /** @var array<string, string|null> $listedAs the access point that stands for it in the tree */
+        $listedAs = [];
         foreach ($accessPointsTable->getSubtree() as $accessPoint) {
-            if ($accessPoint->tree_depth === 0) {
-                $root = $accessPoint;
-            }
-            if ($root === null || $accessPoint->isArchived()) {
+            $parent = $accessPoint->tree_depth === 0 || $accessPoint->parent_access_point_id === null
+                ? null
+                : $listedAs[$accessPoint->parent_access_point_id] ?? null;
+
+            if ($accessPoint->isArchived()) {
+                $listedAs[$accessPoint->id] = $parent;
                 continue;
             }
+
+            $listedAs[$accessPoint->id] = $accessPoint->id;
             $accessPoints[$accessPoint->id] = $accessPoint;
-            $tabOf[$accessPoint->id] = $this->tabFor($root);
+            $parentOf[$accessPoint->id] = $parent;
         }
 
         $devices = $this->devices(array_keys($accessPoints));
         $customers = $this->customers();
 
+        $listed = [];
+        foreach ($accessPoints as $id => $accessPoint) {
+            $listed[] = new AccessPointAddresses(
+                $id,
+                (string)$accessPoint->name,
+                $parentOf[$id],
+                $devices[$id] ?? [],
+                $customers[$id] ?? [],
+            );
+            unset($customers[$id]);
+        }
+
+        return new Network($listed, array_merge(...array_values($customers)));
+    }
+
+    /**
+     * The tabs of McLEI's Pinger in the order they are shown in.
+     *
+     * @return list<\App\Pinger\Tab>
+     */
+    public function build(): array
+    {
+        $network = $this->network();
+
+        /** @var array<string, \App\Pinger\AccessPointAddresses> $rootOf */
+        $rootOf = [];
         /** @var array<string, array{devices: list<\App\Pinger\Block>, customers: list<\App\Pinger\Block>}> $blocks */
         $blocks = [];
-        foreach ($accessPoints as $id => $accessPoint) {
-            $title = $tabOf[$id];
-            $blocks[$title] ??= ['devices' => [], 'customers' => []];
-            $name = (string)$accessPoint->name;
+        foreach ($network->accessPoints as $accessPoint) {
+            $root = $accessPoint->parentId === null ? $accessPoint : $rootOf[$accessPoint->parentId];
+            $rootOf[$accessPoint->id] = $root;
 
-            if (isset($devices[$id])) {
-                $blocks[$title]['devices'][] = new Block($name, $devices[$id]);
+            $title = $this->tabFor($root);
+            $blocks[$title] ??= ['devices' => [], 'customers' => []];
+
+            if ($accessPoint->devices !== []) {
+                $blocks[$title]['devices'][] = new Block($accessPoint->name, $accessPoint->devices);
             }
-            if (isset($customers[$id])) {
-                $blocks[$title]['customers'][] = new Block(__('Customers of {0}', $name), $customers[$id]);
-                unset($customers[$id]);
+            if ($accessPoint->customers !== []) {
+                $blocks[$title]['customers'][] = new Block(
+                    __('Customers of {0}', $accessPoint->name),
+                    $accessPoint->customers,
+                );
             }
         }
 
@@ -83,9 +122,8 @@ final class AddressBook
             }
         }
 
-        $unassigned = array_merge(...array_values($customers));
-        if ($unassigned !== []) {
-            $tabs[] = new Tab(__('Without an Access Point'), [new Block(__('Customers'), $unassigned)]);
+        if ($network->unassigned !== []) {
+            $tabs[] = new Tab(__('Without an Access Point'), [new Block(__('Customers'), $network->unassigned)]);
         }
 
         return $tabs;
@@ -94,12 +132,12 @@ final class AddressBook
     /**
      * The tab the access points of a tree are listed in.
      *
-     * @param \App\Model\Entity\AccessPoint $root The access point the tree starts at.
+     * @param \App\Pinger\AccessPointAddresses $root The access point the tree starts at.
      * @return string
      */
-    private function tabFor(AccessPoint $root): string
+    private function tabFor(AccessPointAddresses $root): string
     {
-        return (string)$root->name;
+        return $root->name;
     }
 
     /**
@@ -122,13 +160,21 @@ final class AddressBook
 
         /** @var iterable<\App\Model\Entity\RadioUnit> $radioUnits */
         $radioUnits = $this->fetchTable('RadioUnits')->find()
+            ->contain(['RadioUnitTypes.Manufacturers'])
             ->where([
                 'RadioUnits.access_point_id IN' => $accessPointIds,
                 'RadioUnits.ip_address IS NOT' => null,
             ])
             ->all();
         foreach ($radioUnits as $radioUnit) {
-            $this->addHost($hosts, (string)$radioUnit->access_point_id, $radioUnit->name, $radioUnit->ip_address);
+            $this->addHost(
+                $hosts,
+                (string)$radioUnit->access_point_id,
+                $radioUnit->name,
+                $radioUnit->ip_address,
+                PingerHostKind::RadioUnit,
+                $radioUnit->radio_unit_type?->manufacturer?->name,
+            );
         }
 
         /** @var array<string, \App\Model\Entity\RouterosDevice> $routerosDevices */
@@ -148,6 +194,7 @@ final class AddressBook
                 (string)$routerosDevice->access_point_id,
                 $routerosDevice->name,
                 $loopbackAddresses[$id] ?? $routerosDevice->ip_address,
+                PingerHostKind::RouterosDevice,
             );
         }
 
@@ -164,6 +211,7 @@ final class AddressBook
                 (string)$powerSupply->access_point_id,
                 $powerSupply->name ?? __('Power Supply'),
                 $powerSupply->ip_address,
+                PingerHostKind::PowerSupply,
             );
         }
 
@@ -184,17 +232,32 @@ final class AddressBook
      * @param string $accessPointId The access point.
      * @param string|null $name What the address is known as.
      * @param string|null $ipAddress The address, possibly with a prefix length.
+     * @param \App\Model\Enum\PingerHostKind $kind What the address belongs to.
+     * @param string|null $manufacturer Who made the device, where it is known.
      * @return void
      */
-    private function addHost(array &$hosts, string $accessPointId, ?string $name, ?string $ipAddress): void
-    {
+    private function addHost(
+        array &$hosts,
+        string $accessPointId,
+        ?string $name,
+        ?string $ipAddress,
+        PingerHostKind $kind,
+        ?string $manufacturer = null,
+    ): void {
         $address = $this->withoutPrefix($ipAddress);
         if ($address === '' || isset($hosts[$accessPointId][$address])) {
             return;
         }
 
         $name = trim((string)$name);
-        $hosts[$accessPointId][$address] = new Host($name === '' ? $address : $name, $address);
+        $manufacturer = trim((string)$manufacturer);
+        $hosts[$accessPointId][$address] = new Host(
+            $name === '' ? $address : $name,
+            $address,
+            false,
+            $kind,
+            $manufacturer === '' ? null : $manufacturer,
+        );
     }
 
     /**
@@ -332,6 +395,7 @@ final class AddressBook
                     $label === '' ? $name : $name . ' - ' . $label,
                     $address,
                     $isContact,
+                    PingerHostKind::Customer,
                 );
             }
         }

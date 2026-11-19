@@ -8,11 +8,15 @@ use App\CRM\Tasks as CrmTasks;
 use App\Form\MapOptionsForm;
 use App\Maps\NetworkMap;
 use App\Model\Enum\MaximumAge;
+use App\Model\Enum\PingerFormat;
 use App\Pinger\AddressBook;
 use App\Pinger\AdrFile;
+use App\Pinger\JsonFile;
 use Cake\Core\Configure;
 use Cake\Form\Form;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
@@ -118,22 +122,62 @@ class AccessPointsController extends AppController
     /**
      * Pinger method
      *
-     * Hands out the network devices and customer addresses as an address book of McLEI's Pinger.
+     * Lists what the network devices and customer addresses can be handed out as, for the programs
+     * that ping them, or hands them out in the format asked for.
      *
-     * @return \Cake\Http\Response The file to download.
+     * @param string|null $format The format to hand out, none for the list.
+     * @return \Cake\Http\Response|null The file to download, or null to render the list.
+     * @throws \Cake\Http\Exception\NotFoundException When the format is not known.
      */
-    public function pinger(): Response
+    public function pinger(?string $format = null): ?Response
     {
         $this->getRequest()->allowMethod(['get']);
 
-        $charset = (string)Configure::read('Pinger.charset', 'cp1250');
-        $content = (new AdrFile($charset))->render((new AddressBook())->build());
+        if ($format === null) {
+            $this->set('formats', PingerFormat::cases());
 
-        return $this->getResponse()
-            ->withStringBody($content)
+            return null;
+        }
+
+        $pingerFormat = PingerFormat::tryFrom($format) ?? throw new NotFoundException();
+        $addressBook = new AddressBook();
+        $response = $this->getResponse()->withDownload($pingerFormat->fileName());
+
+        return match ($pingerFormat) {
+            PingerFormat::Json => $this->pingerJsonFile($response, $addressBook),
+            PingerFormat::Adr => $this->pingerAdrFile($response, $addressBook),
+        };
+    }
+
+    /**
+     * The tree of access points with their addresses, as Watcher Pinger reads it.
+     *
+     * @param \Cake\Http\Response $response The response to fill.
+     * @param \App\Pinger\AddressBook $addressBook What there is to ping.
+     * @return \Cake\Http\Response
+     */
+    private function pingerJsonFile(Response $response, AddressBook $addressBook): Response
+    {
+        return $response
+            ->withStringBody((new JsonFile())->render($addressBook->network(), DateTime::now()))
+            ->withType('json');
+    }
+
+    /**
+     * The address book of McLEI's Pinger, in the code page of the Windows it runs on.
+     *
+     * @param \Cake\Http\Response $response The response to fill.
+     * @param \App\Pinger\AddressBook $addressBook What there is to ping.
+     * @return \Cake\Http\Response
+     */
+    private function pingerAdrFile(Response $response, AddressBook $addressBook): Response
+    {
+        $charset = (string)Configure::read('Pinger.charset', 'cp1250');
+
+        return $response
+            ->withStringBody((new AdrFile($charset))->render($addressBook->build()))
             ->withType('text/plain')
-            ->withCharset($charset)
-            ->withDownload('nms.adr');
+            ->withCharset($charset);
     }
 
     /**

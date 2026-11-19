@@ -580,13 +580,30 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * The page of the pinger lists what the addresses can be handed out as, to the staff.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::pinger()
+     */
+    public function testPingerListsTheExports(): void
+    {
+        $this->login('user');
+        $this->get('/access-points/pinger');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains(__('Access Points') . ' - ' . __('Pinger'));
+        $this->assertResponseContains('href="/access-points/pinger/json"');
+        $this->assertResponseContains('href="/access-points/pinger/adr"');
+    }
+
+    /**
      * The address book is handed out as a file to save, in the code page configured, a tree of
      * access points a section of it.
      *
      * @return void
      * @link \App\Controller\AccessPointsController::pinger()
      */
-    public function testPingerHandsOutTheAddressBook(): void
+    public function testPingerAdrHandsOutTheAddressBook(): void
     {
         $this->withConfigure(['Pinger.charset' => 'cp1250']);
         $accessPoints = $this->getTableLocator()->get('AccessPoints');
@@ -599,7 +616,7 @@ class AccessPointsControllerTest extends TestCase
         ]));
 
         $this->login('user');
-        $this->get('/access-points/pinger');
+        $this->get('/access-points/pinger/adr');
 
         $this->assertResponseOk();
         $this->assertContentType('text/plain');
@@ -611,7 +628,8 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
-     * A machine role talks to the application through the Api prefix and does not get the file.
+     * A machine role talks to the application through the Api prefix and gets neither the page nor
+     * the file.
      *
      * @return void
      * @link \App\Controller\AccessPointsController::pinger()
@@ -619,10 +637,61 @@ class AccessPointsControllerTest extends TestCase
     public function testPingerIsRefusedToAMachineRole(): void
     {
         $this->login('api');
-
         $this->get('/access-points/pinger');
+        $this->assertRedirect('/');
+
+        $this->login('api');
+        $this->get('/access-points/pinger/adr');
+        $this->assertRedirect('/');
+    }
+
+    /**
+     * The tree for Watcher Pinger is handed out as a JSON file to save, to the staff and to nobody
+     * else.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::pinger()
+     */
+    public function testWatcherPingerHandsOutTheTree(): void
+    {
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $root = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Tree root']));
+        $radioUnits = $this->getTableLocator()->get('RadioUnits');
+        $radioUnits->saveOrFail($radioUnits->newEntity([
+            'name' => 'Tree root - Tree child - OUT',
+            'access_point_id' => $root->id,
+            'ip_address' => '10.9.0.242',
+        ]));
+
+        $this->login('user');
+        $this->get('/access-points/pinger/json');
+
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+        $this->assertHeader('Content-Disposition', 'attachment; filename="watcher-pinger.json"');
+        $this->assertResponseContains(
+            '{"id":"' . $root->id . '","name":"Tree root","parentId":null,"hosts":[{"name":"Tree root - Tree child - OUT",'
+            . '"ip":"10.9.0.242","kind":"radio-unit","manufacturer":null,"contact":false}]}',
+        );
+
+        $this->login('api');
+        $this->get('/access-points/pinger/json');
 
         $this->assertRedirect('/');
+    }
+
+    /**
+     * A format nobody knows is not found, rather than handed out as something else.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::pinger()
+     */
+    public function testPingerKnowsNoOtherFormat(): void
+    {
+        $this->login('user');
+        $this->get('/access-points/pinger/csv');
+
+        $this->assertResponseCode(404);
     }
 
     /**

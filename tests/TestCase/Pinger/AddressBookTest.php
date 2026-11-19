@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Pinger;
 
+use App\Model\Enum\PingerHostKind;
 use App\Pinger\AddressBook;
 use App\Pinger\Block;
 use App\Pinger\Host;
@@ -87,11 +88,51 @@ class AddressBookTest extends TestCase
 
         $this->assertEquals(
             new Tab('Pinger Root', [
-                new Block('Pinger Root', [new Host('Root Router', '10.9.0.2')]),
-                new Block('Pinger Child', [new Host('Child - Root - IN', '10.9.1.243')]),
-                new Block('Customers of Pinger Child', [new Host('Doe Jane (C-1)', '192.0.2.10')]),
+                new Block('Pinger Root', [
+                    new Host('Root Router', '10.9.0.2', false, PingerHostKind::RouterosDevice),
+                ]),
+                new Block('Pinger Child', [
+                    new Host('Child - Root - IN', '10.9.1.243', false, PingerHostKind::RadioUnit),
+                ]),
+                new Block('Customers of Pinger Child', [
+                    new Host('Doe Jane (C-1)', '192.0.2.10', false, PingerHostKind::Customer),
+                ]),
             ]),
             $this->tab($tabs, 'Pinger Root'),
+        );
+    }
+
+    /**
+     * The tree leaves an archived access point out and hangs what is below it on its nearest active
+     * ancestor. Its customers, having no active access point, are listed apart.
+     *
+     * @return void
+     * @link \App\Pinger\AddressBook::network()
+     */
+    public function testTheTreeStaysWholePastAnArchivedAccessPoint(): void
+    {
+        $root = $this->accessPoint('Pinger Tree Root');
+        $archived = $this->accessPoint('Pinger Tree Archived', $root, archived: true);
+        $grandchild = $this->accessPoint('Pinger Tree Grandchild', $archived);
+        $this->radioUnit('Grandchild - Root - IN', $grandchild, '10.9.3.243');
+        $this->connection('Doe Jim', 'C-3', '1003', $archived, ['192.0.2.13']);
+
+        $network = (new AddressBook())->network();
+
+        $listed = [];
+        foreach ($network->accessPoints as $accessPoint) {
+            $listed[$accessPoint->name] = $accessPoint;
+        }
+        $this->assertArrayNotHasKey('Pinger Tree Archived', $listed);
+        $this->assertNull($listed['Pinger Tree Root']->parentId);
+        $this->assertSame($root, $listed['Pinger Tree Grandchild']->parentId);
+        $this->assertEquals(
+            [new Host('Grandchild - Root - IN', '10.9.3.243', false, PingerHostKind::RadioUnit)],
+            $listed['Pinger Tree Grandchild']->devices,
+        );
+        $this->assertContainsEquals(
+            new Host('Doe Jim (C-3)', '192.0.2.13', false, PingerHostKind::Customer),
+            $network->unassigned,
         );
     }
 
@@ -134,12 +175,12 @@ class AddressBookTest extends TestCase
 
         $this->assertEquals(
             [
-                new Host('A both', '10.9.10.11'),
-                new Host('B loopback', '10.9.11.1'),
-                new Host('C none', '10.9.12.2'),
-                new Host('D session', '10.9.13.1'),
-                new Host('E session without loopback', '10.9.14.2'),
-                new Host('F two on sessions', '10.9.15.2'),
+                new Host('A both', '10.9.10.11', false, PingerHostKind::RouterosDevice),
+                new Host('B loopback', '10.9.11.1', false, PingerHostKind::RouterosDevice),
+                new Host('C none', '10.9.12.2', false, PingerHostKind::RouterosDevice),
+                new Host('D session', '10.9.13.1', false, PingerHostKind::RouterosDevice),
+                new Host('E session without loopback', '10.9.14.2', false, PingerHostKind::RouterosDevice),
+                new Host('F two on sessions', '10.9.15.2', false, PingerHostKind::RouterosDevice),
             ],
             $this->tab((new AddressBook())->build(), 'Pinger Loopbacks')->blocks[0]->hosts,
         );
@@ -147,14 +188,15 @@ class AddressBookTest extends TestCase
         $this->withConfigure(['Pinger.loopbackInterfaces' => ['loopback']]);
 
         $this->assertEquals(
-            new Host('A both', '10.9.10.12'),
+            new Host('A both', '10.9.10.12', false, PingerHostKind::RouterosDevice),
             $this->tab((new AddressBook())->build(), 'Pinger Loopbacks')->blocks[0]->hosts[0],
         );
     }
 
     /**
      * An address is listed once, under the name written down for it, and only devices of the access
-     * point heard from lately are listed. A power supply is listed where it has an address.
+     * point heard from lately are listed. A power supply is listed where it has an address, and a
+     * radio unit with its manufacturer where its type names one.
      *
      * @return void
      * @link \App\Pinger\AddressBook::build()
@@ -164,7 +206,8 @@ class AddressBookTest extends TestCase
         $root = $this->accessPoint('Pinger Devices');
         $customer = $this->connection('Doe Jane', 'C-1', '1001', $root, []);
 
-        $this->radioUnit('Written down', $root, '10.9.20.1');
+        $this->radioUnit('Written down', $root, '10.9.20.1', 'ACME Radio');
+        $this->radioUnit('Of no type', $root, '10.9.20.4');
         $this->routerosDevice('Read off the device', $root, '10.9.20.1');
         $this->routerosDevice('Not heard from', $root, '10.9.20.2', DateTime::now()->subDays(30));
         $this->routerosDevice('At a customer', $root, '10.9.20.3', customerConnectionId: $customer);
@@ -173,8 +216,9 @@ class AddressBookTest extends TestCase
 
         $this->assertEquals(
             [
-                new Host('UPS', '10.9.20.202'),
-                new Host('Written down', '10.9.20.1'),
+                new Host('Of no type', '10.9.20.4', false, PingerHostKind::RadioUnit),
+                new Host('UPS', '10.9.20.202', false, PingerHostKind::PowerSupply),
+                new Host('Written down', '10.9.20.1', false, PingerHostKind::RadioUnit, 'ACME Radio'),
             ],
             $this->tab((new AddressBook())->build(), 'Pinger Devices')->blocks[0]->hosts,
         );
@@ -206,17 +250,17 @@ class AddressBookTest extends TestCase
         $this->assertEquals(
             new Tab('Pinger Customers', [
                 new Block('Customers of Pinger Customers', [
-                    new Host('Landlord (C-21)', '192.0.2.21', true),
-                    new Host('No Contract', '192.0.2.25'),
-                    new Host('Other Landlord (C-22)', '192.0.2.22', true),
-                    new Host('Two Addresses (C-23)', '192.0.2.23'),
-                    new Host('Two Addresses (C-23) - camera', '192.0.2.24'),
+                    new Host('Landlord (C-21)', '192.0.2.21', true, PingerHostKind::Customer),
+                    new Host('No Contract', '192.0.2.25', false, PingerHostKind::Customer),
+                    new Host('Other Landlord (C-22)', '192.0.2.22', true, PingerHostKind::Customer),
+                    new Host('Two Addresses (C-23)', '192.0.2.23', false, PingerHostKind::Customer),
+                    new Host('Two Addresses (C-23) - camera', '192.0.2.24', false, PingerHostKind::Customer),
                 ]),
             ]),
             $this->tab($tabs, 'Pinger Customers'),
         );
         $this->assertContainsEquals(
-            new Host('Nowhere (C-27)', '192.0.2.27'),
+            new Host('Nowhere (C-27)', '192.0.2.27', false, PingerHostKind::Customer),
             $this->tab($tabs, 'Without an Access Point')->blocks[0]->hosts,
         );
     }
@@ -321,20 +365,38 @@ class AddressBookTest extends TestCase
     }
 
     /**
-     * Add a radio unit.
+     * Add a radio unit, of a type by the given manufacturer if one is given.
      *
      * @param string $name What it is called.
      * @param string $accessPointId The access point it stands at.
      * @param string $ipAddress Its address.
+     * @param string|null $manufacturer Who made it.
      * @return void
      */
-    private function radioUnit(string $name, string $accessPointId, string $ipAddress): void
-    {
+    private function radioUnit(
+        string $name,
+        string $accessPointId,
+        string $ipAddress,
+        ?string $manufacturer = null,
+    ): void {
+        $typeId = null;
+        if ($manufacturer !== null) {
+            $manufacturers = $this->getTableLocator()->get('Manufacturers');
+            $maker = $manufacturers->saveOrFail($manufacturers->newEntity(['name' => $manufacturer]));
+            $types = $this->getTableLocator()->get('RadioUnitTypes');
+            $type = $types->saveOrFail($types->newEntity([
+                'name' => $name . ' type',
+                'manufacturer_id' => $maker->get('id'),
+            ]));
+            $typeId = $type->get('id');
+        }
+
         $table = $this->getTableLocator()->get('RadioUnits');
         $table->saveOrFail($table->newEntity([
             'name' => $name,
             'access_point_id' => $accessPointId,
             'ip_address' => $ipAddress,
+            'radio_unit_type_id' => $typeId,
         ]));
     }
 

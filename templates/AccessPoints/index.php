@@ -28,17 +28,13 @@
         ['action' => 'index', $finder === 'archived' ? 'active' : 'archived'],
         ['class' => 'button float-right'],
     ) ?>
+    <?= $this->AuthLink->link(__('Pinger'), ['action' => 'pinger'], ['class' => 'button float-right']) ?>
     <?= $this->AuthLink->link(
         __('Utilization'),
         ['action' => 'utilization'],
         ['class' => 'button float-right'],
     ) ?>
     <?= $this->AuthLink->link(__('Map'), ['action' => 'map'], ['class' => 'button float-right']) ?>
-    <?= $this->AuthLink->link(
-        __('Pinger (.adr)'),
-        ['action' => 'pinger'],
-        ['class' => 'button float-right'],
-    ) ?>
     <?= $this->heading(__('Access Points') . ($finder === 'archived' ? ' (' . __('archived') . ')' : '')) ?>
     <div class="table-responsive">
         <table>
