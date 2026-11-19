@@ -86,6 +86,23 @@ class PowerSuppliesTableTest extends TestCase
     }
 
     /**
+     * The address a power supply is pinged at is an IP address or nothing.
+     *
+     * @return void
+     * @link \App\Model\Table\PowerSuppliesTable::validationDefault()
+     */
+    public function testTheIpAddressIsAnIpAddressOrNothing(): void
+    {
+        foreach (['10.0.0.202', '2001:db8::202', ''] as $ipAddress) {
+            $powerSupply = $this->PowerSupplies->newEntity(['ip_address' => $ipAddress]);
+            $this->assertSame([], $powerSupply->getError('ip_address'), $ipAddress);
+        }
+
+        $powerSupply = $this->PowerSupplies->newEntity(['ip_address' => 'power supply']);
+        $this->assertNotSame([], $powerSupply->getError('ip_address'));
+    }
+
+    /**
      * The rules refuse a record whose references point nowhere - see the trait for why that is
      * the question worth asking here.
      *

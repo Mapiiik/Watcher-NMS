@@ -11,6 +11,7 @@ namespace App\Model\Entity;
  * @property string|null $power_supply_type_id
  * @property string|null $access_point_id
  * @property string|null $serial_number
+ * @property string|null $ip_address
  * @property float|null $battery_count
  * @property float|null $battery_voltage
  * @property float|null $battery_capacity
@@ -39,6 +40,7 @@ class PowerSupply extends AppEntity
         'power_supply_type_id' => true,
         'access_point_id' => true,
         'serial_number' => true,
+        'ip_address' => true,
         'battery_count' => true,
         'battery_voltage' => true,
         'battery_capacity' => true,

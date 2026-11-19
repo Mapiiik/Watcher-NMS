@@ -34,6 +34,7 @@ class PowerSuppliesController extends AppController
                 'OR' => [
                     'PowerSupplies.name ILIKE' => '%' . trim((string)$search) . '%',
                     'PowerSupplies.serial_number ILIKE' => '%' . trim((string)$search) . '%',
+                    'PowerSupplies.ip_address::character varying ILIKE' => '%' . trim((string)$search) . '%',
                     'PowerSupplyTypes.name ILIKE' => '%' . trim((string)$search) . '%',
                     'AccessPoints.name ILIKE' => '%' . trim((string)$search) . '%',
                 ],

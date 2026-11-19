@@ -31,6 +31,7 @@
                     <th><?= $this->Paginator->sort('access_point_id') ?></th>
                     <th><?= $this->Paginator->sort('power_supply_type_id') ?></th>
                     <th><?= $this->Paginator->sort('serial_number') ?></th>
+                    <th><?= $this->Paginator->sort('ip_address', __('IP Address')) ?></th>
                     <th><?= $this->Paginator->sort('battery_count') ?></th>
                     <th><?= $this->Paginator->sort('battery_voltage') ?></th>
                     <th><?= $this->Paginator->sort('battery_capacity') ?></th>
@@ -61,6 +62,7 @@
                         ) : '' ?>
                     </td>
                     <td><?= h($powerSupply->serial_number) ?></td>
+                    <td><?= h($powerSupply->ip_address) ?></td>
                     <td><?= $powerSupply->battery_count === null ?
                         '' : $this->Number->format($powerSupply->battery_count) ?></td>
                     <td><?= $powerSupply->battery_voltage === null ?

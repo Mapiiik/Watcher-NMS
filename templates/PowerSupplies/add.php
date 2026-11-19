@@ -25,6 +25,9 @@
                     echo $this->Form->control('access_point_id', ['options' => $accessPoints, 'empty' => true]);
                 }
                 echo $this->Form->control('serial_number');
+                echo $this->Form->control('ip_address', [
+                    'label' => __('IP Address'),
+                ]);
                 echo $this->Form->control('battery_count');
                 echo $this->Form->control('battery_voltage');
                 echo $this->Form->control('battery_capacity');

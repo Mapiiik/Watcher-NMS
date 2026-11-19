@@ -593,6 +593,7 @@
                             <th><?= __('Name') ?></th>
                             <th><?= __('Power Supply Type') ?></th>
                             <th><?= __('Serial Number') ?></th>
+                            <th><?= __('IP Address') ?></th>
                             <th><?= __('Battery Count') ?></th>
                             <th><?= __('Battery Voltage') ?></th>
                             <th><?= __('Battery Capacity') ?></th>
@@ -616,6 +617,7 @@
                                 ) : '' ?>
                             </td>
                             <td><?= h($powerSupplies->serial_number) ?></td>
+                            <td><?= h($powerSupplies->ip_address) ?></td>
                             <td><?= h($powerSupplies->battery_count) ?></td>
                             <td><?= h($powerSupplies->battery_voltage) ?></td>
                             <td><?= h($powerSupplies->battery_capacity) ?></td>

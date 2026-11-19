@@ -75,6 +75,10 @@
                             <td><?= h($powerSupply->serial_number) ?></td>
                         </tr>
                         <tr>
+                            <th><?= __('IP Address') ?></th>
+                            <td><?= h($powerSupply->ip_address) ?></td>
+                        </tr>
+                        <tr>
                             <td colspan="2"></td>
                         </tr>
                         <tr>
