@@ -3,6 +3,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\Pinger\AddressBook;
+use App\Pinger\JsonFile;
+use Cake\Http\Response;
+use Cake\I18n\DateTime;
+
 /**
  * AccessPoints Controller
  *
@@ -10,6 +15,20 @@ namespace App\Controller\Api;
  */
 class AccessPointsController extends AppController
 {
+    /**
+     * The network for Watcher Pinger running on a server, the file the Pinger page hands out.
+     *
+     * @return \Cake\Http\Response
+     */
+    public function pinger(): Response
+    {
+        $this->getRequest()->allowMethod(['get']);
+
+        return $this->getResponse()
+            ->withStringBody((new JsonFile())->render((new AddressBook())->network(), DateTime::now()))
+            ->withType('json');
+    }
+
     /**
      * Index method
      *

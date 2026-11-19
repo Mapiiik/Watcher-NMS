@@ -205,6 +205,20 @@ $permissions = [
                 'view',
             ],
         ],
+        //Watcher Pinger running on a server: the network it pings and nothing else
+        [
+            'role' => [
+                'watcher-pinger',
+            ],
+            'prefix' => 'Api',
+            'plugin' => null,
+            'controller' => [
+                'AccessPoints',
+            ],
+            'action' => [
+                'pinger',
+            ],
+        ],
         //API access
         [
             'role' => [

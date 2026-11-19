@@ -52,6 +52,9 @@ class AccessPointsControllerTest extends TestCase
         'app.CustomerConnections',
         'app.DeviceTypes',
         'app.RouterosDevices',
+        'app.RouterosDeviceInterfaces',
+        'app.RouterosDeviceIps',
+        'app.CustomerConnectionIps',
     ];
 
     /**
@@ -87,6 +90,32 @@ class AccessPointsControllerTest extends TestCase
 
         $this->login('agent');
         $this->get('/api/access-points.json');
+        $this->assertResponseCode(403);
+    }
+
+    /**
+     * Watcher Pinger on a server is handed the network it pings, in the file the Pinger page hands
+     * out, and nothing else; the other machine roles are not handed the network that way.
+     *
+     * @return void
+     * @link \App\Controller\Api\AccessPointsController::pinger()
+     */
+    public function testWatcherPingerIsHandedTheNetwork(): void
+    {
+        $this->configRequest(['headers' => ['Accept' => 'application/json']]);
+
+        $this->login('watcher-pinger');
+        $this->get('/api/access-points/pinger.json');
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+        $this->assertResponseContains('"format":"watcher-pinger"');
+        $this->assertResponseContains('"accessPoints":');
+
+        $this->get('/api/access-points.json');
+        $this->assertResponseCode(403);
+
+        $this->login('watcher-crm');
+        $this->get('/api/access-points/pinger.json');
         $this->assertResponseCode(403);
     }
 

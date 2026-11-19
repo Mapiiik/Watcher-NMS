@@ -63,6 +63,10 @@ class ApiPermissionsTest extends TestCase
         'agent' => [
             'Agent/Provision::routeros',
         ],
+        'watcher-pinger' => [
+            'AccessPoints::pinger',
+            'Agent/Provision::routeros',
+        ],
     ];
 
     /**

@@ -130,7 +130,14 @@ return function (RouteBuilder $routes): void {
     $routes->prefix('Api', function (RouteBuilder $builder): void {
         $builder->setExtensions(['json']);
 
-        $builder->resources('AccessPoints');
+        $builder->resources('AccessPoints', [
+            'map' => [
+                'pinger' => [
+                    'action' => 'pinger',
+                    'method' => 'GET',
+                ],
+            ],
+        ]);
         // Bridge controllers for external API integrations
         $builder->resources('GeocoderBridge', [
             'only' => [

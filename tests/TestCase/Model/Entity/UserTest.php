@@ -92,6 +92,7 @@ class UserTest extends TestCase
             'sales-representative',
             'user',
             'watcher-crm',
+            'watcher-pinger',
         ], $roles);
     }
 
