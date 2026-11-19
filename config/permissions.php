@@ -258,6 +258,7 @@ $permissions = [
                 'view',
                 'map',
                 'utilization',
+                'pinger',
             ],
         ],
         [

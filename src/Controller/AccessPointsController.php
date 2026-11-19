@@ -8,6 +8,9 @@ use App\CRM\Tasks as CrmTasks;
 use App\Form\MapOptionsForm;
 use App\Maps\NetworkMap;
 use App\Model\Enum\MaximumAge;
+use App\Pinger\AddressBook;
+use App\Pinger\AdrFile;
+use Cake\Core\Configure;
 use Cake\Form\Form;
 use Cake\Http\Response;
 use Cake\Log\Log;
@@ -110,6 +113,27 @@ class AccessPointsController extends AppController
         $filterForm->setData($thresholds);
 
         $this->set(compact('subtree', 'filterForm'));
+    }
+
+    /**
+     * Pinger method
+     *
+     * Hands out the network devices and customer addresses as an address book of McLEI's Pinger.
+     *
+     * @return \Cake\Http\Response The file to download.
+     */
+    public function pinger(): Response
+    {
+        $this->getRequest()->allowMethod(['get']);
+
+        $charset = (string)Configure::read('Pinger.charset', 'cp1250');
+        $content = (new AdrFile($charset))->render((new AddressBook())->build());
+
+        return $this->getResponse()
+            ->withStringBody($content)
+            ->withType('text/plain')
+            ->withCharset($charset)
+            ->withDownload('nms.adr');
     }
 
     /**

@@ -387,6 +387,20 @@ return [
     ],
 
     /*
+     * The address book for McLEI's Pinger. It is written in the code page of the Windows it runs
+     * on, and a device is pinged at its /32 address on the first of these interfaces that has one.
+     */
+    'Pinger' => [
+        'charset' => (string)env('PINGER_CHARSET', 'cp1250'),
+        'loopbackInterfaces' => preg_split(
+            '/\s+/',
+            trim((string)env('PINGER_LOOPBACK_INTERFACES', 'lo loopback')),
+            -1,
+            PREG_SPLIT_NO_EMPTY,
+        ) ?: [],
+    ],
+
+    /*
      * Email delivery profiles
      *
      * Delivery profiles allow you to predefine various properties about email

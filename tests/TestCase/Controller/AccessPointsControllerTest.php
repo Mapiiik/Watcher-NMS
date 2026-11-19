@@ -580,6 +580,52 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * The address book is handed out as a file to save, in the code page configured, a tree of
+     * access points a section of it.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::pinger()
+     */
+    public function testPingerHandsOutTheAddressBook(): void
+    {
+        $this->withConfigure(['Pinger.charset' => 'cp1250']);
+        $accessPoints = $this->getTableLocator()->get('AccessPoints');
+        $root = $accessPoints->saveOrFail($accessPoints->newEntity(['name' => 'Tree root Metyšova']));
+        $radioUnits = $this->getTableLocator()->get('RadioUnits');
+        $radioUnits->saveOrFail($radioUnits->newEntity([
+            'name' => 'Tree root - Tree child - OUT',
+            'access_point_id' => $root->id,
+            'ip_address' => '10.9.0.242',
+        ]));
+
+        $this->login('user');
+        $this->get('/access-points/pinger');
+
+        $this->assertResponseOk();
+        $this->assertContentType('text/plain');
+        $this->assertHeaderContains('Content-Type', 'charset=cp1250');
+        $this->assertHeader('Content-Disposition', 'attachment; filename="nms.adr"');
+        $this->assertResponseContains(
+            "[Tree root Mety\x9aova]\r\n- Tree root Mety\x9aova - = -\r\nTree root - Tree child - OUT = 10.9.0.242\r\n",
+        );
+    }
+
+    /**
+     * A machine role talks to the application through the Api prefix and does not get the file.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::pinger()
+     */
+    public function testPingerIsRefusedToAMachineRole(): void
+    {
+        $this->login('api');
+
+        $this->get('/access-points/pinger');
+
+        $this->assertRedirect('/');
+    }
+
+    /**
      * Test utilization method with a filter
      *
      * @return void
