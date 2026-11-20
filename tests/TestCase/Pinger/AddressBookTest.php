@@ -227,8 +227,8 @@ class AddressBookTest extends TestCase
     }
 
     /**
-     * A customer is listed with the contract number, several addresses are told apart by what each
-     * is for, and a contact of an access point is marked. An archived connection is left out and
+     * A customer is listed with the contract number, several addresses are told apart by their names,
+     * never by a note, which is free text, and a contact of an access point is marked. An archived connection is left out and
      * a customer of no access point gets a tab of their own.
      *
      * @return void
@@ -242,7 +242,15 @@ class AddressBookTest extends TestCase
 
         $this->connection('Landlord', 'C-21', '2001', $root, ['192.0.2.21']);
         $this->connection('Other Landlord', 'C-22', '2002', $root, ['192.0.2.22']);
-        $this->connection('Two Addresses', 'C-23', '2003', $root, ['192.0.2.24', '192.0.2.23'], ['camera', '']);
+        $this->connection(
+            'Two Addresses',
+            'C-23',
+            '2003',
+            $root,
+            ['192.0.2.24', '192.0.2.23', '192.0.2.28'],
+            ['camera', '', null],
+            notes: [null, null, 'the code of the gate is 1234'],
+        );
         $this->connection('No Contract', null, '2004', $root, ['192.0.2.25']);
         $this->connection('Archived', 'C-26', '2006', $root, ['192.0.2.26'], archived: true);
         $this->connection('Nowhere', 'C-27', '2007', null, ['192.0.2.27']);
@@ -257,6 +265,7 @@ class AddressBookTest extends TestCase
                     new Host('Other Landlord (C-22)', '192.0.2.22', true, PingerHostKind::Customer),
                     new Host('Two Addresses (C-23)', '192.0.2.23', false, PingerHostKind::Customer),
                     new Host('Two Addresses (C-23) - camera', '192.0.2.24', false, PingerHostKind::Customer),
+                    new Host('Two Addresses (C-23)', '192.0.2.28', false, PingerHostKind::Customer),
                 ]),
             ]),
             $this->tab($tabs, 'Pinger Customers'),
@@ -447,7 +456,8 @@ class AddressBookTest extends TestCase
      * @param string $customerNumber Number of the customer.
      * @param string|null $accessPointId The access point it is connected through.
      * @param list<string> $ipAddresses Its addresses.
-     * @param list<string> $notes What each of the addresses is for.
+     * @param list<string|null> $names What each of the addresses is called.
+     * @param list<string|null> $notes What is noted with each of the addresses.
      * @param bool $archived Whether it is put away.
      * @return string Id of the connection.
      */
@@ -457,6 +467,7 @@ class AddressBookTest extends TestCase
         string $customerNumber,
         ?string $accessPointId,
         array $ipAddresses,
+        array $names = [],
         array $notes = [],
         bool $archived = false,
     ): string {
@@ -475,6 +486,7 @@ class AddressBookTest extends TestCase
             $ips->saveOrFail($ips->newEntity([
                 'customer_connection_id' => $connection->get('id'),
                 'ip_address' => $ipAddress,
+                'name' => $names[$index] ?? null,
                 'note' => $notes[$index] ?? null,
             ]));
         }
@@ -499,5 +511,32 @@ class AddressBookTest extends TestCase
             'customer_number' => $customerNumber,
             'contract_number' => $contractNumber,
         ]));
+    }
+
+    /**
+     * The radio unit of a customer is not a device of the access point: the customer is pinged at
+     * the addresses of the connection.
+     *
+     * @return void
+     * @link \App\Pinger\AddressBook::network()
+     */
+    public function testTheRadioUnitOfACustomerIsNoDevice(): void
+    {
+        $root = $this->accessPoint('Pinger Radio Units');
+        $this->radioUnit('Root Unit', $root, '10.9.9.1');
+        $customer = $this->connection('Doe Jane', 'C-31', '3001', $root, ['192.0.2.31']);
+        $table = $this->getTableLocator()->get('RadioUnits');
+        $table->saveOrFail($table->newEntity([
+            'name' => 'Doe Jane',
+            'access_point_id' => $root,
+            'customer_connection_id' => $customer,
+            'ip_address' => '10.9.9.2',
+            'radio_unit_type_id' => $this->typeBy('RadioUnitTypes', null),
+        ]));
+
+        $tab = $this->tab((new AddressBook())->build(), 'Pinger Radio Units');
+
+        $this->assertSame(['10.9.9.1'], array_map(fn(Host $host): string => $host->ipAddress, $tab->blocks[0]->hosts));
+        $this->assertSame(['192.0.2.31'], array_map(fn(Host $host): string => $host->ipAddress, $tab->blocks[1]->hosts));
     }
 }

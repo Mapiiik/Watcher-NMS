@@ -163,6 +163,8 @@ final class AddressBook
             ->contain(['RadioUnitTypes.Manufacturers'])
             ->where([
                 'RadioUnits.access_point_id IN' => $accessPointIds,
+                // the radio unit of a customer is the customer's, pinged at the addresses of the connection
+                'RadioUnits.customer_connection_id IS' => null,
                 'RadioUnits.ip_address IS NOT' => null,
             ])
             ->all();
@@ -391,8 +393,8 @@ final class AddressBook
                     continue;
                 }
 
-                // with more than one address, what each is for tells them apart
-                $label = count($ipAddresses) > 1 ? trim((string)($ipAddress->name ?? $ipAddress->note)) : '';
+                // with more than one address, its name tells them apart; a note is free text and stays here
+                $label = count($ipAddresses) > 1 ? trim((string)$ipAddress->name) : '';
                 $hosts[(string)$connection->access_point_id][] = new Host(
                     $label === '' ? $name : $name . ' - ' . $label,
                     $address,
