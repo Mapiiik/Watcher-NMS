@@ -53,7 +53,8 @@ final class AdrFile
         foreach ($tabs as $tab) {
             foreach ($this->sections($tab) as $section) {
                 // a section named twice is read as one, so a title is numbered like a key is
-                $base = $this->representable($this->cleanTitle($section->title));
+                // cleaned after the letters are spelled out, which turns full-width brackets into plain ones
+                $base = $this->cleanTitle($this->representable($section->title));
                 $title = $base;
                 $number = 1;
                 while (isset($titles[mb_strtolower($title)])) {
@@ -94,7 +95,10 @@ final class AdrFile
             foreach ($entries as [$key]) {
                 $blockBytes += $this->keyBytes($key);
             }
-            if (!$section->isEmpty() && !$section->hasRoomFor($blockBytes) && $blockBytes <= $this->sectionKeyBytes) {
+            // a heading goes where its first address fits too, a block larger than a section starts in a new one
+            $firstBytes = $this->keyBytes($heading) + ($entries === [] ? 0 : $this->keyBytes($entries[0][0]));
+            $keptWhole = $blockBytes <= $this->sectionKeyBytes && !$section->hasRoomFor($blockBytes);
+            if (!$section->isEmpty() && ($keptWhole || !$section->hasRoomFor($firstBytes))) {
                 $sections[] = $section;
                 $section = $this->nextSection($tab, $sections);
             }
@@ -153,7 +157,7 @@ final class AdrFile
      */
     private function headingKey(string $heading): string
     {
-        return '- ' . $this->representable($this->cleanKey($heading)) . ' -';
+        return '- ' . $this->cleanKey($this->representable($heading)) . ' -';
     }
 
     /**
@@ -164,7 +168,7 @@ final class AdrFile
      */
     private function hostKey(Host $host): string
     {
-        $name = $this->representable($this->cleanKey($host->name));
+        $name = $this->cleanKey($this->representable($host->name));
         if ($name === '') {
             $name = $host->ipAddress;
         }

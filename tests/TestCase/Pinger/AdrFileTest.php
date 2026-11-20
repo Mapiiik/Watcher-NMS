@@ -207,4 +207,62 @@ class AdrFileTest extends TestCase
     {
         $this->assertSame('', (new AdrFile())->render([]));
     }
+
+    /**
+     * Full-width brackets, equals signs, semicolons and plus signs, which the code page spells as
+     * plain ones, are left out as the plain ones are: no tab, heading or contact can be slipped in.
+     *
+     * @return void
+     * @link \App\Pinger\AdrFile::render()
+     */
+    public function testFullWidthMarksAreLeftOutAsThePlainOnes(): void
+    {
+        $file = new AdrFile('cp1250');
+
+        $content = $file->render([
+            new Tab('［［Tab］］', [
+                new Block('＝Block＝', [
+                    new Host('［Injected］ ＝ x', '10.0.0.2'),
+                    new Host('；comment', '10.0.0.3'),
+                    new Host('＋fake contact', '10.0.0.4'),
+                ]),
+            ]),
+        ]);
+
+        $this->assertSame(
+            "[Tab]\r\n- Block - = -\r\nInjected x = 10.0.0.2\r\ncomment = 10.0.0.3\r\n"
+            . "fake contact = 10.0.0.4\r\n\r\n",
+            $content,
+        );
+    }
+
+    /**
+     * A block larger than a section does not leave its heading alone at the end of the section
+     * before: it starts in a new one where its first address does not fit beside the heading.
+     *
+     * @return void
+     * @link \App\Pinger\AdrFile::render()
+     */
+    public function testAHeadingIsNotLeftAloneAtTheEndOfASection(): void
+    {
+        $file = new AdrFile('UTF-8', 20);
+
+        $content = $file->render([
+            new Tab('Tab', [
+                new Block('A', [new Host('x', '10.0.0.9')]),
+                new Block('Big', [
+                    new Host('alpha', '10.0.0.1'),
+                    new Host('bravo', '10.0.0.2'),
+                    new Host('charlie', '10.0.0.3'),
+                ]),
+            ]),
+        ]);
+
+        $this->assertSame(
+            "[Tab]\r\n- A - = -\r\nx = 10.0.0.9\r\n\r\n"
+            . "[Tab - 2]\r\n- Big - = -\r\nalpha = 10.0.0.1\r\nbravo = 10.0.0.2\r\n\r\n"
+            . "[Tab - 3]\r\n- Big - = -\r\ncharlie = 10.0.0.3\r\n\r\n",
+            $content,
+        );
+    }
 }
