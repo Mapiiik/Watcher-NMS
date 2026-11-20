@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
-use App\Pinger\AddressBook;
-use App\Pinger\JsonFile;
+use Access\Authentication\AuthLog;
+use App\Pinger\Export;
+use Cake\Core\Configure;
+use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Response;
-use Cake\I18n\DateTime;
+use IPLib\Factory;
 
 /**
  * AccessPoints Controller
@@ -18,15 +20,59 @@ class AccessPointsController extends AppController
     /**
      * The network for Watcher Pinger running on a server, the file the Pinger page hands out.
      *
+     * Only from the addresses in `Pinger.apiAllowedAddresses`, where there are any, so that a key
+     * that leaks from the server is no use elsewhere. Every handing out and every refusal is logged.
+     *
      * @return \Cake\Http\Response
+     * @throws \Cake\Http\Exception\ForbiddenException From an address not allowed.
      */
     public function pinger(): Response
     {
         $this->getRequest()->allowMethod(['get']);
 
+        $context = [
+            'user' => (string)($this->getRequest()->getAttribute('identity')['username'] ?? ''),
+            'format' => 'json',
+            'ip' => AuthLog::address($this->getRequest()),
+        ];
+        if (!$this->fromAllowedAddress($context['ip'])) {
+            AuthLog::warning('network export refused', $context);
+
+            throw new ForbiddenException();
+        }
+
+        $file = (new Export())->json();
+        AuthLog::notice('network exported', $context + ['addresses' => $file['addresses']]);
+
         return $this->getResponse()
-            ->withStringBody((new JsonFile())->render((new AddressBook())->network(), DateTime::now()))
+            ->withStringBody($file['body'])
             ->withType('json');
+    }
+
+    /**
+     * Whether the address is one Watcher Pinger may take the network from: any where none is set.
+     *
+     * @param string $address The address the request came from.
+     * @return bool
+     */
+    private function fromAllowedAddress(string $address): bool
+    {
+        $allowed = (array)Configure::read('Pinger.apiAllowedAddresses', []);
+        if ($allowed === []) {
+            return true;
+        }
+
+        $ip = Factory::parseAddressString($address);
+        if ($ip === null) {
+            return false;
+        }
+        foreach ($allowed as $range) {
+            if (Factory::parseRangeString((string)$range)?->contains($ip)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

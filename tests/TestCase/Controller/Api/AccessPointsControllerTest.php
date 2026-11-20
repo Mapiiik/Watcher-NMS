@@ -5,6 +5,9 @@ namespace App\Test\TestCase\Controller\Api;
 
 use App\Controller\Api\AccessPointsController;
 use App\Test\Traits\ControllerTestTrait;
+use Cake\Core\Configure;
+use Cake\Log\Engine\ArrayLog;
+use Cake\Log\Log;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -261,5 +264,44 @@ class AccessPointsControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertResponseContains('"message"');
+    }
+
+    /**
+     * The network is handed out only to the addresses allowed, where there are any, and both the
+     * handing out and the refusal are written down with the account and the address.
+     *
+     * @return void
+     * @link \App\Controller\Api\AccessPointsController::pinger()
+     */
+    public function testThePingerTakesTheNetworkFromTheAddressesAllowedOnly(): void
+    {
+        Log::drop('auth');
+        Log::setConfig('auth', ['className' => ArrayLog::class, 'scopes' => ['auth']]);
+        Configure::write('Pinger.apiAllowedAddresses', ['198.51.100.0/24', '2001:db8::7']);
+        try {
+            $this->login('watcher-pinger');
+
+            $this->configRequest([
+                'headers' => ['Accept' => 'application/json'],
+                'environment' => ['REMOTE_ADDR' => '203.0.113.9'],
+            ]);
+            $this->get('/api/access-points/pinger.json');
+            $this->assertResponseCode(403);
+
+            // configRequest() merges, the address is replaced
+            $this->_request['environment']['REMOTE_ADDR'] = '198.51.100.7';
+            $this->get('/api/access-points/pinger.json');
+            $this->assertResponseOk();
+
+            /** @var \Cake\Log\Engine\ArrayLog $log */
+            $log = Log::engine('auth');
+            $lines = implode("\n", $log->read());
+            $this->assertStringContainsString('network export refused', $lines);
+            $this->assertStringContainsString('ip="203.0.113.9"', $lines);
+            $this->assertMatchesRegularExpression('/network exported user="[^"]+" format="json" ip="198\.51\.100\.7" addresses="\d+"/', $lines);
+        } finally {
+            Configure::write('Pinger.apiAllowedAddresses', []);
+            Log::drop('auth');
+        }
     }
 }

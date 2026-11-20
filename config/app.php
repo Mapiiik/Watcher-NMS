@@ -387,11 +387,21 @@ return [
     ],
 
     /*
-     * The address book for McLEI's Pinger. It is written in the code page of the Windows it runs
-     * on, and a device is pinged at its /32 address on the first of these interfaces that has one.
+     * Watcher Pinger and McLEI's Pinger. The address book of McLEI's Pinger is written in the code
+     * page of the Windows it runs on, and a device is pinged at its /32 address on the first of these
+     * interfaces that has one.
      */
     'Pinger' => [
         'charset' => (string)env('PINGER_CHARSET', 'cp1250'),
+        // how long a network put together is handed out again, in seconds, 0 for never
+        'cacheSeconds' => (int)env('PINGER_CACHE_SECONDS', 120),
+        // the addresses Watcher Pinger may take the network from through the API, any where none
+        'apiAllowedAddresses' => preg_split(
+            '/\s+/',
+            trim((string)env('PINGER_API_ALLOWED_ADDRESSES', '')),
+            -1,
+            PREG_SPLIT_NO_EMPTY,
+        ) ?: [],
         'loopbackInterfaces' => preg_split(
             '/\s+/',
             trim((string)env('PINGER_LOOPBACK_INTERFACES', 'lo loopback')),

@@ -46,6 +46,9 @@ if (empty($_SERVER['HTTP_HOST'])) {
 Configure::write('Crm.url', '');
 Configure::write('Crm.key', '');
 
+// A network handed out to the pingers is kept for a while, and a test would get the one of the test before.
+Configure::write('Pinger.cacheSeconds', 0);
+
 // Nor for what those services said last time. The addresses above are blanked, but the answers
 // remembered from them are kept in caches this container shares with everything else running in
 // it - a browser on the development site fills them, and a client that reads its cache before it

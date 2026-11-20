@@ -3,20 +3,18 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Access\Authentication\AuthLog;
 use App\CRM\TaskPage;
 use App\CRM\Tasks as CrmTasks;
 use App\Form\MapOptionsForm;
 use App\Maps\NetworkMap;
 use App\Model\Enum\MaximumAge;
 use App\Model\Enum\PingerFormat;
-use App\Pinger\AddressBook;
-use App\Pinger\AdrFile;
-use App\Pinger\JsonFile;
+use App\Pinger\Export;
 use Cake\Core\Configure;
 use Cake\Form\Form;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
-use Cake\I18n\DateTime;
 use Cake\Log\Log;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\View;
@@ -140,44 +138,29 @@ class AccessPointsController extends AppController
         }
 
         $pingerFormat = PingerFormat::tryFrom($format) ?? throw new NotFoundException();
-        $addressBook = new AddressBook();
-        $response = $this->getResponse()->withDownload($pingerFormat->fileName());
+        $export = new Export();
+        $charset = (string)Configure::read('Pinger.charset', 'cp1250');
+        $file = match ($pingerFormat) {
+            PingerFormat::Json => $export->json(),
+            PingerFormat::Adr => $export->adr($charset),
+        };
+
+        // the addresses of every customer leave the NMS, so it is written down who took them
+        AuthLog::notice('network exported', [
+            'user' => (string)($this->getRequest()->getAttribute('identity')['username'] ?? ''),
+            'format' => $pingerFormat->value,
+            'addresses' => $file['addresses'],
+            'ip' => AuthLog::address($this->getRequest()),
+        ]);
+
+        $response = $this->getResponse()
+            ->withDownload($pingerFormat->fileName())
+            ->withStringBody($file['body']);
 
         return match ($pingerFormat) {
-            PingerFormat::Json => $this->pingerJsonFile($response, $addressBook),
-            PingerFormat::Adr => $this->pingerAdrFile($response, $addressBook),
+            PingerFormat::Json => $response->withType('json'),
+            PingerFormat::Adr => $response->withType('text/plain')->withCharset($charset),
         };
-    }
-
-    /**
-     * The tree of access points with their addresses, as Watcher Pinger reads it.
-     *
-     * @param \Cake\Http\Response $response The response to fill.
-     * @param \App\Pinger\AddressBook $addressBook What there is to ping.
-     * @return \Cake\Http\Response
-     */
-    private function pingerJsonFile(Response $response, AddressBook $addressBook): Response
-    {
-        return $response
-            ->withStringBody((new JsonFile())->render($addressBook->network(), DateTime::now()))
-            ->withType('json');
-    }
-
-    /**
-     * The address book of McLEI's Pinger, in the code page of the Windows it runs on.
-     *
-     * @param \Cake\Http\Response $response The response to fill.
-     * @param \App\Pinger\AddressBook $addressBook What there is to ping.
-     * @return \Cake\Http\Response
-     */
-    private function pingerAdrFile(Response $response, AddressBook $addressBook): Response
-    {
-        $charset = (string)Configure::read('Pinger.charset', 'cp1250');
-
-        return $response
-            ->withStringBody((new AdrFile($charset))->render($addressBook->build()))
-            ->withType('text/plain')
-            ->withCharset($charset);
     }
 
     /**
