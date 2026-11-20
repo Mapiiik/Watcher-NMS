@@ -86,20 +86,23 @@ class PowerSuppliesTableTest extends TestCase
     }
 
     /**
-     * The address a power supply is pinged at is an IP address or nothing.
+     * The address a power supply is pinged at is the address of the device or nothing, never a
+     * network, whose first address would be pinged instead.
      *
      * @return void
      * @link \App\Model\Table\PowerSuppliesTable::validationDefault()
      */
     public function testTheIpAddressIsAnIpAddressOrNothing(): void
     {
-        foreach (['10.0.0.202', '2001:db8::202', ''] as $ipAddress) {
+        foreach (['10.0.0.202', '10.0.0.202/32', '2001:db8::202', '2001:db8::202/128', ''] as $ipAddress) {
             $powerSupply = $this->PowerSupplies->newEntity(['ip_address' => $ipAddress]);
             $this->assertSame([], $powerSupply->getError('ip_address'), $ipAddress);
         }
 
-        $powerSupply = $this->PowerSupplies->newEntity(['ip_address' => 'power supply']);
-        $this->assertNotSame([], $powerSupply->getError('ip_address'));
+        foreach (['power supply', '10.0.0.0/24', '10.0.0.202/30', '2001:db8::/64'] as $ipAddress) {
+            $powerSupply = $this->PowerSupplies->newEntity(['ip_address' => $ipAddress]);
+            $this->assertNotSame([], $powerSupply->getError('ip_address'), $ipAddress);
+        }
     }
 
     /**

@@ -27,6 +27,24 @@ final class NetworkValidation
     }
 
     /**
+     * The address of one device, as an `inet` column takes it: without a mask or with the one of a
+     * single address, never a network, which a pinger would ping the first address of.
+     *
+     * @param mixed $value The value.
+     * @return bool
+     */
+    public static function hostAddress(mixed $value): bool
+    {
+        if (Factory::parseAddressString($value) !== null) {
+            return true;
+        }
+
+        $network = Subnet::parseString($value);
+
+        return $network !== null && $network->getNetworkPrefix() === $network->getStartAddress()->getNumberOfBits();
+    }
+
+    /**
      * The address of a network, as a `cidr` column takes it: nothing may be set beyond the mask.
      *
      * @param mixed $value The value.

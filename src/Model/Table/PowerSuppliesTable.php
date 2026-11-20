@@ -85,8 +85,8 @@ class PowerSuppliesTable extends AppTable
         $validator
             ->scalar('ip_address')
             ->add('ip_address', 'inet', [
-                'rule' => NetworkValidation::inet(...),
-                'message' => __d('cake', 'The provided value must be an IP address'),
+                'rule' => NetworkValidation::hostAddress(...),
+                'message' => __('The address of the power supply, not of a network'),
             ])
             ->maxLength('ip_address', 39)
             ->allowEmptyString('ip_address');
