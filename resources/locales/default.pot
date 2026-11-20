@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-11-19 19:22+0100\n"
+"POT-Creation-Date: 2026-11-20 04:00+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -617,37 +617,37 @@ msgstr ""
 msgid "The access point type could not be deleted. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:334
-#: ./src/Controller/AccessPointsController.php:360
+#: ./src/Controller/AccessPointsController.php:317
+#: ./src/Controller/AccessPointsController.php:343
 msgid "The access point has been saved."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:338
-#: ./src/Controller/AccessPointsController.php:364
+#: ./src/Controller/AccessPointsController.php:321
+#: ./src/Controller/AccessPointsController.php:347
 msgid "The access point could not be saved. Please, try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:397
+#: ./src/Controller/AccessPointsController.php:380
 msgid "The access point has been archived."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:401
+#: ./src/Controller/AccessPointsController.php:384
 msgid "The access point could not be archived. Please try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:428
+#: ./src/Controller/AccessPointsController.php:411
 msgid "The access point has been restored."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:433
+#: ./src/Controller/AccessPointsController.php:416
 msgid "The access point could not be restored. Please try again."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:452
+#: ./src/Controller/AccessPointsController.php:435
 msgid "The access point has been deleted."
 msgstr ""
 
-#: ./src/Controller/AccessPointsController.php:455
+#: ./src/Controller/AccessPointsController.php:438
 msgid "The access point could not be deleted. Please, try again."
 msgstr ""
 
@@ -1264,6 +1264,10 @@ msgid "Watcher CRM"
 msgstr ""
 
 #: ./src/Model/Entity/User.php:63
+msgid "Watcher Pinger"
+msgstr ""
+
+#: ./src/Model/Entity/User.php:64
 msgid "Agent"
 msgstr ""
 
@@ -1405,7 +1409,7 @@ msgid "RouterOS Device"
 msgstr ""
 
 #: ./src/Model/Enum/PingerHostKind.php:35
-#: ./src/Pinger/AddressBook.php:212
+#: ./src/Pinger/AddressBook.php:215
 #: ./templates/PowerSupplies/view.php:38
 msgid "Power Supply"
 msgstr ""
@@ -1459,6 +1463,10 @@ msgstr ""
 
 #: ./src/Model/Table/LandlordPaymentsElectricityDetailsTable.php:117
 msgid "This field cannot be left empty"
+msgstr ""
+
+#: ./src/Model/Table/PowerSuppliesTable.php:89
+msgid "The address of the power supply, not of a network"
 msgstr ""
 
 #: ./src/Model/Table/RadarInterferencesTable.php:93

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP 5.4.4\n"
-"POT-Creation-Date: 2026-11-19 19:22+0100\n"
+"POT-Creation-Date: 2026-11-20 04:00+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -16,7 +16,6 @@ msgstr ""
 
 #: ./src/Model/Table/CustomerConnectionIpsTable.php:79
 #: ./src/Model/Table/IpAddressRangesTable.php:102
-#: ./src/Model/Table/PowerSuppliesTable.php:89
 #: ./src/Model/Table/RadioUnitsTable.php:172
 #: ./src/Model/Table/RouterosDeviceIpsTable.php:108
 #: ./src/Model/Table/RouterosDevicesTable.php:123

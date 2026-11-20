@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-11-19 19:22+0100\n"
+"POT-Creation-Date: 2026-11-20 04:00+0100\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -643,37 +643,37 @@ msgstr "Typ přístupového bodu byl odstraněn."
 msgid "The access point type could not be deleted. Please, try again."
 msgstr "Typ přístupového bodu nelze odstranit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:334
-#: src/Controller/AccessPointsController.php:360
+#: src/Controller/AccessPointsController.php:317
+#: src/Controller/AccessPointsController.php:343
 msgid "The access point has been saved."
 msgstr "Přístupový bod byl uložen."
 
-#: src/Controller/AccessPointsController.php:338
-#: src/Controller/AccessPointsController.php:364
+#: src/Controller/AccessPointsController.php:321
+#: src/Controller/AccessPointsController.php:347
 msgid "The access point could not be saved. Please, try again."
 msgstr "Přístupový bod nelze uložit. Opakujte akci."
 
-#: src/Controller/AccessPointsController.php:397
+#: src/Controller/AccessPointsController.php:380
 msgid "The access point has been archived."
 msgstr "Přístupový bod byl archivován."
 
-#: src/Controller/AccessPointsController.php:401
+#: src/Controller/AccessPointsController.php:384
 msgid "The access point could not be archived. Please try again."
 msgstr "Přístupový bod se nepodařilo archivovat. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:428
+#: src/Controller/AccessPointsController.php:411
 msgid "The access point has been restored."
 msgstr "Přístupový bod byl obnoven."
 
-#: src/Controller/AccessPointsController.php:433
+#: src/Controller/AccessPointsController.php:416
 msgid "The access point could not be restored. Please try again."
 msgstr "Přístupový bod se nepodařilo obnovit. Zkuste to prosím znovu."
 
-#: src/Controller/AccessPointsController.php:452
+#: src/Controller/AccessPointsController.php:435
 msgid "The access point has been deleted."
 msgstr "Přístupový bod byl odstraněn."
 
-#: src/Controller/AccessPointsController.php:455
+#: src/Controller/AccessPointsController.php:438
 msgid "The access point could not be deleted. Please, try again."
 msgstr "Přístupový bod nelze odstranit. Opakujte akci."
 
@@ -1289,6 +1289,10 @@ msgid "Watcher CRM"
 msgstr "Watcher CRM"
 
 #: src/Model/Entity/User.php:63
+msgid "Watcher Pinger"
+msgstr "Watcher Pinger"
+
+#: src/Model/Entity/User.php:64
 msgid "Agent"
 msgstr "Agent"
 
@@ -1418,7 +1422,7 @@ msgstr "Rádiová jednotka"
 msgid "RouterOS Device"
 msgstr "Zařízení RouterOS"
 
-#: src/Model/Enum/PingerHostKind.php:35 src/Pinger/AddressBook.php:212
+#: src/Model/Enum/PingerHostKind.php:35 src/Pinger/AddressBook.php:215
 #: templates/PowerSupplies/view.php:38
 msgid "Power Supply"
 msgstr "Napájecí zdroj"
@@ -1488,6 +1492,10 @@ msgstr "Toto není adresa sítě."
 #: src/Model/Table/LandlordPaymentsElectricityDetailsTable.php:117
 msgid "This field cannot be left empty"
 msgstr "Toto pole nelze ponechat prázdné"
+
+#: src/Model/Table/PowerSuppliesTable.php:89
+msgid "The address of the power supply, not of a network"
+msgstr "Adresa napájecího zdroje, ne sítě"
 
 #: src/Model/Table/RadarInterferencesTable.php:93
 #: src/Model/Table/RouterosDeviceInterfacesTable.php:123
