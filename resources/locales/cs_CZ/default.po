@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Watcher NMS\n"
-"POT-Creation-Date: 2026-11-20 04:00+0100\n"
+"POT-Creation-Date: 2026-11-23 11:50+0100\n"
 "PO-Revision-Date: 2026-08-26 13:19+0200\n"
 "Last-Translator: Martin Patočka <mapik@mapik.net>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1193,7 +1193,7 @@ msgid "Radio Units"
 msgstr "Rádiové jednotky"
 
 #: src/Dashboard/Card/StatisticsCard.php:164 src/Model/Enum/LandingPage.php:44
-#: templates/AccessPoints/map.php:34 templates/RadioLinks/index.php:27
+#: templates/AccessPoints/map.php:35 templates/RadioLinks/index.php:27
 #: templates/layout/default.php:187 templates/layout/default.php:396
 msgid "Radio Links"
 msgstr "Rádiové spoje"
@@ -1405,7 +1405,7 @@ msgstr "Adresář se záložkou pro každý strom přístupových bodů"
 msgid "Radio Unit"
 msgstr "Rádiová jednotka"
 
-#: src/Model/Enum/PingerHostKind.php:34 templates/AccessPoints/map.php:53
+#: src/Model/Enum/PingerHostKind.php:34 templates/AccessPoints/map.php:54
 #: templates/Overviews/overview_of_device_radios_against_radio_units.php:113
 #: templates/Overviews/overview_of_radio_units_against_devices.php:104
 #: templates/RadarInterferences/devices.php:24
@@ -1746,7 +1746,7 @@ msgstr "Přidat kontakt přístupového bodu"
 #: templates/AccessPointContacts/edit.php:44
 #: templates/AccessPointTypes/add.php:29 templates/AccessPointTypes/edit.php:37
 #: templates/AccessPoints/add.php:64 templates/AccessPoints/edit.php:90
-#: templates/AccessPoints/map.php:59 templates/AntennaTypes/add.php:30
+#: templates/AccessPoints/map.php:60 templates/AntennaTypes/add.php:30
 #: templates/AntennaTypes/edit.php:38
 #: templates/CustomerConnectionIps/add.php:36
 #: templates/CustomerConnectionIps/edit.php:44
@@ -2237,19 +2237,19 @@ msgstr "Využití"
 msgid "Map"
 msgstr "Mapa"
 
-#: templates/AccessPoints/map.php:31
+#: templates/AccessPoints/map.php:32
 msgid "Map Options"
 msgstr "Možnosti mapy"
 
-#: templates/AccessPoints/map.php:37 templates/AccessPoints/view.php:120
+#: templates/AccessPoints/map.php:38 templates/AccessPoints/view.php:120
 msgid "RouterOS IP Links"
 msgstr "IP propoje RouterOS"
 
-#: templates/AccessPoints/map.php:40 templates/AccessPoints/view.php:125
+#: templates/AccessPoints/map.php:41 templates/AccessPoints/view.php:125
 msgid "RouterOS Wireless Links"
 msgstr "Bezdrátové propoje RouterOS"
 
-#: templates/AccessPoints/map.php:43
+#: templates/AccessPoints/map.php:44
 msgid "Linked Customers"
 msgstr "Propojení zákazníci"
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-11-20 04:00+0100\n"
+"POT-Creation-Date: 2026-11-23 11:50+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1164,7 +1164,7 @@ msgstr ""
 
 #: ./src/Dashboard/Card/StatisticsCard.php:164
 #: ./src/Model/Enum/LandingPage.php:44
-#: ./templates/AccessPoints/map.php:34
+#: ./templates/AccessPoints/map.php:35
 #: ./templates/RadioLinks/index.php:27
 #: ./templates/layout/default.php:187
 #: ./templates/layout/default.php:396
@@ -1391,7 +1391,7 @@ msgid "Radio Unit"
 msgstr ""
 
 #: ./src/Model/Enum/PingerHostKind.php:34
-#: ./templates/AccessPoints/map.php:53
+#: ./templates/AccessPoints/map.php:54
 #: ./templates/Overviews/overview_of_device_radios_against_radio_units.php:113
 #: ./templates/Overviews/overview_of_radio_units_against_devices.php:104
 #: ./templates/RadarInterferences/devices.php:24
@@ -1752,7 +1752,7 @@ msgstr ""
 #: ./templates/AccessPointTypes/edit.php:37
 #: ./templates/AccessPoints/add.php:64
 #: ./templates/AccessPoints/edit.php:90
-#: ./templates/AccessPoints/map.php:59
+#: ./templates/AccessPoints/map.php:60
 #: ./templates/AntennaTypes/add.php:30
 #: ./templates/AntennaTypes/edit.php:38
 #: ./templates/CustomerConnectionIps/add.php:36
@@ -2387,21 +2387,21 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: ./templates/AccessPoints/map.php:31
+#: ./templates/AccessPoints/map.php:32
 msgid "Map Options"
 msgstr ""
 
-#: ./templates/AccessPoints/map.php:37
+#: ./templates/AccessPoints/map.php:38
 #: ./templates/AccessPoints/view.php:120
 msgid "RouterOS IP Links"
 msgstr ""
 
-#: ./templates/AccessPoints/map.php:40
+#: ./templates/AccessPoints/map.php:41
 #: ./templates/AccessPoints/view.php:125
 msgid "RouterOS Wireless Links"
 msgstr ""
 
-#: ./templates/AccessPoints/map.php:43
+#: ./templates/AccessPoints/map.php:44
 msgid "Linked Customers"
 msgstr ""
 
