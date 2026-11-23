@@ -755,6 +755,44 @@ class AccessPointsControllerTest extends TestCase
     }
 
     /**
+     * The point is searched for inside its map, the form itself has no search field.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::edit()
+     */
+    public function testEditSearchesForThePointInsideTheMap(): void
+    {
+        $this->withConfigure(['Maps.geocoder' => AddressRegistryGeocoder::class]);
+
+        $this->login();
+        $this->get('/access-points/' . $this->firstId('AccessPoints') . '/edit');
+
+        $this->assertResponseOk();
+        $picker = $this->mapAttribute('data-maps-point-picker');
+        $this->assertSame('/api/geocoder-bridge/search.json', $picker['searchUrl']);
+        $this->assertSame('Search on the Map', $picker['labels']['search']);
+        $this->assertResponseContains('address-search.js');
+        $this->assertResponseNotContains('search_on_the_map');
+    }
+
+    /**
+     * What the page wrote into a data attribute of its map, decoded.
+     *
+     * @param string $name The attribute.
+     * @return array<mixed>
+     */
+    private function mapAttribute(string $name): array
+    {
+        $found = preg_match('/ ' . preg_quote($name, '/') . '="([^"]*)"/', $this->_getBodyAsString(), $match);
+        $this->assertSame(1, $found, $name . ' is not on the page.');
+
+        $decoded = json_decode(html_entity_decode($match[1], ENT_QUOTES), true, 512, JSON_THROW_ON_ERROR);
+        $this->assertIsArray($decoded);
+
+        return $decoded;
+    }
+
+    /**
      * An access point filled in on the form is really stored.
      *
      * Rendering the form proves the page is there; this proves the way through it works. Everything
@@ -910,6 +948,45 @@ class AccessPointsControllerTest extends TestCase
         $this->get('/access-points/map');
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * With a geocoder to ask, the map offers the address search, which asks the application.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapOffersAnAddressSearch(): void
+    {
+        $this->withConfigure(['Maps.geocoder' => AddressRegistryGeocoder::class]);
+
+        $this->login();
+        $this->get('/access-points/map');
+
+        $this->assertResponseOk();
+        $search = $this->mapAttribute('data-maps-search');
+        $this->assertSame('/api/geocoder-bridge/search.json', $search['searchUrl']);
+        $this->assertSame('Search on the Map', $search['labels']['search']);
+        $this->assertResponseContains('map-search.js');
+    }
+
+    /**
+     * Without a geocoder there is nothing to search with, and no search is offered.
+     *
+     * @return void
+     * @link \App\Controller\AccessPointsController::map()
+     */
+    public function testMapOffersNoAddressSearchWithoutAGeocoder(): void
+    {
+        $this->withConfigure(['Maps.geocoder' => null]);
+
+        $this->login();
+        $this->get('/access-points/map');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('data-maps=');
+        $this->assertResponseNotContains('data-maps-search');
+        $this->assertResponseNotContains('map-search.js');
     }
 
     /**

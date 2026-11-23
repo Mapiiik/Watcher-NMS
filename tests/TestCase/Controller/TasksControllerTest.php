@@ -11,6 +11,7 @@ use Cake\I18n\DateTime;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Maps\Geocoder\GeocoderFactory;
 use Maps\Marker;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -734,6 +735,25 @@ class TasksControllerTest extends TestCase
         $this->assertSame(1.0, $marker->position->lat);
         $this->assertSame(1.0, $marker->position->lng);
         $this->assertSame('#ffffff', $marker->color);
+    }
+
+    /**
+     * The address search is offered where a map asks for it, and the tasks map does not, even
+     * though the application has a geocoder to ask.
+     *
+     * @return void
+     * @link \App\Controller\TasksController::map()
+     */
+    public function testMapOffersNoAddressSearch(): void
+    {
+        $this->assertNotNull(GeocoderFactory::create());
+
+        $this->login();
+        $this->get('/tasks/map');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('data-maps=');
+        $this->assertResponseNotContains('data-maps-search');
     }
 
     /**

@@ -23,6 +23,7 @@
     'mapMarkers' => $mapMarkers,
     'mapPolylines' => $mapPolylines,
     'mapHeight' => '600px',
+    'search' => true,
 ]) ?>
     <div class="column column-90">
         <div class="accessPoints form content">
