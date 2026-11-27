@@ -73,6 +73,60 @@ class RouterosDevicesControllerTest extends TestCase
     }
 
     /**
+     * Asked for one access point, the search hands over its devices and no others.
+     *
+     * @return void
+     * @link \App\Controller\Api\RouterosDevicesController::search()
+     */
+    public function testSearchByAccessPoint(): void
+    {
+        $elsewhere = $this->addDevice(['name' => 'Elsewhere', 'access_point_id' => null]);
+
+        $this->login();
+        $this->configRequest(['headers' => ['Accept' => 'application/json']]);
+        $this->get('/api/routeros-devices/search.json?access_point_id=1ec58677-1213-4950-80c4-bc1de41ea133');
+
+        $this->assertResponseOk();
+        $ids = $this->foundIds();
+        $this->assertContains('8a6bef12-429a-49b6-8cc2-8481567bc1a2', $ids);
+        $this->assertNotContains($elsewhere, $ids);
+    }
+
+    /**
+     * Asked for a maximum age, the search leaves out the devices not read since.
+     *
+     * @return void
+     * @link \App\Controller\Api\RouterosDevicesController::search()
+     */
+    public function testSearchByMaximumAge(): void
+    {
+        $fresh = $this->addDevice(['name' => 'Fresh']);
+
+        $this->login();
+        $this->configRequest(['headers' => ['Accept' => 'application/json']]);
+        $this->get('/api/routeros-devices/search.json?maximum_age=14');
+
+        $this->assertResponseOk();
+        $this->assertSame([$fresh], $this->foundIds());
+    }
+
+    /**
+     * Without a maximum age even a device silent for years is found.
+     *
+     * @return void
+     * @link \App\Controller\Api\RouterosDevicesController::search()
+     */
+    public function testSearchWithoutMaximumAgeFindsOldDevices(): void
+    {
+        $this->login();
+        $this->configRequest(['headers' => ['Accept' => 'application/json']]);
+        $this->get('/api/routeros-devices/search.json?ip_address=192.168.11.11');
+
+        $this->assertResponseOk();
+        $this->assertSame(['8a6bef12-429a-49b6-8cc2-8481567bc1a2'], $this->foundIds());
+    }
+
+    /**
      * What the CRM is handed about a device leaves out what reads it.
      *
      * @return void
@@ -158,5 +212,37 @@ class RouterosDevicesControllerTest extends TestCase
 
         $this->assertResponseOk();
         $this->assertResponseContains('"message"');
+    }
+
+    /**
+     * A device written now, beside the one of the fixture read years ago.
+     *
+     * @param array<string, mixed> $data What differs from the device of the fixture.
+     * @return string Its id.
+     */
+    private function addDevice(array $data): string
+    {
+        $devices = $this->fetchTable('RouterosDevices');
+        $device = $devices->newEntity($data + [
+            'access_point_id' => '1ec58677-1213-4950-80c4-bc1de41ea133',
+            'device_type_id' => 'c5b16172-2b9c-4a29-aab4-ddc23bc00405',
+            'ip_address' => '192.168.11.12',
+            'serial_number' => 'TEST-' . $data['name'],
+        ]);
+        $devices->saveOrFail($device);
+
+        return $device->id;
+    }
+
+    /**
+     * The ids of the devices the search answered with.
+     *
+     * @return list<string>
+     */
+    private function foundIds(): array
+    {
+        $body = json_decode($this->_getBodyAsString(), true);
+
+        return array_column($body['routerosDevices'], 'id');
     }
 }

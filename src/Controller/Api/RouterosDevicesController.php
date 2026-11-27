@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\Model\Enum\MaximumAge;
+
 /**
  * RouterosDevices Controller
  *
@@ -57,6 +59,21 @@ class RouterosDevicesController extends AppController
 
             $routerosDevicesQuery->where([
                 'RouterosDevices.id IN' => $subquery,
+            ]);
+        }
+
+        if ($this->getRequest()->is(['get']) && ($this->getRequest()->getQuery('access_point_id')) !== null) {
+            $routerosDevicesQuery->where([
+                'RouterosDevices.access_point_id' => $this->getRequest()->getQuery('access_point_id'),
+            ]);
+        }
+
+        // only when asked, so that a device is still found by its address however long it has been silent
+        if ($this->getRequest()->is(['get']) && ($this->getRequest()->getQuery('maximum_age')) !== null) {
+            $routerosDevicesQuery->where([
+                'RouterosDevices.modified >' => MaximumAge::fromQuery(
+                    $this->getRequest()->getQuery('maximum_age'),
+                )->since(),
             ]);
         }
 
